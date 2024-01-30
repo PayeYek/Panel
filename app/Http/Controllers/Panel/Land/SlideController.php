@@ -90,7 +90,7 @@ class SlideController extends Controller
         $data['image'] = null;
         if (!empty($request->file('image'))) {
             $data['image'] =
-                $request->file('image')->store('media/landing/slides', 'public');
+                $request->file('image')->store('media/land/slides', 'public');
         }
         return $data;
     }
