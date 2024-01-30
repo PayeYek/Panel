@@ -18,6 +18,7 @@
                         <option value="Netherlands">{{__('Netherlands')}}</option>
                         <option value="Italy">{{__('Italy')}}</option>
                         <option value="China">{{__('China')}}</option>
+                        <option value="Iran">{{__('Iran')}}</option>
                     </x-splade-select>
                     <x-splade-textarea name="description" label="Description" help="For SEO"/>
 

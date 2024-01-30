@@ -50,6 +50,16 @@ class LandProduct extends Model
         );
     }
 
+//    protected function description(): Attribute
+//    {
+//        return new Attribute(
+//            set: function ($value) {
+//
+//                return $value ?: '';
+//            }
+//        );
+//    }
+
     public function getImageAttribute()
     {
         $item = $this->attributes['image'];
