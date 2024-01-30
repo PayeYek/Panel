@@ -1,0 +1,27 @@
+<?php
+
+namespace App\Http\Controllers\Panel;
+
+use App\Http\Controllers\Controller;
+
+class ProfileController extends Controller
+{
+    public function login()
+    {
+        auth()->loginUsingId(1);
+
+        \Splade::toast(auth()->user()->fullname . __(', welcome.'))->autoDismiss(5);
+
+        return redirect()->route('panel.dashboard');
+    }
+
+    public function logout()
+    {
+        auth()->logout();
+
+        \Splade::toast(__('You are logout of your account.'))->danger()->autoDismiss(5);
+
+        return redirect()->route('panel.dashboard');
+
+    }
+}

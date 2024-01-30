@@ -1,0 +1,512 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Font YekanBakh */
+@layer components {
+    @font-face {
+        font-family: YekanBakh;
+        font-style: normal;
+        font-weight: 100;
+        src: url('./fonts/woff/YekanBakhFaEnHairline.woff') format('woff'),
+        url('./fonts/ttf/YekanBakhFaEnHairline.ttf') format('truetype');
+    }
+    @font-face {
+        font-family: YekanBakh;
+        font-style: normal;
+        font-weight: 200;
+        src: url('./fonts/woff/YekanBakhFaEnThin.woff') format('woff'),
+        url('./fonts/ttf/YekanBakhFaEnThin.ttf') format('truetype');
+    }
+    @font-face {
+        font-family: YekanBakh;
+        font-style: normal;
+        font-weight: 300;
+        src: url('./fonts/woff/YekanBakhFaEnLight.woff') format('woff'),
+        url('./fonts/ttf/YekanBakhFaEnLight.ttf') format('truetype');
+    }
+    @font-face {
+        font-family: YekanBakh;
+        font-style: normal;
+        font-weight: 400;
+        src: url('./fonts/woff/YekanBakhFaEnRegular.woff') format('woff'),
+        url('./fonts/ttf/YekanBakhFaEnRegular.ttf') format('truetype');
+    }
+    @font-face {
+        font-family: YekanBakh;
+        font-style: normal;
+        font-weight: 500;
+        src: url('./fonts/woff/YekanBakhFaEnMedium.woff') format('woff'),
+        url('./fonts/ttf/YekanBakhFaEnMedium.ttf') format('truetype');
+    }
+    @font-face {
+        font-family: YekanBakh;
+        font-style: normal;
+        font-weight: 600;
+        src: url('./fonts/woff/YekanBakhFaEnBold.woff') format('woff'),
+        url('./fonts/ttf/YekanBakhFaEnBold.ttf') format('truetype');
+    }
+    @font-face {
+        font-family: YekanBakh;
+        font-style: normal;
+        font-weight: 700;
+        src: url('./fonts/woff/YekanBakhFaEnHeavy.woff') format('woff'),
+        url('./fonts/ttf/YekanBakhFaEnHeavy.ttf') format('truetype');
+    }
+    @font-face {
+        font-family: YekanBakh;
+        font-style: normal;
+        font-weight: 800;
+        src: url('./fonts/woff/YekanBakhFaEnFat.woff') format('woff'),
+        url('./fonts/ttf/YekanBakhFaEnFat.ttf') format('truetype');
+    }
+
+
+    @font-face {
+        font-family: YekanBakhFA;
+        font-style: normal;
+        font-weight: 100;
+        src: url('./fonts/woff/YekanBakhFaNumHairline.woff') format('woff'),
+        url('./fonts/ttf/YekanBakhFaNumHairline.ttf') format('truetype');
+    }
+    @font-face {
+        font-family: YekanBakhFA;
+        font-style: normal;
+        font-weight: 200;
+        src: url('./fonts/woff/YekanBakhFaNumThin.woff') format('woff'),
+        url('./fonts/ttf/YekanBakhFaNumThin.ttf') format('truetype');
+    }
+    @font-face {
+        font-family: YekanBakhFA;
+        font-style: normal;
+        font-weight: 300;
+        src: url('./fonts/woff/YekanBakhFaNumLight.woff') format('woff'),
+        url('./fonts/ttf/YekanBakhFaNumLight.ttf') format('truetype');
+    }
+    @font-face {
+        font-family: YekanBakhFA;
+        font-style: normal;
+        font-weight: 400;
+        src: url('./fonts/woff/YekanBakhFaNumRegular.woff') format('woff'),
+        url('./fonts/ttf/YekanBakhFaNumRegular.ttf') format('truetype');
+    }
+    @font-face {
+        font-family: YekanBakhFA;
+        font-style: normal;
+        font-weight: 500;
+        src: url('./fonts/woff/YekanBakhFaNumMedium.woff') format('woff'),
+        url('./fonts/ttf/YekanBakhFaNumMedium.ttf') format('truetype');
+    }
+    @font-face {
+        font-family: YekanBakhFA;
+        font-style: normal;
+        font-weight: 600;
+        src: url('./fonts/woff/YekanBakhFaNumBold.woff') format('woff'),
+        url('./fonts/ttf/YekanBakhFaNumBold.ttf') format('truetype');
+    }
+    @font-face {
+        font-family: YekanBakhFA;
+        font-style: normal;
+        font-weight: 700;
+        src: url('./fonts/woff/YekanBakhFaNumHeavy.woff') format('woff'),
+        url('./fonts/ttf/YekanBakhFaNumHeavy.ttf') format('truetype');
+    }
+    @font-face {
+        font-family: YekanBakhFA;
+        font-style: normal;
+        font-weight: 800;
+        src: url('./fonts/woff/YekanBakhFaNumFat.woff') format('woff'),
+        url('./fonts/ttf/YekanBakhFaNumFat.ttf') format('truetype');
+    }
+}
+
+/* Font Morabba */
+@layer components {
+    /*@font-face {*/
+    /*    font-family: IRANSansX;*/
+    /*    font-style: normal;*/
+    /*    font-weight: 100; !* font-thin -> font-weight: 100; *!*/
+    /*    src: url('./fonts/woff/IRANSansX-Thin.woff') format('woff'),*/
+    /*    url('./fonts/woff2/IRANSansX-Thin.woff2') format('woff2');*/
+    /*}*/
+
+    @font-face {
+        font-family: Morabba;
+        font-style: normal;
+        font-weight: 200; /* font-extralight -> font-weight: 200; */
+        src: url('./fonts/woff/Morabba-UltraLight.woff') format('woff'),
+        url('./fonts/woff2/Morabba-UltraLight.woff2') format('woff2');
+    }
+
+    @font-face {
+        font-family: Morabba;
+        font-style: normal;
+        font-weight: 300; /* font-light -> font-weight: 300; */
+        src: url('./fonts/woff/Morabba-Light.woff') format('woff'),
+        url('./fonts/woff2/Morabba-Light.woff2') format('woff2');
+    }
+
+    @font-face {
+        font-family: Morabba;
+        font-style: normal;
+        font-weight: normal; /* font-normal -> font-weight: 400; */
+        src: url('./fonts/woff/Morabba-Regular.woff') format('woff'),
+        url('./fonts/woff2/Morabba-Regular.woff2') format('woff2');
+    }
+
+    @font-face {
+        font-family: Morabba;
+        font-style: normal;
+        font-weight: 500; /* font-medium -> font-weight: 500; */
+        src: url('./fonts/woff/Morabba-Medium.woff') format('woff'),
+        url('./fonts/woff2/Morabba-Medium.woff2') format('woff2');
+    }
+
+    @font-face {
+        font-family: Morabba;
+        font-style: normal;
+        font-weight: 600;  /* font-semibold -> font-weight: 600; */
+        src: url('./fonts/woff/Morabba-SemiBold.woff') format('woff'),
+        url('./fonts/woff2/Morabba-SemiBold.woff2') format('woff2');
+    }
+
+    @font-face {
+        font-family: Morabba;
+        font-style: normal;
+        font-weight: bold; /* font-bold -> font-weight: 700; */
+        src: url('./fonts/woff/Morabba-Bold.woff') format('woff'),
+        url('./fonts/woff2/Morabba-Bold.woff2') format('woff2');
+    }
+
+    @font-face {
+        font-family: Morabba;
+        font-style: normal;
+        font-weight: 800; /* font-extrabold -> font-weight: 800; */
+        src: url('./fonts/woff/Morabba-ExtraBold.woff') format('woff'),
+        url('./fonts/woff2/Morabba-ExtraBold.woff2') format('woff2');
+    }
+
+    @font-face {
+        font-family: Morabba;
+        font-style: normal;
+        font-weight: 900; /* font-black -> font-weight: 900; */
+        src: url('./fonts/woff/Morabba-Heavy.woff') format('woff'),
+        url('./fonts/woff2/Morabba-Heavy.woff2') format('woff2');
+    }
+}
+
+/* Font IRANSansX */
+@layer components {
+    @font-face {
+        font-family: IRANSansX;
+        font-style: normal;
+        font-weight: 100; /* font-thin -> font-weight: 100; */
+        src: url('./fonts/woff/IRANSansX-Thin.woff') format('woff'),
+        url('./fonts/woff2/IRANSansX-Thin.woff2') format('woff2');
+    }
+
+    @font-face {
+        font-family: IRANSansX;
+        font-style: normal;
+        font-weight: 200; /* font-extralight -> font-weight: 200; */
+        src: url('./fonts/woff/IRANSansX-UltraLight.woff') format('woff'),
+        url('./fonts/woff2/IRANSansX-UltraLight.woff2') format('woff2');
+    }
+
+    @font-face {
+        font-family: IRANSansX;
+        font-style: normal;
+        font-weight: 300; /* font-light -> font-weight: 300; */
+        src: url('./fonts/woff/IRANSansX-Light.woff') format('woff'),
+        url('./fonts/woff2/IRANSansX-Light.woff2') format('woff2');
+    }
+
+    @font-face {
+        font-family: IRANSansX;
+        font-style: normal;
+        font-weight: normal; /* font-normal -> font-weight: 400; */
+        src: url('./fonts/woff/IRANSansX-Regular.woff') format('woff'),
+        url('./fonts/woff2/IRANSansX-Regular.woff2') format('woff2');
+    }
+
+    @font-face {
+        font-family: IRANSansX;
+        font-style: normal;
+        font-weight: 500; /* font-medium -> font-weight: 500; */
+        src: url('./fonts/woff/IRANSansX-Medium.woff') format('woff'),
+        url('./fonts/woff2/IRANSansX-Medium.woff2') format('woff2');
+    }
+
+    @font-face {
+        font-family: IRANSansX;
+        font-style: normal;
+        font-weight: 600;  /* font-semibold -> font-weight: 600; */
+        src: url('./fonts/woff/IRANSansX-DemiBold.woff') format('woff'),
+        url('./fonts/woff2/IRANSansX-DemiBold.woff2') format('woff2');
+    }
+
+    @font-face {
+        font-family: IRANSansX;
+        font-style: normal;
+        font-weight: bold; /* font-bold -> font-weight: 700; */
+        src: url('./fonts/woff/IRANSansX-Bold.woff') format('woff'),
+        url('./fonts/woff2/IRANSansX-Bold.woff2') format('woff2');
+    }
+
+    @font-face {
+        font-family: IRANSansX;
+        font-style: normal;
+        font-weight: 800; /* font-extrabold -> font-weight: 800; */
+        src: url('./fonts/woff/IRANSansX-ExtraBold.woff') format('woff'),
+        url('./fonts/woff2/IRANSansX-ExtraBold.woff2') format('woff2');
+    }
+
+    @font-face {
+        font-family: IRANSansX;
+        font-style: normal;
+        font-weight: 900; /* font-black -> font-weight: 900; */
+        src: url('./fonts/woff/IRANSansX-Black.woff') format('woff'),
+        url('./fonts/woff2/IRANSansX-Black.woff2') format('woff2');
+    }
+}
+
+/* Font IRANYekan */
+@layer components {
+    @font-face {
+        font-family: IRANYekan;
+        font-style: normal;
+        font-weight: 100; /* font-thin -> font-weight: 100; */
+        src: url('./fonts/woff/IRANYekan-Thin.woff') format('woff'),
+        url('./fonts/woff2/IRANYekan-Thin.woff2') format('woff2');
+    }
+
+    /*@font-face {
+        font-family: IRANYekan;
+        font-style: normal;
+        font-weight: 200; !* font-extralight -> font-weight: 200; *!
+        src: url('./fonts/woff/IRANYekan-UltraLight.woff') format('woff'),
+        url('./fonts/woff2/IRANYekan-UltraLight.woff2') format('woff2');
+    }*/
+    @font-face {
+        font-family: IRANYekan;
+        font-style: normal;
+        font-weight: 300; /* font-light -> font-weight: 300; */
+        src: url('./fonts/woff/IRANYekan-Light.woff') format('woff'),
+        url('./fonts/woff2/IRANYekan-Light.woff2') format('woff2');
+    }
+
+    @font-face {
+        font-family: IRANYekan;
+        font-style: normal;
+        font-weight: normal; /* font-normal -> font-weight: 400; */
+        src: url('./fonts/woff/IRANYekan-Regular.woff') format('woff'),
+        url('./fonts/woff2/IRANYekan-Regular.woff2') format('woff2');
+    }
+
+    @font-face {
+        font-family: IRANYekan;
+        font-style: normal;
+        font-weight: 500; /* font-medium -> font-weight: 500; */
+        src: url('./fonts/woff/IRANYekan-Medium.woff') format('woff'),
+        url('./fonts/woff2/IRANYekan-Medium.woff2') format('woff2');
+    }
+
+    /*@font-face {
+        font-family: IRANYekan;
+        font-style: normal;
+        font-weight: 600;  !* font-semibold -> font-weight: 600; *!
+        src: url('./fonts/woff/IRANYekan-DemiBold.woff') format('woff'),
+        url('./fonts/woff2/IRANYekan-DemiBold.woff2') format('woff2');
+    }*/
+    @font-face {
+        font-family: IRANYekan;
+        font-style: normal;
+        font-weight: bold; /* font-bold -> font-weight: 700; */
+        src: url('./fonts/woff/IRANYekan-Bold.woff') format('woff'),
+        url('./fonts/woff2/IRANYekan-Bold.woff2') format('woff2');
+    }
+
+    @font-face {
+        font-family: IRANYekan;
+        font-style: normal;
+        font-weight: 800; /* font-extrabold -> font-weight: 800; */
+        src: url('./fonts/woff/IRANYekan-ExtraBold.woff') format('woff'),
+        url('./fonts/woff2/IRANYekan-ExtraBold.woff2') format('woff2');
+    }
+
+    @font-face {
+        font-family: IRANYekan;
+        font-style: normal;
+        font-weight: 900; /* font-black -> font-weight: 900; */
+        src: url('./fonts/woff/IRANYekan-Black.woff') format('woff'),
+        url('./fonts/woff2/IRANYekan-Black.woff2') format('woff2');
+    }
+}
+
+@layer utilities {
+    /* Font IRANSansX - Number Farsi */
+    .number-fa {
+        -moz-font-feature-settings: "ss02";
+        -webkit-font-feature-settings: "ss02";
+        font-feature-settings: "ss02";
+    }
+    /* Font Morabba - Number Farsi */
+    .morabba-number-fa {
+        -moz-font-feature-settings: "ss01";
+        -webkit-font-feature-settings: "ss01";
+        font-feature-settings: "ss01";
+    }
+
+    .dir-rtl {
+        direction: rtl;
+    }
+
+    .dir-ltr {
+        direction: ltr;
+    }
+}
+
+@layer utilities {
+    .filter-white {
+        filter: brightness(0) invert(1);
+    }
+    .filter-black {
+        filter: brightness(100) invert(1);
+    }
+}
+
+/* CUSTOM COLOR */
+.bg-multi-color {
+    background: linear-gradient(to bottom, red 0% 14%, orange 14% 28%, yellow 28% 42%, green 42% 56%, blue 56% 70%, indigo 70% 84%, violet 84% 98%);
+}
+
+.bg-none-color {
+    background: none;
+    /*@apply bg-sky-50;*/
+}
+
+/* FILEPOND */
+.filepond--credits {
+    @apply hidden;
+}
+
+.filepond--drop-label {
+    @apply ltr:dir-ltr rtl:dir-rtl ltr:!font-inter rtl:!font-iran !text-gray-900 dark:!text-white !text-sm;
+}
+
+.filepond--root .filepond--hopper {
+    @apply !bg-gray-50 dark:!bg-gray-700;
+}
+
+.filepond--panel .filepond--panel-root {
+    @apply !bg-gray-50 dark:!bg-gray-700;
+    @apply !border-gray-300 dark:!border-gray-600;
+}
+
+/* CHOICES.JS */
+.choices__inner {
+    @apply !bg-gray-50 dark:!bg-gray-700;
+    @apply !border-transparent dark:!border-transparent ;
+    @apply !ring-0 dark:!ring-0;
+    @apply !rounded-[7px];
+}
+
+.choices__input {
+    @apply !bg-gray-50 dark:!bg-gray-700 ;
+}
+
+.choices .choices__list {
+    @apply !z-10;
+}
+
+.choices .choices__list--multiple .choices__item {
+    @apply !bg-primary-500 hover:!bg-primary-600 transition duration-200 !border-transparent;
+}
+
+.choices__list--multiple .choices__item[data-deletable] {
+    @apply !px-0 !ps-2;
+}
+
+.choices .choices__list--dropdown .choices__item--selectable {
+    @apply dark:!text-white;
+}
+
+.choices .choices__list--dropdown .choices__item--selectable.is-highlighted {
+    @apply !bg-primary-500 dark:!bg-primary-500;
+}
+
+.choices .choices__list--dropdown {
+    @apply !border-primary-500 dark:!border-primary-500 ring-1 ring-primary-500;
+}
+
+.choices__list--dropdown {
+    @apply !bg-gray-50 dark:!bg-gray-500;
+}
+.choices__button {
+    @apply ltr:!right-2 rtl:!right-auto rtl:!left-8 !bg-red-500 dark:!bg-red-500;
+}
+
+.choices .choices__inner {
+    @apply rtl:!bg-[center_left_.5rem];
+}
+
+/* JODIT TEXT EDITOR */
+.jodit-container {
+    /*@apply !border-gray-300 dark:!border-gray-600;*/
+    @apply !border-transparent dark:!border-transparent;
+}
+
+.jodit-wysiwyg {
+    @apply !bg-gray-50 dark:!bg-gray-700;
+}
+
+.jodit-toolbar__box {
+    @apply !bg-gray-50 dark:!bg-gray-600 dark:!text-white;
+}
+
+.jodit-toolbar__box:not(:empty) {
+    @apply !border-gray-300 dark:!border-gray-700 !rounded-t-none;
+}
+
+.jodit-ui-separator {
+    @apply !border-gray-300 dark:!border-gray-700 !border-opacity-50 dark:!border-opacity-50;
+}
+
+.jodit-toolbar__box:not(:empty) .jodit-toolbar-editor-collection:after {
+    @apply !bg-gray-300 dark:!bg-gray-700;
+}
+
+.jodit-toolbar-button__button {
+    @apply dark:hover:!bg-gray-700;
+}
+
+.jodit-toolbar-button_with-trigger_true:hover:not([disabled]) {
+    @apply dark:border-gray-700;
+}
+
+.jodit-toolbar-button__trigger {
+    @apply dark:hover:!bg-gray-700 dark:!text-white fill-current;
+}
+
+.jodit-icon {
+    @apply !fill-current !stroke-current !text-gray-900 dark:!text-white;
+}
+
+.jodit-container:not(.jodit_inline) {
+    @apply !bg-gray-50 dark:!bg-gray-600;
+}
+
+.jodit-container:not(.jodit_inline) .jodit-workplace {
+    @apply !bg-gray-50 dark:!bg-gray-600;
+}
+
+.jodit-toolbar-editor-collection_size_middle.jodit-toolbar-editor-collection_mode_horizontal {
+    @apply !bg-none;
+    /*background-image: repeating-linear-gradient(transparent 0,transparent 37px,#2d343c 38px) !important;*/
+}
+
+.badge {
+    @apply inline-flex items-center gap-x-1.5 py-1.5 px-3 rounded-full text-xs font-medium bg-gray-800 text-white dark:bg-white dark:text-gray-800;
+}
