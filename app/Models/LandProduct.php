@@ -66,9 +66,9 @@ class LandProduct extends Model
 
 
                 return $value ?:
-                    $category . ' '
-                    . ($axle == '2' ? 'جفت محور' : '')
-                    . ($axle == '3' ? 'سه محور' : '')
+                    $category
+                    . ($axle == '2' ? ' جفت محور' : '')
+                    . ($axle == '3' ? ' سه محور' : '')
                     . ($tonnage ? ' ' . $tonnage . ' تن' : '')
                     . ' ' . $brand . '، '
                     . ($usage ? 'با کاربری ' . $usage  : '')
