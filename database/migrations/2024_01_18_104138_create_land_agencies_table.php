@@ -14,13 +14,13 @@ return new class extends Migration
         Schema::create('land_agencies', function (Blueprint $table) {
             $table->id();
             $table->foreignId('land_id')->constrained()->cascadeOnDelete();
-            $table->text('province')->nullable();
-            $table->text('city')->nullable();
-            $table->text('code')->nullable();
-            $table->text('name')->nullable();
+            $table->string('province')->nullable();
+            $table->string('city')->nullable();
+            $table->string('code')->nullable();
+            $table->string('name')->nullable();
             $table->text('address')->nullable();
             $table->text('info')->nullable(); // call & time
-            $table->text('type')->nullable();
+            $table->string('type')->nullable();
 
             $table->timestamps();
         });

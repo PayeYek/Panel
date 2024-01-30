@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->foreignId('land_id')->constrained()->onDelete('cascade');
             $table->string('type')->default('blog'); // blog | news | sell
-            $table->text('slug')->unique();
-            $table->text('title')->nullable();
+            $table->string('slug')->unique();
+            $table->string('title')->nullable();
             $table->text('description')->nullable();
             $table->text('body')->nullable();
             $table->text('image')->nullable();

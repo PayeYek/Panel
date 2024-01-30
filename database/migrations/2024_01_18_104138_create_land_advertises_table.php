@@ -17,7 +17,7 @@ return new class extends Migration
             $table->text('image')->nullable();
             $table->text('alt')->nullable();
             $table->text('link')->nullable();
-            $table->text('type')->default('land'); // land | product
+            $table->string('type')->default('land'); // land | product
             $table->bigInteger('view')->default(0);
             $table->boolean('status')->default(true);
             $table->timestamp('published_at')->nullable();
