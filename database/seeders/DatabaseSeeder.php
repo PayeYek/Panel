@@ -20,12 +20,12 @@ class DatabaseSeeder extends Seeder
             LandCategorySeeder::class,
             LandColorSeeder::class,
             LandBrandSeeder::class,
-            //            LandSeeder::class,
-            //            LandProductSeeder::class,
-            //            LandSlideSeeder::class,
-            //            LandArticleSeeder::class,
-            //            LandAgencySeeder::class,
-            //            LandAdvertiseSeeder::class,
+            LandSeeder::class,
+            LandProductSeeder::class,
+            LandSlideSeeder::class,
+            LandArticleSeeder::class,
+            LandAgencySeeder::class,
+            LandAdvertiseSeeder::class,
         ]);
     }
 }
