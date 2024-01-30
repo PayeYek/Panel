@@ -50,15 +50,34 @@ class LandProduct extends Model
         );
     }
 
-//    protected function description(): Attribute
-//    {
-//        return new Attribute(
-//            set: function ($value) {
-//
-//                return $value ?: '';
-//            }
-//        );
-//    }
+    protected function description(): Attribute
+    {
+        return new Attribute(
+            set: function ($value) {
+
+                $category = LandCategory::find($this->attributes['category_id'])->title;
+                $brand = LandBrand::find($this->attributes['brand_id'])->title;
+                $axle = $this->attributes['axle'];
+                $model = $this->attributes['model'];
+                $year = $this->attributes['year'];
+                $tonnage = $this->attributes['tonnage'];
+                $usage = $this->attributes['usage'];
+                $cabin = $this->attributes['cabin'];
+
+
+                return $value ?:
+                    $category . ' '
+                    . ($axle == '2' ? 'جفت محور' : '')
+                    . ($axle == '3' ? 'سه محور' : '')
+                    . ($tonnage ? ' ' . $tonnage . ' تن' : '')
+                    . ' ' . $brand . '، '
+                    . ($usage ? 'با کاربری ' . $usage  : '')
+                    . ($cabin == '0' ? '، بدون خواب'  : '')
+                    . ($cabin == '1' ? '، خواب دار'  : '')
+                    . ($model ? ' مدل ' . $model  : '');
+            }
+        );
+    }
 
     public function getImageAttribute()
     {

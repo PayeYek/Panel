@@ -30,7 +30,7 @@
                  data-flickity='{ "pageDots": false, "prevNextButtons": false, "autoPlay": "500", "cellAlign": "left", "contain": true }'>
             @foreach($land->slides as $slide)
                 <div class="carousel-cell">
-                    <img class="h-[268px] md:h-[400px] object-cover"
+                    <img class="h-[220px] md:h-[400px] object-cover"
                          src="{{ $slide->image }}" alt="{{ $slide->alt }}"/>
                 </div>
             @endforeach
