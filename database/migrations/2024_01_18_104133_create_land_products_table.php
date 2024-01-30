@@ -20,6 +20,10 @@ return new class extends Migration
             $table->string('name')->nullable();
             $table->string('model')->nullable();
             $table->string('year')->nullable();
+            $table->string('tonnage')->nullable();
+            $table->string('axle')->nullable();
+            $table->string('usage')->nullable();
+            $table->string('cabin')->nullable();
             $table->text('image')->nullable();
             $table->text('description')->nullable();
             $table->text('catalog')->nullable();

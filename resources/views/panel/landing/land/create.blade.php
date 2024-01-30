@@ -14,7 +14,7 @@
 {{--                    />--}}
                     <x-splade-input name="title" label="Title"/>
 
-                    <x-splade-input name="slug" label="Slug" help="Exclusive name in English"/>
+                    <x-splade-input ltr name="slug" label="Slug" help="Exclusive name in English"/>
 
                     <x-splade-textarea name="description" label="Description" help="For SEO and footer descriptions"/>
 

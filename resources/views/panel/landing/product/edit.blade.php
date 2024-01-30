@@ -5,6 +5,13 @@
 
                 <x-layout.panel.form.alerts/>
 
+                <x-layout.panel.form.division>
+                    <x-splade-file name="image" label="Image" filepond preview
+                                   max-size="2MB"
+                                   required
+                    />
+                </x-layout.panel.form.division>
+
                 <x-splade-select name="land_id" label="Landing" :options="$lands" placeholder="Select an item"
                                  choices/>
                 <x-splade-select name="brand_id" label="Brand" :options="$brands" placeholder="Select an item"
@@ -12,24 +19,42 @@
                 <x-splade-select name="category_id" label="Type" :options="$categories" placeholder="Select an item"
                                  choices/>
 
-                <x-splade-select name="colors[]" label="Colors" :options="$colors" placeholder="Select an item"
+                <x-splade-select name="axle" label="Number of wheel axles">
+                    <option value="1">{{__('Single axle')}}</option>
+                    <option value="2">{{__('Pair axle')}}</option>
+                    <option value="3">{{__('Triple axle')}}</option>
+                </x-splade-select>
+
+                <x-splade-select name="usage" label="Type of Use">
+                    <option value="{{__('Bari')}}">{{__('Bari')}}</option>
+                    <option value="{{__('Keshandeh')}}">{{__('Keshandeh')}}</option>
+                    <option value="{{__('Kompresi')}}">{{__('Kompresi')}}</option>
+                </x-splade-select>
+
+                <x-splade-select name="cabin" label="Cabin type">
+                    <option value="1">{{__('Has a sleeping cabin')}}</option>
+                    <option value="0">{{__('No sleeping cabin')}}</option>
+                    <option value="">{{__('No cabin')}}</option>
+                </x-splade-select>
+
+                <x-splade-input name="tonnage" label="Tonnage"/>
+
+                <x-splade-select name="colors[]" label="Colors" :options="$colors" placeholder="{{__('Select an item')}}"
                                  multiple choices/>
 
-                <x-layout.panel.form.division>
-                    <x-splade-file name="image" label="Image" filepond preview
-                                   max-size="2MB"
-                                   required
-                    />
+                <x-splade-input ltr name="model" label="Model"/>
+                <x-splade-input ltr name="year" label="Year"/>
+                <x-layout.panel.form.division :col="2">
+                    <x-splade-input name="name" label="Name" required/>
+                    <x-splade-input ltr name="slug" label="Slug" help="Exclusive name in English"/>
                 </x-layout.panel.form.division>
-                <x-splade-input name="name" label="Name" required/>
-                <x-splade-input ltr name="slug" label="Slug" help="Exclusive name in English"/>
-                <x-splade-input ltr name="model" label="Model" required/>
-                <x-splade-input ltr name="year" label="Year" required/>
                 <x-layout.panel.form.division>
                     <x-splade-textarea name="description" label="Description" help="For SEO"/>
                     <x-splade-wysiwyg name="body" label="Product content"/>
+
                     <x-splade-file name="catalog" label="Catalog" filepond/>
                     <x-splade-file name="manual" label="Manual" filepond/>
+
                 </x-layout.panel.form.division>
 
                 {{-- TODO: MORE PICs--}}

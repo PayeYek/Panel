@@ -46,7 +46,7 @@ class Colors extends AbstractTable
 
         $table
             //->withGlobalSearch(columns: ['id', 'name', 'title'])
-            ->column('id', label: __('Id'), sortable: true)
+            ->column('id', label: __('Id'), sortable: true, hidden: true)
             ->column('color', label: __('Color'))
             ->column('title', label: __('Title'), sortable: true, hidden: true, searchable: true)
             ->column('name', label: __('Name'), sortable: true, hidden: true, searchable: true)
