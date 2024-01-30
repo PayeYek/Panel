@@ -13,11 +13,11 @@
                     <x-splade-input ltr name="slug" label="Slug" help="Exclusive name in English"/>
                     <x-splade-select name="country" label="Country" choices="{ searchEnabled: false }">
                         <option value="" disabled>{{__('Select an item')}}</option>
-                        <option value="{{__('Germany')}}">{{__('Germany')}}</option>
-                        <option value="{{__('Sweden')}}">{{__('Sweden')}}</option>
-                        <option value="{{__('Netherlands')}}">{{__('Netherlands')}}</option>
-                        <option value="{{__('Italy')}}">{{__('Italy')}}</option>
-                        <option value="{{__('China')}}">{{__('China')}}</option>
+                        <option value="Germany">{{__('Germany')}}</option>
+                        <option value="Sweden">{{__('Sweden')}}</option>
+                        <option value="Netherlands">{{__('Netherlands')}}</option>
+                        <option value="Italy">{{__('Italy')}}</option>
+                        <option value="China">{{__('China')}}</option>
                     </x-splade-select>
                     <x-splade-textarea name="description" label="Description" help="For SEO"/>
 
