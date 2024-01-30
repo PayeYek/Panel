@@ -17,15 +17,15 @@ class DatabaseSeeder extends Seeder
 
         /* Landing */
         $this->call([
-            LandSeeder::class,
             LandCategorySeeder::class,
             LandColorSeeder::class,
             LandBrandSeeder::class,
-            LandProductSeeder::class,
-            LandSlideSeeder::class,
-            LandArticleSeeder::class,
-            LandAgencySeeder::class,
-            LandAdvertiseSeeder::class,
+            //            LandSeeder::class,
+            //            LandProductSeeder::class,
+            //            LandSlideSeeder::class,
+            //            LandArticleSeeder::class,
+            //            LandAgencySeeder::class,
+            //            LandAdvertiseSeeder::class,
         ]);
     }
 }
