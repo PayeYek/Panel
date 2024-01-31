@@ -92,7 +92,7 @@ class LandingController extends Controller
     public function article($page, $article)
     {
 
-DB::statement('ALTER TABLE land_articles MODIFY COLUMN body LONGTEXT');
+//DB::statement('ALTER TABLE land_articles MODIFY COLUMN body LONGTEXT');
         $land = Land::where('slug', $page)
             ->with([
                 'products',
