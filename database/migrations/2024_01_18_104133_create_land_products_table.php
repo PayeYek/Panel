@@ -30,7 +30,7 @@ return new class extends Migration
             $table->text('manual')->nullable();
             $table->text('country')->nullable();
             $table->text('colors')->nullable();
-            $table->text('body')->nullable();
+            $table->longText('body')->nullable();
             $table->bigInteger('view')->default(0);
             $table->timestamps();
 

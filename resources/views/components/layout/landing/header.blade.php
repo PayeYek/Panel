@@ -1,6 +1,6 @@
 @props(['land' => null ])
 @if($land)
-    <header class="px-5 xl:px-0 flex flex-col md:flex-row items-center justify-between gap-5">
+    <header class="pt-2 px-5 xl:px-0 flex flex-col md:flex-row items-center justify-between gap-5">
 
         <x-layout.landing.logo :land="$land"/>
 

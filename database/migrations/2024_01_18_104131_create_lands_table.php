@@ -17,7 +17,7 @@ return new class extends Migration {
             $table->text('logo')->nullable();
             $table->text('logo_origin')->nullable();
             $table->text('description')->nullable();
-            $table->text('body')->nullable();
+            $table->longText('body')->nullable();
             $table->timestamps();
         });
     }
