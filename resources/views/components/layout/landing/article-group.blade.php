@@ -11,7 +11,7 @@
     <ul class="mt-5 flex flex-col gap-5">
         @foreach($contents->take(3) as $article)
             <li>
-                <a href="#" class="flex items-center gap-5 group">
+                <a href="{{ route('landing.article.show', ['page'=> $article->land->slug , 'article'=> $article->slug]) }}" class="flex items-center gap-5 group">
                     <img class="h-24 rounded-md" src="{{$article->image}}"
                          alt="{{$article->title}}">
                     <div class="flex flex-col flex-1">

@@ -1,0 +1,65 @@
+@props(['land'=>null])
+
+{{--ADVERTISE--}}
+<section class="mt-5 md:mt-16 xl:rounded-md overflow-hidden">
+    <div class="carousel-cell">
+        <img class="h-[268px] md:h-[400px] object-cover"
+             src="{{ 'https://via.placeholder.com/1380x360.png/ff0000?text=تبلیغات' }}" alt="{{ 'alt' }}"/>
+    </div>
+</section>
+
+{{--FOOTER: LOGO, DESC | LINKS: HOME, NEWS, ARTICLES, PRODUCTS, SALLER--}}
+<footer
+    class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-5 mt-5 md:mt-16 mx-5 xl:mx-0 px-10 bg-gray-200 dark:bg-gray-800/90 rounded-t-lg py-10">
+    <section class="flex flex-col md:col-span-full lg:col-span-2">
+        <x-layout.landing.logo :land="$land" in-footer/>
+        <p class="text-sm mt-6 md:mt-3 text-justify">
+            {{$land->description}}
+        </p>
+    </section>
+
+    @php
+        $buttons = [
+        [
+        'title'=>'دسترسی سریع',
+        'items' => ['محصولات','کاتالوگها','گالری تصاویر','درباره ما']
+        ],
+        [
+        'title'=>'دانستنی',
+        'items' =>['نمایندگی فروش مجاز','اطلاعیه های فروش','مطالب وبلاگ']
+        ],
+        [
+        'title'=>'انواع محصولات',
+        'items' => ['کامیون','کامیونت','کشنده','تریلر']
+        ],
+        ];
+    @endphp
+
+    @foreach($buttons as  $button)
+        <main class="mt-10 md:mt-0">
+            <header class="flex items-center justify-between">
+                <div class="bg-gray-500/20 flex-1 h-0.5"></div>
+                <h4 class="font-medium font-bakh bg-gray-500/20 rounded-md px-3 py-1">{{ $button['title'] }}</h4>
+                <div class="bg-gray-500/20 flex-1 h-0.5"></div>
+            </header>
+            <ul class="flex flex-col gap-4 mt-5 items-center justify-stretch">
+                @foreach($button['items'] as  $item)
+                    <li class="w-full flex">
+                        <a href="#"
+                           class="w-full text-sm hover:text-red-500 bg-gray-500/10 text-center md:text-start rounded-md px-3 py-1 transition-all duration-100">{{ $item }}</a>
+                    </li>
+                @endforeach
+            </ul>
+        </main>
+    @endforeach
+
+    <section
+        class="md:pt-5 border-none md:border-t md:border-dashed border-gray-500/20 col-span-full flex flex-col md:flex-row-reverse items-center justify-between gap-5">
+        <x-layout.landing.social class="invisible"/>
+        <span class="text-xs text-center md:text-start border-t md:border-none border-dashed border-gray-500 py-2">
+                {{__('message.rights', ['brand' => 'نام برند', 'year' => jdate()->getYear()])}}
+            {{--{{__('message.rights', ['brand' => $land->title, 'year' => jdate()->getYear()])}}--}}
+            </span>
+    </section>
+
+</footer>

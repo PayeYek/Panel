@@ -5,7 +5,7 @@
 
             <a href="{{route('landing.page.show', ['page' => $land->slug])}}"
                class="flex items-center gap-3">
-                <img class="aspect-square h-24 shrink-0 rounded-md bg-gray-500/80" src="{{$land->logo}}"
+                <img class="aspect-square h-24 shrink-0 rounded-md bg-gray-200 dark:bg-gray-800" src="{{$land->logo}}"
                      alt="{{$land->title}}">
                 <div class="flex flex-col gap-5">
                     <span class="text-base">{{$land->title}}</span>

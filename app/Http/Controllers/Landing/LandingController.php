@@ -4,12 +4,16 @@ namespace App\Http\Controllers\Landing;
 
 use App\Http\Controllers\Controller;
 use App\Models\Land;
+use App\Models\LandArticle;
+use App\Models\LandCategory;
+use App\Models\LandProduct;
+use Illuminate\Support\Facades\DB;
 
 class LandingController extends Controller
 {
     public function pages()
     {
-        $lands = Land::latest()->get();
+        $lands = Land::get();
 
         return view('landing.page-list', compact('lands'));
     }
@@ -17,15 +21,34 @@ class LandingController extends Controller
     public function page($page)
     {
         $land = Land::where('slug', $page)
-            ->with(['categories.products', 'slides', 'articles' => function ($query) {
-                $query->orderBy('created_at', 'desc');
-            }])
+            ->with([
+                'products',
+                'slides',
+                'articles' => function ($query) {
+                    $query->orderBy('created_at', 'desc');
+                }
+            ])
             ->firstOrFail();
+
+        $cats = array();
+        foreach ($land->products as $product) {
+            $cats[] = $product->category_id;
+        }
+        $cats = array_unique($cats);
+
+        $data = array();
+        foreach ($cats as $cat) {
+            $item['category'] = LandCategory::find($cat);
+            $item['products'] = LandProduct::where('land_id', $land->id)->where('category_id', $cat)->get();
+            $data[] = $item;
+        }
+
+        $data = collect($data);
 
         $newsArticles = $land->articles->where('type', 'news');
         $blogArticles = $land->articles->where('type', 'blog');
 
-        return view('landing.page-single', compact('land', 'newsArticles', 'blogArticles'));
+        return view('landing.page-single', compact('land', 'data', 'newsArticles', 'blogArticles'));
     }
 
     public function products($page)
@@ -36,7 +59,16 @@ class LandingController extends Controller
 
     public function product($page, $product)
     {
-        return view('landing.product-single');
+        $land = Land::where('slug', $page)
+            ->with([
+                'products',
+                'articles' => function ($query) {
+                    $query->orderBy('created_at', 'desc');
+                }
+            ])
+            ->firstOrFail();
+
+        return view('landing.product-single', compact('land'));
         // dd($page, $product);
         // $land = Land::where('slug', $page)->with(['products', 'slides', 'articles'])->firstOrFail();
         // return view('home.product-list', compact('land'));
@@ -45,16 +77,33 @@ class LandingController extends Controller
 
     public function articles($page)
     {
-        return view('landing.article-list');
-        // $land = Land::where('slug', $page)->with(['products', 'slides', 'articles'])->firstOrFail();
-        // return view('home.product-list', compact('land'));
+        $land = Land::where('slug', $page)
+            ->with([
+                'products',
+                'articles' => function ($query) {
+                    $query->orderBy('created_at', 'desc');
+                }
+            ])
+            ->firstOrFail();
+
+        return view('landing.article-list', compact('land'));
     }
 
     public function article($page, $article)
     {
-        return view('landing.article-single');
-        // dd($page, $article);
-        // $land = Land::where('slug', $page)->with(['products', 'slides', 'articles'])->firstOrFail();
-        // return view('home.product-list', compact('land'));
+
+DB::statement('ALTER TABLE land_articles MODIFY COLUMN body LONGTEXT');
+        $land = Land::where('slug', $page)
+            ->with([
+                'products',
+                'articles' => function ($query) {
+                    $query->orderBy('created_at', 'desc');
+                }
+            ])
+            ->firstOrFail();
+
+        $article = LandArticle::where('slug', $article)->firstOrFail();
+
+        return view('landing.article-single', compact('land','article'));
     }
 }
