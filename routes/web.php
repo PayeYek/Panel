@@ -70,6 +70,7 @@ Route::middleware(['splade'])->group(function () {
             Route::name('page.')->group(function () {
                 Route::get('/', 'pages')->name('list');
                 Route::get('{page}', 'page')->name('show');
+                Route::get('{page}/about', 'about')->name('about');
             });
 
             Route::name('product.')->group(function () {

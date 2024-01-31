@@ -51,6 +51,21 @@ class LandingController extends Controller
         return view('landing.page-single', compact('land', 'data', 'newsArticles', 'blogArticles'));
     }
 
+    public function about($page)
+    {
+        $land = Land::where('slug', $page)
+            ->with([
+                'products',
+                'slides',
+                'articles' => function ($query) {
+                    $query->orderBy('created_at', 'desc');
+                }
+            ])
+            ->firstOrFail();
+
+        return view('landing.page-about', compact('land'));
+    }
+
     public function products($page)
     {
         $land = Land::where('slug', $page)->with(['products', 'slides', 'articles'])->firstOrFail();
@@ -68,10 +83,8 @@ class LandingController extends Controller
             ])
             ->firstOrFail();
 
-        return view('landing.product-single', compact('land'));
-        // dd($page, $product);
-        // $land = Land::where('slug', $page)->with(['products', 'slides', 'articles'])->firstOrFail();
-        // return view('home.product-list', compact('land'));
+        $product = LandProduct::where('slug', $product)->firstOrFail();
+        return view('landing.product-single', compact('land', 'product'));
     }
 
 

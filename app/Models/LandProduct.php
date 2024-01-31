@@ -137,6 +137,11 @@ class LandProduct extends Model
         return $this->belongsTo(LandCategory::class, 'category_id');
     }
 
+    public function brand()
+    {
+        return $this->belongsTo(LandBrand::class);
+    }
+
     public function products()
     {
         return $this->hasMany(LandProduct::class);

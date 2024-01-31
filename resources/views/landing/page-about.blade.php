@@ -2,16 +2,8 @@
 
     <div class="px-5 xl:px-0 flex flex-col lg:flex-row  gap-10">
         <div class="flex-1">
-            <div class="mt-10 mb-5 flex items-center justify-between">
-                <h1 class="text-3xl font-bold font-bakh">{{$article->title}}</h1>
-                <span class="text-sm">{{jdate($article->created_at)->format('%A, %d %B %y')}}</span>
-            </div>
-
-            <img class="rounded-lg mb-10"
-                 src="{{$article->image}}" alt="{{$article->title}}">
-
             <main class="leading-9">
-                {!! $article->body !!}
+                {!! $land->body !!}
             </main>
         </div>
 
@@ -24,6 +16,4 @@
 
         </div>
     </div>
-
-
 </x-layout.landing.land>

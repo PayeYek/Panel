@@ -13,7 +13,8 @@
                    href="{{ route('landing.page.show', ['page'=>$land->slug]) }}">{{__('Products')}}</a>
                 <a class="hover:text-red-500 px-3 transition-all duration-100"
                    href="{{ route('landing.page.show', ['page'=>$land->slug]) }}">{{__('Sales Agency')}}</a>
-                <a class="hover:text-red-500 px-3 transition-all duration-100" href="#about">{{__('About us')}}</a>
+                <a class="hover:text-red-500 px-3 transition-all duration-100"
+                   href="{{ route('landing.page.about', ['page'=>$land->slug]) }}">{{__('About us')}}</a>
             </nav>
         </div>
 
