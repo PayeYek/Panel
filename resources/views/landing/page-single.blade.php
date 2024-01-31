@@ -55,13 +55,6 @@
         </section>
     @endif
 
-    {{--ADVERTISE--}}
-    <section class="mt-5 md:mt-16 xl:rounded-md overflow-hidden">
-        <div class="carousel-cell">
-            <img class="h-[268px] md:h-[400px] object-cover"
-                 src="{{ 'https://via.placeholder.com/1380x360.png/ff0000?text=تبلیغات' }}" alt="{{ 'alt' }}"/>
-        </div>
-    </section>
 
 </x-layout.landing.land>
 

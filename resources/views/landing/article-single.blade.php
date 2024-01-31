@@ -15,10 +15,13 @@
             </main>
         </div>
 
-        <div class="shrink-0">
-            <img class="rounded-lg"
-                 src="https://kalleh.com/book/wp-content/uploads/sites/2/2023/11/side-bar.jpg.webp"
-                 alt="{{$article->title}}">
+        <div class="shrink-0 lg:pt-14 relative">
+            <div class="lg:pt-10 sticky top-0 flex flex-col items-center">
+                <img class="rounded-lg"
+                     src="https://kalleh.com/book/wp-content/uploads/sites/2/2023/11/side-bar.jpg.webp"
+                     alt="{{$article->title}}">
+            </div>
+
         </div>
     </div>
 

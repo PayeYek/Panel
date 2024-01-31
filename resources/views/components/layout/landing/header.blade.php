@@ -17,9 +17,14 @@
             </nav>
         </div>
 
-        <a
-            class="text-white text-center w-full max-w-48 md:w-fit font-medium text-sm bg-red-500 hover:bg-red-600 rounded-md px-3 py-2.5 transition-all duration-100"
-            href="{{ route('landing.page.show', ['page'=>$land->slug]) }}">{{__('Terms of sale')}}</a>
+        <div class="flex items-center gap-2">
+            <SwitchStyle/>
+            <Breakpoint class="shrink-0"/>
+            <a
+                class="text-white text-center w-full max-w-48 md:w-fit font-medium text-sm bg-red-500 hover:bg-red-600 rounded-md px-3 py-2.5 transition-all duration-100"
+                href="{{ route('landing.page.show', ['page'=>$land->slug]) }}">{{__('Terms of sale')}}</a>
+
+        </div>
 
     </header>
 @endif
