@@ -71,11 +71,13 @@ Route::middleware(['splade'])->group(function () {
                 Route::get('/', 'pages')->name('list');
                 Route::get('{page}', 'page')->name('show');
                 Route::get('{page}/about', 'about')->name('about');
+                Route::get('{page}/catalogs', 'catalogs')->name('catalogs');
             });
 
             Route::name('product.')->group(function () {
                 Route::get('{page}/p', 'products')->name('list');
                 Route::get('{page}/p/{product}', 'product')->name('show');
+                Route::get('{page}/c/{category}', 'category')->name('category');
             });
 
             Route::name('article.')->group(function () {

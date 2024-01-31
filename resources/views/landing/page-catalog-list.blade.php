@@ -3,7 +3,8 @@
     <div class="px-5 xl:px-0 flex flex-col lg:flex-row mt-10 gap-10">
         <div class="flex-1">
             <main class="leading-9">
-                {!! $land->body !!}
+                کاتالوگ ها
+{{--                {!! $land->body !!}--}}
             </main>
         </div>
 

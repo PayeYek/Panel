@@ -3,8 +3,8 @@
 {{--ADVERTISE--}}
 <section class="mt-5 md:mt-16 xl:rounded-md overflow-hidden">
     <div class="carousel-cell">
-        <img class="h-[268px] md:h-[400px] object-cover"
-             src="{{ asset('assets/images/test/single banner resize.png') }}" alt="{{ 'alt' }}"/>
+        <img class="h-[220px] md:h-[400px] object-cover"
+             src="{{ asset('assets/images/test/Arian diesel 02 resize.jpg') }}" alt="{{ 'alt' }}"/>
     </div>
 </section>
 
@@ -19,20 +19,44 @@
     </section>
 
     @php
+
+
         $buttons = [
         [
         'title'=>'دسترسی سریع',
-        'items' => ['محصولات','کاتالوگها','دفترچه راهنما','درباره ما']
+        'items' => [
+                        ['name' => 'محصولات', 'link' => route('landing.product.list', ['page' => $land->slug])],
+                        ['name' => 'کاتالوگ‌ها',  'link' => route('landing.page.catalogs', ['page' => $land->slug])],
+                        ['name' => 'درباره ما',  'link' => route('landing.page.about', ['page' => $land->slug])]
+                   ]
         ],
         [
         'title'=>'دانستنی',
-        'items' =>['نمایندگی فروش مجاز','اطلاعیه های فروش','مطالب وبلاگ']
-        ],
-        [
-        'title'=>'انواع محصولات',
-        'items' => ['کامیون','کامیونت','کشنده','تریلر']
+        'items' => [
+                        ['name' => 'نمایندگی فروش مجاز', 'link' => route('landing.page.show', ['page' => $land->slug])],
+                        ['name' => 'اطلاعیه های فروش',  'link' => route('landing.article.list', ['page' => $land->slug])],
+                        ['name' => 'مطالب وبلاگ',  'link' => route('landing.article.list', ['page' => $land->slug])]
+                   ]
         ],
         ];
+
+        $cats = array();
+        foreach ($land->products as $product) {
+            $cats[] = $product->category_id;
+        }
+        $cats = array_unique($cats);
+
+        $data = array();
+        $data['title'] = 'انواع محصولات';
+        foreach ($cats as $cat) {
+            $c = \App\Models\LandCategory::find($cat);
+            $item['name'] = $c->title;
+            $item['link'] = route('landing.product.category', ['page' => $land->slug, 'category' => $c->slug]);
+            $data['items'][] = $item;
+        }
+
+        $buttons[] = $data;
+
     @endphp
 
     @foreach($buttons as  $button)
@@ -45,8 +69,8 @@
             <ul class="flex flex-col gap-4 mt-5 items-center justify-stretch">
                 @foreach($button['items'] as  $item)
                     <li class="w-full flex">
-                        <a href="#"
-                           class="w-full text-sm hover:text-red-500 bg-gray-500/10 text-center md:text-start rounded-md px-3 py-1 transition-all duration-100">{{ $item }}</a>
+                        <a href="{{ $item['link'] }}"
+                           class="w-full text-sm hover:text-red-500 bg-gray-500/10 text-center md:text-start rounded-md px-3 py-1 transition-all duration-100">{{ $item['name'] }}</a>
                     </li>
                 @endforeach
             </ul>
