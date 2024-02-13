@@ -193,6 +193,11 @@ class LandProduct extends Model
         return $this->hasMany(LandProduct::class);
     }
 
+    public function videos()
+    {
+        return $this->hasMany(LandVideo::class, 'product_id');
+    }
+
     public function categories()
     {
         return $this->belongsToMany(LandCategory::class, 'land_products', 'land_id', 'category_id')->distinct();

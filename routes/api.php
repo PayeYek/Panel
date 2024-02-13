@@ -28,7 +28,7 @@ Route::get('provinces/{provinceId}/cities', function ($provinceId) {
     return $province->cities;
 });
 
-Route::get('attributes/{parentId}/children', function ($parentId) {
-    $attribute = \App\Models\Attribute::with('child')->find($parentId);
-    return $attribute->child;
+Route::get('land/{landId}/products', function ($landId) {
+    $land = \App\Models\Land::with('products')->find($landId);
+    return $land->products()->latest()->get()->pluck('name', 'id');
 });

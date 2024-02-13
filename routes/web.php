@@ -56,6 +56,8 @@ Route::middleware(['splade'])->group(function () {
             Route::resource('article', \App\Http\Controllers\Panel\Land\ArticleController::class)->except('show');
             // Land Slides
             Route::resource('slide', \App\Http\Controllers\Panel\Land\SlideController::class)->except('show');
+            // Land Videos
+            Route::resource('video', \App\Http\Controllers\Panel\Land\VideoController::class)->except('show');
         });
 
 

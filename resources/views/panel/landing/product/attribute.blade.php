@@ -10,7 +10,7 @@
                     @foreach ($data['list'] as $parentKey => $parent)
                         <div>{{ $parent['title']}}</div>
                         @foreach ($parent['items'] as $key => $attr)
-                            <x-splade-input
+                            <x-splade-textarea
                                 name="list[{{$parentKey}}][items][{{$key}}][value]"
                                 :label="$attr['name']"/>
                         @endforeach

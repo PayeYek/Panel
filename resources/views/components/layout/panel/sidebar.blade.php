@@ -23,6 +23,7 @@
                 <x-layout.panel.menu title="Colors" route="panel.landing.color.index" icon="iconsax-lin-box"/>
                 <x-layout.panel.menu title="Products" route="panel.landing.product.index" icon="iconsax-lin-box"/>
                 <x-layout.panel.menu title="Slides" route="panel.landing.slide.index" icon="iconsax-lin-box"/>
+                <x-layout.panel.menu title="Videos" route="panel.landing.video.index" icon="iconsax-lin-box"/>
                 <x-layout.panel.menu title="Articles" route="panel.landing.article.index" icon="iconsax-lin-box"/>
             </x-layout.panel.menu>
             {{--LANDING -- END --}}
