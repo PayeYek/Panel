@@ -269,6 +269,18 @@
                 </li>
             </ul>
 
+
+            @foreach($product->attributes->sortBy('parent_id')->groupBy('parent_id') as $key => $attrs)
+               <h1 class="font-black text-lg pt-14 ">{{\App\Models\LandAttribute::whereId($key)->first()->name}}</h1>
+                @foreach($attrs as $attr)
+                    <div class="flex flex-col gap-5 ">
+                        <span class="font-bold">{{ $attr->name }}:</span>
+                        <span>{{ $attr->pivot->value->value }}</span>
+                    </div>
+                @endforeach
+            @endforeach
+
+
             <main class="leading-9 mt-10">
                 {!! $product->body !!}
             </main>
