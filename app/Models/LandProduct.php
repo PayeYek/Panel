@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Casts\Attribute;
+use Illuminate\Database\Eloquent\Casts\Attribute as ModelAttribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
@@ -31,16 +31,18 @@ class LandProduct extends Model
         'country',
         'colors',
         'body',
+        'pictures',
         'view'
     ];
 
     protected $casts = [
         'colors' => 'array',
+        'pictures' => 'array',
     ];
 
-    protected function slug(): Attribute
+    protected function slug(): ModelAttribute
     {
-        return new Attribute(
+        return new ModelAttribute(
             set: fn($value) => $value ? \Str::slug($value) :
                 \Str::slug(
                     $this->attributes['name']
@@ -50,9 +52,9 @@ class LandProduct extends Model
         );
     }
 
-    protected function description(): Attribute
+    protected function description(): ModelAttribute
     {
-        return new Attribute(
+        return new ModelAttribute(
             set: function ($value) {
 
                 $category = LandCategory::find($this->attributes['category_id'])->title;
@@ -94,6 +96,50 @@ class LandProduct extends Model
     {
         return $this->attributes["image"];
     }
+
+    public function getPicturesAttribute()
+    {
+        $pictures = $this->attributes["pictures"];
+
+        if (is_null($pictures)) return null;
+
+        $pictures = json_decode($pictures, true);
+        for ($i = 0; $i < count($pictures); $i++) {
+            $pictures[$i] = Str::isUrl($i) ? $i: asset('storage/' . $pictures[$i]);
+        }
+        return $pictures;
+    }
+
+    public function getPictures()
+    {
+        $pictures = $this->attributes["pictures"];
+
+        if (is_null($pictures)) return null;
+
+        return json_decode($pictures, true);
+    }
+
+//    public function getPicturesAttribute()
+//    {
+//        $item = $this->attributes['pictures'];
+//
+//        if (empty($item)) {
+//            return null;
+//        }
+//
+//        $data = [];
+//        if (is_array($item)){
+//            foreach ($item as $i){
+//                $data[] = Str::isUrl($i) ? $i : asset('storage/' . $i);
+//            }
+//        }
+//        return $data;
+//    }
+//
+//    public function getPictures()
+//    {
+//        return $this->attributes["pictures"];
+//    }
 
     public function getCatalogAttribute()
     {
@@ -150,5 +196,10 @@ class LandProduct extends Model
     public function categories()
     {
         return $this->belongsToMany(LandCategory::class, 'land_products', 'land_id', 'category_id')->distinct();
+    }
+
+    public function attributes()
+    {
+        return $this->belongsToMany(LandAttribute::class, 'land_attribute_product', 'product_id' , 'attribute_id')->using(LandAttributeProductValues::class)->withPivot('value_id');
     }
 }

@@ -40,12 +40,18 @@ Route::middleware(['splade'])->group(function () {
             Route::resource('land', \App\Http\Controllers\Panel\Land\LandController::class)->except('show');
             // Land Categories
             Route::resource('category', \App\Http\Controllers\Panel\Land\CategoryController::class)->except('show');
+            // Land Attributes
+            Route::resource('attribute', \App\Http\Controllers\Panel\Land\AttributeController::class)->except('show');
             // Land Brands
             Route::resource('brand', \App\Http\Controllers\Panel\Land\BrandController::class)->except('show');
             // Land Colors
             Route::resource('color', \App\Http\Controllers\Panel\Land\ColorController::class)->except('show');
             // Land Products
             Route::resource('product', \App\Http\Controllers\Panel\Land\ProductController::class)->except('show');
+            Route::prefix('product')->name('product.')->controller(\App\Http\Controllers\Panel\Land\ProductController::class)->group(function () {
+                Route::get('{product}/attribute', 'attributeEdit')->name('attribute.edit');
+                Route::put('{product}/attribute', 'attributeUpdate')->name('attribute.update');
+            });
             // Land Articles
             Route::resource('article', \App\Http\Controllers\Panel\Land\ArticleController::class)->except('show');
             // Land Slides

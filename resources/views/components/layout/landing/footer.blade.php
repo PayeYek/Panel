@@ -20,7 +20,6 @@
 
     @php
 
-
         $buttons = [
         [
         'title'=>'دسترسی سریع',
@@ -54,7 +53,6 @@
             $item['link'] = route('landing.product.category', ['page' => $land->slug, 'category' => $c->slug]);
             $data['items'][] = $item;
         }
-
         $buttons[] = $data;
 
     @endphp

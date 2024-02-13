@@ -2,10 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Casts\Attribute;
+use Illuminate\Database\Eloquent\Casts\Attribute as ModelAttr;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Str;
 
 class LandCategory extends Model
 {
@@ -18,10 +17,9 @@ class LandCategory extends Model
         'description'
     ];
 
-
-    protected function slug(): Attribute
+    protected function slug(): ModelAttr
     {
-        return new Attribute(
+        return new ModelAttr(
             set: fn($value) => $value ? \Str::slug($value) : \Str::slug( $this->attributes['title'])
         );
     }
@@ -31,4 +29,8 @@ class LandCategory extends Model
         return $this->hasMany(LandProduct::class, 'land_id');
     }
 
+    public function attributes()
+    {
+        return $this->belongsToMany(LandAttribute::class,'land_attribute_category','category_id', 'attribute_id');
+    }
 }

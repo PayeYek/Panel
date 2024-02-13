@@ -26,6 +26,7 @@ class DatabaseSeeder extends Seeder
             LandArticleSeeder::class,
             LandAgencySeeder::class,
             LandAdvertiseSeeder::class,
+            LandAttributeSeeder::class,
         ]);
     }
 }

@@ -18,6 +18,7 @@
             <x-layout.panel.menu title="Landing page" route="panel.landing.*" icon="iconsax-bol-box">
                 <x-layout.panel.menu title="Pages" route="panel.landing.land.index" icon="iconsax-lin-box"/>
                 <x-layout.panel.menu title="Categories" route="panel.landing.category.index" icon="iconsax-lin-box"/>
+                <x-layout.panel.menu title="Attributes" route="panel.landing.attribute.index" icon="iconsax-lin-box"/>
                 <x-layout.panel.menu title="Brands" route="panel.landing.brand.index" icon="iconsax-lin-box"/>
                 <x-layout.panel.menu title="Colors" route="panel.landing.color.index" icon="iconsax-lin-box"/>
                 <x-layout.panel.menu title="Products" route="panel.landing.product.index" icon="iconsax-lin-box"/>

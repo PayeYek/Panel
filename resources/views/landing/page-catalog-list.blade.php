@@ -4,7 +4,7 @@
         <div class="flex-1">
             <main class="leading-9">
                 کاتالوگ ها
-{{--                {!! $land->body !!}--}}
+                {{--                {!! $land->body !!}--}}
             </main>
         </div>
 

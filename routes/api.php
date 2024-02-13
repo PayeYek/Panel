@@ -19,11 +19,16 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 
-//Route::get('provinces', function () {
-//    return \App\Models\Province::get();
-//});
-//
-//Route::get('provinces/{provinceId}/cities', function ($provinceId) {
-//    $province = \App\Models\Province::with('cities')->find($provinceId);
-//    return $province->cities;
-//});
+Route::get('provinces', function () {
+    return \App\Models\Province::get();
+});
+
+Route::get('provinces/{provinceId}/cities', function ($provinceId) {
+    $province = \App\Models\Province::with('cities')->find($provinceId);
+    return $province->cities;
+});
+
+Route::get('attributes/{parentId}/children', function ($parentId) {
+    $attribute = \App\Models\Attribute::with('child')->find($parentId);
+    return $attribute->child;
+});

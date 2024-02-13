@@ -12,6 +12,9 @@
                                    max-size="2MB"
                                    required
                     />
+                    <x-splade-file name="pictures[]" label="More Pictures" filepond preview multiple
+                                   max-size="2MB"
+                    />
                 </x-layout.panel.form.division>
 
                 <x-splade-select name="land_id" label="Landing" :options="$lands" placeholder="Select an item"
@@ -58,9 +61,6 @@
                     <x-splade-file name="manual" label="Manual" filepond/>
 
                 </x-layout.panel.form.division>
-
-                {{-- TODO: MORE PICs--}}
-                {{-- TODO: ATTIRBUTE--}}
 
                 <x-splade-submit label="Create"/>
 

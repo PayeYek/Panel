@@ -1,7 +1,7 @@
 import forms from "@tailwindcss/forms";
 import typography from "@tailwindcss/typography";
-//import scrollbar from "tailwind-scrollbar";
-//import flowbite from "flowbite/plugin";
+import scrollbar from "tailwind-scrollbar";
+import flowbite from "flowbite/plugin";
 
 /* @type {import('tailwindcss').Config} */
 export default {
@@ -41,7 +41,7 @@ export default {
     plugins: [
         // forms,
         typography,
-        require('tailwind-scrollbar')({ nocompatible: true }),
-        require('flowbite/plugin')
+        scrollbar({nocompatible: true}),
+        flowbite
     ],
 };

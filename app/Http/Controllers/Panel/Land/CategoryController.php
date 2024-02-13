@@ -4,15 +4,10 @@ namespace App\Http\Controllers\Panel\Land;
 
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Panel\Landing\ArticleRequest;
 use App\Http\Requests\Panel\Landing\CategoryRequest;
-use App\Models\Land;
-use App\Models\LandArticle;
+use App\Models\LandAttribute;
 use App\Models\LandCategory;
 use App\Tables\Landing\Categories;
-use Illuminate\Support\Facades\Storage;
-use Intervention\Image\Image;
-use Spatie\LaravelImageOptimizer\Facades\ImageOptimizer;
 
 class CategoryController extends Controller
 {
@@ -27,13 +22,17 @@ class CategoryController extends Controller
 
     public function create()
     {
-        return view('panel.landing.category.create');
+        $attributes = LandAttribute::with('child')->whereNull('parent_id')->get();
+
+        return view('panel.landing.category.create', compact('attributes'));
     }
 
 
     public function store(CategoryRequest $request)
     {
-        LandCategory::create($request->validated());
+        $category = LandCategory::create($request->validated());
+
+        $category->attributes()->sync($request->attributes);
 
         \Splade::toast(__('Created'))->autoDismiss(5)->success();
 
@@ -43,13 +42,19 @@ class CategoryController extends Controller
 
     public function edit(LandCategory $category)
     {
-        return view('panel.landing.category.edit', compact('category'));
+        $category->load('attributes');
+
+        $attributes = LandAttribute::with('child')->whereNull('parent_id')->get();
+
+        return view('panel.landing.category.edit', compact('category', 'attributes'));
     }
 
 
     public function update(CategoryRequest $request, LandCategory $category)
     {
-        $category->update( $request->validated());
+        $category->update($request->validated());
+
+        $category->attributes()->sync($request['attributes']);
 
         \Splade::toast(__('Updated'))->autoDismiss(5)->info();
 
@@ -57,7 +62,7 @@ class CategoryController extends Controller
     }
 
 
-    public function destroy( LandCategory $category)
+    public function destroy(LandCategory $category)
     {
         $category->delete();
 

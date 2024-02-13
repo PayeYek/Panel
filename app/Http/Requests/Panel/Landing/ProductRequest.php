@@ -2,7 +2,6 @@
 
 namespace App\Http\Requests\Panel\Landing;
 
-use App\Rules\ValidEmailDomain;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
@@ -22,20 +21,22 @@ class ProductRequest extends FormRequest
                 'land_id'     => 'required|numeric',
                 'brand_id'    => 'required|numeric',
                 'category_id' => 'required|numeric',
-                'colors'      => 'required',
+                'colors'      => 'required|array',
                 'colors.*'    => 'required|distinct:1',
                 'name'        => 'required|string',
                 'model'       => 'nullable|string',
                 'year'        => 'nullable|string',
-                'tonnage'        => 'nullable|string',
+                'tonnage'     => 'nullable|string',
                 'axle'        => 'nullable|string',
-                'usage'        => 'nullable|string',
-                'cabin'        => 'nullable|string',
+                'usage'       => 'nullable|string',
+                'cabin'       => 'nullable|string',
                 'description' => 'nullable',
                 'body'        => 'nullable',
                 'catalog'     => 'nullable|file|mimes:pdf|max:10240',
                 'manual'      => 'nullable|file|mimes:pdf|max:10240',
                 'image'       => 'required|image|mimes:jpg,jpeg,png,webp|max:2048|dimensions:min_width=512,min_height=512',
+                'pictures'    => 'nullable|array',
+                'pictures.*'  => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
                 'slug'        => 'nullable|string|unique:land_products,slug',
             ];
         }
@@ -52,15 +53,17 @@ class ProductRequest extends FormRequest
                 'name'        => 'required|string',
                 'model'       => 'nullable|string',
                 'year'        => 'nullable|string',
-                'tonnage'        => 'nullable|string',
+                'tonnage'     => 'nullable|string',
                 'axle'        => 'nullable|string',
-                'usage'        => 'nullable|string',
-                'cabin'        => 'nullable|string',
+                'usage'       => 'nullable|string',
+                'cabin'       => 'nullable|string',
                 'description' => 'nullable',
                 'body'        => 'nullable',
                 'catalog'     => 'nullable|file|mimes:pdf|max:10240',
                 'manual'      => 'nullable|file|mimes:pdf|max:10240',
                 'image'       => $this->getValidationRuleImage(),
+                'pictures'       => 'nullable|array',
+                'pictures.*'       => $this->getValidationRulePictures(),
                 'slug'        => [
                     'required',
                     'string',
@@ -78,5 +81,13 @@ class ProductRequest extends FormRequest
             return "required|image|mimes:jpg,jpeg,png,webp|max:2048|dimensions:min_width=512,min_height=512";
         }
         return "required|string";
+    }
+
+    public function getValidationRulePictures(): string
+    {
+        if ($this->hasFile('pictures.*')) {
+            return "nullable|image|mimes:jpg,jpeg,png,webp|max:2048";
+        }
+        return "nullable|string";
     }
 }

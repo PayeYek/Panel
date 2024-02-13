@@ -1,7 +1,7 @@
 <x-layout.admin>
     <x-splade-modal>
         <x-splade-form :default="$product" method="put" :action="route('panel.landing.product.update', $product)">
-            <x-layout.panel.form.card title="Edit Product" >
+            <x-layout.panel.form.card title="Edit Product">
 
                 <x-layout.panel.form.alerts/>
 
@@ -9,6 +9,9 @@
                     <x-splade-file name="image" label="Image" filepond preview
                                    max-size="2MB"
                                    required
+                    />
+                    <x-splade-file name="pictures[]" label="More Pictures" filepond preview multiple
+                                   max-size="2MB"
                     />
                 </x-layout.panel.form.division>
 
@@ -39,7 +42,8 @@
 
                 <x-splade-input name="tonnage" label="Tonnage"/>
 
-                <x-splade-select name="colors[]" label="Colors" :options="$colors" placeholder="{{__('Select an item')}}"
+                <x-splade-select name="colors[]" label="Colors" :options="$colors"
+                                 placeholder="{{__('Select an item')}}"
                                  multiple choices/>
 
                 <x-splade-input ltr name="model" label="Model"/>
@@ -56,9 +60,6 @@
                     <x-splade-file name="manual" label="Manual" filepond/>
 
                 </x-layout.panel.form.division>
-
-                {{-- TODO: MORE PICs--}}
-                {{-- TODO: ATTIRBUTE--}}
 
                 <x-splade-submit label="Update"/>
 
