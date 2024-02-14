@@ -21,7 +21,7 @@ class VideoRequest extends FormRequest
                 'product_id' => 'nullable|numeric',
                 'image'      => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048|dimensions:min_width=2880,min_height=600',
                 'alt'        => 'required|string',
-                'link'       => 'required|url',
+                'link'       => 'required|string',
                 'status'     => 'required|boolean',
             ];
         }
@@ -33,7 +33,7 @@ class VideoRequest extends FormRequest
                 'product_id' => 'nullable|numeric',
                 'image'   => $this->getValidationRuleImage(),
                 'alt'     => 'required|string',
-                'link'    => 'required|url',
+                'link'    => 'required|string',
                 'status'  => 'required|boolean',
             ];
         }

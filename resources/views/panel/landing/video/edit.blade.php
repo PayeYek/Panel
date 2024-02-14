@@ -17,7 +17,7 @@
                                      placeholder="Select an item"
                                      choices/>
                     <x-splade-input name="alt" label="Title" required/>
-                    <x-splade-input name="link" label="Link" required ltr/>
+                    <x-splade-textarea name="link" label="Script code" required ltr/>
 
                     <x-splade-file name="image" label="Image" filepond preview
                                    max-size="2MB"

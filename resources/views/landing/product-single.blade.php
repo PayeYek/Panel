@@ -34,6 +34,15 @@
 
             </main>
 
+            <div class="flex flex-col gap-10">
+                @foreach($product->videos as $video)
+                    <span>{{$video->alt}}</span>
+                    <span>{{$video->link}}</span>
+                    <div id="57682337205"><script type="text/JavaScript" src="https://www.aparat.com/embed/o7bOH?data[rnddiv]=57682337205&data[responsive]=yes"></script></div>
+                @endforeach
+            </div>
+
+
 
             {{-- SHORT ATRIBUTE--}}
             <ul class="bg-gray-200 dark:bg-gray-800 rounded-md flex items-center justify-center flex-wrap gap-10 p-10 ">
