@@ -101,4 +101,9 @@ class Land extends Model
     {
         return $this->hasMany(LandAgency::class, 'land_id');
     }
+
+    public function videos()
+    {
+        return $this->hasMany(LandVideo::class, 'land_id');
+    }
 }

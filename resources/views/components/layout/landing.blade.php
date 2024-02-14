@@ -1,4 +1,4 @@
-<div class="antialiased bg-gray-50 dark:bg-gray-900 font-inter rtl:font-iran rtl:number-fa">
+<div class="antialiased bg-gray-white dark:bg-gray-900 font-inter rtl:font-iran rtl:number-fa">
 {{--    <x-layout.landing.navbar/>--}}
 {{--    <x-layout.landing.sidebar/>--}}
 

@@ -24,6 +24,7 @@ class LandingController extends Controller
             ->with([
                 'products',
                 'slides',
+                'videos',
                 'articles' => function ($query) {
                     $query->orderBy('created_at', 'desc');
                 }
