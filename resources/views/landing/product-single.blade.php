@@ -36,9 +36,8 @@
 
             <div class="flex flex-col gap-10">
                 @foreach($product->videos as $video)
+                    {!! $video->link !!}
                     <span>{{$video->alt}}</span>
-                    <span>{{$video->link}}</span>
-                    <div id="57682337205"><script type="text/JavaScript" src="https://www.aparat.com/embed/o7bOH?data[rnddiv]=57682337205&data[responsive]=yes"></script></div>
                 @endforeach
             </div>
 
