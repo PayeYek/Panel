@@ -4,7 +4,6 @@
     {{--HEADER: LOGO | LINKS: HOME, PRODUCTS, SALLER, ABOUT | SALLER --}}
     <x-layout.landing.header :land="$land"/>
     <div class="py-10">
-
         {{ $slot }}
     </div>
     <x-layout.landing.footer :land="$land"/>
