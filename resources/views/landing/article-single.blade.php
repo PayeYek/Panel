@@ -21,7 +21,6 @@
                      src="{{ asset('assets/images/test/jac 9 ton.png') }}"
                      alt="{{ '' }}">
             </div>
-
         </div>
     </div>
 

@@ -7,7 +7,6 @@ use App\Models\Land;
 use App\Models\LandArticle;
 use App\Models\LandCategory;
 use App\Models\LandProduct;
-use Illuminate\Support\Facades\DB;
 
 class LandingController extends Controller
 {
@@ -139,8 +138,19 @@ class LandingController extends Controller
             ->firstOrFail();
 
         $category = LandCategory::where('slug', $category)->firstOrFail();
-        $products = LandProduct::where('land_id', $land->id)->where('category_id', $category->id)->get();
-        return view('landing.category-products', compact('land', 'products', 'category'));
+//        $products = LandProduct::where('land_id', $land->id)->where('category_id', $category->id)->get();
+//        return view('landing.category-products', compact('land', 'products', 'category'));
+
+        $data = array();
+
+        $item['category'] = $category;
+        $item['products'] = LandProduct::where('land_id', $land->id)->where('category_id', $category->id)->get();
+        $data[] = $item;
+
+        $data = collect($data);
+
+        return view('landing.category-products', compact('land', 'data'));
+
     }
 
 

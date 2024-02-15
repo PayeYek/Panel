@@ -1,12 +1,12 @@
 @props(['land'=>null])
 
 {{--ADVERTISE--}}
-<section class="mt-5 md:mt-16 xl:rounded-md overflow-hidden">
+{{--<section class="mt-5 md:mt-16 xl:rounded-md overflow-hidden">
     <div class="carousel-cell">
         <img class="h-[220px] md:h-[400px] object-cover"
              src="{{ asset('assets/images/test/Arian diesel 02 resize.jpg') }}" alt="{{ 'alt' }}"/>
     </div>
-</section>
+</section>--}}
 
 {{--FOOTER: LOGO, DESC | LINKS: HOME, NEWS, ARTICLES, PRODUCTS, SALLER--}}
 <footer
@@ -25,7 +25,7 @@
         'title'=>'دسترسی سریع',
         'items' => [
                         ['name' => 'محصولات', 'link' => route('landing.product.list', ['page' => $land->slug])],
-                        ['name' => 'کاتالوگ‌ها',  'link' => route('landing.page.catalogs', ['page' => $land->slug])],
+                        //['name' => 'کاتالوگ‌ها',  'link' => route('landing.page.catalogs', ['page' => $land->slug])],
                         ['name' => 'درباره ما',  'link' => route('landing.page.about', ['page' => $land->slug])]
                    ]
         ],
@@ -65,19 +65,21 @@
                 <div class="bg-gray-500/20 flex-1 h-0.5"></div>
             </header>
             <ul class="flex flex-col gap-4 mt-5 items-center justify-stretch">
-                @foreach($button['items'] as  $item)
-                    <li class="w-full flex">
-                        <a href="{{ $item['link'] }}"
-                           class="w-full text-sm hover:text-red-500 bg-gray-500/10 text-center md:text-start rounded-md px-3 py-1 transition-all duration-100">{{ $item['name'] }}</a>
-                    </li>
-                @endforeach
+                @isset($button['items'])
+                    @foreach($button['items'] as  $item)
+                        <li class="w-full flex">
+                            <a href="{{ $item['link'] }}"
+                               class="w-full text-sm hover:text-red-500 bg-gray-500/10 text-center md:text-start rounded-md px-3 py-1 transition-all duration-100">{{ $item['name'] }}</a>
+                        </li>
+                    @endforeach
+                @endisset
             </ul>
         </main>
     @endforeach
 
     <section
         class="md:pt-5 border-none md:border-t md:border-dashed border-gray-500/20 col-span-full flex flex-col md:flex-row-reverse items-center justify-between gap-5">
-        <x-layout.landing.social class="invisible"/>
+        <x-layout.landing.social/>
         <span class="text-xs text-center md:text-start border-t md:border-none border-dashed border-gray-500 py-2">
                 {{__('message.rights', ['brand' => 'نام برند', 'year' => jdate()->getYear()])}}
             {{--{{__('message.rights', ['brand' => $land->title, 'year' => jdate()->getYear()])}}--}}

@@ -3,7 +3,7 @@
 {{--    <x-layout.landing.sidebar/>--}}
 
     {{--MAIN--}}
-    <main class=" h-auto min-h-screen text-gray-800 dark:text-white max-w-screen-xl mx-auto">
+    <main class="relative h-auto min-h-screen text-gray-800 dark:text-white max-w-screen-xl mx-auto">
 
         {{ $slot }}
 
