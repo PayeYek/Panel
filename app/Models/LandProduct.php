@@ -101,7 +101,7 @@ class LandProduct extends Model
     {
         $pictures = $this->attributes["pictures"];
 
-        if (is_null($pictures)) return null;
+        if (is_null($pictures)) return [];
 
         $pictures = json_decode($pictures, true);
         for ($i = 0; $i < count($pictures); $i++) {
@@ -114,7 +114,7 @@ class LandProduct extends Model
     {
         $pictures = $this->attributes["pictures"];
 
-        if (is_null($pictures)) return null;
+        if (is_null($pictures)) return [];
 
         return json_decode($pictures, true);
     }

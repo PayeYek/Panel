@@ -54,14 +54,21 @@
                     @endphp
 
                     @foreach($list as $product)
-                        <a href="{{ route('landing.product.show',['page'=> $land->slug, 'product'=> $product->slug]) }}"
-                           class="md:hover:scale-105 transform transition duration-200 bg-gray-100 dark:bg-gray-700 rounded-xl px-3.5 pt-3.5 pb-2 flex flex-col">
-                            <img
-                                class="aspect-square w-full rounded-lg bg-gray-300 dark:bg-gray-950 p-4 shrink-0"
-                                src="{{$product->image}}" alt="{{$product->name}}">
-                            <h2 class="mt-2 mb-1 text-sm font-bold text-gray-900 dark:text-white text-center grow grid place-items-center">{{$product->name}}</h2>
-                            <h5 class="text-sm font-bold text-red-800 dark:text-red-600 font-inter shrink-0 text-center">{{$product->model}}</h5>
-                        </a>
+                        <x-layout.landing.product
+                            class="md:hover:scale-105"
+                            :image="$product->image"
+                            :name="$product->name"
+                            :href="route('landing.product.show',['page'=> $land->slug, 'product'=> $product->slug])"
+                            :model="$product->model"
+                        />
+{{--                        <a href="{{ route('landing.product.show',['page'=> $land->slug, 'product'=> $product->slug]) }}"--}}
+{{--                           class="md:hover:scale-105 transform transition duration-200 bg-gray-100 dark:bg-gray-700 rounded-xl px-3.5 pt-3.5 pb-2 flex flex-col">--}}
+{{--                            <img--}}
+{{--                                class="aspect-square w-full rounded-lg bg-gray-300 dark:bg-gray-950 p-4 shrink-0"--}}
+{{--                                src="{{$product->image}}" alt="{{$product->name}}">--}}
+{{--                            <h2 class="mt-2 mb-1 text-sm font-bold text-gray-900 dark:text-white text-center grow grid place-items-center">{{$product->name}}</h2>--}}
+{{--                            <h5 class="text-sm font-bold text-red-800 dark:text-red-600 font-inter shrink-0 text-center">{{$product->model}}</h5>--}}
+{{--                        </a>--}}
                     @endforeach
                 </section>
             @endif
