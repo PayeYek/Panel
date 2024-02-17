@@ -86,6 +86,7 @@ class ProductController extends Controller
     {
         $data = $request->validated();
 
+
 //        dd($request->image , $product->image);
 //        dd($request->pictures , $product->pictures);
 
@@ -98,7 +99,7 @@ class ProductController extends Controller
 
 
         /* Update new pictures */
-        if ($request->validated()['pictures'] !== $product->pictures) {
+        if (isset($request->validated()['pictures']) && $request->validated()['pictures'] !== $product->pictures) {
             /* Delete old files */
             if (!is_null($product->getPictures()))
                 foreach ($product->getPictures() as $pic) {

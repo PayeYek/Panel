@@ -98,6 +98,15 @@ class LandProduct extends Model
         return $this->attributes["image"];
     }
 
+    public function setPicturesAttribute()
+    {
+        $pictures = $this->attributes["pictures"];
+
+        if (is_null($pictures)) return [];
+
+        return $pictures;
+    }
+
     public function getPicturesAttribute()
     {
         $pictures = $this->attributes["pictures"];

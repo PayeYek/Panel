@@ -65,7 +65,7 @@ class ProductRequest extends FormRequest
                 'pictures'       => 'nullable|array',
                 'pictures.*'       => $this->getValidationRulePictures(),
                 'slug'        => [
-                    'required',
+                    'nullable',
                     'string',
                     Rule::unique("land_products")->ignore($this->product->id)
                 ],
