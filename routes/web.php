@@ -96,8 +96,8 @@ Route::middleware(['splade'])->group(function () {
         });
 
     Route::get('/', function () {
-        $lands = \App\Models\Land::latest()->get();
-        return view('home.index', compact('lands'));
+        $lands = \App\Models\Land::get();
+        return view('landing.index', compact('lands'));
     });
 
 

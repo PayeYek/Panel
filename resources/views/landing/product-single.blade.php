@@ -25,7 +25,7 @@
             </div>
 
             {{-- SLIDER --}}
-            @if(count($product->pictures))
+{{--            @if(count($product->pictures))
                 <section class="main-carousel xl:rounded-lg overflow-hidden"
                          data-flickity='{  "contain": true }'>
                     @foreach($product->pictures as $slide)
@@ -35,7 +35,7 @@
                         </div>
                     @endforeach
                 </section>
-            @endif
+            @endif--}}
 
             {{-- DESCRIPTION --}}
             <main class="leading-9 text-justify">
