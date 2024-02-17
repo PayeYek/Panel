@@ -25,6 +25,17 @@
             </div>
 
             {{-- SLIDER --}}
+            @if(count($product->pictures))
+                <section class="main-carousel xl:rounded-lg overflow-hidden"
+                         data-flickity='{  "contain": true }'>
+                    @foreach($product->pictures as $slide)
+                        <div class="carousel-cell">
+                            <img class=""
+                                 src="{{ $slide }}" alt="{{ $product->name }}"/>
+                        </div>
+                    @endforeach
+                </section>
+            @endif
 
             {{-- DESCRIPTION --}}
             <main class="leading-9 text-justify">
