@@ -36,7 +36,7 @@ class LandProduct extends Model
     ];
 
     protected $casts = [
-        'colors' => 'array',
+        'colors'   => 'array',
         'pictures' => 'array',
     ];
 
@@ -45,9 +45,10 @@ class LandProduct extends Model
         return new ModelAttribute(
             set: fn($value) => $value ? \Str::slug($value) :
                 \Str::slug(
-                    $this->attributes['name']
+                    ($this->category->slug ? ' '. $this->category->slug : '')
+                    . ($this->attributes['tonnage'] ? ' ' . $this->attributes['tonnage'] . 'ton' : '')
                     . ($this->attributes['model'] ? ' ' . $this->attributes['model'] : '')
-                    . ($this->attributes['year'] ? ' ' . $this->attributes['year'] : '')
+                    . ($this->brand->title ? ' ' . $this->brand->title : '')
                 )
         );
     }
@@ -73,10 +74,10 @@ class LandProduct extends Model
                     . ($axle == '3' ? ' سه محور' : '')
                     . ($tonnage ? ' ' . $tonnage . ' تن' : '')
                     . ' ' . $brand . '، '
-                    . ($usage ? 'با کاربری ' . $usage  : '')
-                    . ($cabin == '0' ? '، بدون خواب'  : '')
-                    . ($cabin == '1' ? '، خواب دار'  : '')
-                    . ($model ? ' مدل ' . $model  : '');
+                    . ($usage ? 'با کاربری ' . $usage : '')
+                    . ($cabin == '0' ? '، بدون خواب' : '')
+                    . ($cabin == '1' ? '، خواب دار' : '')
+                    . ($model ? ' مدل ' . $model : '');
             }
         );
     }
@@ -105,7 +106,7 @@ class LandProduct extends Model
 
         $pictures = json_decode($pictures, true);
         for ($i = 0; $i < count($pictures); $i++) {
-            $pictures[$i] = Str::isUrl($i) ? $i: asset('storage/' . $pictures[$i]);
+            $pictures[$i] = Str::isUrl($i) ? $i : asset('storage/' . $pictures[$i]);
         }
         return $pictures;
     }
@@ -205,6 +206,6 @@ class LandProduct extends Model
 
     public function attributes()
     {
-        return $this->belongsToMany(LandAttribute::class, 'land_attribute_product', 'product_id' , 'attribute_id')->using(LandAttributeProductValues::class)->withPivot('value_id');
+        return $this->belongsToMany(LandAttribute::class, 'land_attribute_product', 'product_id', 'attribute_id')->using(LandAttributeProductValues::class)->withPivot('value_id');
     }
 }
