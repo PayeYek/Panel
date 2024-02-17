@@ -1,7 +1,8 @@
 @props(['land' => null ])
 <x-splade-data store="navigation" default="{ opened: false }"/>
 @if($land)
-    <header class="z-50 sticky top-0 bg-white dark:bg-gray-900 border-b border-gray-100 dark:border-gray-700 px-5 xl:px-0 flex items-center justify-between gap-5">
+    <header
+        class="z-50 sticky top-0 bg-white dark:bg-gray-900 border-b border-gray-100 dark:border-gray-700 px-5 xl:px-0 flex items-center justify-between gap-5">
         <x-layout.landing.logo :land="$land"/>
 
         <div class="flex flex-1">
@@ -20,7 +21,7 @@
 
         <div class="flex items-center gap-2">
             <SwitchStyle/>
-            <Breakpoint class="shrink-0"/>
+            <Breakpoint class="shrink-0 {{app()->environment('production') ? 'hidden': ''}}" />
             <a
                 class="text-white text-center w-full max-w-48 md:w-fit font-medium text-sm bg-red-600 hover:bg-red-800 rounded-full px-3 py-2.5 transition-all duration-100"
                 href="{{ route('landing.page.show', ['page'=>$land->slug]) }}">{{__('Terms of sale')}}</a>
