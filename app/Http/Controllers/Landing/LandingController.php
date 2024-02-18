@@ -7,12 +7,19 @@ use App\Models\Land;
 use App\Models\LandArticle;
 use App\Models\LandCategory;
 use App\Models\LandProduct;
+use ProtoneMedia\Splade\Facades\SEO;
 
 class LandingController extends Controller
 {
     public function pages()
     {
+
         $lands = Land::get();
+
+        $keywords = $lands->pluck('title')->implode('، ');
+
+        SEO::description("معرفی محصولات شرکت‌های برتر مونتاژ خودرو سنگین در ایران. معرفی آرین دیزل، سایپا دیزل، سروش دیزل و دیگر پیشروان صنعت، همراه با جزئیات و تحلیل‌های دقیق. با ما همراه باشید برای آشنایی با پیشگامان صنعت خودروسازی سنگین.")
+            ->keywords($keywords);
 
         return view('landing.page-list', compact('lands'));
     }
@@ -29,6 +36,15 @@ class LandingController extends Controller
                 }
             ])
             ->firstOrFail();
+
+        $companyName = $land->title;
+
+        $keywords = <<<KEYWORDS
+                        {$companyName}, کامیون‌های دیزلی {$companyName}, تولیدکننده خودرو سنگین ایران, خودروهای سنگین {$companyName}, نوآوری‌های خودرویی {$companyName}, خدمات پس از فروش {$companyName}, مونتاژ خودرو سنگین در ایران, استانداردهای خودرویی {$companyName}, صادرات خودروهای سنگین {$companyName}, پیشرو در صنعت خودرو سنگین
+                       KEYWORDS;
+        SEO::title($land->title)
+            ->description("{$land->title}: پیشگام در صنعت خودروهای سنگین ایران. کاوش در محصولات و خدمات باکیفیت ما، از کامیون‌های دیزلی گرفته تا خدمات پس از فروش. بیاموزید چگونه {$land->title} با نوآوری‌ها و استانداردهای بالای خود در بازار خودروهای سنگین پیشتاز است.")
+            ->keywords($keywords);
 
         $cats = array();
         foreach ($land->products as $product) {
@@ -53,6 +69,7 @@ class LandingController extends Controller
 
     public function about($page)
     {
+
         $land = Land::where('slug', $page)
             ->with([
                 'products',
@@ -62,6 +79,15 @@ class LandingController extends Controller
                 }
             ])
             ->firstOrFail();
+
+        $companyName = $land->title;
+
+        $keywords = <<<KEYWORDS
+                        {$companyName}, کامیون‌های دیزلی {$companyName}, تولیدکننده خودرو سنگین ایران, خودروهای سنگین {$companyName}, نوآوری‌های خودرویی {$companyName}, خدمات پس از فروش {$companyName}, مونتاژ خودرو سنگین در ایران, استانداردهای خودرویی {$companyName}, صادرات خودروهای سنگین {$companyName}, پیشرو در صنعت خودرو سنگین
+                       KEYWORDS;
+        SEO::title($land->title)
+            ->description("{$land->title}: پیشگام در صنعت خودروهای سنگین ایران. کاوش در محصولات و خدمات باکیفیت ما، از کامیون‌های دیزلی گرفته تا خدمات پس از فروش. بیاموزید چگونه {$land->title} با نوآوری‌ها و استانداردهای بالای خود در بازار خودروهای سنگین پیشتاز است.")
+            ->keywords($keywords);
 
         return view('landing.page-about', compact('land'));
     }
