@@ -99,7 +99,7 @@ LandController extends Controller
         $data['logo'] = null;
         if (!empty($request->file('logo'))) {
             $data['logo'] =
-                $request->file('logo')->store('media/landing/logos', 'public');
+                $request->file('logo')->store('media/land/logos', 'public');
         }
         return $data;
     }
@@ -109,7 +109,7 @@ LandController extends Controller
         $data['logo_origin'] = null;
         if (!empty($request->file('logo_origin'))) {
             $data['logo_origin'] =
-                $request->file('logo_origin')->store('media/landing/logo_origins', 'public');
+                $request->file('logo_origin')->store('media/land/logo_origins', 'public');
         }
         return $data;
     }

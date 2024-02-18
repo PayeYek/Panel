@@ -87,7 +87,7 @@ class BrandController extends Controller
         $data['image'] = null;
         if (!empty($request->file('image'))) {
             $data['image'] =
-                $request->file('image')->store('media/landing/brands', 'public');
+                $request->file('image')->store('media/land/brands', 'public');
         }
         return $data;
     }
