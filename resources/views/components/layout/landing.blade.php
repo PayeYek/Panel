@@ -12,6 +12,16 @@
             a.appendChild(r);
         })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
     </script>
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-JE3FH3D7SM"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-JE3FH3D7SM');
+    </script>
     {{--MAIN--}}
     <main class="relative h-auto min-h-screen text-gray-800 dark:text-white max-w-screen-xl mx-auto">
 
