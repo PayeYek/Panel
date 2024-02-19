@@ -134,6 +134,10 @@ class LandingController extends Controller
 
         $data = collect($data);
 
+        SEO::title($land->title . ' | محصولات' )
+            ->description("{$land->title}: پیشگام در صنعت خودروهای سنگین ایران. کاوش در محصولات و خدمات باکیفیت ما، از کامیون‌های دیزلی گرفته تا خدمات پس از فروش. بیاموزید چگونه {$land->title} با نوآوری‌ها و استانداردهای بالای خود در بازار خودروهای سنگین پیشتاز است.")
+            ->keywords([$land->title]);
+
         return view('landing.product-list', compact('land', 'data'));
     }
 
@@ -149,6 +153,11 @@ class LandingController extends Controller
             ->firstOrFail();
 
         $product = LandProduct::where('slug', $product)->firstOrFail();
+
+        SEO::title($land->title . ' | ' . $product->name )
+            ->description($product->description)
+            ->keywords([$land->title , $product->name]);
+
         return view('landing.product-single', compact('land', 'product'));
     }
 
@@ -191,6 +200,10 @@ class LandingController extends Controller
             ])
             ->firstOrFail();
 
+        SEO::title($land->title . ' | اطلاعات' )
+            ->description("اطلاع از آخرین اطلاعایه های فروش خودرو، بررسی تخصصی خودروها و آخرین اخبار درباره شرکت و محصولات")
+            ->keywords(['اطلاعیه فروش','بررسی تخصصی','آخرین خبر']);
+
         return view('landing.article-list', compact('land'));
     }
 
@@ -210,6 +223,10 @@ class LandingController extends Controller
             ->firstOrFail();
 
         $article = LandArticle::where('slug', $article)->firstOrFail();
+
+        SEO::title($land->title . ' | ' . $article->title )
+            ->description($article->description)
+            ->keywords([$land->title , $article->title]);
 
         return view('landing.article-single', compact('land', 'article'));
     }

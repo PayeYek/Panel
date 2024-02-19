@@ -17,8 +17,8 @@
             <div class="grid grid-cols-3 md:max-w-xl gap-5 p-5 mx-auto">
                 @foreach($lands as $land)
                     <div class="relative">
-                        <a href="#" class="absolute inset-0 z-10"></a>
-                        <a href="{{route('landing.page.show', ['page' => $land->slug])}}"
+{{--                        <a href="#" class="absolute inset-0 z-10"></a>--}}
+                        <a href="{{ $land->products->count() && $land->articles->count() ? route('landing.page.show', ['page' => $land->slug]) : '#'}}"
                            class="flex flex-col items-center gap-3">
                             <img class="aspect-square h-24 shrink-0 rounded-md bg-gray-200 " src="{{$land->logo}}"
                                  alt="{{$land->title}}">

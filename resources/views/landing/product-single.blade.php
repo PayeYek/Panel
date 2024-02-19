@@ -66,9 +66,9 @@
                             <x-iconsax-bol-arrow-down class="h-5 opacity-50" v-bind:class="{ 'rotate-180 ': toggled }"/>
                         </header>
 
-                        <div v-show="toggled" class="flex flex-col px-5">
+                        <div v-show="toggled" class="flex flex-col px-2">
                             @foreach($attrs as $attr)
-                                <div class="flex flex-col lg:flex-row lg: gap-2.5 mb-5 ">
+                                <div class="flex flex-col lg:flex-row lg:gap-2.5 mb-5 ">
                                     <span class="bg-gray-100 dark:bg-gray-700 rounded-t-xl lg:rounded-xl px-5 py-3 min-w-48">{{ $attr->name }}</span>
                                     <p class="w-full text-justify leading-9 font-bold bg-gray-200 dark:bg-gray-800 rounded-b-xl lg:rounded-xl px-5 py-3">{{ $attr->pivot->value->value }}</p>
                                 </div>
