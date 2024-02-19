@@ -98,7 +98,7 @@ Route::middleware(['splade'])->group(function () {
     Route::get('/', function () {
         $lands = \App\Models\Land::get();
         return view('landing.index', compact('lands'));
-    });
+    })->name('index');
 
 
 });

@@ -1,6 +1,6 @@
 <div class="antialiased bg-gray-white dark:bg-gray-900 font-inter rtl:font-iran rtl:number-fa">
-{{--    <x-layout.landing.navbar/>--}}
-{{--    <x-layout.landing.sidebar/>--}}
+    {{--    <x-layout.landing.navbar/>--}}
+    {{--    <x-layout.landing.sidebar/>--}}
     <!-- Hotjar Tracking Code for https://paye1.com -->
     <script>
         (function(h,o,t,j,a,r){
