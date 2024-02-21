@@ -1,4 +1,6 @@
 @props(['land'=>null])
+@stack('styles')
+
 <x-layout.landing>
     <x-layout.landing.sidebar :land="$land"/>
     {{--HEADER: LOGO | LINKS: HOME, PRODUCTS, SALLER, ABOUT | SALLER --}}
@@ -8,3 +10,5 @@
     </div>
     <x-layout.landing.footer :land="$land"/>
 </x-layout.landing>
+
+@stack('script')

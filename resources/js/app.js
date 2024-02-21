@@ -3,10 +3,13 @@ import "../css/app.css";
 import "@protonemedia/laravel-splade/dist/style.css";
 import "@protonemedia/laravel-splade/dist/jodit.css";
 
+
 import SwitchStyle from "@/components/SwitchStyle.vue";
 import Breakpoint from "@/components/Breakpoint.vue";
 import PersianDate from "@/components/PersianDate.vue";
 import ShowPassword from "@/components/ShowPassword.vue";
+// require('plyr')
+import Plyr from 'plyr';
 
 import Flickity from "flickity";
 import "flickity/css/flickity.css";
@@ -33,6 +36,7 @@ createApp({
     .component('Breakpoint', Breakpoint)
     .component('PersianDate', PersianDate)
     .component('ShowPassword', ShowPassword)
+    // .component('Plyr', Plyr)
     .mount(el);
 
 window.onload = function () {
@@ -43,6 +47,9 @@ window.onload = function () {
     [].forEach.call(elems, function (el) {
         el.classList.remove("loader-hide-scrollbar");
     });
+
+    // const player = new Plyr('#player');
+
 }
 
 /* SLIDER */
@@ -50,3 +57,6 @@ Flickity('.main-carousel', {
     pageDots: false, prevNextButtons: false, autoPlay: 500, cellAlign: "left", contain: true
 });
 
+const player1 = new Plyr('#player1');
+const player2 = new Plyr('#player2');
+const player3 = new Plyr('#player3');
