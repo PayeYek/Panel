@@ -2,19 +2,19 @@
 <x-splade-data store="navigation" default="{ opened: false }"/>
 @if($land)
     <header
-        class="z-50 sticky top-0 bg-white dark:bg-gray-900 border-b border-gray-100 dark:border-gray-700 px-5 xl:px-0 flex items-center justify-between gap-5">
+        class="sticky top-0 z-50 flex items-center justify-between gap-5 px-5 bg-white border-b border-gray-100 dark:bg-gray-900 dark:border-gray-700 xl:px-0">
         <x-layout.landing.logo :land="$land"/>
 
-        <div class="flex flex-1">
+        <div class="flex-1 hidden lg:flex">
             <nav
-                class="hidden lg:flex text-sm font-medium px-3 py-2.5">
-                <a class="hover:text-red-500 px-3 transition-all duration-100"
+                class="flex text-sm font-medium px-3 py-2.5">
+                <a class="px-3 transition-all duration-100 hover:text-red-500"
                    href="{{ route('landing.page.show', ['page'=>$land->slug]) }}">{{__('Home')}}</a>
-                <a class="hover:text-red-500 px-3 transition-all duration-100"
+                <a class="px-3 transition-all duration-100 hover:text-red-500"
                    href="{{ route('landing.product.list', ['page' => $land->slug]) }}">{{__('Products')}}</a>
-                <a class="hover:text-red-500 px-3 transition-all duration-100"
+                <a class="px-3 transition-all duration-100 hover:text-red-500"
                    href="{{ route('landing.page.show', ['page'=>$land->slug]) }}">{{__('Sales Agency')}}</a>
-                <a class="hover:text-red-500 px-3 transition-all duration-100"
+                <a class="px-3 transition-all duration-100 hover:text-red-500"
                    href="{{ route('landing.page.about', ['page'=>$land->slug]) }}">{{__('About us')}}</a>
             </nav>
         </div>
