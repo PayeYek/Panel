@@ -8,10 +8,7 @@ import SwitchStyle from "@/components/SwitchStyle.vue";
 import Breakpoint from "@/components/Breakpoint.vue";
 import PersianDate from "@/components/PersianDate.vue";
 import ShowPassword from "@/components/ShowPassword.vue";
-// require('plyr')
 import Plyr from 'plyr';
-// window.Swiper = require('swiper');
-import "./swiper"
 
 
 import Flickity from "flickity";

@@ -1,5 +1,5 @@
 @props(['land'=>null])
-@stack('styles')
+@stack('head')
 
 <x-layout.landing>
     <x-layout.landing.sidebar :land="$land"/>
