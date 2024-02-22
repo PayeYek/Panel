@@ -1,15 +1,24 @@
 @push('script')
-{{-- <script src="https://cdn.plyr.io/3.7.8/plyr.js"></script> --}}
-<script type="text/javascript">
-    // Initialize player
-    // document.addEventListener('DOMContentLoaded', () => {
-        // const player = new Plyr('#player');
-    // });
+    <script type="module">
+        var swiper = new Swiper('.arian_disel_slider', {
+            // Optional parameters
+            loop: true,
+            slidePerView: 1,
+            autoplay: {
+                delay: 3500,
+                disableOnInteraction: false,
+            },
 
-</script>
+            // If we need pagination
+            pagination: {
+                el: '.swiper-pagination',
+            },
+        });
+    </script>
 @endpush
 
 @push('styles')
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
     {{-- <link rel="stylesheet" href="path/to/plyr.css" /> --}}
     {{-- <link rel="stylesheet" href="https://cdn.plyr.io/3.7.8/plyr.css" /> --}}
 @endpush
@@ -18,82 +27,155 @@
 
     <x-layout.landing.sidebar :land="$land" />
 
+    <img src="{{ asset('assets/images/test/blue-lines.png') }}" alt="lines" class="absolute right-0 w-full top-[34rem]" />
+    <img src="{{ asset('assets/images/test/blue-line-3.png') }}" alt="line-3" class="absolute right-0 w-full top-[52rem]" />
+    <img src="{{ asset('assets/images/test/blue-line-2.png') }}" alt="line-2" class="absolute right-0 w-full bottom-[20rem]" />
+
+    {{-- slider --}}
+    <section class="px-5 mb-8 xl:px-0 relative z-[1]">
+        <div class="swiper arian_disel_slider slider_type_1">
+            <!-- Additional required wrapper -->
+            <div class="swiper-wrapper">
+                <!-- Slides -->
+                <a href="#" class="swiper-slide w-full relative pt-[43%]">
+                    <img src="{{ asset('assets/images/test/truck.png') }}" alt="truck" class="absolute top-0 right-0 w-full h-full rounded" />
+                </a>
+                <a href="#" class="swiper-slide w-full relative pt-[43%]">
+                    <img src="{{ asset('assets/images/test/truck.png') }}" alt="truck" class="absolute top-0 right-0 w-full h-full rounded" />
+                </a>
+                <a href="#" class="swiper-slide w-full relative pt-[43%]">
+                    <img src="{{ asset('assets/images/test/truck.png') }}" alt="truck" class="absolute top-0 right-0 w-full h-full rounded" />
+                </a>
+            </div>
+            <!-- If we need pagination -->
+            <div class="swiper-pagination"></div>
+        </div>
+    </section>
+
     {{-- products --}}
-    <section class="flex items-center justify-between gap-3 px-5 mb-16 lg:justify-start">
-        <h3 class="text-lg font-bold text-gray-900"> محصولات </h3>
-        <div class="flex items-center gap-5 p-4 overflow-auto text-base font-bold text-red-700">
+    <section class="flex items-center justify-between gap-3 px-5 mb-16 lg:justify-start relative z-[1]">
+        <h3 class="text-lg font-bold text-gray-900 dark:text-white"> محصولات </h3>
+        <div class="flex items-center gap-5 p-4 overflow-auto text-base font-bold text-red-700 dark:text-white">
             <a href="#"
-                class="w-[140px] h-8 flex_center rounded drop-shadow-[0_2px_8px_rgba(185,28,28,0.3)] bg-white flex-none">
+                class="w-[140px] h-8 flex_center rounded drop-shadow-[0_2px_8px_rgba(185,28,28,0.3)] dark:drop-shadow-none bg-white dark:bg-gray-700 flex-none">
                 کشنده </a>
             <a href="#"
-                class="w-[140px] h-8 flex_center rounded drop-shadow-[0_2px_8px_rgba(185,28,28,0.3)] bg-white flex-none">
+                class="w-[140px] h-8 flex_center rounded drop-shadow-[0_2px_8px_rgba(185,28,28,0.3)] dark:drop-shadow-none bg-white dark:bg-gray-700 flex-none">
                 کامیون </a>
             <a href="#"
-                class="w-[140px] h-8 flex_center rounded drop-shadow-[0_2px_8px_rgba(185,28,28,0.3)] bg-white flex-none">
+                class="w-[140px] h-8 flex_center rounded drop-shadow-[0_2px_8px_rgba(185,28,28,0.3)] dark:drop-shadow-none bg-white dark:bg-gray-700 flex-none">
                 کامییونت </a>
             <a href="#"
-                class="w-[140px] h-8 flex_center rounded drop-shadow-[0_2px_8px_rgba(185,28,28,0.3)] bg-white flex-none">
+                class="w-[140px] h-8 flex_center rounded drop-shadow-[0_2px_8px_rgba(185,28,28,0.3)] dark:drop-shadow-none bg-white dark:bg-gray-700 flex-none">
                 ون </a>
         </div>
     </section>
 
     {{-- favorites --}}
-    <section class="px-5 mb-16 xl:px-0">
-        <h3 class="mb-4 text-lg font-bold text-gray-900 lg:px-4"> برگزیده ها </h3>
+    <section class="px-5 mb-16 xl:px-0 relative z-[1]">
+        <h3 class="mb-4 text-lg font-bold text-gray-900 dark:text-white lg:px-4"> برگزیده ها </h3>
         <div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-5">
             <div
-                class="drop-shadow-[0_2px_10px_rgba(0,0,0,0.15)] rounded px-10 lg:px-5 xl:px-10 pb-5 items-center pt-3 bg-white flex flex-col">
+                class="drop-shadow-[0_2px_10px_rgba(0,0,0,0.15)] rounded px-10 lg:px-5 xl:px-10 pb-5 items-center pt-3 bg-white dark:bg-gray-700 flex flex-col">
                 <div class="h-32 mb-1.5">
                     <img src="{{ asset('assets/images/test/jac 9 ton.png') }}" alt="mammut" class="h-full" />
                 </div>
-                <h3 class="text-lg font-bold text-gray-900 line-clamp-1"> کامیون جک 8.5 تن </h3>
+                <h3 class="text-lg font-bold text-gray-900 dark:text-white line-clamp-1"> کامیون جک 8.5 تن </h3>
                 <a href="#"
-                    class="w-full mt-4 text-lg font-bold text-red-700 border border-red-700 rounded h-11 flex_center">
+                    class="w-full mt-4 text-lg font-bold text-red-700 transition-colors duration-200 border border-red-700 rounded dark:hover:bg-red-600 dark:hover:text-white hover:bg-red-700 hover:text-white dark:border-red-600 dark:text-red-600 h-11 flex_center">
                     مشخصات </a>
                 <a href="#"
-                    class="w-full mt-4 text-lg font-bold text-red-700 border border-red-700 rounded h-11 flex_center">
+                    class="w-full mt-4 text-lg font-bold text-red-700 transition-colors duration-200 border border-red-700 rounded dark:hover:bg-red-600 dark:hover:text-white hover:bg-red-700 hover:text-white dark:border-red-600 dark:text-red-600 h-11 flex_center">
                     مشخصات </a>
                 <a href="#"
-                    class="w-full mt-4 text-lg font-bold text-red-700 border border-red-700 rounded h-11 flex_center">
+                    class="w-full mt-4 text-lg font-bold text-red-700 transition-colors duration-200 border border-red-700 rounded dark:hover:bg-red-600 dark:hover:text-white hover:bg-red-700 hover:text-white dark:border-red-600 dark:text-red-600 h-11 flex_center">
                     مشخصات </a>
             </div>
             <div
-                class="drop-shadow-[0_2px_10px_rgba(0,0,0,0.15)] rounded px-10 lg:px-5 xl:px-10 pb-5 items-center pt-3 bg-white flex flex-col">
+                class="drop-shadow-[0_2px_10px_rgba(0,0,0,0.15)] rounded px-10 lg:px-5 xl:px-10 pb-5 items-center pt-3 bg-white dark:bg-gray-700 flex flex-col">
                 <div class="h-32 mb-1.5">
                     <img src="{{ asset('assets/images/test/jac 9 ton.png') }}" alt="mammut" class="h-full" />
                 </div>
-                <h3 class="text-lg font-bold text-gray-900 line-clamp-1"> کامیون جک 8.5 تن </h3>
+                <h3 class="text-lg font-bold text-gray-900 dark:text-white line-clamp-1"> کامیون جک 8.5 تن </h3>
                 <a href="#"
-                    class="w-full mt-4 text-lg font-bold text-red-700 border border-red-700 rounded h-11 flex_center">
+                    class="w-full mt-4 text-lg font-bold text-red-700 transition-colors duration-200 border border-red-700 rounded dark:hover:bg-red-600 dark:hover:text-white hover:bg-red-700 hover:text-white dark:border-red-600 dark:text-red-600 h-11 flex_center">
                     مشخصات </a>
                 <a href="#"
-                    class="w-full mt-4 text-lg font-bold text-red-700 border border-red-700 rounded h-11 flex_center">
+                    class="w-full mt-4 text-lg font-bold text-red-700 transition-colors duration-200 border border-red-700 rounded dark:hover:bg-red-600 dark:hover:text-white hover:bg-red-700 hover:text-white dark:border-red-600 dark:text-red-600 h-11 flex_center">
                     مشخصات </a>
                 <a href="#"
-                    class="w-full mt-4 text-lg font-bold text-red-700 border border-red-700 rounded h-11 flex_center">
+                    class="w-full mt-4 text-lg font-bold text-red-700 transition-colors duration-200 border border-red-700 rounded dark:hover:bg-red-600 dark:hover:text-white hover:bg-red-700 hover:text-white dark:border-red-600 dark:text-red-600 h-11 flex_center">
+                    مشخصات </a>
+            </div>
+            <div
+                class="drop-shadow-[0_2px_10px_rgba(0,0,0,0.15)] rounded px-10 lg:px-5 xl:px-10 pb-5 items-center pt-3 bg-white dark:bg-gray-700 flex flex-col">
+                <div class="h-32 mb-1.5">
+                    <img src="{{ asset('assets/images/test/jac 9 ton.png') }}" alt="mammut" class="h-full" />
+                </div>
+                <h3 class="text-lg font-bold text-gray-900 dark:text-white line-clamp-1"> کامیون جک 8.5 تن </h3>
+                <a href="#"
+                    class="w-full mt-4 text-lg font-bold text-red-700 transition-colors duration-200 border border-red-700 rounded dark:hover:bg-red-600 dark:hover:text-white hover:bg-red-700 hover:text-white dark:border-red-600 dark:text-red-600 h-11 flex_center">
+                    مشخصات </a>
+                <a href="#"
+                    class="w-full mt-4 text-lg font-bold text-red-700 transition-colors duration-200 border border-red-700 rounded dark:hover:bg-red-600 dark:hover:text-white hover:bg-red-700 hover:text-white dark:border-red-600 dark:text-red-600 h-11 flex_center">
+                    مشخصات </a>
+                <a href="#"
+                    class="w-full mt-4 text-lg font-bold text-red-700 transition-colors duration-200 border border-red-700 rounded dark:hover:bg-red-600 dark:hover:text-white hover:bg-red-700 hover:text-white dark:border-red-600 dark:text-red-600 h-11 flex_center">
+                    مشخصات </a>
+            </div>
+            <div
+                class="drop-shadow-[0_2px_10px_rgba(0,0,0,0.15)] rounded px-10 lg:px-5 xl:px-10 pb-5 items-center pt-3 bg-white dark:bg-gray-700 flex flex-col">
+                <div class="h-32 mb-1.5">
+                    <img src="{{ asset('assets/images/test/jac 9 ton.png') }}" alt="mammut" class="h-full" />
+                </div>
+                <h3 class="text-lg font-bold text-gray-900 dark:text-white line-clamp-1"> کامیون جک 8.5 تن </h3>
+                <a href="#"
+                    class="w-full mt-4 text-lg font-bold text-red-700 transition-colors duration-200 border border-red-700 rounded dark:hover:bg-red-600 dark:hover:text-white hover:bg-red-700 hover:text-white dark:border-red-600 dark:text-red-600 h-11 flex_center">
+                    مشخصات </a>
+                <a href="#"
+                    class="w-full mt-4 text-lg font-bold text-red-700 transition-colors duration-200 border border-red-700 rounded dark:hover:bg-red-600 dark:hover:text-white hover:bg-red-700 hover:text-white dark:border-red-600 dark:text-red-600 h-11 flex_center">
+                    مشخصات </a>
+                <a href="#"
+                    class="w-full mt-4 text-lg font-bold text-red-700 transition-colors duration-200 border border-red-700 rounded dark:hover:bg-red-600 dark:hover:text-white hover:bg-red-700 hover:text-white dark:border-red-600 dark:text-red-600 h-11 flex_center">
+                    مشخصات </a>
+            </div>
+            <div
+                class="drop-shadow-[0_2px_10px_rgba(0,0,0,0.15)] rounded px-10 lg:px-5 xl:px-10 pb-5 items-center pt-3 bg-white dark:bg-gray-700 flex flex-col">
+                <div class="h-32 mb-1.5">
+                    <img src="{{ asset('assets/images/test/jac 9 ton.png') }}" alt="mammut" class="h-full" />
+                </div>
+                <h3 class="text-lg font-bold text-gray-900 dark:text-white line-clamp-1"> کامیون جک 8.5 تن </h3>
+                <a href="#"
+                    class="w-full mt-4 text-lg font-bold text-red-700 transition-colors duration-200 border border-red-700 rounded dark:hover:bg-red-600 dark:hover:text-white hover:bg-red-700 hover:text-white dark:border-red-600 dark:text-red-600 h-11 flex_center">
+                    مشخصات </a>
+                <a href="#"
+                    class="w-full mt-4 text-lg font-bold text-red-700 transition-colors duration-200 border border-red-700 rounded dark:hover:bg-red-600 dark:hover:text-white hover:bg-red-700 hover:text-white dark:border-red-600 dark:text-red-600 h-11 flex_center">
+                    مشخصات </a>
+                <a href="#"
+                    class="w-full mt-4 text-lg font-bold text-red-700 transition-colors duration-200 border border-red-700 rounded dark:hover:bg-red-600 dark:hover:text-white hover:bg-red-700 hover:text-white dark:border-red-600 dark:text-red-600 h-11 flex_center">
                     مشخصات </a>
             </div>
         </div>
     </section>
 
     {{-- notifications --}}
-    <section class="px-5 mb-32 xl:px-0">
+    <section class="px-5 mb-32 xl:px-0 relative z-[1]">
         {{-- header --}}
         <div class="flex items-center justify-between mb-16 lg:px-4">
-            <h3 class="text-lg font-bold text-gray-900"> برگزیده ها </h3>
-            <a href="#" class="flex items-center gap-2 text-xs font-normal text-red-700">
+            <h3 class="text-lg font-bold text-gray-900 dark:text-white"> برگزیده ها </h3>
+            <a href="#" class="flex items-center gap-2 text-xs font-normal text-red-700 dark:text-red-600">
                 <span> نمایش همه </span>
-                <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
+                <svg class="stroke-current" width="20" height="20" viewBox="0 0 20 20" fill="none"
                     xmlns="http://www.w3.org/2000/svg">
                     <path
                         d="M8.88759 15.8327L3.33203 9.99935M3.33203 9.99935L8.88759 4.16602M3.33203 9.99935L16.6654 9.99935"
-                        stroke="#B91C1C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                        stroke="current" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                 </svg>
             </a>
         </div>
 
         <ul class="list-none">
-            <li class="flex flex-col md:flex-row rounded-xl bg-white drop-shadow-[0_4px_20px_rgba(0,0,0,0.15)]">
+            <li class="flex flex-col md:flex-row rounded-xl bg-white dark:bg-gray-700 drop-shadow-[0_4px_20px_rgba(0,0,0,0.15)]">
                 {{-- image --}}
                 <div
                     class="h-48 overflow-hidden md:flex-none md:w-[22rem] md:h-56 md:rounded-tl-none md:rounded-br-xl rounded-t-xl">
@@ -102,9 +184,9 @@
                 </div>
                 {{-- docs --}}
                 <div class="p-4">
-                    <h3 class="mb-4 text-lg font-bold text-gray-900"> عنوان اطلاعیه </h3>
+                    <h3 class="mb-4 text-lg font-bold text-gray-900 dark:text-white"> عنوان اطلاعیه </h3>
                     <p
-                        class="text-base line-clamp-6 md:line-clamp-3 leading-7 lg:leading-8 mb-2 font-normal text-[#818284]">
+                        class="text-base line-clamp-6 md:line-clamp-3 leading-7 lg:leading-8 mb-2 font-normal text-[#818284] dark:text-white">
                         شرکت آرین دیزل که نماینده انحصاری شرکت خودروسازی جک موتورز در ایران است مسئولیت تولید و مونتاژ
                         محصولات شرکت خودروسازی را بر عهده دارد و با بهره مندی از مهندسان با تجربه نسبت به محصولاتی
                         مرغوب، قابل اطمینان اقدام نموده است و با توجه به اینکه محصولات خود را با مرغوب‌ترین قطعات تولید
@@ -114,110 +196,108 @@
                         قرار داده است.
                     </p>
                     <a href="#"
-                        class="mr-auto text-sm font-bold text-white bg-red-700 rounded flex_center h-9 w-28"> بیشتر </a>
+                        class="mr-auto text-sm font-bold text-white bg-red-700 rounded dark:bg-red-600 flex_center h-9 w-28"> بیشتر </a>
                 </div>
             </li>
         </ul>
     </section>
 
     {{-- news --}}
-    <section class="px-5 mb-20 xl:px-0">
+    <section class="px-5 mb-20 xl:px-0 relative z-[1]">
         {{-- header --}}
         <div class="flex items-center justify-between mb-16 lg:px-4">
-            <h3 class="text-lg font-bold text-gray-900"> اخبار و مقالات </h3>
-            <a href="#" class="flex items-center gap-2 text-xs font-normal text-red-700">
+            <h3 class="text-lg font-bold text-gray-900 dark:text-white"> اخبار و مقالات </h3>
+            <a href="#" class="flex items-center gap-2 text-xs font-normal text-red-700 dark:text-red-600">
                 <span> نمایش همه </span>
-                <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
+                <svg class="stroke-current" width="20" height="20" viewBox="0 0 20 20" fill="none"
                     xmlns="http://www.w3.org/2000/svg">
                     <path
                         d="M8.88759 15.8327L3.33203 9.99935M3.33203 9.99935L8.88759 4.16602M3.33203 9.99935L16.6654 9.99935"
-                        stroke="#B91C1C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                        stroke="current" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                 </svg>
             </a>
         </div>
 
         <ul class="grid grid-cols-1 gap-4 list-none lg:grid-cols-4">
-            <li class="flex flex-col border-2 rounded border-gray-900/50">
+            <li class="flex flex-col border-2 rounded border-gray-900/50 dark:border-0 dark:bg-gray-700">
                 <div class="relative w-full pt-[62%]">
-                    <img src="{{ asset('assets/images/test/jac.jpg') }}" alt="" class="absolute inset-0" />
+                    <img src="{{ asset('assets/images/test/jac.jpg') }}" alt="" class="absolute inset-0 rounded" />
                 </div>
                 {{-- info --}}
                 <div class="px-5 pt-3 pb-5">
-                    <h3 class="mb-2 text-lg font-bold text-gray-900 line-clamp-1"> معرفی شرکت تولید کننده جک ۸.۵ تن
+                    <h3 class="mb-2 text-lg font-bold text-gray-900 dark:text-white line-clamp-1"> معرفی شرکت تولید کننده جک ۸.۵ تن
                     </h3>
-                    <p class="mb-2 text-sm font-normal leading-6 h-[72px] text-gray-900 line-clamp-3">
+                    <p class="mb-2 text-sm font-normal leading-6 h-[72px] text-gray-900 dark:text-white line-clamp-3">
                         کامیونت جک 8.5 تن یکی از موفق‌ترین محصولات شرکت جک است که با ظرفیت حمل بار 8500 کیلوگرم از نظر
                         کیفی در سطح مطلوبی قرار دارد.شرکت جک (JAC) در کشور چین واقع شده
                     </p>
                     <a href="#"
-                        class="mr-auto text-sm font-bold text-white bg-red-700 rounded flex_center h-9 w-28"> بیشتر </a>
+                        class="mr-auto text-sm font-bold text-white bg-red-700 rounded dark:bg-red-600 flex_center h-9 w-28"> بیشتر </a>
                 </div>
             </li>
-            <li class="flex flex-col border-2 rounded border-gray-900/50">
+            <li class="flex flex-col border-2 rounded border-gray-900/50 dark:border-0 dark:bg-gray-700">
                 <div class="relative w-full pt-[62%]">
-                    <img src="{{ asset('assets/images/test/jac.jpg') }}" alt="" class="absolute inset-0" />
+                    <img src="{{ asset('assets/images/test/jac.jpg') }}" alt="" class="absolute inset-0 rounded" />
                 </div>
                 {{-- info --}}
                 <div class="px-5 pt-3 pb-5">
-                    <h3 class="mb-2 text-lg font-bold text-gray-900 line-clamp-1"> معرفی شرکت تولید کننده جک ۸.۵ تن
+                    <h3 class="mb-2 text-lg font-bold text-gray-900 dark:text-white line-clamp-1"> معرفی شرکت تولید کننده جک ۸.۵ تن
                     </h3>
-                    <p class="mb-2 text-sm font-normal leading-6 h-[72px] text-gray-900 line-clamp-3">
+                    <p class="mb-2 text-sm font-normal leading-6 h-[72px] text-gray-900 dark:text-white line-clamp-3">
                         کامیونت جک 8.5 تن یکی از موفق‌ترین محصولات شرکت جک است که با ظرفیت حمل بار 8500 کیلوگرم از نظر
                         کیفی در سطح مطلوبی قرار دارد.شرکت جک (JAC) در کشور چین واقع شده
                     </p>
                     <a href="#"
-                        class="mr-auto text-sm font-bold text-white bg-red-700 rounded flex_center h-9 w-28"> بیشتر </a>
+                        class="mr-auto text-sm font-bold text-white bg-red-700 rounded dark:bg-red-600 flex_center h-9 w-28"> بیشتر </a>
                 </div>
             </li>
-            <li class="flex flex-col border-2 rounded border-gray-900/50">
+            <li class="flex flex-col border-2 rounded border-gray-900/50 dark:border-0 dark:bg-gray-700">
                 <div class="relative w-full pt-[62%]">
-                    <img src="{{ asset('assets/images/test/jac.jpg') }}" alt="" class="absolute inset-0" />
+                    <img src="{{ asset('assets/images/test/jac.jpg') }}" alt="" class="absolute inset-0 rounded" />
                 </div>
                 {{-- info --}}
                 <div class="px-5 pt-3 pb-5">
-                    <h3 class="mb-2 text-lg font-bold text-gray-900 line-clamp-1"> معرفی شرکت تولید کننده جک ۸.۵ تن
+                    <h3 class="mb-2 text-lg font-bold text-gray-900 dark:text-white line-clamp-1"> معرفی شرکت تولید کننده جک ۸.۵ تن
                     </h3>
-                    <p class="mb-2 text-sm font-normal leading-6 h-[72px] text-gray-900 line-clamp-3">
+                    <p class="mb-2 text-sm font-normal leading-6 h-[72px] text-gray-900 dark:text-white line-clamp-3">
                         کامیونت جک 8.5 تن یکی از موفق‌ترین محصولات شرکت جک است که با ظرفیت حمل بار 8500 کیلوگرم از نظر
                         کیفی در سطح مطلوبی قرار دارد.شرکت جک (JAC) در کشور چین واقع شده
                     </p>
                     <a href="#"
-                        class="mr-auto text-sm font-bold text-white bg-red-700 rounded flex_center h-9 w-28"> بیشتر
-                    </a>
+                        class="mr-auto text-sm font-bold text-white bg-red-700 rounded dark:bg-red-600 flex_center h-9 w-28"> بیشتر </a>
                 </div>
             </li>
-            <li class="flex flex-col border-2 rounded border-gray-900/50">
+            <li class="flex flex-col border-2 rounded border-gray-900/50 dark:border-0 dark:bg-gray-700">
                 <div class="relative w-full pt-[62%]">
-                    <img src="{{ asset('assets/images/test/jac.jpg') }}" alt="" class="absolute inset-0" />
+                    <img src="{{ asset('assets/images/test/jac.jpg') }}" alt="" class="absolute inset-0 rounded" />
                 </div>
                 {{-- info --}}
                 <div class="px-5 pt-3 pb-5">
-                    <h3 class="mb-2 text-lg font-bold text-gray-900 line-clamp-1"> معرفی شرکت تولید کننده جک ۸.۵ تن
+                    <h3 class="mb-2 text-lg font-bold text-gray-900 dark:text-white line-clamp-1"> معرفی شرکت تولید کننده جک ۸.۵ تن
                     </h3>
-                    <p class="mb-2 text-sm font-normal leading-6 h-[72px] text-gray-900 line-clamp-3">
+                    <p class="mb-2 text-sm font-normal leading-6 h-[72px] text-gray-900 dark:text-white line-clamp-3">
                         کامیونت جک 8.5 تن یکی از موفق‌ترین محصولات شرکت جک است که با ظرفیت حمل بار 8500 کیلوگرم از نظر
                         کیفی در سطح مطلوبی قرار دارد.شرکت جک (JAC) در کشور چین واقع شده
                     </p>
                     <a href="#"
-                        class="mr-auto text-sm font-bold text-white bg-red-700 rounded flex_center h-9 w-28"> بیشتر
-                    </a>
+                        class="mr-auto text-sm font-bold text-white bg-red-700 rounded dark:bg-red-600 flex_center h-9 w-28"> بیشتر </a>
                 </div>
             </li>
         </ul>
     </section>
 
     {{-- videos --}}
-    <section class="px-5 mb-20 xl:px-0">
+    <section class="px-5 mb-20 xl:px-0 relative z-[1]">
         {{-- header --}}
         <div class="flex items-center justify-between mb-16 lg:px-4">
-            <h3 class="text-lg font-bold text-gray-900"> ویدیو ها </h3>
-            <a href="#" class="flex items-center gap-2 text-xs font-normal text-red-700">
+            <h3 class="text-lg font-bold text-gray-900 dark:text-white"> ویدیو ها </h3>
+            <a href="#" class="flex items-center gap-2 text-xs font-normal text-red-700 dark:text-red-600">
                 <span> نمایش همه </span>
-                <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
+                <svg class="stroke-current" width="20" height="20" viewBox="0 0 20 20" fill="none"
                     xmlns="http://www.w3.org/2000/svg">
                     <path
                         d="M8.88759 15.8327L3.33203 9.99935M3.33203 9.99935L8.88759 4.16602M3.33203 9.99935L16.6654 9.99935"
-                        stroke="#B91C1C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                        stroke="current" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                 </svg>
             </a>
         </div>
@@ -228,7 +308,8 @@
                     <video id="player1" playsinline controls
                         data-poster="{{ asset('assets/images/test/jac.jpg') }}">
                         {{-- <source src="/assets/images/test/movie.mp4" type="video/mp4" /> --}}
-                        <source src="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-576p.mp4" type="video/mp4" />
+                        <source src="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-576p.mp4"
+                            type="video/mp4" />
                     </video>
                 </div>
             </li>
@@ -237,7 +318,8 @@
                     <video id="player2" playsinline controls
                         data-poster="{{ asset('assets/images/test/jac 9 ton.png') }}">
                         {{-- <source src="/assets/images/test/movie.mp4" type="video/mp4" /> --}}
-                        <source src="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-576p.mp4" type="video/mp4" />
+                        <source src="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-576p.mp4"
+                            type="video/mp4" />
                     </video>
                 </div>
             </li>
@@ -246,15 +328,23 @@
                     <video id="player3" playsinline controls
                         data-poster="{{ asset('assets/images/test/jac.jpg') }}">
                         {{-- <source src="/assets/images/test/movie.mp4" type="video/mp4" /> --}}
-                        <source src="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-576p.mp4" type="video/mp4" />
+                        <source src="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-576p.mp4"
+                            type="video/mp4" />
                     </video>
                 </div>
             </li>
         </ul>
     </section>
 
+    {{-- terms of sale --}}
+    <div class="px-5 xl:px-0 relative z-[1]">
+        <a href="#"
+            class="w-full mx-auto text-base font-bold text-white bg-red-700 rounded dark:bg-red-600 sm:w-80 h-11 flex_center"> شرایط
+            فروش </a>
+    </div>
+
     {{-- CATEGORIES | PRODUCTS --}}
-    <x-layout.landing.products class="mt-5 md:mt-16" :land="$land" :data="$data" />
+    {{-- <x-layout.landing.products class="mt-5 md:mt-16" :land="$land" :data="$data" /> --}}
 
     {{-- VIDEOS --}}
     {{--
@@ -284,7 +374,7 @@
     --}}
 
     {{-- ARTICLES --}}
-    <x-layout.landing.articles :land="$land" class="mt-5 md:mt-16" />
+    {{-- <x-layout.landing.articles :land="$land" class="mt-5 md:mt-16" /> --}}
 
     {{-- CATEGORIES | PRODUCTS --}}
     {{--

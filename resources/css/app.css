@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
 @import "plyr/dist/plyr.css";
+@import "swiper/css/bundle";
 
 @tailwind base;
 @tailwind components;
@@ -518,3 +519,12 @@
 .badge {
     @apply inline-flex items-center gap-x-1.5 py-1.5 px-3 rounded-full text-xs font-medium bg-gray-800 text-white dark:bg-white dark:text-gray-800;
 }
+
+/* swiper starts */
+.slider_type_1 .swiper-pagination .swiper-pagination-bullet{
+    @apply w-2 h-2 transition-transform duration-300 bg-white rounded-full opacity-50;
+}
+.slider_type_1 .swiper-pagination .swiper-pagination-bullet-active{
+    @apply w-6 opacity-80;
+}
+/* swiper ends */
