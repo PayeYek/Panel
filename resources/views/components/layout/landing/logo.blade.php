@@ -24,10 +24,10 @@
 @else
 
     <a href="{{ $land ? route('landing.page.show', ['page'=>$land->slug]) : '#' }}"
-       class="flex gap-2 shrink-0 group">
+       class="flex gap-2 shrink-0">
         @if($land->logo)
             <img
-                class="object-contain rounded-md h-14"
+                class="object-contain h-14 sm:h-[72px]"
                 src="{{$inFooter ? ($land->logo_origin ?: $land->logo) : $land->logo}}" alt="{{$land->title ?? ''}}">
         @endif
 
