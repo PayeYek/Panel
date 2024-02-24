@@ -194,7 +194,6 @@ class ProductController extends Controller
 
     public function attributeUpdate(ProductAttributeRequest $request, LandProduct $product)
     {
-
         $product->attributes()->detach();
 
         /* ADD to Product Attributes */

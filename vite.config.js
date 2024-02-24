@@ -8,6 +8,11 @@ export default defineConfig({
         // host: '192.168.140.78',
         // host: '192.168.120.155',
     },
+    resolve: {
+        alias: {
+            'vue': 'vue/dist/vue.esm-bundler.js',
+        },
+    },
     plugins: [
         laravel({
             input: "resources/js/app.js",

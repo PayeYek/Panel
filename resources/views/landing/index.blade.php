@@ -14,6 +14,7 @@
                 </div>
 
             </main>
+
             <div class="grid grid-cols-3 md:max-w-xl gap-5 p-5 mx-auto">
                 @foreach($lands as $land)
                     <div class="relative">
