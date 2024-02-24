@@ -73,7 +73,12 @@
         {{-- favorites --}}
         <section class="mb-16 relative z-[1]">
             <h3 class="mb-4 text-lg font-bold text-gray-900 dark:text-white lg:px-4"> برگزیده ها </h3>
-                <x-products.products type="9" />
+            {{-- 
+                "-none" => border-radius: 0px
+                ""      => border-radius: 4px
+                "-xl"   => border-radius: 12px
+                --}}
+                <x-products.products type="8" radius="" />
         </section>
     
         {{-- notifications --}}

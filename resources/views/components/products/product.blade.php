@@ -1,12 +1,12 @@
-@props(['type' => '1', 'image' => "{{ asset('assets/images/test/small-truck.png') }}", 'href' => '#'])
+@props(['type' => '1', 'image' => "{{ asset('assets/images/test/small-truck.png') }}", 'href' => '#', 'radius' => '-xl'])
 @switch($type)
     @case(1)
         <div
-            class="drop-shadow-[0_2px_10px_rgba(0,0,0,0.15)] rounded-xl px-8 lg:px-5 xl:px-8 py-5 bg-white dark:bg-gray-700 flex flex-col">
+            class="drop-shadow-[0_2px_10px_rgba(0,0,0,0.15)] rounded{{$radius}} px-8 lg:px-5 xl:px-8 py-5 bg-white dark:bg-gray-700 flex flex-col">
             <div class="h-32 mx-auto mb-2">
                 <img src="{{ $image }}" alt="mammut" class="h-full" />
             </div>
-            <h3 class="mb-4 text-lg font-bold text-center text-gray-900 dark:text-white line-clamp-1"> کامیون جک <span class="text-red-700 dark:text-red-600">&nbsp; X5000-D </span></h3>
+            <h3 class="mb-4 text-lg font-bold text-center text-gray-900 lg:text-right dark:text-white line-clamp-1"> کامیون جک <span class="inline-block text-red-700 dark:text-red-600">&nbsp; X5000-D </span></h3>
             <ul class="flex flex-col gap-4 pr-4 text-xs font-light text-gray-900 list-none dark:text-white">
                 <li class="flex items-center gap-1">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
@@ -28,7 +28,7 @@
                 </li>
             </ul>
             <a href="{{$href}}"
-                class="w-full mt-8 text-lg font-bold text-red-700 transition-colors duration-200 border border-red-700 rounded-xl dark:hover:bg-red-600 dark:hover:text-white hover:bg-red-700 hover:text-white dark:border-red-600 dark:text-red-600 h-11 flex_center">
+                class="w-36 mx-auto mt-8 text-lg font-bold text-red-700 transition-colors duration-200 border border-red-700 rounded{{$radius}} dark:hover:bg-red-600 dark:hover:text-white hover:bg-red-700 hover:text-white dark:border-red-600 dark:text-red-600 h-11 flex_center">
                 مشخصات </a>
         </div>
     @break
@@ -41,35 +41,35 @@
             </div>
             <h3 class="text-lg font-bold text-gray-900 dark:text-white line-clamp-1"> کامیون جک 8.5 تن </h3>
             <a href="{{$href}}"
-                class="w-full mt-4 text-lg font-bold text-red-700 transition-colors duration-200 border border-red-700 rounded dark:hover:bg-red-600 dark:hover:text-white hover:bg-red-700 hover:text-white dark:border-red-600 dark:text-red-600 h-11 flex_center">
+                class="mx-auto mt-4 text-lg font-bold text-red-700 transition-colors duration-200 border border-red-700 rounded w-36 dark:hover:bg-red-600 dark:hover:text-white hover:bg-red-700 hover:text-white dark:border-red-600 dark:text-red-600 h-11 flex_center">
                 مشخصات </a>
             <a href="{{$href}}"
-                class="w-full mt-4 text-lg font-bold text-red-700 transition-colors duration-200 border border-red-700 rounded dark:hover:bg-red-600 dark:hover:text-white hover:bg-red-700 hover:text-white dark:border-red-600 dark:text-red-600 h-11 flex_center">
+                class="mx-auto mt-4 text-lg font-bold text-red-700 transition-colors duration-200 border border-red-700 rounded w-36 dark:hover:bg-red-600 dark:hover:text-white hover:bg-red-700 hover:text-white dark:border-red-600 dark:text-red-600 h-11 flex_center">
                 مشخصات </a>
             <a href="{{$href}}"
-                class="w-full mt-4 text-lg font-bold text-red-700 transition-colors duration-200 border border-red-700 rounded dark:hover:bg-red-600 dark:hover:text-white hover:bg-red-700 hover:text-white dark:border-red-600 dark:text-red-600 h-11 flex_center">
+                class="mx-auto mt-4 text-lg font-bold text-red-700 transition-colors duration-200 border border-red-700 rounded w-36 dark:hover:bg-red-600 dark:hover:text-white hover:bg-red-700 hover:text-white dark:border-red-600 dark:text-red-600 h-11 flex_center">
                 مشخصات </a>
         </div>
     @break
 
     @case(3)
         <div
-            class="drop-shadow-[0_2px_10px_rgba(0,0,0,0.15)] rounded-xl px-6 py-5 items-center bg-white dark:bg-gray-700 flex flex-col">
+            class="drop-shadow-[0_2px_10px_rgba(0,0,0,0.15)] rounded{{$radius}} px-6 py-5 items-center bg-white dark:bg-gray-700 flex flex-col">
             <div class="h-32 mb-5">
                 <img src="{{ $image }}" alt="mammut" class="h-full" />
             </div>
             <h3 class="mb-5 text-lg font-bold text-center text-gray-900 dark:text-white line-clamp-1"> کامیون جک <span class="text-red-700 dark:text-red-600">&nbsp; X5000-D </span> <span class="inline-block mr-4"> 8.5 تن </span></h3>
             <a href="{{$href}}"
-                class="w-full text-lg font-bold text-red-700 transition-colors duration-200 border border-red-700 rounded-xl lg:w-36 dark:hover:bg-red-600 dark:hover:text-white hover:bg-red-700 hover:text-white dark:border-red-600 dark:text-red-600 h-11 flex_center">
+                class="w-36 mx-auto text-lg font-bold text-red-700 transition-colors duration-200 border border-red-700 rounded{{$radius}} dark:hover:bg-red-600 dark:hover:text-white hover:bg-red-700 hover:text-white dark:border-red-600 dark:text-red-600 h-11 flex_center">
                 مشخصات </a>
         </div>
     @break
 
     @case(4)
         <div
-            class="drop-shadow-[0_2px_10px_rgba(0,0,0,0.15)] w-full rounded-xl px-6 sm:px-9 py-5 bg-white dark:bg-gray-700 flex flex-col">
+            class="drop-shadow-[0_2px_10px_rgba(0,0,0,0.15)] w-full rounded{{$radius}} px-6 sm:px-9 py-5 bg-white dark:bg-gray-700 flex flex-col">
             <div class="flex items-center gap-4 justify-between pb-2 mb-5 border-b border-[#37474F]/40">
-                <h3 class="text-lg font-bold text-gray-900 dark:text-white line-clamp-1"> کامیون جک <span class="text-sm text-red-700 dark:text-red-600">&nbsp; X5000-D </span> <span class="inline-block mr-2 text-base sm:mr-4 sm:text-lg"> 8.5 تن </span></h3>
+                <h3 class="text-lg font-bold text-gray-900 dark:text-white line-clamp-1"> کامیون جک <span class="inline-block text-sm text-red-700 dark:text-red-600">&nbsp; X5000-D </span> <span class="inline-block mr-2 text-base sm:mr-4 sm:text-lg"> 8.5 تن </span></h3>
                 <a href="{{$href}}" class="text-base font-bold text-red-700">
                     مشخصات </a>
             </div>
@@ -121,8 +121,8 @@
 
     @case(5)
         <div
-            class="drop-shadow-[0_2px_10px_rgba(0,0,0,0.15)] w-full rounded-xl px-6 sm:px-9 py-5 bg-white dark:bg-gray-700 flex flex-col">
-            <h3 class="pb-2 mb-5 border-b border-[#37474F]/40 text-lg font-bold text-gray-900 dark:text-white line-clamp-1"> کامیون جک <span class="text-sm text-red-700 dark:text-red-600">&nbsp; X5000-D </span> <span class="inline-block mr-2 text-base sm:mr-4 sm:text-lg"> 8.5 تن </span></h3>
+            class="drop-shadow-[0_2px_10px_rgba(0,0,0,0.15)] w-full rounded{{$radius}} px-6 sm:px-9 py-5 bg-white dark:bg-gray-700 flex flex-col">
+            <h3 class="pb-2 mb-5 border-b border-[#37474F]/40 text-lg font-bold text-gray-900 dark:text-white line-clamp-1"> کامیون جک <span class="text-sm text-red-700 dark:text-red-600">&nbsp; X5000-D </span> <span class="inline-block mr-2 text-lg sm:mr-4"> 8.5 تن </span></h3>
             <div class="grid grid-cols-3 gap-4 mb-4">
                 <div class="h-32">
                     <img src="{{ $image }}" alt="mammut" class="object-contain h-full" />
@@ -168,10 +168,10 @@
             </div>
             <div class="flex items-center justify-end gap-4">
                 <a href="{{$href}}"
-                    class="flex-1 text-lg font-bold text-red-700 transition-colors duration-200 border border-red-700 sm:flex-none sm:w-36 rounded-xl lg:w-36 dark:hover:bg-red-600 dark:hover:text-white hover:bg-red-700 hover:text-white dark:border-red-600 dark:text-red-600 h-11 flex_center">
+                    class="text-lg font-bold text-red-700 transition-colors duration-200 border border-red-700 flex-none w-36 rounded{{$radius}} dark:hover:bg-red-600 dark:hover:text-white hover:bg-red-700 hover:text-white dark:border-red-600 dark:text-red-600 h-11 flex_center">
                     مشخصات </a>
                 <a href="{{$href}}"
-                    class="flex-1 text-lg font-bold text-white transition-colors duration-200 bg-red-700 sm:flex-none sm:w-36 rounded-xl lg:w-36 dark:bg-red-600 h-11 flex_center">
+                    class="text-lg font-bold text-white transition-colors duration-200 bg-red-700 flex-none w-36 rounded{{$radius}} dark:bg-red-600 h-11 flex_center">
                     شرایط فروش </a>
             </div>
         </div>
@@ -179,8 +179,8 @@
 
     @case(6)
         <div
-            class="drop-shadow-[0_2px_10px_rgba(0,0,0,0.15)] md:drop-shadow-none rounded-xl md:rounded-none flex flex-col w-full px-6 md:px-10 py-5 md:pb-10 md:pt-6 bg-white sm:px-9 dark:bg-gray-700 md:odd:before:absolute md:odd:before:content-[''] md:odd:before:left-0 md:odd:before:top-[5%] md:odd:before:h-[90%] md:odd:before:border-l md:odd:before:border-[#37474F]/40 md:after:absolute md:after:content-[''] md:after:top-0 md:after:left-[5%] md:after:w-[90%] md:after:h-px md:after:border-t md:first:after:hidden [&:nth-of-type(2)]:after:hidden md:after:border-[#37474F]/40 relative">
-            <h3 class="pb-2 mb-5 border-b md:border-b-0 md:pb-0 border-[#37474F]/40 text-lg font-bold text-gray-900 dark:text-white line-clamp-1"> کامیون جک <span class="text-sm text-red-700 dark:text-red-600">&nbsp; X5000-D </span> <span class="inline-block mr-2 text-base sm:mr-4 sm:text-lg"> 8.5 تن </span></h3>
+            class="drop-shadow-[0_2px_10px_rgba(0,0,0,0.15)] md:drop-shadow-none rounded{{$radius}} md:rounded-none flex flex-col w-full px-6 md:px-10 py-5 md:pb-10 md:pt-6 bg-white sm:px-9 dark:bg-gray-700 md:odd:before:absolute md:odd:before:content-[''] md:odd:before:left-0 md:odd:before:top-[5%] md:odd:before:h-[90%] md:odd:before:border-l md:odd:before:border-[#37474F]/40 md:after:absolute md:after:content-[''] md:after:top-0 md:after:left-[5%] md:after:w-[90%] md:after:h-px md:after:border-t md:first:after:hidden [&:nth-of-type(2)]:after:hidden md:after:border-[#37474F]/40 relative">
+            <h3 class="pb-2 mb-5 border-b md:border-b-0 md:pb-0 border-[#37474F]/40 text-lg font-bold text-gray-900 dark:text-white line-clamp-1"> کامیون جک <span class="text-sm text-red-700 dark:text-red-600">&nbsp; X5000-D </span> <span class="inline-block mr-2 text-lg sm:mr-4"> 8.5 تن </span></h3>
             <div class="grid grid-cols-3 gap-4 mb-4">
                 <div class="h-32">
                     <img src="{{ $image }}" alt="mammut" class="object-contain h-full" />
@@ -225,7 +225,7 @@
                 </ul>
             </div>
             <a href="{{$href}}"
-                class="w-full text-lg font-bold text-red-700 transition-colors duration-200 border border-red-700 sm:mr-auto sm:flex-none sm:w-36 rounded-xl lg:w-36 dark:hover:bg-red-600 dark:hover:text-white hover:bg-red-700 hover:text-white dark:border-red-600 dark:text-red-600 h-11 flex_center">
+                class="w-36 text-lg font-bold text-red-700 transition-colors duration-200 border border-red-700 mr-auto rounded{{$radius}} dark:hover:bg-red-600 dark:hover:text-white hover:bg-red-700 hover:text-white dark:border-red-600 dark:text-red-600 h-11 flex_center">
                 مشخصات </a>
         </div>
     @break
@@ -279,10 +279,10 @@
             </div>
             <div class="flex flex-col items-center gap-6 md:flex-none">
                 <a href="{{$href}}"
-                    class="text-lg font-bold text-red-700 transition-colors duration-200 border border-red-700 w-36 rounded-xl dark:hover:bg-red-600 dark:hover:text-white hover:bg-red-700 hover:text-white dark:border-red-600 dark:text-red-600 h-11 flex_center">
+                    class="text-lg font-bold text-red-700 transition-colors duration-200 border border-red-700 w-36 rounded{{$radius}} dark:hover:bg-red-600 dark:hover:text-white hover:bg-red-700 hover:text-white dark:border-red-600 dark:text-red-600 h-11 flex_center">
                     مشخصات </a>
                 <a href="{{$href}}"
-                    class="text-lg font-bold text-white transition-colors duration-200 bg-red-700 w-36 rounded-xl dark:bg-red-600 h-11 flex_center">
+                    class="text-lg font-bold text-white transition-colors duration-200 bg-red-700 w-36 rounded{{$radius}} dark:bg-red-600 h-11 flex_center">
                     شرایط فروش </a>
             </div>
         </div>
@@ -290,7 +290,7 @@
 
     @case(8)
         <div
-            class="md:drop-shadow-[0_2px_10px_rgba(0,0,0,0.15)] md:rounded-xl flex flex-col md:flex-row md:items-center lg:pl-14 md:gap-4 lg:gap-10 xl:gap-16 w-full px-6 md:px-10 pb-8 pt-6 bg-white sm:px-9 dark:bg-gray-700 after:absolute after:content-[''] after:top-0 after:left-[5%] after:w-[90%] after:h-px after:border-t first:after:hidden md:after:hidden after:border-[#37474F]/40 dark:after:border-gray-600 relative before:absolute before:content-[''] before:bg-red-700 dark:before:bg-red-600 before:top-0 before:right-0 before:w-4 before:hidden md:before:block before:h-full before:rounded-r-xl">
+            class="md:drop-shadow-[0_2px_10px_rgba(0,0,0,0.15)] md:rounded{{$radius}} flex flex-col md:flex-row md:items-center lg:pl-14 md:gap-4 lg:gap-10 xl:gap-16 w-full px-6 md:px-10 pb-8 pt-6 bg-white sm:px-9 dark:bg-gray-700 after:absolute after:content-[''] after:top-0 after:left-[5%] after:w-[90%] after:h-px after:border-t first:after:hidden md:after:hidden after:border-[#37474F]/40 dark:after:border-gray-600 relative before:absolute before:content-[''] before:bg-red-700 dark:before:bg-red-600 before:top-0 before:right-0 before:w-4 before:hidden md:before:block before:h-full before:rounded-r{{$radius}}">
             <div class="h-32 mx-auto mb-3 md:h-40 md:mx-0 md:mb-0 md:w-40 lg:h-[11.5rem] lg:w-[11.5rem] md:flex-none">
                 <img src="{{ $image }}" alt="mammut" class="object-contain h-full" />
             </div>
@@ -337,10 +337,10 @@
             </div>
             <div class="flex flex-col items-center gap-6 md:flex-none">
                 <a href="{{$href}}"
-                    class="text-lg font-bold text-red-700 transition-colors duration-200 border border-red-700 w-36 rounded-xl dark:hover:bg-red-600 dark:hover:text-white hover:bg-red-700 hover:text-white dark:border-red-600 dark:text-red-600 h-11 flex_center">
+                    class="text-lg font-bold text-red-700 transition-colors duration-200 border border-red-700 w-36 rounded{{$radius}} dark:hover:bg-red-600 dark:hover:text-white hover:bg-red-700 hover:text-white dark:border-red-600 dark:text-red-600 h-11 flex_center">
                     مشخصات </a>
                 <a href="{{$href}}"
-                    class="text-lg font-bold text-white transition-colors duration-200 bg-red-700 w-36 rounded-xl dark:bg-red-600 h-11 flex_center">
+                    class="text-lg font-bold text-white transition-colors duration-200 bg-red-700 w-36 rounded{{$radius}} dark:bg-red-600 h-11 flex_center">
                     شرایط فروش </a>
             </div>
         </div>
@@ -348,7 +348,7 @@
 
     @case(9)
         <div
-            class="drop-shadow-[0_2px_10px_rgba(0,0,0,0.15)] lg:drop-shadow-none lg:rounded-none rounded-xl px-8 lg:px-5 xl:px-8 py-5 bg-white dark:bg-gray-700 flex flex-col lg:border-l lg:border-l-[#37474F]/40 dark:lg:border-l-gray-600 first:border-r-0 lg:[&:nth-child(4n+4)]:border-l-0 lg:border-t lg:border-t-[#37474F]/40 lg:dark:border-t-gray-600 lg:[&:nth-of-type(-n+4)]:border-t-0">
+            class="drop-shadow-[0_2px_10px_rgba(0,0,0,0.15)] lg:drop-shadow-none lg:rounded-none rounded{{$radius}} px-8 lg:px-5 xl:px-8 py-5 bg-white dark:bg-gray-700 flex flex-col lg:border-l lg:border-l-[#37474F]/40 dark:lg:border-l-gray-600 first:border-r-0 lg:[&:nth-child(4n+4)]:border-l-0 lg:border-t lg:border-t-[#37474F]/40 lg:dark:border-t-gray-600 lg:[&:nth-of-type(-n+4)]:border-t-0">
             <div class="h-32 mx-auto mb-2">
                 <img src="{{ $image }}" alt="mammut" class="h-full" />
             </div>
@@ -374,7 +374,7 @@
                 </li>
             </ul>
             <a href="{{$href}}"
-                class="w-full mt-8 text-lg font-bold text-red-700 transition-colors duration-200 border border-red-700 md:mx-auto md:w-36 rounded-xl dark:hover:bg-red-600 dark:hover:text-white hover:bg-red-700 hover:text-white dark:border-red-600 dark:text-red-600 h-11 flex_center">
+                class="w-full mt-8 text-lg font-bold text-red-700 transition-colors duration-200 border border-red-700 md:mx-auto md:w-36 rounded{{$radius}} dark:hover:bg-red-600 dark:hover:text-white hover:bg-red-700 hover:text-white dark:border-red-600 dark:text-red-600 h-11 flex_center">
                 مشخصات </a>
         </div>
     @break
