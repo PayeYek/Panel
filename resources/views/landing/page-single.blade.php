@@ -78,7 +78,7 @@
                 ""      => border-radius: 4px
                 "-xl"   => border-radius: 12px
                 --}}
-                <x-products.products type="8" radius="" />
+                <x-products.products type="9" radius="" />
         </section>
     
         {{-- notifications --}}
