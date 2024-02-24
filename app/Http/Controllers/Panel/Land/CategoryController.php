@@ -14,7 +14,7 @@ class CategoryController extends Controller
 
     public function index()
     {
-        return view('panel.landing.category.index', [
+        return view('panel.landing.product.category.index', [
             'items' => Categories::class
         ]);
     }
@@ -24,7 +24,7 @@ class CategoryController extends Controller
     {
         $attributes = LandAttribute::with('child')->whereNull('parent_id')->get();
 
-        return view('panel.landing.category.create', compact('attributes'));
+        return view('panel.landing.product.category.create', compact('attributes'));
     }
 
 
@@ -36,7 +36,7 @@ class CategoryController extends Controller
 
         \Splade::toast(__('Created'))->autoDismiss(5)->success();
 
-        return redirect()->route('panel.landing.category.index');
+        return redirect()->route('panel.landing.product.category.index');
     }
 
 
@@ -46,7 +46,7 @@ class CategoryController extends Controller
 
         $attributes = LandAttribute::with('child')->whereNull('parent_id')->get();
 
-        return view('panel.landing.category.edit', compact('category', 'attributes'));
+        return view('panel.landing.product.category.edit', compact('category', 'attributes'));
     }
 
 
@@ -58,7 +58,7 @@ class CategoryController extends Controller
 
         \Splade::toast(__('Updated'))->autoDismiss(5)->info();
 
-        return redirect()->route('panel.landing.category.index');
+        return redirect()->route('panel.landing.product.category.index');
     }
 
 

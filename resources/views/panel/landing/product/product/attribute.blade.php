@@ -1,7 +1,7 @@
 <x-layout.admin>
     <x-splade-modal>
         <x-splade-form :default="$data" method="put"
-                       :action="route('panel.landing.product.attribute.update', $product)">
+                       :action="route('panel.landing.product.product.attribute.update', $product)">
             <x-layout.panel.form.card title="Edit Attribute">
 
                 <x-layout.panel.form.alerts/>

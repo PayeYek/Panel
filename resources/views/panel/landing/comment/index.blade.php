@@ -1,7 +1,7 @@
 <x-layout.admin>
 
     <x-splade-table :for="$items" search-debounce="1000" striped
-{{--                    :primaryLink="route('panel.comment.create')"--}}
+                    :primaryLink="route('panel.landing.comment.create')"
                     :title="__('Comment list')"
                     slideover
                     {{--:desc="__('test test test')"--}}
@@ -15,7 +15,7 @@
             confirm-button="{{$item->approved == 0 ? __('I approve its publication.') : __('Hide user comments from the others.')}}"
             cancel-button="{{__('No')}}"
             method="POST"
-            href="{{ $item->approved == 0 ? route('panel.comment.publish', $item->id) : route('panel.comment.hidden', $item->id)}}"
+            href="{{ $item->approved == 0 ? route('panel.landing.comment.publish', $item->id) : route('panel.interaction.comment.hidden', $item->id)}}"
             class="flex flex-col pe-10">
         <div class="flex gap-2">
             <img class="h-16 w-16 rounded" src="{{$item->commentable->thumbnail}}"
@@ -69,7 +69,7 @@
             <div class="py-2 first:pt-0 last:pb-0">
                 {{--<span class="block py-2 px-3 text-xs font-medium uppercase text-gray-400 dark:text-gray-600">{{__('Actions')}}</span>--}}
                 <Link slideover
-                      href="{{ route('panel.comment.edit', $item) }}"
+                      href="{{ route('panel.landing.comment.edit', $item) }}"
                       class="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300 dark:focus:bg-gray-700">
                 <x-iconsax-lin-edit class="shrink-0 w-4 h-4"/>
                 <span>{{ __('Edit') }}</span>
@@ -77,7 +77,7 @@
             </div>
             <div class="py-2 first:pt-0 last:pb-0">
                 <Link method="delete" confirm
-                      href="{{ route('panel.comment.destroy', $item) }}"
+                      href="{{ route('panel.landing.comment.destroy', $item) }}"
                       class="flex items-center gap-x-3 py-2 px-3 rounded-lg text-sm text-red-600 hover:bg-gray-100 focus:ring-2 focus:ring-blue-500 dark:text-red-500 dark:hover:bg-gray-700 dark:hover:text-gray-300">
                 <x-iconsax-lin-trash class="shrink-0 w-4 h-4"/>
                 <span>{{ __('Delete') }}</span>

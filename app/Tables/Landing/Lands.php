@@ -64,6 +64,17 @@ class Lands extends AbstractTable
         //highlight: true,
         //exportAs: false,
         );
+
+        $table->column(
+            key: 'style',
+            label: __('Style'),
+            //hidden: true,
+        //sortable: true,
+        //searchable: true,
+        //highlight: true,
+        //exportAs: false,
+        );
+
         $table->column(
             key: 'title',
             label: __('Title'),

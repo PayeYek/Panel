@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Panel\Land;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Panel\Landing\LandRequest;
+use App\Http\Requests\Panel\Landing\LandStyleRequest;
 use App\Models\Land;
+use App\Models\LandProduct;
 use App\Tables\Landing\Lands;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Image;
@@ -92,6 +94,21 @@ LandController extends Controller
         \Splade::toast(__('Deleted'))->autoDismiss(5)->danger();
 
         return back();
+    }
+
+    public function styleEdit(Land $land)
+    {
+
+        return view('panel.landing.land.style', compact('land'));
+    }
+
+
+    public function styleUpdate(LandStyleRequest $request, Land $land)
+    {
+
+        \Splade::toast(__('Updated'))->autoDismiss(5)->info();
+
+        return redirect()->route('panel.landing.land.index');
     }
 
     public function getLogo(mixed $data, LandRequest $request): mixed

@@ -15,17 +15,25 @@
         <ul class="pt-5 mt-5 space-y-2 border-t border-gray-200 dark:border-gray-700">
 
             {{--LANDING--}}
-            <x-layout.panel.menu title="Landing page" route="panel.landing.*" icon="iconsax-bol-box">
-                <x-layout.panel.menu title="Pages" route="panel.landing.land.index" icon="iconsax-lin-box"/>
-                <x-layout.panel.menu title="Categories" route="panel.landing.category.index" icon="iconsax-lin-box"/>
-                <x-layout.panel.menu title="Attributes" route="panel.landing.attribute.index" icon="iconsax-lin-box"/>
-                <x-layout.panel.menu title="Brands" route="panel.landing.brand.index" icon="iconsax-lin-box"/>
-                <x-layout.panel.menu title="Colors" route="panel.landing.color.index" icon="iconsax-lin-box"/>
-                <x-layout.panel.menu title="Products" route="panel.landing.product.index" icon="iconsax-lin-box"/>
-                <x-layout.panel.menu title="Slides" route="panel.landing.slide.index" icon="iconsax-lin-box"/>
-                <x-layout.panel.menu title="Videos" route="panel.landing.video.index" icon="iconsax-lin-box"/>
-                <x-layout.panel.menu title="Articles" route="panel.landing.article.index" icon="iconsax-lin-box"/>
-                <x-layout.panel.menu title="Files" route="panel.landing.file.index" icon="iconsax-lin-box"/>
+            <x-layout.panel.menu title="Landing page" route="panel.landing.*" icon="iconsax-bol-note-2">
+                <x-layout.panel.menu title="Pages" route="panel.landing.land.index" icon="iconsax-lin-note-2"/>
+                <x-layout.panel.menu title="Slides" route="panel.landing.slide.index"
+                                     icon="iconsax-lin-slider-horizontal"/>
+                <x-layout.panel.menu title="Articles" route="panel.landing.article.index" icon="iconsax-lin-book"/>
+                <x-layout.panel.menu title="Videos" route="panel.landing.video.index" icon="iconsax-lin-video-square"/>
+                <x-layout.panel.menu title="Files" route="panel.landing.file.index" icon="iconsax-lin-document-upload"/>
+                <x-layout.panel.menu title="Products" route="panel.landing.product.*" icon="iconsax-bol-box">
+                    <x-layout.panel.menu title="Attributes" route="panel.landing.product.attribute.index"
+                                         icon="iconsax-lin-mask"/>
+                    <x-layout.panel.menu title="Colors" route="panel.landing.product.color.index"
+                                         icon="iconsax-lin-paintbucket"/>
+                    <x-layout.panel.menu title="Brands" route="panel.landing.product.brand.index"
+                                         icon="iconsax-lin-medal-star"/>
+                    <x-layout.panel.menu title="Categories" route="panel.landing.product.category.index"
+                                         icon="iconsax-lin-folder-2"/>
+                    <x-layout.panel.menu title="Products" route="panel.landing.product.product.index"
+                                         icon="iconsax-lin-box"/>
+                </x-layout.panel.menu>
             </x-layout.panel.menu>
             {{--LANDING -- END --}}
 
@@ -103,6 +111,10 @@
             {{--SETTINGS -- END --}}
 
         </ul>
+        <ul class="pt-5 mt-5 space-y-2 border-t border-gray-200 dark:border-gray-700">
+            <x-layout.panel.menu title="Comments" route="panel.comment.index" icon="iconsax-bol-message"/>
+        </ul>
+
         <ul class="pt-5 mt-5 space-y-2 border-t border-gray-200 dark:border-gray-700">
             <x-layout.panel.menu title="Users" icon="iconsax-bol-user" route="panel.user.index"/>
         </ul>

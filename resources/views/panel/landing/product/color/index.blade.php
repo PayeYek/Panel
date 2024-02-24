@@ -1,7 +1,7 @@
 <x-layout.admin>
 
     <x-splade-table :for="$colors" search-debounce="1000" striped
-                    :primaryLink="route('panel.landing.color.create')"
+                    :primaryLink="route('panel.landing.product.color.create')"
                     :title="__('Color list')"
                     pagination-scroll="preserve"
     >
@@ -48,10 +48,10 @@
         @cell('action', $color)
         <x-layout.panel.more-buttons>
             <div class="py-2 first:pt-0 last:pb-0">
-                <x-layout.panel.list.edit table="landing.color" :item="$color"/>
+                <x-layout.panel.list.edit table="landing.product.color" :item="$color"/>
             </div>
             <div class="py-2 first:pt-0 last:pb-0">
-                <x-layout.panel.list.destroy table="landing.color" :item="$color"/>
+                <x-layout.panel.list.destroy table="landing.product.color" :item="$color"/>
             </div>
         </x-layout.panel.more-buttons>
         @endcell

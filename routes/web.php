@@ -31,27 +31,35 @@ Route::middleware(['splade'])->group(function () {
     Route::prefix('panel')->name('panel.')->group(function () {
 
         /* DASHBOARD */
-        Route::get('/', fn() => redirect()->route('panel.dashboard'))->name('home');
+        Route::get('/', fn() => redirect()->route('panel.landing.land.index'))->name('home');
         Route::get('dashboard', [\App\Http\Controllers\Panel\DashboardController::class, 'index'])->name('dashboard');
 
         /* Landing */
         Route::prefix('landing')->name('landing.')->group(function () {
             // Lands - Showcase pages (vitrine)
             Route::resource('land', \App\Http\Controllers\Panel\Land\LandController::class)->except('show');
-            // Land Categories
-            Route::resource('category', \App\Http\Controllers\Panel\Land\CategoryController::class)->except('show');
-            // Land Attributes
-            Route::resource('attribute', \App\Http\Controllers\Panel\Land\AttributeController::class)->except('show');
-            // Land Brands
-            Route::resource('brand', \App\Http\Controllers\Panel\Land\BrandController::class)->except('show');
-            // Land Colors
-            Route::resource('color', \App\Http\Controllers\Panel\Land\ColorController::class)->except('show');
-            // Land Products
-            Route::resource('product', \App\Http\Controllers\Panel\Land\ProductController::class)->except('show');
-            Route::prefix('product')->name('product.')->controller(\App\Http\Controllers\Panel\Land\ProductController::class)->group(function () {
-                Route::get('{product}/attribute', 'attributeEdit')->name('attribute.edit');
-                Route::put('{product}/attribute', 'attributeUpdate')->name('attribute.update');
+            Route::prefix('land')->name('land.')->controller(\App\Http\Controllers\Panel\Land\LandController::class)->group(function () {
+                Route::get('{land}/style', 'styleEdit')->name('style.edit');
+                Route::put('{land}/style', 'styleUpdate')->name('style.update');
             });
+            // Land Product
+            Route::prefix('product')->name('product.')->group(function () {
+                // Land Products
+                Route::resource('product', \App\Http\Controllers\Panel\Land\ProductController::class)->except('show');
+                Route::prefix('product')->name('product.')->controller(\App\Http\Controllers\Panel\Land\ProductController::class)->group(function () {
+                    Route::get('{product}/attribute', 'attributeEdit')->name('attribute.edit');
+                    Route::put('{product}/attribute', 'attributeUpdate')->name('attribute.update');
+                });
+                // Land Categories
+                Route::resource('category', \App\Http\Controllers\Panel\Land\CategoryController::class)->except('show');
+                // Land Attributes
+                Route::resource('attribute', \App\Http\Controllers\Panel\Land\AttributeController::class)->except('show');
+                // Land Brands
+                Route::resource('brand', \App\Http\Controllers\Panel\Land\BrandController::class)->except('show');
+                // Land Colors
+                Route::resource('color', \App\Http\Controllers\Panel\Land\ColorController::class)->except('show');
+            });
+
             // Land Articles
             Route::resource('article', \App\Http\Controllers\Panel\Land\ArticleController::class)->except('show');
             // Land Slides
@@ -60,8 +68,15 @@ Route::middleware(['splade'])->group(function () {
             Route::resource('video', \App\Http\Controllers\Panel\Land\VideoController::class)->except('show');
             // Land Files
             Route::resource('file', \App\Http\Controllers\Panel\Land\FileController::class)->except('show');
+
         });
 
+        // COMMENTS
+        Route::resource('comment', \App\Http\Controllers\Panel\CommentController::class)->except('show');
+        Route::prefix('comment')->name('comment.')->controller(\App\Http\Controllers\Panel\CommentController::class)->group(function () {
+            Route::post('{comment}/publish', 'publish')->name('publish');
+            Route::post('{comment}/hidden', 'hidden')->name('hidden');
+        });
 
         /* USERS */
         Route::resource('user', \App\Http\Controllers\Panel\UserController::class)->except('show');

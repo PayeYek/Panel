@@ -1,7 +1,7 @@
 <x-layout.admin>
     <x-splade-modal>
-        <x-splade-form :default="$brand" method="put" :action="route('panel.landing.brand.update', $brand)">
-            <x-layout.panel.form.card title="Edit Brand">
+        <x-splade-form :action="route('panel.landing.product.brand.store')">
+            <x-layout.panel.form.card title="New Brand">
 
                 <x-layout.panel.form.alerts/>
 
@@ -24,7 +24,7 @@
 
                 </x-layout.panel.form.division>
 
-                <x-splade-submit label="Update"/>
+                <x-splade-submit label="Create"/>
 
             </x-layout.panel.form.card>
         </x-splade-form>
