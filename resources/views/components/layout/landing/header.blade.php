@@ -4,7 +4,7 @@
     <header class="flex items-center justify-between h-full gap-5 default_container">
         <x-layout.landing.logo :land="$land" />
 
-        <div class="flex-1 hidden lg:flex">
+        <div class="flex-1 hidden md:flex">
             <nav class="flex text-sm font-medium px-3 py-2.5">
                 <a class="px-3 transition-all duration-100 hover:text-red-500"
                     href="{{ route('landing.page.show', ['page' => $land->slug]) }}">{{ __('Home') }}</a>

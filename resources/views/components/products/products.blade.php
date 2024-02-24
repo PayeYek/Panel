@@ -2,7 +2,7 @@
 @php
 $classType = null;
 if($type === '1' || $type === '2'){
-    $classType = 'lg:grid-cols-5 gap-4 md:grid-cols-2';
+    $classType = 'lg:grid-cols-5 gap-4 sm:grid-cols-2';
 }elseif($type === '3'){
     $classType = 'lg:grid-cols-3 gap-4 md:grid-cols-2';
 }elseif($type === '4' || $type === '5'){

@@ -28,27 +28,23 @@
                 </li>
             </ul>
             <a href="{{$href}}"
-                class="w-36 mx-auto mt-8 text-lg font-bold text-red-700 transition-colors duration-200 border border-red-700 rounded{{$radius}} dark:hover:bg-red-600 dark:hover:text-white hover:bg-red-700 hover:text-white dark:border-red-600 dark:text-red-600 h-11 flex_center">
+                class="w-36 mx-auto mt-8 text-lg font-bold text-red-700  border border-red-700 rounded{{$radius}} dark:hover:bg-red-600 dark:hover:text-white hover:bg-red-700 hover:text-white dark:border-red-600 dark:text-red-600 h-11 flex_center">
                 مشخصات </a>
         </div>
     @break
 
     @case(2)
         <div
-            class="drop-shadow-[0_2px_10px_rgba(0,0,0,0.15)] rounded px-10 lg:px-5 xl:px-10 py-5 items-center bg-white dark:bg-gray-700 flex flex-col">
-            <div class="h-32 mb-2">
-                <img src="{{ $image }}" alt="mammut" class="h-full" />
+            class="drop-shadow-[0_2px_10px_rgba(0,0,0,0.15)] rounded{{$radius}} w-60 pt-2 px-8 mx-auto pb-5 items-center bg-white dark:bg-dark-700 flex flex-col">
+            <div class="mb-2 h-36">
+                <img src="{{ $image }}" alt="mammut" class="object-contain h-full" />
             </div>
-            <h3 class="text-lg font-bold text-gray-900 dark:text-white line-clamp-1"> کامیون جک 8.5 تن </h3>
-            <a href="{{$href}}"
-                class="mx-auto mt-4 text-lg font-bold text-red-700 transition-colors duration-200 border border-red-700 rounded w-36 dark:hover:bg-red-600 dark:hover:text-white hover:bg-red-700 hover:text-white dark:border-red-600 dark:text-red-600 h-11 flex_center">
-                مشخصات </a>
-            <a href="{{$href}}"
-                class="mx-auto mt-4 text-lg font-bold text-red-700 transition-colors duration-200 border border-red-700 rounded w-36 dark:hover:bg-red-600 dark:hover:text-white hover:bg-red-700 hover:text-white dark:border-red-600 dark:text-red-600 h-11 flex_center">
-                مشخصات </a>
-            <a href="{{$href}}"
-                class="mx-auto mt-4 text-lg font-bold text-red-700 transition-colors duration-200 border border-red-700 rounded w-36 dark:hover:bg-red-600 dark:hover:text-white hover:bg-red-700 hover:text-white dark:border-red-600 dark:text-red-600 h-11 flex_center">
-                مشخصات </a>
+            <h3 class="mb-5 text-sm font-bold default_label"> کامیون جک 8.5 تن </h3>
+            <div class="flex flex-col gap-4">
+                <a href="{{$href}}"
+                    class="text-sm font-bold relative text-red-700 dark:text-white rounded{{$radius}} w-40 drop-shadow-red dark:drop-shadow-white bg-white dark:bg-gray-900 hover:bg-red-700 hover:text-white h-9 flex_center before:absolute before:content-[''] before:inset-px before:border before:border-red-700 dark:before:border-white before:rounded{{$radius}}">
+                    مشخصات </a>
+            </div>
         </div>
     @break
 
@@ -60,7 +56,7 @@
             </div>
             <h3 class="mb-5 text-lg font-bold text-center text-gray-900 dark:text-white line-clamp-1"> کامیون جک <span class="text-red-700 dark:text-red-600">&nbsp; X5000-D </span> <span class="inline-block mr-4"> 8.5 تن </span></h3>
             <a href="{{$href}}"
-                class="w-36 mx-auto text-lg font-bold text-red-700 transition-colors duration-200 border border-red-700 rounded{{$radius}} dark:hover:bg-red-600 dark:hover:text-white hover:bg-red-700 hover:text-white dark:border-red-600 dark:text-red-600 h-11 flex_center">
+                class="w-36 mx-auto text-lg font-bold text-red-700 border border-red-700 rounded{{$radius}} dark:hover:bg-red-600 dark:hover:text-white hover:bg-red-700 hover:text-white dark:border-red-600 dark:text-red-600 h-11 flex_center">
                 مشخصات </a>
         </div>
     @break
@@ -168,10 +164,10 @@
             </div>
             <div class="flex items-center justify-end gap-4">
                 <a href="{{$href}}"
-                    class="text-lg font-bold text-red-700 transition-colors duration-200 border border-red-700 flex-none w-36 rounded{{$radius}} dark:hover:bg-red-600 dark:hover:text-white hover:bg-red-700 hover:text-white dark:border-red-600 dark:text-red-600 h-11 flex_center">
+                    class="text-lg font-bold text-red-700  border border-red-700 flex-none w-36 rounded{{$radius}} dark:hover:bg-red-600 dark:hover:text-white hover:bg-red-700 hover:text-white dark:border-red-600 dark:text-red-600 h-11 flex_center">
                     مشخصات </a>
                 <a href="{{$href}}"
-                    class="text-lg font-bold text-white transition-colors duration-200 bg-red-700 flex-none w-36 rounded{{$radius}} dark:bg-red-600 h-11 flex_center">
+                    class="text-lg font-bold text-white  bg-red-700 flex-none w-36 rounded{{$radius}} dark:bg-red-600 h-11 flex_center">
                     شرایط فروش </a>
             </div>
         </div>
@@ -225,7 +221,7 @@
                 </ul>
             </div>
             <a href="{{$href}}"
-                class="w-36 text-lg font-bold text-red-700 transition-colors duration-200 border border-red-700 mr-auto rounded{{$radius}} dark:hover:bg-red-600 dark:hover:text-white hover:bg-red-700 hover:text-white dark:border-red-600 dark:text-red-600 h-11 flex_center">
+                class="w-36 text-lg font-bold text-red-700  border border-red-700 mr-auto rounded{{$radius}} dark:hover:bg-red-600 dark:hover:text-white hover:bg-red-700 hover:text-white dark:border-red-600 dark:text-red-600 h-11 flex_center">
                 مشخصات </a>
         </div>
     @break
@@ -279,10 +275,10 @@
             </div>
             <div class="flex flex-col items-center gap-6 md:flex-none">
                 <a href="{{$href}}"
-                    class="text-lg font-bold text-red-700 transition-colors duration-200 border border-red-700 w-36 rounded{{$radius}} dark:hover:bg-red-600 dark:hover:text-white hover:bg-red-700 hover:text-white dark:border-red-600 dark:text-red-600 h-11 flex_center">
+                    class="text-lg font-bold text-red-700  border border-red-700 w-36 rounded{{$radius}} dark:hover:bg-red-600 dark:hover:text-white hover:bg-red-700 hover:text-white dark:border-red-600 dark:text-red-600 h-11 flex_center">
                     مشخصات </a>
                 <a href="{{$href}}"
-                    class="text-lg font-bold text-white transition-colors duration-200 bg-red-700 w-36 rounded{{$radius}} dark:bg-red-600 h-11 flex_center">
+                    class="text-lg font-bold text-white  bg-red-700 w-36 rounded{{$radius}} dark:bg-red-600 h-11 flex_center">
                     شرایط فروش </a>
             </div>
         </div>
@@ -337,10 +333,10 @@
             </div>
             <div class="flex flex-col items-center gap-6 md:flex-none">
                 <a href="{{$href}}"
-                    class="text-lg font-bold text-red-700 transition-colors duration-200 border border-red-700 w-36 rounded{{$radius}} dark:hover:bg-red-600 dark:hover:text-white hover:bg-red-700 hover:text-white dark:border-red-600 dark:text-red-600 h-11 flex_center">
+                    class="text-lg font-bold text-red-700  border border-red-700 w-36 rounded{{$radius}} dark:hover:bg-red-600 dark:hover:text-white hover:bg-red-700 hover:text-white dark:border-red-600 dark:text-red-600 h-11 flex_center">
                     مشخصات </a>
                 <a href="{{$href}}"
-                    class="text-lg font-bold text-white transition-colors duration-200 bg-red-700 w-36 rounded{{$radius}} dark:bg-red-600 h-11 flex_center">
+                    class="text-lg font-bold text-white  bg-red-700 w-36 rounded{{$radius}} dark:bg-red-600 h-11 flex_center">
                     شرایط فروش </a>
             </div>
         </div>
@@ -374,7 +370,7 @@
                 </li>
             </ul>
             <a href="{{$href}}"
-                class="w-full mt-8 text-lg font-bold text-red-700 transition-colors duration-200 border border-red-700 md:mx-auto md:w-36 rounded{{$radius}} dark:hover:bg-red-600 dark:hover:text-white hover:bg-red-700 hover:text-white dark:border-red-600 dark:text-red-600 h-11 flex_center">
+                class="w-full mt-8 text-lg font-bold text-red-700  border border-red-700 md:mx-auto md:w-36 rounded{{$radius}} dark:hover:bg-red-600 dark:hover:text-white hover:bg-red-700 hover:text-white dark:border-red-600 dark:text-red-600 h-11 flex_center">
                 مشخصات </a>
         </div>
     @break

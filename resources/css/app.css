@@ -3,6 +3,11 @@
 @import "swiper/css/bundle";
 
 @tailwind base;
+@layer base{
+    * {
+        @apply transition-all duration-300;
+    }
+}
 @tailwind components;
 @tailwind utilities;
 
@@ -356,6 +361,10 @@
     .default_container{
         @apply max-w-screen-xl px-4 xl:mx-auto;
     }
+
+    .default_label{
+        @apply text-gray-900 dark:text-white;
+    }
 }
 
 @layer utilities {
@@ -525,6 +534,9 @@
 }
 
 /* swiper starts */
+.slider_type_1 .swiper-pagination{
+    @apply hidden sm:block;
+}
 .slider_type_1 .swiper-pagination .swiper-pagination-bullet{
     @apply w-2 h-2 transition-transform duration-300 bg-white rounded-full opacity-50;
 }

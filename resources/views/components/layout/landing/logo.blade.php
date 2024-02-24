@@ -24,7 +24,7 @@
 @else
 
     <a href="{{ $land ? route('landing.page.show', ['page'=>$land->slug]) : '#' }}"
-       class="flex gap-2 shrink-0">
+       class="flex items-center gap-2 shrink-0">
         @if($land->logo)
             <img
                 class="object-contain h-14 sm:h-[72px]"

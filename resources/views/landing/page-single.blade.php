@@ -29,21 +29,22 @@
     <img src="{{ asset('assets/images/test/blue-line-3.png') }}" alt="line-3" class="absolute right-0 w-full top-[52rem]" />
     <img src="{{ asset('assets/images/test/blue-line-2.png') }}" alt="line-2" class="absolute right-0 w-full bottom-[20rem]" />
 
-    <main class="default_container">
+    {{-- default_container --}}
+    <main class="">
         {{-- slider --}}
-        <section class="mb-8 relative z-[1]">
+        <section class="mb-2.5 relative z-[1] sm:default_container">
             <div class="swiper arian_disel_slider slider_type_1">
                 <!-- Additional required wrapper -->
                 <div class="swiper-wrapper">
                     <!-- Slides -->
-                    <a href="#" class="swiper-slide w-full relative pt-[43%]">
-                        <img src="{{ asset('assets/images/test/truck.png') }}" alt="truck" class="absolute top-0 right-0 w-full h-full rounded" />
+                    <a href="#" class="swiper-slide w-full relative pt-[52%]">{{-- 48 --}}
+                        <img src="{{ asset('assets/images/test/truck.png') }}" alt="truck" class="absolute top-0 right-0 w-full h-full sm:rounded-b" />
                     </a>
-                    <a href="#" class="swiper-slide w-full relative pt-[43%]">
-                        <img src="{{ asset('assets/images/test/truck.png') }}" alt="truck" class="absolute top-0 right-0 w-full h-full rounded" />
+                    <a href="#" class="swiper-slide w-full relative pt-[52%]">{{-- 48 --}}
+                        <img src="{{ asset('assets/images/test/truck.png') }}" alt="truck" class="absolute top-0 right-0 w-full h-full sm:rounded-b" />
                     </a>
-                    <a href="#" class="swiper-slide w-full relative pt-[43%]">
-                        <img src="{{ asset('assets/images/test/truck.png') }}" alt="truck" class="absolute top-0 right-0 w-full h-full rounded" />
+                    <a href="#" class="swiper-slide w-full relative pt-[52%]">{{-- 48 --}}
+                        <img src="{{ asset('assets/images/test/truck.png') }}" alt="truck" class="absolute top-0 right-0 w-full h-full sm:rounded-b" />
                     </a>
                 </div>
                 <!-- If we need pagination -->
@@ -52,33 +53,34 @@
         </section>
     
         {{-- products --}}
-        <section class="flex lg:px-4 items-center justify-between gap-3 mb-16 lg:justify-start relative z-[1]">
+        <section class="default_container flex items-center flex-col gap-2.5 mb-9 lg:justify-start relative z-[1]">
             <h3 class="text-lg font-bold text-gray-900 dark:text-white"> محصولات </h3>
-            <div class="flex items-center gap-5 p-4 overflow-auto text-base font-bold text-red-700 dark:text-white">
+            <div class="flex flex-col flex-wrap items-center content-center w-full h-20 text-base font-bold text-red-700 gap-y-4 gap-x-5 dark:text-white">
                 <a href="#"
-                    class="w-[140px] h-8 flex_center rounded drop-shadow-[0_2px_8px_rgba(185,28,28,0.3)] dark:drop-shadow-none bg-white dark:bg-gray-700 flex-none">
+                    class="h-8 bg-white rounded w-36 flex_center drop-shadow-red dark:drop-shadow-none dark:bg-gray-700">
                     کشنده </a>
                 <a href="#"
-                    class="w-[140px] h-8 flex_center rounded drop-shadow-[0_2px_8px_rgba(185,28,28,0.3)] dark:drop-shadow-none bg-white dark:bg-gray-700 flex-none">
+                    class="h-8 bg-white rounded w-36 flex_center drop-shadow-red dark:drop-shadow-none dark:bg-gray-700">
                     کامیون </a>
                 <a href="#"
-                    class="w-[140px] h-8 flex_center rounded drop-shadow-[0_2px_8px_rgba(185,28,28,0.3)] dark:drop-shadow-none bg-white dark:bg-gray-700 flex-none">
+                    class="h-8 bg-white rounded w-36 flex_center drop-shadow-red dark:drop-shadow-none dark:bg-gray-700">
                     کامییونت </a>
                 <a href="#"
-                    class="w-[140px] h-8 flex_center rounded drop-shadow-[0_2px_8px_rgba(185,28,28,0.3)] dark:drop-shadow-none bg-white dark:bg-gray-700 flex-none">
+                    class="h-8 bg-white rounded w-36 flex_center drop-shadow-red dark:drop-shadow-none dark:bg-gray-700">
                     ون </a>
             </div>
         </section>
     
         {{-- favorites --}}
-        <section class="mb-16 relative z-[1]">
-            <h3 class="mb-4 text-lg font-bold text-gray-900 dark:text-white lg:px-4"> برگزیده ها </h3>
+        <section class="mb-16 relative z-[1] default_container">
+            <h3 class="mb-4 text-lg font-bold text-center text-gray-900 dark:text-white lg:px-4"> برگزیده ها </h3>
             {{-- 
                 "-none" => border-radius: 0px
+                "-sm"   => border-radius: 2px
                 ""      => border-radius: 4px
                 "-xl"   => border-radius: 12px
                 --}}
-                <x-products.products type="7" radius="" />
+                <x-products.products type="2" radius="" />
         </section>
     
         {{-- notifications --}}

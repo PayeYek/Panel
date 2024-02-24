@@ -1,7 +1,7 @@
 @props(['land'=>null])
 @stack('head')
 
-<section class="relative h-auto min-h-screen text-gray-800 bg-gray-white dark:bg-gray-900 font-inter rtl:font-iran rtl:number-fa dark:text-white">
+<section class="relative h-auto min-h-screen transition-all duration-300 bg-white dark:bg-black font-iran">
     <x-layout.landing.sidebar :land="$land"/>
     {{--HEADER: LOGO | LINKS: HOME, PRODUCTS, SALLER, ABOUT | SALLER --}}
     <div class="sticky top-0 z-[2] sm:drop-shadow-[0_4px_4px_rgba(0,0,0,0.15)] bg-white h-16 sm:h-20">
