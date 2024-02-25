@@ -3,11 +3,6 @@ import "../css/app.css";
 import "@protonemedia/laravel-splade/dist/style.css";
 import "@protonemedia/laravel-splade/dist/jodit.css";
 
- import "./bootstrap";
- import "../css/app.css";
- import "@protonemedia/laravel-splade/dist/style.css";
- import "@protonemedia/laravel-splade/dist/jodit.css";
-
  import SwitchStyle from "@/components/SwitchStyle.vue";
  import Breakpoint from "@/components/Breakpoint.vue";
  import CopyText from "@/components/CopyText.vue";
