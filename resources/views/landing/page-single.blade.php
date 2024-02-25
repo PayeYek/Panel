@@ -88,11 +88,11 @@
         </section>
     
         {{-- notifications --}}
-        <section class="mb-32 relative z-[1]">
+        <section class="mb-4 relative z-[1] default_container">
             {{-- header --}}
-            <div class="flex items-center justify-between mb-16 lg:px-4">
-                <h3 class="text-lg font-bold text-gray-900 dark:text-white"> برگزیده ها </h3>
-                <a href="#" class="flex items-center gap-2 text-xs font-normal text-red-700 dark:text-red-600">
+            <div class="flex items-center justify-center mb-4 sm:justify-between lg:px-4">
+                <h3 class="text-lg font-bold text-gray-900 dark:text-white"> اطلاعیه ها </h3>
+                <a href="#" class="items-center hidden gap-2 text-xs font-normal text-red-700 sm:flex dark:text-red-600">
                     <span> نمایش همه </span>
                     <svg class="stroke-current" width="20" height="20" viewBox="0 0 20 20" fill="none"
                         xmlns="http://www.w3.org/2000/svg">
@@ -103,32 +103,9 @@
                 </a>
             </div>
     
-            <ul class="list-none">
-                <li class="flex flex-col md:flex-row rounded-xl bg-white dark:bg-gray-700 drop-shadow-[0_4px_20px_rgba(0,0,0,0.15)]">
-                    {{-- image --}}
-                    <div
-                        class="h-48 overflow-hidden md:flex-none md:w-[22rem] md:h-56 md:rounded-tl-none md:rounded-br-xl rounded-t-xl">
-                        <img src="{{ asset('assets/images/test/jac.jpg') }}" alt="jax"
-                            class="object-cover w-full h-full" />
-                    </div>
-                    {{-- docs --}}
-                    <div class="p-4">
-                        <h3 class="mb-4 text-lg font-bold text-gray-900 dark:text-white"> عنوان اطلاعیه </h3>
-                        <p
-                            class="text-base line-clamp-6 md:line-clamp-3 leading-7 lg:leading-8 mb-2 font-normal text-[#818284] dark:text-white">
-                            شرکت آرین دیزل که نماینده انحصاری شرکت خودروسازی جک موتورز در ایران است مسئولیت تولید و مونتاژ
-                            محصولات شرکت خودروسازی را بر عهده دارد و با بهره مندی از مهندسان با تجربه نسبت به محصولاتی
-                            مرغوب، قابل اطمینان اقدام نموده است و با توجه به اینکه محصولات خود را با مرغوب‌ترین قطعات تولید
-                            می‌کند توانسته به جایگاه ویژه ای در صنعت خودروسازی ایران دست پیدا کند.کامیونت جک ۸.۵ تن یکی از
-                            محصولاتی است که توسط این شرکت در ایران تولید می‌شود و با توجه به عملکرد خوبی که دارد قابلیت
-                            رقابت با خودروهای اروپایی را دارد و این امر آرین دیزل را در زمره ی بهترین شرکت‌های خودروسازی
-                            قرار داده است.
-                        </p>
-                        <a href="#"
-                            class="mr-auto text-sm font-bold text-white bg-red-700 rounded dark:bg-red-600 flex_center h-9 w-28"> بیشتر </a>
-                    </div>
-                </li>
-            </ul>
+            <x-announcement.announcements radius="-xl" />
+
+            <a href="#" class="flex justify-end text-xs font-bold text-red-700 sm:hidden"> نمایش همه اطلاعیه ها </a>
         </section>
     
         {{-- news --}}
