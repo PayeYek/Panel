@@ -19,7 +19,7 @@ class ProductController extends Controller
 
     public function index()
     {
-        return view('panel.landing.product.index', [
+        return view('panel.landing.product.product.index', [
             'items' => Products::class
         ]);
     }
@@ -32,7 +32,7 @@ class ProductController extends Controller
         $brands = LandBrand::latest()->pluck('title', 'id');
         $categories = LandCategory::latest()->pluck('title', 'id');
 
-        return view('panel.landing.product.create', compact('lands', 'colors', 'brands', 'categories'));
+        return view('panel.landing.product.product.create', compact('lands', 'colors', 'brands', 'categories'));
     }
 
 
@@ -67,7 +67,7 @@ class ProductController extends Controller
 
         \Splade::toast(__('Created'))->autoDismiss(5)->success();
 
-        return redirect()->route('panel.landing.product.index');
+        return redirect()->route('panel.landing.product.product.index');
     }
 
 
@@ -78,7 +78,7 @@ class ProductController extends Controller
         $brands = LandBrand::latest()->pluck('title', 'id');
         $categories = LandCategory::latest()->pluck('title', 'id');
 
-        return view('panel.landing.product.edit', compact('product', 'lands', 'colors', 'brands', 'categories'));
+        return view('panel.landing.product.product.edit', compact('product', 'lands', 'colors', 'brands', 'categories'));
     }
 
 
@@ -138,7 +138,7 @@ class ProductController extends Controller
 
         \Splade::toast(__('Updated'))->autoDismiss(5)->info();
 
-        return redirect()->route('panel.landing.product.index');
+        return redirect()->route('panel.landing.product.product.index');
     }
 
 
@@ -188,13 +188,12 @@ class ProductController extends Controller
             }
         }
         $data['list'] = $list;
-        return view('panel.landing.product.attribute', compact('product', 'data'));
+        return view('panel.landing.product.product.attribute', compact('product', 'data'));
     }
 
 
     public function attributeUpdate(ProductAttributeRequest $request, LandProduct $product)
     {
-
         $product->attributes()->detach();
 
         /* ADD to Product Attributes */
@@ -216,7 +215,7 @@ class ProductController extends Controller
 
         \Splade::toast(__('Updated'))->autoDismiss(5)->info();
 
-        return redirect()->route('panel.landing.product.index');
+        return redirect()->route('panel.landing.product.product.index');
     }
 
 

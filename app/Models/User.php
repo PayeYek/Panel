@@ -47,4 +47,8 @@ class User extends Authenticatable
     }
 
     /** Relationships */
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
 }

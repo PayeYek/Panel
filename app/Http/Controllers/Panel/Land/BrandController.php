@@ -15,7 +15,7 @@ class BrandController extends Controller
 
     public function index()
     {
-        return view('panel.landing.brand.index', [
+        return view('panel.landing.product.brand.index', [
             'items' => Brands::class
         ]);
     }
@@ -23,7 +23,7 @@ class BrandController extends Controller
 
     public function create()
     {
-        return view('panel.landing.brand.create');
+        return view('panel.landing.product.brand.create');
     }
 
 
@@ -38,13 +38,13 @@ class BrandController extends Controller
 
         \Splade::toast(__('Created'))->autoDismiss(5)->success();
 
-        return redirect()->route('panel.landing.brand.index');
+        return redirect()->route('panel.landing.product.brand.index');
     }
 
 
     public function edit(LandBrand $brand)
     {
-        return view('panel.landing.brand.edit', compact('brand'));
+        return view('panel.landing.product.brand.edit', compact('brand'));
     }
 
 
@@ -63,7 +63,7 @@ class BrandController extends Controller
 
         \Splade::toast(__('Updated'))->autoDismiss(5)->info();
 
-        return redirect()->route('panel.landing.brand.index');
+        return redirect()->route('panel.landing.product.brand.index');
     }
 
 

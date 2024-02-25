@@ -5,12 +5,6 @@
                     :title="__('Landing list')"
                     pagination-scroll="preserve"
     >
-        {{--
-        'title'
-        'slug'
-        'logo'
-        'content'
-        --}}
 
         @cell('land', $item)
         <Link
@@ -23,20 +17,27 @@
             <div class="flex flex-col">
                 <span class="truncate max-w-60">{{$item->title}}</span>
                 <div class="flex gap-1 items-center mt-2 text-gray-600 dark:text-gray-500">
-{{--                    <div class="flex gap-1 items-center text-amber-500 dark:text-amber-500">--}}
-{{--                        <x-iconsax-bul-mouse-square class="h-5 w-5 fill-current"/>--}}
-{{--                        <span class="font-bold">{{$item->view}}</span>--}}
-{{--                    </div>--}}
-{{--                    <x-iconpark-dot-o class="h-3 w-3 fill-current opacity-50"/>--}}
+                    {{--                    <div class="flex gap-1 items-center text-amber-500 dark:text-amber-500">--}}
+                    {{--                        <x-iconsax-bul-mouse-square class="h-5 w-5 fill-current"/>--}}
+                    {{--                        <span class="font-bold">{{$item->view}}</span>--}}
+                    {{--                    </div>--}}
+                    {{--                    <x-iconpark-dot-o class="h-3 w-3 fill-current opacity-50"/>--}}
                     <span class="text-xs">{{Str::title(str_replace('-', ' ', $item->slug))}}</span>
-{{--                    <x-iconpark-dot-o class="h-3 w-3 fill-current opacity-50"/>--}}
-{{--                    <span class="text-xs">{{$item->model}}</span>--}}
+                    {{--                    <x-iconpark-dot-o class="h-3 w-3 fill-current opacity-50"/>--}}
+                    {{--                    <span class="text-xs">{{$item->model}}</span>--}}
                 </div>
 
-{{--                <span--}}
-{{--                    class="text-sm truncate max-w-60 lg:max-w-xs text-black dark:text-white">{{$item->land->title}}</span>--}}
+                {{--                <span--}}
+                {{--                    class="text-sm truncate max-w-60 lg:max-w-xs text-black dark:text-white">{{$item->land->title}}</span>--}}
             </div>
         </div>
+        </Link>
+        @endcell
+
+        @cell('style', $item)
+        <Link href="{{ route('panel.landing.land.style.edit', $item->id) }}"
+              class="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-600 transition-all duration-300 cursor-pointer">
+        <x-iconsax-lin-magicpen class="h-5 w-5"/>
         </Link>
         @endcell
 

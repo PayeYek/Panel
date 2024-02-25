@@ -1,6 +1,6 @@
 <x-layout.admin>
     <x-splade-modal>
-        <x-splade-form :action="route('panel.landing.product.store')" :default="[
+        <x-splade-form :action="route('panel.landing.product.product.store')" :default="[
         'year' =>\Carbon\Carbon::now()->year
         ]">
             <x-layout.panel.form.card title="New Product">

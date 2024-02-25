@@ -12,14 +12,14 @@ class ColorController extends Controller
 
     public function index()
     {
-        return view('panel.landing.color.index', [
+        return view('panel.landing.product.color.index', [
             'colors' => Colors::class
         ]);
     }
 
     public function create()
     {
-        return view('panel.landing.color.create');
+        return view('panel.landing.product.color.create');
     }
 
     public function store(ColorRequest $request)
@@ -38,7 +38,7 @@ class ColorController extends Controller
 
     public function edit(LandColor $color)
     {
-        return view('panel.landing.color.edit', compact('color'));
+        return view('panel.landing.product.color.edit', compact('color'));
     }
 
     public function update(ColorRequest $request, LandColor $color)

@@ -1,6 +1,6 @@
 <x-layout.admin>
     <x-splade-modal>
-        <x-splade-form :default="$category" method="put" :action="route('panel.landing.category.update', $category)">
+        <x-splade-form :default="$category" method="put" :action="route('panel.landing.product.category.update', $category)">
 {{--            @dd($category->toArray())--}}
             <x-layout.panel.form.card title="Edit Category">
 

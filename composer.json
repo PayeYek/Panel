@@ -11,7 +11,7 @@
         "codeat3/blade-iconpark": "^1.5",
         "eduard9969/blade-polaris-icons": "^1.4",
         "guzzlehttp/guzzle": "^7.2",
-        "intervention/image": "^3.3",
+        "intervention/image": "^3.4.0",
         "laravel/framework": "^10.10",
         "laravel/sanctum": "^3.3",
         "laravel/tinker": "^2.8",

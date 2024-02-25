@@ -1,6 +1,6 @@
 <x-layout.admin>
     <x-splade-modal>
-        <x-splade-form :action="route('panel.landing.attribute.store')">
+        <x-splade-form :action="route('panel.landing.product.attribute.store')">
             <x-layout.panel.form.card title="New Attribute">
 
                 <x-layout.panel.form.alerts/>

@@ -1,11 +1,15 @@
 <x-layout.admin>
-    <x-splade-modal>
-        <x-splade-form :action="route('panel.landing.color.store')">
 
-            <x-layout.panel.form.card title="New Color">
+    <x-splade-modal>
+        <x-splade-form :default="$color" method="put" :action="route('panel.landing.product.color.update', $color)">
+
+            <x-layout.panel.form.card title="Edit Color">
+
                 <x-splade-input label="Title" name="title"/>
+
                 <div class="flex gap-4">
-                    <x-splade-select label="Color selection" name="name" :options="\App\Support\Help::colors()" required placeholder="Select an item" class="flex-1"/>
+                    <x-splade-select label="Color selection" name="name" :options="\App\Support\Help::colors()" required
+                                     placeholder="Select an item" class="flex-1"/>
                     <span class="h-10 w-10 rounded-md border border-dashed border-body shrink-0 mt-7"
                           :class="{
                           'bg-none-color' : form.name === 'none',
@@ -38,7 +42,7 @@
                     ></span>
                 </div>
 
-                <x-splade-submit label="Create"/>
+                <x-splade-submit label="Update"/>
 
             </x-layout.panel.form.card>
         </x-splade-form>

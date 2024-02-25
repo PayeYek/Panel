@@ -1,6 +1,6 @@
 <x-layout.admin>
     <x-splade-modal>
-        <x-splade-form :action="route('panel.comment.store')"
+        <x-splade-form :action="route('panel.landing.comment.store')"
                        :default="[
                                     'commentable_type' => \App\Models\Product::class,
                                     'star' => 5,

@@ -13,7 +13,7 @@ class AttributeController extends Controller
 
     public function index()
     {
-        return view('panel.landing.attribute.index', [
+        return view('panel.landing.product.attribute.index', [
             'items' => Attributes::class
         ]);
     }
@@ -22,7 +22,7 @@ class AttributeController extends Controller
     public function create()
     {
         $attributes = LandAttribute::whereNull('parent_id')->latest()->pluck('name', 'id');
-        return view('panel.landing.attribute.create', compact('attributes'));
+        return view('panel.landing.product.attribute.create', compact('attributes'));
     }
 
 
@@ -32,7 +32,7 @@ class AttributeController extends Controller
 
         \Splade::toast(__('Created'))->autoDismiss(5)->success();
 
-        return redirect()->route('panel.landing.attribute.index');
+        return redirect()->route('panel.landing.product.attribute.index');
     }
 
 
@@ -40,7 +40,7 @@ class AttributeController extends Controller
     {
         $attributes = LandAttribute::whereNull('parent_id')->latest()->pluck('name', 'id');
 
-        return view('panel.landing.attribute.edit', compact('attribute', 'attributes'));
+        return view('panel.landing.product.attribute.edit', compact('attribute', 'attributes'));
     }
 
 
@@ -50,7 +50,7 @@ class AttributeController extends Controller
 
         \Splade::toast(__('Updated'))->autoDismiss(5)->info();
 
-        return redirect()->route('panel.landing.attribute.index');
+        return redirect()->route('panel.landing.product.attribute.index');
     }
 
 

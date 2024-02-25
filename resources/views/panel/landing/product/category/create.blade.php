@@ -1,6 +1,6 @@
 <x-layout.admin>
     <x-splade-modal>
-        <x-splade-form :action="route('panel.landing.category.store')">
+        <x-splade-form :action="route('panel.landing.product.category.store')">
             <div class="flex flex-col gap-10">
                 <x-layout.panel.form.card title="New Category">
 

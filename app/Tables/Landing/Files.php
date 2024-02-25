@@ -2,7 +2,8 @@
 
 namespace App\Tables\Landing;
 
-use App\Models\Land;
+use App\Models\LandFile;
+use App\Models\LandVideo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 use ProtoneMedia\Splade\AbstractTable;
@@ -10,7 +11,7 @@ use ProtoneMedia\Splade\SpladeTable;
 use Spatie\QueryBuilder\AllowedFilter;
 use Spatie\QueryBuilder\QueryBuilder;
 
-class Lands extends AbstractTable
+class Files extends AbstractTable
 {
     public function __construct()
     {
@@ -28,21 +29,37 @@ class Lands extends AbstractTable
             $query->where(function ($query) use ($value) {
                 Collection::wrap($value)->each(function ($value) use ($query) {
                     $query
-                        ->orWhere('title', 'LIKE', "%{$value}%")
-                        ->orWhere('slug', 'LIKE', "%{$value}%");
+                        ->Where('name', 'LIKE', "%{$value}%")
+                        ->orWhere('size', 'LIKE', "%{$value}%")
+                        ->orWhere('type', 'LIKE', "%{$value}%")
+                        ->orWhere('path', 'LIKE', "%{$value}%");
                 });
             });
         });
 
-        return QueryBuilder::for(Land::class)
+        return QueryBuilder::for(LandFile::class)
             ->defaultSort('-id')
-            ->allowedSorts(['id', 'title', 'slug'])
-            ->allowedFilters(['title', $globalSearch]);
+            ->allowedSorts([
+                'id',
+                'name',
+                'size',
+                'type',
+                'path',
+                'published_at',
+                'expired_at'
+            ])
+            ->allowedFilters([
+                'name',
+                'size',
+                'type',
+                'path',
+                $globalSearch
+            ]);
     }
 
     public function configure(SpladeTable $table)
     {
-//        $table->withGlobalSearch(columns: ['id', 'title', 'slug']);
+        //$table->withGlobalSearch(columns: ['id', 'alt']);
 
         /** Columns */
         $table->column(
@@ -56,9 +73,9 @@ class Lands extends AbstractTable
         );
 
         $table->column(
-            key: 'land',
-            label: __('Landing'),
-            //hidden: true,
+            key: 'file',
+            label: __('File'),
+        //hidden: true,
         //sortable: true,
         //searchable: true,
         //highlight: true,
@@ -66,9 +83,9 @@ class Lands extends AbstractTable
         );
 
         $table->column(
-            key: 'style',
-            label: __('Style'),
-            //hidden: true,
+            key: 'copy',
+            label: __('Copy'),
+        //hidden: true,
         //sortable: true,
         //searchable: true,
         //highlight: true,
@@ -76,21 +93,42 @@ class Lands extends AbstractTable
         );
 
         $table->column(
-            key: 'title',
-            label: __('Title'),
+            key: 'name',
+            label: __('Name'),
             hidden: true,
-            sortable: true,
-            searchable: true,
-            highlight: true,
+        //sortable: true,
+        //searchable: true,
+        //highlight: true,
         //exportAs: false,
         );
+
         $table->column(
-            key: 'slug',
-            label: __('Slug'),
+            key: 'type',
+            label: __('Type'),
             hidden: true,
-            sortable: true,
-            searchable: true,
-        //highlight: true,
+        //sortable: true,
+        //searchable: true,
+        //highlight: true
+        //exportAs: false,
+        );
+
+        $table->column(
+            key: 'size',
+            label: __('Size'),
+            hidden: true,
+        //sortable: true,
+        //searchable: true,
+        //highlight: true
+        //exportAs: false,
+        );
+
+        $table->column(
+            key: 'path',
+            label: __('Path'),
+            hidden: true,
+        //sortable: true,
+        //searchable: true,
+        //highlight: true
         //exportAs: false,
         );
 
