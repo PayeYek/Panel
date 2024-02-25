@@ -17,7 +17,14 @@ export default {
         // "./app/Forms/*.php",
         // "./app/Tables/*.php",
     ],
-
+    safelist: [
+        'before:rounded-none',
+        'before:rounded-sm',
+        'before:rounded',
+        'before:rounded-xl',
+        'gap-x-4',
+        'gap-y-4',
+    ],
     darkMode: 'class',
     theme: {
         extend: {

@@ -362,9 +362,18 @@
         @apply max-w-screen-xl px-4 xl:mx-auto;
     }
 
-    .default_label{
+    .title_color_type_1{
         @apply text-gray-900 dark:text-white;
     }
+
+    .button_color_type_warning_default{
+        @apply text-red-700 bg-white border border-red-700 dark:text-white dark:bg-gray-900 dark:border-transparent hover:bg-red-700 hover:text-white;
+    }
+
+    .button_color_type_warning{
+        @apply text-white bg-red-700 dark:text-white dark:bg-gray-900;
+    }
+
 }
 
 @layer utilities {
@@ -388,16 +397,16 @@
     .dir-ltr {
         direction: ltr;
     }
-}
 
-@layer utilities {
     .filter-white {
         filter: brightness(0) invert(1);
     }
     .filter-black {
         filter: brightness(100) invert(1);
     }
+
 }
+
 
 /* CUSTOM COLOR */
 .bg-multi-color {

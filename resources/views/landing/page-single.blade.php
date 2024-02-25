@@ -32,7 +32,7 @@
     {{-- default_container --}}
     <main class="">
         {{-- slider --}}
-        <section class="mb-2.5 relative z-[1] sm:default_container">
+        <section class="mb-2.5 lg:mb-8 relative z-[1] sm:default_container">
             <div class="swiper arian_disel_slider slider_type_1">
                 <!-- Additional required wrapper -->
                 <div class="swiper-wrapper">
@@ -53,9 +53,9 @@
         </section>
     
         {{-- products --}}
-        <section class="default_container flex items-center flex-col gap-2.5 mb-9 lg:justify-start relative z-[1]">
+        <section class="default_container flex items-center flex-col md:flex-row gap-2.5 lg:gap-3 mb-9 md:justify-start relative z-[1]">
             <h3 class="text-lg font-bold text-gray-900 dark:text-white"> محصولات </h3>
-            <div class="flex flex-col flex-wrap items-center content-center w-full h-20 text-base font-bold text-red-700 gap-y-4 gap-x-5 dark:text-white">
+            <div class="flex flex-col flex-wrap items-center content-center w-full h-20 text-base font-bold text-red-700 md:flex-row md:flex-nowrap md:content-normal md:h-auto gap-y-4 gap-x-5 dark:text-white">
                 <a href="#"
                     class="h-8 bg-white rounded w-36 flex_center drop-shadow-red dark:drop-shadow-none dark:bg-gray-700">
                     کشنده </a>
@@ -73,14 +73,18 @@
     
         {{-- favorites --}}
         <section class="mb-16 relative z-[1] default_container">
-            <h3 class="mb-4 text-lg font-bold text-center text-gray-900 dark:text-white lg:px-4"> برگزیده ها </h3>
-            {{-- 
+            <h3 class="mb-4 text-lg font-bold text-center text-gray-900 lg:text-right dark:text-white lg:px-4"> برگزیده ها </h3>
+            {{--
                 "-none" => border-radius: 0px
                 "-sm"   => border-radius: 2px
                 ""      => border-radius: 4px
                 "-xl"   => border-radius: 12px
-                --}}
-                <x-products.products type="2" radius="" />
+
+                "title_color_type_1" => red theme title
+
+                "button_color_type_warning_default" => red border theme button default
+            --}}
+                <x-products.products type="4" radius="-xl" gapX="4" gapY="4" titleColor="title_color_type_1" defaultButtonColor="button_color_type_warning_default" actionButtonColor="button_color_type_warning" />
         </section>
     
         {{-- notifications --}}
