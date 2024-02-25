@@ -5,11 +5,12 @@ if($type === '1' || $type === '2'){
     $classType = 'lg:grid-cols-5 gap-x-' . $gapX . ' gap-y-' . $gapY . ' sm:grid-cols-2';
 }elseif($type === '3'){
     $classType = 'lg:grid-cols-4 gap-x-' . $gapX . ' gap-y-' . $gapY . ' sm:grid-cols-2';
-}elseif($type === '4' || $type === '5'){
+}elseif($type === '4'){
+    //  . ' lg:gap-0' type 4 must have this class
     $classType = 'sm:grid-cols-2 lg:grid-cols-3 gap-x-' . $gapX . ' gap-y-' . $gapY;
-}elseif($type === '6'){
-    //  . ' md:gap-0' type 6 must have this class
-    $classType = 'md:grid-cols-2 lg:grid-cols-2 gap-x-' . $gapX . ' gap-y-' . $gapY;
+}elseif($type === '5' || $type === '6'){
+    //  . ' lg:gap-0' type 5 & 6 must have this class
+    $classType = 'md:grid-cols-2 gap-x-' . $gapX . ' gap-y-' . $gapY;
 }elseif($type === '7'){
     $classType = 'md:grid-cols-1 rounded' . $radius . ' overflow-hidden gap-x-' . $gapX . ' gap-y-' . $gapY;
 }elseif($type === '8'){
