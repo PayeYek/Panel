@@ -84,7 +84,7 @@
 
                 "button_color_type_warning_default" => red border theme button default
             --}}
-                <x-products.products type="7" radius="-xl" gapX="4" gapY="4" titleColor="title_color_type_1" defaultButtonColor="button_color_type_warning_default" actionButtonColor="button_color_type_warning" />
+                <x-products.products type="7" oddBgColor="white" evenBgColor="cream" radius="-xl" gapX="4" gapY="4" titleColor="title_color_type_1" defaultButtonColor="button_color_type_warning_default" actionButtonColor="button_color_type_warning" />
         </section>
     
         {{-- notifications --}}
