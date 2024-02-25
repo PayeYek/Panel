@@ -8,14 +8,14 @@ if($type === '1' || $type === '2'){
 }elseif($type === '4'){
     //  . ' lg:gap-0' type 4 must have this class
     $classType = 'sm:grid-cols-2 lg:grid-cols-3 gap-x-' . $gapX . ' gap-y-' . $gapY;
-}elseif($type === '5' || $type === '6'){
+}elseif($type === '5'){
     //  . ' lg:gap-0' type 5 & 6 must have this class
     $classType = 'md:grid-cols-2 gap-x-' . $gapX . ' gap-y-' . $gapY;
+}elseif($type === '6'){
+    $classType = 'md:grid-cols-1 drop-shadow-[0_2px_10px_rgba(0,0,0,0.15)] rounded' . $radius . ' overflow-hidden';
 }elseif($type === '7'){
-    $classType = 'md:grid-cols-1 rounded' . $radius . ' overflow-hidden gap-x-' . $gapX . ' gap-y-' . $gapY;
-}elseif($type === '8'){
     $classType = 'md:grid-cols-1 rounded' . $radius . ' overflow-hidden md:rounded-none md:overflow-auto gap-x-' . $gapX . ' gap-y-' . $gapY;
-}elseif($type === '9'){
+}elseif($type === '8'){
     // lg:gap-0 type 9 must have this class
     $classType = 'lg:grid-cols-4 gap-x-' . $gapX . ' gap-y-' . $gapY . ' lg:rounded' . $radius . ' lg:overflow-hidden md:grid-cols-2';
 }
