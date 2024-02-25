@@ -1,4 +1,4 @@
-@props(['type' => '1', 'radius' => '-xl', 'titleColor' => 'title_color_type_1', 'defaultButtonColor' => 'button_color_type_warning_default', 'actionButtonColor' => 'button_color_type_warning', 'gapX' => '4', 'gapY' => '4'])
+@props(['type' => '1', 'radius' => '-xl', 'titleColor' => 'title_color_type_1', 'defaultButtonColor' => 'button_color_type_warning_default', 'actionButtonColor' => 'button_color_type_warning', 'gapX' => '4', 'gapY' => '4', 'evenOdd' => 'false'])
 @php
 $classType = null;
 if($type === '1'){
@@ -20,9 +20,9 @@ if($type === '1'){
 }
 @endphp
 <div class="grid grid-cols-1 {{ $classType }}">
-    <x-products.product :type="$type" :radius="$radius" :titleColor="$titleColor" :defaultButtonColor="$defaultButtonColor" :actionButtonColor="$actionButtonColor" image="{{ asset('assets/images/test/small-truck.png') }}" href="#" />
-    <x-products.product :type="$type" :radius="$radius" :titleColor="$titleColor" :defaultButtonColor="$defaultButtonColor" :actionButtonColor="$actionButtonColor" image="{{ asset('assets/images/test/small-truck.png') }}" href="#" />
-    <x-products.product :type="$type" :radius="$radius" :titleColor="$titleColor" :defaultButtonColor="$defaultButtonColor" :actionButtonColor="$actionButtonColor" image="{{ asset('assets/images/test/small-truck.png') }}" href="#" />
-    <x-products.product :type="$type" :radius="$radius" :titleColor="$titleColor" :defaultButtonColor="$defaultButtonColor" :actionButtonColor="$actionButtonColor" image="{{ asset('assets/images/test/small-truck.png') }}" href="#" />
-    <x-products.product :type="$type" :radius="$radius" :titleColor="$titleColor" :defaultButtonColor="$defaultButtonColor" :actionButtonColor="$actionButtonColor" image="{{ asset('assets/images/test/small-truck.png') }}" href="#" />
+    <x-products.product :type="$type" :radius="$radius" :titleColor="$titleColor" :defaultButtonColor="$defaultButtonColor" :actionButtonColor="$actionButtonColor" :evenOdd="$evenOdd" image="{{ asset('assets/images/test/small-truck.png') }}" href="#" />
+    <x-products.product :type="$type" :radius="$radius" :titleColor="$titleColor" :defaultButtonColor="$defaultButtonColor" :actionButtonColor="$actionButtonColor" :evenOdd="$evenOdd" image="{{ asset('assets/images/test/small-truck.png') }}" href="#" />
+    <x-products.product :type="$type" :radius="$radius" :titleColor="$titleColor" :defaultButtonColor="$defaultButtonColor" :actionButtonColor="$actionButtonColor" :evenOdd="$evenOdd" image="{{ asset('assets/images/test/small-truck.png') }}" href="#" />
+    <x-products.product :type="$type" :radius="$radius" :titleColor="$titleColor" :defaultButtonColor="$defaultButtonColor" :actionButtonColor="$actionButtonColor" :evenOdd="$evenOdd" image="{{ asset('assets/images/test/small-truck.png') }}" href="#" />
+    <x-products.product :type="$type" :radius="$radius" :titleColor="$titleColor" :defaultButtonColor="$defaultButtonColor" :actionButtonColor="$actionButtonColor" :evenOdd="$evenOdd" image="{{ asset('assets/images/test/small-truck.png') }}" href="#" />
 </div>
