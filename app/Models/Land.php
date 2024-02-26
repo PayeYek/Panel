@@ -106,4 +106,9 @@ class Land extends Model
     {
         return $this->hasMany(LandVideo::class, 'land_id');
     }
+
+    public function styles()
+    {
+        return $this->hasOne(LandStyle::class, 'land_id');
+    }
 }

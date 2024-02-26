@@ -8,8 +8,6 @@ use Illuminate\Validation\Rule;
 
 class SlideRequest extends FormRequest
 {
-
-
     public function authorize()
     {
         return true;

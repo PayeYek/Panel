@@ -13,7 +13,6 @@ class LandingController extends Controller
 {
     public function pages()
     {
-
         $lands = Land::get();
 
         $keywords = $lands->pluck('title')->implode('، ');
@@ -26,16 +25,7 @@ class LandingController extends Controller
 
     public function page($page)
     {
-        $land = Land::where('slug', $page)
-            ->with([
-                'products',
-                'slides',
-                'videos',
-                'articles' => function ($query) {
-                    $query->orderBy('created_at', 'desc');
-                }
-            ])
-            ->firstOrFail();
+        $land = $this->getLand($page);
 
         $companyName = $land->title;
 
@@ -69,16 +59,7 @@ class LandingController extends Controller
 
     public function about($page)
     {
-
-        $land = Land::where('slug', $page)
-            ->with([
-                'products',
-                'slides',
-                'articles' => function ($query) {
-                    $query->orderBy('created_at', 'desc');
-                }
-            ])
-            ->firstOrFail();
+        $land = $this->getLand($page);
 
         $companyName = $land->title;
 
@@ -94,30 +75,14 @@ class LandingController extends Controller
 
     public function catalogs($page)
     {
-        $land = Land::where('slug', $page)
-            ->with([
-                'products',
-                'slides',
-                'articles' => function ($query) {
-                    $query->orderBy('created_at', 'desc');
-                }
-            ])
-            ->firstOrFail();
+        $land = $this->getLand($page);
 
         return view('landing.page-catalog-list', compact('land'));
     }
 
     public function products($page)
     {
-        $land = Land::where('slug', $page)
-            ->with([
-                'products',
-                'slides',
-                'articles' => function ($query) {
-                    $query->orderBy('created_at', 'desc');
-                }
-            ])
-            ->firstOrFail();
+        $land = $this->getLand($page);
 
         $cats = array();
         foreach ($land->products as $product) {
@@ -134,7 +99,7 @@ class LandingController extends Controller
 
         $data = collect($data);
 
-        SEO::title($land->title . ' | محصولات' )
+        SEO::title($land->title . ' | محصولات')
             ->description("{$land->title}: پیشگام در صنعت خودروهای سنگین ایران. کاوش در محصولات و خدمات باکیفیت ما، از کامیون‌های دیزلی گرفته تا خدمات پس از فروش. بیاموزید چگونه {$land->title} با نوآوری‌ها و استانداردهای بالای خود در بازار خودروهای سنگین پیشتاز است.")
             ->keywords([$land->title]);
 
@@ -143,34 +108,20 @@ class LandingController extends Controller
 
     public function product($page, $product)
     {
-        $land = Land::where('slug', $page)
-            ->with([
-                'products',
-                'articles' => function ($query) {
-                    $query->orderBy('created_at', 'desc');
-                }
-            ])
-            ->firstOrFail();
+        $land = $this->getLand($page);
 
         $product = LandProduct::where('slug', $product)->firstOrFail();
 
-        SEO::title($land->title . ' | ' . $product->name )
+        SEO::title($land->title . ' | ' . $product->name)
             ->description($product->description)
-            ->keywords([$land->title , $product->name]);
+            ->keywords([$land->title, $product->name]);
 
         return view('landing.product-single', compact('land', 'product'));
     }
 
     public function category($page, $category)
     {
-        $land = Land::where('slug', $page)
-            ->with([
-                'products',
-                'articles' => function ($query) {
-                    $query->orderBy('created_at', 'desc');
-                }
-            ])
-            ->firstOrFail();
+        $land = $this->getLand($page);
 
         $category = LandCategory::where('slug', $category)->firstOrFail();
 //        $products = LandProduct::where('land_id', $land->id)->where('category_id', $category->id)->get();
@@ -191,43 +142,40 @@ class LandingController extends Controller
 
     public function articles($page)
     {
-        $land = Land::where('slug', $page)
-            ->with([
-                'products',
-                'articles' => function ($query) {
-                    $query->orderBy('created_at', 'desc');
-                }
-            ])
-            ->firstOrFail();
+        $land = $this->getLand($page);
 
-        SEO::title($land->title . ' | اطلاعات' )
+        SEO::title($land->title . ' | اطلاعات')
             ->description("اطلاع از آخرین اطلاعایه های فروش خودرو، بررسی تخصصی خودروها و آخرین اخبار درباره شرکت و محصولات")
-            ->keywords(['اطلاعیه فروش','بررسی تخصصی','آخرین خبر']);
+            ->keywords(['اطلاعیه فروش', 'بررسی تخصصی', 'آخرین خبر']);
 
         return view('landing.article-list', compact('land'));
     }
 
     public function article($page, $article)
     {
+        $land = $this->getLand($page);
 
-//DB::statement('ALTER TABLE land_products MODIFY COLUMN body LONGTEXT');
-//DB::statement('ALTER TABLE lands MODIFY COLUMN body LONGTEXT');
+        $article = LandArticle::where('slug', $article)->firstOrFail();
 
-        $land = Land::where('slug', $page)
+        SEO::title($land->title . ' | ' . $article->title)
+            ->description($article->description)
+            ->keywords([$land->title, $article->title]);
+
+        return view('landing.article-single', compact('land', 'article'));
+    }
+
+    public function getLand($page): Land
+    {
+        return Land::where('slug', $page)
             ->with([
                 'products',
+                'slides',
+                'videos',
+                'styles',
                 'articles' => function ($query) {
                     $query->orderBy('created_at', 'desc');
                 }
             ])
             ->firstOrFail();
-
-        $article = LandArticle::where('slug', $article)->firstOrFail();
-
-        SEO::title($land->title . ' | ' . $article->title )
-            ->description($article->description)
-            ->keywords([$land->title , $article->title]);
-
-        return view('landing.article-single', compact('land', 'article'));
     }
 }
