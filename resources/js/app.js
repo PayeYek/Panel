@@ -8,6 +8,7 @@ import "@protonemedia/laravel-splade/dist/jodit.css";
  import CopyText from "@/components/CopyText.vue";
  import PersianDate from "@/components/PersianDate.vue";
  import ShowPassword from "@/components/ShowPassword.vue";
+ import Plyr from 'plyr';
 
  import Flickity from "flickity";
  import "flickity/css/flickity.css";
