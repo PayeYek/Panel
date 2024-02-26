@@ -20,7 +20,7 @@ class SlideRequest extends FormRequest
         if ($this->method() == 'POST') {
             return [
                 'land_id' => 'required|numeric',
-                'image' => 'required|image|mimes:jpg,jpeg,png,webp|max:2048|dimensions:min_width=2880,min_height=600',
+                'image' => 'required|image|mimes:jpg,jpeg,png,webp|max:2048',
                 'alt' => 'required|string',
                 'link' => 'required|url',
                 'status'       => 'required|boolean',
@@ -43,7 +43,7 @@ class SlideRequest extends FormRequest
     public function getValidationRuleImage(): string
     {
         if ($this->hasFile('image')) {
-            return "required|image|mimes:jpg,jpeg,png,webp|max:2048|dimensions:min_width=2880,min_height=600";
+            return "required|image|mimes:jpg,jpeg,png,webp|max:2048";
         }
         return "required|string";
     }
