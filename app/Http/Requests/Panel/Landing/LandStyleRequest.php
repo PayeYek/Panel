@@ -15,8 +15,17 @@ class LandStyleRequest extends FormRequest
     public function rules()
     {
         return [
-            'list'   => 'required|array',
-//            'attributes.*' => 'nullable',
+            'land_id'      => 'required|numeric',
+            'color'        => 'required|numeric',
+            'radius'       => 'required|numeric',
+            'product_type' => 'required|numeric',
+            'product_view' => 'required|numeric',
+            'article_type' => 'required|numeric',
+            'article_view' => 'required|numeric',
+            'video_type'   => 'required|numeric',
+            'video_view'   => 'required|numeric',
+            'slide_type'   => 'required|numeric',
+            'slide_anim'   => 'required|numeric',
         ];
 
 //        if ($this->method() == 'POST') {

@@ -10,7 +10,7 @@
                 <x-layout.panel.form.division col="1">
 
                     <x-splade-file name="background" label="Banner" filepond preview
-                                   :min-resolution="1536 * 720"
+{{--                                   :min-resolution="1536 * 720"--}}
                                    max-size="2MB"
                                    required
                     />

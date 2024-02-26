@@ -1,6 +1,6 @@
 @push('script')
     <script type="module">
-        var swiper = new Swiper('.arian_disel_slider', {
+        var swiper = new Swiper('.land_slider', {
             // Optional parameters
             loop: true,
             slidePerView: 1,
@@ -31,28 +31,25 @@
     {{-- default_container --}}
     <main class="">
         {{-- slider --}}
-        <section class="mb-2.5 lg:mb-8 relative z-[1] sm:default_container">
-            <div class="swiper arian_disel_slider slider_type_1">
-                <!-- Additional required wrapper -->
-                <div class="swiper-wrapper">
-                    <!-- Slides -->
-                    <a href="#" class="swiper-slide w-full relative pt-[52%]">{{-- 48 --}}
-                        <img src="{{ asset('assets/images/test/truck.png') }}" alt="truck"
-                            class="absolute top-0 right-0 w-full h-full sm:rounded-b" />
-                    </a>
-                    <a href="#" class="swiper-slide w-full relative pt-[52%]">{{-- 48 --}}
-                        <img src="{{ asset('assets/images/test/truck.png') }}" alt="truck"
-                            class="absolute top-0 right-0 w-full h-full sm:rounded-b" />
-                    </a>
-                    <a href="#" class="swiper-slide w-full relative pt-[52%]">{{-- 48 --}}
-                        <img src="{{ asset('assets/images/test/truck.png') }}" alt="truck"
-                            class="absolute top-0 right-0 w-full h-full sm:rounded-b" />
-                    </a>
+        @if($land->slides)
+            <section class="mb-2.5 lg:mb-8 relative z-[1] sm:default_container">
+                <div class="swiper land_slider slider_type_1">
+                    <!-- Additional required wrapper -->
+                    <div class="swiper-wrapper">
+                        <!-- Slides -->
+                        @foreach($land->slides as $slide)
+                            <a href="#" class="swiper-slide w-full relative pt-[52%]">
+                                <img src="{{ $slide->image }}" alt="{{ $slide->alt }}"
+                                     class="absolute top-0 right-0 w-full h-full sm:rounded-b object-cover" />
+                            </a>
+                        @endforeach
+                    </div>
+                    <!-- If we need pagination -->
+                    <div class="swiper-pagination"></div>
                 </div>
-                <!-- If we need pagination -->
-                <div class="swiper-pagination"></div>
-            </div>
-        </section>
+            </section>
+        @endif
+
 
         {{-- products --}}
         <section
@@ -95,9 +92,9 @@
         </section>
 
         {{-- notifications --}}
-        {{-- 
+        {{--
             type 1 for list
-            type 2 for tail    
+            type 2 for tail
         --}}
         <x-home_landing.announcement type="2" radius="12" gap="16" />
 

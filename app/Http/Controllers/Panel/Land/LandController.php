@@ -7,11 +7,9 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Panel\Landing\LandRequest;
 use App\Http\Requests\Panel\Landing\LandStyleRequest;
 use App\Models\Land;
-use App\Models\LandProduct;
+use App\Models\LandStyle;
 use App\Tables\Landing\Lands;
 use Illuminate\Support\Facades\Storage;
-use Intervention\Image\Image;
-use Spatie\LaravelImageOptimizer\Facades\ImageOptimizer;
 
 class
 LandController extends Controller
@@ -98,13 +96,15 @@ LandController extends Controller
 
     public function styleEdit(Land $land)
     {
+        $style = $land->styles->toArray();
 
-        return view('panel.landing.land.style', compact('land'));
+        return view('panel.landing.land.style', compact('land', 'style'));
     }
 
 
     public function styleUpdate(LandStyleRequest $request, Land $land)
     {
+        LandStyle::where('land_id', $land->id)->update($request->validated());
 
         \Splade::toast(__('Updated'))->autoDismiss(5)->info();
 
