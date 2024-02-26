@@ -72,24 +72,19 @@
             </div>
         </section>
 
-        {{-- favorites --}}
-        <section class="mb-4 lg:mb-16 relative z-[1] default_container">
-            <h3 class="mb-4 text-lg font-bold text-center text-gray-900 lg:text-right dark:text-white lg:px-4"> برگزیده
-                ها </h3>
-            {{--
-                "-none" => border-radius: 0px
-                "-sm"   => border-radius: 2px
-                ""      => border-radius: 4px
-                "-xl"   => border-radius: 12px
+        {{--
+            "-none" => border-radius: 0px
+            "-sm"   => border-radius: 2px
+            ""      => border-radius: 4px
+            "-xl"   => border-radius: 12px
 
-                "title_color_type_1" => red theme title
+            "title_color_type_1" => red theme title
 
-                "button_color_type_warning_default" => red border theme button default
-            --}}
-            <x-home_landing.products.products type="1" evenOdd="false" radius="-xl" gapX="4" gapY="4"
-                titleColor="title_color_type_1" defaultButtonColor="button_color_type_warning_default"
-                actionButtonColor="button_color_type_warning" />
-        </section>
+            "button_color_type_warning_default" => red border theme button default
+        --}}
+        <x-home_landing.products type="1" evenOdd="false" radius="-xl" gapX="4" gapY="4"
+            titleColor="title_color_type_1" defaultButtonColor="button_color_type_warning_default"
+            actionButtonColor="button_color_type_warning" />
 
         {{-- notifications --}}
         {{--
