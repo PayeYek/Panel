@@ -169,7 +169,9 @@ class LandingController extends Controller
         return Land::where('slug', $page)
             ->with([
                 'products',
-                'slides',
+                'slides' => function ($query) {
+                    $query->where('status', 1);
+                },
                 'videos',
                 'styles',
                 'articles' => function ($query) {
