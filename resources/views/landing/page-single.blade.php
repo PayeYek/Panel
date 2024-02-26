@@ -17,10 +17,6 @@
     </script>
 @endpush
 
-@push('head')
-    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-@endpush
-
 <x-layout.default.main :land="$land">
 
     {{-- <x-layout.landing.sidebar :land="$land" /> --}}
@@ -80,7 +76,7 @@
         </section>
 
         {{-- favorites --}}
-        <section class="mb-16 relative z-[1] default_container">
+        <section class="mb-4 lg:mb-16 relative z-[1] default_container">
             <h3 class="mb-4 text-lg font-bold text-center text-gray-900 lg:text-right dark:text-white lg:px-4"> برگزیده
                 ها </h3>
             {{--
@@ -93,7 +89,7 @@
 
                 "button_color_type_warning_default" => red border theme button default
             --}}
-            <x-products.products type="1" evenOdd="false" radius="-xl" gapX="4" gapY="4"
+            <x-home_landing.products.products type="1" evenOdd="false" radius="-xl" gapX="4" gapY="4"
                 titleColor="title_color_type_1" defaultButtonColor="button_color_type_warning_default"
                 actionButtonColor="button_color_type_warning" />
         </section>
@@ -103,65 +99,13 @@
             type 1 for list
             type 2 for tail    
         --}}
-        <x-announcement type="2" radius="12" gap="16" />
+        <x-home_landing.announcement type="2" radius="12" gap="16" />
 
         {{-- videos --}}
-        <section class="mb-20 relative z-[1]">
-            {{-- header --}}
-            <div class="flex items-center justify-between mb-16 lg:px-4">
-                <h3 class="text-lg font-bold text-gray-900 dark:text-white"> ویدیو ها </h3>
-                <a href="#" class="flex items-center gap-2 text-xs font-normal text-red-700 dark:text-red-600">
-                    <span> نمایش همه </span>
-                    <svg class="stroke-current" width="20" height="20" viewBox="0 0 20 20" fill="none"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <path
-                            d="M8.88759 15.8327L3.33203 9.99935M3.33203 9.99935L8.88759 4.16602M3.33203 9.99935L16.6654 9.99935"
-                            stroke="current" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                    </svg>
-                </a>
-            </div>
-
-            <ul class="grid grid-cols-1 gap-4 list-none lg:grid-cols-3">
-                <li class="relative w-full pt-[66%]">
-                    <div class="absolute inset-0">
-                        <video id="player1" playsinline controls
-                            data-poster="{{ asset('assets/images/test/jac.jpg') }}">
-                            {{-- <source src="/assets/images/test/movie.mp4" type="video/mp4" /> --}}
-                            <source src="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-576p.mp4"
-                                type="video/mp4" />
-                        </video>
-                    </div>
-                </li>
-                <li class="relative w-full pt-[66%]">
-                    <div class="absolute inset-0">
-                        <video id="player2" playsinline controls
-                            data-poster="{{ asset('assets/images/test/jac 9 ton.png') }}">
-                            {{-- <source src="/assets/images/test/movie.mp4" type="video/mp4" /> --}}
-                            <source src="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-576p.mp4"
-                                type="video/mp4" />
-                        </video>
-                    </div>
-                </li>
-                <li class="relative w-full pt-[66%]">
-                    <div class="absolute inset-0">
-                        <video id="player3" playsinline controls
-                            data-poster="{{ asset('assets/images/test/jac.jpg') }}">
-                            {{-- <source src="/assets/images/test/movie.mp4" type="video/mp4" /> --}}
-                            <source src="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-576p.mp4"
-                                type="video/mp4" />
-                        </video>
-                    </div>
-                </li>
-            </ul>
-        </section>
+        <x-home_landing.videos radius="12" />
 
         {{-- terms of sale --}}
-        <div class="relative z-[1]">
-            <a href="#"
-                class="w-full mx-auto text-base font-bold text-white bg-red-700 rounded dark:bg-red-600 sm:w-80 h-11 flex_center">
-                شرایط
-                فروش </a>
-        </div>
+        <x-home_landing.termsOfSale radius="12" />
     </main>
 
     {{-- CATEGORIES | PRODUCTS --}}

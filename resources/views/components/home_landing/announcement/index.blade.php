@@ -1,36 +1,6 @@
-@props(['type' => '1', 'radius' => '0', 'gap' => '16'])
-@php
-$radiusSize = null;
-    switch ($radius) {
-        case '0':
-            $radiusSize = 'rounded-none';
-            break;
-        case '2':
-            $radiusSize = 'rounded-sm';
-            break;
-        case '4':
-            $radiusSize = 'rounded';
-            break;
-        case '6':
-            $radiusSize = 'rounded-md';
-            break;
-        case '8':
-            $radiusSize = 'rounded-lg';
-            break;
-        case '12':
-            $radiusSize = 'rounded-xl';
-            break;
-        case '16':
-            $radiusSize = 'rounded-2xl';
-            break;
-        
-        default:
-            # code...
-            break;
-    }
-@endphp
+@props(['type' => '1', 'radius' => '8', 'gap' => '16'])
 
-<section class="mb-4 relative z-[1] default_container">
+<section class="mb-4 lg:mb-12 relative z-[1] default_container">
     {{-- header --}}
     <div class="flex items-center justify-center mb-4 sm:justify-between lg:px-4">
         <h3 class="text-lg font-bold text-gray-900 dark:text-white"> اطلاعیه ها </h3>
@@ -45,7 +15,7 @@ $radiusSize = null;
             </svg>
         </a>
     </div>
-    <x-announcement.children.announcements :type="$type" :radiusSize="$radiusSize" :gap="$gap" />
+    <x-home_landing.announcement.children.announcements :type="$type" :radius="$radius" :gap="$gap" />
     
     <a href="#" class="flex justify-end text-xs font-bold text-red-700 sm:hidden"> نمایش همه اطلاعیه ها
     </a>
