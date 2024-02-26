@@ -21,12 +21,12 @@
 
     {{-- <x-layout.landing.sidebar :land="$land" /> --}}
 
-    <img src="{{ asset('assets/images/test/blue-lines.png') }}" alt="lines"
-        class="absolute right-0 w-full top-[34rem]" />
-    <img src="{{ asset('assets/images/test/blue-line-3.png') }}" alt="line-3"
-        class="absolute right-0 w-full top-[52rem]" />
-    <img src="{{ asset('assets/images/test/blue-line-2.png') }}" alt="line-2"
-        class="absolute right-0 w-full bottom-[20rem]" />
+    <img src="{{ asset('assets/svg/pattern-1.svg') }}" alt="lines"
+        class="absolute right-0 w-full top-[38rem]" />
+    <img src="{{ asset('assets/svg/pattern-2.svg') }}" alt="line-3"
+        class="absolute right-0 w-full top-[76rem]" />
+    <img src="{{ asset('assets/svg/pattern-2.svg') }}" alt="line-2"
+        class="absolute right-0 w-full bottom-48" />
 
     {{-- default_container --}}
     <main class="">
@@ -52,26 +52,10 @@
 
 
         {{-- products --}}
-        <section
-            class="default_container flex items-center flex-col md:flex-row gap-2.5 lg:gap-3 mb-9 md:justify-start relative z-[1]">
-            <h3 class="text-lg font-bold text-gray-900 dark:text-white"> محصولات </h3>
-            <div
-                class="flex flex-col flex-wrap items-center content-center w-full h-20 text-base font-bold text-red-700 md:flex-row md:flex-nowrap md:content-normal md:h-auto gap-y-4 gap-x-5 dark:text-white">
-                <a href="#"
-                    class="h-8 bg-white rounded w-36 flex_center drop-shadow-red dark:drop-shadow-none dark:bg-gray-700">
-                    کشنده </a>
-                <a href="#"
-                    class="h-8 bg-white rounded w-36 flex_center drop-shadow-red dark:drop-shadow-none dark:bg-gray-700">
-                    کامیون </a>
-                <a href="#"
-                    class="h-8 bg-white rounded w-36 flex_center drop-shadow-red dark:drop-shadow-none dark:bg-gray-700">
-                    کامییونت </a>
-                <a href="#"
-                    class="h-8 bg-white rounded w-36 flex_center drop-shadow-red dark:drop-shadow-none dark:bg-gray-700">
-                    ون </a>
-            </div>
-        </section>
+        <x-home_landing.productCategories radius="8" />
+        
 
+        {{-- favorites --}}
         {{--
             "-none" => border-radius: 0px
             "-sm"   => border-radius: 2px
@@ -82,7 +66,7 @@
 
             "button_color_type_warning_default" => red border theme button default
         --}}
-        <x-home_landing.products type="1" evenOdd="false" radius="-xl" gapX="4" gapY="4"
+        <x-home_landing.products type="1" evenOdd="false" radius="8" gapX="4" gapY="4"
             titleColor="title_color_type_1" defaultButtonColor="button_color_type_warning_default"
             actionButtonColor="button_color_type_warning" />
 

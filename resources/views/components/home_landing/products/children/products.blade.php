@@ -1,6 +1,34 @@
 @props(['type' => '1', 'radius' => '8', 'titleColor' => 'title_color_type_1', 'defaultButtonColor' => 'button_color_type_warning_default', 'actionButtonColor' => 'button_color_type_warning', 'gapX' => '4', 'gapY' => '4', 'evenOdd' => 'false'])
 
 @php
+$radiusSize = null;
+    switch ($radius) {
+        case '0':
+            $radiusSize = 'rounded-none';
+            break;
+        case '2':
+            $radiusSize = 'rounded-sm';
+            break;
+        case '4':
+            $radiusSize = 'rounded';
+            break;
+        case '6':
+            $radiusSize = 'rounded-md';
+            break;
+        case '8':
+            $radiusSize = 'rounded-lg';
+            break;
+        case '12':
+            $radiusSize = 'rounded-xl';
+            break;
+        case '16':
+            $radiusSize = 'rounded-2xl';
+            break;
+        
+        default:
+            # code...
+            break;
+    }
 $classType = null;
 if($type === '1'){
     $classType = 'lg:grid-cols-5 gap-x-' . $gapX . ' gap-y-' . $gapY . ' sm:grid-cols-2';
@@ -13,11 +41,11 @@ if($type === '1'){
     //  . ' lg:gap-0' type 5 & 6 must have this class
     $classType = 'md:grid-cols-2 gap-x-' . $gapX . ' gap-y-' . $gapY;
 }elseif($type === '5'){
-    $classType = 'md:grid-cols-1 drop-shadow-[0_2px_10px_rgba(0,0,0,0.15)] rounded' . $radius . ' overflow-hidden';
+    $classType = 'md:grid-cols-1 drop-shadow-base ' . $radiusSize . ' overflow-hidden';
 }elseif($type === '6'){
-    $classType = 'md:grid-cols-1 drop-shadow-[0_2px_10px_rgba(0,0,0,0.15)] sm:drop-shadow-none rounded' . $radius . ' overflow-hidden sm:rounded-none sm:overflow-visible sm:gap-x-' . $gapX . ' sm:gap-y-' . $gapY;
+    $classType = 'md:grid-cols-1 drop-shadow-base sm:drop-shadow-none ' . $radiusSize . ' overflow-hidden sm:rounded-none sm:overflow-visible sm:gap-x-' . $gapX . ' sm:gap-y-' . $gapY;
 }elseif($type === '7'){
-    $classType = 'sm:grid-cols-2 lg:grid-cols-4 drop-shadow-[0_2px_10px_rgba(0,0,0,0.15)] rounded' . $radius . ' overflow-hidden';
+    $classType = 'sm:grid-cols-2 lg:grid-cols-4 drop-shadow-base ' . $radiusSize . ' overflow-hidden';
 }
 @endphp
 <div class="grid grid-cols-1 {{ $classType }}">
