@@ -1,12 +1,15 @@
 @props([
     'type' => '1',
     'image' => '/',
-    'href' => '#',
+    'name' => '',
+    'productSlug' => '',
+    'landSlug' => '',
     'radius' => '8',
     'titleColor' => 'title_color_type_1',
     'defaultButtonColor' => 'button_color_type_warning_default',
     'actionButtonColor' => 'button_color_type_warning',
-    'evenOdd' => 'false'
+    'evenOdd' => 'false',
+    'description' => '',
 ])
 
 @php
@@ -40,6 +43,7 @@
     }
     
 @endphp
+{{-- @dd($productSlug, $landSlug); --}}
 @switch($type)
     @case(1)
         <div
@@ -47,15 +51,15 @@
             <div class="mb-2 h-36">
                 <img src="{{ $image }}" alt="mammut" class="object-contain h-full" />
             </div>
-            <h3 class="mb-5 font-bold lg:mb-4 text-lg sm:line-clamp-1 {{ $titleColor }}"> کامیون جک 8.5 تن </h3>
+            <h3 class="mb-5 font-bold lg:mb-4 text-lg sm:line-clamp-1 {{ $titleColor }}"> {{ $name }} </h3>
             <div class="flex flex-col gap-4">
-                <a href="{{ $href }}"
+                <a href="{{ route('landing.product.show',['page'=> $landSlug, 'product'=> $productSlug]) }}"
                     class="text-sm lg:text-base font-bold relative {{ $defaultButtonColor }} {{ $radiusSize }} w-40 h-11 flex_center before:{{ $radiusSize }} product_button_style">
                     مشخصات </a>
-                <a href="{{ $href }}"
+                <a href="{{ route('landing.product.show',['page'=> $landSlug, 'product'=> $productSlug]) }}"
                     class="text-sm lg:text-base font-bold relative {{ $defaultButtonColor }} {{ $radiusSize }} w-40 h-11 flex_center before:{{ $radiusSize }} product_button_style">
                     کاتالوگ </a>
-                <a href="{{ $href }}"
+                <a href="{{ route('landing.product.show',['page'=> $landSlug, 'product'=> $productSlug]) }}"
                     class="text-sm lg:text-base font-bold relative {{ $actionButtonColor }} {{ $radiusSize }} w-40 h-11 flex_center before:{{ $radiusSize }} product_button_style">
                     خرید اقساطی </a>
             </div>
@@ -68,15 +72,15 @@
             <div class="h-32 mb-0.5">
                 <img src="{{ $image }}" alt="mammut" class="object-contain h-full" />
             </div>
-            <h3 class="mb-0.5 font-bold lg:mb-1 text-lg sm:line-clamp-1 {{ $titleColor }}"> کامیون جک 8.5 تن </h3>
+            <h3 class="mb-0.5 font-bold lg:mb-1 text-lg sm:line-clamp-1 {{ $titleColor }}"> {{ $name }} </h3>
             <div class="grid w-56 grid-cols-2 gap-2">
-                <a href="{{ $href }}"
+                <a href="{{ route('landing.product.show',['page'=> $landSlug, 'product'=> $productSlug]) }}"
                     class="text-base font-bold relative {{ $defaultButtonColor }} {{ $radiusSize }} w-full h-11 flex_center before:{{ $radiusSize }} product_button_style">
                     مشخصات </a>
-                <a href="{{ $href }}"
+                <a href="{{ route('landing.product.show',['page'=> $landSlug, 'product'=> $productSlug]) }}"
                     class="text-base font-bold relative {{ $defaultButtonColor }} {{ $radiusSize }} w-full h-11 flex_center before:{{ $radiusSize }} product_button_style">
                     کاتالوگ </a>
-                <a href="{{ $href }}"
+                <a href="{{ route('landing.product.show',['page'=> $landSlug, 'product'=> $productSlug]) }}"
                     class="text-base font-bold relative {{ $actionButtonColor }} {{ $radiusSize }} w-full col-span-2 h-11 flex_center before:{{ $radiusSize }} product_button_style">
                     خرید اقساطی </a>
             </div>
@@ -86,19 +90,19 @@
     @case(3)
         <div
             class="drop-shadow-base {{ $radiusSize }} pl-6 pr-8 w-full pt-5 pb-8 {{ $evenOdd == 'true' ? 'evenOdd_cards' : 'bg-white dark:bg-dark-700' }} flex flex-col">
-            <h3 class="mb-1.5 font-bold lg:mb-1 text-lg sm:line-clamp-1 {{ $titleColor }}"> کامیون جک 8.5 تن </h3>
+            <h3 class="mb-1.5 font-bold lg:mb-1 text-lg sm:line-clamp-1 {{ $titleColor }}"> {{ $name }} </h3>
             <div class="flex items-center justify-between gap-4">
                 <div class="flex-none h-32 lg:h-28 xl:h-32">
                     <img src="{{ $image }}" alt="mammut" class="object-contain h-full" />
                 </div>
                 <div class="flex flex-col w-40 gap-2 shrink">
-                    <a href="{{ $href }}"
+                    <a href="{{ route('landing.product.show',['page'=> $landSlug, 'product'=> $productSlug]) }}"
                         class="text-base font-bold relative {{ $defaultButtonColor }} {{ $radiusSize }} w-full h-11 flex_center before:{{ $radiusSize }} product_button_style">
                         مشخصات </a>
-                    <a href="{{ $href }}"
+                    <a href="{{ route('landing.product.show',['page'=> $landSlug, 'product'=> $productSlug]) }}"
                         class="text-base font-bold relative {{ $defaultButtonColor }} {{ $radiusSize }} w-full h-11 flex_center before:{{ $radiusSize }} product_button_style">
                         کاتالوگ </a>
-                    <a href="{{ $href }}"
+                    <a href="{{ route('landing.product.show',['page'=> $landSlug, 'product'=> $productSlug]) }}"
                         class="text-base font-bold relative {{ $actionButtonColor }} {{ $radiusSize }} w-full h-11 flex_center before:{{ $radiusSize }} product_button_style">
                         خرید اقساطی </a>
                 </div>
@@ -113,15 +117,15 @@
                 <img src="{{ $image }}" alt="mammut" class="object-contain h-full" />
             </div>
             <div class="flex flex-col flex-1 gap-4">
-                <h3 class="mb-1.5 font-bold lg:mb-1 text-lg sm:line-clamp-1 {{ $titleColor }}"> کامیون جک 8.5 تن </h3>
+                <h3 class="mb-1.5 font-bold lg:mb-1 text-lg sm:line-clamp-1 {{ $titleColor }}"> {{ $name }} </h3>
                 <div class="grid w-full grid-cols-2 gap-2 mr-auto max-w-72">
-                    <a href="{{ $href }}"
+                    <a href="{{ route('landing.product.show',['page'=> $landSlug, 'product'=> $productSlug]) }}"
                         class="text-base font-bold relative {{ $defaultButtonColor }} {{ $radiusSize }} w-full h-11 flex_center before:{{ $radiusSize }} product_button_style">
                         مشخصات </a>
-                    <a href="{{ $href }}"
+                    <a href="{{ route('landing.product.show',['page'=> $landSlug, 'product'=> $productSlug]) }}"
                         class="text-base font-bold relative {{ $defaultButtonColor }} {{ $radiusSize }} w-full h-11 flex_center before:{{ $radiusSize }} product_button_style">
                         کاتالوگ </a>
-                    <a href="{{ $href }}"
+                    <a href="{{ route('landing.product.show',['page'=> $landSlug, 'product'=> $productSlug]) }}"
                         class="text-base font-bold col-span-2 relative {{ $actionButtonColor }} {{ $radiusSize }} w-full h-11 flex_center before:{{ $radiusSize }} product_button_style">
                         خرید اقساطی </a>
                 </div>
@@ -136,19 +140,19 @@
                 <img src="{{ $image }}" alt="mammut" class="object-contain h-full" />
             </div>
             <div class="mb-4 sm:mb-0 sm:flex-1">
-                <h3 class="mb-2 font-bold lg:mb-1 text-lg sm:line-clamp-1 {{ $titleColor }}"> کامیون جک 8.5 تن </h3>
+                <h3 class="mb-2 font-bold lg:mb-1 text-lg sm:line-clamp-1 {{ $titleColor }}"> {{ $name }} </h3>
                 <p class="text-sm leading-6 text-justify text-[#818284] dark:text-white font-medium line-clamp-2">
-                    کامیونت جک 8.5 تن یکی از موفق‌ترین محصولات شرکت جک است که با ظرفیت حمل بار 8500 کیلوگرم از نظر کیفی در سطح مطلوبی قرار دارد.شرکت جک (JAC) در کشور چین واقع شده
+                    {{ $description }}
                 </p>
             </div>
             <div class="flex flex-col items-center gap-2">
-                <a href="{{ $href }}"
+                <a href="{{ route('landing.product.show',['page'=> $landSlug, 'product'=> $productSlug]) }}"
                     class="text-sm lg:text-base font-bold relative {{ $defaultButtonColor }} {{ $radiusSize }} w-40 h-11 flex_center before:{{ $radiusSize }} product_button_style">
                     مشخصات </a>
-                <a href="{{ $href }}"
+                <a href="{{ route('landing.product.show',['page'=> $landSlug, 'product'=> $productSlug]) }}"
                     class="text-sm lg:text-base font-bold relative {{ $defaultButtonColor }} {{ $radiusSize }} w-40 h-11 flex_center before:{{ $radiusSize }} product_button_style">
                     کاتالوگ </a>
-                <a href="{{ $href }}"
+                <a href="{{ route('landing.product.show',['page'=> $landSlug, 'product'=> $productSlug]) }}"
                     class="text-sm lg:text-base font-bold relative {{ $actionButtonColor }} {{ $radiusSize }} w-40 h-11 flex_center before:{{ $radiusSize }} product_button_style">
                     خرید اقساطی </a>
             </div>
@@ -162,19 +166,19 @@
                 <img src="{{ $image }}" alt="mammut" class="object-contain h-full" />
             </div>
             <div class="mb-4 sm:mb-0 sm:flex-1">
-                <h3 class="mb-2 sm:gap-4 font-bold lg:mb-1 text-lg {{ $titleColor }}"> کامیون جک 8.5 تن </h3>
+                <h3 class="mb-2 sm:gap-4 font-bold lg:mb-1 text-lg {{ $titleColor }}"> {{ $name }} </h3>
                 <p class="text-sm leading-6 text-justify text-[#818284] dark:text-white font-medium line-clamp-2">
-                    کامیونت جک 8.5 تن یکی از موفق‌ترین محصولات شرکت جک است که با ظرفیت حمل بار 8500 کیلوگرم از نظر کیفی در سطح مطلوبی قرار دارد.شرکت جک (JAC) در کشور چین واقع شده
+                    {{ $description }}
                 </p>
             </div>
             <div class="flex flex-col items-center gap-2">
-                <a href="{{ $href }}"
+                <a href="{{ route('landing.product.show',['page'=> $landSlug, 'product'=> $productSlug]) }}"
                     class="text-sm lg:text-base font-bold relative {{ $defaultButtonColor }} {{ $radiusSize }} w-40 h-11 flex_center before:{{ $radiusSize }} product_button_style">
                     مشخصات </a>
-                <a href="{{ $href }}"
+                <a href="{{ route('landing.product.show',['page'=> $landSlug, 'product'=> $productSlug]) }}"
                     class="text-sm lg:text-base font-bold relative {{ $defaultButtonColor }} {{ $radiusSize }} w-40 h-11 flex_center before:{{ $radiusSize }} product_button_style">
                     کاتالوگ </a>
-                <a href="{{ $href }}"
+                <a href="{{ route('landing.product.show',['page'=> $landSlug, 'product'=> $productSlug]) }}"
                     class="text-sm lg:text-base font-bold relative {{ $actionButtonColor }} {{ $radiusSize }} w-40 h-11 flex_center before:{{ $radiusSize }} product_button_style">
                     خرید اقساطی </a>
             </div>
@@ -187,15 +191,15 @@
             <div class="h-32 mb-2">
                 <img src="{{ $image }}" alt="mammut" class="object-contain h-full" />
             </div>
-            <h3 class="mb-5 font-bold lg:mb-4 text-lg sm:line-clamp-1 {{ $titleColor }}"> کامیون جک 8.5 تن </h3>
+            <h3 class="mb-5 font-bold lg:mb-4 text-lg sm:line-clamp-1 {{ $titleColor }}"> {{ $name }} </h3>
             <div class="flex flex-col gap-4">
-                <a href="{{ $href }}"
+                <a href="{{ route('landing.product.show',['page'=> $landSlug, 'product'=> $productSlug]) }}"
                     class="text-sm lg:text-base font-bold relative {{ $defaultButtonColor }} {{ $radiusSize }} w-40 h-11 flex_center before:{{ $radiusSize }} product_button_style">
                     مشخصات </a>
-                <a href="{{ $href }}"
+                <a href="{{ route('landing.product.show',['page'=> $landSlug, 'product'=> $productSlug]) }}"
                     class="text-sm lg:text-base font-bold relative {{ $defaultButtonColor }} {{ $radiusSize }} w-40 h-11 flex_center before:{{ $radiusSize }} product_button_style">
                     کاتالوگ </a>
-                <a href="{{ $href }}"
+                <a href="{{ route('landing.product.show',['page'=> $landSlug, 'product'=> $productSlug]) }}"
                     class="text-sm lg:text-base font-bold relative {{ $actionButtonColor }} {{ $radiusSize }} w-40 h-11 flex_center before:{{ $radiusSize }} product_button_style">
                     خرید اقساطی </a>
             </div>

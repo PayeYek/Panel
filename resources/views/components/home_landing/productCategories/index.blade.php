@@ -32,7 +32,7 @@
     
 @endphp
 <section
-    class="default_container flex items-center flex-col md:flex-row gap-2.5 lg:gap-3 mb-9 md:justify-start relative z-[1]">
+    class="default_container flex items-center flex-col md:flex-row gap-2.5 lg:gap-3 mb-9 lg:mb-16 md:justify-start relative z-[1]">
     <h3 class="text-lg font-bold text-gray-900 dark:text-white"> محصولات </h3>
     <div
         class="flex flex-col flex-wrap items-center content-center w-full h-20 text-base font-bold text-red-700 md:flex-row md:flex-nowrap md:content-normal md:h-auto gap-y-4 gap-x-5 dark:text-white">
