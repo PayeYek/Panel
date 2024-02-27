@@ -58,10 +58,11 @@
         <x-home_landing.productCategories radius="8"/>
 
         {{-- favorites --}}
-        <x-home_landing.products :landSlug="$land->slug" :data="$land->products" :type="$land->styles->product_type" :colorPalette="$land->color" evenOdd="false" radius="8"
+        <x-home_landing.products :landSlug="$land->slug" :data="$land->products" :type="$land->styles->product_type" :colorPalette="$land->styles->color" evenOdd="false" radius="8"
             titleColor="title_color_type_1" />
 
-        @dd($land->styles->article_type);
+        {{-- @dd($land->styles->article_type); --}}
+        {{-- @dd($land->styles); --}}
         {{-- notifications --}}
         {{--
             type 1 for list

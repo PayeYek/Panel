@@ -64,7 +64,7 @@ if($type == '1'){
     @foreach ($data as $product)
     {{-- @dd($product); --}}
         {{-- <x-home_landing.products.children.product :type="$type" :radius="$radius" :titleColor="$titleColor" :defaultButtonColor="$defaultButtonColor" :actionButtonColor="$actionButtonColor" :evenOdd="$evenOdd" :image="$product->image" :name="$product->name" :slug="$product->slug" href="#" /> --}}
-        <x-home_landing.products.children.product :type="$type" :radius="$radius" :titleColor="$titleColor" :actionButtonColor="$actionButtonColor" :evenOdd="$evenOdd" :image="$product->image" :name="$product->name" :landSlug="$landSlug" :productSlug="$product->slug" :description="$product->description" :colorPalette="$colorPalette" />
+        <x-home_landing.products.children.product :type="$type" :radius="$radius" :titleColor="$titleColor" :evenOdd="$evenOdd" :image="$product->image" :name="$product->name" :landSlug="$landSlug" :productSlug="$product->slug" :description="$product->description" :colorPalette="$colorPalette" />
     @endforeach
     {{-- <x-home_landing.products.children.product :type="$type" :radius="$radius" :titleColor="$titleColor" :defaultButtonColor="$defaultButtonColor" :actionButtonColor="$actionButtonColor" :evenOdd="$evenOdd" image="{{ asset('assets/images/test/small-truck.png') }}" href="#" />
     <x-home_landing.products.children.product :type="$type" :radius="$radius" :titleColor="$titleColor" :defaultButtonColor="$defaultButtonColor" :actionButtonColor="$actionButtonColor" :evenOdd="$evenOdd" image="{{ asset('assets/images/test/small-truck.png') }}" href="#" />

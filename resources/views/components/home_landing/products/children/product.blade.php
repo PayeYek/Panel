@@ -10,7 +10,6 @@
     'evenOdd' => 'false',
     'description' => '',
 ])
-
 @php
     $radiusSize = null;
     switch ($radius) {
@@ -85,6 +84,56 @@
             
                 case '10':
                 $fillBtnTheme = 'text-red-700 bg-white border border-red-700 hover:border-red-800 hover:text-red-800 focus:border-red-800 focus:text-red-800 focus:shadow-focus focus:shadow-red-700/50';
+                break;
+
+            default:
+                # code...
+                break;
+        }
+            # code...
+            break;
+        
+        case '2':
+        $vacantBtnTheme = 'text-blue-700 bg-white border border-blue-700 hover:border-blue-800 hover:text-blue-800 focus:border-blue-800 focus:text-blue-800 focus:shadow-focus focus:shadow-blue-700/50';
+        switch ($type) {
+            case '1':
+                $fillBtnTheme = 'text-blue-700 bg-white border border-blue-700 hover:border-blue-800 hover:text-blue-800 focus:border-blue-800 focus:text-blue-800 focus:shadow-focus focus:shadow-blue-700/50';
+                break;
+            
+            case '2':
+                $fillBtnTheme = 'text-blue-700 bg-white border border-blue-700 hover:border-blue-800 hover:text-blue-800 focus:border-blue-800 focus:text-blue-800 focus:shadow-focus focus:shadow-blue-700/50';
+                break;
+            
+            case '3':
+                $fillBtnTheme = 'text-white bg-blue-700 text-blue-800 hover:bg-blue-800 focus:bg-blue-800 focus:shadow-focus focus:shadow-blue-700/50';
+                break;
+            
+            case '4':
+                $fillBtnTheme = 'text-blue-700 bg-white border border-blue-700 hover:border-blue-800 hover:text-blue-800 focus:border-blue-800 focus:text-blue-800 focus:shadow-focus focus:shadow-blue-700/50';
+                break;
+            
+            case '5':
+                $fillBtnTheme = 'text-blue-700 bg-white border border-blue-700 hover:border-blue-800 hover:text-blue-800 focus:border-blue-800 focus:text-blue-800 focus:shadow-focus focus:shadow-blue-700/50';
+                break;
+            
+            case '6':
+                $fillBtnTheme = 'text-white bg-blue-700 text-blue-800 hover:bg-blue-800 focus:bg-blue-800 focus:shadow-focus focus:shadow-blue-700/50';
+                break;
+            
+            case '7':
+                $fillBtnTheme = 'text-white bg-blue-700 text-blue-800 hover:bg-blue-800 focus:bg-blue-800 focus:shadow-focus focus:shadow-blue-700/50';
+                break;
+            
+            case '8':
+                $fillBtnTheme = 'text-white bg-blue-700 text-blue-800 hover:bg-blue-800 focus:bg-blue-800 focus:shadow-focus focus:shadow-blue-700/50';
+                break;
+            
+            case '9':
+                $fillBtnTheme = 'text-blue-700 bg-white border border-blue-700 hover:border-blue-800 hover:text-blue-800 focus:border-blue-800 focus:text-blue-800 focus:shadow-focus focus:shadow-blue-700/50';
+                break;
+            
+                case '10':
+                $fillBtnTheme = 'text-blue-700 bg-white border border-blue-700 hover:border-blue-800 hover:text-blue-800 focus:border-blue-800 focus:text-blue-800 focus:shadow-focus focus:shadow-blue-700/50';
                 break;
 
             default:
