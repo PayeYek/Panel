@@ -9,10 +9,6 @@ import "@protonemedia/laravel-splade/dist/jodit.css";
  import Slider from "@/components/Slider.vue";
  import PersianDate from "@/components/PersianDate.vue";
  import ShowPassword from "@/components/ShowPassword.vue";
- import Plyr from 'plyr';
-
- import Flickity from "flickity";
- import "flickity/css/flickity.css";
 
  import {createApp} from "vue";
  import {renderSpladeApp, SpladePlugin} from "@protonemedia/laravel-splade";
@@ -50,18 +46,5 @@ import "@protonemedia/laravel-splade/dist/jodit.css";
              el.classList.remove("loader-hide-scrollbar");
          });
      }
-
-     /* SLIDER */
-     if (document.querySelector('.main-carousel')) {
-         Flickity('.main-carousel', {
-             pageDots: false, prevNextButtons: false, autoPlay: 500, cellAlign: "left", contain: true
-         });
-     }
  }
-
-
-
- const player1 = new Plyr('#player1');
- const player2 = new Plyr('#player2');
- const player3 = new Plyr('#player3');
 
