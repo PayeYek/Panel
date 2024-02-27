@@ -13,16 +13,13 @@ return new class extends Migration {
         Schema::create('land_styles', function (Blueprint $table) {
             $table->id();
             $table->foreignId('land_id')->constrained()->cascadeOnDelete();
-            $table->integer('color')->default(0);
+            $table->integer('color')->default(1);
             $table->integer('radius')->default(0);
-            $table->integer('product_type')->default(0);
-            $table->integer('product_view')->default(0);
-            $table->integer('article_type')->default(0);
-            $table->integer('article_view')->default(0);
-            $table->integer('video_type')->default(0);
-            $table->integer('video_view')->default(0);
-            $table->integer('slide_type')->default(0);
-            $table->integer('slide_anim')->default(0);
+            $table->integer('product_type')->default(1);
+            $table->integer('article_type')->default(1);
+            $table->integer('video_type')->default(1);
+            $table->integer('slide_type')->default(1);
+            $table->integer('slide_anim')->default(1);
             $table->timestamps();
         });
     }

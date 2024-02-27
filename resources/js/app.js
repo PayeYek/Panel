@@ -6,6 +6,7 @@ import "@protonemedia/laravel-splade/dist/jodit.css";
  import SwitchStyle from "@/components/SwitchStyle.vue";
  import Breakpoint from "@/components/Breakpoint.vue";
  import CopyText from "@/components/CopyText.vue";
+ import Slider from "@/components/Slider.vue";
  import PersianDate from "@/components/PersianDate.vue";
  import ShowPassword from "@/components/ShowPassword.vue";
  import Plyr from 'plyr';
@@ -31,6 +32,7 @@ import "@protonemedia/laravel-splade/dist/jodit.css";
              spinner: false,
          }
      })
+     .component('Slider', Slider)
      .component('SwitchStyle', SwitchStyle)
      .component('Breakpoint', Breakpoint)
      .component('CopyText', CopyText)
