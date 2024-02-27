@@ -1,22 +1,3 @@
-{{--@push('script')--}}
-{{--    <script type="module">--}}
-{{--        var swiper = new Swiper('.land_slider', {--}}
-{{--            // Optional parameters--}}
-{{--            loop: true,--}}
-{{--            slidePerView: 1,--}}
-{{--            autoplay: {--}}
-{{--                delay: 3500,--}}
-{{--                disableOnInteraction: false,--}}
-{{--            },--}}
-
-{{--            // If we need pagination--}}
-{{--            pagination: {--}}
-{{--                el: '.swiper-pagination',--}}
-{{--            },--}}
-{{--        });--}}
-{{--    </script>--}}
-{{--@endpush--}}
-
 <x-layout.default.main :land="$land">
 
     {{-- <x-layout.landing.sidebar :land="$land" /> --}}
@@ -34,25 +15,6 @@
         @if($land->slides)
             <Slider :slides="{{$land->slides}}"/>
         @endif
-        {{--        @if($land->slides)--}}
-        {{--            <section class="mb-2.5 lg:mb-8 relative z-[1] sm:default_container">--}}
-        {{--                <div class="swiper land_slider slider_type_1">--}}
-        {{--                    <!-- Additional required wrapper -->--}}
-        {{--                    <div class="swiper-wrapper">--}}
-        {{--                        <!-- Slides -->--}}
-        {{--                        @foreach($land->slides as $slide)--}}
-        {{--                            <a href="#" class="swiper-slide w-full relative pt-[52%]">--}}
-        {{--                                <img src="{{ $slide->image }}" alt="{{ $slide->alt }}"--}}
-        {{--                                     class="absolute top-0 right-0 w-full h-full sm:rounded-b object-cover" />--}}
-        {{--                            </a>--}}
-        {{--                        @endforeach--}}
-        {{--                    </div>--}}
-        {{--                    <!-- If we need pagination -->--}}
-        {{--                    <div class="swiper-pagination"></div>--}}
-        {{--                </div>--}}
-        {{--            </section>--}}
-        {{--        @endif--}}
-
 
         {{-- products --}}
         <x-home_landing.productCategories radius="8"/>
