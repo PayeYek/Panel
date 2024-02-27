@@ -9,6 +9,7 @@
     'defaultButtonColor' => 'button_color_type_warning_default',
     'actionButtonColor' => 'button_color_type_warning',
     'evenOdd' => 'false',
+    'description' => '',
 ])
 
 @php
@@ -141,7 +142,7 @@
             <div class="mb-4 sm:mb-0 sm:flex-1">
                 <h3 class="mb-2 font-bold lg:mb-1 text-lg sm:line-clamp-1 {{ $titleColor }}"> {{ $name }} </h3>
                 <p class="text-sm leading-6 text-justify text-[#818284] dark:text-white font-medium line-clamp-2">
-                    کامیونت جک 8.5 تن یکی از موفق‌ترین محصولات شرکت جک است که با ظرفیت حمل بار 8500 کیلوگرم از نظر کیفی در سطح مطلوبی قرار دارد.شرکت جک (JAC) در کشور چین واقع شده
+                    {{ $description }}
                 </p>
             </div>
             <div class="flex flex-col items-center gap-2">
@@ -167,7 +168,7 @@
             <div class="mb-4 sm:mb-0 sm:flex-1">
                 <h3 class="mb-2 sm:gap-4 font-bold lg:mb-1 text-lg {{ $titleColor }}"> {{ $name }} </h3>
                 <p class="text-sm leading-6 text-justify text-[#818284] dark:text-white font-medium line-clamp-2">
-                    کامیونت جک 8.5 تن یکی از موفق‌ترین محصولات شرکت جک است که با ظرفیت حمل بار 8500 کیلوگرم از نظر کیفی در سطح مطلوبی قرار دارد.شرکت جک (JAC) در کشور چین واقع شده
+                    {{ $description }}
                 </p>
             </div>
             <div class="flex flex-col items-center gap-2">
