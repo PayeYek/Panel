@@ -1,59 +1,61 @@
-@push('script')
-    <script type="module">
-        var swiper = new Swiper('.land_slider', {
-            // Optional parameters
-            loop: true,
-            slidePerView: 1,
-            autoplay: {
-                delay: 3500,
-                disableOnInteraction: false,
-            },
+{{--@push('script')--}}
+{{--    <script type="module">--}}
+{{--        var swiper = new Swiper('.land_slider', {--}}
+{{--            // Optional parameters--}}
+{{--            loop: true,--}}
+{{--            slidePerView: 1,--}}
+{{--            autoplay: {--}}
+{{--                delay: 3500,--}}
+{{--                disableOnInteraction: false,--}}
+{{--            },--}}
 
-            // If we need pagination
-            pagination: {
-                el: '.swiper-pagination',
-            },
-        });
-    </script>
-@endpush
+{{--            // If we need pagination--}}
+{{--            pagination: {--}}
+{{--                el: '.swiper-pagination',--}}
+{{--            },--}}
+{{--        });--}}
+{{--    </script>--}}
+{{--@endpush--}}
 
 <x-layout.default.main :land="$land">
 
     {{-- <x-layout.landing.sidebar :land="$land" /> --}}
 
     <img src="{{ asset('assets/svg/pattern-1.svg') }}" alt="lines"
-        class="absolute right-0 w-full top-[38rem]" />
+         class="absolute right-0 w-full top-[38rem]"/>
     <img src="{{ asset('assets/svg/pattern-2.svg') }}" alt="line-3"
-        class="absolute right-0 w-full top-[76rem]" />
+         class="absolute right-0 w-full top-[76rem]"/>
     <img src="{{ asset('assets/svg/pattern-2.svg') }}" alt="line-2"
-        class="absolute right-0 w-full bottom-48" />
+         class="absolute right-0 w-full bottom-48"/>
 
     {{-- default_container --}}
     <main class="">
         {{-- slider --}}
         @if($land->slides)
-            <section class="mb-2.5 lg:mb-8 relative z-[1] sm:default_container">
-                <div class="swiper land_slider slider_type_1">
-                    <!-- Additional required wrapper -->
-                    <div class="swiper-wrapper">
-                        <!-- Slides -->
-                        @foreach($land->slides as $slide)
-                            <a href="#" class="swiper-slide w-full relative pt-[52%]">
-                                <img src="{{ $slide->image }}" alt="{{ $slide->alt }}"
-                                     class="absolute top-0 right-0 w-full h-full sm:rounded-b object-cover" />
-                            </a>
-                        @endforeach
-                    </div>
-                    <!-- If we need pagination -->
-                    <div class="swiper-pagination"></div>
-                </div>
-            </section>
+            <Slider :slides="{{$land->slides}}"/>
         @endif
+        {{--        @if($land->slides)--}}
+        {{--            <section class="mb-2.5 lg:mb-8 relative z-[1] sm:default_container">--}}
+        {{--                <div class="swiper land_slider slider_type_1">--}}
+        {{--                    <!-- Additional required wrapper -->--}}
+        {{--                    <div class="swiper-wrapper">--}}
+        {{--                        <!-- Slides -->--}}
+        {{--                        @foreach($land->slides as $slide)--}}
+        {{--                            <a href="#" class="swiper-slide w-full relative pt-[52%]">--}}
+        {{--                                <img src="{{ $slide->image }}" alt="{{ $slide->alt }}"--}}
+        {{--                                     class="absolute top-0 right-0 w-full h-full sm:rounded-b object-cover" />--}}
+        {{--                            </a>--}}
+        {{--                        @endforeach--}}
+        {{--                    </div>--}}
+        {{--                    <!-- If we need pagination -->--}}
+        {{--                    <div class="swiper-pagination"></div>--}}
+        {{--                </div>--}}
+        {{--            </section>--}}
+        {{--        @endif--}}
 
 
         {{-- products --}}
-        <x-home_landing.productCategories radius="8" />
-        
+        <x-home_landing.productCategories radius="8"/>
 
         {{-- favorites --}}
         {{--
@@ -67,21 +69,21 @@
             "button_color_type_warning_default" => red border theme button default
         --}}
         <x-home_landing.products type="1" evenOdd="false" radius="8" gapX="4" gapY="4"
-            titleColor="title_color_type_1" defaultButtonColor="button_color_type_warning_default"
-            actionButtonColor="button_color_type_warning" />
+                                 titleColor="title_color_type_1" defaultButtonColor="button_color_type_warning_default"
+                                 actionButtonColor="button_color_type_warning"/>
 
         {{-- notifications --}}
         {{--
             type 1 for list
             type 2 for tail
         --}}
-        <x-home_landing.announcement type="2" radius="12" gap="16" />
+        <x-home_landing.announcement type="2" radius="12" gap="16"/>
 
         {{-- videos --}}
-        <x-home_landing.videos radius="12" />
+        <x-home_landing.videos radius="12"/>
 
         {{-- terms of sale --}}
-        <x-home_landing.termsOfSale radius="12" />
+        <x-home_landing.termsOfSale radius="12"/>
     </main>
 
     {{-- CATEGORIES | PRODUCTS --}}
