@@ -159,6 +159,7 @@
             </div>
             <h3 class="mb-5 font-bold lg:mb-4 text-lg sm:line-clamp-1 {{ $titleColor }}"> {{ $name }} </h3>
             <div class="flex flex-col gap-4">
+                {{-- <LandBtn constantClasses="text-sm lg:text-base font-bold relative w-40 h-11 flex_center" /> --}}
                 <a href="{{ route('landing.product.show',['page'=> $landSlug, 'product'=> $productSlug]) }}"
                     class="text-sm lg:text-base font-bold relative {{ $vacantBtnTheme }} {{ $radiusSize }} w-40 h-11 flex_center before:{{ $radiusSize }} product_button_style">
                     مشخصات </a>
