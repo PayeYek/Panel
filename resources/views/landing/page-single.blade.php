@@ -68,7 +68,7 @@
         --}}
 
         {{-- @dd($land->styles); --}}
-        <x-home_landing.products :landSlug="$land->slug" :data="$land->products" :type="$land->styles->product_type" :colorPalette="$land->color" evenOdd="false" radius="8" gapX="4" gapY="4"
+        <x-home_landing.products :landSlug="$land->slug" :data="$land->products" :type="$land->styles->product_type" :colorPalette="$land->color" evenOdd="false" radius="8"
             titleColor="title_color_type_1" defaultButtonColor="button_color_type_warning_default"
             actionButtonColor="button_color_type_warning" />
 

@@ -4,8 +4,6 @@
     'titleColor' => 'title_color_type_1',
     'defaultButtonColor' => 'button_color_type_warning_default',
     'actionButtonColor' => 'button_color_type_warning',
-    'gapX' => '4',
-    'gapY' => '4',
     'evenOdd' => 'false',
     'data' => '',
     'landSlug' => '',
@@ -42,19 +40,19 @@ $radiusSize = null;
     }
 $classType = null;
 if($type == '1'){
-    $classType = 'lg:grid-cols-5 gap-x-' . $gapX . ' gap-y-' . $gapY . ' sm:grid-cols-2';
+    $classType = 'lg:grid-cols-5 gap-4 sm:grid-cols-2';
 }elseif($type == '2'){
-    $classType = 'lg:grid-cols-4 gap-x-' . $gapX . ' gap-y-' . $gapY . ' sm:grid-cols-2';
+    $classType = 'lg:grid-cols-4 gap-4 sm:grid-cols-2';
 }elseif($type == '3'){
     //  . ' lg:gap-0' type 4 must have this class
-    $classType = 'sm:grid-cols-2 lg:grid-cols-3 gap-x-' . $gapX . ' gap-y-' . $gapY;
+    $classType = 'sm:grid-cols-2 lg:grid-cols-3 gap-4';
 }elseif($type == '4'){
     //  . ' lg:gap-0' type 5 & 6 must have this class
-    $classType = 'md:grid-cols-2 gap-x-' . $gapX . ' gap-y-' . $gapY;
+    $classType = 'md:grid-cols-2 gap-4';
 }elseif($type == '5'){
     $classType = 'md:grid-cols-1 drop-shadow-base ' . $radiusSize . ' overflow-hidden';
 }elseif($type == '6'){
-    $classType = 'md:grid-cols-1 drop-shadow-base sm:drop-shadow-none ' . $radiusSize . ' overflow-hidden sm:rounded-none sm:overflow-visible sm:gap-x-' . $gapX . ' sm:gap-y-' . $gapY;
+    $classType = 'md:grid-cols-1 drop-shadow-base sm:drop-shadow-none ' . $radiusSize . ' overflow-hidden sm:rounded-none sm:overflow-visible sm:gap-4';
 }elseif($type == '7'){
     $classType = 'sm:grid-cols-2 lg:grid-cols-4 drop-shadow-base ' . $radiusSize . ' overflow-hidden';
 }
