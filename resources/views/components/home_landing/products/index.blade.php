@@ -2,7 +2,6 @@
     'type' => '1',
     'radius' => '8',
     'titleColor' => 'title_color_type_1',
-    'actionButtonColor' => 'button_color_type_warning',
     'evenOdd' => 'false',
     'colorPalette' => '1',
     'data' => '',
@@ -15,6 +14,5 @@
         ها </h3>
 
     <x-home_landing.products.children.products :type="$type" :evenOdd="$evenOdd" :radius="$radius"
-            :titleColor="$titleColor"
-            :actionButtonColor="$actionButtonColor" :data="$data" :landSlug="$landSlug" :colorPalette="$colorPalette" />
+            :titleColor="$titleColor" :data="$data" :landSlug="$landSlug" :colorPalette="$colorPalette" />
 </section>

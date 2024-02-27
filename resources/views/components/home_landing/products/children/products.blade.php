@@ -2,7 +2,6 @@
     'type' => '1',
     'radius' => '8',
     'titleColor' => 'title_color_type_1',
-    'actionButtonColor' => 'button_color_type_warning',
     'evenOdd' => 'false',
     'colorPalette' => '1',
     'data' => '',

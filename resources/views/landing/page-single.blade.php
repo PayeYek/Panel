@@ -58,29 +58,16 @@
         <x-home_landing.productCategories radius="8"/>
 
         {{-- favorites --}}
-        {{--
-            "-none" => border-radius: 0px
-            "-sm"   => border-radius: 2px
-            ""      => border-radius: 4px
-            "-xl"   => border-radius: 12px
-
-            "title_color_type_1" => red theme title
-
-            "button_color_type_warning_default" => red border theme button default
-        --}}
-
-        {{-- @dd($land->styles); --}}
-        {{-- $land->styles->product_type --}}
         <x-home_landing.products :landSlug="$land->slug" :data="$land->products" :type="$land->styles->product_type" :colorPalette="$land->color" evenOdd="false" radius="8"
-            titleColor="title_color_type_1"
-            actionButtonColor="button_color_type_warning" />
+            titleColor="title_color_type_1" />
 
+        @dd($land->styles->article_type);
         {{-- notifications --}}
         {{--
             type 1 for list
             type 2 for tail
         --}}
-        <x-home_landing.announcement type="2" radius="12" gap="16"/>
+        <x-home_landing.announcement type="1" radius="8"/>
 
         {{-- videos --}}
         <x-home_landing.videos radius="12"/>
