@@ -55,12 +55,18 @@ export default {
                 dark: {
                     "300": "#9BA3A7", //apply for borders
                     "700": "#2e2e2e",
+                },
+                red: {
+                    "800": "#9A0707",
                 }
             },
             dropShadow: {
                 'red': '0 2px 8px rgba(185,28,28,0.3)',
                 'white': '0 2px 8px rgba(255,255,255,0.3)',
                 'base': '0 2px 10px rgba(0,0,0,0.15)'
+            },
+            boxShadow: {
+                'focus': '0 0 4px'
             },
             screens: {
                 '3xl': '1600px',

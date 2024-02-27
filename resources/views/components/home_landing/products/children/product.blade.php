@@ -6,7 +6,7 @@
     'landSlug' => '',
     'radius' => '8',
     'titleColor' => 'title_color_type_1',
-    'defaultButtonColor' => 'button_color_type_warning_default',
+    'colorPalette' => '1',
     'actionButtonColor' => 'button_color_type_warning',
     'evenOdd' => 'false',
     'description' => '',
@@ -41,6 +41,35 @@
             # code...
             break;
     }
+
+    // $vacantBtnTheme = null;
+    $fillBtnTheme = null;
+    $vacantBtnTheme = 'text-red-700 bg-white border border-red-700 hover:border-red-800 hover:text-red-800 focus:border-red-800 focus:text-red-800 focus:shadow-focus focus:shadow-red-700/50';
+    switch ($type) {
+        case '1':
+            $fillBtnTheme = 'text-red-700 bg-white border border-red-700 hover:border-red-800 hover:text-red-800 focus:border-red-800 focus:text-red-800';
+            break;
+        case '2':
+            $fillBtnTheme = 'text-red-700 bg-white border border-red-700 hover:border-red-800 hover:text-red-800 focus:border-red-800 focus:text-red-800';
+            break;
+        case '3':
+            $fillBtnTheme = 'text-white bg-red-700';
+            break;
+        
+        default:
+            # code...
+            break;
+    }
+    // $shadowColor = null;
+    // switch ($colorPalette) {
+    //     case '1':
+    //     $shadowColor = '';
+    //         break;
+        
+    //     default:
+    //         # code...
+    //         break;
+    // }
     
 @endphp
 {{-- @dd($productSlug, $landSlug); --}}
@@ -54,13 +83,13 @@
             <h3 class="mb-5 font-bold lg:mb-4 text-lg sm:line-clamp-1 {{ $titleColor }}"> {{ $name }} </h3>
             <div class="flex flex-col gap-4">
                 <a href="{{ route('landing.product.show',['page'=> $landSlug, 'product'=> $productSlug]) }}"
-                    class="text-sm lg:text-base font-bold relative {{ $defaultButtonColor }} {{ $radiusSize }} w-40 h-11 flex_center before:{{ $radiusSize }} product_button_style">
+                    class="text-sm lg:text-base font-bold relative {{ $vacantBtnTheme }} {{ $radiusSize }} w-40 h-11 flex_center before:{{ $radiusSize }} product_button_style">
                     مشخصات </a>
                 <a href="{{ route('landing.product.show',['page'=> $landSlug, 'product'=> $productSlug]) }}"
-                    class="text-sm lg:text-base font-bold relative {{ $defaultButtonColor }} {{ $radiusSize }} w-40 h-11 flex_center before:{{ $radiusSize }} product_button_style">
+                    class="text-sm lg:text-base font-bold relative {{ $vacantBtnTheme }} {{ $radiusSize }} w-40 h-11 flex_center before:{{ $radiusSize }} product_button_style">
                     کاتالوگ </a>
                 <a href="{{ route('landing.product.show',['page'=> $landSlug, 'product'=> $productSlug]) }}"
-                    class="text-sm lg:text-base font-bold relative {{ $actionButtonColor }} {{ $radiusSize }} w-40 h-11 flex_center before:{{ $radiusSize }} product_button_style">
+                    class="text-sm lg:text-base font-bold relative {{ $fillBtnTheme }} {{ $radiusSize }} w-40 h-11 flex_center before:{{ $radiusSize }} product_button_style">
                     خرید اقساطی </a>
             </div>
         </div>
@@ -75,19 +104,40 @@
             <h3 class="mb-0.5 font-bold lg:mb-1 text-lg sm:line-clamp-1 {{ $titleColor }}"> {{ $name }} </h3>
             <div class="grid w-56 grid-cols-2 gap-2">
                 <a href="{{ route('landing.product.show',['page'=> $landSlug, 'product'=> $productSlug]) }}"
-                    class="text-base font-bold relative {{ $defaultButtonColor }} {{ $radiusSize }} w-full h-11 flex_center before:{{ $radiusSize }} product_button_style">
+                    class="text-base font-bold relative {{ $vacantBtnTheme }} {{ $radiusSize }} w-full h-11 flex_center before:{{ $radiusSize }} product_button_style">
                     مشخصات </a>
                 <a href="{{ route('landing.product.show',['page'=> $landSlug, 'product'=> $productSlug]) }}"
-                    class="text-base font-bold relative {{ $defaultButtonColor }} {{ $radiusSize }} w-full h-11 flex_center before:{{ $radiusSize }} product_button_style">
+                    class="text-base font-bold relative {{ $vacantBtnTheme }} {{ $radiusSize }} w-full h-11 flex_center before:{{ $radiusSize }} product_button_style">
                     کاتالوگ </a>
                 <a href="{{ route('landing.product.show',['page'=> $landSlug, 'product'=> $productSlug]) }}"
-                    class="text-base font-bold relative {{ $actionButtonColor }} {{ $radiusSize }} w-full col-span-2 h-11 flex_center before:{{ $radiusSize }} product_button_style">
+                    class="text-base font-bold relative {{ $fillBtnTheme }} {{ $radiusSize }} w-full col-span-2 h-11 flex_center before:{{ $radiusSize }} product_button_style">
                     خرید اقساطی </a>
             </div>
         </div>
     @break
 
     @case(3)
+        <div
+            class="drop-shadow-base {{ $radiusSize }} px-8 w-full pt-1 pb-8 items-center {{ $evenOdd == 'true' ? 'evenOdd_cards' : 'bg-white dark:bg-dark-700' }} flex flex-col">
+            <div class="h-32 mb-0.5">
+                <img src="{{ $image }}" alt="mammut" class="object-contain h-full" />
+            </div>
+            <h3 class="mb-0.5 font-bold lg:mb-1 text-lg sm:line-clamp-1 {{ $titleColor }}"> {{ $name }} </h3>
+            <div class="grid w-56 grid-cols-2 gap-2">
+                <a href="{{ route('landing.product.show',['page'=> $landSlug, 'product'=> $productSlug]) }}"
+                    class="text-base font-bold relative {{ $vacantBtnTheme }} {{ $radiusSize }} w-full h-11 flex_center before:{{ $radiusSize }} product_button_style">
+                    مشخصات </a>
+                <a href="{{ route('landing.product.show',['page'=> $landSlug, 'product'=> $productSlug]) }}"
+                    class="text-base font-bold relative {{ $vacantBtnTheme }} {{ $radiusSize }} w-full h-11 flex_center before:{{ $radiusSize }} product_button_style">
+                    کاتالوگ </a>
+                <a href="{{ route('landing.product.show',['page'=> $landSlug, 'product'=> $productSlug]) }}"
+                    class="text-base font-bold relative {{ $fillBtnTheme }} {{ $radiusSize }} w-full col-span-2 h-11 flex_center before:{{ $radiusSize }} product_button_style">
+                    خرید اقساطی </a>
+            </div>
+        </div>
+    @break
+
+    @case(4)
         <div
             class="drop-shadow-base {{ $radiusSize }} pl-6 pr-8 w-full pt-5 pb-8 {{ $evenOdd == 'true' ? 'evenOdd_cards' : 'bg-white dark:bg-dark-700' }} flex flex-col">
             <h3 class="mb-1.5 font-bold lg:mb-1 text-lg sm:line-clamp-1 {{ $titleColor }}"> {{ $name }} </h3>
@@ -97,20 +147,20 @@
                 </div>
                 <div class="flex flex-col w-40 gap-2 shrink">
                     <a href="{{ route('landing.product.show',['page'=> $landSlug, 'product'=> $productSlug]) }}"
-                        class="text-base font-bold relative {{ $defaultButtonColor }} {{ $radiusSize }} w-full h-11 flex_center before:{{ $radiusSize }} product_button_style">
+                        class="text-base font-bold relative {{ $vacantBtnTheme }} {{ $radiusSize }} w-full h-11 flex_center before:{{ $radiusSize }} product_button_style">
                         مشخصات </a>
                     <a href="{{ route('landing.product.show',['page'=> $landSlug, 'product'=> $productSlug]) }}"
-                        class="text-base font-bold relative {{ $defaultButtonColor }} {{ $radiusSize }} w-full h-11 flex_center before:{{ $radiusSize }} product_button_style">
+                        class="text-base font-bold relative {{ $vacantBtnTheme }} {{ $radiusSize }} w-full h-11 flex_center before:{{ $radiusSize }} product_button_style">
                         کاتالوگ </a>
                     <a href="{{ route('landing.product.show',['page'=> $landSlug, 'product'=> $productSlug]) }}"
-                        class="text-base font-bold relative {{ $actionButtonColor }} {{ $radiusSize }} w-full h-11 flex_center before:{{ $radiusSize }} product_button_style">
+                        class="text-base font-bold relative {{ $fillBtnTheme }} {{ $radiusSize }} w-full h-11 flex_center before:{{ $radiusSize }} product_button_style">
                         خرید اقساطی </a>
                 </div>
             </div>
         </div>
     @break
 
-    @case(4)
+    {{-- @case(4)
         <div
             class="drop-shadow-base {{ $radiusSize }} px-6 gap-2 w-full pt-6 pb-10 {{ $evenOdd == 'true' ? 'evenOdd_cards' : 'bg-white dark:bg-dark-700' }} flex items-center">
             <div class="flex-none h-28 sm:h-32">
@@ -204,7 +254,7 @@
                     خرید اقساطی </a>
             </div>
         </div>
-    @break
+    @break --}}
 
     @default
 @endswitch
