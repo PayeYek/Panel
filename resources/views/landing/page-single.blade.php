@@ -24,9 +24,9 @@
     <img src="{{ asset('assets/svg/pattern-1.svg') }}" alt="lines"
         class="absolute right-0 w-full top-[38rem]" />
     <img src="{{ asset('assets/svg/pattern-2.svg') }}" alt="line-3"
-        class="absolute right-0 w-full top-[76rem]" />
-    <img src="{{ asset('assets/svg/pattern-2.svg') }}" alt="line-2"
-        class="absolute right-0 w-full bottom-48" />
+        class="absolute right-0 w-full top-[80rem]" />
+    <img src="{{ asset('assets/svg/pattern-3.svg') }}" alt="line-2"
+        class="absolute right-0 w-full bottom-8" />
 
     {{-- default_container --}}
     <main class="">
@@ -66,7 +66,9 @@
 
             "button_color_type_warning_default" => red border theme button default
         --}}
-        <x-home_landing.products type="1" evenOdd="false" radius="8" gapX="4" gapY="4"
+
+        {{-- @dd($land->toArray()); --}}
+        <x-home_landing.products :landSlug="$land->slug" :data="$land->products" :type="$land->product_type" :colorPalette="$land->color" evenOdd="false" radius="8" gapX="4" gapY="4"
             titleColor="title_color_type_1" defaultButtonColor="button_color_type_warning_default"
             actionButtonColor="button_color_type_warning" />
 

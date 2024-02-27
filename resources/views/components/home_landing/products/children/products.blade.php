@@ -1,4 +1,15 @@
-@props(['type' => '1', 'radius' => '8', 'titleColor' => 'title_color_type_1', 'defaultButtonColor' => 'button_color_type_warning_default', 'actionButtonColor' => 'button_color_type_warning', 'gapX' => '4', 'gapY' => '4', 'evenOdd' => 'false'])
+@props([
+    'type' => '1',
+    'radius' => '8',
+    'titleColor' => 'title_color_type_1',
+    'defaultButtonColor' => 'button_color_type_warning_default',
+    'actionButtonColor' => 'button_color_type_warning',
+    'gapX' => '4',
+    'gapY' => '4',
+    'evenOdd' => 'false',
+    'data' => '',
+    'landSlug' => '',
+])
 
 @php
 $radiusSize = null;
@@ -48,10 +59,14 @@ if($type === '1'){
     $classType = 'sm:grid-cols-2 lg:grid-cols-4 drop-shadow-base ' . $radiusSize . ' overflow-hidden';
 }
 @endphp
+{{-- @dd($data); --}}
 <div class="grid grid-cols-1 {{ $classType }}">
+    @foreach ($data as $product)
+        {{-- <x-home_landing.products.children.product :type="$type" :radius="$radius" :titleColor="$titleColor" :defaultButtonColor="$defaultButtonColor" :actionButtonColor="$actionButtonColor" :evenOdd="$evenOdd" :image="$product->image" :name="$product->name" :slug="$product->slug" href="#" /> --}}
+        <x-home_landing.products.children.product :type="$type" :radius="$radius" :titleColor="$titleColor" :defaultButtonColor="$defaultButtonColor" :actionButtonColor="$actionButtonColor" :evenOdd="$evenOdd" :image="$product->image" :name="$product->name" :landSlug="$landSlug" :productSlug="$product->slug" />
+    @endforeach
+    {{-- <x-home_landing.products.children.product :type="$type" :radius="$radius" :titleColor="$titleColor" :defaultButtonColor="$defaultButtonColor" :actionButtonColor="$actionButtonColor" :evenOdd="$evenOdd" image="{{ asset('assets/images/test/small-truck.png') }}" href="#" />
     <x-home_landing.products.children.product :type="$type" :radius="$radius" :titleColor="$titleColor" :defaultButtonColor="$defaultButtonColor" :actionButtonColor="$actionButtonColor" :evenOdd="$evenOdd" image="{{ asset('assets/images/test/small-truck.png') }}" href="#" />
     <x-home_landing.products.children.product :type="$type" :radius="$radius" :titleColor="$titleColor" :defaultButtonColor="$defaultButtonColor" :actionButtonColor="$actionButtonColor" :evenOdd="$evenOdd" image="{{ asset('assets/images/test/small-truck.png') }}" href="#" />
-    <x-home_landing.products.children.product :type="$type" :radius="$radius" :titleColor="$titleColor" :defaultButtonColor="$defaultButtonColor" :actionButtonColor="$actionButtonColor" :evenOdd="$evenOdd" image="{{ asset('assets/images/test/small-truck.png') }}" href="#" />
-    <x-home_landing.products.children.product :type="$type" :radius="$radius" :titleColor="$titleColor" :defaultButtonColor="$defaultButtonColor" :actionButtonColor="$actionButtonColor" :evenOdd="$evenOdd" image="{{ asset('assets/images/test/small-truck.png') }}" href="#" />
-    <x-home_landing.products.children.product :type="$type" :radius="$radius" :titleColor="$titleColor" :defaultButtonColor="$defaultButtonColor" :actionButtonColor="$actionButtonColor" :evenOdd="$evenOdd" image="{{ asset('assets/images/test/small-truck.png') }}" href="#" />
+    <x-home_landing.products.children.product :type="$type" :radius="$radius" :titleColor="$titleColor" :defaultButtonColor="$defaultButtonColor" :actionButtonColor="$actionButtonColor" :evenOdd="$evenOdd" image="{{ asset('assets/images/test/small-truck.png') }}" href="#" /> --}}
 </div>
