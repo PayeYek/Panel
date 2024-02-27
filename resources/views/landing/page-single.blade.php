@@ -71,7 +71,7 @@
 
         {{-- @dd($land->styles); --}}
         {{-- $land->styles->product_type --}}
-        <x-home_landing.products :landSlug="$land->slug" :data="$land->products" type="1" :colorPalette="$land->color" evenOdd="false" radius="8"
+        <x-home_landing.products :landSlug="$land->slug" :data="$land->products" :type="$land->styles->product_type" :colorPalette="$land->color" evenOdd="false" radius="8"
             titleColor="title_color_type_1"
             actionButtonColor="button_color_type_warning" />
 

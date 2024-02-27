@@ -47,15 +47,17 @@ if($type == '1'){
 }elseif($type == '4'){
     //  . ' lg:gap-0' type 4 must have this class
     $classType = 'sm:grid-cols-2 lg:grid-cols-3 gap-4';
-}elseif($type == '5'){
+}elseif($type == '5' || $type == '6'){
     //  . ' lg:gap-0' type 5 & 6 must have this class
     $classType = 'md:grid-cols-2 gap-4';
-}elseif($type == '6'){
-    $classType = 'md:grid-cols-1 shadow-base ' . $radiusSize . ' overflow-hidden';
 }elseif($type == '7'){
-    $classType = 'md:grid-cols-1 drop-shadow-base sm:drop-shadow-none ' . $radiusSize . ' overflow-hidden sm:rounded-none sm:overflow-visible sm:gap-4';
+    $classType = 'md:grid-cols-1 drop-shadow-base ' . $radiusSize . ' overflow-hidden';
 }elseif($type == '8'){
+    $classType = 'md:grid-cols-1 drop-shadow-base sm:drop-shadow-none ' . $radiusSize . ' overflow-hidden sm:rounded-none sm:overflow-visible sm:gap-4';
+}elseif($type == '9'){
     $classType = 'sm:grid-cols-2 lg:grid-cols-4 drop-shadow-base ' . $radiusSize . ' overflow-hidden';
+}elseif($type == '10'){
+    $classType = 'sm:grid-cols-2 lg:grid-cols-3 bg-white border border-dark-100 ' . $radiusSize . ' overflow-hidden';
 }
 @endphp
 
