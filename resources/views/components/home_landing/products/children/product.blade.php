@@ -22,6 +22,17 @@
         default => 'rounded-md'
     };
 
+    $radiusSizeSm = match($radius) {
+        '0' => 'sm:rounded-none',
+        '2' => 'sm:rounded-sm',
+        '4' => 'sm:rounded',
+        '6' => 'sm:rounded-md',
+        '8' => 'sm:rounded-lg',
+        '12' => 'sm:rounded-xl',
+        '16' => 'sm:rounded-2xl',
+        default => 'sm:rounded-md'
+    };
+
     $fillBtnTheme = $vacantBtnTheme = '';
     switch ($colorPalette) {
         case '1':
@@ -61,6 +72,15 @@
             break;
         
     }
+
+    $pseudoColor = match($colorPalette) {
+        '1' => 'before:bg-red-700',
+        '2' => 'before:bg-blue-700',
+        '3' => 'before:bg-rose-700',
+        '4' => 'before:bg-zinc-700',
+        '5' => 'before:bg-cobalt-700',
+        default => 'before:bg-red-700'
+    };
 @endphp
 
 @switch($type)
@@ -87,9 +107,9 @@
             </div>
             <h3 class="mb-0.5 font-bold lg:mb-1 text-lg sm:line-clamp-1 {{ $titleColor }}"> {{ $name }} </h3>
             <div class="grid w-56 grid-cols-2 gap-2">
-                <LandBtn text="مشخصات" to="{{ route('landing.product.show',['page'=> $landSlug, 'product'=> $productSlug]) }}" classNames="text-sm lg:text-base font-bold cursor-pointer relative w-40 h-11 flex_center {{ $vacantBtnTheme }} {{ $radiusSize }} before:{{ $radiusSize }}" />
-                <LandBtn text="کاتالوگ" to="{{ route('landing.product.show',['page'=> $landSlug, 'product'=> $productSlug]) }}" classNames="text-sm lg:text-base font-bold cursor-pointer relative {{ $vacantBtnTheme }} {{ $radiusSize }} w-40 h-11 flex_center before:{{ $radiusSize }}" />
-                <LandBtn text="خرید اقساطی" to="{{ route('landing.product.show',['page'=> $landSlug, 'product'=> $productSlug]) }}" classNames="text-sm lg:text-base font-bold cursor-pointer relative {{ $fillBtnTheme }} {{ $radiusSize }} w-40 h-11 flex_center before:{{ $radiusSize }}" />
+                <LandBtn text="مشخصات" to="{{ route('landing.product.show',['page'=> $landSlug, 'product'=> $productSlug]) }}" classNames="text-sm lg:text-base font-bold cursor-pointer relative w-full h-11 flex_center {{ $vacantBtnTheme }} {{ $radiusSize }} before:{{ $radiusSize }}" />
+                <LandBtn text="کاتالوگ" to="{{ route('landing.product.show',['page'=> $landSlug, 'product'=> $productSlug]) }}" classNames="text-sm lg:text-base font-bold cursor-pointer relative {{ $vacantBtnTheme }} {{ $radiusSize }} w-full h-11 flex_center before:{{ $radiusSize }}" />
+                <LandBtn text="خرید اقساطی" to="{{ route('landing.product.show',['page'=> $landSlug, 'product'=> $productSlug]) }}" classNames="text-sm lg:text-base font-bold cursor-pointer relative {{ $fillBtnTheme }} {{ $radiusSize }} w-full col-span-2 h-11 flex_center before:{{ $radiusSize }}" />
             </div>
         </div>
     @break
@@ -102,9 +122,9 @@
             </div>
             <h3 class="mb-0.5 font-bold lg:mb-1 text-lg sm:line-clamp-1 {{ $titleColor }}"> {{ $name }} </h3>
             <div class="grid w-56 grid-cols-2 gap-2">
-                <LandBtn text="مشخصات" to="{{ route('landing.product.show',['page'=> $landSlug, 'product'=> $productSlug]) }}" classNames="text-sm lg:text-base font-bold cursor-pointer relative w-40 h-11 flex_center {{ $vacantBtnTheme }} {{ $radiusSize }} before:{{ $radiusSize }}" />
-                <LandBtn text="کاتالوگ" to="{{ route('landing.product.show',['page'=> $landSlug, 'product'=> $productSlug]) }}" classNames="text-sm lg:text-base font-bold cursor-pointer relative {{ $vacantBtnTheme }} {{ $radiusSize }} w-40 h-11 flex_center before:{{ $radiusSize }}" />
-                <LandBtn text="خرید اقساطی" to="{{ route('landing.product.show',['page'=> $landSlug, 'product'=> $productSlug]) }}" classNames="text-sm lg:text-base font-bold cursor-pointer relative {{ $fillBtnTheme }} {{ $radiusSize }} w-40 h-11 flex_center before:{{ $radiusSize }}" />
+                <LandBtn text="مشخصات" to="{{ route('landing.product.show',['page'=> $landSlug, 'product'=> $productSlug]) }}" classNames="text-sm lg:text-base font-bold cursor-pointer relative w-full h-11 flex_center {{ $vacantBtnTheme }} {{ $radiusSize }} before:{{ $radiusSize }}" />
+                <LandBtn text="کاتالوگ" to="{{ route('landing.product.show',['page'=> $landSlug, 'product'=> $productSlug]) }}" classNames="text-sm lg:text-base font-bold cursor-pointer relative {{ $vacantBtnTheme }} {{ $radiusSize }} w-full h-11 flex_center before:{{ $radiusSize }}" />
+                <LandBtn text="خرید اقساطی" to="{{ route('landing.product.show',['page'=> $landSlug, 'product'=> $productSlug]) }}" classNames="text-sm lg:text-base font-bold cursor-pointer relative {{ $fillBtnTheme }} {{ $radiusSize }} w-full col-span-2 h-11 flex_center before:{{ $radiusSize }}" />
             </div>
         </div>
     @break
@@ -135,9 +155,9 @@
             <div class="flex flex-col flex-1 gap-4">
                 <h3 class="mb-1.5 font-bold lg:mb-1 text-lg sm:line-clamp-1 {{ $titleColor }}"> {{ $name }} </h3>
                 <div class="grid w-full grid-cols-2 gap-2 mr-auto max-w-72">
-                    <LandBtn text="مشخصات" to="{{ route('landing.product.show',['page'=> $landSlug, 'product'=> $productSlug]) }}" classNames="text-sm lg:text-base font-bold cursor-pointer relative w-40 h-11 flex_center {{ $vacantBtnTheme }} {{ $radiusSize }} before:{{ $radiusSize }}" />
-                    <LandBtn text="کاتالوگ" to="{{ route('landing.product.show',['page'=> $landSlug, 'product'=> $productSlug]) }}" classNames="text-sm lg:text-base font-bold cursor-pointer relative {{ $vacantBtnTheme }} {{ $radiusSize }} w-40 h-11 flex_center before:{{ $radiusSize }}" />
-                    <LandBtn text="خرید اقساطی" to="{{ route('landing.product.show',['page'=> $landSlug, 'product'=> $productSlug]) }}" classNames="text-sm lg:text-base font-bold cursor-pointer relative {{ $fillBtnTheme }} {{ $radiusSize }} w-40 h-11 flex_center before:{{ $radiusSize }}" />
+                    <LandBtn text="مشخصات" to="{{ route('landing.product.show',['page'=> $landSlug, 'product'=> $productSlug]) }}" classNames="text-sm lg:text-base font-bold cursor-pointer relative w-full h-11 flex_center {{ $vacantBtnTheme }} {{ $radiusSize }} before:{{ $radiusSize }}" />
+                    <LandBtn text="کاتالوگ" to="{{ route('landing.product.show',['page'=> $landSlug, 'product'=> $productSlug]) }}" classNames="text-sm lg:text-base font-bold cursor-pointer relative {{ $vacantBtnTheme }} {{ $radiusSize }} w-full h-11 flex_center before:{{ $radiusSize }}" />
+                    <LandBtn text="خرید اقساطی" to="{{ route('landing.product.show',['page'=> $landSlug, 'product'=> $productSlug]) }}" classNames="text-sm lg:text-base font-bold cursor-pointer relative {{ $fillBtnTheme }} {{ $radiusSize }} w-full col-span-2 h-11 flex_center before:{{ $radiusSize }}" />
                 </div>
             </div>
         </div>
@@ -152,9 +172,9 @@
             <div class="flex flex-col flex-1 gap-4">
                 <h3 class="mb-1.5 font-bold lg:mb-1 text-lg sm:line-clamp-1 {{ $titleColor }}"> {{ $name }} </h3>
                 <div class="grid w-full grid-cols-2 gap-2 mr-auto max-w-72">
-                    <LandBtn text="مشخصات" to="{{ route('landing.product.show',['page'=> $landSlug, 'product'=> $productSlug]) }}" classNames="text-sm lg:text-base font-bold cursor-pointer relative w-40 h-11 flex_center {{ $vacantBtnTheme }} {{ $radiusSize }} before:{{ $radiusSize }}" />
-                    <LandBtn text="کاتالوگ" to="{{ route('landing.product.show',['page'=> $landSlug, 'product'=> $productSlug]) }}" classNames="text-sm lg:text-base font-bold cursor-pointer relative {{ $vacantBtnTheme }} {{ $radiusSize }} w-40 h-11 flex_center before:{{ $radiusSize }}" />
-                    <LandBtn text="خرید اقساطی" to="{{ route('landing.product.show',['page'=> $landSlug, 'product'=> $productSlug]) }}" classNames="text-sm lg:text-base font-bold cursor-pointer relative {{ $fillBtnTheme }} {{ $radiusSize }} w-40 h-11 flex_center before:{{ $radiusSize }}" />
+                    <LandBtn text="مشخصات" to="{{ route('landing.product.show',['page'=> $landSlug, 'product'=> $productSlug]) }}" classNames="text-sm lg:text-base font-bold cursor-pointer relative w-full h-11 flex_center {{ $vacantBtnTheme }} {{ $radiusSize }} before:{{ $radiusSize }}" />
+                    <LandBtn text="کاتالوگ" to="{{ route('landing.product.show',['page'=> $landSlug, 'product'=> $productSlug]) }}" classNames="text-sm lg:text-base font-bold cursor-pointer relative {{ $vacantBtnTheme }} {{ $radiusSize }} w-full h-11 flex_center before:{{ $radiusSize }}" />
+                    <LandBtn text="خرید اقساطی" to="{{ route('landing.product.show',['page'=> $landSlug, 'product'=> $productSlug]) }}" classNames="text-sm lg:text-base font-bold cursor-pointer relative {{ $fillBtnTheme }} {{ $radiusSize }} w-full col-span-2 h-11 flex_center before:{{ $radiusSize }}" />
                 </div>
             </div>
         </div>
@@ -182,7 +202,7 @@
 
     @case(8)
         <div
-            class="flex flex-col w-full sm:flex-row sm:items-center lg:pl-14 sm:gap-4 lg:gap-10 xl:gap-16 px-6 sm:pr-10 pb-6 pt-4 sm:py-6 sm:{{ $radiusSize }} sm:drop-shadow-base {{ $evenOdd == 'true' ? 'evenOdd_cards' : 'bg-white dark:bg-dark-700' }} after:absolute after:content-[''] after:top-0 after:left-[5%] after:w-[90%] after:h-px after:border-t first:after:hidden after:border-dark-300 dark:after:border-dark-300 sm:after:hidden relative before:absolute before:content-[''] before:bg-red-700 dark:before:bg-red-600 before:top-0 before:right-0 before:w-4 before:hidden sm:before:block before:h-full overflow-hidden">
+            class="flex flex-col w-full sm:flex-row sm:items-center lg:pl-14 sm:gap-4 lg:gap-10 xl:gap-16 px-6 sm:pr-10 pb-6 pt-4 sm:py-6 {{ $radiusSizeSm }} sm:drop-shadow-base {{ $evenOdd == 'true' ? 'evenOdd_cards' : 'bg-white dark:bg-dark-700' }} after:absolute after:content-[''] after:top-0 after:left-[5%] after:w-[90%] after:h-px after:border-t first:after:hidden after:border-dark-300 dark:after:border-dark-300 sm:after:hidden relative {{ $pseudoColor }} before:absolute before:content-[''] before:top-0 before:right-0 before:w-4 before:hidden sm:before:block before:h-full overflow-hidden">
             <div class="h-[11.5rem] sm:h-32 md:h-36 lg:h-40 sm:mx-0 sm:w-32 md:w-36 lg:w-40 sm:flex-none mx-auto mb-2.5 sm:mb-0">
                 <img src="{{ $image }}" alt="mammut" class="object-contain h-full" />
             </div>
