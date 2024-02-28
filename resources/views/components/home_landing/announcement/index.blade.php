@@ -6,7 +6,6 @@
         default => null
     };
 
-    $showAllStyle = '';
     $showAllStyle = match($colorPalette) {
         '1' => 'text-red-700 hover:text-red-800',
         '2' => 'text-blue-700 hover:text-blue-800',

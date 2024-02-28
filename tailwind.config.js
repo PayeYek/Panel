@@ -84,7 +84,8 @@ export default {
                 'base': '0 2px 10px rgba(0,0,0,0.15)'
             },
             boxShadow: {
-                'focus': '0 0 4px'
+                'focus': '0 0 4px',
+                'lg': '0 2px 8px',
             },
             screens: {
                 '3xl': '1600px',

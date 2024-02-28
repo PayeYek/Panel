@@ -33,10 +33,10 @@
         <x-home_landing.announcement :landSlug="$land->slug" :data="$land->articles" type="{{ $land->styles->article_type }}" fontFamily="1" colorPalette="{{ $land->styles->color }}" radius="{{ $land->styles->radius }}" />
 
         {{-- videos --}}
-        <x-home_landing.videos radius="12"/>
+        <x-home_landing.videos radius="{{ $land->styles->radius }}" />
 
         {{-- terms of sale --}}
-        <x-home_landing.termsOfSale radius="12"/>
+        <x-home_landing.termsOfSale colorPalette="{{ $land->styles->color }}" radius="{{ $land->styles->radius }}" />
     </main>
 
     {{-- CATEGORIES | PRODUCTS --}}
