@@ -364,16 +364,56 @@
         @apply text-gray-900 dark:text-white;
     }
 
-    .button_color_type_warning_default{
-        @apply text-red-700 bg-white border border-red-700 dark:text-white dark:bg-gray-900 dark:border-transparent hover:bg-red-700 hover:text-white;
-    }
-
-    .button_color_type_warning{
-        @apply text-white bg-red-700 dark:text-white dark:bg-gray-900;
-    }
-
     .evenOdd_cards{
         @apply odd:bg-white odd:dark:bg-dark-700 even:bg-[#e7e8e9] even:dark:bg-slate-700;
+    }
+
+    .vacant_btn_theme_warning{
+        @apply text-red-700 bg-white border border-red-700 hover:border-red-800 hover:text-red-800 focus:border-red-800 focus:text-red-800 focus:shadow-focus focus:shadow-red-700/50;
+    }
+
+    .fill_btn_theme_warning_empty{
+        @apply text-red-700 bg-white border border-red-700 hover:border-red-800 hover:text-red-800 focus:border-red-800 focus:text-red-800 focus:shadow-focus focus:shadow-red-700/50;
+    }
+
+    .fill_btn_theme_warning_filled{
+        @apply text-white bg-red-700 hover:bg-red-800 focus:bg-red-800 focus:shadow-focus focus:shadow-red-700/50;
+    }
+    
+    .vacant_btn_theme_primary{
+        @apply text-blue-700 bg-white border border-blue-700 hover:border-blue-800 hover:text-blue-800 focus:border-blue-800 focus:text-blue-800 focus:shadow-focus focus:shadow-blue-700/50;
+    }
+    
+    .fill_btn_theme_primary_empty{
+        @apply text-blue-700 bg-white border border-blue-700 hover:border-blue-800 hover:text-blue-800 focus:border-blue-800 focus:text-blue-800 focus:shadow-focus focus:shadow-blue-700/50;
+    }
+
+    .fill_btn_theme_primary_filled{
+        @apply text-white bg-blue-700 hover:bg-blue-800 focus:bg-blue-800 focus:shadow-focus focus:shadow-blue-700/50;
+    }
+    
+    .vacant_btn_theme_rose{
+        @apply text-rose-700 bg-white border border-rose-700 hover:border-rose-800 hover:text-rose-800 focus:border-rose-800 focus:text-rose-800 focus:shadow-focus focus:shadow-rose-700/50;
+    }
+
+    .fill_btn_theme_rose_empty{
+        @apply text-rose-700 bg-white border border-rose-700 hover:border-rose-800 hover:text-rose-800 focus:border-rose-800 focus:text-rose-800 focus:shadow-focus focus:shadow-rose-700/50;
+    }
+
+    .fill_btn_theme_rose_filled{
+        @apply text-white bg-rose-700 hover:bg-rose-800 focus:bg-rose-800 focus:shadow-focus focus:shadow-rose-700/50;
+    }
+
+    .vacant_btn_theme_zinc{
+        @apply text-zinc-700 bg-white border border-zinc-700 hover:border-zinc-800 hover:text-zinc-800 focus:border-zinc-800 focus:text-zinc-800 focus:shadow-focus focus:shadow-zinc-700/50;
+    }
+
+    .fill_btn_theme_zinc_empty{
+        @apply text-zinc-700 bg-white border border-zinc-700 hover:border-zinc-800 hover:text-zinc-800 focus:border-zinc-800 focus:text-zinc-800 focus:shadow-focus focus:shadow-zinc-700/50;
+    }
+
+    .fill_btn_theme_zinc_filled{
+        @apply text-white bg-zinc-700 hover:bg-zinc-800 focus:bg-zinc-800 focus:shadow-focus focus:shadow-zinc-700/50;
     }
 }
 
