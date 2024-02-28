@@ -21,7 +21,7 @@
 
         {{-- favorites --}}
         {{-- :type="$land->styles->product_type" --}}
-        <x-home_landing.products :landSlug="$land->slug" :data="$land->products" type="1" :colorPalette="$land->styles->color" evenOdd="false" radius="8"
+        <x-home_landing.products :landSlug="$land->slug" :data="$land->products" :type="$land->styles->product_type" :colorPalette="$land->styles->color" evenOdd="false" radius="8"
             titleColor="title_color_type_1" />
 
         {{-- @dd($land->styles->article_type); --}}
@@ -31,7 +31,8 @@
             type 1 for list
             type 2 for tail
         --}}
-        <x-home_landing.announcement type="1" radius="8"/>
+        {{-- $land->styles->article_type --}}
+        <x-home_landing.announcement :landSlug="$land->slug" :data="$land->articles" type="1" :colorPalette="$land->styles->color" radius="8"/>
 
         {{-- videos --}}
         <x-home_landing.videos radius="12"/>

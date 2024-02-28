@@ -1,4 +1,4 @@
-@props(['type' => '1', 'radius' => '8', 'gap' => '16'])
+@props(['type' => '1', 'radius' => '8', 'data' => '', 'landSlug' => '/'])
 
 <section class="mb-4 lg:mb-12 relative z-[1] default_container">
     {{-- header --}}
@@ -15,7 +15,7 @@
             </svg>
         </a>
     </div>
-    <x-home_landing.announcement.children.announcements :type="$type" :radius="$radius" :gap="$gap" />
+    <x-home_landing.announcement.children.announcements :landSlug="$landSlug" :data="$data" :type="$type" :radius="$radius" />
     
     <a href="#" class="flex justify-end text-xs font-bold text-red-700 sm:hidden"> نمایش همه اطلاعیه ها
     </a>
