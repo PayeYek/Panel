@@ -32,7 +32,9 @@
                         <option value="5">{{ __('View type') }} 5</option>
                         <option value="6">{{ __('View type') }} 6</option>
                         <option value="7">{{ __('View type') }} 7</option>
-{{--                        <option value="8">{{ __('View type') }} 8</option>--}}
+                       <option value="8">{{ __('View type') }} 8</option>
+                       <option value="9">{{ __('View type') }} 9</option>
+                       <option value="10">{{ __('View type') }} 10</option>
                     </x-splade-select>
 
 
