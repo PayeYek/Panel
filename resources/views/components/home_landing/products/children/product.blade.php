@@ -44,102 +44,258 @@
     $vacantBtnTheme = null;
     switch ($colorPalette) {
         case '1':
-        $vacantBtnTheme = 'text-red-700 bg-white border border-red-700 hover:border-red-800 hover:text-red-800 focus:border-red-800 focus:text-red-800 focus:shadow-focus focus:shadow-red-700/50';
-        switch ($type) {
-            case '1':
-                $fillBtnTheme = 'text-red-700 bg-white border border-red-700 hover:border-red-800 hover:text-red-800 focus:border-red-800 focus:text-red-800 focus:shadow-focus focus:shadow-red-700/50';
-                break;
-            
-            case '2':
-                $fillBtnTheme = 'text-red-700 bg-white border border-red-700 hover:border-red-800 hover:text-red-800 focus:border-red-800 focus:text-red-800 focus:shadow-focus focus:shadow-red-700/50';
-                break;
-            
-            case '3':
-                $fillBtnTheme = 'text-white bg-red-700 text-red-800 hover:bg-red-800 focus:bg-red-800 focus:shadow-focus focus:shadow-red-700/50';
-                break;
-            
-            case '4':
-                $fillBtnTheme = 'text-red-700 bg-white border border-red-700 hover:border-red-800 hover:text-red-800 focus:border-red-800 focus:text-red-800 focus:shadow-focus focus:shadow-red-700/50';
-                break;
-            
-            case '5':
-                $fillBtnTheme = 'text-red-700 bg-white border border-red-700 hover:border-red-800 hover:text-red-800 focus:border-red-800 focus:text-red-800 focus:shadow-focus focus:shadow-red-700/50';
-                break;
-            
-            case '6':
-                $fillBtnTheme = 'text-white bg-red-700 text-red-800 hover:bg-red-800 focus:bg-red-800 focus:shadow-focus focus:shadow-red-700/50';
-                break;
-            
-            case '7':
-                $fillBtnTheme = 'text-white bg-red-700 text-red-800 hover:bg-red-800 focus:bg-red-800 focus:shadow-focus focus:shadow-red-700/50';
-                break;
-            
-            case '8':
-                $fillBtnTheme = 'text-white bg-red-700 text-red-800 hover:bg-red-800 focus:bg-red-800 focus:shadow-focus focus:shadow-red-700/50';
-                break;
-            
-            case '9':
-                $fillBtnTheme = 'text-red-700 bg-white border border-red-700 hover:border-red-800 hover:text-red-800 focus:border-red-800 focus:text-red-800 focus:shadow-focus focus:shadow-red-700/50';
-                break;
-            
-                case '10':
-                $fillBtnTheme = 'text-red-700 bg-white border border-red-700 hover:border-red-800 hover:text-red-800 focus:border-red-800 focus:text-red-800 focus:shadow-focus focus:shadow-red-700/50';
-                break;
+            $vacantBtnTheme = 'vacant_btn_theme_warning';
+            switch ($type) {
+                case '1':
+                    $fillBtnTheme = 'fill_btn_theme_warning_empty';
+                    break;
+                
+                case '2':
+                    $fillBtnTheme = 'fill_btn_theme_warning_empty';
+                    break;
+                
+                case '3':
+                    $fillBtnTheme = 'fill_btn_theme_warning_filled';
+                    break;
+                
+                case '4':
+                    $fillBtnTheme = 'fill_btn_theme_warning_empty';
+                    break;
+                
+                case '5':
+                    $fillBtnTheme = 'fill_btn_theme_warning_empty';
+                    break;
+                
+                case '6':
+                    $fillBtnTheme = 'fill_btn_theme_warning_filled';
+                    break;
+                
+                case '7':
+                    $fillBtnTheme = 'fill_btn_theme_warning_filled';
+                    break;
+                
+                case '8':
+                    $fillBtnTheme = 'fill_btn_theme_warning_filled';
+                    break;
+                
+                case '9':
+                    $fillBtnTheme = 'fill_btn_theme_warning_empty';
+                    break;
+                
+                    case '10':
+                    $fillBtnTheme = 'fill_btn_theme_warning_empty';
+                    break;
 
-            default:
-                # code...
-                break;
-        }
+                default:
+                    # code...
+                    break;
+            }
             # code...
             break;
         
         case '2':
-        $vacantBtnTheme = 'text-blue-700 bg-white border border-blue-700 hover:border-blue-800 hover:text-blue-800 focus:border-blue-800 focus:text-blue-800 focus:shadow-focus focus:shadow-blue-700/50';
-        switch ($type) {
-            case '1':
-                $fillBtnTheme = 'text-blue-700 bg-white border border-blue-700 hover:border-blue-800 hover:text-blue-800 focus:border-blue-800 focus:text-blue-800 focus:shadow-focus focus:shadow-blue-700/50';
-                break;
-            
-            case '2':
-                $fillBtnTheme = 'text-blue-700 bg-white border border-blue-700 hover:border-blue-800 hover:text-blue-800 focus:border-blue-800 focus:text-blue-800 focus:shadow-focus focus:shadow-blue-700/50';
-                break;
-            
-            case '3':
-                $fillBtnTheme = 'text-white bg-blue-700 text-blue-800 hover:bg-blue-800 focus:bg-blue-800 focus:shadow-focus focus:shadow-blue-700/50';
-                break;
-            
-            case '4':
-                $fillBtnTheme = 'text-blue-700 bg-white border border-blue-700 hover:border-blue-800 hover:text-blue-800 focus:border-blue-800 focus:text-blue-800 focus:shadow-focus focus:shadow-blue-700/50';
-                break;
-            
-            case '5':
-                $fillBtnTheme = 'text-blue-700 bg-white border border-blue-700 hover:border-blue-800 hover:text-blue-800 focus:border-blue-800 focus:text-blue-800 focus:shadow-focus focus:shadow-blue-700/50';
-                break;
-            
-            case '6':
-                $fillBtnTheme = 'text-white bg-blue-700 text-blue-800 hover:bg-blue-800 focus:bg-blue-800 focus:shadow-focus focus:shadow-blue-700/50';
-                break;
-            
-            case '7':
-                $fillBtnTheme = 'text-white bg-blue-700 text-blue-800 hover:bg-blue-800 focus:bg-blue-800 focus:shadow-focus focus:shadow-blue-700/50';
-                break;
-            
-            case '8':
-                $fillBtnTheme = 'text-white bg-blue-700 text-blue-800 hover:bg-blue-800 focus:bg-blue-800 focus:shadow-focus focus:shadow-blue-700/50';
-                break;
-            
-            case '9':
-                $fillBtnTheme = 'text-blue-700 bg-white border border-blue-700 hover:border-blue-800 hover:text-blue-800 focus:border-blue-800 focus:text-blue-800 focus:shadow-focus focus:shadow-blue-700/50';
-                break;
-            
-                case '10':
-                $fillBtnTheme = 'text-blue-700 bg-white border border-blue-700 hover:border-blue-800 hover:text-blue-800 focus:border-blue-800 focus:text-blue-800 focus:shadow-focus focus:shadow-blue-700/50';
-                break;
+            $vacantBtnTheme = 'vacant_btn_theme_primary';
+            switch ($type) {
+                case '1':
+                    $fillBtnTheme = 'fill_btn_theme_primary_empty';
+                    break;
+                
+                case '2':
+                    $fillBtnTheme = 'fill_btn_theme_primary_empty';
+                    break;
+                
+                case '3':
+                    $fillBtnTheme = 'fill_btn_theme_primary_filled';
+                    break;
+                
+                case '4':
+                    $fillBtnTheme = 'fill_btn_theme_primary_empty';
+                    break;
+                
+                case '5':
+                    $fillBtnTheme = 'fill_btn_theme_primary_empty';
+                    break;
+                
+                case '6':
+                    $fillBtnTheme = 'fill_btn_theme_primary_filled';
+                    break;
+                
+                case '7':
+                    $fillBtnTheme = 'fill_btn_theme_primary_filled';
+                    break;
+                
+                case '8':
+                    $fillBtnTheme = 'fill_btn_theme_primary_filled';
+                    break;
+                
+                case '9':
+                    $fillBtnTheme = 'fill_btn_theme_primary_empty';
+                    break;
+                
+                    case '10':
+                    $fillBtnTheme = 'fill_btn_theme_primary_empty';
+                    break;
 
-            default:
-                # code...
-                break;
-        }
+                default:
+                    # code...
+                    break;
+            }
+            # code...
+            break;
+        
+        case '3':
+            $vacantBtnTheme = 'vacant_btn_theme_rose';
+            switch ($type) {
+                case '1':
+                    $fillBtnTheme = 'fill_btn_theme_rose_empty';
+                    break;
+                
+                case '2':
+                    $fillBtnTheme = 'fill_btn_theme_rose_empty';
+                    break;
+                
+                case '3':
+                    $fillBtnTheme = 'fill_btn_theme_rose_filled';
+                    break;
+                
+                case '4':
+                    $fillBtnTheme = 'fill_btn_theme_rose_empty';
+                    break;
+                
+                case '5':
+                    $fillBtnTheme = 'fill_btn_theme_rose_empty';
+                    break;
+                
+                case '6':
+                    $fillBtnTheme = 'fill_btn_theme_rose_filled';
+                    break;
+                
+                case '7':
+                    $fillBtnTheme = 'fill_btn_theme_rose_filled';
+                    break;
+                
+                case '8':
+                    $fillBtnTheme = 'fill_btn_theme_rose_filled';
+                    break;
+                
+                case '9':
+                    $fillBtnTheme = 'fill_btn_theme_rose_empty';
+                    break;
+                
+                    case '10':
+                    $fillBtnTheme = 'fill_btn_theme_rose_empty';
+                    break;
+
+                default:
+                    # code...
+                    break;
+
+            }
+
+            # code...
+            break;
+        
+        case '4':
+            $vacantBtnTheme = 'vacant_btn_theme_zinc';
+            switch ($type) {
+                case '1':
+                    $fillBtnTheme = 'fill_btn_theme_zinc_empty';
+                    break;
+                
+                case '2':
+                    $fillBtnTheme = 'fill_btn_theme_zinc_empty';
+                    break;
+                
+                case '3':
+                    $fillBtnTheme = 'fill_btn_theme_zinc_filled';
+                    break;
+                
+                case '4':
+                    $fillBtnTheme = 'fill_btn_theme_zinc_empty';
+                    break;
+                
+                case '5':
+                    $fillBtnTheme = 'fill_btn_theme_zinc_empty';
+                    break;
+                
+                case '6':
+                    $fillBtnTheme = 'fill_btn_theme_zinc_filled';
+                    break;
+                
+                case '7':
+                    $fillBtnTheme = 'fill_btn_theme_zinc_filled';
+                    break;
+                
+                case '8':
+                    $fillBtnTheme = 'fill_btn_theme_zinc_filled';
+                    break;
+                
+                case '9':
+                    $fillBtnTheme = 'fill_btn_theme_zinc_empty';
+                    break;
+                
+                    case '10':
+                    $fillBtnTheme = 'fill_btn_theme_zinc_empty';
+                    break;
+
+                default:
+                    # code...
+                    break;
+                    
+            }
+
+            # code...
+            break;
+        
+        case '5':
+            $vacantBtnTheme = 'vacant_btn_theme_cobalt';
+            switch ($type) {
+                case '1':
+                    $fillBtnTheme = 'fill_btn_theme_cobalt_empty';
+                    break;
+                
+                case '2':
+                    $fillBtnTheme = 'fill_btn_theme_cobalt_empty';
+                    break;
+                
+                case '3':
+                    $fillBtnTheme = 'fill_btn_theme_cobalt_filled';
+                    break;
+                
+                case '4':
+                    $fillBtnTheme = 'fill_btn_theme_cobalt_empty';
+                    break;
+                
+                case '5':
+                    $fillBtnTheme = 'fill_btn_theme_cobalt_empty';
+                    break;
+                
+                case '6':
+                    $fillBtnTheme = 'fill_btn_theme_cobalt_filled';
+                    break;
+                
+                case '7':
+                    $fillBtnTheme = 'fill_btn_theme_cobalt_filled';
+                    break;
+                
+                case '8':
+                    $fillBtnTheme = 'fill_btn_theme_cobalt_filled';
+                    break;
+                
+                case '9':
+                    $fillBtnTheme = 'fill_btn_theme_cobalt_empty';
+                    break;
+                
+                    case '10':
+                    $fillBtnTheme = 'fill_btn_theme_cobalt_empty';
+                    break;
+
+                default:
+                    # code...
+                    break;
+                    
+            }
+
             # code...
             break;
         
@@ -159,16 +315,9 @@
             </div>
             <h3 class="mb-5 font-bold lg:mb-4 text-lg sm:line-clamp-1 {{ $titleColor }}"> {{ $name }} </h3>
             <div class="flex flex-col gap-4">
-                {{-- <LandBtn constantClasses="text-sm lg:text-base font-bold relative w-40 h-11 flex_center" /> --}}
-                <a href="{{ route('landing.product.show',['page'=> $landSlug, 'product'=> $productSlug]) }}"
-                    class="text-sm lg:text-base font-bold relative {{ $vacantBtnTheme }} {{ $radiusSize }} w-40 h-11 flex_center before:{{ $radiusSize }} product_button_style">
-                    مشخصات </a>
-                <a href="{{ route('landing.product.show',['page'=> $landSlug, 'product'=> $productSlug]) }}"
-                    class="text-sm lg:text-base font-bold relative {{ $vacantBtnTheme }} {{ $radiusSize }} w-40 h-11 flex_center before:{{ $radiusSize }} product_button_style">
-                    کاتالوگ </a>
-                <a href="{{ route('landing.product.show',['page'=> $landSlug, 'product'=> $productSlug]) }}"
-                    class="text-sm lg:text-base font-bold relative {{ $fillBtnTheme }} {{ $radiusSize }} w-40 h-11 flex_center before:{{ $radiusSize }} product_button_style">
-                    خرید اقساطی </a>
+                <LandBtn text="مشخصات" to="{{ route('landing.product.show',['page'=> $landSlug, 'product'=> $productSlug]) }}" classNames="text-sm lg:text-base font-bold cursor-pointer relative w-40 h-11 flex_center {{ $vacantBtnTheme }} {{ $radiusSize }} before:{{ $radiusSize }}" />
+                <LandBtn text="کاتالوگ" to="{{ route('landing.product.show',['page'=> $landSlug, 'product'=> $productSlug]) }}" classNames="text-sm lg:text-base font-bold cursor-pointer relative {{ $vacantBtnTheme }} {{ $radiusSize }} w-40 h-11 flex_center before:{{ $radiusSize }}" />
+                <LandBtn text="خرید اقساطی" to="{{ route('landing.product.show',['page'=> $landSlug, 'product'=> $productSlug]) }}" classNames="text-sm lg:text-base font-bold cursor-pointer relative {{ $fillBtnTheme }} {{ $radiusSize }} w-40 h-11 flex_center before:{{ $radiusSize }}" />
             </div>
         </div>
     @break
@@ -181,15 +330,9 @@
             </div>
             <h3 class="mb-0.5 font-bold lg:mb-1 text-lg sm:line-clamp-1 {{ $titleColor }}"> {{ $name }} </h3>
             <div class="grid w-56 grid-cols-2 gap-2">
-                <a href="{{ route('landing.product.show',['page'=> $landSlug, 'product'=> $productSlug]) }}"
-                    class="text-base font-bold relative {{ $vacantBtnTheme }} {{ $radiusSize }} w-full h-11 flex_center before:{{ $radiusSize }} product_button_style">
-                    مشخصات </a>
-                <a href="{{ route('landing.product.show',['page'=> $landSlug, 'product'=> $productSlug]) }}"
-                    class="text-base font-bold relative {{ $vacantBtnTheme }} {{ $radiusSize }} w-full h-11 flex_center before:{{ $radiusSize }} product_button_style">
-                    کاتالوگ </a>
-                <a href="{{ route('landing.product.show',['page'=> $landSlug, 'product'=> $productSlug]) }}"
-                    class="text-base font-bold relative {{ $fillBtnTheme }} {{ $radiusSize }} w-full col-span-2 h-11 flex_center before:{{ $radiusSize }} product_button_style">
-                    خرید اقساطی </a>
+                <LandBtn text="مشخصات" to="{{ route('landing.product.show',['page'=> $landSlug, 'product'=> $productSlug]) }}" classNames="text-sm lg:text-base font-bold cursor-pointer relative w-40 h-11 flex_center {{ $vacantBtnTheme }} {{ $radiusSize }} before:{{ $radiusSize }}" />
+                <LandBtn text="کاتالوگ" to="{{ route('landing.product.show',['page'=> $landSlug, 'product'=> $productSlug]) }}" classNames="text-sm lg:text-base font-bold cursor-pointer relative {{ $vacantBtnTheme }} {{ $radiusSize }} w-40 h-11 flex_center before:{{ $radiusSize }}" />
+                <LandBtn text="خرید اقساطی" to="{{ route('landing.product.show',['page'=> $landSlug, 'product'=> $productSlug]) }}" classNames="text-sm lg:text-base font-bold cursor-pointer relative {{ $fillBtnTheme }} {{ $radiusSize }} w-40 h-11 flex_center before:{{ $radiusSize }}" />
             </div>
         </div>
     @break
@@ -202,15 +345,9 @@
             </div>
             <h3 class="mb-0.5 font-bold lg:mb-1 text-lg sm:line-clamp-1 {{ $titleColor }}"> {{ $name }} </h3>
             <div class="grid w-56 grid-cols-2 gap-2">
-                <a href="{{ route('landing.product.show',['page'=> $landSlug, 'product'=> $productSlug]) }}"
-                    class="text-base font-bold relative {{ $vacantBtnTheme }} {{ $radiusSize }} w-full h-11 flex_center before:{{ $radiusSize }} product_button_style">
-                    مشخصات </a>
-                <a href="{{ route('landing.product.show',['page'=> $landSlug, 'product'=> $productSlug]) }}"
-                    class="text-base font-bold relative {{ $vacantBtnTheme }} {{ $radiusSize }} w-full h-11 flex_center before:{{ $radiusSize }} product_button_style">
-                    کاتالوگ </a>
-                <a href="{{ route('landing.product.show',['page'=> $landSlug, 'product'=> $productSlug]) }}"
-                    class="text-base font-bold relative {{ $fillBtnTheme }} {{ $radiusSize }} w-full col-span-2 h-11 flex_center before:{{ $radiusSize }} product_button_style">
-                    خرید اقساطی </a>
+                <LandBtn text="مشخصات" to="{{ route('landing.product.show',['page'=> $landSlug, 'product'=> $productSlug]) }}" classNames="text-sm lg:text-base font-bold cursor-pointer relative w-40 h-11 flex_center {{ $vacantBtnTheme }} {{ $radiusSize }} before:{{ $radiusSize }}" />
+                <LandBtn text="کاتالوگ" to="{{ route('landing.product.show',['page'=> $landSlug, 'product'=> $productSlug]) }}" classNames="text-sm lg:text-base font-bold cursor-pointer relative {{ $vacantBtnTheme }} {{ $radiusSize }} w-40 h-11 flex_center before:{{ $radiusSize }}" />
+                <LandBtn text="خرید اقساطی" to="{{ route('landing.product.show',['page'=> $landSlug, 'product'=> $productSlug]) }}" classNames="text-sm lg:text-base font-bold cursor-pointer relative {{ $fillBtnTheme }} {{ $radiusSize }} w-40 h-11 flex_center before:{{ $radiusSize }}" />
             </div>
         </div>
     @break
@@ -224,15 +361,9 @@
                     <img src="{{ $image }}" alt="mammut" class="object-contain h-full" />
                 </div>
                 <div class="flex flex-col w-40 gap-2 shrink">
-                    <a href="{{ route('landing.product.show',['page'=> $landSlug, 'product'=> $productSlug]) }}"
-                        class="text-base font-bold relative {{ $vacantBtnTheme }} {{ $radiusSize }} w-full h-11 flex_center before:{{ $radiusSize }} product_button_style">
-                        مشخصات </a>
-                    <a href="{{ route('landing.product.show',['page'=> $landSlug, 'product'=> $productSlug]) }}"
-                        class="text-base font-bold relative {{ $vacantBtnTheme }} {{ $radiusSize }} w-full h-11 flex_center before:{{ $radiusSize }} product_button_style">
-                        کاتالوگ </a>
-                    <a href="{{ route('landing.product.show',['page'=> $landSlug, 'product'=> $productSlug]) }}"
-                        class="text-base font-bold relative {{ $fillBtnTheme }} {{ $radiusSize }} w-full h-11 flex_center before:{{ $radiusSize }} product_button_style">
-                        خرید اقساطی </a>
+                    <LandBtn text="مشخصات" to="{{ route('landing.product.show',['page'=> $landSlug, 'product'=> $productSlug]) }}" classNames="text-sm lg:text-base font-bold cursor-pointer relative w-40 h-11 flex_center {{ $vacantBtnTheme }} {{ $radiusSize }} before:{{ $radiusSize }}" />
+                    <LandBtn text="کاتالوگ" to="{{ route('landing.product.show',['page'=> $landSlug, 'product'=> $productSlug]) }}" classNames="text-sm lg:text-base font-bold cursor-pointer relative {{ $vacantBtnTheme }} {{ $radiusSize }} w-40 h-11 flex_center before:{{ $radiusSize }}" />
+                    <LandBtn text="خرید اقساطی" to="{{ route('landing.product.show',['page'=> $landSlug, 'product'=> $productSlug]) }}" classNames="text-sm lg:text-base font-bold cursor-pointer relative {{ $fillBtnTheme }} {{ $radiusSize }} w-40 h-11 flex_center before:{{ $radiusSize }}" />
                 </div>
             </div>
         </div>
@@ -247,15 +378,9 @@
             <div class="flex flex-col flex-1 gap-4">
                 <h3 class="mb-1.5 font-bold lg:mb-1 text-lg sm:line-clamp-1 {{ $titleColor }}"> {{ $name }} </h3>
                 <div class="grid w-full grid-cols-2 gap-2 mr-auto max-w-72">
-                    <a href="{{ route('landing.product.show',['page'=> $landSlug, 'product'=> $productSlug]) }}"
-                        class="text-base font-bold relative {{ $vacantBtnTheme }} {{ $radiusSize }} w-full h-11 flex_center before:{{ $radiusSize }} product_button_style">
-                        مشخصات </a>
-                    <a href="{{ route('landing.product.show',['page'=> $landSlug, 'product'=> $productSlug]) }}"
-                        class="text-base font-bold relative {{ $vacantBtnTheme }} {{ $radiusSize }} w-full h-11 flex_center before:{{ $radiusSize }} product_button_style">
-                        کاتالوگ </a>
-                    <a href="{{ route('landing.product.show',['page'=> $landSlug, 'product'=> $productSlug]) }}"
-                        class="text-base font-bold col-span-2 relative {{ $fillBtnTheme }} {{ $radiusSize }} w-full h-11 flex_center before:{{ $radiusSize }} product_button_style">
-                        خرید اقساطی </a>
+                    <LandBtn text="مشخصات" to="{{ route('landing.product.show',['page'=> $landSlug, 'product'=> $productSlug]) }}" classNames="text-sm lg:text-base font-bold cursor-pointer relative w-40 h-11 flex_center {{ $vacantBtnTheme }} {{ $radiusSize }} before:{{ $radiusSize }}" />
+                    <LandBtn text="کاتالوگ" to="{{ route('landing.product.show',['page'=> $landSlug, 'product'=> $productSlug]) }}" classNames="text-sm lg:text-base font-bold cursor-pointer relative {{ $vacantBtnTheme }} {{ $radiusSize }} w-40 h-11 flex_center before:{{ $radiusSize }}" />
+                    <LandBtn text="خرید اقساطی" to="{{ route('landing.product.show',['page'=> $landSlug, 'product'=> $productSlug]) }}" classNames="text-sm lg:text-base font-bold cursor-pointer relative {{ $fillBtnTheme }} {{ $radiusSize }} w-40 h-11 flex_center before:{{ $radiusSize }}" />
                 </div>
             </div>
         </div>
@@ -270,15 +395,9 @@
             <div class="flex flex-col flex-1 gap-4">
                 <h3 class="mb-1.5 font-bold lg:mb-1 text-lg sm:line-clamp-1 {{ $titleColor }}"> {{ $name }} </h3>
                 <div class="grid w-full grid-cols-2 gap-2 mr-auto max-w-72">
-                    <a href="{{ route('landing.product.show',['page'=> $landSlug, 'product'=> $productSlug]) }}"
-                        class="text-base font-bold relative {{ $vacantBtnTheme }} {{ $radiusSize }} w-full h-11 flex_center before:{{ $radiusSize }} product_button_style">
-                        مشخصات </a>
-                    <a href="{{ route('landing.product.show',['page'=> $landSlug, 'product'=> $productSlug]) }}"
-                        class="text-base font-bold relative {{ $vacantBtnTheme }} {{ $radiusSize }} w-full h-11 flex_center before:{{ $radiusSize }} product_button_style">
-                        کاتالوگ </a>
-                    <a href="{{ route('landing.product.show',['page'=> $landSlug, 'product'=> $productSlug]) }}"
-                        class="text-base font-bold col-span-2 relative {{ $fillBtnTheme }} {{ $radiusSize }} w-full h-11 flex_center before:{{ $radiusSize }} product_button_style">
-                        خرید اقساطی </a>
+                    <LandBtn text="مشخصات" to="{{ route('landing.product.show',['page'=> $landSlug, 'product'=> $productSlug]) }}" classNames="text-sm lg:text-base font-bold cursor-pointer relative w-40 h-11 flex_center {{ $vacantBtnTheme }} {{ $radiusSize }} before:{{ $radiusSize }}" />
+                    <LandBtn text="کاتالوگ" to="{{ route('landing.product.show',['page'=> $landSlug, 'product'=> $productSlug]) }}" classNames="text-sm lg:text-base font-bold cursor-pointer relative {{ $vacantBtnTheme }} {{ $radiusSize }} w-40 h-11 flex_center before:{{ $radiusSize }}" />
+                    <LandBtn text="خرید اقساطی" to="{{ route('landing.product.show',['page'=> $landSlug, 'product'=> $productSlug]) }}" classNames="text-sm lg:text-base font-bold cursor-pointer relative {{ $fillBtnTheme }} {{ $radiusSize }} w-40 h-11 flex_center before:{{ $radiusSize }}" />
                 </div>
             </div>
         </div>
@@ -297,15 +416,9 @@
                 </p>
             </div>
             <div class="flex flex-col items-center gap-2">
-                <a href="{{ route('landing.product.show',['page'=> $landSlug, 'product'=> $productSlug]) }}"
-                    class="text-sm lg:text-base font-bold relative {{ $vacantBtnTheme }} {{ $radiusSize }} w-40 h-11 flex_center before:{{ $radiusSize }} product_button_style">
-                    مشخصات </a>
-                <a href="{{ route('landing.product.show',['page'=> $landSlug, 'product'=> $productSlug]) }}"
-                    class="text-sm lg:text-base font-bold relative {{ $vacantBtnTheme }} {{ $radiusSize }} w-40 h-11 flex_center before:{{ $radiusSize }} product_button_style">
-                    کاتالوگ </a>
-                <a href="{{ route('landing.product.show',['page'=> $landSlug, 'product'=> $productSlug]) }}"
-                    class="text-sm lg:text-base font-bold relative {{ $fillBtnTheme }} {{ $radiusSize }} w-40 h-11 flex_center before:{{ $radiusSize }} product_button_style">
-                    خرید اقساطی </a>
+                <LandBtn text="مشخصات" to="{{ route('landing.product.show',['page'=> $landSlug, 'product'=> $productSlug]) }}" classNames="text-sm lg:text-base font-bold cursor-pointer relative w-40 h-11 flex_center {{ $vacantBtnTheme }} {{ $radiusSize }} before:{{ $radiusSize }}" />
+                <LandBtn text="کاتالوگ" to="{{ route('landing.product.show',['page'=> $landSlug, 'product'=> $productSlug]) }}" classNames="text-sm lg:text-base font-bold cursor-pointer relative {{ $vacantBtnTheme }} {{ $radiusSize }} w-40 h-11 flex_center before:{{ $radiusSize }}" />
+                <LandBtn text="خرید اقساطی" to="{{ route('landing.product.show',['page'=> $landSlug, 'product'=> $productSlug]) }}" classNames="text-sm lg:text-base font-bold cursor-pointer relative {{ $fillBtnTheme }} {{ $radiusSize }} w-40 h-11 flex_center before:{{ $radiusSize }}" />
             </div>
         </div>
     @break
@@ -323,15 +436,9 @@
                 </p>
             </div>
             <div class="flex flex-col items-center gap-2">
-                <a href="{{ route('landing.product.show',['page'=> $landSlug, 'product'=> $productSlug]) }}"
-                    class="text-sm lg:text-base font-bold relative {{ $vacantBtnTheme }} {{ $radiusSize }} w-40 h-11 flex_center before:{{ $radiusSize }} product_button_style">
-                    مشخصات </a>
-                <a href="{{ route('landing.product.show',['page'=> $landSlug, 'product'=> $productSlug]) }}"
-                    class="text-sm lg:text-base font-bold relative {{ $vacantBtnTheme }} {{ $radiusSize }} w-40 h-11 flex_center before:{{ $radiusSize }} product_button_style">
-                    کاتالوگ </a>
-                <a href="{{ route('landing.product.show',['page'=> $landSlug, 'product'=> $productSlug]) }}"
-                    class="text-sm lg:text-base font-bold relative {{ $fillBtnTheme }} {{ $radiusSize }} w-40 h-11 flex_center before:{{ $radiusSize }} product_button_style">
-                    خرید اقساطی </a>
+                <LandBtn text="مشخصات" to="{{ route('landing.product.show',['page'=> $landSlug, 'product'=> $productSlug]) }}" classNames="text-sm lg:text-base font-bold cursor-pointer relative w-40 h-11 flex_center {{ $vacantBtnTheme }} {{ $radiusSize }} before:{{ $radiusSize }}" />
+                <LandBtn text="کاتالوگ" to="{{ route('landing.product.show',['page'=> $landSlug, 'product'=> $productSlug]) }}" classNames="text-sm lg:text-base font-bold cursor-pointer relative {{ $vacantBtnTheme }} {{ $radiusSize }} w-40 h-11 flex_center before:{{ $radiusSize }}" />
+                <LandBtn text="خرید اقساطی" to="{{ route('landing.product.show',['page'=> $landSlug, 'product'=> $productSlug]) }}" classNames="text-sm lg:text-base font-bold cursor-pointer relative {{ $fillBtnTheme }} {{ $radiusSize }} w-40 h-11 flex_center before:{{ $radiusSize }}" />
             </div>
         </div>
     @break
@@ -344,15 +451,9 @@
             </div>
             <h3 class="mb-5 font-bold lg:mb-4 text-lg sm:line-clamp-1 {{ $titleColor }}"> {{ $name }} </h3>
             <div class="flex flex-col gap-4">
-                <a href="{{ route('landing.product.show',['page'=> $landSlug, 'product'=> $productSlug]) }}"
-                    class="text-sm lg:text-base font-bold relative {{ $vacantBtnTheme }} {{ $radiusSize }} w-40 h-11 flex_center before:{{ $radiusSize }} product_button_style">
-                    مشخصات </a>
-                <a href="{{ route('landing.product.show',['page'=> $landSlug, 'product'=> $productSlug]) }}"
-                    class="text-sm lg:text-base font-bold relative {{ $vacantBtnTheme }} {{ $radiusSize }} w-40 h-11 flex_center before:{{ $radiusSize }} product_button_style">
-                    کاتالوگ </a>
-                <a href="{{ route('landing.product.show',['page'=> $landSlug, 'product'=> $productSlug]) }}"
-                    class="text-sm lg:text-base font-bold relative {{ $fillBtnTheme }} {{ $radiusSize }} w-40 h-11 flex_center before:{{ $radiusSize }} product_button_style">
-                    خرید اقساطی </a>
+                <LandBtn text="مشخصات" to="{{ route('landing.product.show',['page'=> $landSlug, 'product'=> $productSlug]) }}" classNames="text-sm lg:text-base font-bold cursor-pointer relative w-40 h-11 flex_center {{ $vacantBtnTheme }} {{ $radiusSize }} before:{{ $radiusSize }}" />
+                <LandBtn text="کاتالوگ" to="{{ route('landing.product.show',['page'=> $landSlug, 'product'=> $productSlug]) }}" classNames="text-sm lg:text-base font-bold cursor-pointer relative {{ $vacantBtnTheme }} {{ $radiusSize }} w-40 h-11 flex_center before:{{ $radiusSize }}" />
+                <LandBtn text="خرید اقساطی" to="{{ route('landing.product.show',['page'=> $landSlug, 'product'=> $productSlug]) }}" classNames="text-sm lg:text-base font-bold cursor-pointer relative {{ $fillBtnTheme }} {{ $radiusSize }} w-40 h-11 flex_center before:{{ $radiusSize }}" />
             </div>
         </div>
     @break
@@ -366,15 +467,9 @@
                     <img src="{{ $image }}" alt="mammut" class="object-contain h-full" />
                 </div>
                 <div class="flex flex-col w-40 gap-2 shrink">
-                    <a href="{{ route('landing.product.show',['page'=> $landSlug, 'product'=> $productSlug]) }}"
-                        class="text-base font-bold relative {{ $vacantBtnTheme }} {{ $radiusSize }} w-full h-11 flex_center before:{{ $radiusSize }} product_button_style">
-                        مشخصات </a>
-                    <a href="{{ route('landing.product.show',['page'=> $landSlug, 'product'=> $productSlug]) }}"
-                        class="text-base font-bold relative {{ $vacantBtnTheme }} {{ $radiusSize }} w-full h-11 flex_center before:{{ $radiusSize }} product_button_style">
-                        کاتالوگ </a>
-                    <a href="{{ route('landing.product.show',['page'=> $landSlug, 'product'=> $productSlug]) }}"
-                        class="text-base font-bold relative {{ $fillBtnTheme }} {{ $radiusSize }} w-full h-11 flex_center before:{{ $radiusSize }} product_button_style">
-                        خرید اقساطی </a>
+                    <LandBtn text="مشخصات" to="{{ route('landing.product.show',['page'=> $landSlug, 'product'=> $productSlug]) }}" classNames="text-sm lg:text-base font-bold cursor-pointer relative w-40 h-11 flex_center {{ $vacantBtnTheme }} {{ $radiusSize }} before:{{ $radiusSize }}" />
+                    <LandBtn text="کاتالوگ" to="{{ route('landing.product.show',['page'=> $landSlug, 'product'=> $productSlug]) }}" classNames="text-sm lg:text-base font-bold cursor-pointer relative {{ $vacantBtnTheme }} {{ $radiusSize }} w-40 h-11 flex_center before:{{ $radiusSize }}" />
+                    <LandBtn text="خرید اقساطی" to="{{ route('landing.product.show',['page'=> $landSlug, 'product'=> $productSlug]) }}" classNames="text-sm lg:text-base font-bold cursor-pointer relative {{ $fillBtnTheme }} {{ $radiusSize }} w-40 h-11 flex_center before:{{ $radiusSize }}" />
                 </div>
             </div>
         </div>

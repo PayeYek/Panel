@@ -59,7 +59,7 @@
 
         {{-- favorites --}}
         {{-- :type="$land->styles->product_type" --}}
-        <x-home_landing.products :landSlug="$land->slug" :data="$land->products" :type="$land->styles->product_type" :colorPalette="$land->styles->color" evenOdd="false" radius="8"
+        <x-home_landing.products :landSlug="$land->slug" :data="$land->products" type="1" :colorPalette="$land->styles->color" evenOdd="false" radius="8"
             titleColor="title_color_type_1" />
 
         {{-- @dd($land->styles->article_type); --}}
