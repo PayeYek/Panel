@@ -11,299 +11,56 @@
     'description' => '',
 ])
 @php
-    $radiusSize = null;
-    switch ($radius) {
-        case '0':
-            $radiusSize = 'rounded-none';
-            break;
-        case '2':
-            $radiusSize = 'rounded-sm';
-            break;
-        case '4':
-            $radiusSize = 'rounded';
-            break;
-        case '6':
-            $radiusSize = 'rounded-md';
-            break;
-        case '8':
-            $radiusSize = 'rounded-lg';
-            break;
-        case '12':
-            $radiusSize = 'rounded-xl';
-            break;
-        case '16':
-            $radiusSize = 'rounded-2xl';
-            break;
-        
-        default:
-            # code...
-            break;
-    }
+    $radiusSize = match($radius) {
+        '0' => 'rounded-none',
+        '2' => 'rounded-sm',
+        '4' => 'rounded',
+        '6' => 'rounded-md',
+        '8' => 'rounded-lg',
+        '12' => 'rounded-xl',
+        '16' => 'rounded-2xl',
+        default => null
+    };
 
-    $fillBtnTheme = null;
-    $vacantBtnTheme = null;
+    $fillBtnTheme = $vacantBtnTheme = '';
     switch ($colorPalette) {
         case '1':
             $vacantBtnTheme = 'vacant_btn_theme_warning';
-            switch ($type) {
-                case '1':
-                    $fillBtnTheme = 'fill_btn_theme_warning_empty';
-                    break;
-                
-                case '2':
-                    $fillBtnTheme = 'fill_btn_theme_warning_empty';
-                    break;
-                
-                case '3':
-                    $fillBtnTheme = 'fill_btn_theme_warning_filled';
-                    break;
-                
-                case '4':
-                    $fillBtnTheme = 'fill_btn_theme_warning_empty';
-                    break;
-                
-                case '5':
-                    $fillBtnTheme = 'fill_btn_theme_warning_empty';
-                    break;
-                
-                case '6':
-                    $fillBtnTheme = 'fill_btn_theme_warning_filled';
-                    break;
-                
-                case '7':
-                    $fillBtnTheme = 'fill_btn_theme_warning_filled';
-                    break;
-                
-                case '8':
-                    $fillBtnTheme = 'fill_btn_theme_warning_filled';
-                    break;
-                
-                case '9':
-                    $fillBtnTheme = 'fill_btn_theme_warning_empty';
-                    break;
-                
-                    case '10':
-                    $fillBtnTheme = 'fill_btn_theme_warning_empty';
-                    break;
-
-                default:
-                    # code...
-                    break;
-            }
-            # code...
+            $fillBtnTheme = match($type) {
+                '3', '6', '7', '8' => 'fill_btn_theme_warning_filled',
+                default => 'fill_btn_theme_warning_empty'
+            };
             break;
-        
         case '2':
             $vacantBtnTheme = 'vacant_btn_theme_primary';
-            switch ($type) {
-                case '1':
-                    $fillBtnTheme = 'fill_btn_theme_primary_empty';
-                    break;
-                
-                case '2':
-                    $fillBtnTheme = 'fill_btn_theme_primary_empty';
-                    break;
-                
-                case '3':
-                    $fillBtnTheme = 'fill_btn_theme_primary_filled';
-                    break;
-                
-                case '4':
-                    $fillBtnTheme = 'fill_btn_theme_primary_empty';
-                    break;
-                
-                case '5':
-                    $fillBtnTheme = 'fill_btn_theme_primary_empty';
-                    break;
-                
-                case '6':
-                    $fillBtnTheme = 'fill_btn_theme_primary_filled';
-                    break;
-                
-                case '7':
-                    $fillBtnTheme = 'fill_btn_theme_primary_filled';
-                    break;
-                
-                case '8':
-                    $fillBtnTheme = 'fill_btn_theme_primary_filled';
-                    break;
-                
-                case '9':
-                    $fillBtnTheme = 'fill_btn_theme_primary_empty';
-                    break;
-                
-                    case '10':
-                    $fillBtnTheme = 'fill_btn_theme_primary_empty';
-                    break;
-
-                default:
-                    # code...
-                    break;
-            }
-            # code...
+            $fillBtnTheme = match($type) {
+                '3', '6', '7', '8' => 'fill_btn_theme_primary_filled',
+                default => 'fill_btn_theme_primary_empty'
+            };
             break;
-        
         case '3':
             $vacantBtnTheme = 'vacant_btn_theme_rose';
-            switch ($type) {
-                case '1':
-                    $fillBtnTheme = 'fill_btn_theme_rose_empty';
-                    break;
-                
-                case '2':
-                    $fillBtnTheme = 'fill_btn_theme_rose_empty';
-                    break;
-                
-                case '3':
-                    $fillBtnTheme = 'fill_btn_theme_rose_filled';
-                    break;
-                
-                case '4':
-                    $fillBtnTheme = 'fill_btn_theme_rose_empty';
-                    break;
-                
-                case '5':
-                    $fillBtnTheme = 'fill_btn_theme_rose_empty';
-                    break;
-                
-                case '6':
-                    $fillBtnTheme = 'fill_btn_theme_rose_filled';
-                    break;
-                
-                case '7':
-                    $fillBtnTheme = 'fill_btn_theme_rose_filled';
-                    break;
-                
-                case '8':
-                    $fillBtnTheme = 'fill_btn_theme_rose_filled';
-                    break;
-                
-                case '9':
-                    $fillBtnTheme = 'fill_btn_theme_rose_empty';
-                    break;
-                
-                    case '10':
-                    $fillBtnTheme = 'fill_btn_theme_rose_empty';
-                    break;
-
-                default:
-                    # code...
-                    break;
-
-            }
-
-            # code...
+            $fillBtnTheme = match($type) {
+                '3', '6', '7', '8' => 'fill_btn_theme_rose_filled',
+                default => 'fill_btn_theme_rose_empty'
+            };
             break;
-        
         case '4':
             $vacantBtnTheme = 'vacant_btn_theme_zinc';
-            switch ($type) {
-                case '1':
-                    $fillBtnTheme = 'fill_btn_theme_zinc_empty';
-                    break;
-                
-                case '2':
-                    $fillBtnTheme = 'fill_btn_theme_zinc_empty';
-                    break;
-                
-                case '3':
-                    $fillBtnTheme = 'fill_btn_theme_zinc_filled';
-                    break;
-                
-                case '4':
-                    $fillBtnTheme = 'fill_btn_theme_zinc_empty';
-                    break;
-                
-                case '5':
-                    $fillBtnTheme = 'fill_btn_theme_zinc_empty';
-                    break;
-                
-                case '6':
-                    $fillBtnTheme = 'fill_btn_theme_zinc_filled';
-                    break;
-                
-                case '7':
-                    $fillBtnTheme = 'fill_btn_theme_zinc_filled';
-                    break;
-                
-                case '8':
-                    $fillBtnTheme = 'fill_btn_theme_zinc_filled';
-                    break;
-                
-                case '9':
-                    $fillBtnTheme = 'fill_btn_theme_zinc_empty';
-                    break;
-                
-                    case '10':
-                    $fillBtnTheme = 'fill_btn_theme_zinc_empty';
-                    break;
-
-                default:
-                    # code...
-                    break;
-                    
-            }
-
-            # code...
+            $fillBtnTheme = match($type) {
+                '3', '6', '7', '8' => 'fill_btn_theme_zinc_filled',
+                default => 'fill_btn_theme_zinc_empty'
+            };
             break;
-        
         case '5':
             $vacantBtnTheme = 'vacant_btn_theme_cobalt';
-            switch ($type) {
-                case '1':
-                    $fillBtnTheme = 'fill_btn_theme_cobalt_empty';
-                    break;
-                
-                case '2':
-                    $fillBtnTheme = 'fill_btn_theme_cobalt_empty';
-                    break;
-                
-                case '3':
-                    $fillBtnTheme = 'fill_btn_theme_cobalt_filled';
-                    break;
-                
-                case '4':
-                    $fillBtnTheme = 'fill_btn_theme_cobalt_empty';
-                    break;
-                
-                case '5':
-                    $fillBtnTheme = 'fill_btn_theme_cobalt_empty';
-                    break;
-                
-                case '6':
-                    $fillBtnTheme = 'fill_btn_theme_cobalt_filled';
-                    break;
-                
-                case '7':
-                    $fillBtnTheme = 'fill_btn_theme_cobalt_filled';
-                    break;
-                
-                case '8':
-                    $fillBtnTheme = 'fill_btn_theme_cobalt_filled';
-                    break;
-                
-                case '9':
-                    $fillBtnTheme = 'fill_btn_theme_cobalt_empty';
-                    break;
-                
-                    case '10':
-                    $fillBtnTheme = 'fill_btn_theme_cobalt_empty';
-                    break;
-
-                default:
-                    # code...
-                    break;
-                    
-            }
-
-            # code...
+            $fillBtnTheme = match($type) {
+                '3', '6', '7', '8' => 'fill_btn_theme_cobalt_filled',
+                default => 'fill_btn_theme_cobalt_empty'
+            };
             break;
         
-        default:
-            # code...
-            break;
     }
-    
 @endphp
 
 @switch($type)
