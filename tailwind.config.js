@@ -47,7 +47,7 @@ export default {
         'sm:gap-x-4',
         'sm:gap-y-4',
     ],
-    darkMode: 'class',
+    // darkMode: 'class',
     theme: {
         extend: {
             colors: {

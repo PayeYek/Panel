@@ -32,10 +32,14 @@
     $gridCols = null;
     switch ($type) {
         case '1':
-            $gridCols = 'grid-cols-1 gap-4';
+            $gridCols = 'grid grid-cols-1 gap-4';
             break;
         case '2':
-            $gridCols = 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-4';
+            $gridCols = 'flex gap-4 items-center overflow-auto p-4 scrollbar-none md:scrollbar-thin lg:grid lg:grid-cols-4 lg:p-0 lg:overflow-visible';
+            break;
+        
+        case '3':
+            $gridCols = 'grid grid-cols-1 border border-dark-100 p-4 ' . $radiusSize;
             break;
         
         default:
@@ -45,8 +49,8 @@
 @endphp
 {{-- @dd($data); --}}
 
-<ul class="mb-4 grid {{ $gridCols }} list-none sm:mb-0">
-    @foreach ($data as $article)
+<ul class="mb-4 {{ $gridCols }} list-none sm:mb-0">
+    @foreach ($data->take(4) as $article)
         <x-home_landing.announcement.children.announcement
             :type="$type"
             :radiusSize="$radiusSize"
@@ -56,6 +60,6 @@
             :image="$article->image"
             :articleSlug="$article->slug"
             :landSlug="$landSlug"
-            />
+        />
     @endforeach
 </ul>

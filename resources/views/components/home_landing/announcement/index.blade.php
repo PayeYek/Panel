@@ -1,9 +1,16 @@
-@props(['type' => '1', 'radius' => '8', 'data' => '', 'landSlug' => '/'])
+@props(['type' => '1', 'radius' => '8', 'data' => '', 'landSlug' => '/', 'fontFamily' => '1'])
 
-<section class="mb-4 lg:mb-12 relative z-[1] default_container">
+@php
+    $captionFontFamily = match($fontFamily) {
+        '1' => 'text-xl font-normal',
+        default => null
+    };
+@endphp
+
+<section class="mb-4 lg:mb-12 relative z-[1] {{ $type == 2 ? 'lg:default_container' : 'default_container' }}">
     {{-- header --}}
-    <div class="flex items-center justify-center mb-4 sm:justify-between lg:px-4">
-        <h3 class="text-lg font-bold text-gray-900 dark:text-white"> اطلاعیه ها </h3>
+    <div class="flex items-center justify-center {{ $type == 2 ? 'lg:mb-4' : 'mb-4' }} sm:justify-between px-4 lg:px-4">
+        <h3 class=" text-gray-900 dark:text-white"> اطلاعیه ها </h3>
         <a href="#"
             class="items-center hidden gap-2 text-xs font-normal text-red-700 sm:flex dark:text-red-600">
             <span> نمایش همه </span>
@@ -16,7 +23,4 @@
         </a>
     </div>
     <x-home_landing.announcement.children.announcements :landSlug="$landSlug" :data="$data" :type="$type" :radius="$radius" />
-    
-    <a href="#" class="flex justify-end text-xs font-bold text-red-700 sm:hidden"> نمایش همه اطلاعیه ها
-    </a>
 </section>
