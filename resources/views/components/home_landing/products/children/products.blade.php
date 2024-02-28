@@ -9,34 +9,16 @@
 ])
 
 @php
-$radiusSize = null;
-    switch ($radius) {
-        case '0':
-            $radiusSize = 'rounded-none';
-            break;
-        case '2':
-            $radiusSize = 'rounded-sm';
-            break;
-        case '4':
-            $radiusSize = 'rounded';
-            break;
-        case '6':
-            $radiusSize = 'rounded-md';
-            break;
-        case '8':
-            $radiusSize = 'rounded-lg';
-            break;
-        case '12':
-            $radiusSize = 'rounded-xl';
-            break;
-        case '16':
-            $radiusSize = 'rounded-2xl';
-            break;
-        
-        default:
-            # code...
-            break;
-    }
+    $radiusSize = match($radius) {
+        '0' => 'rounded-none',
+        '2' => 'rounded-sm',
+        '4' => 'rounded',
+        '6' => 'rounded-md',
+        '8' => 'rounded-lg',
+        '12' => 'rounded-xl',
+        '16' => 'rounded-2xl',
+        default => 'rounded-md'
+    };
     
 $classType = null;
 if($type == '1'){
