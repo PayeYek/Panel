@@ -415,6 +415,18 @@
     .fill_btn_theme_zinc_filled{
         @apply text-white bg-zinc-700 hover:bg-zinc-800 focus:bg-zinc-800 focus:shadow-focus focus:shadow-zinc-700/50;
     }
+
+    .vacant_btn_theme_cobalt{
+        @apply text-cobalt-700 bg-white border border-cobalt-700 hover:border-cobalt-800 hover:text-cobalt-800 focus:border-cobalt-800 focus:text-cobalt-800 focus:shadow-focus focus:shadow-cobalt-700/50;
+    }
+
+    .fill_btn_theme_cobalt_empty{
+        @apply text-cobalt-700 bg-white border border-cobalt-700 hover:border-cobalt-800 hover:text-cobalt-800 focus:border-cobalt-800 focus:text-cobalt-800 focus:shadow-focus focus:shadow-cobalt-700/50;
+    }
+
+    .fill_btn_theme_cobalt_filled{
+        @apply text-white bg-cobalt-700 hover:bg-cobalt-800 focus:bg-cobalt-800 focus:shadow-focus focus:shadow-cobalt-700/50;
+    }
 }
 
 @layer utilities {

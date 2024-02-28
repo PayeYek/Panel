@@ -19,7 +19,7 @@
         '8' => 'rounded-lg',
         '12' => 'rounded-xl',
         '16' => 'rounded-2xl',
-        default => null
+        default => 'rounded-md'
     };
 
     $fillBtnTheme = $vacantBtnTheme = '';

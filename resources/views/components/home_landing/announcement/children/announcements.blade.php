@@ -1,4 +1,4 @@
-@props(['radius' => '8', 'type' => '1', 'data' => '', 'colorPalette' => '', 'landSlug' => '/'])
+@props(['radius' => '8', 'type' => '1', 'data' => '', 'colorPalette' => '1', 'landSlug' => '/'])
 
 @php
     $radiusSize = null;

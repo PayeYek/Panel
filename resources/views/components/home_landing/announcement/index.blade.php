@@ -1,4 +1,4 @@
-@props(['type' => '1', 'radius' => '8', 'data' => '', 'landSlug' => '/', 'fontFamily' => '1'])
+@props(['type' => '1', 'radius' => '8', 'data' => '', 'landSlug' => '/', 'fontFamily' => '1', 'colorPalette' => '1'])
 
 @php
     $captionFontFamily = match($fontFamily) {
@@ -22,5 +22,5 @@
             </svg>
         </a>
     </div>
-    <x-home_landing.announcement.children.announcements :landSlug="$landSlug" :data="$data" :type="$type" :radius="$radius" />
+    <x-home_landing.announcement.children.announcements :landSlug="$landSlug" :data="$data" :type="$type" :colorPalette="$colorPalette" :radius="$radius" />
 </section>
