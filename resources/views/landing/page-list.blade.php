@@ -3,7 +3,7 @@
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 px-5">
         @foreach($lands as $land)
 
-            <a href="{{route('landing.page.show', ['page' => $land->slug])}}"
+            <Link href="{{route('landing.page.show', ['page' => $land->slug])}}"
                class="flex items-center gap-3">
                 <img class="aspect-square h-24 shrink-0 rounded-md bg-gray-200 dark:bg-gray-800" src="{{$land->logo}}"
                      alt="{{$land->title}}">
@@ -14,7 +14,7 @@
                         <span class="text-xs"> تعداد مقاله: {{$land->articles->count()}}</span>
                     </div>
                 </div>
-            </a>
+            </Link>
 
         @endforeach
     </div>
