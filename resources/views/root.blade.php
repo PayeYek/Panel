@@ -1,16 +1,26 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" dir="{{ \App\Support\Help::isRTL() ? 'rtl' : 'ltr' }}" class="dark scrollbar-none">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" dir="{{ \App\Support\Help::isRTL() ? 'rtl' : 'ltr' }}" class="scrollbar-none">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <x-layout.loader.style/>
+        @production
+            <x-layout.loader.style/>
+        @endproduction
         <x-favicon/>
 
         @spladeHead
         @vite('resources/js/app.js')
     </head>
     <body class="antialiased scrollbar-none loader-hide-scrollbar">
-        <x-layout.loader.html/>
+        @production
+            <x-layout.loader.html/>
+        @endproduction
+
         @splade
+
+        @production
+            <x-layout.seo.hotjar/>
+            <x-layout.seo.gtag/>
+        @endproduction
     </body>
 </html>
