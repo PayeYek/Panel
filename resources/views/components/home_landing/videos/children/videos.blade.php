@@ -6,10 +6,21 @@
 
 @push('script')
     <script defer>
+        let videoThumbnails = null;
+        
         setTimeout(() => {
-            const videoThumbnails = document.querySelectorAll('.videoThumbnails')
-            console.log(videoThumbnails);
-        }, 500);
+            videoThumbnails = document.querySelectorAll('.videoThumbnails')
+            for (let i = 0; i < videoThumbnails.length; i++) {
+                const element = videoThumbnails[i];
+                element.addEventListener("click", () => {
+                    // console.log(element.dataset.video);
+                    // console.log(parser.parseFromString(element.dataset.video, "text/html"));
+                    console.log(document.getElementById('videoG').childNodes[0].childNodes[0]);
+                    // document.body.appendChild(document.getElementById('videoG').childNodes[0].childNodes[0])
+                }
+                )
+            }
+        }, 1000);
     </script>
 @endpush
 
@@ -18,10 +29,11 @@
         @foreach ($data->take(3) as $video)
             <x-home_landing.videos.children.video name="{{ $video->alt }}" src="{{ $video->image }}" link="{{ $video->link }}" radius="{{ $radius }}" />
         @endforeach
-    
+    {{-- v-html="data.videoSrc" --}}
         <section class="fixed inset-0 z-[1] bg-black/60 flex_center" v-show="data.showVideoModal" :data-video="data.videoSrc" id="videoG" @click="data.showVideoModal = false">
             {{-- {!! $link !!} --}}
-            <div class="bg-red-500 w-96 h-96" v-html="data.videoSrc"></div>
+            <div id="77207807240"><script type="text/JavaScript" src="https://www.aparat.com/embed/WLVms?data[rnddiv]=77207807240&data[responsive]=yes"></script></div>
+            {{-- <div class="bg-red-500 w-96 h-96" ></div> --}}
         </section>
     </ul>
 </x-splade-data>

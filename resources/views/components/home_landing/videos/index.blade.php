@@ -16,6 +16,7 @@
 @endphp
 {{-- @dd($data); --}}
 <section class=" mb-4 lg:mb-20 relative z-[2] default_container">
+    {{-- <div id="77207807240"><script type="text/JavaScript" src="https://www.aparat.com/embed/WLVms?data[rnddiv]=77207807240&data[responsive]=yes"></script></div> --}}
     {{-- header --}}
     <div class="flex items-center justify-between mb-4 lg:px-4">
         <h3 class="text-lg font-bold text-gray-900"> ویدیو ها </h3>
