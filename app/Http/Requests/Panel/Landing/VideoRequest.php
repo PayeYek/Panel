@@ -19,7 +19,7 @@ class VideoRequest extends FormRequest
             return [
                 'land_id'    => 'required|numeric',
                 'product_id' => 'nullable|numeric',
-                'image'      => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048|dimensions:min_width=2880,min_height=600',
+                'image'      => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
                 'alt'        => 'required|string',
                 'link'       => 'required|string',
                 'status'     => 'required|boolean',
@@ -43,7 +43,7 @@ class VideoRequest extends FormRequest
     public function getValidationRuleImage(): string
     {
         if ($this->hasFile('image')) {
-            return "nullable|image|mimes:jpg,jpeg,png,webp|max:2048|dimensions:min_width=2880,min_height=600";
+            return "nullable|image|mimes:jpg,jpeg,png,webp|max:2048";
         }
         return "nullable|string";
     }

@@ -12,3 +12,4 @@
         <x-layout.landing.footer :land="$land"/>
     </div>
 </section>
+@stack('script')

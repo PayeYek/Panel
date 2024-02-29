@@ -21,8 +21,7 @@
 
         {{-- favorites --}}
         {{--  --}}
-        <x-home_landing.products :landSlug="$land->slug" :data="$land->products" :type="$land->styles->product_type" colorPalette="{{ $land->styles->color }}" evenOdd="false" radius="{{ $land->styles->radius }}"
-            titleColor="title_color_type_1" />
+        <x-home_landing.products :landSlug="$land->slug" :data="$land->products" :type="$land->styles->product_type" colorPalette="{{ $land->styles->color }}" evenOdd="false" radius="{{ $land->styles->radius }}" />
 
         {{-- @dd($land->styles->article_type); --}}
         {{-- notifications --}}
@@ -31,9 +30,9 @@
             type 2 for tail
         --}}
         <x-home_landing.announcement :landSlug="$land->slug" :data="$land->articles" type="{{ $land->styles->article_type }}" fontFamily="1" colorPalette="{{ $land->styles->color }}" radius="{{ $land->styles->radius }}" />
-
+{{-- @dd($land->toArray()); --}}
         {{-- videos --}}
-        <x-home_landing.videos radius="{{ $land->styles->radius }}" />
+        <x-home_landing.videos colorPalette="{{ $land->styles->color }}" radius="{{ $land->styles->radius }}" :data="$land->videos" />
 
         {{-- terms of sale --}}
         <x-home_landing.termsOfSale colorPalette="{{ $land->styles->color }}" radius="{{ $land->styles->radius }}" />

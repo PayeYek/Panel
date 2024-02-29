@@ -5,7 +5,6 @@
     'productSlug' => '',
     'landSlug' => '',
     'radius' => '8',
-    'titleColor' => 'title_color_type_1',
     'colorPalette' => '1',
     'evenOdd' => 'false',
     'description' => '',
@@ -90,7 +89,7 @@
             <div class="mb-2 h-36">
                 <img src="{{ $image }}" alt="mammut" class="object-contain h-full" />
             </div>
-            <h3 class="mb-5 font-bold lg:mb-4 text-lg sm:line-clamp-1 {{ $titleColor }}"> {{ $name }} </h3>
+            <h3 class="mb-5 font-bold lg:mb-4 text-lg sm:line-clamp-1 text-gray-900"> {{ $name }} </h3>
             <div class="flex flex-col gap-4">
                 <LandBtn text="مشخصات" to="{{ route('landing.product.show',['page'=> $landSlug, 'product'=> $productSlug]) }}" classNames="text-sm lg:text-base font-bold cursor-pointer relative w-40 h-11 flex_center {{ $vacantBtnTheme }} {{ $radiusSize }} before:{{ $radiusSize }}" />
                 <LandBtn text="کاتالوگ" to="{{ route('landing.product.show',['page'=> $landSlug, 'product'=> $productSlug]) }}" classNames="text-sm lg:text-base font-bold cursor-pointer relative {{ $vacantBtnTheme }} {{ $radiusSize }} w-40 h-11 flex_center before:{{ $radiusSize }}" />
