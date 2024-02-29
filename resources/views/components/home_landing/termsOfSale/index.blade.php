@@ -16,11 +16,11 @@
     };
 
     $linkStyle = match($colorPalette) {
-        '1' => 'focus:shadow-lg focus:shadow-red-700 hover:bg-red-800 text-white hover:shadow-red-800 bg-red-700',
-        '2' => 'focus:shadow-lg focus:shadow-blue-700 hover:bg-blue-800 text-white hover:shadow-blue-800 bg-blue-700',
-        '3' => 'focus:shadow-lg focus:shadow-rose-700 hover:bg-rose-800 text-white hover:shadow-rose-800 bg-rose-700',
-        '4' => 'focus:shadow-lg focus:shadow-zinc-700 hover:bg-zinc-800 text-white hover:shadow-zinc-800 bg-zinc-700',
-        '5' => 'focus:shadow-lg focus:shadow-cobalt-700 hover:bg-cobalt-800 text-white hover:shadow-cobalt-800 bg-cobalt-700',
+        '1' => 'focus:shadow-lg focus:shadow-red-700/50 hover:bg-red-800 text-white hover:shadow-red-800/50 bg-red-700',
+        '2' => 'focus:shadow-lg focus:shadow-blue-700/50 hover:bg-blue-800 text-white hover:shadow-blue-800/50 bg-blue-700',
+        '3' => 'focus:shadow-lg focus:shadow-rose-700/50 hover:bg-rose-800 text-white hover:shadow-rose-800/50 bg-rose-700',
+        '4' => 'focus:shadow-lg focus:shadow-zinc-700/50 hover:bg-zinc-800 text-white hover:shadow-zinc-800/50 bg-zinc-700',
+        '5' => 'focus:shadow-lg focus:shadow-cobalt-700/50 hover:bg-cobalt-800 text-white hover:shadow-cobalt-800/50 bg-cobalt-700',
         default => null
     };
 @endphp

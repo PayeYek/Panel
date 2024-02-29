@@ -16,11 +16,11 @@
     };
 
     $linkStyle = match($colorPalette) {
-        '1' => 'bg-white shadow-lg shadow-red-700 hover:text-red-800 text-red-700 hover:shadow-red-800',
-        '2' => 'bg-white shadow-lg shadow-blue-700 hover:text-blue-800 text-blue-700 hover:shadow-blue-800',
-        '3' => 'bg-white shadow-lg shadow-rose-700 hover:text-rose-800 text-rose-700 hover:shadow-rose-800',
-        '4' => 'bg-white shadow-lg shadow-zinc-700 hover:text-zinc-800 text-zinc-700 hover:shadow-zinc-800',
-        '5' => 'bg-white shadow-lg shadow-cobalt-700 hover:text-cobalt-800 text-cobalt-700 hover:shadow-cobalt-800',
+        '1' => 'bg-white shadow-lg shadow-red-700/50 hover:text-red-800 text-red-700 hover:shadow-red-800/50',
+        '2' => 'bg-white shadow-lg shadow-blue-700/50 hover:text-blue-800 text-blue-700 hover:shadow-blue-800/50',
+        '3' => 'bg-white shadow-lg shadow-rose-700/50 hover:text-rose-800 text-rose-700 hover:shadow-rose-800/50',
+        '4' => 'bg-white shadow-lg shadow-zinc-700/50 hover:text-zinc-800 text-zinc-700 hover:shadow-zinc-800/50',
+        '5' => 'bg-white shadow-lg shadow-cobalt-700/50 hover:text-cobalt-800 text-cobalt-700 hover:shadow-cobalt-800/50',
         default => null
     };
     

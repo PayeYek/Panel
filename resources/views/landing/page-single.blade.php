@@ -20,7 +20,7 @@
         <x-home_landing.productCategories colorPalette="{{ $land->styles->color }}" radius="{{ $land->styles->radius }}" />
 
         {{-- favorites --}}
-        {{-- :type="$land->styles->product_type" --}}
+        {{--  --}}
         <x-home_landing.products :landSlug="$land->slug" :data="$land->products" :type="$land->styles->product_type" colorPalette="{{ $land->styles->color }}" evenOdd="false" radius="{{ $land->styles->radius }}"
             titleColor="title_color_type_1" />
 
