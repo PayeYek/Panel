@@ -18,7 +18,7 @@
         </div>
 
         <div class="flex items-center gap-2.5">
-            <SwitchStyle class="hidden sm:block" />
+            {{-- <SwitchStyle class="hidden sm:block" /> --}}
             {{-- <Breakpoint class="shrink-0 {{ app()->environment('production') ? 'hidden' : '' }}" /> --}}
             <a class="w-20 h-8 px-2 text-xs font-bold text-white bg-red-700 rounded flex_center hover:bg-red-800"
                 href="{{ route('landing.page.show', ['page' => $land->slug]) }}">{{ __('Terms of sale') }}</a>

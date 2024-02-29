@@ -8,7 +8,7 @@
 
     {{ $slot }}
 
-    <div class="default_container">
+    <div class="default_container relative z-[1]">
         <x-layout.landing.footer :land="$land"/>
     </div>
 </section>

@@ -18,7 +18,7 @@
 
         {{-- products --}}
         <x-home_landing.productCategories colorPalette="{{ $land->styles->color }}" radius="{{ $land->styles->radius }}" />
-
+@dd($data->toArray());
         {{-- favorites --}}
         {{--  --}}
         <x-home_landing.products :landSlug="$land->slug" :data="$land->products" :type="$land->styles->product_type" colorPalette="{{ $land->styles->color }}" evenOdd="false" radius="{{ $land->styles->radius }}" />
