@@ -1,6 +1,8 @@
 @props([
     'radius' => '8',
     'colorPalette' => '1',
+    'data' => '',
+    'landSlug' => '',
 ])
 
 @php
@@ -25,22 +27,16 @@
     };
     
 @endphp
+{{-- @dd($data); --}}
 <section
     class="default_container flex items-center flex-col md:flex-row gap-2.5 lg:gap-3 mb-9 lg:mb-16 md:justify-start relative z-[1]">
     <h3 class="text-lg font-bold text-gray-900 dark:text-white"> محصولات </h3>
     <div
         class="flex flex-col flex-wrap items-center content-center w-full h-20 text-base font-bold md:flex-row md:flex-nowrap md:content-normal md:h-auto gap-y-4 gap-x-5 dark:text-white">
-        <a href="#"
-            class="h-8 {{ $radiusSize }} {{ $linkStyle }} w-36 flex_center">
-            کشنده </a>
-        <a href="#"
-            class="h-8 {{ $radiusSize }} {{ $linkStyle }} w-36 flex_center">
-            کامیون </a>
-        <a href="#"
-            class="h-8 {{ $radiusSize }} {{ $linkStyle }} w-36 flex_center">
-            کامییونت </a>
-        <a href="#"
-            class="h-8 {{ $radiusSize }} {{ $linkStyle }} w-36 flex_center">
-            ون </a>
+        @foreach ($data as $item)
+            <a href="{{ route('landing.product.category', ['page' => $landSlug, 'category' => $item["category"]->slug]) }}"
+                class="h-8 {{ $radiusSize }} {{ $linkStyle }} w-36 flex_center">
+                {{ $item["category"]->title }} </a>
+        @endforeach
     </div>
 </section>
