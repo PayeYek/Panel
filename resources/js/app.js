@@ -10,6 +10,7 @@ import "@protonemedia/laravel-splade/dist/jodit.css";
  import PersianDate from "@/components/PersianDate.vue";
  import ShowPassword from "@/components/ShowPassword.vue";
  import LandBtn from "@/components/LandBtn.vue";
+ import LandingVideos from "@/components/LandingVideos.vue";
 
  import {createApp} from "vue";
  import {renderSpladeApp, SpladePlugin} from "@protonemedia/laravel-splade";
@@ -36,6 +37,7 @@ import "@protonemedia/laravel-splade/dist/jodit.css";
      .component('PersianDate', PersianDate)
      .component('ShowPassword', ShowPassword)
      .component('LandBtn', LandBtn)
+     .component('LandingVideos', LandingVideos)
      .mount(el);
 
  window.onload = function () {

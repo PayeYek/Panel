@@ -32,7 +32,7 @@
 </script>
     
 @endpush
-    <li class="">
+    {{-- <li class="">
         <div class="relative w-full pt-[66%] cursor-pointer {{ $radiusSize }} overflow-hidden drop-shadow-base videoThumbnails" data-video='{!! $link !!}' @click="data.showVideoModal = true; data.videoSrc='{!! $link !!}'">
             <img src="{{ $src }}" alt="{{ $name }}" class="absolute top-0 left-0 w-full h-full object-cover z-[1]" />
             <x-icons.playIcon class="w-12 h-12 sm:w-20 sm:h-20 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-[3]" />
@@ -41,5 +41,5 @@
             </div>
         </div>
 
-    </li>
+    </li> --}}
     

@@ -13,6 +13,17 @@
         '5' => 'text-cobalt-700 hover:text-cobalt-800',
         default => 'text-red-700 hover:text-red-800',
     };
+
+    $radiusSize = match($radius) {
+        '0' => 'rounded-none',
+        '2' => 'rounded-sm',
+        '4' => 'rounded',
+        '6' => 'rounded-md',
+        '8' => 'rounded-lg',
+        '12' => 'rounded-xl',
+        '16' => 'rounded-2xl',
+        default => 'rounded-md'
+    };
 @endphp
 {{-- @dd($data); --}}
 <section class=" mb-4 lg:mb-20 relative z-[2] default_container">
@@ -31,5 +42,7 @@
         </a>
     </div>
 
-    <x-home_landing.videos.children.videos colorPalette="{{ $colorPalette }}" radius="{{ $radius }}" :data="$data" />
+    <LandingVideos colorPalette="{{ $colorPalette }}" radius="{{ $radiusSize }}" data="{!! $data !!}" />
+
+    {{-- <x-home_landing.videos.children.videos colorPalette="{{ $colorPalette }}" radius="{{ $radius }}" :data="$data" /> --}}
 </section>
