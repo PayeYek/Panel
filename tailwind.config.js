@@ -95,7 +95,7 @@ export default {
                 morabba: "Morabba !important",
                 bakh: "YekanBakh !important",
                 bakhfa: "YekanBakhFA !important",
-                yekan: "IRANYekan !important",
+                yekan: "IRANYekanX, serif !important",
                 iran: "IRANSansX, serif !important",
                 inter: "Inter, IRANSansX, sans-serif !important",
             }
