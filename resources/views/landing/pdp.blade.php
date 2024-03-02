@@ -176,7 +176,7 @@
         
                 {{-- viewpoint --}}
                 <section class="default_container" v-show="data.activeTab == 3">
-                    <ul class="flex flex-col gap-7 text-gray-900">
+                    <ul class="flex flex-col gap-7 text-gray-900 mb-4">
                         <x-splade-data default="{ toggle: false }">
                             <li class="p-4 drop-shadow-base bg-white {{ $radiusSize }} lg:pr-16 lg:pl-8 xl:pr-28">
                                 {{-- user name --}}
@@ -201,6 +201,7 @@
                             </li>
                         </x-splade-data>
                     </ul>
+                    <button type="button" class="mx-auto text-red-700 text-sm font-bold lg:text-base cursor-pointer block"> مشاهده همه دیدگاه ها </button>
                 </section>
 
                 {{-- faq --}}
