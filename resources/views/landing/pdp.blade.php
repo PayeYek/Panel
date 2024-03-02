@@ -19,7 +19,7 @@
     //     default => null
     // };
 @endphp
-
+@dd($breadcrumbs)
 <x-layout.default.main :land="$land">
     <main class="pt-4">
         {{-- breadcrumbs --}}

@@ -1,5 +1,4 @@
 <x-layout.landing.land :land="$land">
-
     <div class="md:px-5 xl:px-0 grid grid-cols-1 md:grid-cols-3 gap-5">
   {{--      <div class="mt-10 md:mt-0 flex-1 space-y-5">
         </div>--}}
