@@ -110,13 +110,19 @@ class LandingController extends Controller
     {
         $land = $this->getLand($page);
 
-        $product = LandProduct::where('slug', $product)->firstOrFail();
+        $product = LandProduct::with('category')->where('slug', $product)->firstOrFail();
 
         SEO::title($land->title . ' | ' . $product->name)
             ->description($product->description)
             ->keywords([$land->title, $product->name]);
 
-        return view('landing.product-single', compact('land', 'product'));
+        $breadcrumbs = [];
+        $breadcrumbs[] = ['title' => __('Home'), 'url' => route('landing.page.show', ['page'=> $land->slug])];
+        $breadcrumbs[] = ['title' => __('Products'), 'url' => route('landing.product.list', ['page'=> $land->slug])];
+        $breadcrumbs[] = ['title' => $product->category->title , 'url' => route('landing.product.category', ['page'=> $land->slug, 'category'=> $product->category->slug])];
+        $breadcrumbs[] = ['title' => $product->name , 'url' => null ];
+
+        return view('landing.product-single', compact('land', 'product', 'breadcrumbs'));
     }
 
     public function category($page, $category)
