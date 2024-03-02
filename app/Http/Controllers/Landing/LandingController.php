@@ -116,7 +116,7 @@ class LandingController extends Controller
             ->description($product->description)
             ->keywords([$land->title, $product->name]);
 
-        return view('landing.product-single', compact('land', 'product'));
+        return view('landing.pdp', compact('land', 'product'));
     }
 
     public function category($page, $category)
