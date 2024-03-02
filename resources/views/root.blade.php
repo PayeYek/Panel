@@ -7,7 +7,7 @@
             <x-layout.loader.style/>
         @endproduction
         <x-favicon/>
-        @stack('head');
+        @stack('head')
 
         @spladeHead
         @vite('resources/js/app.js')
