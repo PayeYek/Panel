@@ -617,3 +617,9 @@
     @apply w-6 opacity-80;
 }
 /* swiper ends */
+
+/* tab styules starts */
+.l_tab_styles li.active{
+    @apply before:block text-red-700 font-bold;
+}
+/* tab styules ends */

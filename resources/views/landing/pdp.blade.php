@@ -21,7 +21,6 @@
 @endphp
 
 <x-layout.default.main :land="$land">
-    {{-- @dd($product->toArray()); --}}
     <main class="pt-4">
         {{-- breadcrumbs --}}
         <ul class="default_container flex items-center text-[10px] gap-1.5 text-gray-900 mb-4">
@@ -105,7 +104,23 @@
         </section>
 
         {{-- tabs --}}
-        <ul class="text-sm font-normal text-gray-900 gap-10"></ul>
+        <div class="overflow-hidden sticky top-16 mb-4 z-[1] bg-white pt-2">
+            <div class="overflow-auto flex">
+                <ul class="flex-none text-sm mx-4 font-normal text-gray-900 gap-10 flex items-center border-b-2 border-[#e7e8e9] l_tab_styles">
+                    <li class="flex-none py-2.5 cursor-pointer relative before:absolute before:content-[''] before:-bottom-0.5 before:inset-x-0 before:h-1 before:w-full before:rounded-lg before:bg-red-700 before:hidden active"> مشخصات فنی </li>
+                    <li class="flex-none py-2.5 cursor-pointer relative before:absolute before:content-[''] before:-bottom-0.5 before:inset-x-0 before:h-1 before:w-full before:rounded-lg before:bg-red-700 before:hidden"> توضیحات تکمیلی </li>
+                    <li class="flex-none py-2.5 cursor-pointer relative before:absolute before:content-[''] before:-bottom-0.5 before:inset-x-0 before:h-1 before:w-full before:rounded-lg before:bg-red-700 before:hidden"> دیدگاه شما </li>
+                    <li class="flex-none py-2.5 cursor-pointer relative before:absolute before:content-[''] before:-bottom-0.5 before:inset-x-0 before:h-1 before:w-full before:rounded-lg before:bg-red-700 before:hidden"> سوالات متداول </li>
+                </ul>
+            </div>
+        </div>
+
+        {{-- Technical Specifications --}}
+        <section class="default_container">
+            <ul class="flex flex-col gap-2 text-gray-900">
+                <x-pdp.TechnicalSpecifications radius="{{ $radiusSize }}" />
+            </ul>
+        </section>
     </main>
 
 </x-layout.default.main>
