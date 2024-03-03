@@ -87,6 +87,7 @@ export default {
             boxShadow: {
                 'focus': '0 0 4px',
                 'lg': '0 2px 8px',
+                'glass': 'inset 0 1px 4px',
             },
             screens: {
                 '3xl': '1600px',
