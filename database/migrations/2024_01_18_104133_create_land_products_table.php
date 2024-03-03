@@ -31,7 +31,7 @@ return new class extends Migration
             $table->text('country')->nullable();
             $table->text('colors')->nullable();
             $table->longText('body')->nullable();
-            $table->longText('pictures')->nullable();
+            $table->json('pictures')->default('[]');
             $table->bigInteger('view')->default(0);
             $table->timestamps();
 

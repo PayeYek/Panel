@@ -12,6 +12,7 @@ use App\Models\LandCategory;
 use App\Models\LandColor;
 use App\Models\LandProduct;
 use App\Tables\Landing\Products;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
@@ -86,6 +87,13 @@ class ProductController extends Controller
     {
         $data = $request->validated();
 
+//        $sql = "ALTER TABLE land_products MODIFY pictures JSON DEFAULT '[]'";
+//        DB::statement($sql);
+//
+//        dd($product);
+
+
+
 
 //        dd($request->image , $product->image);
 //        dd($request->pictures , $product->pictures);
@@ -106,19 +114,12 @@ class ProductController extends Controller
                     Storage::delete('public/' . $pic);
                 }
             /* Save new files */
-            $pictures = $request->file('pictures');
-            if (!is_null($pictures)) {
-                $i = 0;
-                $data['pictures'] = null;
-                foreach ($pictures as $file) {
-                    $image = $file->store('media/land/products/more', 'public');
-
-                    $data['pictures'][$i] = $image;
-                    $i++;
-                }
-            }
-        } else
+            $data['pictures'] = collect($request->file('pictures'))->map(function ($file) {
+                return $file->store('media/land/products/more', 'public');
+            })->all();
+        } else {
             $data['pictures'] = $product->getPictures();
+        }
 
         /* Update new manual */
         if ($request->validated()['manual'] !== $product->manual) {
@@ -135,6 +136,8 @@ class ProductController extends Controller
             $data['catalog'] = $product->getCatalog();
 
         $product->update($data);
+
+        dd($data, $product);
 
         \Splade::toast(__('Updated'))->autoDismiss(5)->info();
 
@@ -200,7 +203,7 @@ class ProductController extends Controller
         foreach ($request['list'] as $key => $list) {
 
             foreach ($list['items'] as $item) {
-                if ($item['value']){
+                if ($item['value']) {
                     $attr = LandAttribute::whereId($item['id'])->first();
 
                     $attr_value = $attr->values()->firstOrCreate(

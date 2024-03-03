@@ -3,7 +3,7 @@
 @tailwind base;
 @layer base{
     * {
-        @apply transition-all duration-300;
+        @apply transition-all duration-75;
     }
 }
 @tailwind components;

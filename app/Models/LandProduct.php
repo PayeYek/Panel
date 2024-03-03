@@ -25,13 +25,13 @@ class LandProduct extends Model
         'usage',
         'cabin',
         'image',
+        'pictures',
         'description',
         'catalog',
         'manual',
         'country',
         'colors',
         'body',
-        'pictures',
         'view'
     ];
 
@@ -98,13 +98,9 @@ class LandProduct extends Model
         return $this->attributes["image"];
     }
 
-    public function setPicturesAttribute()
+    public function setPicturesAttribute($value)
     {
-        $pictures = $this->attributes["pictures"];
-
-        if (is_null($pictures)) return [];
-
-        return $pictures;
+        $this->attributes['pictures'] = empty($value) ? json_encode([]) : json_encode($value);
     }
 
     public function getPicturesAttribute()
