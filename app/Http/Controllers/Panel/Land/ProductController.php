@@ -137,8 +137,6 @@ class ProductController extends Controller
 
         $product->update($data);
 
-        dd($data, $product);
-
         \Splade::toast(__('Updated'))->autoDismiss(5)->info();
 
         return redirect()->route('panel.landing.product.product.index');
