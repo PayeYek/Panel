@@ -177,29 +177,35 @@
                 {{-- viewpoint --}}
                 <section class="default_container" v-show="data.activeTab == 3">
                     <ul class="flex flex-col gap-7 text-gray-900 mb-4">
-                        <x-splade-data default="{ toggle: false }">
-                            <li class="p-4 drop-shadow-base bg-white {{ $radiusSize }} lg:pr-16 lg:pl-8 xl:pr-28">
-                                {{-- user name --}}
-                                <p class="block text-sm leading-6 lg:leading-7 lg:text-base font-bold text-[#585d68] border-b border-[#e7e8e9] mb-3 pb-0.5"> مهران محمودی </p>
-                                {{-- user viewpoint --}}
-                                <div class="flex items-center justify-between gap-10">
-                                    <p class="text-normal leading-6 lg:leading-7 text-justify text-sm lg:text-base"> 
-                                        سلام خسته نباشید. قیمت نقدی این محصول چقدره و چند روزه تحویل میدید؟
-                                    </p>
-                                    <button type="button" class="cursor-pointer" @click="data.toggle = !data.toggle">
-                                        <svg class="duration-1000" :class="data.toggle ? 'rotate-180' : 'rotate-0'" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M7 10L12.0008 14.58L17 10" stroke="#111827" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <li class="p-4 drop-shadow-base bg-white {{ $radiusSize }} lg:pr-16 lg:pl-8 xl:pr-28">
+                            {{-- user name --}}
+                            <p class="block text-sm leading-6 lg:leading-7 lg:text-base font-bold text-[#585d68] mb-3 pb-0.5"> مهران محمودی </p>
+                            
+                            {{-- user viewpoint --}}
+                            <div class="p-4 bg-dark-50 {{ $radiusSize }} flex flex-col gap-2 sm:pr-8 sm:py-5">
+                                <p class="text-sm leading-6 lg:text-base lg:leading-7 text-justify font-normal">
+                                    کامیونت 8.5 تن جک یا N721-N85 از تولیدات شرکت جک موتورز چین است که توسط آرین دیزل مونتاژ و به بازار عرضه می‌شود. این خودرو با داشتن قدرت موتور 155 اسب بخار و تناژ 8.5 تن برای مسیرهای بین شهری مناسب است. در طی سال‌های اخیر، کامیونت‌های جک مورد توجه بخش بزرگی از بازار قرار گرفته زیرا این خودروها دارای قدرت بالا و استهلاک کمی هستند. کامیونت 8.5 تن جک با داشتن جای خواب و صندلی دونفره شاگرد، مسیر سفر را برای سرنشینان خود هموار می‌کند. برای اطلاعات بیشتر در ادامه با ما همراه باشید.
+                                </p>
+
+                                {{-- like & dislike --}}
+                                <div class="flex items-center gap-5 justify-end sm:pl-6 text-[#717171]">
+                                    <button type="button" class="flex items-center gap-1 cursor-pointer p-1">
+                                        <svg class="stroke-current" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M1.79169 9.9668H5.82198V20.6982H1.79341C1.6816 20.6985 1.57085 20.6766 1.46749 20.634C1.36413 20.5914 1.27019 20.5288 1.19105 20.4498C1.11192 20.3708 1.04913 20.277 1.00629 20.1737C0.963456 20.0705 0.941406 19.9597 0.941406 19.8479V10.8171C0.941406 10.5916 1.03099 10.3753 1.19045 10.2158C1.34991 10.0564 1.56618 9.9668 1.79169 9.9668Z" stroke="current" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                            <path d="M5.83746 20.7478L7.06317 21.3598C7.53803 21.5964 8.06088 21.7181 8.59231 21.7164H19.7506C20.2231 21.7158 20.6792 21.5427 21.033 21.2295C21.3869 20.9164 21.6142 20.4848 21.6723 20.0158L23.0317 11.2404C23.0731 10.9674 23.056 10.6887 22.9818 10.4227C22.9076 10.1567 22.7779 9.90952 22.6012 9.69733C22.4244 9.48515 22.2048 9.31282 21.9566 9.19171C21.7085 9.07059 21.4374 9.00344 21.1615 8.99468H13.694V4.04554C13.6917 3.79354 13.6389 3.54457 13.5387 3.31331C13.4386 3.08204 13.2932 2.87317 13.111 2.69902C12.9289 2.52486 12.7137 2.38894 12.4782 2.29928C12.2427 2.20962 11.9916 2.16803 11.7397 2.17697C11.4194 2.1736 11.1037 2.25332 10.8234 2.40835C10.5431 2.56338 10.3077 2.78843 10.1403 3.06154L5.82031 9.96668V20.6981" stroke="current" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                                         </svg>
+                                        <p class="text-sm font-normal"> 0 </p>
+                                    </button>
+                                    <button type="button" class="flex items-center gap-1 cursor-pointer p-1">
+                                        <svg class="stroke-current" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M1.79169 14.0332H5.82198V3.30177H1.79341C1.6816 3.30155 1.57085 3.32338 1.46749 3.36601C1.36413 3.40864 1.27019 3.47123 1.19105 3.55021C1.11192 3.62919 1.04913 3.723 1.00629 3.82627C0.963456 3.92955 0.941406 4.04025 0.941406 4.15206V13.1829C0.941406 13.4084 1.03099 13.6247 1.19045 13.7842C1.34991 13.9436 1.56618 14.0332 1.79169 14.0332Z" stroke="current" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                            <path d="M5.83746 3.25218L7.06317 2.64017C7.53803 2.4036 8.06088 2.28189 8.59231 2.2836H19.7506C20.2231 2.2842 20.6792 2.45734 21.033 2.77048C21.3869 3.08363 21.6142 3.51523 21.6723 3.98418L23.0317 12.7596C23.0731 13.0326 23.056 13.3113 22.9818 13.5773C22.9076 13.8433 22.7779 14.0905 22.6012 14.3027C22.4244 14.5149 22.2048 14.6872 21.9566 14.8083C21.7085 14.9294 21.4374 14.9966 21.1615 15.0053H13.694V19.9545C13.6917 20.2065 13.6389 20.4554 13.5387 20.6867C13.4386 20.918 13.2932 21.1268 13.111 21.301C12.9289 21.4751 12.7137 21.6111 12.4782 21.7007C12.2427 21.7904 11.9916 21.832 11.7397 21.823C11.4194 21.8264 11.1037 21.7467 10.8234 21.5916C10.5431 21.4366 10.3077 21.2116 10.1403 20.9385L5.82031 14.0333V3.30189" stroke="current" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>
+                                        <p class="text-sm font-normal"> 0 </p>
                                     </button>
                                 </div>
-        
-                                <div class="duration-1000 overflow-hidden lg:pr-2" v-bind:class="data.toggle ? 'max-h-96 pb-4 mt-4' : 'max-h-0 pb-0'">
-                                    <p class="text-sm leading-6 lg:text-base lg:leading-7 text-justify font-normal pb-4 bg-gray-100 py-2 px-2.5 {{ $radiusSize }}">
-                                        کامیونت 8.5 تن جک یا N721-N85 از تولیدات شرکت جک موتورز چین است که توسط آرین دیزل مونتاژ و به بازار عرضه می‌شود. این خودرو با داشتن قدرت موتور 155 اسب بخار و تناژ 8.5 تن برای مسیرهای بین شهری مناسب است. در طی سال‌های اخیر، کامیونت‌های جک مورد توجه بخش بزرگی از بازار قرار گرفته زیرا این خودروها دارای قدرت بالا و استهلاک کمی هستند. کامیونت 8.5 تن جک با داشتن جای خواب و صندلی دونفره شاگرد، مسیر سفر را برای سرنشینان خود هموار می‌کند. برای اطلاعات بیشتر در ادامه با ما همراه باشید.
-                                    </p>
-                                </div>
-                            </li>
-                        </x-splade-data>
+                            </div>
+                        </li>
                     </ul>
                     <button type="button" class="mx-auto text-red-700 text-sm font-bold lg:text-base cursor-pointer block"> مشاهده همه دیدگاه ها </button>
                 </section>
