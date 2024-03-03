@@ -141,7 +141,7 @@ class LandingController extends Controller
 
         $data = collect($data);
 
-        return view('landing.category-products', compact('land', 'data'));
+        return view('landing.categories', compact('land', 'data'));
 
     }
 

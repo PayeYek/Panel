@@ -10,17 +10,17 @@
         default => 'rounded-md'
     };
 
-    // $linkStyle = match($colorPalette) {
-    //     '1' => 'bg-white shadow-lg shadow-red-700/50 hover:text-red-800 text-red-700 hover:shadow-red-800/50',
-    //     '2' => 'bg-white shadow-lg shadow-blue-700/50 hover:text-blue-800 text-blue-700 hover:shadow-blue-800/50',
-    //     '3' => 'bg-white shadow-lg shadow-rose-700/50 hover:text-rose-800 text-rose-700 hover:shadow-rose-800/50',
-    //     '4' => 'bg-white shadow-lg shadow-zinc-700/50 hover:text-zinc-800 text-zinc-700 hover:shadow-zinc-800/50',
-    //     '5' => 'bg-white shadow-lg shadow-cobalt-700/50 hover:text-cobalt-800 text-cobalt-700 hover:shadow-cobalt-800/50',
-    //     default => null
-    // };
+    $textStyle = match($land->styles->color) {
+        '1' => 'text-red-700',
+        '2' => 'text-blue-700',
+        '3' => 'text-rose-700',
+        '4' => 'text-zinc-700',
+        '5' => 'text-cobalt-700',
+        default => null
+    };
 @endphp
 
-{{-- @dd($product->pictures) --}}
+{{-- @dd($textStyle) --}}
 <x-layout.default.main :land="$land">
     <main class="pt-4 relative">
 
@@ -64,60 +64,13 @@
             <section class="md:flex flex-col gap-3">
                 {{-- desktop slider --}}
                 <landPdpDesktopSlider radius="{{ $radiusSize }}" name="{{ $product->name }}" mainImage="{{ $product->image }}" slides="{{ $product }}" />
-                
-                
-                {{-- desktop thumbnails --}}
-                {{-- <div class="md:grid hidden grid-cols-3 gap-3">
-                    @foreach ($product->pictures as $thumbnail)
-                        <div class="aspect-square w-full cursor-pointer {{ $radiusSize }}">
-                            <img src="{{ $thumbnail }}" alt="thumbnail" class="w-full h-full {{ $radiusSize }} object-cover" />
-                        </div>
-                    @endforeach
-                </div> --}}
-
-
 
                 {{-- mobile slider --}}
                 <landPdpMobileSlider slides="{{ $product }}" />
             </section>
 
             {{-- info --}}
-            <section class="">
-                <p class="hidden md:block text-2xl lg:text-[32px] font-medium text-red-700 mb-8 lg:mb-11 line-clamp-1"> {{ $product->name }} </p>
-                {{-- boxes --}}
-                <div class="grid grid-cols-3 gap-3 text-sm font-normal mb-4 md:max-w-[524px]">
-                    <div class="aspect-square flex_center flex-col p-1 bg-dark-50 gap-1 {{ $radiusSize }}">
-                        <p class="text-red-700 line-clamp-1"> نوع کاربری </p>
-                        <p class="text-gray-900 line-clamp-1"> {{ $product->usage }} </p>
-                    </div>
-                    <div class="aspect-square flex_center flex-col p-1 bg-dark-50 gap-1 {{ $radiusSize }}">
-                        <p class="text-red-700 line-clamp-1"> نوع کابین </p>
-                        <p class="text-gray-900 line-clamp-1">  {{ $product->cabin == 0 ? 'بدون خواب' : 'خواب دار' }} </p>
-                    </div>
-                    <div class="aspect-square flex_center flex-col p-1 bg-dark-50 gap-1 {{ $radiusSize }}">
-                        <p class="text-red-700 line-clamp-1"> تناژ </p>
-                        <p class="text-gray-900 line-clamp-1"> {{ $product->tonnage }} </p>
-                    </div>
-                    <div class="aspect-square flex_center flex-col p-1 bg-dark-50 gap-1 {{ $radiusSize }}">
-                        <p class="text-red-700 line-clamp-1"> تعداد محور چرخ‌ها </p>
-                        <p class="text-gray-900 line-clamp-1"> {{ $product->axle == 1 ? 'تک محوره' : ($product->axle == 2 ? 'جفت محوره' : 'سه محوره') }} </p>
-                    </div>
-                    <div class="aspect-square flex_center flex-col p-1 bg-dark-50 gap-1 {{ $radiusSize }}">
-                        <p class="text-red-700 line-clamp-1"> سال </p>
-                        <p class="text-gray-900 line-clamp-1"> {{ $product->year }} </p>
-                    </div>
-                    <div class="aspect-square flex_center flex-col p-1 bg-dark-50 gap-1 {{ $radiusSize }}">
-                        {{-- <p class="text-red-700 line-clamp-1"> سیستم ترمز </p>
-                        <p class="text-gray-900 line-clamp-1"> کاسه ای </p> --}}
-                    </div>
-                </div>
-
-                {{-- guide btns --}}
-                <div class="flex_center flex-col gap-2 md:max-w-[524px] md:flex-row lg:gap-4 ">
-                    <LandBtn to="/" classNames="h-11 w-[254px] bg-white border border-red-700 text-red-700 text-base font-bold flex_center {{ $radiusSize }}" text="دانلود کاتالوگ" />
-                    <LandBtn to="/" classNames="h-11 w-[254px] bg-red-700 text-white text-base font-bold flex_center {{ $radiusSize }}" text="مشاوره و خرید" />
-                </div>
-            </section>
+            <x-pdp_landing.information productName="{{ $product->name }}" colorPalette="{{ $land->styles->color }}" radius="{{ $land->styles->radius }}" :product="$product" />
         </section>
 
         <x-splade-data default="{ activeTab: 2 }">
