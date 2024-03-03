@@ -87,28 +87,28 @@
                 {{-- boxes --}}
                 <div class="grid grid-cols-3 gap-3 text-sm font-normal mb-4 md:max-w-[524px]">
                     <div class="aspect-square flex_center flex-col p-1 bg-dark-50 gap-1 {{ $radiusSize }}">
-                        <p class="text-red-700 line-clamp-1"> سیستم ترمز </p>
-                        <p class="text-gray-900 line-clamp-1"> کاسه ای </p>
+                        <p class="text-red-700 line-clamp-1"> نوع کاربری </p>
+                        <p class="text-gray-900 line-clamp-1"> {{ $product->usage }} </p>
                     </div>
                     <div class="aspect-square flex_center flex-col p-1 bg-dark-50 gap-1 {{ $radiusSize }}">
-                        <p class="text-red-700 line-clamp-1"> سیستم ترمز </p>
-                        <p class="text-gray-900 line-clamp-1"> کاسه ای </p>
+                        <p class="text-red-700 line-clamp-1"> نوع کابین </p>
+                        <p class="text-gray-900 line-clamp-1">  {{ $product->cabin == 0 ? 'بدون خواب' : 'خواب دار' }} </p>
                     </div>
                     <div class="aspect-square flex_center flex-col p-1 bg-dark-50 gap-1 {{ $radiusSize }}">
-                        <p class="text-red-700 line-clamp-1"> سیستم ترمز </p>
-                        <p class="text-gray-900 line-clamp-1"> کاسه ای </p>
+                        <p class="text-red-700 line-clamp-1"> تناژ </p>
+                        <p class="text-gray-900 line-clamp-1"> {{ $product->tonnage }} </p>
                     </div>
                     <div class="aspect-square flex_center flex-col p-1 bg-dark-50 gap-1 {{ $radiusSize }}">
-                        <p class="text-red-700 line-clamp-1"> سیستم ترمز </p>
-                        <p class="text-gray-900 line-clamp-1"> کاسه ای </p>
+                        <p class="text-red-700 line-clamp-1"> تعداد محور چرخ‌ها </p>
+                        <p class="text-gray-900 line-clamp-1"> {{ $product->axle == 1 ? 'تک محوره' : ($product->axle == 2 ? 'جفت محوره' : 'سه محوره') }} </p>
                     </div>
                     <div class="aspect-square flex_center flex-col p-1 bg-dark-50 gap-1 {{ $radiusSize }}">
-                        <p class="text-red-700 line-clamp-1"> سیستم ترمز </p>
-                        <p class="text-gray-900 line-clamp-1"> کاسه ای </p>
+                        <p class="text-red-700 line-clamp-1"> سال </p>
+                        <p class="text-gray-900 line-clamp-1"> {{ $product->year }} </p>
                     </div>
                     <div class="aspect-square flex_center flex-col p-1 bg-dark-50 gap-1 {{ $radiusSize }}">
-                        <p class="text-red-700 line-clamp-1"> سیستم ترمز </p>
-                        <p class="text-gray-900 line-clamp-1"> کاسه ای </p>
+                        {{-- <p class="text-red-700 line-clamp-1"> سیستم ترمز </p>
+                        <p class="text-gray-900 line-clamp-1"> کاسه ای </p> --}}
                     </div>
                 </div>
 
@@ -120,7 +120,7 @@
             </section>
         </section>
 
-        <x-splade-data default="{ activeTab: 4 }">
+        <x-splade-data default="{ activeTab: 2 }">
             <section class="mb-4">
                 {{-- tabs --}}
                 <div class="overflow-hidden sticky top-16 sm:top-20 mb-4 z-[1] bg-white pt-2 sm:default_container">
@@ -137,7 +137,26 @@
                 {{-- Technical Specifications --}}
                 <section class="default_container" v-show="data.activeTab == 1">
                     <ul class="flex flex-col gap-2 text-gray-900">
-                        <x-pdp.TechnicalSpecifications radius="{{ $radiusSize }}" />
+                        @foreach($product->attributes->sortBy('parent_id')->groupBy('parent_id') as $key => $attrs)
+                            <x-splade-data default="{ toggle: false }">
+                                <li class="p-4 drop-shadow-base bg-white {{ $radiusSize }} lg:pr-16 lg:pl-8 xl:pr-28">
+                                    {{-- title --}}
+                                    <div class="flex items-center justify-between">
+                                        <p class="text-sm lg:text-base font-bold"> {{ \App\Models\LandAttribute::whereId($key)->first()->name }} </p>
+                                        <button type="button" class="cursor-pointer" @click="data.toggle = !data.toggle">
+                                            <svg class="duration-1000" :class="data.toggle ? 'rotate-180' : 'rotate-0'" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M7 10L12.0008 14.58L17 10" stroke="#111827" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                            </svg>
+                                        </button>
+                                    </div>
+                                    <ul class="list-inside list-disc marker:text-gray-900 text-sm lg:text-base font-normal flex flex-col gap-2 duration-1000 overflow-hidden lg:pr-2" v-bind:class="data.toggle ? 'max-h-96 pb-4 mt-4' : 'max-h-0 pb-0'">
+                                        @foreach($attrs as $attr)
+                                            <li class=""> {{ $attr->name }} : {{ $attr->pivot->value->value }} </li>
+                                        @endforeach
+                                    </ul>
+                                </li>
+                            </x-splade-data>
+                        @endforeach
                     </ul>
                 </section>
                 
@@ -158,15 +177,7 @@
         
                                 <div class="duration-1000 overflow-hidden lg:pr-2" v-bind:class="data.toggle ? 'max-h-96 pb-4 mt-4' : 'max-h-0 pb-0'">
                                     <p class="text-sm lg:text-base font-normal pb-4">
-                                        در سال 1402  قدرتمندترین کامیون کمپرسی جفت
-                                        محور‌ بازار با نام شکموتو ایکس 5000D با قدرت موتور 450 اسب بخار رونمایی شد و توجه بسیاری را به خود جلب کرد. این خودرو طراحی داخلی منحصر به فردی دارد و با وجود یک تخت خواب، راحتی را برای سرنشین خود تضمین می‌کند.
-            
-                                         SHACMOTO
-                                        X5000-D با قابلیت کروز کنترل و فرمان چندمنظوره به
-                                            راحتی رقبای خود را کنار می‌زند. در کنار تمام این مزایا، این خودرو با داشتن
-                                            سیستم آلایندگی EURO 5 EEV به
-                                        کاهش آلودگی هوا نیز کمک می‌کند. از دیگر امکانات این خودروی 26 تنی می‌توان به دوربین 360 درجه و سقف شیشه‌ای اشاره کرد. در ادامه اطلاعات تکمیلی این
-                                        کامیون بی‌نظیر را بخوانید.
+                                        {{ $product->body }}
                                     </p>
                                 </div>
                             </li>
