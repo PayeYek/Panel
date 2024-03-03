@@ -1,4 +1,5 @@
 @props(['land'=>null])
+@stack('head')
 <section class="relative h-auto min-h-screen transition-all duration-300 bg-white dark:bg-black font-yekan rtl:number-fa">
     <x-layout.landing.sidebar :land="$land"/>
     {{--HEADER: LOGO | LINKS: HOME, PRODUCTS, SALLER, ABOUT | SALLER --}}

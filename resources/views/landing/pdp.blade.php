@@ -20,7 +20,7 @@
     // };
 @endphp
 
-{{-- @dd($product->toArray()) --}}
+{{-- @dd($product->pictures) --}}
 <x-layout.default.main :land="$land">
     <main class="pt-4 relative">
 
@@ -63,11 +63,14 @@
             {{-- product images --}}
             <section class="md:flex flex-col gap-3">
                 {{-- desktop image --}}
-                <div class="w-full pt-[100%] relative">
+                <div class="w-full pt-[100%] relative hidden md:block">
                     <div class="absolute inset-0">
                         <img src="{{ $product->image }}" alt="{{ $product->name }}" class="w-full h-full object-cover {{ $radiusSize }}" />
                     </div>
                 </div>
+
+                {{-- mobile slider --}}
+                <landPdpMobileSlider slides="{{ $product }}" />
 
                 {{-- image thumbnails --}}
                 <div class="md:grid hidden grid-cols-3 gap-3">
@@ -292,7 +295,7 @@
         </section>
 
         {{-- pattern --}}
-        <x-landing_pdp.pattern classNames="absolute bottom-0 left-0 w-full" aspectRatio="pt-[38%]" />
+        <x-pdp_landing.pattern classNames="absolute bottom-0 left-0 w-full" aspectRatio="pt-[38%]" />
     </main>
 
 </x-layout.default.main>
