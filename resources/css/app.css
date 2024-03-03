@@ -623,3 +623,8 @@
     @apply before:block text-red-700 font-bold;
 }
 /* tab styules ends */
+
+
+.iframe_styles > * {
+    width: 100%;
+}

@@ -17,7 +17,8 @@ export default {
         // "./app/Forms/*.php",
         // "./app/Tables/*.php",
     ],
-    // safelist: [
+    safelist: [
+        'iframe_styles',
     //     'before:rounded-none',
     //     'before:rounded-sm',
     //     'before:rounded',
@@ -46,7 +47,7 @@ export default {
     //     'gap-y-4',
     //     'sm:gap-x-4',
     //     'sm:gap-y-4',
-    // ],
+    ],
     // darkMode: 'false',
     theme: {
         extend: {

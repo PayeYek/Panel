@@ -37,7 +37,6 @@
             videoHolder.innerHTML = videoFromServer
             e.nextSibling.classList.remove("hidden")
             e.nextSibling.classList.add("flex_center")
-            // console.log(e.nextSibling.childNodes[0]);
         }
 
         function hideVideoByThumbnail(e) {
@@ -47,13 +46,6 @@
     </script>
 @endpush
 
-@push('head')
-    <style>
-        .ii > div{
-            width: 100%;
-        }
-    </style>
-@endpush
 {{-- @dd($data); --}}
 <section class=" mb-4 lg:mb-20 relative z-[2] lg:default_container">
     {{-- header --}}
@@ -81,7 +73,7 @@
                 </div>
 
                 <section class="fixed inset-0 z-[2] bg-black/60 hidden" onclick="hideVideoByThumbnail(this)">
-                    <div class="w-full h-full sm:w-[28rem] sm:h-96 "></div>
+                    <div class="w-full h-full sm:w-[28rem] sm:h-96 iframe_styles flex_center"></div>
                 </section>
             </li>
         @endforeach
