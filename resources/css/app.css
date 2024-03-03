@@ -616,6 +616,22 @@
 .slider_type_1 .swiper-pagination .swiper-pagination-bullet-active{
     @apply w-6 opacity-80;
 }
+
+.desktop_pdp_slider .swiper-button-next, .desktop_pdp_slider .swiper-button-prev{
+    @apply absolute top-1/2 z-[1] cursor-pointer -translate-y-1/2 w-10 h-10 lg:w-12 lg:h-12 rounded-lg bg-white/70 flex_center drop-shadow-[2px_4px_15px_rgba(255,255,255,0.25)] before:absolute before:content-[''] before:w-2 before:h-2 before:border-r-2 before:border-t-2 before:border-gray-900;
+}
+
+.desktop_pdp_slider .swiper-button-next.swiper-button-disabled, .desktop_pdp_slider .swiper-button-prev.swiper-button-disabled{
+    @apply opacity-40 pointer-events-none;
+}
+
+.desktop_pdp_slider .swiper-button-next{
+    @apply right-4 lg:right-6 before:rotate-45;
+}
+
+.desktop_pdp_slider .swiper-button-prev{
+    @apply left-4 lg:left-6 before:-rotate-[135deg];
+}
 /* swiper ends */
 
 /* tab styules starts */

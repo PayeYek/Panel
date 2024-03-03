@@ -27,14 +27,11 @@ export default {
         SwiperSlide
     },
     setup(props) {
-        console.log(JSON.parse(props.slides));
         const gallery = ref(JSON.parse(props.slides).pictures);
         const newGallery = ref(null);
         const copyOfGallery = [...gallery.value];
         const newSlide = ref(JSON.parse(props.slides).image)
         newGallery.value = [newSlide.value].concat(gallery.value)
-
-        console.log(newGallery.value);
         return {
             modules: [Pagination],
             newGallery,

@@ -62,24 +62,23 @@
         <section class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8 lg:gap-12 xl:gap-16 default_container mb-8 lg:mb-12 xl:mb-16">
             {{-- product images --}}
             <section class="md:flex flex-col gap-3">
-                {{-- desktop image --}}
-                <div class="w-full pt-[100%] relative hidden md:block">
-                    <div class="absolute inset-0">
-                        <img src="{{ $product->image }}" alt="{{ $product->name }}" class="w-full h-full object-cover {{ $radiusSize }}" />
-                    </div>
-                </div>
-
-                {{-- mobile slider --}}
-                <landPdpMobileSlider slides="{{ $product }}" />
-
-                {{-- image thumbnails --}}
-                <div class="md:grid hidden grid-cols-3 gap-3">
+                {{-- desktop slider --}}
+                <landPdpDesktopSlider radius="{{ $radiusSize }}" name="{{ $product->name }}" mainImage="{{ $product->image }}" slides="{{ $product }}" />
+                
+                
+                {{-- desktop thumbnails --}}
+                {{-- <div class="md:grid hidden grid-cols-3 gap-3">
                     @foreach ($product->pictures as $thumbnail)
                         <div class="aspect-square w-full cursor-pointer {{ $radiusSize }}">
                             <img src="{{ $thumbnail }}" alt="thumbnail" class="w-full h-full {{ $radiusSize }} object-cover" />
                         </div>
                     @endforeach
-                </div>
+                </div> --}}
+
+
+
+                {{-- mobile slider --}}
+                <landPdpMobileSlider slides="{{ $product }}" />
             </section>
 
             {{-- info --}}
