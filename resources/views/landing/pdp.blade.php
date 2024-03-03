@@ -176,9 +176,9 @@
                                 </div>
         
                                 <div class="duration-1000 overflow-hidden lg:pr-2" v-bind:class="data.toggle ? 'max-h-96 pb-4 mt-4' : 'max-h-0 pb-0'">
-                                    <p class="text-sm lg:text-base font-normal pb-4">
-                                        {{ $product->body }}
-                                    </p>
+                                    <div class="text-sm !leading-7 lg:text-base font-normal pb-4 text-justify">
+                                        {!! $product->body !!}
+                                    </div>
                                 </div>
                             </li>
                         </x-splade-data>
