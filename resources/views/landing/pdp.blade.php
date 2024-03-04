@@ -19,46 +19,14 @@
         default => null
     };
 
-    // dd($textStyle, $land->styles->color);
 @endphp
 
-{{-- @dd($textStyle) --}}
 <x-layout.default.main :land="$land">
     <main class="pt-4 relative">
 
         {{-- breadcrumbs --}}
-        <ul class="default_container flex items-center text-[10px] sm:text-xs gap-1.5 text-gray-900 mb-4">
-            <li class="flex items-center gap-1.5">
-                <a href="#">
-                    خانه
-                </a>
-    
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M15 17L10 12L15 7" stroke="#111827" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-            </li>
-            <li class="flex items-center gap-1.5">
-                <a href="#">
-                    محصولات
-                </a>
-    
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M15 17L10 12L15 7" stroke="#111827" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-            </li>
-            <li class="flex items-center gap-1.5">
-                <a href="#">
-                    کامیونت
-                </a>
-    
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M15 17L10 12L15 7" stroke="#111827" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-            </li>
-            <li class="">
-                    کامیونت 8.5 تن
-            </li>
-        </ul>
+        {{-- :data="$breadcrumbs" --}}
+        <x-common_landing.breadcrumbs :data="$breadcrumbs" />
 
         {{-- product detail --}}
         <section class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8 lg:gap-12 xl:gap-16 default_container mb-8 lg:mb-12 xl:mb-16">

@@ -1,0 +1,21 @@
+@props([
+    'data' => '{}',
+])
+
+<ul class="default_container flex items-center text-[10px] sm:text-xs gap-1.5 text-gray-900 mb-4">
+    @foreach ($data as $link)
+        @if($loop->last)
+            <li>
+                {{ $link['title'] }}
+            </li>
+        @else
+            <li class="flex items-center gap-1.5">
+                <a href="{{ $link['url'] }}"> {{ $link['title'] }} </a>
+
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M15 17L10 12L15 7" stroke="#111827" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </li>
+        @endif
+    @endforeach
+</ul>
