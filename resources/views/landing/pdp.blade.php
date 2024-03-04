@@ -1,5 +1,5 @@
 @php
-    $radiusSize = match($land->styles->radius) {
+    $radiusSize = match($land->styles->radius."") {
         '0' => 'rounded-none',
         '2' => 'rounded-sm',
         '4' => 'rounded',
@@ -10,7 +10,7 @@
         default => 'rounded-md'
     };
 
-    $textStyle = match($land->styles->color) {
+    $textStyle = match($land->styles->color."") {
         '1' => 'text-red-700',
         '2' => 'text-blue-700',
         '3' => 'text-rose-700',
@@ -19,7 +19,7 @@
         default => null
     };
 
-    
+    // dd($textStyle, $land->styles->color);
 @endphp
 
 {{-- @dd($textStyle) --}}
@@ -212,32 +212,7 @@
         <x-home_landing.videos colorPalette="{{ $land->styles->color }}" radius="{{ $land->styles->radius }}" :data="$land->videos" />
 
         {{-- add viewpoint --}}
-        <section class="default_container md:mt-16 relative lg:mt-12 z-[1]">
-            <div class="md:bg-white md:drop-shadow-base {{ $radiusSize }}">
-                <hr class="border-dark-100 mb-4 md:mb-0 md:absolute md:-top-8 md:inset-x-0 lg:-top-6" />
-                <div class="md:w-[492px] md:mx-auto md:pt-10">
-                    <p class="text-lg font-bold text-gray-900 mb-1.5 md:mb-5"> ثبت دیدگاه </p>
-                    <p class="text-sm font-normal text-gray-900 mb-8 md:mb-4"> با وارد کردن مشخصات خوددیدگاهتان را ثبت کنید. </p>
-                    {{-- form --}}
-                    <section class="drop-shadow-base md:drop-shadow-none bg-white {{ $radiusSize }} md:rounded-none md:bg-transparent pt-6 pb-8 md:pb-11 flex flex-col items-center">
-                        <form action="#" id="addComment" class="grid grid-cols-1 md:grid-cols-2 md:gap-x-10 md:gap-y-4 gap-2 w-56 mb-6 md:w-full md:mb-9">
-                            <input name="firstName" type="text" class="shadow-glass shadow-black/30 h-12 border-0 focus:ring-0 {{ $radiusSize }} outline-none w-full placeholder:text-[#888b93] text-sm font-normal pr-3 pl-6 text-gray-900" placeholder="نام" />
-                            <label for="lastName" class="h-12 w-full relative">
-                                <input id="lastName" required name="lastName" type="text" class="peer h-full shadow-glass shadow-black/30 border-0 focus:ring-0 {{ $radiusSize }} outline-none w-full placeholder:text-[#888b93] text-sm font-normal pr-3 pl-6 text-gray-900" placeholder="نام خانوادگی" />
-                                <i class="absolute top-2 right-20 text-red-700 peer-valid:hidden">*</i>
-                            </label>
-                            <input name="phone" type="tel" class="shadow-glass shadow-black/30 h-12 border-0 focus:ring-0 {{ $radiusSize }} outline-none w-full placeholder:text-[#888b93] text-sm font-normal pr-3 pl-6 text-gray-900 dir-rtl" placeholder="شماره همراه (اختیاری)" />
-                            <input name="email" type="email" class="shadow-glass shadow-black/30 h-12 border-0 focus:ring-0 {{ $radiusSize }} outline-none w-full placeholder:text-[#888b93] text-sm font-normal pr-3 pl-6 text-gray-900 dir-rtl" placeholder="ایمیل (اختیاری)" />
-                            <label for="comment" class="w-full relative h-40 md:h-32 md:col-span-2">
-                                <textarea required name="comment" class="shadow-glass shadow-black/30 h-full resize-none peer border-0 focus:ring-0 {{ $radiusSize }} outline-none w-full placeholder:text-[#888b93] text-sm font-normal pr-3 pl-6 text-gray-900" placeholder="دیدگاه"></textarea>
-                                <i class="absolute top-1 right-[52px] text-red-700 peer-valid:hidden">*</i>
-                            </label>
-                        </form>
-                        <button type="submit" form="addComment" class="{{ $radiusSize }} flex_center w-64 h-11 text-white bg-red-700 hover:bg-red-800 focus:bg-red-800 focus:shadow-focus focus:shadow-red-700/50"> ارسال </button>
-                    </section>
-                </div>
-            </div>
-        </section>
+        <x-pdp_landing.addViewpoint radius="{{ $land->styles->radius }}" colorPalette="{{ $land->styles->color }}" />
 
         {{-- pattern --}}
         <x-pdp_landing.pattern classNames="absolute bottom-0 left-0 w-full" aspectRatio="pt-[38%]" />
