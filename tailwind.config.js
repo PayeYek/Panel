@@ -17,7 +17,8 @@ export default {
         // "./app/Forms/*.php",
         // "./app/Tables/*.php",
     ],
-    // safelist: [
+    safelist: [
+        'iframe_styles',
     //     'before:rounded-none',
     //     'before:rounded-sm',
     //     'before:rounded',
@@ -46,13 +47,14 @@ export default {
     //     'gap-y-4',
     //     'sm:gap-x-4',
     //     'sm:gap-y-4',
-    // ],
+    ],
     // darkMode: 'false',
     theme: {
         extend: {
             colors: {
                 primary: { "50": "#eff6ff", "100": "#dbeafe", "200": "#bfdbfe", "300": "#93c5fd", "400": "#60a5fa", "500": "#3b82f6", "600": "#2563eb", "700": "#1d4ed8", "800": "#1e40af", "900": "#1e3a8a", "950": "#172554" },
                 dark: {
+                    "50": "#f3f3f4",
                     "100": "#CFD1D4", //apply for borders
                     "300": "#9BA3A7",
                     "500": "#818284",
@@ -86,6 +88,7 @@ export default {
             boxShadow: {
                 'focus': '0 0 4px',
                 'lg': '0 2px 8px',
+                'glass': 'inset 0 1px 4px',
             },
             screens: {
                 '3xl': '1600px',

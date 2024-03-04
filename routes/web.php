@@ -110,6 +110,8 @@ Route::middleware(['splade'])->group(function () {
                 Route::get('{page}/a/{article}', 'article')->name('show');
             });
 
+            Route::get('{page}/sales', 'sales')->name('sales');
+
         });
 
     Route::get('/', function () {

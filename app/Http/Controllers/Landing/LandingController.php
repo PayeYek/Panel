@@ -122,7 +122,7 @@ class LandingController extends Controller
         $breadcrumbs[] = ['title' => $product->category->title , 'url' => route('landing.product.category', ['page'=> $land->slug, 'category'=> $product->category->slug])];
         $breadcrumbs[] = ['title' => $product->name , 'url' => null ];
 
-        return view('landing.product-single', compact('land', 'product', 'breadcrumbs'));
+        return view('landing.pdp', compact('land', 'product', 'breadcrumbs'));
     }
 
     public function category($page, $category)
@@ -141,7 +141,7 @@ class LandingController extends Controller
 
         $data = collect($data);
 
-        return view('landing.category-products', compact('land', 'data'));
+        return view('landing.categories', compact('land', 'data'));
 
     }
 
@@ -168,6 +168,12 @@ class LandingController extends Controller
             ->keywords([$land->title, $article->title]);
 
         return view('landing.article-single', compact('land', 'article'));
+    }
+
+    public function sales($page){
+        
+        $land = $this->getLand($page);
+        return view('landing.sales-representative', compact('land'));
     }
 
     public function getLand($page): Land

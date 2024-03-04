@@ -7,7 +7,7 @@
             <x-layout.loader.style/>
         @endproduction
         <x-favicon/>
-
+        
         @spladeHead
         @vite('resources/js/app.js')
     </head>

@@ -7,15 +7,7 @@
 
 export default {
     name: "Landing_Button",
-    // props: ['classNames', 'to', 'text'],
-    // setup(props){
-
-    //     return {
-    //         classNames: props.classNames,
-    //         text: props.text,
-    //         to: props.to
-    //     }
-    // },
+    
     props: {
         to: {
             type: String,
