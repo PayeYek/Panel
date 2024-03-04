@@ -11,7 +11,7 @@
                 <a class="px-3 transition-all duration-100 hover:text-red-500"
                     href="{{ route('landing.product.list', ['page' => $land->slug]) }}">{{ __('Products') }}</a>
                 <a class="px-3 transition-all duration-100 hover:text-red-500"
-                    href="{{ route('landing.page.show', ['page' => $land->slug]) }}">{{ __('Sales Agency') }}</a>
+                    href="{{ route('landing.sales', ['page' => $land->slug]) }}">{{ __('Sales Agency') }}</a>
                 <a class="px-3 transition-all duration-100 hover:text-red-500"
                     href="{{ route('landing.page.about', ['page' => $land->slug]) }}">{{ __('About us') }}</a>
             </nav>

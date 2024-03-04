@@ -170,6 +170,12 @@ class LandingController extends Controller
         return view('landing.article-single', compact('land', 'article'));
     }
 
+    public function sales($page){
+        
+        $land = $this->getLand($page);
+        return view('landing.sales-representative', compact('land'));
+    }
+
     public function getLand($page): Land
     {
         return Land::where('slug', $page)

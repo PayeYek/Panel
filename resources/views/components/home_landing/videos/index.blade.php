@@ -73,7 +73,7 @@
                 </div>
 
                 <section class="fixed inset-0 z-[2] bg-black/60 hidden" onclick="hideVideoByThumbnail(this)">
-                    <div class="w-full h-full sm:w-[28rem] sm:h-96 iframe_styles flex_center"></div>
+                    <div class="w-full max-w-[640px] lg:max-w-[796px] xl:max-w-[900px] 2xl:max-w-[1024px] mx-auto iframe_styles flex_center"></div>
                 </section>
             </li>
         @endforeach
