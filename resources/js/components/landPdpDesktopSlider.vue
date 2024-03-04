@@ -5,6 +5,7 @@
         </div>
     </div>
 
+    <!-- thumbnails -->
     <div class="md:grid hidden grid-cols-3 gap-3">
         <div v-for="(thumb, index) in oldGallery" :key="index" :class="'aspect-square w-full cursor-pointer ' + radius"
             @click="showSliderWithSliderTo(index + 1)">
