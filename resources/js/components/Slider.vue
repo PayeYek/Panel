@@ -10,7 +10,7 @@
         >
             <swiper-slide v-for="slide in slides">
                 <a href="#" class="relative">
-                    <img loading="lazy" class="object-cover" :src="slide.image" :alt="slide.alt">
+                    <img class="object-cover" :src="slide.image" :alt="slide.alt">
                     <div class="absolute top-2/3  bg-red-700/80 text-white py-8 px-20 text-2xl">
                         <span v-text="slide.alt"></span>
                     </div>
