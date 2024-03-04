@@ -12,7 +12,7 @@
         '3' => 'text-rose-700 hover:text-rose-800',
         '4' => 'text-zinc-700 hover:text-zinc-800',
         '5' => 'text-cobalt-700 hover:text-cobalt-800',
-        default => null
+        default => 'text-red-700 hover:text-red-800',
     };
 @endphp
 
