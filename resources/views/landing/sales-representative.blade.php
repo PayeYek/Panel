@@ -102,10 +102,10 @@
                     <section class="flex flex-col items-center">
                         <form action="#" id="addComment" class="grid grid-cols-1 md:grid-cols-2 md:gap-x-10 md:gap-y-4 gap-2 w-56 mb-6 md:mb-20 md:w-full">
                             <input name="fullName" type="text" class="shadow-glass {{ $radiusSize }} shadow-black/30 h-12 border-0 focus:ring-0 outline-none w-full placeholder:text-[#888b93] text-sm font-normal pr-3 pl-6 text-gray-900" placeholder="نام" />
-                            <select name="subject" class="shadow-glass {{ $radiusSize }} invalid:text-[#888b93] shadow-black/30 h-12 border-0 focus:ring-0 outline-none w-full text-sm font-normal valid:text-gray-900">
+                            {{-- <select name="subject" class="shadow-glass {{ $radiusSize }} invalid:text-[#888b93] shadow-black/30 h-12 border-0 focus:ring-0 outline-none w-full text-sm font-normal valid:text-gray-900">
                                 <option value="1"> موضوع 1 </option>
                                 <option value="2"> موضوع 2 </option>
-                            </select>
+                            </select> --}}
                             <input name="phone" type="tel" class="shadow-glass {{ $radiusSize }} shadow-black/30 h-12 border-0 focus:ring-0 outline-none w-full placeholder:text-[#888b93] text-sm font-normal pr-3 pl-6 text-gray-900 dir-rtl" placeholder="شماره همراه (اختیاری)" />
                             <label for="email" class="h-12 w-full relative">
                                 <input id="email" required name="email" type="text" class="peer {{ $radiusSize }} h-full shadow-glass shadow-black/30 border-0 focus:ring-0 outline-none w-full placeholder:text-[#888b93] text-sm font-normal pr-3 pl-6 text-gray-900" placeholder="ایمیل" />

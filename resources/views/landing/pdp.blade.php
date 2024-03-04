@@ -25,7 +25,6 @@
     <main class="pt-4 relative">
 
         {{-- breadcrumbs --}}
-        {{-- :data="$breadcrumbs" --}}
         <x-common_landing.breadcrumbs :data="$breadcrumbs" />
 
         {{-- product detail --}}
