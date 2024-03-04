@@ -636,7 +636,7 @@
 
 /* tab styules starts */
 .l_tab_styles li.active{
-    @apply before:block text-red-700 font-bold;
+    @apply before:block font-bold;
 }
 /* tab styules ends */
 

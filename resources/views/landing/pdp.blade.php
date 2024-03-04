@@ -18,6 +18,8 @@
         '5' => 'text-cobalt-700',
         default => null
     };
+
+    
 @endphp
 
 {{-- @dd($textStyle) --}}
@@ -76,16 +78,7 @@
         <x-splade-data default="{ activeTab: 2 }">
             <section class="mb-4">
                 {{-- tabs --}}
-                <div class="overflow-hidden sticky top-16 sm:top-20 mb-4 z-[1] bg-white pt-2 sm:default_container">
-                    <div class="overflow-auto flex sm:border-b-2 sm:border-[#e7e8e9] sm:overflow-visible">
-                        <ul class="flex-none text-sm lg:text-base sm:gap-12 md:gap-14 lg:gap-10 mx-4 sm:mx-0 font-normal text-gray-900 gap-10 flex items-center border-b-2 border-[#e7e8e9] sm:border-b-0 l_tab_styles">
-                            <li class="flex-none lg:pl-4 xl:pl-8 duration-0 lg:py-3 py-2.5 cursor-pointer relative before:absolute before:content-[''] before:-bottom-0.5 before:inset-x-0 before:h-1 before:w-full before:rounded-lg before:bg-red-700 before:hidden" @click="data.activeTab = 1" v-bind:class="{'active' : data.activeTab == 1 }"> مشخصات فنی </li>
-                            <li class="flex-none lg:pl-4 xl:pl-8 duration-0 lg:py-3 py-2.5 cursor-pointer relative before:absolute before:content-[''] before:-bottom-0.5 before:inset-x-0 before:h-1 before:w-full before:rounded-lg before:bg-red-700 before:hidden" @click="data.activeTab = 2" v-bind:class="{'active' : data.activeTab == 2 }"> توضیحات تکمیلی </li>
-                            <li class="flex-none lg:pl-4 xl:pl-8 duration-0 lg:py-3 py-2.5 cursor-pointer relative before:absolute before:content-[''] before:-bottom-0.5 before:inset-x-0 before:h-1 before:w-full before:rounded-lg before:bg-red-700 before:hidden" @click="data.activeTab = 3" v-bind:class="{'active' : data.activeTab == 3 }"> دیدگاه شما </li>
-                            <li class="flex-none lg:pl-4 xl:pl-8 duration-0 lg:py-3 py-2.5 cursor-pointer relative before:absolute before:content-[''] before:-bottom-0.5 before:inset-x-0 before:h-1 before:w-full before:rounded-lg before:bg-red-700 before:hidden" @click="data.activeTab = 4" v-bind:class="{'active' : data.activeTab == 4 }"> سوالات متداول </li>
-                        </ul>
-                    </div>
-                </div>
+                <x-pdp_landing.sectionTabs colorPalette="{{ $land->styles->color }}" />
 
                 {{-- Technical Specifications --}}
                 <section class="default_container" v-show="data.activeTab == 1">
