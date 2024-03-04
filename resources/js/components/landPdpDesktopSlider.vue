@@ -7,9 +7,10 @@
 
     <!-- thumbnails -->
     <div class="md:grid hidden grid-cols-3 gap-3">
-        <div v-for="(thumb, index) in oldGallery" :key="index" :class="'aspect-square w-full cursor-pointer ' + radius"
+        <div v-for="(thumb, index) in thumbGallery" :key="index" :class="'aspect-square w-full cursor-pointer relative overflow-hidden ' + radius"
             @click="showSliderWithSliderTo(index + 1)">
             <img :src="thumb" :alt="name" :class="'w-full h-full ' + radius + ' object-cover'" />
+            <div class="w-full h-full bg-black/60 absolute top-0 left-0 flex_center text-white/60 font-normal text-[60px]" v-if="index == 0 && thumbGalleryLength > 3"> {{ thumbGalleryLength - 3 }} + </div>
         </div>
     </div>
 
@@ -58,16 +59,21 @@ export default {
     setup(props) {
         const oldGallery = ref(JSON.parse(props.slides).pictures);
         const newGallery = ref(null);
+        const thumbnails = [...oldGallery.value];
+        const thumbGallery = ref(null);
+        const thumbGalleryLength = ref(null);
         const copyOfGallery = [...oldGallery.value];
         const newSlide = ref(JSON.parse(props.slides).image);
         newGallery.value = [newSlide.value].concat(oldGallery.value);
         const openModal = ref(false)
         const desktopSliderSwiper = ref(null)
         const showSliderWithSliderTo = ref(null)
+        thumbGalleryLength.value = [...oldGallery.value].length
 
         onMounted(() => {
             desktopSliderSwiper.value = document.querySelector('.desktop_pdp_slider').swiper
         })
+
         // open Modal
         showSliderWithSliderTo.value = (id) => {
             desktopSliderSwiper.value.slideTo(id);
@@ -75,8 +81,13 @@ export default {
         }
 
         const closeModal = () => {
-            // console.log("yes");
             openModal.value = false
+        }
+
+        if(thumbnails.length <= 3){
+            thumbGallery.value = thumbnails;
+        } else {
+            thumbGallery.value = thumbnails.slice(0, -(thumbnails.length-3));
         }
 
         return {
@@ -86,6 +97,8 @@ export default {
             showSliderWithSliderTo,
             openModal,
             closeModal,
+            thumbGallery,
+            thumbGalleryLength,
         };
     },
 }
