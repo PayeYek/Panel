@@ -87,9 +87,9 @@
                             <x-splade-data default="{ toggle: false }">
                                 <li class="p-4 drop-shadow-base bg-white {{ $radiusSize }} lg:pr-16 lg:pl-8 xl:pr-28">
                                     {{-- title --}}
-                                    <div class="flex items-center justify-between">
+                                    <div class="flex items-center justify-between cursor-pointer" @click="data.toggle = !data.toggle">
                                         <p class="text-sm lg:text-base font-bold"> {{ \App\Models\LandAttribute::whereId($key)->first()->name }} </p>
-                                        <button type="button" class="cursor-pointer" @click="data.toggle = !data.toggle">
+                                        <button type="button" class="cursor-pointer">
                                             <svg class="duration-1000" :class="data.toggle ? 'rotate-180' : 'rotate-0'" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                 <path d="M7 10L12.0008 14.58L17 10" stroke="#111827" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                                             </svg>
