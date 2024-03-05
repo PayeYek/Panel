@@ -16,12 +16,12 @@ class CommentRequest extends FormRequest
     public function rules()
     {
         return [
-            'commentable_id'   => 'required|numeric',
-            'commentable_type' => 'required|string',
-            'parent_id'        => 'nullable|numeric',
-            'comment'          => 'required|string|min:20|max:200',
-            'star'             => 'required|numeric|min:1|max:5',
-            'approved'         => 'required|boolean',
+            'land_id'    => 'required|numeric',
+            'product_id' => 'required|numeric',
+            'comment'    => 'required|string|min:10|max:200',
+            'name'       => 'required|string',
+            'phone'      => 'nullable|size:11|regex:/^(09)[0-9]{9}$/',
+            'email'      => 'nullable|email'
         ];
 
     }
