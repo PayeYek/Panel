@@ -52,7 +52,7 @@
 @endpush
 
 {{-- @dd($data->count()); --}}
-<section class=" mb-4 lg:mb-20 relative z-[2] lg:default_container">
+<section class=" mb-4 sm:mb-8 lg:mb-20 relative z-[2] lg:default_container">
     {{-- header --}}
     <div class="flex items-center justify-between mb-4 px-4">
         <h3 class="text-lg font-bold text-gray-900"> ویدیو ها </h3>
@@ -66,9 +66,9 @@
             </svg>
         </a>
     </div>
-    <ul class="flex items-center lg:grid px-4 overflow-auto lg:overflow-visible lg:px-0 gap-4 list-none {{ $data->count() == 1 ? '' : ($data->count() == 2 ? 'lg:grid-cols-2' : 'lg:grid-cols-3') }}">
+    <ul class="flex items-center lg:grid px-4 lg:px-0 gap-4 list-none {{ $data->count() == 1 ? '' : ($data->count() == 2 ? 'md:grid-cols-2 overflow-auto md:overflow-visible' : 'overflow-auto lg:overflow-visible lg:grid-cols-3') }}">
         @foreach ($data->take(3) as $video)
-            <li class="w-64 sm:w-80 md:w-96 flex-none lg:w-full" data-videoLink="{{ $video->link }}">
+            <li class="flex-none lg:w-full {{ $data->count() == 1 ? 'w-full' : ($data->count() == 2 ? 'w-96 sm:w-[28rem] md:w-full' : 'w-64 sm:w-80 md:w-96') }}" data-videoLink="{{ $video->link }}">
                 <div class="relative w-full pt-[62%] cursor-pointer {{ $radiusSize }} overflow-hidden drop-shadow-base videoThumbnails" onclick="showVideoByThumbnail(this)">
                     <img src="{{ $video->image }}" alt="{{ $video->alt }}" class="absolute top-0 left-0 w-full h-full object-cover z-[1]" />
                     <x-icons.playIcon class="w-12 h-12 sm:w-20 sm:h-20 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-[3]" />

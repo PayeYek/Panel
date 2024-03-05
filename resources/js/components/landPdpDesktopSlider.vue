@@ -1,6 +1,6 @@
 <template>
     <div class="w-full pt-[100%] relative hidden md:block">
-        <div class="absolute inset-0 cursor-pointer" @click="showSliderWithSliderTo(index + 1)">
+        <div class="absolute inset-0 cursor-pointer">
             <img :src="mainImage" :alt="name" :class="'w-full h-full object-cover ' + radius" />
         </div>
     </div>
