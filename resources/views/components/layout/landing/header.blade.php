@@ -19,6 +19,15 @@
         '5' => 'fill_btn_theme_cobalt_filled',
         default => null
     };
+
+    $navLinkseStyle = match($land->styles->color."") {
+        '1' => 'hover:text-red-800',
+        '2' => 'hover:text-blue-800',
+        '3' => 'hover:text-rose-800',
+        '4' => 'hover:text-zinc-800',
+        '5' => 'hover:text-cobalt-800',
+        default => 'hover:text-red-800'
+    };
 @endphp
 <x-splade-data store="navigation" default="{ opened: false }" />
 @if ($land)
@@ -27,13 +36,13 @@
 
         <div class="flex-1 hidden md:flex">
             <nav class="flex text-sm font-medium px-3 py-2.5">
-                <a class="px-3 transition-all duration-100 hover:text-red-500"
+                <a class="px-3 transition-all duration-100 {{ $navLinkseStyle }}"
                     href="{{ route('landing.page.show', ['page' => $land->slug]) }}">{{ __('Home') }}</a>
-                <a class="px-3 transition-all duration-100 hover:text-red-500"
+                <a class="px-3 transition-all duration-100 {{ $navLinkseStyle }}"
                     href="{{ route('landing.product.list', ['page' => $land->slug]) }}">{{ __('Products') }}</a>
-                <a class="px-3 transition-all duration-100 hover:text-red-500"
+                <a class="px-3 transition-all duration-100 {{ $navLinkseStyle }}"
                     href="{{ route('landing.sales', ['page' => $land->slug]) }}">{{ __('Sales Agency') }}</a>
-                <a class="px-3 transition-all duration-100 hover:text-red-500"
+                <a class="px-3 transition-all duration-100 {{ $navLinkseStyle }}"
                     href="{{ route('landing.page.about', ['page' => $land->slug]) }}">{{ __('About us') }}</a>
             </nav>
         </div>

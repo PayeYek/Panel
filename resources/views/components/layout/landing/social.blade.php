@@ -1,6 +1,21 @@
+@props([
+    'colorPalette' => '1',
+])
+
+@php
+    $footerSocialStyle = match($colorPalette) {
+        '1' => 'group-hover:text-red-800',
+        '2' => 'group-hover:text-blue-800',
+        '3' => 'group-hover:text-rose-800',
+        '4' => 'group-hover:text-zinc-800',
+        '5' => 'group-hover:text-cobalt-800',
+        default => 'group-hover:text-red-800'
+    };
+@endphp
+
 <ul class="md:w-fit flex items-center justify-center gap-3 bg-gray-50 dark:bg-gray-900 py-3 px-8 rounded-md text-gray-500 dark:text-gray-600">
     <li class="group">
-        <a href="#" class="group-hover:text-red-500 dark:group-hover:text-red-500 transition-all duration-200">
+        <a href="#" class="{{ $footerSocialStyle }} transition-all duration-200">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="fill-current"
                  xmlns="http://www.w3.org/2000/svg">
                 <path
@@ -13,7 +28,7 @@
         </a>
     </li>
     <li class="group">
-        <a href="#" class="group-hover:text-red-500 dark:group-hover:text-red-500 transition-all duration-200">
+        <a href="#" class="{{ $footerSocialStyle }} transition-all duration-200">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="fill-current"
                  xmlns="http://www.w3.org/2000/svg">
                 <path
@@ -26,7 +41,7 @@
         </a>
     </li>
     <li class="group">
-        <a href="#" class="group-hover:text-red-500 dark:group-hover:text-red-500 transition-all duration-200">
+        <a href="#" class="{{ $footerSocialStyle }} transition-all duration-200">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="fill-current"
                  xmlns="http://www.w3.org/2000/svg">
                 <path
@@ -39,7 +54,7 @@
         </a>
     </li>
     <li class="group">
-        <a href="#" class="group-hover:text-red-500 dark:group-hover:text-red-500 transition-all duration-200">
+        <a href="#" class="{{ $footerSocialStyle }} transition-all duration-200">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="fill-current"
                  xmlns="http://www.w3.org/2000/svg">
                 <path

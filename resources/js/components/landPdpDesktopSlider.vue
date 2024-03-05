@@ -10,7 +10,7 @@
         <div v-for="(thumb, index) in thumbGallery" :key="index" :class="'aspect-video w-full cursor-pointer relative overflow-hidden ' + radius"
             @click="showSliderWithSliderTo(index)">
             <img :src="thumb" :alt="name" :class="'w-full h-full ' + radius + ' object-cover'" />
-            <div class="w-full h-full bg-black/60 absolute top-0 left-0 flex_center text-white/60 font-normal text-[60px]" v-if="index == 0 && thumbGalleryLength > 3"> {{ thumbGalleryLength - 3 }} + </div>
+            <div class="w-full h-full bg-black/60 absolute top-0 left-0 flex_center text-white/60 font-normal text-[60px]" v-if="index == 2 && thumbGalleryLength > 3"> {{ thumbGalleryLength - 3 }} + </div>
         </div>
     </div>
 

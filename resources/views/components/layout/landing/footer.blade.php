@@ -55,6 +55,15 @@
         }
         $buttons[] = $data;
 
+        $footerLinkseStyle = match($land->styles->color."") {
+            '1' => 'hover:text-red-800',
+            '2' => 'hover:text-blue-800',
+            '3' => 'hover:text-rose-800',
+            '4' => 'hover:text-zinc-800',
+            '5' => 'hover:text-cobalt-800',
+            default => 'hover:text-red-800'
+        };
+
     @endphp
 
     @foreach($buttons as  $button)
@@ -69,7 +78,7 @@
                     @foreach($button['items'] as  $item)
                         <li class="w-full flex">
                             <a href="{{ $item['link'] }}"
-                               class="w-full text-sm hover:text-red-500 bg-gray-500/10 text-center md:text-start rounded-md px-3 py-1 transition-all duration-100">{{ $item['name'] }}</a>
+                               class="w-full text-sm {{ $footerLinkseStyle }} bg-gray-500/10 text-center md:text-start rounded-md px-3 py-1 transition-all duration-100">{{ $item['name'] }}</a>
                         </li>
                     @endforeach
                 @endisset
@@ -79,7 +88,7 @@
 
     <section
         class="md:pt-5 border-none md:border-t md:border-dashed border-gray-500/20 col-span-full flex flex-col md:flex-row-reverse items-center justify-between gap-5">
-        <x-layout.landing.social/>
+        <x-layout.landing.social colorPalette="{{ $land->styles->color }}" />
         <span class="text-xs text-center md:text-start border-t md:border-none border-dashed border-gray-500 py-2">
                 {{__('message.rights', ['brand' => 'نام برند', 'year' => jdate()->getYear()])}}
             {{--{{__('message.rights', ['brand' => $land->title, 'year' => jdate()->getYear()])}}--}}

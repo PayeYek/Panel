@@ -54,30 +54,30 @@
 <section class="lg:pt-24">
     <h1 class="hidden md:block text-2xl lg:text-[32px] font-medium {{ $textStyle }} mb-8 lg:mb-11 line-clamp-1"> {{ $productName }} </h1>
     {{-- boxes --}}
-    <div class="grid grid-cols-3 gap-3 text-sm font-normal mb-4 md:max-w-[524px]">
+    <div class="grid grid-cols-3 gap-3 text-sm 2xl:text-[15px] font-normal mb-4 md:max-w-[524px]">
         <div class="aspect-square flex_center flex-col p-1 bg-dark-50 gap-1 {{ $radiusSize }}">
             <p class="line-clamp-1 {{ $textStyle }}"> نوع کاربری </p>
-            <p class="text-gray-900 line-clamp-1"> {{ $product->usage }} </p>
+            <p class="text-gray-900 line-clamp-1 font-semibold"> {{ $product->usage }} </p>
         </div>
         <div class="aspect-square flex_center flex-col p-1 bg-dark-50 gap-1 {{ $radiusSize }}">
             <p class="{{ $textStyle }} line-clamp-1"> نوع کابین </p>
-            <p class="text-gray-900 line-clamp-1">  {{ $product->cabin == 0 ? 'بدون خواب' : 'خواب دار' }} </p>
+            <p class="text-gray-900 line-clamp-1 font-semibold">  {{ $product->cabin == 0 ? 'بدون خواب' : 'خواب دار' }} </p>
         </div>
         <div class="aspect-square flex_center flex-col p-1 bg-dark-50 gap-1 {{ $radiusSize }}">
             <p class="{{ $textStyle }} line-clamp-1"> تناژ </p>
-            <p class="text-gray-900 line-clamp-1"> {{ $product->tonnage }} </p>
+            <p class="text-gray-900 line-clamp-1 font-semibold"> {{ $product->tonnage }} </p>
         </div>
         <div class="aspect-square flex_center flex-col p-1 bg-dark-50 gap-1 {{ $radiusSize }}">
             <p class="{{ $textStyle }} line-clamp-1"> تعداد محور چرخ‌ها </p>
-            <p class="text-gray-900 line-clamp-1"> {{ $product->axle == 1 ? 'تک محوره' : ($product->axle == 2 ? 'جفت محوره' : 'سه محوره') }} </p>
+            <p class="text-gray-900 line-clamp-1 font-semibold"> {{ $product->axle == 1 ? 'تک محوره' : ($product->axle == 2 ? 'جفت محوره' : 'سه محوره') }} </p>
         </div>
         <div class="aspect-square flex_center flex-col p-1 bg-dark-50 gap-1 {{ $radiusSize }}">
             <p class="{{ $textStyle }} line-clamp-1"> سال </p>
-            <p class="text-gray-900 line-clamp-1"> {{ $product->year }} </p>
+            <p class="text-gray-900 line-clamp-1 font-semibold"> {{ $product->year }} </p>
         </div>
         <div class="aspect-square flex_center flex-col p-1 bg-dark-50 gap-1 {{ $radiusSize }}">
             <p class="{{ $textStyle }} line-clamp-1"> مدل </p>
-            <p class="text-gray-900 line-clamp-1"> {{ $product->model }} </p>
+            <p class="text-gray-900 line-clamp-1 font-semibold"> {{ $product->model }} </p>
         </div>
     </div>
 
