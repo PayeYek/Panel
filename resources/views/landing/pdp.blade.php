@@ -16,7 +16,7 @@
         '3' => 'text-rose-700',
         '4' => 'text-zinc-700',
         '5' => 'text-cobalt-700',
-        default => null
+        default => 'text-red-700',
     };
 
 @endphp
