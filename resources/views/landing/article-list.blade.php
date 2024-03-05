@@ -1,7 +1,89 @@
-<x-layout.landing.land :land="$land">
 
-    <x-layout.landing.sidebar :land="$land"/>
+@php
+    $radiusSize = match($land->styles->radius."") {
+        '0' => 'rounded-none',
+        '2' => 'rounded-sm',
+        '4' => 'rounded',
+        '6' => 'rounded-md',
+        '8' => 'rounded-lg',
+        '12' => 'rounded-xl',
+        '16' => 'rounded-2xl',
+        default => 'rounded-md'
+    };
 
-    <x-layout.landing.articles :land="$land" all/>
+    $textStyle = match($land->styles->color."") {
+        '1' => 'text-red-700',
+        '2' => 'text-blue-700',
+        '3' => 'text-rose-700',
+        '4' => 'text-zinc-700',
+        '5' => 'text-cobalt-700',
+        default => 'text-red-700'
+    };
+@endphp
 
-</x-layout.landing.land>
+<x-layout.default.main :land="$land">
+
+    <main class="pt-4 lg:pt-10">
+        {{-- filter --}}
+        <x-splade-data default="{ showSearch: false }">
+            {{-- mobile filter --}}
+            <section class="default_container max-w-96 mx-auto lg:hidden mb-6">
+                <section class="flex items-center gap-4" v-if="!data.showSearch">
+                    <select class="h-12 w-full text-base font-bold text-gray-900 border border-dark-100 focus:ring-0 focus:border-dark-100 outline-none {{ $radiusSize }}">
+                        <option value="0" selected disabled> دسته بندی </option>
+                    </select>
+                    <button type="button" class="w-12 h-12 cursor-pointer flex-none {{ $radiusSize }} flex_center border border-dark-100" v-on:click="data.showSearch = true">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M16.9284 17.0396L20.4016 20.3996M19.2816 11.4396C19.2816 15.7695 15.7715 19.2796 11.4416 19.2796C7.11165 19.2796 3.60156 15.7695 3.60156 11.4396C3.60156 7.1097 7.11165 3.59961 11.4416 3.59961C15.7715 3.59961 19.2816 7.1097 19.2816 11.4396Z" stroke="#111827" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </button>
+                </section>
+    
+                <form action="#" class="w-full h-12 relative" v-else>
+                    <input type="text" class="text-base font-bold w-full h-full text-gray-900 outline-none border border-dark-100 focus:ring-0 focus:border-dark-100 {{ $radiusSize }} px-10 placeholder:text-[#888b93] text-sm font-normal text-gray-900" placeholder="جستجو مطلب" />
+                    <button type="button" class="w-8 h-8 absolute left-2 top-2 cursor-pointer flex-none flex_center">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M16.9284 17.0396L20.4016 20.3996M19.2816 11.4396C19.2816 15.7695 15.7715 19.2796 11.4416 19.2796C7.11165 19.2796 3.60156 15.7695 3.60156 11.4396C3.60156 7.1097 7.11165 3.59961 11.4416 3.59961C15.7715 3.59961 19.2816 7.1097 19.2816 11.4396Z" stroke="#111827" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </button>
+                    {{-- close btn --}}
+                    <button type="button" class="w-8 h-8 absolute right-2 top-2 cursor-pointer flex-none flex_center" v-on:click="data.showSearch = false">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 12L6 6M12 12L18 18M12 12L18 6M12 12L6 18" stroke="#111827" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+                </form>
+            </section>
+
+            {{-- desktop filter --}}
+            <section class="hidden lg:flex items-center justify-between default_container mb-5">
+                <div class="flex items-center gap-5">
+                    <h3 class="text-lg font-bold text-gray-900"> دسته بندی </h3>
+                    {{-- categories --}}
+                    <div class="flex items-center gap-5 {{ $textStyle }}">
+                        <a href="#" class="h-8 w-36 flex_center {{ $radiusSize }} border border-dark-100 text-base font-bold"> اخبار </a>
+                        <a href="#" class="h-8 w-36 flex_center {{ $radiusSize }} border border-dark-100 text-base font-bold"> اطلاعیه </a>
+                        <a href="#" class="h-8 w-36 flex_center {{ $radiusSize }} border border-dark-100 text-base font-bold"> همه موارد </a>
+                    </div>
+                </div>
+
+                <form action="#" class="w-[298px] h-12 relative" v-else>
+                    <input type="text" class="text-base font-bold w-full h-full text-gray-900 outline-none border border-dark-100 focus:ring-0 focus:border-dark-100 {{ $radiusSize }} pl-10 placeholder:text-[#888b93] text-sm font-normal text-gray-900" placeholder="جستجو مطلب" />
+                    <button type="submit" class="w-8 h-8 absolute left-2 top-2 cursor-pointer flex-none flex_center">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M16.9284 17.0396L20.4016 20.3996M19.2816 11.4396C19.2816 15.7695 15.7715 19.2796 11.4416 19.2796C7.11165 19.2796 3.60156 15.7695 3.60156 11.4396C3.60156 7.1097 7.11165 3.59961 11.4416 3.59961C15.7715 3.59961 19.2816 7.1097 19.2816 11.4396Z" stroke="#111827" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </button>
+                </form>
+            </section>
+        </x-splade-data>
+
+        {{-- type="{{ $land->styles->article_type }}" --}}
+        <x-home_landing.announcement :showSectionTitle=false :landSlug="$land->slug" :data="$land->articles" type="4" fontFamily="1" colorPalette="{{ $land->styles->color }}" radius="{{ $land->styles->radius }}" />
+    </main>
+
+    {{-- <x-layout.landing.sidebar :land="$land"/> --}}
+
+    {{-- <x-layout.landing.articles :land="$land" all/> --}}
+
+</x-layout.default.main>
