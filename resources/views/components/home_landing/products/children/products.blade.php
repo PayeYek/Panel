@@ -38,6 +38,8 @@ if($type == '1'){
     $classType = 'sm:grid-cols-2 lg:grid-cols-4 drop-shadow-base ' . $radiusSize . ' overflow-hidden';
 }elseif($type == '10'){
     $classType = 'sm:grid-cols-2 lg:grid-cols-3 bg-white border border-dark-100 ' . $radiusSize . ' overflow-hidden';
+}elseif($type == '11'){
+    $classType = 'md:grid-cols-1 border border-dark-100 ' . $radiusSize . ' overflow-hidden';
 }
 @endphp
 

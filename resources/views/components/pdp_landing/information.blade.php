@@ -52,7 +52,7 @@
 @endphp
 
 <section class="">
-    <p class="hidden md:block text-2xl lg:text-[32px] font-medium {{ $textStyle }} mb-8 lg:mb-11 line-clamp-1"> {{ $productName }} </p>
+    <h1 class="hidden md:block text-2xl lg:text-[32px] font-medium {{ $textStyle }} mb-8 lg:mb-11 line-clamp-1"> {{ $productName }} </h1>
     {{-- boxes --}}
     <div class="grid grid-cols-3 gap-3 text-sm font-normal mb-4 md:max-w-[524px]">
         <div class="aspect-square flex_center flex-col p-1 bg-dark-50 gap-1 {{ $radiusSize }}">
