@@ -153,7 +153,7 @@
                 </div>
         
                 {{-- details --}}
-                <section class="mb-8 lg:mb-16">
+                <section class="mb-8 lg:mb-16 custom_table_striped_container">
                     {!! $article->body !!}
                 </section>
             </section>

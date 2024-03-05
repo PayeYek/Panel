@@ -677,10 +677,10 @@
 
 
 .custom_table_striped_container{
-    @apply overflow-auto;
+    /* @apply overflow-auto; */
 }
 .custom_table_striped_container table{
-    @apply w-full font-yekan text-dark-500 min-w-[36rem];
+    @apply w-full font-yekan text-dark-500 min-w-[36rem] overflow-auto;
 }
 .custom_table_striped_container table thead{
     @apply border-b-2 border-b-dark-500;
