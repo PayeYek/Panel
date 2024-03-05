@@ -537,12 +537,12 @@
                 </div>
                 {{-- more articles --}}
                 <section class="flex flex-col gap-4">
-                    <a href="#" class="grid grid-cols-10 bg-white w-full {{ $radiusSize }} overflow-hidden drop-shadow-base">
-                        <div class="relative w-full pt-[62%] col-span-4">
+                    <a href="#" class="grid grid-cols-10 bg-white w-full {{ $radiusSize }} overflow-hidden border border-gray-900">
+                        <div class="relative w-full pt-[62%] col-span-4 border-l border-l-gray-900">
                             <img src="/" alt="hello world" class="absolute top-0 left-0 w-full h-full" />
                         </div>
                         {{-- info --}}
-                        <div class="px-5 pt-2 pb-4 flex flex-col col-span-6 bg-dark-50 p-2 sm:pr-4 sm:py-4 sm:pl-6 lg:py-3 lg:pr-3 lg:pl-2">
+                        <div class="px-5 pt-2 pb-4 flex flex-col col-span-6 p-2 sm:pr-4 sm:py-4 sm:pl-6 lg:py-3 lg:pr-3 lg:pl-2">
                             <p class="text-base font-normal text-gray-900 sm:text-justify lg:text-right line-clamp-1 sm:line-clamp-2 lg:line-clamp-1 lg:mb-3 mb-3 sm:mb-4"> جهت مشاهده مشخصات فنی، ویدیو، تصاویر، نمای ۳۶۰ درجه، بروشور و لیست قیمت ها روی دکمه زیر کلیک کنید: </p>
                             <p class="text-xs font-normal {{ $textStyle }} line-clamp-1"> 25 فروردین 1402 </p>
                         </div>
