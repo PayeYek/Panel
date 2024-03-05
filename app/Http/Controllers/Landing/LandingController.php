@@ -117,7 +117,7 @@ class LandingController extends Controller
         $product = LandProduct::with('category')->where('slug', $product)->firstOrFail();
 
         /* COMMENTS APPROVED */
-        $comments = LandComment::where('land_id',$land->id)->where('product_id',$product->id)->get();
+        $comments = LandComment::where('land_id', $land->id)->where('product_id', $product->id)->get();
 
         /* SEO */
         SEO::title($land->title . ' | ' . $product->name)
@@ -128,11 +128,12 @@ class LandingController extends Controller
         $breadcrumbs = [];
         $breadcrumbs[] = ['title' => __('Home'), 'url' => route('landing.page.show', ['page' => $land->slug])];
         $breadcrumbs[] = ['title' => __('Products'), 'url' => route('landing.product.list', ['page' => $land->slug])];
-        $breadcrumbs[] = ['title' => $product->category->title,
-                          'url'   => route('landing.product.category', [
-                              'page'     => $land->slug,
-                              'category' => $product->category->slug
-                          ])
+        $breadcrumbs[] = [
+            'title' => $product->category->title,
+            'url'   => route('landing.product.category', [
+                'page'     => $land->slug,
+                'category' => $product->category->slug
+            ])
         ];
         $breadcrumbs[] = ['title' => $product->name, 'url' => null];
 
@@ -190,7 +191,12 @@ class LandingController extends Controller
             ->description($article->description)
             ->keywords([$land->title, $article->title]);
 
-        return view('landing.article-single', compact('land', 'article'));
+        /* BREADCRUMBS */
+        $breadcrumbs = [];
+        $breadcrumbs[] = ['title' => __('Home'), 'url' => route('landing.page.show', ['page' => $land->slug])];
+        $breadcrumbs[] = ['title' => __('Articles'), 'url' => route('landing.article.list', ['page' => $land->slug])];
+
+        return view('landing.article-single', compact('land', 'article', 'breadcrumbs'));
     }
 
     public function sales($page)

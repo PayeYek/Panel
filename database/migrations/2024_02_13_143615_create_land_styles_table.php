@@ -20,6 +20,12 @@ return new class extends Migration {
             $table->integer('video_type')->default(1);
             $table->integer('slide_type')->default(1);
             $table->integer('slide_anim')->default(1);
+            $table->integer('product_list_type')->default(1);
+            $table->integer('product_list_category')->default(1); /* Category Type */
+            $table->integer('product_list_card_mode')->default(1); /* Even and odd */
+            $table->integer('product_single_type')->default(1);
+            $table->integer('article_single_type')->default(1);
+            $table->integer('article_single_type')->default(1);
             $table->timestamps();
         });
     }
