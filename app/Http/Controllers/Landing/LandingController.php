@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\Landing;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Panel\Landing\CommentRequest;
 use App\Models\Land;
 use App\Models\LandArticle;
 use App\Models\LandCategory;
+use App\Models\LandComment;
 use App\Models\LandProduct;
 use ProtoneMedia\Splade\Facades\SEO;
 
@@ -108,15 +110,43 @@ class LandingController extends Controller
 
     public function product($page, $product)
     {
+        /* LANDING DATA */
         $land = $this->getLand($page);
 
-        $product = LandProduct::where('slug', $product)->firstOrFail();
+        /* PRODUCT DATA */
+        $product = LandProduct::with('category')->where('slug', $product)->firstOrFail();
 
+        /* COMMENTS APPROVED */
+        $comments = LandComment::where('land_id', $land->id)->where('product_id', $product->id)->get();
+
+        /* SEO */
         SEO::title($land->title . ' | ' . $product->name)
             ->description($product->description)
             ->keywords([$land->title, $product->name]);
 
-        return view('landing.product-single', compact('land', 'product'));
+        /* BREADCRUMBS */
+        $breadcrumbs = [];
+        $breadcrumbs[] = ['title' => __('Home'), 'url' => route('landing.page.show', ['page' => $land->slug])];
+        $breadcrumbs[] = ['title' => __('Products'), 'url' => route('landing.product.list', ['page' => $land->slug])];
+        $breadcrumbs[] = [
+            'title' => $product->category->title,
+            'url'   => route('landing.product.category', [
+                'page'     => $land->slug,
+                'category' => $product->category->slug
+            ])
+        ];
+        $breadcrumbs[] = ['title' => $product->name, 'url' => null];
+
+        return view('landing.pdp', compact('land', 'product', 'comments', 'breadcrumbs'));
+    }
+
+    public function comment(CommentRequest $request, $land, $product)
+    {
+        LandComment::create($request->validated());
+
+        \Splade::toast('دیدگاه شما جهت بررسی ارسال شد')->autoDismiss(5)->success();
+
+        return back();
     }
 
     public function category($page, $category)
@@ -135,7 +165,7 @@ class LandingController extends Controller
 
         $data = collect($data);
 
-        return view('landing.category-products', compact('land', 'data'));
+        return view('landing.categories', compact('land', 'data'));
 
     }
 
@@ -161,7 +191,19 @@ class LandingController extends Controller
             ->description($article->description)
             ->keywords([$land->title, $article->title]);
 
-        return view('landing.article-single', compact('land', 'article'));
+        /* BREADCRUMBS */
+        $breadcrumbs = [];
+        $breadcrumbs[] = ['title' => __('Home'), 'url' => route('landing.page.show', ['page' => $land->slug])];
+        $breadcrumbs[] = ['title' => __('Articles'), 'url' => route('landing.article.list', ['page' => $land->slug])];
+
+        return view('landing.article-single', compact('land', 'article', 'breadcrumbs'));
+    }
+
+    public function sales($page)
+    {
+
+        $land = $this->getLand($page);
+        return view('landing.sales-representative', compact('land'));
     }
 
     public function getLand($page): Land
@@ -169,7 +211,7 @@ class LandingController extends Controller
         return Land::where('slug', $page)
             ->with([
                 'products',
-                'slides' => function ($query) {
+                'slides'   => function ($query) {
                     $query->where('status', 1);
                 },
                 'videos',

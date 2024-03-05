@@ -69,7 +69,7 @@
                 default => 'fill_btn_theme_cobalt_empty'
             };
             break;
-        
+
     }
 
     $pseudoColor = match($colorPalette) {
@@ -104,7 +104,7 @@
             <div class="h-32 mb-0.5">
                 <img src="{{ $image }}" alt="mammut" class="object-contain h-full" />
             </div>
-            <h3 class="mb-0.5 font-bold lg:mb-1 text-lg sm:line-clamp-1 {{ $titleColor }}"> {{ $name }} </h3>
+            <h3 class="mb-0.5 font-bold lg:mb-1 text-lg sm:line-clamp-1 text-gray-900"> {{ $name }} </h3>
             <div class="grid w-56 grid-cols-2 gap-2">
                 <LandBtn text="مشخصات" to="{{ route('landing.product.show',['page'=> $landSlug, 'product'=> $productSlug]) }}" classNames="text-sm lg:text-base font-bold cursor-pointer relative w-full h-11 flex_center {{ $vacantBtnTheme }} {{ $radiusSize }} before:{{ $radiusSize }}" />
                 <LandBtn text="کاتالوگ" to="{{ route('landing.product.show',['page'=> $landSlug, 'product'=> $productSlug]) }}" classNames="text-sm lg:text-base font-bold cursor-pointer relative {{ $vacantBtnTheme }} {{ $radiusSize }} w-full h-11 flex_center before:{{ $radiusSize }}" />
@@ -119,7 +119,7 @@
             <div class="h-32 mb-0.5">
                 <img src="{{ $image }}" alt="mammut" class="object-contain h-full" />
             </div>
-            <h3 class="mb-0.5 font-bold lg:mb-1 text-lg sm:line-clamp-1 {{ $titleColor }}"> {{ $name }} </h3>
+            <h3 class="mb-0.5 font-bold lg:mb-1 text-lg sm:line-clamp-1 text-gray-900"> {{ $name }} </h3>
             <div class="grid w-56 grid-cols-2 gap-2">
                 <LandBtn text="مشخصات" to="{{ route('landing.product.show',['page'=> $landSlug, 'product'=> $productSlug]) }}" classNames="text-sm lg:text-base font-bold cursor-pointer relative w-full h-11 flex_center {{ $vacantBtnTheme }} {{ $radiusSize }} before:{{ $radiusSize }}" />
                 <LandBtn text="کاتالوگ" to="{{ route('landing.product.show',['page'=> $landSlug, 'product'=> $productSlug]) }}" classNames="text-sm lg:text-base font-bold cursor-pointer relative {{ $vacantBtnTheme }} {{ $radiusSize }} w-full h-11 flex_center before:{{ $radiusSize }}" />
@@ -131,7 +131,7 @@
     @case(4)
         <div
             class="drop-shadow-base {{ $radiusSize }} pl-6 pr-8 w-full pt-5 pb-8 {{ $evenOdd == 'true' ? 'evenOdd_cards' : 'bg-white dark:bg-dark-700' }} flex flex-col">
-            <h3 class="mb-1.5 font-bold lg:mb-1 text-lg sm:line-clamp-1 {{ $titleColor }}"> {{ $name }} </h3>
+            <h3 class="mb-1.5 font-bold lg:mb-1 text-lg sm:line-clamp-1 text-gray-900"> {{ $name }} </h3>
             <div class="flex items-center justify-between gap-4">
                 <div class="flex-none h-32 lg:h-28 xl:h-32">
                     <img src="{{ $image }}" alt="mammut" class="object-contain h-full" />
@@ -152,7 +152,7 @@
                 <img src="{{ $image }}" alt="mammut" class="object-contain h-full" />
             </div>
             <div class="flex flex-col flex-1 gap-4">
-                <h3 class="mb-1.5 font-bold lg:mb-1 text-lg sm:line-clamp-1 {{ $titleColor }}"> {{ $name }} </h3>
+                <h3 class="mb-1.5 font-bold lg:mb-1 text-lg sm:line-clamp-1 text-gray-900"> {{ $name }} </h3>
                 <div class="grid w-full grid-cols-2 gap-2 mr-auto max-w-72">
                     <LandBtn text="مشخصات" to="{{ route('landing.product.show',['page'=> $landSlug, 'product'=> $productSlug]) }}" classNames="text-sm lg:text-base font-bold cursor-pointer relative w-full h-11 flex_center {{ $vacantBtnTheme }} {{ $radiusSize }} before:{{ $radiusSize }}" />
                     <LandBtn text="کاتالوگ" to="{{ route('landing.product.show',['page'=> $landSlug, 'product'=> $productSlug]) }}" classNames="text-sm lg:text-base font-bold cursor-pointer relative {{ $vacantBtnTheme }} {{ $radiusSize }} w-full h-11 flex_center before:{{ $radiusSize }}" />
@@ -169,7 +169,7 @@
                 <img src="{{ $image }}" alt="mammut" class="object-contain h-full" />
             </div>
             <div class="flex flex-col flex-1 gap-4">
-                <h3 class="mb-1.5 font-bold lg:mb-1 text-lg sm:line-clamp-1 {{ $titleColor }}"> {{ $name }} </h3>
+                <h3 class="mb-1.5 font-bold lg:mb-1 text-lg sm:line-clamp-1 text-gray-900"> {{ $name }} </h3>
                 <div class="grid w-full grid-cols-2 gap-2 mr-auto max-w-72">
                     <LandBtn text="مشخصات" to="{{ route('landing.product.show',['page'=> $landSlug, 'product'=> $productSlug]) }}" classNames="text-sm lg:text-base font-bold cursor-pointer relative w-full h-11 flex_center {{ $vacantBtnTheme }} {{ $radiusSize }} before:{{ $radiusSize }}" />
                     <LandBtn text="کاتالوگ" to="{{ route('landing.product.show',['page'=> $landSlug, 'product'=> $productSlug]) }}" classNames="text-sm lg:text-base font-bold cursor-pointer relative {{ $vacantBtnTheme }} {{ $radiusSize }} w-full h-11 flex_center before:{{ $radiusSize }}" />
@@ -186,7 +186,7 @@
                 <img src="{{ $image }}" alt="mammut" class="object-contain h-full" />
             </div>
             <div class="mb-4 sm:mb-0 sm:flex-1">
-                <h3 class="mb-2 font-bold lg:mb-1 text-lg sm:line-clamp-1 {{ $titleColor }}"> {{ $name }} </h3>
+                <h3 class="mb-2 font-bold lg:mb-1 text-lg sm:line-clamp-1 text-gray-900"> {{ $name }} </h3>
                 <p class="text-sm leading-6 text-justify text-[#818284] dark:text-white font-medium line-clamp-2">
                     {{ $description }}
                 </p>
@@ -206,7 +206,7 @@
                 <img src="{{ $image }}" alt="mammut" class="object-contain h-full" />
             </div>
             <div class="mb-4 sm:mb-0 sm:flex-1">
-                <h3 class="mb-2 sm:gap-4 font-bold lg:mb-1 text-lg {{ $titleColor }}"> {{ $name }} </h3>
+                <h3 class="mb-2 sm:gap-4 font-bold lg:mb-1 text-lg text-gray-900"> {{ $name }} </h3>
                 <p class="text-sm leading-6 text-justify text-[#818284] dark:text-white font-medium line-clamp-2">
                     {{ $description }}
                 </p>
@@ -225,7 +225,7 @@
             <div class="h-32 mb-2">
                 <img src="{{ $image }}" alt="mammut" class="object-contain h-full" />
             </div>
-            <h3 class="mb-5 font-bold lg:mb-4 text-lg sm:line-clamp-1 {{ $titleColor }}"> {{ $name }} </h3>
+            <h3 class="mb-5 font-bold lg:mb-4 text-lg sm:line-clamp-1 text-gray-900"> {{ $name }} </h3>
             <div class="flex flex-col gap-4">
                 <LandBtn text="مشخصات" to="{{ route('landing.product.show',['page'=> $landSlug, 'product'=> $productSlug]) }}" classNames="text-sm lg:text-base font-bold cursor-pointer relative w-40 h-11 flex_center {{ $vacantBtnTheme }} {{ $radiusSize }} before:{{ $radiusSize }}" />
                 <LandBtn text="کاتالوگ" to="{{ route('landing.product.show',['page'=> $landSlug, 'product'=> $productSlug]) }}" classNames="text-sm lg:text-base font-bold cursor-pointer relative {{ $vacantBtnTheme }} {{ $radiusSize }} w-40 h-11 flex_center before:{{ $radiusSize }}" />
@@ -237,7 +237,7 @@
     @case(10)
         <div
             class="border-b last:border-b-0 border-dark-100 pl-6 pr-8 w-full pt-5 pb-8 {{ $evenOdd == 'true' ? 'evenOdd_cards' : 'bg-white dark:bg-dark-700' }} sm:border-l sm:[&:nth-child(2n)]:border-l-0 lg:[&:nth-child(2n)]:border-l lg:[&:nth-child(3n)]:border-l-0 flex flex-col">
-            <h3 class="mb-1.5 font-bold lg:mb-1 text-lg sm:line-clamp-1 {{ $titleColor }}"> {{ $name }} </h3>
+            <h3 class="mb-1.5 font-bold lg:mb-1 text-lg sm:line-clamp-1 text-gray-900"> {{ $name }} </h3>
             <div class="flex items-center justify-between gap-4">
                 <div class="flex-none h-32 lg:h-28 xl:h-32">
                     <img src="{{ $image }}" alt="mammut" class="object-contain h-full" />

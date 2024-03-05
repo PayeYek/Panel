@@ -3,7 +3,7 @@
 @tailwind base;
 @layer base{
     * {
-        @apply transition-all duration-300;
+        @apply transition-all duration-75;
     }
 }
 @tailwind components;
@@ -277,77 +277,95 @@
     }
 }
 
-/* Font IRANYekan */
+/* Font IRANYekanX */
 @layer components {
     @font-face {
-        font-family: IRANYekan;
+        font-family: IRANYekanX;
         font-style: normal;
-        font-weight: 100; /* font-thin -> font-weight: 100; */
-        src: url('./fonts/woff/IRANYekan-Thin.woff') format('woff'),
-        url('./fonts/woff2/IRANYekan-Thin.woff2') format('woff2');
-    }
-
-    /*@font-face {
-        font-family: IRANYekan;
-        font-style: normal;
-        font-weight: 200; !* font-extralight -> font-weight: 200; *!
-        src: url('./fonts/woff/IRANYekan-UltraLight.woff') format('woff'),
-        url('./fonts/woff2/IRANYekan-UltraLight.woff2') format('woff2');
-    }*/
-    @font-face {
-        font-family: IRANYekan;
-        font-style: normal;
-        font-weight: 300; /* font-light -> font-weight: 300; */
-        src: url('./fonts/woff/IRANYekan-Light.woff') format('woff'),
-        url('./fonts/woff2/IRANYekan-Light.woff2') format('woff2');
+        font-weight: 100; /* font-thin -> 100 */
+        src: url('./fonts/woff/IRANYekanX-Thin.woff') format('woff'),
+        url('./fonts/woff2/IRANYekanX-Thin.woff2') format('woff2');
     }
 
     @font-face {
-        font-family: IRANYekan;
+        font-family: IRANYekanX;
         font-style: normal;
-        font-weight: normal; /* font-normal -> font-weight: 400; */
-        src: url('./fonts/woff/IRANYekan-Regular.woff') format('woff'),
-        url('./fonts/woff2/IRANYekan-Regular.woff2') format('woff2');
+        font-weight: 200; /* font-extralight -> 200 */
+        src: url('./fonts/woff/IRANYekanX-UltraLight.woff') format('woff'),
+        url('./fonts/woff2/IRANYekanX-UltraLight.woff2') format('woff2');
     }
 
     @font-face {
-        font-family: IRANYekan;
+        font-family: IRANYekanX;
         font-style: normal;
-        font-weight: 500; /* font-medium -> font-weight: 500; */
-        src: url('./fonts/woff/IRANYekan-Medium.woff') format('woff'),
-        url('./fonts/woff2/IRANYekan-Medium.woff2') format('woff2');
-    }
-
-    /*@font-face {
-        font-family: IRANYekan;
-        font-style: normal;
-        font-weight: 600;  !* font-semibold -> font-weight: 600; *!
-        src: url('./fonts/woff/IRANYekan-DemiBold.woff') format('woff'),
-        url('./fonts/woff2/IRANYekan-DemiBold.woff2') format('woff2');
-    }*/
-    @font-face {
-        font-family: IRANYekan;
-        font-style: normal;
-        font-weight: bold; /* font-bold -> font-weight: 700; */
-        src: url('./fonts/woff/IRANYekan-Bold.woff') format('woff'),
-        url('./fonts/woff2/IRANYekan-Bold.woff2') format('woff2');
+        font-weight: 300; /* font-light -> 300 */
+        src: url('./fonts/woff/IRANYekanX-Light.woff') format('woff'),
+        url('./fonts/woff2/IRANYekanX-Light.woff2') format('woff2');
     }
 
     @font-face {
-        font-family: IRANYekan;
+        font-family: IRANYekanX;
         font-style: normal;
-        font-weight: 800; /* font-extrabold -> font-weight: 800; */
-        src: url('./fonts/woff/IRANYekan-ExtraBold.woff') format('woff'),
-        url('./fonts/woff2/IRANYekan-ExtraBold.woff2') format('woff2');
+        font-weight: normal; /* font-normal -> 400 */
+        src: url('./fonts/woff/IRANYekanX-Regular.woff') format('woff'),
+        url('./fonts/woff2/IRANYekanX-Regular.woff2') format('woff2');
     }
 
     @font-face {
-        font-family: IRANYekan;
+        font-family: IRANYekanX;
         font-style: normal;
-        font-weight: 900; /* font-black -> font-weight: 900; */
-        src: url('./fonts/woff/IRANYekan-Black.woff') format('woff'),
-        url('./fonts/woff2/IRANYekan-Black.woff2') format('woff2');
+        font-weight: 500; /* font-medium -> 500 */
+        src: url('./fonts/woff/IRANYekanX-Medium.woff') format('woff'),
+        url('./fonts/woff2/IRANYekanX-Medium.woff2') format('woff2');
     }
+
+    @font-face {
+        font-family: IRANYekanX;
+        font-style: normal;
+        font-weight: 600;  /* font-semibold -> 600 */
+        src: url('./fonts/woff/IRANYekanX-DemiBold.woff') format('woff'),
+        url('./fonts/woff2/IRANYekanX-DemiBold.woff2') format('woff2');
+    }
+
+    @font-face {
+        font-family: IRANYekanX;
+        font-style: normal;
+        font-weight: bold; /* font-bold -> 700 */
+        src: url('./fonts/woff/IRANYekanX-Bold.woff') format('woff'),
+        url('./fonts/woff2/IRANYekanX-Bold.woff2') format('woff2');
+    }
+
+    @font-face {
+        font-family: IRANYekanX;
+        font-style: normal;
+        font-weight: 800; /* font-extrabold -> 800 */
+        src: url('./fonts/woff/IRANYekanX-ExtraBold.woff') format('woff'),
+        url('./fonts/woff2/IRANYekanX-ExtraBold.woff2') format('woff2');
+    }
+
+    @font-face {
+        font-family: IRANYekanX;
+        font-style: normal;
+        font-weight: 900; /* font-black -> 900 */
+        src: url('./fonts/woff/IRANYekanX-Black.woff') format('woff'),
+        url('./fonts/woff2/IRANYekanX-Black.woff2') format('woff2');
+    }
+    @font-face {
+        font-family: IRANYekanX;
+        font-style: normal;
+        font-weight: 950;
+        src: url('./fonts/woff/IRANYekanX-ExtraBlack.woff') format('woff'),
+        url('./fonts/woff2/IRANYekanX-ExtraBlack.woff2') format('woff2');
+    }
+
+    @font-face {
+        font-family: IRANYekanX;
+        font-style: normal;
+        font-weight: 1000;
+        src: url('./fonts/woff/IRANYekanX-Heavy.woff') format('woff'),
+        url('./fonts/woff2/IRANYekanX-Heavy.woff2') format('woff2');
+    }
+
 }
 
 /* custom components */
@@ -375,11 +393,11 @@
     .fill_btn_theme_warning_filled{
         @apply text-white bg-red-700 hover:bg-red-800 focus:bg-red-800 focus:shadow-focus focus:shadow-red-700/50;
     }
-    
+
     .vacant_btn_theme_primary{
         @apply text-blue-700 bg-white border border-blue-700 hover:border-blue-800 hover:text-blue-800 focus:border-blue-800 focus:text-blue-800 focus:shadow-focus focus:shadow-blue-700/50;
     }
-    
+
     .fill_btn_theme_primary_empty{
         @apply text-blue-700 bg-white border border-blue-700 hover:border-blue-800 hover:text-blue-800 focus:border-blue-800 focus:text-blue-800 focus:shadow-focus focus:shadow-blue-700/50;
     }
@@ -387,7 +405,7 @@
     .fill_btn_theme_primary_filled{
         @apply text-white bg-blue-700 hover:bg-blue-800 focus:bg-blue-800 focus:shadow-focus focus:shadow-blue-700/50;
     }
-    
+
     .vacant_btn_theme_rose{
         @apply text-rose-700 bg-white border border-rose-700 hover:border-rose-800 hover:text-rose-800 focus:border-rose-800 focus:text-rose-800 focus:shadow-focus focus:shadow-rose-700/50;
     }
@@ -598,4 +616,92 @@
 .slider_type_1 .swiper-pagination .swiper-pagination-bullet-active{
     @apply w-6 opacity-80;
 }
+
+.desktop_pdp_slider .swiper-button-next, .desktop_pdp_slider .swiper-button-prev{
+    @apply absolute top-1/2 z-[1] cursor-pointer -translate-y-1/2 w-10 h-10 lg:w-12 lg:h-12 rounded-lg bg-white/70 flex_center drop-shadow-[2px_4px_15px_rgba(255,255,255,0.25)] before:absolute before:content-[''] before:w-2 before:h-2 before:border-r-2 before:border-t-2 before:border-gray-900;
+}
+
+.desktop_pdp_slider .swiper-button-next.swiper-button-disabled, .desktop_pdp_slider .swiper-button-prev.swiper-button-disabled{
+    @apply opacity-40 pointer-events-none;
+}
+
+.desktop_pdp_slider .swiper-button-next{
+    @apply right-4 lg:right-6 before:rotate-45;
+}
+
+.desktop_pdp_slider .swiper-button-prev{
+    @apply left-4 lg:left-6 before:-rotate-[135deg];
+}
 /* swiper ends */
+
+/* tab styules starts */
+.l_tab_styles li.active{
+    @apply before:block font-bold;
+}
+/* tab styules ends */
+
+
+.iframe_styles > * {
+    width: 100%;
+}
+
+/* table custom styles starts */
+.custom_table_container{
+    @apply overflow-auto;
+}
+.custom_table_container table{
+    @apply w-full font-yekan text-dark-500 min-w-[36rem];
+}
+.custom_table_container table thead{
+    @apply border-b-2 border-b-gray-900;
+}
+.custom_table_container table thead tr td{
+    @apply text-sm font-bold leading-6 px-4 py-1.5 [&:not(:first-child)]:text-center lg:first:pr-8;
+}
+.custom_table_container table tbody tr{
+    @apply border-b [&:nth-last-child(2)]:border-b-2 border-b-gray-900/30 [&:nth-last-child(2)]:border-gray-900 h-16 last:h-8 last:border-b-0;
+}
+.custom_table_container table tbody tr:last-child td{
+    @apply text-xs py-0.5;
+}
+.custom_table_container table tbody tr td{
+    @apply px-4 py-1.5 [&:not(:first-child)]:text-center lg:first:pr-8;
+}
+
+.custom_table_container.not_comparison table tbody tr{
+    @apply border-b last:border-b-2 border-b-gray-900/30 last:border-gray-900 h-16;
+}
+.custom_table_container.not_comparison table tbody tr:last-child td{
+    @apply text-sm py-1.5;
+}
+
+
+.custom_table_striped_container{
+    @apply overflow-auto;
+}
+.custom_table_striped_container table{
+    @apply w-full font-yekan text-dark-500 min-w-[36rem];
+}
+.custom_table_striped_container table thead{
+    @apply border-b-2 border-b-dark-500;
+}
+.custom_table_striped_container table thead tr td{
+    @apply text-sm font-bold leading-6 px-4 py-1.5 [&:not(:first-child)]:text-center lg:first:pr-8;
+}
+.custom_table_striped_container table tbody tr{
+    @apply h-12 last:h-8 last:!bg-white odd:bg-white even:bg-dark-50 hover:bg-[#eee] transition-colors;
+}
+.custom_table_striped_container table tbody tr:last-child td{
+    @apply text-xs py-0.5;
+}
+.custom_table_striped_container table tbody tr td{
+    @apply px-4 py-1.5 [&:not(:first-child)]:text-center lg:first:pr-8;
+}
+
+.custom_table_striped_container.not_comparison table tbody tr{
+    @apply h-12 last:odd:!bg-white last:even:!bg-dark-50 last:hover:!bg-[#eee];
+}
+.custom_table_striped_container.not_comparison table tbody tr:last-child td{
+    @apply text-sm py-1.5 px-4 lg:first:pr-8;
+}
+/* table custom styles ends */

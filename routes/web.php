@@ -103,12 +103,15 @@ Route::middleware(['splade'])->group(function () {
                 Route::get('{page}/p', 'products')->name('list');
                 Route::get('{page}/p/{product}', 'product')->name('show');
                 Route::get('{page}/c/{category}', 'category')->name('category');
+                Route::post('{page}/p/{product}/comment', 'comment')->name('comment');
             });
 
             Route::name('article.')->group(function () {
                 Route::get('{page}/a', 'articles')->name('list');
                 Route::get('{page}/a/{article}', 'article')->name('show');
             });
+
+            Route::get('{page}/sales', 'sales')->name('sales');
 
         });
 
