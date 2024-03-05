@@ -20,7 +20,7 @@
         <div class="flex items-center gap-2.5">
             {{-- <SwitchStyle class="hidden sm:block" /> --}}
             {{-- <Breakpoint class="shrink-0 {{ app()->environment('production') ? 'hidden' : '' }}" /> --}}
-            <a class="w-20 h-8 px-2 text-xs font-bold text-white bg-red-700 rounded flex_center hover:bg-red-800"
+            <a class="w-24 h-8 px-2 text-xs font-bold text-white bg-red-700 rounded flex_center hover:bg-red-800"
                 href="{{ route('landing.page.show', ['page' => $land->slug]) }}">{{ __('Terms of sale') }}</a>
             <button @click.prevent="navigation.opened = !navigation.opened"
                 class="p-2 text-gray-600 rounded-lg cursor-pointer md:hidden hover:text-gray-900 hover:bg-gray-100 focus:bg-gray-100 dark:focus:bg-gray-700 focus:ring-2 focus:ring-gray-100 dark:focus:ring-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">

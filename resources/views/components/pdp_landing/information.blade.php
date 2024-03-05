@@ -51,7 +51,7 @@
     };
 @endphp
 
-<section class="">
+<section class="lg:pt-24">
     <h1 class="hidden md:block text-2xl lg:text-[32px] font-medium {{ $textStyle }} mb-8 lg:mb-11 line-clamp-1"> {{ $productName }} </h1>
     {{-- boxes --}}
     <div class="grid grid-cols-3 gap-3 text-sm font-normal mb-4 md:max-w-[524px]">
@@ -76,8 +76,8 @@
             <p class="text-gray-900 line-clamp-1"> {{ $product->year }} </p>
         </div>
         <div class="aspect-square flex_center flex-col p-1 bg-dark-50 gap-1 {{ $radiusSize }}">
-            {{-- <p class="{{ $textStyle }} line-clamp-1"> سیستم ترمز </p>
-            <p class="text-gray-900 line-clamp-1"> کاسه ای </p> --}}
+            <p class="{{ $textStyle }} line-clamp-1"> مدل </p>
+            <p class="text-gray-900 line-clamp-1"> {{ $product->model }} </p>
         </div>
     </div>
 

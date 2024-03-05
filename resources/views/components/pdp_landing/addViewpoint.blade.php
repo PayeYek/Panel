@@ -36,10 +36,9 @@
     };
 @endphp
 
-<section class="default_container md:mt-16 relative lg:mt-12 z-[1]">
+<section class="default_container relative z-[1]">
     <div class="md:bg-white md:drop-shadow-base {{ $radiusSize }}">
-        <hr class="border-dark-100 mb-4 md:mb-0 md:absolute md:-top-8 md:inset-x-0 lg:-top-6"/>
-        <div class="md:w-[492px] md:mx-auto md:pt-10">
+        <div class="md:w-[492px] md:mx-auto md:pt-10 bg-white">
             <p class="text-lg font-bold text-gray-900 mb-1.5 md:mb-5"> ثبت دیدگاه </p>
             <p class="text-sm font-normal text-gray-900 mb-8 md:mb-4"> با وارد کردن مشخصات خوددیدگاهتان را ثبت
                 کنید. </p>

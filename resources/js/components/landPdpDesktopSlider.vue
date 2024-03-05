@@ -7,7 +7,7 @@
 
     <!-- thumbnails -->
     <div class="md:grid hidden grid-cols-3 gap-3">
-        <div v-for="(thumb, index) in thumbGallery" :key="index" :class="'aspect-square w-full cursor-pointer relative overflow-hidden ' + radius"
+        <div v-for="(thumb, index) in thumbGallery" :key="index" :class="'aspect-video w-full cursor-pointer relative overflow-hidden ' + radius"
             @click="showSliderWithSliderTo(index + 1)">
             <img :src="thumb" :alt="name" :class="'w-full h-full ' + radius + ' object-cover'" />
             <div class="w-full h-full bg-black/60 absolute top-0 left-0 flex_center text-white/60 font-normal text-[60px]" v-if="index == 0 && thumbGalleryLength > 3"> {{ thumbGalleryLength - 3 }} + </div>
