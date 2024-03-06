@@ -8,20 +8,23 @@
 
     :root{
         --theme-normal: #B91C1C;
-        --theme-focus: #D41118;
-        --theme-shadow-normal: rgba(212, 17, 24, 0.3);
+        --theme-focus: #9A0707;
+        --theme-shadow-light: rgba(212, 17, 24, 0.3);
+        --theme-shadow-normal: rgba(212, 17, 24, 0.5);
         --theme-shadow-focus: rgba(212, 17, 24, 0.8);
     }
     .theme_arian{
         --theme-normal: #B91C1C;
-        --theme-focus: #D41118;
-        --theme-shadow-normal: rgba(212, 17, 24, 0.3);
+        --theme-focus: #9A0707;
+        --theme-shadow-light: rgba(212, 17, 24, 0.3);
+        --theme-shadow-normal: rgba(212, 17, 24, 0.5);
         --theme-shadow-focus: rgba(212, 17, 24, 0.8);
     }
     .theme_saipa{
         --theme-normal: #2E3092;
         --theme-focus: #151769;
-        --theme-shadow-normal: rgba(21, 23, 105, 0.3);
+        --theme-shadow-light: rgba(21, 23, 105, 0.3);
+        --theme-shadow-normal: rgba(21, 23, 105, 0.5);
         --theme-shadow-focus: rgba(21, 23, 105, 0.8);
     }
 }

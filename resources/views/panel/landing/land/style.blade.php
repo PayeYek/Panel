@@ -35,6 +35,7 @@
                        <option value="8">{{ __('View type') }} 8</option>
                        <option value="9">{{ __('View type') }} 9</option>
                        <option value="10">{{ __('View type') }} 10</option>
+                       <option value="11">{{ __('View type') }} 11</option>
                     </x-splade-select>
 
 

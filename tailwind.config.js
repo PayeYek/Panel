@@ -85,7 +85,8 @@ export default {
                 },
                 normal: 'var(--theme-normal)',
                 focus: 'var(--theme-focus)',
-                shadowLight: 'var(--theme-shadow-normal)',
+                shadowLight: 'var(--theme-shadow-light)',
+                shadowNormal: 'var(--theme-shadow-normal)',
                 shadowFocus: 'var(--theme-shadow-focus)',
             },
             dropShadow: {
