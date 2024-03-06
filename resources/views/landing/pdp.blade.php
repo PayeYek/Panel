@@ -102,8 +102,8 @@
                 {{-- viewpoint --}}
                 <section class="default_container" v-show="data.activeTab == 3">
                     <ul class="flex flex-col gap-7 text-gray-900 mb-4">
-                        @foreach($comments as $comment)
-                            @if($comments->count() > 0)
+                        @if($comments->count() > 0)
+                            @foreach($comments as $comment)
                                 <x-splade-data default="{ toggle: false }">
                                     <li class="p-4 drop-shadow-base bg-white {{ $radiusSize }} lg:px-8">
                                         {{-- user name --}}
@@ -148,17 +148,19 @@
                                         </div>
                                     </li>
                                 </x-splade-data>
-                            @else
-                                <li class="h-40 w-full flex_center text-center text-normal leading-6 lg:leading-7 text-sm lg:text-base">
-                                    شما می توانید نظر خود را با ما در میان بگذارید.
-                                </li>
-                            @endif
-                        @endforeach
+                            @endforeach
+                        @else
+                            <li class="h-44 w-full flex_center text-center text-normal leading-6 lg:leading-7 text-sm lg:text-base">
+                                شما می توانید نظر خود را با ما در میان بگذارید.
+                            </li>
+                        @endif
                     </ul>
-                    <button type="button"
-                            class="mx-auto text-red-700 text-sm font-bold lg:text-base cursor-pointer block"> مشاهده همه
-                        دیدگاه ها
-                    </button>
+                    @if($comments->count() > 0)
+                        <button type="button"
+                                class="mx-auto text-red-700 text-sm font-bold lg:text-base cursor-pointer block"> مشاهده همه
+                            دیدگاه ها
+                        </button>
+                    @endif
                 </section>
             </section>
         </x-splade-data>
