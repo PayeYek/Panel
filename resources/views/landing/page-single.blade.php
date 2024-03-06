@@ -9,20 +9,9 @@
         '16' => 'rounded-b-2xl',
         default => 'rounded-b-md'
     };
-
-    $sliderPanelBgColor = match($land->styles->color."") {
-        '1' => 'bg-red-700/75',
-        '2' => 'bg-blue-700/75',
-        '3' => 'bg-rose-700/75',
-        '4' => 'bg-zinc-700/75',
-        '5' => 'bg-cobalt-700/75',
-        default => 'bg-red-700/75'
-    };
 @endphp
 
 <x-layout.default.main :land="$land">
-
-    {{-- <x-layout.landing.sidebar :land="$land" /> --}}
 
     <img src="{{ asset('assets/svg/pattern-1.svg') }}" alt="lines"
          class="absolute right-0 w-full top-[38rem]"/>
@@ -31,11 +20,10 @@
     <img src="{{ asset('assets/svg/pattern-2.svg') }}" alt="line-2"
          class="absolute right-0 w-full bottom-48"/>
 
-    {{-- default_container --}}
     <main class="">
         {{-- slider --}}
         @if($land->slides)
-            <Slider :slides="{{$land->slides}}" radiusB="{{ $radiusSize }}" sliderPanelBgColor="{{ $sliderPanelBgColor }}" />
+            <Slider :slides="{{$land->slides}}" radiusB="{{ $radiusSize }}" />
         @endif
 
         {{-- products --}}

@@ -51,6 +51,10 @@ export default {
     // darkMode: 'false',
     theme: {
         extend: {
+            // backgroundColor: {
+            //     normal: 'var(--theme-normal)',
+            //     focus: 'var(--theme-focus)',
+            // },
             colors: {
                 primary: { "50": "#eff6ff", "100": "#dbeafe", "200": "#bfdbfe", "300": "#93c5fd", "400": "#60a5fa", "500": "#3b82f6", "600": "#2563eb", "700": "#1d4ed8", "800": "#1e40af", "900": "#1e3a8a", "950": "#172554" },
                 dark: {
@@ -79,6 +83,10 @@ export default {
                     "700": "#241f47",
                     "800": "#1b163e",
                 },
+                normal: 'var(--theme-normal)',
+                focus: 'var(--theme-focus)',
+                shadowLight: 'var(--theme-shadow-normal)',
+                shadowFocus: 'var(--theme-shadow-focus)',
             },
             dropShadow: {
                 'red': '0 2px 8px rgba(185,28,28,0.3)',
@@ -89,6 +97,8 @@ export default {
                 'focus': '0 0 4px',
                 'lg': '0 2px 8px',
                 'glass': 'inset 0 1px 4px',
+                // 'normal': 'var(--theme-normal)',
+                // 'focus': 'var(--theme-focus)',
             },
             screens: {
                 '3xl': '1600px',

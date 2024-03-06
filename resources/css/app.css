@@ -5,6 +5,25 @@
     * {
         @apply transition-all duration-75;
     }
+
+    :root{
+        --theme-normal: #B91C1C;
+        --theme-focus: #D41118;
+        --theme-shadow-normal: rgba(212, 17, 24, 0.3);
+        --theme-shadow-focus: rgba(212, 17, 24, 0.8);
+    }
+    .theme_arian{
+        --theme-normal: #B91C1C;
+        --theme-focus: #D41118;
+        --theme-shadow-normal: rgba(212, 17, 24, 0.3);
+        --theme-shadow-focus: rgba(212, 17, 24, 0.8);
+    }
+    .theme_saipa{
+        --theme-normal: #2E3092;
+        --theme-focus: #151769;
+        --theme-shadow-normal: rgba(21, 23, 105, 0.3);
+        --theme-shadow-focus: rgba(21, 23, 105, 0.8);
+    }
 }
 @tailwind components;
 @tailwind utilities;
@@ -473,7 +492,6 @@
     }
 
 }
-
 
 /* CUSTOM COLOR */
 .bg-multi-color {
