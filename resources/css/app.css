@@ -646,7 +646,7 @@
 }
 
 /* table custom styles starts */
-.custom_table_container{
+.custom_table_container div{
     @apply overflow-auto;
 }
 .custom_table_container table{
@@ -659,28 +659,25 @@
     @apply text-sm font-bold leading-6 px-4 py-1.5 [&:not(:first-child)]:text-center lg:first:pr-8;
 }
 .custom_table_container table tbody tr{
-    @apply border-b [&:nth-last-child(2)]:border-b-2 border-b-gray-900/30 [&:nth-last-child(2)]:border-gray-900 h-16 last:h-8 last:border-b-0;
-}
-.custom_table_container table tbody tr:last-child td{
-    @apply text-xs py-0.5;
+    @apply border-b [&:nth-last-child(1)]:border-b-2 border-b-gray-900/30 [&:nth-last-child(1)]:border-gray-900 h-16 last:border-b-0;
 }
 .custom_table_container table tbody tr td{
     @apply px-4 py-1.5 [&:not(:first-child)]:text-center lg:first:pr-8;
 }
 
-.custom_table_container.not_comparison table tbody tr{
+/* .custom_table_container.not_comparison table tbody tr{
     @apply border-b last:border-b-2 border-b-gray-900/30 last:border-gray-900 h-16;
 }
 .custom_table_container.not_comparison table tbody tr:last-child td{
     @apply text-sm py-1.5;
-}
+} */
 
 
-.custom_table_striped_container{
+.custom_table_striped_container div{
     @apply overflow-auto;
 }
 .custom_table_striped_container table{
-    @apply w-full font-yekan text-dark-500 min-w-[36rem];
+    @apply w-full font-yekan text-dark-500 min-w-[36rem] overflow-auto;
 }
 .custom_table_striped_container table thead{
     @apply border-b-2 border-b-dark-500;
@@ -689,19 +686,19 @@
     @apply text-sm font-bold leading-6 px-4 py-1.5 [&:not(:first-child)]:text-center lg:first:pr-8;
 }
 .custom_table_striped_container table tbody tr{
-    @apply h-12 last:h-8 last:!bg-white odd:bg-white even:bg-dark-50 hover:bg-[#eee] transition-colors;
+    @apply h-12 odd:bg-white even:bg-dark-50 hover:bg-[#eee] transition-colors;
 }
-.custom_table_striped_container table tbody tr:last-child td{
+/* .custom_table_striped_container table tbody tr:last-child td{
     @apply text-xs py-0.5;
-}
+} */
 .custom_table_striped_container table tbody tr td{
     @apply px-4 py-1.5 [&:not(:first-child)]:text-center lg:first:pr-8;
 }
 
-.custom_table_striped_container.not_comparison table tbody tr{
+/* .custom_table_striped_container.not_comparison table tbody tr{
     @apply h-12 last:odd:!bg-white last:even:!bg-dark-50 last:hover:!bg-[#eee];
 }
 .custom_table_striped_container.not_comparison table tbody tr:last-child td{
     @apply text-sm py-1.5 px-4 lg:first:pr-8;
-}
+} */
 /* table custom styles ends */

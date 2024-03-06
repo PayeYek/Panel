@@ -31,6 +31,10 @@
             $gridCols = 'grid grid-cols-1 border border-dark-100 p-4 ' . $radiusSize;
             break;
         
+        case '4':
+            $gridCols = 'grid grid-cols-1 border border-dark-100 p-4 ' . $radiusSize;
+            break;
+        
         default:
             # code...
             break;

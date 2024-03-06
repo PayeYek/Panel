@@ -1,4 +1,34 @@
 @props(['land' => null])
+@php
+    $radiusSize = match($land->styles->radius."") {
+        '0' => 'rounded-none',
+        '2' => 'rounded-sm',
+        '4' => 'rounded',
+        '6' => 'rounded-md',
+        '8' => 'rounded-lg',
+        '12' => 'rounded-xl',
+        '16' => 'rounded-2xl',
+        default => 'rounded-md'
+    };
+
+    $salesBtnStyle = match($land->styles->color."") {
+        '1' => 'fill_btn_theme_warning_filled',
+        '2' => 'fill_btn_theme_primary_filled',
+        '3' => 'fill_btn_theme_rose_filled',
+        '4' => 'fill_btn_theme_zinc_filled',
+        '5' => 'fill_btn_theme_cobalt_filled',
+        default => null
+    };
+
+    $navLinkseStyle = match($land->styles->color."") {
+        '1' => 'hover:text-red-800',
+        '2' => 'hover:text-blue-800',
+        '3' => 'hover:text-rose-800',
+        '4' => 'hover:text-zinc-800',
+        '5' => 'hover:text-cobalt-800',
+        default => 'hover:text-red-800'
+    };
+@endphp
 <x-splade-data store="navigation" default="{ opened: false }" />
 @if ($land)
     <header class="flex items-center justify-between h-full gap-5 default_container">
@@ -6,13 +36,13 @@
 
         <div class="flex-1 hidden md:flex">
             <nav class="flex text-sm font-medium px-3 py-2.5">
-                <a class="px-3 transition-all duration-100 hover:text-red-500"
+                <a class="px-3 transition-all duration-100 {{ $navLinkseStyle }}"
                     href="{{ route('landing.page.show', ['page' => $land->slug]) }}">{{ __('Home') }}</a>
-                <a class="px-3 transition-all duration-100 hover:text-red-500"
+                <a class="px-3 transition-all duration-100 {{ $navLinkseStyle }}"
                     href="{{ route('landing.product.list', ['page' => $land->slug]) }}">{{ __('Products') }}</a>
-                <a class="px-3 transition-all duration-100 hover:text-red-500"
+                <a class="px-3 transition-all duration-100 {{ $navLinkseStyle }}"
                     href="{{ route('landing.sales', ['page' => $land->slug]) }}">{{ __('Sales Agency') }}</a>
-                <a class="px-3 transition-all duration-100 hover:text-red-500"
+                <a class="px-3 transition-all duration-100 {{ $navLinkseStyle }}"
                     href="{{ route('landing.page.about', ['page' => $land->slug]) }}">{{ __('About us') }}</a>
             </nav>
         </div>
@@ -20,7 +50,7 @@
         <div class="flex items-center gap-2.5">
             {{-- <SwitchStyle class="hidden sm:block" /> --}}
             {{-- <Breakpoint class="shrink-0 {{ app()->environment('production') ? 'hidden' : '' }}" /> --}}
-            <a class="w-20 h-8 px-2 text-xs font-bold text-white bg-red-700 rounded flex_center hover:bg-red-800"
+            <a class="w-24 h-8 px-2 text-xs font-bold {{ $salesBtnStyle }} {{ $radiusSize }} flex_center"
                 href="{{ route('landing.page.show', ['page' => $land->slug]) }}">{{ __('Terms of sale') }}</a>
             <button @click.prevent="navigation.opened = !navigation.opened"
                 class="p-2 text-gray-600 rounded-lg cursor-pointer md:hidden hover:text-gray-900 hover:bg-gray-100 focus:bg-gray-100 dark:focus:bg-gray-700 focus:ring-2 focus:ring-gray-100 dark:focus:ring-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">

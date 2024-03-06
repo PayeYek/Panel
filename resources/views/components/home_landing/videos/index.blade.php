@@ -1,7 +1,8 @@
 @props([
     'radius' => '8',
     'colorPalette' => '1',
-    'data' => '[]'
+    'data' => '[]',
+    'showAllBtn' => true,
 ])
 
 @php
@@ -42,16 +43,20 @@
         function hideVideoByThumbnail(e) {
             e.classList.remove("flex_center")
             e.classList.add("hidden")
+            // close old video
+            const iframe = e.childNodes[0].childNodes[1].childNodes[1]
+            const refreshSrc = iframe.src
+            iframe.src = refreshSrc
         }
     </script>
 @endpush
 
-{{-- @dd($data); --}}
-<section class=" mb-4 lg:mb-20 relative z-[2] lg:default_container">
+{{-- @dd($data->count()); --}}
+<section class=" mb-4 sm:mb-8 lg:mb-20 relative z-[2] lg:default_container">
     {{-- header --}}
     <div class="flex items-center justify-between mb-4 px-4">
         <h3 class="text-lg font-bold text-gray-900"> ویدیو ها </h3>
-        <a href="#" class="flex items-center gap-2 text-xs font-normal {{ $showAllStyle }}">
+        <a href="#" class="flex items-center gap-2 text-xs font-normal {{ $showAllStyle }}" v-if="{{ $showAllBtn }}">
             <span> نمایش همه </span>
             <svg class="stroke-current" width="20" height="20" viewBox="0 0 20 20" fill="none"
                 xmlns="http://www.w3.org/2000/svg">
@@ -61,10 +66,10 @@
             </svg>
         </a>
     </div>
-    <ul class="flex items-center lg:grid px-4 overflow-auto lg:overflow-visible lg:px-0 gap-4 list-none lg:grid-cols-3">
+    <ul class="flex items-center lg:grid px-4 lg:px-0 gap-4 list-none {{ $data->count() == 1 ? '' : ($data->count() == 2 ? 'md:grid-cols-2 overflow-auto md:overflow-visible' : 'overflow-auto lg:overflow-visible lg:grid-cols-3') }}">
         @foreach ($data->take(3) as $video)
-            <li class="w-64 sm:w-80 md:w-96 flex-none lg:w-full" data-videoLink="{{ $video->link }}">
-                <div class="relative w-full pt-[66%] cursor-pointer {{ $radiusSize }} overflow-hidden drop-shadow-base videoThumbnails" onclick="showVideoByThumbnail(this)">
+            <li class="flex-none lg:w-full {{ $data->count() == 1 ? 'w-full' : ($data->count() == 2 ? 'w-96 sm:w-[28rem] md:w-full' : 'w-64 sm:w-80 md:w-96') }}" data-videoLink="{{ $video->link }}">
+                <div class="relative w-full pt-[62%] cursor-pointer {{ $radiusSize }} overflow-hidden drop-shadow-base videoThumbnails" onclick="showVideoByThumbnail(this)">
                     <img src="{{ $video->image }}" alt="{{ $video->alt }}" class="absolute top-0 left-0 w-full h-full object-cover z-[1]" />
                     <x-icons.playIcon class="w-12 h-12 sm:w-20 sm:h-20 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-[3]" />
                     <div class="absolute text-white bottom-0 left-0 w-full z-[2] flex flex-col justify-end px-4 pb-5 bg-gradient-to-t from-black to-transparent h-1/2">
