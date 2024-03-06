@@ -26,7 +26,7 @@
             <Slider :slides="{{$land->slides}}" radiusB="{{ $radiusSize }}" />
         @endif
 
-        {{-- products --}}
+        {{-- products category --}}
         <x-home_landing.productCategories :landSlug="$land->slug" :data="$data" radius="{{ $land->styles->radius }}" />
 
         {{-- favorites --}}

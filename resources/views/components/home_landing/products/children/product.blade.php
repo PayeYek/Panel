@@ -83,15 +83,6 @@
 
     }
 
-    // $pseudoColor = match($colorPalette) {
-    //     '1' => 'before:bg-normal',
-    //     '2' => 'before:bg-blue-700',
-    //     '3' => 'before:bg-rose-700',
-    //     '4' => 'before:bg-zinc-700',
-    //     '5' => 'before:bg-cobalt-700',
-    //     default => 'before:bg-red-700'
-    // };
-
     switch ($borderType) {
         case '1':
             $borderStyle = match($type."") {
@@ -102,19 +93,13 @@
             };
             break;
         case '2':
-            
-    
+            $borderStyle = match($type."") {
+                '1', '2', '3', '4', '5', '6'  => 'border border-dark-100',
+                '7', '9', '10' => '',
+                '8' => 'sm:border sm:border-dark-100',
+                default => 'border border-dark-100'
+            };
             break;
-        case '3':
-            
-            break;
-        case '4':
-            
-            break;
-        case '5':
-            
-            break;
-
     }
 @endphp
 
