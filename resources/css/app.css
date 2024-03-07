@@ -27,6 +27,13 @@
         --theme-shadow-normal: rgba(21, 23, 105, 0.5);
         --theme-shadow-focus: rgba(21, 23, 105, 0.8);
     }
+
+    .theme_arian .custom_article_styles h2{
+        @apply text-normal;
+    }
+    .theme_arian .custom_article_styles h3{
+        @apply text-gray-900;
+    }
 }
 @tailwind components;
 @tailwind utilities;

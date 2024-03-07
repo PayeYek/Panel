@@ -10,15 +10,6 @@
         '16' => 'rounded-2xl',
         default => 'rounded-md'
     };
-
-    $textStyle = match($land->styles->color."") {
-        '1' => 'text-red-700',
-        '2' => 'text-blue-700',
-        '3' => 'text-rose-700',
-        '4' => 'text-zinc-700',
-        '5' => 'text-cobalt-700',
-        default => 'text-red-700'
-    };
 @endphp
 
 <x-layout.default.main :land="$land">
@@ -60,7 +51,7 @@
                 <div class="flex items-center gap-5">
                     <h3 class="text-lg font-bold text-gray-900"> دسته بندی </h3>
                     {{-- categories --}}
-                    <div class="flex items-center gap-5 {{ $textStyle }}">
+                    <div class="flex items-center gap-5 text-normal">
                         <a href="#" class="h-8 w-36 flex_center {{ $radiusSize }} border border-dark-100 text-base font-bold"> اخبار </a>
                         <a href="#" class="h-8 w-36 flex_center {{ $radiusSize }} border border-dark-100 text-base font-bold"> اطلاعیه </a>
                         <a href="#" class="h-8 w-36 flex_center {{ $radiusSize }} border border-dark-100 text-base font-bold"> همه موارد </a>
@@ -78,12 +69,7 @@
             </section>
         </x-splade-data>
 
-        {{-- type="{{ $land->styles->article_type }}" --}}
-        <x-home_landing.announcement :showSectionTitle=false :landSlug="$land->slug" :data="$land->articles" type="4" fontFamily="1" colorPalette="{{ $land->styles->color }}" radius="{{ $land->styles->radius }}" />
+        <x-home_landing.announcement :showSectionTitle=false :landSlug="$land->slug" :data="$land->articles" type="{{ $land->styles->article_type }}" radius="{{ $land->styles->radius }}" />
     </main>
-
-    {{-- <x-layout.landing.sidebar :land="$land"/> --}}
-
-    {{-- <x-layout.landing.articles :land="$land" all/> --}}
 
 </x-layout.default.main>
