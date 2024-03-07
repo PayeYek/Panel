@@ -1,26 +1,8 @@
 @props([
-    'borderType' => '2',
+    'borderType' => '1',
 ])
 
 @php
-    $textStyle = match($land->styles->color."") {
-        '1' => 'text-red-700',
-        '2' => 'text-blue-700',
-        '3' => 'text-rose-700',
-        '4' => 'text-zinc-700',
-        '5' => 'text-cobalt-700',
-        default => null
-    };
-
-    $bgStyle = match($land->styles->color."") {
-        '1' => 'bg-red-700',
-        '2' => 'bg-blue-700',
-        '3' => 'bg-rose-700',
-        '4' => 'bg-zinc-700',
-        '5' => 'bg-cobalt-700',
-        default => null
-    };
-
     $radiusSize = match($land->styles->radius."") {
         '0' => 'rounded-none',
         '2' => 'rounded-sm',

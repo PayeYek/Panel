@@ -10,33 +10,24 @@
         default => 'rounded-md'
     };
 
-    $textStyle = match($land->styles->color."") {
-        '1' => 'text-red-700',
-        '2' => 'text-blue-700',
-        '3' => 'text-rose-700',
-        '4' => 'text-zinc-700',
-        '5' => 'text-cobalt-700',
-        default => null
-    };
-
-    $fillBtnTheme = '';
-    switch ($land->styles->color."") {
-        case '1':
-            $fillBtnTheme = 'fill_btn_theme_warning_filled';
-            break;
-        case '2':
-            $fillBtnTheme = 'fill_btn_theme_primary_filled';
-            break;
-        case '3':
-            $fillBtnTheme = 'fill_btn_theme_rose_filled';
-            break;
-        case '4':
-            $fillBtnTheme = 'fill_btn_theme_zinc_filled';
-            break;
-        case '5':
-            $fillBtnTheme = 'fill_btn_theme_cobalt_filled';
-            break;
-    };
+    // $fillBtnTheme = '';
+    // switch ($land->styles->color."") {
+    //     case '1':
+    //         $fillBtnTheme = 'fill_btn_theme_warning_filled';
+    //         break;
+    //     case '2':
+    //         $fillBtnTheme = 'fill_btn_theme_primary_filled';
+    //         break;
+    //     case '3':
+    //         $fillBtnTheme = 'fill_btn_theme_rose_filled';
+    //         break;
+    //     case '4':
+    //         $fillBtnTheme = 'fill_btn_theme_zinc_filled';
+    //         break;
+    //     case '5':
+    //         $fillBtnTheme = 'fill_btn_theme_cobalt_filled';
+    //         break;
+    // };
 @endphp
 
 <x-layout.default.main :land="$land">
@@ -44,13 +35,13 @@
         {{-- titles --}}
         <section class="default_container">
             <p class="text-[10px] md:text-sm md:font-bold font-normal mb-6 text-gray-900"> نمایندگی فروش </p>
-            <h1 class="text-center px-8 text-2xl md:text-[32px] font-normal mb-5 md:mb-8 {{ $textStyle }}"> نمایندگی 2111 آرین دیزل </h1>
+            <h1 class="text-center px-8 text-2xl md:text-[32px] font-normal mb-5 md:mb-8 text-normal"> نمایندگی 2111 آرین دیزل </h1>
             <h3 class="text-xl font-normal mb-6 text-gray-900 md:text-2xl"> آرین دیزل </h3>
             <p class="text-justify text-sm md:text-base md:mb-10 lg:mb-14 font-normal leading-6 md:leading-7 mb-5">
                 شرکت آرین دیزل پایا به عنوان نماینده رسمی خودروهای سبک تجاری (Light Truck) شرکت جک موتورز در ایران می باشد که با بهره وری از تجارب ارزنده مدیران و مهندسان خویش در عرصه خودروسازی، نسبت به انتخاب و عرضه محصولات کیفی، قابل اطمینان و رقابتی اقدام نموده است. با توجه به خط مشی این شرکت و در راستای کسب حداکثری رضایت مشتریان، شرکت آرین دیزل نسبت به ارائه مدل های مناسب، سخت کار و سازگار با اقلیم ایران با قیمت های رقابتی و شرایط فروش متنوع و نیز خدمات پس از فروش بطور گسترده در سطح کشور اقدام نموده است.
             </p>
             {{-- branches --}}
-            <section class="grid grid-cols-1 {{ $textStyle }} md:grid-cols-2 gap-6 mb-4">
+            <section class="grid grid-cols-1 text-normal md:grid-cols-2 gap-6 mb-4">
                 <div class="drop-shadow-base flex flex-col px-16 md:px-12 pt-4 pb-12 bg-white {{ $radiusSize }}">
                     <p class="text-center text-base font-bold mb-12"> شعبه مرکزی </p>
                     {{-- address --}}
@@ -96,7 +87,7 @@
             {{-- send message --}}
             <section class="bg-white drop-shadow-base px-4 pb-8 pt-2 sm:pt-4 md:pt-8 sm:pb-10 md:pb-12 {{ $radiusSize }}">
                 <div class="md:w-[492px] md:mx-auto">
-                    <p class="text-base font-bold mb-4 {{ $textStyle }} text-center md:text-right md:mb-6"> ارسال پیام </p>
+                    <p class="text-base font-bold mb-4 text-normal text-center md:text-right md:mb-6"> ارسال پیام </p>
                     <p class="text-sm md:text-base font-normal text-gray-900 mb-12 md:mb-4 text-center md:text-right"> در صورت نیاز به مشاوره و خدمت با ما همراه باشید. </p>
                     {{-- form --}}
                     <section class="flex flex-col items-center">
@@ -116,7 +107,7 @@
                                 <i class="absolute top-1 right-[52px] text-red-700 peer-valid:hidden">*</i>
                             </label>
                         </form>
-                        <button type="submit" form="addComment" class="flex_center w-64 h-11 {{ $fillBtnTheme }} {{ $radiusSize }}"> ارسال </button>
+                        <button type="submit" form="addComment" class="flex_center w-64 h-11 text-white bg-normal hover:bg-focus focus:bg-focus focus:shadow-focus focus:shadow-shadowNormal {{ $radiusSize }}"> ارسال </button>
                     </section>
                 </div>
             </section>
