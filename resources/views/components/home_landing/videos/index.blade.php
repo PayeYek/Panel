@@ -6,14 +6,6 @@
 ])
 
 @php
-    $showAllStyle = match($colorPalette) {
-        '1' => 'text-red-700 hover:text-red-800',
-        '2' => 'text-blue-700 hover:text-blue-800',
-        '3' => 'text-rose-700 hover:text-rose-800',
-        '4' => 'text-zinc-700 hover:text-zinc-800',
-        '5' => 'text-cobalt-700 hover:text-cobalt-800',
-        default => 'text-red-700 hover:text-red-800',
-    };
 
     $radiusSize = match($radius) {
         '0' => 'rounded-none',
@@ -51,12 +43,11 @@
     </script>
 @endpush
 
-{{-- @dd($data->count()); --}}
 <section class=" mb-4 sm:mb-8 lg:mb-20 relative z-[2] lg:default_container">
     {{-- header --}}
     <div class="flex items-center justify-between mb-4 px-4">
-        <h3 class="text-lg font-bold text-gray-900"> ویدیو ها </h3>
-        <a href="#" class="flex items-center gap-2 text-xs font-normal {{ $showAllStyle }}" v-if="{{ $showAllBtn }}">
+        <h3 class="text-xl font-normal lg:text-2xl text-gray-900"> ویدیو ها </h3>
+        <a href="#" class="flex items-center gap-2 text-xs font-normal text-normal hover:text-focus" v-if="{{ $showAllBtn }}">
             <span> نمایش همه </span>
             <svg class="stroke-current" width="20" height="20" viewBox="0 0 20 20" fill="none"
                 xmlns="http://www.w3.org/2000/svg">

@@ -8,29 +8,12 @@
     'showSectionTitle' => true,
 ])
 
-@php
-    $captionFontFamily = match($fontFamily) {
-        '1' => 'text-xl font-normal',
-        default => null
-    };
-
-    $showAllStyle = match($colorPalette) {
-        '1' => 'text-red-700 hover:text-red-800',
-        '2' => 'text-blue-700 hover:text-blue-800',
-        '3' => 'text-rose-700 hover:text-rose-800',
-        '4' => 'text-zinc-700 hover:text-zinc-800',
-        '5' => 'text-cobalt-700 hover:text-cobalt-800',
-        default => 'text-red-700 hover:text-red-800',
-    };
-@endphp
-
 <section class="mb-4 lg:mb-12 relative z-[1] {{ $type == 2 ? 'lg:default_container' : 'default_container' }}">
     @if ($showSectionTitle)
         {{-- header --}}
         <div class="flex items-center justify-center {{ $type == 2 ? 'lg:mb-4' : 'mb-4' }} sm:justify-between px-4 lg:px-4">
-            <h3 class=" text-gray-900 dark:text-white"> اطلاعیه ها </h3>
-            <a href="#"
-                class="items-center hidden gap-2 text-xs font-normal sm:flex {{ $showAllStyle }}">
+            <h3 class="text-xl font-normal lg:text-2xl text-gray-900 dark:text-white"> اطلاعیه ها </h3>
+            <a href="#" class="items-center hidden gap-2 text-xs font-normal sm:flex text-normal hover:text-focus">
                 <span> نمایش همه </span>
                 <svg class="stroke-current" width="20" height="20" viewBox="0 0 20 20" fill="none"
                     xmlns="http://www.w3.org/2000/svg">
@@ -41,5 +24,5 @@
             </a>
         </div>
     @endif
-    <x-home_landing.announcement.children.announcements :landSlug="$landSlug" :data="$data" :type="$type" :colorPalette="$colorPalette" :radius="$radius" />
+    <x-home_landing.announcement.children.announcements :landSlug="$landSlug" :data="$data" type="4" :radius="$radius" />
 </section>

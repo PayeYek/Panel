@@ -2,8 +2,8 @@
     'radius' => '8',
     'type' => '1',
     'data' => '',
-    'colorPalette' => '1',
-    'landSlug' => '/'
+    'landSlug' => '/',
+    'borderType' => '1',
 ])
 
 @php
@@ -18,36 +18,21 @@
         default => 'rounded-md'
     };
 
-    $gridCols = null;
-    switch ($type) {
-        case '1':
-            $gridCols = 'grid grid-cols-1 gap-4';
-            break;
-        case '2':
-            $gridCols = 'flex gap-4 items-center overflow-auto p-4 scrollbar-none md:scrollbar-thin lg:grid lg:grid-cols-4 lg:p-0 lg:overflow-visible';
-            break;
-        
-        case '3':
-            $gridCols = 'grid grid-cols-1 border border-dark-100 p-4 ' . $radiusSize;
-            break;
-        
-        case '4':
-            $gridCols = 'grid grid-cols-1 border border-dark-100 p-4 ' . $radiusSize;
-            break;
-        
-        default:
-            # code...
-            break;
-    }
+    $gridCols = match($type) {
+        '1' => 'grid grid-cols-1 gap-4',
+        '2' => 'flex gap-4 items-center overflow-auto p-4 scrollbar-none md:scrollbar-thin lg:grid lg:grid-cols-4 lg:p-0 lg:overflow-visible',
+        '3' => 'grid grid-cols-1 border border-dark-100 p-4 ' . $radiusSize,
+        '4' => 'grid grid-cols-1 border border-dark-100 p-4 ' . $radiusSize,
+        default => null
+    };
+
 @endphp
-{{-- @dd($data); --}}
 
 <ul class="mb-4 {{ $gridCols }} list-none sm:mb-0">
     @foreach ($data->take(4) as $article)
         <x-home_landing.announcement.children.announcement
             :type="$type"
             :radiusSize="$radiusSize"
-            :colorPalette="$colorPalette"
             :title="$article->title"
             :description="$article->description"
             :image="$article->image"
