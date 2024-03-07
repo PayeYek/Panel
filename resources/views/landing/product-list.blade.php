@@ -1,3 +1,7 @@
+@props([
+    'borderType' => '1',
+])
+
 @php
     $radiusSize = match($land->styles->radius."") {
         '0' => 'rounded-none',
@@ -8,6 +12,71 @@
         '12' => 'rounded-xl',
         '16' => 'rounded-2xl',
         default => 'rounded-md'
+    };
+
+    $borderStyle = '';
+    switch ($land->styles->product_type."") {
+        case '7':
+            $borderStyle = 'drop-shadow-base';
+    
+            break;
+        case '8':
+            $borderStyle = match($borderType) {
+                '1' => 'drop-shadow-base sm:drop-shadow-none',
+                default => 'border border-dark-100 sm:border-0'
+            };
+    
+            break;
+        case '9':
+            $borderStyle = match($borderType) {
+                '1' => 'drop-shadow-base',
+                default => 'border border-dark-100'
+            };
+            break;
+        case '10':
+            $borderStyle = match($borderType) {
+                '1' => 'drop-shadow-base',
+                default => 'border border-dark-100'
+            };
+            break;
+        case '11':
+            $borderStyle = match($borderType) {
+                '1' => 'drop-shadow-base',
+                default => 'border border-dark-100'
+            };
+            break;
+    }
+
+    switch ($borderType) {
+        case '1':
+            $borderStyle = match($land->styles->product_type."") {
+                '1', '2', '3', '4', '5', '6'  => 'drop-shadow-base',
+                '7', '9', '10' => '',
+                '8' => 'sm:drop-shadow-base',
+                default => 'drop-shadow-base'
+            };
+            break;
+        case '2':
+            $borderStyle = match($land->styles->product_type."") {
+                '1', '2', '3', '4', '5', '6'  => 'border border-dark-100',
+                '7', '9', '10' => '',
+                '8' => 'sm:border sm:border-dark-100',
+                default => 'border border-dark-100'
+            };
+            break;
+    }
+
+    $classType = match($land->styles->product_type."") {
+        '1' => 'lg:grid-cols-5 gap-4 sm:grid-cols-2',
+        '2', '3' => 'lg:grid-cols-4 gap-4 sm:grid-cols-2',
+        '4' => 'sm:grid-cols-2 lg:grid-cols-3 gap-4',
+        '5', '6' => 'md:grid-cols-2 gap-4',
+        '7' => 'md:grid-cols-1 ' . $radiusSize . ' overflow-hidden ' . $borderStyle,
+        '8' => 'md:grid-cols-1 ' . $radiusSize . ' overflow-hidden sm:rounded-none sm:overflow-visible sm:gap-4 ' . $borderStyle,
+        '9' => 'sm:grid-cols-2 lg:grid-cols-4 ' . $radiusSize . ' overflow-hidden ' . $borderStyle,
+        '10' => 'sm:grid-cols-2 lg:grid-cols-3 ' . $radiusSize . ' overflow-hidden ' . $borderStyle,
+        '11' => 'md:grid-cols-1 ' . $radiusSize . ' overflow-hidden ' . $borderStyle,
+        default => 'lg:grid-cols-5 gap-4 sm:grid-cols-2'
     };
 @endphp
 
@@ -24,29 +93,24 @@
                 } else{
                     element.classList.add("hidden")
                 }
-                
             }
         }
     </script>
 @endpush
 <x-layout.default.main :land="$land">
-
     <main class="pt-4 relative">
-        <section class="default_container mb-8 lg:flex lg:items-center lg:gap-4">
-            <p class="mb-4 lg:mb-0 text-base font-bold text-gray-900 text-center"> محصولات </p>
-            <div class="h-10 w-full max-w-96 mx-auto lg:w-36 lg:mx-0 before:absolute before:content-[''] before:w-2 before:h-2 before:border-r-2 before:border-b-2 before:border-normal before:top-1/2 before:left-4 before:-translate-y-1/2 before:rotate-45 relative">
-                <select id="selectFilter" class="w-full h-full border focus:ring-0 outline-none !bg-none text-normal border-normal focus:border-focus {{ $radiusSize }}" onchange="handleFilterProducts()">
-                    <option value="0"> همه محصولات </option>
-                    <option value="1"> کامیون </option>
-                    <option value="2"> کشنده </option>
-                    <option value="4"> کامیونت </option>
-                    <option value="5"> ون </option>
-                </select>
-            </div>
-        </section>
+        <CategoryFilter
+            radius="{{ $radiusSize }}"
+            classType="{{ $classType }}"
+            type="{{ $land->styles->product_type }}"
+            list="{{ $land->products }}"
+            landSlug="{{ $land->slug }}"
+            borderStyle="{{ $borderStyle }}"
+            :evenOdd=true />
+        
     
         {{-- products --}}
-        <x-home_landing.products :showSectionTitle=false :landSlug="$land->slug" :data="$land->products" type="11" evenOdd="true" radius="{{ $land->styles->radius }}" />
+        {{-- <x-home_landing.products :showSectionTitle=false :landSlug="$land->slug" :data="$land->products" type="11" evenOdd="true" radius="{{ $land->styles->radius }}" /> --}}
     </main>
 
 

@@ -12,6 +12,7 @@ import ShowPassword from "@/components/ShowPassword.vue";
 import LandBtn from "@/components/LandBtn.vue";
 import landPdpMobileSlider from "@/components/landPdpMobileSlider.vue";
 import landPdpDesktopSlider from "@/components/landPdpDesktopSlider.vue";
+import CategoryFilter from "@/components/CategoryFilter.vue";
 
 import { createApp } from "vue";
 import { renderSpladeApp, SpladePlugin } from "@protonemedia/laravel-splade";
@@ -55,6 +56,7 @@ createApp({ render: renderSpladeApp({ el }) })
     .component('LandBtn', LandBtn)
     .component('landPdpMobileSlider', landPdpMobileSlider)
     .component('landPdpDesktopSlider', landPdpDesktopSlider)
+    .component('CategoryFilter', CategoryFilter)
     .directive("click-outside", clickOutside)
     .mount(el);
 
