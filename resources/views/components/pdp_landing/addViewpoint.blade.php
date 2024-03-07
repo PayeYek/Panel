@@ -14,25 +14,6 @@
         '16' => 'rounded-2xl',
         default => 'rounded-md'
     };
-
-    // $fillBtnTheme = '';
-    // switch ($colorPalette) {
-    //     case '1':
-    //         $fillBtnTheme = 'fill_btn_theme_warning_filled';
-    //         break;
-    //     case '2':
-    //         $fillBtnTheme = 'fill_btn_theme_primary_filled';
-    //         break;
-    //     case '3':
-    //         $fillBtnTheme = 'fill_btn_theme_rose_filled';
-    //         break;
-    //     case '4':
-    //         $fillBtnTheme = 'fill_btn_theme_zinc_filled';
-    //         break;
-    //     case '5':
-    //         $fillBtnTheme = 'fill_btn_theme_cobalt_filled';
-    //         break;
-    // };
 @endphp
 
 <section class="default_container relative z-[1]">

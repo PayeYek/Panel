@@ -45,7 +45,7 @@
         default => 'sm:rounded-md'
     };
 
-    $fillBtnTheme = $vacantBtnTheme = $borderStyle = '';
+    $fillBtnTheme = $borderStyle = '';
     switch ($colorPalette) {
         case '1':
             $fillBtnTheme = match($type) {
@@ -54,28 +54,24 @@
             };
             break;
         case '2':
-            $vacantBtnTheme = 'vacant_btn_theme_primary';
             $fillBtnTheme = match($type) {
                 '3', '6', '7', '8', '11' => 'fill_btn_theme_primary_filled',
                 default => 'fill_btn_theme_primary_empty'
             };
             break;
         case '3':
-            $vacantBtnTheme = 'vacant_btn_theme_rose';
             $fillBtnTheme = match($type) {
                 '3', '6', '7', '8', '11' => 'fill_btn_theme_rose_filled',
                 default => 'fill_btn_theme_rose_empty'
             };
             break;
         case '4':
-            $vacantBtnTheme = 'vacant_btn_theme_zinc';
             $fillBtnTheme = match($type) {
                 '3', '6', '7', '8', '11' => 'fill_btn_theme_zinc_filled',
                 default => 'fill_btn_theme_zinc_empty'
             };
             break;
         case '5':
-            $vacantBtnTheme = 'vacant_btn_theme_cobalt';
             $fillBtnTheme = match($type) {
                 '3', '6', '7', '8', '11' => 'fill_btn_theme_cobalt_filled',
                 default => 'fill_btn_theme_cobalt_empty'
