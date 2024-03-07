@@ -43,14 +43,16 @@
             </section>
 
             {{-- info --}}
-            <x-pdp_landing.information productName="{{ $product->name }}" colorPalette="{{ $land->styles->color }}"
-                                       radius="{{ $land->styles->radius }}" :product="$product"/>
+            <x-pdp_landing.information
+                productName="{{ $product->name }}"
+                radius="{{ $land->styles->radius }}"
+                :product="$product" />
         </section>
 
         <x-splade-data default="{ activeTab: 1 }">
             <section class="mb-8 lg:mb-16">
                 {{-- tabs --}}
-                <x-pdp_landing.sectionTabs colorPalette="{{ $land->styles->color }}"/>
+                <x-pdp_landing.sectionTabs />
 
                 {{-- Further Details --}}
                 <section class="default_container" v-show="data.activeTab == 1">
@@ -90,7 +92,7 @@
                                     <ul class="list-inside list-disc marker:text-gray-900 text-sm lg:text-base font-normal flex flex-col gap-2 duration-1000 overflow-hidden lg:pr-2"
                                         v-bind:class="data.toggle ? 'max-h-96 pb-4 mt-4' : 'max-h-0 pb-0'">
                                         @foreach($attrs as $attr)
-                                            <li class=""> {{ $attr->name }} : {{ $attr->pivot->value->value }} </li>
+                                            <li> {{ $attr->name }} : {{ $attr->pivot->value->value }} </li>
                                         @endforeach
                                     </ul>
                                 </li>
@@ -155,9 +157,9 @@
                             </li>
                         @endif
                     </ul>
-                    @if($comments->count() > 0)
+                    @if($comments->count() > 3)
                         <button type="button"
-                                class="mx-auto text-red-700 text-sm font-bold lg:text-base cursor-pointer block"> مشاهده همه
+                                class="mx-auto text-normal text-sm font-bold lg:text-base cursor-pointer block"> مشاهده همه
                             دیدگاه ها
                         </button>
                     @endif
@@ -175,7 +177,6 @@
         {{-- add viewpoint --}}
         <x-pdp_landing.addViewpoint
             radius="{{ $land->styles->radius }}"
-            colorPalette="{{ $land->styles->color }}"
             :land="$land" :product="$product"
             />
 

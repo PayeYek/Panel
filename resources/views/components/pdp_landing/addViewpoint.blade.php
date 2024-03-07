@@ -1,6 +1,5 @@
 @props([
     'radius' => '8',
-    'colorPalette' => '1',
     'land'=>null,
     'product'=>null,
 ])
@@ -16,24 +15,24 @@
         default => 'rounded-md'
     };
 
-    $fillBtnTheme = '';
-    switch ($colorPalette) {
-        case '1':
-            $fillBtnTheme = 'fill_btn_theme_warning_filled';
-            break;
-        case '2':
-            $fillBtnTheme = 'fill_btn_theme_primary_filled';
-            break;
-        case '3':
-            $fillBtnTheme = 'fill_btn_theme_rose_filled';
-            break;
-        case '4':
-            $fillBtnTheme = 'fill_btn_theme_zinc_filled';
-            break;
-        case '5':
-            $fillBtnTheme = 'fill_btn_theme_cobalt_filled';
-            break;
-    };
+    // $fillBtnTheme = '';
+    // switch ($colorPalette) {
+    //     case '1':
+    //         $fillBtnTheme = 'fill_btn_theme_warning_filled';
+    //         break;
+    //     case '2':
+    //         $fillBtnTheme = 'fill_btn_theme_primary_filled';
+    //         break;
+    //     case '3':
+    //         $fillBtnTheme = 'fill_btn_theme_rose_filled';
+    //         break;
+    //     case '4':
+    //         $fillBtnTheme = 'fill_btn_theme_zinc_filled';
+    //         break;
+    //     case '5':
+    //         $fillBtnTheme = 'fill_btn_theme_cobalt_filled';
+    //         break;
+    // };
 @endphp
 
 <section class="default_container relative z-[1]">
@@ -63,7 +62,7 @@
                                   class="col-span-full shadow-glass shadow-black/30 h-full resize-none peer border-0 focus:ring-0 {{ $radiusSize }} outline-none w-full placeholder:text-[#888b93] text-sm font-normal pr-3 pl-6 text-gray-900"
                                   placeholder="دیدگاه (اجباری)"></textarea>
                     </div>
-                    <button type="submit" class="{{ $radiusSize }} flex_center w-64 h-11 {{ $fillBtnTheme }}"> ارسال </button>
+                    <button type="submit" class="{{ $radiusSize }} flex_center w-64 h-11 text-white bg-normal hover:bg-focus focus:bg-focus focus:shadow-focus focus:shadow-shadowNormal"> ارسال </button>
                 </section>
             </x-splade-form>
         </div>
