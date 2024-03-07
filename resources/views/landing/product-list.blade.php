@@ -13,19 +13,34 @@
 
 @push('script')
     <script>
-        const selectFilter = document.getElementById("selectFilter")
-        console.log(selctFilter);
+        function handleFilterProducts(){
+            const selectFilter = document.getElementById("selectFilter")
+            for (let index = 0; index < document.querySelectorAll('.product_card').length; index++) {
+                const element = document.querySelectorAll('.product_card')[index];
+                if(selectFilter.value == 0){
+                    element.classList.remove("hidden")
+                } else if(element.dataset.category == selectFilter.value){
+                    element.classList.remove("hidden")
+                } else{
+                    element.classList.add("hidden")
+                }
+                
+            }
+        }
     </script>
 @endpush
-
 <x-layout.default.main :land="$land">
 
     <main class="pt-4 relative">
         <section class="default_container mb-8 lg:flex lg:items-center lg:gap-4">
             <p class="mb-4 lg:mb-0 text-base font-bold text-gray-900 text-center"> محصولات </p>
             <div class="h-10 w-full max-w-96 mx-auto lg:w-36 lg:mx-0 before:absolute before:content-[''] before:w-2 before:h-2 before:border-r-2 before:border-b-2 before:border-normal before:top-1/2 before:left-4 before:-translate-y-1/2 before:rotate-45 relative">
-                <select id="selectFilter" class="w-full h-full border focus:ring-0 outline-none !bg-none text-normal border-normal focus:border-focus {{ $radiusSize }}">
+                <select id="selectFilter" class="w-full h-full border focus:ring-0 outline-none !bg-none text-normal border-normal focus:border-focus {{ $radiusSize }}" onchange="handleFilterProducts()">
+                    <option value="0"> همه محصولات </option>
                     <option value="1"> کامیون </option>
+                    <option value="2"> کشنده </option>
+                    <option value="4"> کامیونت </option>
+                    <option value="5"> ون </option>
                 </select>
             </div>
         </section>

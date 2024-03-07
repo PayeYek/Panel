@@ -77,6 +77,7 @@
             :landSlug="$landSlug"
             :productSlug="$product->slug"
             :description="$product->description"
+            :categoryId="$product->category_id"
             />
     @endforeach
 </div>
