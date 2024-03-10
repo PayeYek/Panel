@@ -25,6 +25,17 @@
         default => 'before:rounded-md'
     };
 
+    $radiusSizeSm = match($land->styles->radius."") {
+        '0' => 'sm:rounded-none',
+        '2' => 'sm:rounded-sm',
+        '4' => 'sm:rounded',
+        '6' => 'sm:rounded-md',
+        '8' => 'sm:rounded-lg',
+        '12' => 'sm:rounded-xl',
+        '16' => 'sm:rounded-2xl',
+        default => 'sm:rounded-md'
+    };
+
     $borderStyle = '';
     switch ($land->styles->product_type."") {
         case '7':
@@ -78,7 +89,7 @@
     }
 
     // $classType = match($land->styles->product_type."") {
-    $classType = match('4') {
+    $classType = match('10') {
         '1' => 'lg:grid-cols-5 gap-4 sm:grid-cols-2',
         '2', '3' => 'lg:grid-cols-4 gap-4 sm:grid-cols-2',
         '4' => 'sm:grid-cols-2 lg:grid-cols-3 gap-4',
@@ -119,6 +130,7 @@
             landSlug="{{ $land->slug }}"
             borderStyle="{{ $borderStyle }}"
             :evenOdd=true
+            smRadius="{{ $radiusSizeSm }}"
             beforeRadius="{{ $radiusSizeBefore }}" />
         
     
