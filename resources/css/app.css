@@ -32,17 +32,17 @@
         --theme-rarius: 8px;
     }
 
-    .theme_arian .custom_article_styles h2{
+    .custom_article_styles h2{
         @apply text-3xl mb-4;
     }
-    .theme_arian .custom_article_styles h3{
+    .custom_article_styles h3{
         @apply text-2xl mb-2.5;
     }
-    .theme_arian .custom_article_styles p{
-        @apply text-xl;
+    .custom_article_styles p{
+        @apply text-xl leading-8;
     }
-    .theme_arian .custom_article_styles{
-        @apply *:leading-8 *:text-[#58595b];
+    .custom_article_styles{
+        @apply *:text-[#58595b];
     }
     .rounded_md .custom_article_styles img{
         @apply rounded-custom;
