@@ -15,8 +15,9 @@ return new class extends Migration {
             $table->foreignId('land_id')->constrained()->cascadeOnDelete();
             $table->integer('color')->default(1);
             $table->integer('radius')->default(0);
-            $table->integer('product_type')->default(1);
-            $table->integer('article_type')->default(1);
+            $table->integer('border_type')->default(0);
+            $table->integer('l_product_type')->default(1);
+            $table->integer('l_article_type')->default(1);
             $table->integer('video_type')->default(1);
             $table->integer('slide_type')->default(1);
             $table->integer('slide_anim')->default(1);
