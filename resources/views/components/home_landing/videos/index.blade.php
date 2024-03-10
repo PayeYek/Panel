@@ -1,23 +1,7 @@
 @props([
-    'radius' => '8',
-    'colorPalette' => '1',
     'data' => '[]',
     'showAllBtn' => true,
 ])
-
-@php
-
-    $radiusSize = match($radius) {
-        '0' => 'rounded-none',
-        '2' => 'rounded-sm',
-        '4' => 'rounded',
-        '6' => 'rounded-md',
-        '8' => 'rounded-lg',
-        '12' => 'rounded-xl',
-        '16' => 'rounded-2xl',
-        default => 'rounded-md'
-    };
-@endphp
 
 @push('script')
     <script>
@@ -60,7 +44,7 @@
     <ul class="flex items-center lg:grid px-4 lg:px-0 gap-4 list-none {{ $data->count() == 1 ? '' : ($data->count() == 2 ? 'md:grid-cols-2 overflow-auto md:overflow-visible' : 'overflow-auto lg:overflow-visible lg:grid-cols-3') }}">
         @foreach ($data->take(3) as $video)
             <li class="flex-none lg:w-full {{ $data->count() == 1 ? 'w-full' : ($data->count() == 2 ? 'w-96 sm:w-[28rem] md:w-full' : 'w-64 sm:w-80 md:w-96') }}" data-videoLink="{{ $video->link }}">
-                <div class="relative w-full pt-[62%] cursor-pointer {{ $radiusSize }} overflow-hidden drop-shadow-base videoThumbnails" onclick="showVideoByThumbnail(this)">
+                <div class="relative w-full pt-[62%] cursor-pointer rounded-custom overflow-hidden drop-shadow-base videoThumbnails" onclick="showVideoByThumbnail(this)">
                     <img src="{{ $video->image }}" alt="{{ $video->alt }}" class="absolute top-0 left-0 w-full h-full object-cover z-[1]" />
                     <x-icons.playIcon class="w-12 h-12 sm:w-20 sm:h-20 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-[3]" />
                     <div class="absolute text-white bottom-0 left-0 w-full z-[2] flex flex-col justify-end px-4 pb-5 bg-gradient-to-t from-black to-transparent h-1/2">

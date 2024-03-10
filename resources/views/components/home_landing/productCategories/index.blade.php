@@ -1,30 +1,18 @@
 @props([
-    'radius' => '8',
     'colorPalette' => '1',
     'data' => '',
     'landSlug' => '',
 ])
 
 @php
-    $radiusSize = match($radius) {
-        '0' => 'rounded-none',
-        '2' => 'rounded-sm',
-        '4' => 'rounded',
-        '6' => 'rounded-md',
-        '8' => 'rounded-lg',
-        '12' => 'rounded-xl',
-        '16' => 'rounded-2xl',
-        default => 'rounded-md'
-    };
-
-    $linkStyle = match($colorPalette) {
-        '1' => 'hover:text-red-800 hover:shadow-red-800/50',
-        '2' => 'shadow-blue-700/50 hover:text-blue-800 text-blue-700 hover:shadow-blue-800/50',
-        '3' => 'shadow-rose-700/50 hover:text-rose-800 text-rose-700 hover:shadow-rose-800/50',
-        '4' => 'shadow-zinc-700/50 hover:text-zinc-800 text-zinc-700 hover:shadow-zinc-800/50',
-        '5' => 'shadow-cobalt-700/50 hover:text-cobalt-800 text-cobalt-700 hover:shadow-cobalt-800/50',
-        default => null
-    };
+    // $linkStyle = match($colorPalette) {
+    //     '1' => 'hover:text-red-800 hover:shadow-red-800/50',
+    //     '2' => 'shadow-blue-700/50 hover:text-blue-800 text-blue-700 hover:shadow-blue-800/50',
+    //     '3' => 'shadow-rose-700/50 hover:text-rose-800 text-rose-700 hover:shadow-rose-800/50',
+    //     '4' => 'shadow-zinc-700/50 hover:text-zinc-800 text-zinc-700 hover:shadow-zinc-800/50',
+    //     '5' => 'shadow-cobalt-700/50 hover:text-cobalt-800 text-cobalt-700 hover:shadow-cobalt-800/50',
+    //     default => null
+    // };
     
 @endphp
 
@@ -52,7 +40,7 @@
         class="flex flex-col flex-wrap items-center content-center w-full h-20 text-base font-bold md:flex-row md:flex-nowrap md:content-normal md:h-auto gap-y-4 gap-x-5">
         @foreach ($data as $item)
             <a href="{{ route('landing.product.category', ['page' => $landSlug, 'category' => $item["category"]->slug]) }}"
-                class="h-8 {{ $radiusSize }} w-36 flex_center bg-white shadow-[0_2px_8px] shadow-shadowLight text-normal">
+                class="h-8 rounded-custom w-36 flex_center bg-white shadow-[0_2px_8px] shadow-shadowLight text-normal hover:text-focus ">
                 {{ $item["category"]->title }}
             </a>
         @endforeach

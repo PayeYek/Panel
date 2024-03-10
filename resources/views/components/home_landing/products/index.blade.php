@@ -1,6 +1,5 @@
 @props([
     'type' => '1',
-    'radius' => '8',
     'evenOdd' => 'false',
     'data' => '',
     'landSlug' => '',
@@ -13,5 +12,5 @@
         <h3  class="mb-4 text-xl font-normal lg:text-2xl text-center text-gray-900 lg:text-right lg:px-4"> برگزیده ها </h3>
     @endif
 
-    <x-home_landing.products.children.products :type="$type" :evenOdd="$evenOdd" :radius="$radius" :data="$data" :landSlug="$landSlug" />
+    <x-home_landing.products.children.products :type="$type" :evenOdd="$evenOdd" :data="$data" :landSlug="$landSlug" />
 </section>

@@ -1,6 +1,5 @@
 @props([
     'type' => '1',
-    'radius' => '8',
     'evenOdd' => 'false',
     'data' => '',
     'landSlug' => '',
@@ -8,16 +7,16 @@
 ])
 
 @php
-    $radiusSize = match($radius) {
-        '0' => 'rounded-none',
-        '2' => 'rounded-sm',
-        '4' => 'rounded',
-        '6' => 'rounded-md',
-        '8' => 'rounded-lg',
-        '12' => 'rounded-xl',
-        '16' => 'rounded-2xl',
-        default => 'rounded-md'
-    };
+    // $radiusSize = match($radius) {
+    //     '0' => 'rounded-none',
+    //     '2' => 'rounded-sm',
+    //     '4' => 'rounded',
+    //     '6' => 'rounded-md',
+    //     '8' => 'rounded-lg',
+    //     '12' => 'rounded-xl',
+    //     '16' => 'rounded-2xl',
+    //     default => 'rounded-md'
+    // };
 
     $borderStyle = '';
     switch ($type."") {
@@ -57,11 +56,11 @@
         '2', '3' => 'lg:grid-cols-4 gap-4 sm:grid-cols-2',
         '4' => 'sm:grid-cols-2 lg:grid-cols-3 gap-4',
         '5', '6' => 'md:grid-cols-2 gap-4',
-        '7' => 'md:grid-cols-1 ' . $radiusSize . ' overflow-hidden ' . $borderStyle,
-        '8' => 'md:grid-cols-1 ' . $radiusSize . ' overflow-hidden sm:rounded-none sm:overflow-visible sm:gap-4 ' . $borderStyle,
-        '9' => 'sm:grid-cols-2 lg:grid-cols-4 ' . $radiusSize . ' overflow-hidden ' . $borderStyle,
-        '10' => 'sm:grid-cols-2 lg:grid-cols-3 ' . $radiusSize . ' overflow-hidden ' . $borderStyle,
-        '11' => 'md:grid-cols-1 ' . $radiusSize . ' overflow-hidden ' . $borderStyle,
+        '7' => 'md:grid-cols-1 rounded-custom overflow-hidden ' . $borderStyle,
+        '8' => 'md:grid-cols-1 rounded-custom overflow-hidden sm:rounded-none sm:overflow-visible sm:gap-4 ' . $borderStyle,
+        '9' => 'sm:grid-cols-2 lg:grid-cols-4 rounded-custom overflow-hidden ' . $borderStyle,
+        '10' => 'sm:grid-cols-2 lg:grid-cols-3 rounded-custom overflow-hidden ' . $borderStyle,
+        '11' => 'md:grid-cols-1 rounded-custom overflow-hidden ' . $borderStyle,
         default => 'lg:grid-cols-5 gap-4 sm:grid-cols-2'
     };
 @endphp
@@ -70,7 +69,6 @@
     @foreach ($data as $product)
         <x-home_landing.products.children.product
             :type="$type"
-            :radius="$radiusSize"
             :evenOdd="$evenOdd"
             :image="$product->image"
             :name="$product->name"
