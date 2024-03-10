@@ -1,23 +1,23 @@
 @php
-    $radiusSize = match($land->styles->radius."") {
-        '0' => 'rounded-none',
-        '2' => 'rounded-sm',
-        '4' => 'rounded',
-        '6' => 'rounded-md',
-        '8' => 'rounded-lg',
-        '12' => 'rounded-xl',
-        '16' => 'rounded-2xl',
-        default => 'rounded-md'
-    };
+    // $radiusSize = match($land->styles->radius."") {
+    //     '0' => 'rounded-none',
+    //     '2' => 'rounded-sm',
+    //     '4' => 'rounded',
+    //     '6' => 'rounded-md',
+    //     '8' => 'rounded-lg',
+    //     '12' => 'rounded-xl',
+    //     '16' => 'rounded-2xl',
+    //     default => 'rounded-md'
+    // };
 
-    $textStyle = match($land->styles->color."") {
-        '1' => 'text-red-700',
-        '2' => 'text-blue-700',
-        '3' => 'text-rose-700',
-        '4' => 'text-zinc-700',
-        '5' => 'text-cobalt-700',
-        default => 'text-red-700',
-    };
+    // $textStyle = match($land->styles->color."") {
+    //     '1' => 'text-red-700',
+    //     '2' => 'text-blue-700',
+    //     '3' => 'text-rose-700',
+    //     '4' => 'text-zinc-700',
+    //     '5' => 'text-cobalt-700',
+    //     default => 'text-red-700',
+    // };
 
 @endphp
 
@@ -35,18 +35,14 @@
             {{-- product images --}}
             <section class="md:flex flex-col gap-3">
                 {{-- desktop slider --}}
-                <landPdpDesktopSlider radius="{{ $radiusSize }}" name="{{ $product->name }}"
-                                      mainImage="{{ $product->image }}" slides="{{ $product }}"/>
+                <landPdpDesktopSlider name="{{ $product->name }}" mainImage="{{ $product->image }}" slides="{{ $product }}"/>
 
                 {{-- mobile slider --}}
                 <landPdpMobileSlider slides="{{ $product }}"/>
             </section>
 
             {{-- info --}}
-            <x-pdp_landing.information
-                productName="{{ $product->name }}"
-                radius="{{ $land->styles->radius }}"
-                :product="$product" />
+            <x-pdp_landing.information productName="{{ $product->name }}" :product="$product" />
         </section>
 
         <x-splade-data default="{ activeTab: 1 }">
@@ -57,7 +53,7 @@
                 {{-- Further Details --}}
                 <section class="default_container" v-show="data.activeTab == 1">
                     <ul class="flex flex-col gap-2 text-gray-900">
-                        <li class="p-4 drop-shadow-base bg-white {{ $radiusSize }} lg:px-8">
+                        <li class="p-4 drop-shadow-base bg-white rounded-custom lg:px-8">
                             {{-- title --}}
                             <p class="text-sm lg:text-base font-bold"> بررسی اجمالی </p>
 
@@ -75,7 +71,7 @@
                     <ul class="flex flex-col gap-2 text-gray-900">
                         @foreach($product->attributes->sortBy('parent_id')->groupBy('parent_id') as $key => $attrs)
                             <x-splade-data default="{ toggle: {{ $loop->index == 0 ? 'true' : 'false' }} }">
-                                <li class="p-4 drop-shadow-base bg-white {{ $radiusSize }} lg:px-8">
+                                <li class="p-4 drop-shadow-base bg-white rounded-custom lg:px-8">
                                     {{-- title --}}
                                     <div class="flex items-center justify-between cursor-pointer"
                                          @click="data.toggle = !data.toggle">
@@ -107,7 +103,7 @@
                         @if($comments->count() > 0)
                             @foreach($comments as $comment)
                                 <x-splade-data default="{ toggle: false }">
-                                    <li class="p-4 drop-shadow-base bg-white {{ $radiusSize }} lg:px-8">
+                                    <li class="p-4 drop-shadow-base bg-white rounded-custom lg:px-8">
                                         {{-- user name --}}
                                         <p class="block text-sm leading-6 lg:leading-7 lg:text-base font-bold text-[#585d68] border-b border-[#e7e8e9] mb-3 pb-0.5">
                                             {{ $comment->name }} </p>
@@ -127,7 +123,7 @@
                                             </button>
                                         </div>
 
-                                        <div class="duration-1000 overflow-hidden bg-gray-100 px-2.5 sm:pr-8 {{ $radiusSize }}"
+                                        <div class="duration-1000 overflow-hidden bg-gray-100 px-2.5 sm:pr-8 rounded-custom"
                                             v-bind:class="data.toggle ? 'max-h-96 py-4 sm:py-5 mt-4' : 'max-h-0 pb-0'">
                                             <div class="flex items-center gap-4 mb-2">
                                                 <svg width="14" height="14" viewBox="0 0 14 14" fill="none"
@@ -169,19 +165,11 @@
 
         <x-home_landing.videos
             showAllBtn="false"
-            colorPalette="{{ $land->styles->color }}"
-            radius="{{ $land->styles->radius }}"
             :data="$product->videos"
             />
 
         {{-- add viewpoint --}}
-        <x-pdp_landing.addViewpoint
-            radius="{{ $land->styles->radius }}"
-            :land="$land" :product="$product"
-            />
-
-        {{-- pattern --}}
-        <x-pdp_landing.pattern classNames="absolute bottom-0 left-0 w-full" aspectRatio="pt-[38%]"/>
+        <x-pdp_landing.addViewpoint :land="$land" :product="$product" />
     </main>
 
 </x-layout.default.main>

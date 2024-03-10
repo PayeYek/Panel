@@ -1,16 +1,3 @@
-@php
-    // $radiusSize = match($land->styles->radius."") {
-    //     '0' => 'rounded-b-none',
-    //     '2' => 'rounded-b-sm',
-    //     '4' => 'rounded-b',
-    //     '6' => 'rounded-b-md',
-    //     '8' => 'rounded-b-lg',
-    //     '12' => 'rounded-b-xl',
-    //     '16' => 'rounded-b-2xl',
-    //     default => 'rounded-b-md'
-    // };
-@endphp
-
 <x-layout.default.main :land="$land">
 
     <main>
