@@ -3,39 +3,6 @@
 ])
 
 @php
-    $radiusSize = match($land->styles->radius."") {
-        '0' => 'rounded-none',
-        '2' => 'rounded-sm',
-        '4' => 'rounded',
-        '6' => 'rounded-md',
-        '8' => 'rounded-lg',
-        '12' => 'rounded-xl',
-        '16' => 'rounded-2xl',
-        default => 'rounded-md'
-    };
-
-    $radiusSizeBefore = match($land->styles->radius."") {
-        '0' => 'before:rounded-none',
-        '2' => 'before:rounded-sm',
-        '4' => 'before:rounded',
-        '6' => 'before:rounded-md',
-        '8' => 'before:rounded-lg',
-        '12' => 'before:rounded-xl',
-        '16' => 'before:rounded-2xl',
-        default => 'before:rounded-md'
-    };
-
-    $radiusSizeSm = match($land->styles->radius."") {
-        '0' => 'sm:rounded-none',
-        '2' => 'sm:rounded-sm',
-        '4' => 'sm:rounded',
-        '6' => 'sm:rounded-md',
-        '8' => 'sm:rounded-lg',
-        '12' => 'sm:rounded-xl',
-        '16' => 'sm:rounded-2xl',
-        default => 'sm:rounded-md'
-    };
-
     $borderStyle = '';
     switch ($land->styles->product_type."") {
         case '7':
@@ -94,11 +61,11 @@
         '2', '3' => 'lg:grid-cols-4 gap-4 sm:grid-cols-2',
         '4' => 'sm:grid-cols-2 lg:grid-cols-3 gap-4',
         '5', '6' => 'md:grid-cols-2 gap-4',
-        '7' => 'md:grid-cols-1 ' . $radiusSize . ' overflow-hidden ' . $borderStyle,
-        '8' => 'md:grid-cols-1 ' . $radiusSize . ' overflow-hidden sm:rounded-none sm:overflow-visible sm:gap-4 ' . $borderStyle,
-        '9' => 'sm:grid-cols-2 lg:grid-cols-4 ' . $radiusSize . ' overflow-hidden ' . $borderStyle,
-        '10' => 'sm:grid-cols-2 lg:grid-cols-3 ' . $radiusSize . ' overflow-hidden ' . $borderStyle,
-        '11' => 'md:grid-cols-1 ' . $radiusSize . ' overflow-hidden ' . $borderStyle,
+        '7' => 'md:grid-cols-1 rounded-custom overflow-hidden ' . $borderStyle,
+        '8' => 'md:grid-cols-1 rounded-custom overflow-hidden sm:rounded-none sm:overflow-visible sm:gap-4 ' . $borderStyle,
+        '9' => 'sm:grid-cols-2 lg:grid-cols-4 rounded-custom overflow-hidden ' . $borderStyle,
+        '10' => 'sm:grid-cols-2 lg:grid-cols-3 rounded-custom overflow-hidden ' . $borderStyle,
+        '11' => 'md:grid-cols-1 rounded-custom overflow-hidden ' . $borderStyle,
         default => 'lg:grid-cols-5 gap-4 sm:grid-cols-2'
     };
 @endphp
@@ -123,15 +90,12 @@
 <x-layout.default.main :land="$land">
     <main class="pt-4 relative">
         <CategoryFilter
-            radius="{{ $radiusSize }}"
             classType="{{ $classType }}"
             type="{{ $land->styles->product_type }}"
             list="{{ $land->products }}"
             landSlug="{{ $land->slug }}"
             borderStyle="{{ $borderStyle }}"
-            :evenOdd=false
-            smRadius="{{ $radiusSizeSm }}"
-            beforeRadius="{{ $radiusSizeBefore }}" />
+            :evenOdd=false />
         
     
         {{-- products --}}

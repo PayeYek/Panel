@@ -89,6 +89,9 @@ export default {
                 shadowNormal: 'var(--theme-shadow-normal)',
                 shadowFocus: 'var(--theme-shadow-focus)',
             },
+            borderRadius: {
+                'custom': 'var(--theme-rarius)',
+            },
             dropShadow: {
                 'red': '0 2px 8px rgba(185,28,28,0.3)',
                 'white': '0 2px 8px rgba(255,255,255,0.3)',

@@ -12,6 +12,7 @@
         --theme-shadow-light: rgba(212, 17, 24, 0.3);
         --theme-shadow-normal: rgba(212, 17, 24, 0.5);
         --theme-shadow-focus: rgba(212, 17, 24, 0.8);
+        --theme-rarius: 8px;
     }
     .theme_arian{
         --theme-normal: #B91C1C;
@@ -27,12 +28,24 @@
         --theme-shadow-normal: rgba(21, 23, 105, 0.5);
         --theme-shadow-focus: rgba(21, 23, 105, 0.8);
     }
+    .rounded_md{
+        --theme-rarius: 8px;
+    }
 
     .theme_arian .custom_article_styles h2{
-        @apply text-normal;
+        @apply text-3xl mb-4;
     }
     .theme_arian .custom_article_styles h3{
-        @apply text-gray-900;
+        @apply text-2xl mb-2.5;
+    }
+    .theme_arian .custom_article_styles p{
+        @apply text-xl;
+    }
+    .theme_arian .custom_article_styles{
+        @apply *:leading-8 *:text-[#58595b];
+    }
+    .rounded_md .custom_article_styles img{
+        @apply rounded-custom;
     }
 }
 @tailwind components;

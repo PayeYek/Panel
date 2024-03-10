@@ -1,6 +1,5 @@
 @props([
     'type' => '1',
-    'radius' => '8',
     'data' => '',
     'landSlug' => '/',
     'fontFamily' => '1',
@@ -24,5 +23,5 @@
             </a>
         </div>
     @endif
-    <x-home_landing.announcement.children.announcements :landSlug="$landSlug" :data="$data" type="4" :radius="$radius" />
+    <x-home_landing.announcement.children.announcements :landSlug="$landSlug" :data="$data" type="4" />
 </section>

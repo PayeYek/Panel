@@ -1,15 +1,15 @@
 <template>
     <div class="w-full pt-[100%] relative hidden md:block">
         <div class="absolute inset-0 cursor-pointer">
-            <img :src="mainImage" :alt="name" :class="'w-full h-full object-cover ' + radius" />
+            <img :src="mainImage" :alt="name" class="w-full h-full object-cover rounded-custom" />
         </div>
     </div>
 
     <!-- thumbnails -->
     <div class="md:grid hidden grid-cols-3 gap-3">
-        <div v-for="(thumb, index) in thumbGallery" :key="index" :class="'aspect-video w-full cursor-pointer relative overflow-hidden ' + radius"
+        <div v-for="(thumb, index) in thumbGallery" :key="index" class="aspect-video w-full cursor-pointer relative overflow-hidden rounded-custom"
             @click="showSliderWithSliderTo(index)">
-            <img :src="thumb" :alt="name" :class="'w-full h-full ' + radius + ' object-cover'" />
+            <img :src="thumb" :alt="name" class="w-full h-full rounded-custom object-cover" />
             <div class="w-full h-full bg-black/60 absolute top-0 left-0 flex_center text-white/60 font-normal text-[60px]" v-if="index == 2 && thumbGalleryLength > 3"> {{ thumbGalleryLength - 3 }} + </div>
         </div>
     </div>
@@ -50,7 +50,6 @@ export default {
         slides: Object,
         mainImage: String,
         name: String,
-        radius: String,
     },
     components: {
         Swiper,
