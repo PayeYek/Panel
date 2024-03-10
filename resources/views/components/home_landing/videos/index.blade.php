@@ -14,8 +14,9 @@
             videoHolder.innerHTML = videoFromServer
             e.nextSibling.classList.remove("hidden")
             e.nextSibling.classList.add("flex_center")
+            document.getElementById('video-player-container').classList.add('!z-10')
         }
-
+        
         function hideVideoByThumbnail(e) {
             e.classList.remove("flex_center")
             e.classList.add("hidden")
@@ -23,11 +24,12 @@
             const iframe = e.childNodes[0].childNodes[1].childNodes[1]
             const refreshSrc = iframe.src
             iframe.src = refreshSrc
+            document.getElementById('video-player-container').classList.remove('!z-10')
         }
     </script>
 @endpush
 
-<section class=" mb-4 sm:mb-8 lg:mb-20 relative z-[2] lg:default_container">
+<section class="mb-4 sm:mb-8 lg:mb-20 relative z-[3] lg:default_container" id="video-player-container">
     {{-- header --}}
     <div class="flex items-center justify-between mb-4 px-4">
         <h3 class="text-xl font-normal lg:text-2xl text-gray-900"> ویدیو ها </h3>

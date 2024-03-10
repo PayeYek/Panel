@@ -1,19 +1,8 @@
 @props(['land' => null])
-@php
-    $radiusSize = match($land->styles->radius."") {
-        '0' => 'rounded-none',
-        '2' => 'rounded-sm',
-        '4' => 'rounded',
-        '6' => 'rounded-md',
-        '8' => 'rounded-lg',
-        '12' => 'rounded-xl',
-        '16' => 'rounded-2xl',
-        default => 'rounded-md'
-    };
-@endphp
+
 <x-splade-data store="navigation" default="{ opened: false }" />
 @if ($land)
-    <header class="sticky top-0 z-[3] drop-shadow-[0_4px_4px_rgba(0,0,0,0.15)] bg-white h-16 sm:h-20">
+    <header class="fixed left-0 w-full top-0 z-[4] drop-shadow-[0_4px_4px_rgba(0,0,0,0.15)] bg-white h-16 sm:h-20">
         <section class="flex items-center justify-between h-full gap-5 default_container">
             <x-layout.landing.logo :land="$land" />
 
@@ -31,7 +20,7 @@
             <div class="flex items-center gap-2.5">
                 {{-- <SwitchStyle class="hidden sm:block" /> --}}
                 {{-- <Breakpoint class="shrink-0 {{ app()->environment('production') ? 'hidden' : '' }}" /> --}}
-                <a class="w-24 h-8 px-2 text-xs font-bold text-white bg-normal hover:bg-focus focus:bg-focus focus:shadow-focus focus:shadow-shadowNormal {{ $radiusSize }} flex_center"
+                <a class="w-24 h-8 px-2 text-xs font-bold text-white bg-normal hover:bg-focus focus:bg-focus focus:shadow-focus focus:shadow-shadowNormal rounded-custom flex_center"
                     href="{{ route('landing.page.show', ['page' => $land->slug]) }}">{{ __('Terms of sale') }}</a>
 
                 {{-- hamburger menu --}}
