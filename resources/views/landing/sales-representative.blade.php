@@ -1,16 +1,3 @@
-@php
-    $radiusSize = match($land->styles->radius."") {
-        '0' => 'rounded-none',
-        '2' => 'rounded-sm',
-        '4' => 'rounded',
-        '6' => 'rounded-md',
-        '8' => 'rounded-lg',
-        '12' => 'rounded-xl',
-        '16' => 'rounded-2xl',
-        default => 'rounded-md'
-    };
-@endphp
-
 <x-layout.default.main :land="$land">
     <main class="pt-4 relative">
         {{-- titles --}}
@@ -23,7 +10,7 @@
             </p>
             {{-- branches --}}
             <section class="grid grid-cols-1 text-normal md:grid-cols-2 gap-6 mb-4">
-                <div class="drop-shadow-base flex flex-col px-16 md:px-12 pt-4 pb-12 bg-white {{ $radiusSize }}">
+                <div class="drop-shadow-base flex flex-col px-16 md:px-12 pt-4 pb-12 bg-white rounded-custom">
                     <p class="text-center text-base font-bold mb-12"> شعبه مرکزی </p>
                     {{-- address --}}
                     <div class="flex items-start gap-3.5 mb-4">
@@ -43,7 +30,7 @@
                         <a href="tel:02144000990" class="text-sm font-normal text-gray-900 leading-6 dir-ltr"> 021 - 44000990 </a>
                     </div>
                 </div>
-                <div class="drop-shadow-base flex flex-col px-16 md:px-12 pt-4 pb-12 bg-white {{ $radiusSize }}">
+                <div class="drop-shadow-base flex flex-col px-16 md:px-12 pt-4 pb-12 bg-white rounded-custom">
                     <p class="text-center text-base font-bold mb-12"> شعبه اسلامشهر </p>
                     {{-- address --}}
                     <div class="flex items-start gap-3.5 mb-4">
@@ -66,29 +53,29 @@
             </section>
 
             {{-- send message --}}
-            <section class="bg-white drop-shadow-base px-4 pb-8 pt-2 sm:pt-4 md:pt-8 sm:pb-10 md:pb-12 {{ $radiusSize }}">
+            <section class="bg-white drop-shadow-base px-4 pb-8 pt-2 sm:pt-4 md:pt-8 sm:pb-10 md:pb-12 rounded-custom">
                 <div class="md:w-[492px] md:mx-auto">
                     <p class="text-base font-bold mb-4 text-normal text-center md:text-right md:mb-6"> ارسال پیام </p>
                     <p class="text-sm md:text-base font-normal text-gray-900 mb-12 md:mb-4 text-center md:text-right"> در صورت نیاز به مشاوره و خدمت با ما همراه باشید. </p>
                     {{-- form --}}
                     <section class="flex flex-col items-center">
                         <form action="#" id="addComment" class="grid grid-cols-1 md:grid-cols-2 md:gap-x-10 md:gap-y-4 gap-2 w-56 mb-6 md:mb-20 md:w-full">
-                            <input name="fullName" type="text" class="shadow-glass {{ $radiusSize }} shadow-black/30 h-12 border-0 focus:ring-0 outline-none w-full placeholder:text-[#888b93] text-sm font-normal pr-3 pl-6 text-gray-900" placeholder="نام" />
-                            {{-- <select name="subject" class="shadow-glass {{ $radiusSize }} invalid:text-[#888b93] shadow-black/30 h-12 border-0 focus:ring-0 outline-none w-full text-sm font-normal valid:text-gray-900">
+                            <input name="fullName" type="text" class="shadow-glass rounded-custom shadow-black/30 h-12 border-0 focus:ring-0 outline-none w-full placeholder:text-[#888b93] text-sm font-normal pr-3 pl-6 text-gray-900" placeholder="نام" />
+                            {{-- <select name="subject" class="shadow-glass rounded-custom invalid:text-[#888b93] shadow-black/30 h-12 border-0 focus:ring-0 outline-none w-full text-sm font-normal valid:text-gray-900">
                                 <option value="1"> موضوع 1 </option>
                                 <option value="2"> موضوع 2 </option>
                             </select> --}}
-                            <input name="phone" type="tel" class="shadow-glass {{ $radiusSize }} shadow-black/30 h-12 border-0 focus:ring-0 outline-none w-full placeholder:text-[#888b93] text-sm font-normal pr-3 pl-6 text-gray-900 dir-rtl" placeholder="شماره همراه (اختیاری)" />
+                            <input name="phone" type="tel" class="shadow-glass rounded-custom shadow-black/30 h-12 border-0 focus:ring-0 outline-none w-full placeholder:text-[#888b93] text-sm font-normal pr-3 pl-6 text-gray-900 dir-rtl" placeholder="شماره همراه (اختیاری)" />
                             <label for="email" class="h-12 w-full relative">
-                                <input id="email" required name="email" type="text" class="peer {{ $radiusSize }} h-full shadow-glass shadow-black/30 border-0 focus:ring-0 outline-none w-full placeholder:text-[#888b93] text-sm font-normal pr-3 pl-6 text-gray-900" placeholder="ایمیل" />
+                                <input id="email" required name="email" type="text" class="peer rounded-custom h-full shadow-glass shadow-black/30 border-0 focus:ring-0 outline-none w-full placeholder:text-[#888b93] text-sm font-normal pr-3 pl-6 text-gray-900" placeholder="ایمیل" />
                                 <i class="absolute top-2 right-12 text-red-700 peer-valid:hidden">*</i>
                             </label>
                             <label for="comment" class="w-full relative h-40 md:h-32 md:col-span-2">
-                                <textarea required name="comment" class="shadow-glass {{ $radiusSize }} shadow-black/30 h-full resize-none peer border-0 focus:ring-0 outline-none w-full placeholder:text-[#888b93] text-sm font-normal pr-3 pl-6 text-gray-900" placeholder="دیدگاه"></textarea>
+                                <textarea required name="comment" class="shadow-glass rounded-custom shadow-black/30 h-full resize-none peer border-0 focus:ring-0 outline-none w-full placeholder:text-[#888b93] text-sm font-normal pr-3 pl-6 text-gray-900" placeholder="دیدگاه"></textarea>
                                 <i class="absolute top-1 right-[52px] text-red-700 peer-valid:hidden">*</i>
                             </label>
                         </form>
-                        <button type="submit" form="addComment" class="flex_center w-64 h-11 text-white bg-normal hover:bg-focus focus:bg-focus focus:shadow-focus focus:shadow-shadowNormal {{ $radiusSize }}"> ارسال </button>
+                        <button type="submit" form="addComment" class="flex_center w-64 h-11 text-white bg-normal hover:bg-focus focus:bg-focus focus:shadow-focus focus:shadow-shadowNormal rounded-custom"> ارسال </button>
                     </section>
                 </div>
             </section>

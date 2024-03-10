@@ -2,18 +2,6 @@
     'land'=>null,
     'product'=>null,
 ])
-{{-- @php
-    $radiusSize = match($radius) {
-        '0' => 'rounded-none',
-        '2' => 'rounded-sm',
-        '4' => 'rounded',
-        '6' => 'rounded-md',
-        '8' => 'rounded-lg',
-        '12' => 'rounded-xl',
-        '16' => 'rounded-2xl',
-        default => 'rounded-md'
-    };
-@endphp --}}
 
 <section class="default_container relative z-[1]">
     <div class="md:bg-white md:drop-shadow-base rounded-custom">

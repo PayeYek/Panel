@@ -3,20 +3,6 @@
     'product' => '',
 ])
 
-@php
-    // $radiusSize = match($radius) {
-    //     '0' => 'rounded-none',
-    //     '2' => 'rounded-sm',
-    //     '4' => 'rounded',
-    //     '6' => 'rounded-md',
-    //     '8' => 'rounded-lg',
-    //     '12' => 'rounded-xl',
-    //     '16' => 'rounded-2xl',
-    //     default => 'rounded-md'
-    // };
-
-@endphp
-
 <section class="lg:pt-24">
     <h1 class="hidden md:block text-2xl lg:text-[32px] font-medium text-normal mb-8 lg:mb-11 line-clamp-1"> {{ $productName }} </h1>
     {{-- boxes --}}

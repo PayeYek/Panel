@@ -1,26 +1,3 @@
-@php
-    // $radiusSize = match($land->styles->radius."") {
-    //     '0' => 'rounded-none',
-    //     '2' => 'rounded-sm',
-    //     '4' => 'rounded',
-    //     '6' => 'rounded-md',
-    //     '8' => 'rounded-lg',
-    //     '12' => 'rounded-xl',
-    //     '16' => 'rounded-2xl',
-    //     default => 'rounded-md'
-    // };
-
-    // $textStyle = match($land->styles->color."") {
-    //     '1' => 'text-red-700',
-    //     '2' => 'text-blue-700',
-    //     '3' => 'text-rose-700',
-    //     '4' => 'text-zinc-700',
-    //     '5' => 'text-cobalt-700',
-    //     default => 'text-red-700',
-    // };
-
-@endphp
-
 <x-layout.default.main :land="$land">
 
     {{-- type 1 --}}
