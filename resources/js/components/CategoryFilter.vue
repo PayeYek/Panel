@@ -238,7 +238,7 @@ export default {
         },
         productType: {
             type: Number,
-            default: 5,
+            default: 1,
         },
         list: {
             type: Array,
