@@ -1,6 +1,6 @@
 <x-layout.default.main :land="$land">
 
-    <main>
+    <main class="pt-16 sm:pt-20">
         {{-- slider --}}
         @if($land->slides)
             <Slider :slides="{{$land->slides}}" />

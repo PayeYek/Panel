@@ -14,7 +14,7 @@
 <x-layout.default.main :land="$land">
     {{-- type 1 --}}
     @if ($articleType === '1')
-    <main class="pt-4 relative default_container">
+    <main class="pt-20 sm:pt-24 relative default_container">
         {{-- breadcrumbs --}}
         {{-- <x-common_landing.breadcrumbs :data="$breadcrumbs" /> --}}
 
@@ -89,7 +89,7 @@
 
     {{-- type 2 --}}
     @if ($articleType === '2')
-    <main class="pt-4 relative default_container">
+    <main class="pt-20 sm:pt-24 relative default_container">
         {{-- breadcrumbs --}}
         {{-- <x-common_landing.breadcrumbs :data="$breadcrumbs" /> --}}
         <section class="flex flex-col lg:flex-row lg:items-start gap-8">
@@ -172,7 +172,7 @@
 
     {{-- type 3 --}}
     @if ($articleType === '3')
-    <main class="pt-4 relative default_container">
+    <main class="pt-20 sm:pt-24 relative default_container">
         {{-- breadcrumbs --}}
         {{-- <x-common_landing.breadcrumbs :data="$breadcrumbs" /> --}}
 
@@ -255,7 +255,7 @@
 
     {{-- type 4 --}}
     @if ($articleType === '4')
-    <main class="pt-4 relative default_container">
+    <main class="pt-20 sm:pt-24 relative default_container">
         {{-- breadcrumbs --}}
         {{-- <x-common_landing.breadcrumbs :data="$breadcrumbs" /> --}}
 
@@ -322,7 +322,7 @@
 
     {{-- type 5 --}}
     @if ($articleType === '5')
-    <main class="pt-4 relative default_container">
+    <main class="pt-20 sm:pt-24 relative default_container">
         {{-- breadcrumbs --}}
         {{-- <x-common_landing.breadcrumbs :data="$breadcrumbs" /> --}}
 

@@ -3,9 +3,7 @@
 <section class="relative min-h-screen bg-white font-yekan rtl:number-fa">
     {{-- <x-layout.landing.sidebar :land="$land"/> --}}
     {{--HEADER: LOGO | LINKS: HOME, PRODUCTS, SALLER, ABOUT | SALLER --}}
-    {{-- <div class="sticky top-0 z-[3] drop-shadow-[0_4px_4px_rgba(0,0,0,0.15)] bg-white h-16 sm:h-20"> --}}
-        <x-layout.landing.header :land="$land"/>
-    {{-- </div> --}}
+    <x-layout.landing.header :land="$land"/>
 
     {{ $slot }}
 
