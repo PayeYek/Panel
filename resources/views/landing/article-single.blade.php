@@ -1,6 +1,6 @@
 @props([
     'borderType' => '1',
-    'articleType' => '4',
+    'articleType' => '5',
 ])
 
 @php
@@ -19,7 +19,7 @@
         {{-- <x-common_landing.breadcrumbs :data="$breadcrumbs" /> --}}
 
         <div class="flex items-start justify-between gap-4 mb-2.5 md:mb-4 text-normal">
-            <h1 class="text-[40px] leading-8 font-bold"> {{$article->title}} </h1>
+            <h1 class="text-xl sm:text-2xl leading-8 font-bold"> {{$article->title}} </h1>
             <p class="text-sm font-normal flex-none mt-1"> 12 بهمن 1402 </p>
         </div>
 
@@ -96,7 +96,7 @@
             {{-- description --}}
             <section class="w-full lg:flex-1 order-1 lg:order-2">
                 <div class="flex items-start justify-between gap-4 mb-2.5 md:mb-4 text-normal">
-                    <h1 class="text-xl leading-8 font-bold"> {{$article->title}} </h1>
+                    <h1 class="text-xl sm:text-2xl leading-8 font-bold"> {{$article->title}} </h1>
                     <p class="text-sm font-normal flex-none mt-1"> 12 بهمن 1402 </p>
                 </div>
         
@@ -180,7 +180,7 @@
             {{-- description --}}
             <section class="w-full lg:flex-1">
                 <div class="flex items-start justify-between gap-4 mb-2.5 md:mb-4 text-normal">
-                    <h1 class="text-xl leading-8 font-bold"> {{$article->title}} </h1>
+                    <h1 class="text-xl sm:text-2xl leading-8 font-bold"> {{$article->title}} </h1>
                     <p class="text-sm font-normal flex-none mt-1"> 12 بهمن 1402 </p>
                 </div>
         
@@ -263,7 +263,7 @@
             {{-- description --}}
             <section class="w-full lg:flex-1 order-1 lg:order-2">
                 <div class="flex items-start justify-between gap-4 mb-2.5 md:mb-4 text-normal">
-                    <h1 class="text-xl leading-8 font-bold"> {{$article->title}} </h1>
+                    <h1 class="text-xl sm:text-2xl leading-8 font-bold"> {{$article->title}} </h1>
                     <p class="text-sm font-normal flex-none mt-1"> {{ jdate($article->created_at)->format('%B %d، %Y') }} </p>
                 </div>
         
@@ -330,7 +330,7 @@
             {{-- description --}}
             <section class="w-full lg:flex-1 order-1 lg:order-2">
                 <div class="flex items-start justify-between gap-4 mb-2.5 md:mb-4 text-normal">
-                    <h1 class="text-xl leading-8 font-bold"> {{$article->title}} </h1>
+                    <h1 class="text-xl leading-8 sm:text-2xl font-bold"> {{$article->title}} </h1>
                     <p class="text-sm font-normal flex-none mt-1"> {{ jdate($article->created_at)->format('%B %d، %Y') }} </p>
                 </div>
         
