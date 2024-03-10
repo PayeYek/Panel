@@ -456,6 +456,16 @@
     .fill_btn_theme_cobalt_filled{
         @apply text-white bg-cobalt-700 hover:bg-cobalt-800 focus:bg-cobalt-800 focus:shadow-focus focus:shadow-cobalt-700/50;
     }
+
+    .sameCategoryBtnStyle{
+        @apply text-sm lg:text-base font-bold cursor-pointer w-full h-11 flex_center;
+    }
+    .castegoryBtnEmpty{
+        @apply text-normal bg-white border border-normal hover:border-focus hover:text-focus focus:border-focus focus:text-focus focus:shadow-focus focus:shadow-shadowNormal;
+    }
+    .castegoryBtnfilled{
+        @apply text-white bg-normal hover:bg-focus focus:bg-focus focus:shadow-focus focus:shadow-shadowNormal;
+    }
 }
 
 @layer utilities {
