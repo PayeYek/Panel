@@ -5,26 +5,30 @@
 
 @push('script')
     <script>
+        
         function showVideoByThumbnail(e) {
+            const videoHolder = document.getElementById('ifame-box')
+            const videocontainer = document.getElementById('ifame-container')
             const videoHtml = e.parentElement
             const videoFromServer = videoHtml.dataset.videolink
-            const videoHolderLayer = e.nextSibling
-            const videoHolder = e.nextSibling.childNodes[0]
-            videoHolder.innerHTML= ""
+            // const videocontainer = document.getElementById('ifame-container')
+            console.log(videocontainer);
+            // videoHolder.innerHTML= ""
             videoHolder.innerHTML = videoFromServer
-            e.nextSibling.classList.remove("hidden")
-            e.nextSibling.classList.add("flex_center")
-            document.getElementById('video-player-container').classList.add('!z-10')
+            videocontainer.classList.remove("hidden")
+            videocontainer.classList.add("flex_center")
         }
         
         function hideVideoByThumbnail(e) {
-            e.classList.remove("flex_center")
-            e.classList.add("hidden")
-            // close old video
             const iframe = e.childNodes[0].childNodes[1].childNodes[1]
             const refreshSrc = iframe.src
             iframe.src = refreshSrc
-            document.getElementById('video-player-container').classList.remove('!z-10')
+            const videocontainer = document.getElementById('ifame-container')
+            videocontainer.classList.remove("flex_center")
+            videocontainer.classList.add("hidden")
+            // const videoHolder = document.getElementById('ifame-box')
+            // videoHolder.innerHTML= ""
+            // close old video
         }
     </script>
 @endpush
@@ -54,10 +58,10 @@
                     </div>
                 </div>
 
-                <section class="fixed inset-0 z-[2] bg-black/60 hidden" onclick="hideVideoByThumbnail(this)">
-                    <div class="w-full max-w-[640px] lg:max-w-[796px] xl:max-w-[900px] 2xl:max-w-[1024px] mx-auto iframe_styles flex_center"></div>
-                </section>
             </li>
-        @endforeach
-    </ul>
+            @endforeach
+        </ul>
+</section>
+<section class="fixed inset-0 z-[4] bg-black/60 hidden" id="ifame-container" onclick="hideVideoByThumbnail(this)">
+    <div class="w-full max-w-[640px] lg:max-w-[796px] xl:max-w-[900px] 2xl:max-w-[1024px] mx-auto iframe_styles flex_center" id="ifame-box"></div>
 </section>
