@@ -41,7 +41,7 @@
                     <a href="#" class="h-8 w-36 flex_center rounded-custom border border-dark-100 text-base font-bold"> همه موارد </a>
                 </div>
 
-                <form action="#" class="w-[298px] h-12 relative" v-else>
+                <form action="#" class="w-[298px] h-12 relative">
                     <input type="text" class="w-full h-full outline-none border border-dark-100 focus:ring-0 focus:border-dark-100 rounded-custom pl-10 placeholder:text-[#888b93] text-sm font-normal text-gray-900" placeholder="جستجو مطلب" />
                     <button type="submit" class="w-8 h-8 absolute left-2 top-2 cursor-pointer flex-none flex_center">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">

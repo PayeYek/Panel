@@ -1,6 +1,6 @@
 @props([
     'borderType' => '1',
-    'articleType' => '5',
+    'articleType' => '1',
 ])
 
 @php
@@ -10,13 +10,16 @@
         default => 'drop-shadow-base'
     };
 @endphp
-
+{{-- @dd($breadcrumbs) --}}
 <x-layout.default.main :land="$land">
+
+    
+
     {{-- type 1 --}}
     @if ($articleType === '1')
     <main class="pt-20 sm:pt-24 relative default_container">
         {{-- breadcrumbs --}}
-        {{-- <x-common_landing.breadcrumbs :data="$breadcrumbs" /> --}}
+        <x-common_landing.breadcrumbs :data="$breadcrumbs" />
 
         <div class="flex items-start justify-between gap-4 mb-2.5 md:mb-4 text-normal">
             <h1 class="text-xl sm:text-2xl leading-8 font-bold"> {{$article->title}} </h1>
