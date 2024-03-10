@@ -17,7 +17,7 @@
 
     {{-- type 1 --}}
     @if ($articleType === '1')
-    <main class="pt-20 sm:pt-24 relative default_container">
+    <main class="pt-4 relative default_container">
         {{-- breadcrumbs --}}
         <x-common_landing.breadcrumbs :data="$breadcrumbs" />
 

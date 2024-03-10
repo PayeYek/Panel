@@ -15,7 +15,7 @@
         @production
             <x-layout.loader.html/>
         @endproduction
-
+      
         @splade
 
         @production

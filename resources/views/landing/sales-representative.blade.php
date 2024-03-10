@@ -11,7 +11,7 @@
 @endphp
 
 <x-layout.default.main :land="$land">
-    <main class="pt-20 sm:pt-24 relative">
+    <main class="pt-4 relative">
         {{-- titles --}}
         <section class="default_container">
             <p class="text-[10px] md:text-sm md:font-bold font-normal mb-6 text-gray-900"> نمایندگی فروش </p>

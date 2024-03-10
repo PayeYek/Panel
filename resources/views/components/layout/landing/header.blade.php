@@ -2,7 +2,7 @@
 
 <x-splade-data store="navigation" default="{ opened: false }" />
 @if ($land)
-    <header class="fixed left-0 w-full top-0 z-[4] drop-shadow-[0_4px_4px_rgba(0,0,0,0.15)] bg-white h-16 sm:h-20">
+    <header class="sticky top-0 z-[4] drop-shadow-[0_4px_4px_rgba(0,0,0,0.15)] bg-white h-16 sm:h-20">
         <section class="flex items-center justify-between h-full gap-5 default_container">
             <x-layout.landing.logo :land="$land" />
 
@@ -20,8 +20,8 @@
             <div class="flex items-center gap-2.5">
                 {{-- <SwitchStyle class="hidden sm:block" /> --}}
                 {{-- <Breakpoint class="shrink-0 {{ app()->environment('production') ? 'hidden' : '' }}" /> --}}
-                <a class="w-24 h-8 px-2 text-xs font-bold text-white bg-normal hover:bg-focus focus:bg-focus focus:shadow-focus focus:shadow-shadowNormal rounded-custom flex_center"
-                    href="{{ route('landing.page.show', ['page' => $land->slug]) }}">{{ __('Terms of sale') }}</a>
+                <Link class="w-24 h-8 px-2 text-xs font-bold text-white bg-normal hover:bg-focus focus:bg-focus focus:shadow-focus focus:shadow-shadowNormal rounded-custom flex_center"
+                    href="{{ route('landing.page.show', ['page' => $land->slug]) }}">{{ __('Terms of sale') }}</Link>
 
                 {{-- hamburger menu --}}
                 <button @click.prevent="navigation.opened = !navigation.opened"

@@ -4,7 +4,6 @@
     <x-layout.landing.sidebar :land="$land"/>
     {{--HEADER: LOGO | LINKS: HOME, PRODUCTS, SALLER, ABOUT | SALLER --}}
     <x-layout.landing.header :land="$land"/>
-
     {{ $slot }}
 
     <div class="default_container relative z-[1]">

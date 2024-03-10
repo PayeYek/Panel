@@ -88,7 +88,7 @@
     </script>
 @endpush
 <x-layout.default.main :land="$land">
-    <main class="pt-20 sm:pt-24 relative">
+    <main class="pt-4 relative">
         <CategoryFilter
             classType="{{ $classType }}"
             type="{{ $land->styles->product_type }}"

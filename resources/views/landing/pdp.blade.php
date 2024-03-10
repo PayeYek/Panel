@@ -1,7 +1,7 @@
 <x-layout.default.main :land="$land">
 
     {{-- type 1 --}}
-    <main class="pt-20 sm:pt-24 relative">
+    <main class="pt-4 relative">
 
         {{-- breadcrumbs --}}
         <x-common_landing.breadcrumbs :data="$breadcrumbs" />

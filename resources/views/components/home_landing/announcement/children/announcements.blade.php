@@ -17,7 +17,7 @@
 @endphp
 
 <ul class="mb-4 {{ $gridCols }} list-none sm:mb-0">
-    @foreach ($data->take(4) as $article)
+    @foreach ($data as $article)
         <x-home_landing.announcement.children.announcement
             :type="$type"
             :title="$article->title"
