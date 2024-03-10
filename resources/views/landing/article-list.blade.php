@@ -17,7 +17,7 @@
                 </section>
     
                 <form action="#" class="w-full h-12 relative" v-else>
-                    <input type="text" class="text-base font-bold w-full h-full text-gray-900 outline-none border border-dark-100 focus:ring-0 focus:border-dark-100 rounded-custom px-10 placeholder:text-[#888b93] text-sm font-normal text-gray-900" placeholder="جستجو مطلب" />
+                    <input type="text" class="w-full h-full outline-none border border-dark-100 focus:ring-0 focus:border-dark-100 rounded-custom px-10 placeholder:text-[#888b93] text-sm font-normal text-gray-900" placeholder="جستجو مطلب" />
                     <button type="button" class="w-8 h-8 absolute left-2 top-2 cursor-pointer flex-none flex_center">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M16.9284 17.0396L20.4016 20.3996M19.2816 11.4396C19.2816 15.7695 15.7715 19.2796 11.4416 19.2796C7.11165 19.2796 3.60156 15.7695 3.60156 11.4396C3.60156 7.1097 7.11165 3.59961 11.4416 3.59961C15.7715 3.59961 19.2816 7.1097 19.2816 11.4396Z" stroke="#111827" stroke-width="2" stroke-linecap="round"/>
