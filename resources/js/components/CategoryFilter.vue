@@ -113,7 +113,7 @@
 
             <template v-if="productType == 7">
                 <div v-for="(product, index) in filteredList" :key="index"
-                    :class="'flex flex-col w-full sm:flex-row sm:items-center lg:pl-14 sm:gap-4 lg:gap-10 xl:gap-16 px-6 pb-6 pt-4 sm:py-6 after:absolute after:content-[] after:top-0 after:left-[5%] after:w-[90%] after:h-px after:border-t first:after:hidden after:border-dark-100 relative ' + (evenOdd ? 'evenOdd_cards ' : 'bg-white ')">
+                    :class="`flex flex-col w-full sm:flex-row sm:items-center lg:pl-14 sm:gap-4 lg:gap-10 xl:gap-16 px-6 pb-6 pt-4 sm:py-6 after:absolute after:content-[''] after:top-0 after:left-[5%] after:w-[90%] after:h-px after:border-t first:after:hidden after:border-dark-100 relative ` + (evenOdd ? 'evenOdd_cards ' : 'bg-white ')">
                     <div class="h-[11.5rem] sm:h-32 md:h-36 lg:h-40 sm:mx-0 sm:w-32 md:w-36 lg:w-40 sm:flex-none mx-auto mb-2.5 sm:mb-0">
                         <img :src="product.image" :alt="product.name" class="object-contain h-full" />
                     </div>
@@ -133,7 +133,7 @@
 
             <template v-if="productType == 8">
                 <div v-for="(product, index) in filteredList" :key="index"
-                    :class="'flex flex-col w-full sm:flex-row sm:items-center lg:pl-14 sm:gap-4 lg:gap-10 xl:gap-16 px-6 sm:pr-10 pb-6 pt-4 sm:py-6 after:absolute after:content-[] after:top-0 after:left-[5%] after:w-[90%] after:h-px after:border-t first:after:hidden after:border-dark-100 sm:after:hidden relative before:bg-normal before:absolute before:content-[] before:top-0 before:right-0 before:w-4 before:hidden sm:before:block before:h-full overflow-hidden ' + borderStyle + ' ' + (evenOdd ? 'evenOdd_cards ' : 'bg-white ') + ' ' + smRadius">
+                    :class="`flex flex-col w-full sm:flex-row sm:items-center lg:pl-14 sm:gap-4 lg:gap-10 xl:gap-16 px-6 sm:pr-10 pb-6 pt-4 sm:py-6 after:absolute after:content-[''] after:top-0 after:left-[5%] after:w-[90%] after:h-px after:border-t first:after:hidden after:border-dark-100 sm:after:hidden relative before:bg-normal before:absolute before:content-[''] before:top-0 before:right-0 before:w-4 before:hidden sm:before:block before:h-full overflow-hidden ` + borderStyle + ' ' + (evenOdd ? 'evenOdd_cards ' : 'bg-white ') + ' ' + smRadius">
                     <div class="h-[11.5rem] sm:h-32 md:h-36 lg:h-40 sm:mx-0 sm:w-32 md:w-36 lg:w-40 sm:flex-none mx-auto mb-2.5 sm:mb-0">
                         <img :src="product.image" :alt="product.name" class="object-contain h-full" />
                     </div>
@@ -175,10 +175,30 @@
                             <img :src="product.image" :alt="product.name" class="object-contain h-full" />
                         </div>
                         <div class="flex flex-col w-40 gap-2 shrink">
-                            <LandBtn text="مشخصات" :to="'/l/' + landSlug + '/p/' + product.slug" :classNames="'w-full text-sm lg:text-base font-bold cursor-pointer h-11 flex_center text-normal bg-white border border-normal hover:border-focus hover:text-focus focus:border-focus focus:text-focus focus:shadow-focus focus:shadow-shadowNormal ' + radius + ' ' + beforeRadius" />
-                            <LandBtn text="کاتالوگ" :to="'/l/' + landSlug + '/p/' + product.slug" :classNames="'w-full text-sm lg:text-base font-bold cursor-pointer h-11 flex_center text-normal bg-white border border-normal hover:border-focus hover:text-focus focus:border-focus focus:text-focus focus:shadow-focus focus:shadow-shadowNormal ' + radius + ' ' + beforeRadius" />
-                            <LandBtn text="خرید اقساطی" :to="'/l/' + landSlug + '/p/' + product.slug" :classNames="'w-full text-sm lg:text-base font-bold cursor-pointer h-11 flex_center text-normal bg-white border border-normal hover:border-focus hover:text-focus focus:border-focus focus:text-focus focus:shadow-focus focus:shadow-shadowNormal ' + radius + ' ' + beforeRadius" />
+                            <LandBtn text="مشخصات" :to="'/l/' + landSlug + '/p/' + product.slug" :classNames="'w-full text-sm lg:text-base font-bold cursor-pointer h-11 flex_center text-normal bg-white border border-normal hover:border-focus hover:text-focus focus:border-focus focus:text-focus focus:shadow-focus focus:shadow-shadowNormal ' + radius" />
+                            <LandBtn text="کاتالوگ" :to="'/l/' + landSlug + '/p/' + product.slug" :classNames="'w-full text-sm lg:text-base font-bold cursor-pointer h-11 flex_center text-normal bg-white border border-normal hover:border-focus hover:text-focus focus:border-focus focus:text-focus focus:shadow-focus focus:shadow-shadowNormal ' + radius" />
+                            <LandBtn text="خرید اقساطی" :to="'/l/' + landSlug + '/p/' + product.slug" :classNames="'w-full text-sm lg:text-base font-bold cursor-pointer h-11 flex_center text-normal bg-white border border-normal hover:border-focus hover:text-focus focus:border-focus focus:text-focus focus:shadow-focus focus:shadow-shadowNormal ' + radius" />
                         </div>
+                    </div>
+                </div>
+            </template>
+
+            <template v-if="productType == 11">
+                <div v-for="(product, index) in filteredList" :key="index"
+                    :class="`flex flex-col w-full sm:flex-row sm:items-center lg:pl-14 sm:gap-4 lg:gap-10 xl:gap-16 px-6 pb-6 pt-4 sm:py-6 after:absolute after:content-[''] after:top-0 after:left-0 after:w-full after:h-px after:border-t first:after:hidden after:border-dark-100 relative ` + (evenOdd ? 'evenOdd_cards ' : 'bg-white ')">
+                    <div class="h-[11.5rem] sm:h-32 md:h-36 lg:h-40 sm:mx-0 sm:w-32 md:w-36 lg:w-40 sm:flex-none mx-auto mb-2.5 sm:mb-0">
+                        <img :src="product.image" :alt="product.name" class="object-contain h-full" />
+                    </div>
+                    <div class="mb-4 sm:mb-0 sm:flex-1">
+                        <h3 class="mb-2 font-bold lg:mb-1 text-lg sm:line-clamp-1 text-gray-900"> {{ product.name }} </h3>
+                        <p class="text-sm leading-6 text-justify text-[#818284] dark:text-white font-medium line-clamp-2">
+                            {{ product.description }}
+                        </p>
+                    </div>
+                    <div class="flex flex-col items-center gap-2 w-40 mx-auto sm:mx-0">
+                        <LandBtn text="مشخصات" :to="'/l/' + landSlug + '/p/' + product.slug" :classNames="'w-full text-sm lg:text-base font-bold cursor-pointer h-11 flex_center text-normal bg-white border border-normal hover:border-focus hover:text-focus focus:border-focus focus:text-focus focus:shadow-focus focus:shadow-shadowNormal ' + radius" />
+                        <LandBtn text="کاتالوگ" :to="'/l/' + landSlug + '/p/' + product.slug" :classNames="'w-full text-sm lg:text-base font-bold cursor-pointer h-11 flex_center text-normal bg-white border border-normal hover:border-focus hover:text-focus focus:border-focus focus:text-focus focus:shadow-focus focus:shadow-shadowNormal ' + radius" />
+                        <LandBtn text="خرید اقساطی" :to="'/l/' + landSlug + '/p/' + product.slug" :classNames="'w-full text-sm lg:text-base font-bold cursor-pointer h-11 flex_center text-white bg-normal hover:bg-focus focus:bg-focus focus:shadow-focus focus:shadow-shadowNormal ' + radius" />
                     </div>
                 </div>
             </template>
@@ -218,7 +238,7 @@ export default {
         },
         productType: {
             type: Number,
-            default: 10,
+            default: 5,
         },
         list: {
             type: Array,
