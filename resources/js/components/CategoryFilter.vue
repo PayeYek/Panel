@@ -19,13 +19,60 @@
                 <!-- {{ $evenOdd == 'true' ? 'evenOdd_cards' : 'bg-white' }} {{ $radiusSize }} {{ $borderStyle }} -->
                 <div v-for="(product, index) in filteredList" :key="index" :class="'pt-2 px-8 w-full pb-5 items-center flex flex-col ' + borderStyle + ' ' + (evenOdd ? 'evenOdd_cards ' : 'bg-white ') + radius">
                     <div class="mb-2 h-36">
-                        <img :src="product.image" alt="mammut" class="object-contain h-full" />
+                        <img :src="product.image" :alt="product.name" class="object-contain h-full" />
                     </div>
                     <h3 class="mb-5 font-bold lg:mb-4 text-lg sm:line-clamp-1 text-gray-900"> {{ product.name }} </h3>
                     <div class="flex flex-col gap-4">
                         <LandBtn text="مشخصات" :to="'/l/' + landSlug + '/p/' + product.slug" :classNames="'text-sm lg:text-base font-bold cursor-pointer w-40 h-11 flex_center text-normal bg-white border border-normal hover:border-focus hover:text-focus focus:border-focus focus:text-focus focus:shadow-focus focus:shadow-shadowNormal ' + radius" />
                         <LandBtn text="کاتالوگ" :to="'/l/' + landSlug + '/p/' + product.slug" :classNames="'text-sm lg:text-base font-bold cursor-pointer w-40 h-11 flex_center text-normal bg-white border border-normal hover:border-focus hover:text-focus focus:border-focus focus:text-focus focus:shadow-focus focus:shadow-shadowNormal ' + radius" />
                         <LandBtn text="خرید اقساطی" :to="'/l/' + landSlug + '/p/' + product.slug" :classNames="'text-sm lg:text-base font-bold cursor-pointer w-40 h-11 flex_center text-normal bg-white border border-normal hover:border-focus hover:text-focus focus:border-focus focus:text-focus focus:shadow-focus focus:shadow-shadowNormal ' + radius" />
+                    </div>
+                </div>
+            </template>
+
+            <template v-if="productType == 2">
+                <div v-for="(product, index) in filteredList" :key="index"
+                    :class="'px-8 w-full pt-1 pb-8 items-center flex flex-col ' + borderStyle + ' ' + (evenOdd ? 'evenOdd_cards ' : 'bg-white ') + radius">
+                    <div class="h-32 mb-0.5">
+                        <img :src="product.image" :alt="product.name" class="object-contain h-full" />
+                    </div>
+                    <h3 class="mb-0.5 font-bold lg:mb-1 text-lg sm:line-clamp-1 text-gray-900"> {{ product.name }} </h3>
+                    <div class="grid w-56 grid-cols-2 lg:w-full gap-2">
+                        <LandBtn text="مشخصات" :to="'/l/' + landSlug + '/p/' + product.slug" :classNames="'w-full text-sm lg:text-base font-bold cursor-pointer h-11 flex_center text-normal bg-white border border-normal hover:border-focus hover:text-focus focus:border-focus focus:text-focus focus:shadow-focus focus:shadow-shadowNormal ' + radius" />
+                        <LandBtn text="کاتالوگ" :to="'/l/' + landSlug + '/p/' + product.slug" :classNames="'w-full text-sm lg:text-base font-bold cursor-pointer h-11 flex_center text-normal bg-white border border-normal hover:border-focus hover:text-focus focus:border-focus focus:text-focus focus:shadow-focus focus:shadow-shadowNormal ' + radius" />
+                        <LandBtn text="خرید اقساطی" :to="'/l/' + landSlug + '/p/' + product.slug" :classNames="'w-full col-span-full text-sm lg:text-base font-bold cursor-pointer h-11 flex_center text-normal bg-white border border-normal hover:border-focus hover:text-focus focus:border-focus focus:text-focus focus:shadow-focus focus:shadow-shadowNormal ' + radius" />
+                    </div>
+                </div>
+            </template>
+
+            <template v-if="productType == 3">
+                <div v-for="(product, index) in filteredList" :key="index"
+                    :class="'px-8 w-full pt-1 pb-8 items-center flex flex-col ' + borderStyle + ' ' + (evenOdd ? 'evenOdd_cards ' : 'bg-white ') + radius">
+                    <div class="h-32 mb-0.5">
+                        <img :src="product.image" :alt="product.name" class="object-contain h-full" />
+                    </div>
+                    <h3 class="mb-0.5 font-bold lg:mb-1 text-lg sm:line-clamp-1 text-gray-900"> {{ product.name }} </h3>
+                    <div class="grid w-56 grid-cols-2 lg:w-full xl:w-56 gap-2">
+                        <LandBtn text="مشخصات" :to="'/l/' + landSlug + '/p/' + product.slug" :classNames="'w-full text-sm lg:text-base font-bold cursor-pointer h-11 flex_center text-normal bg-white border border-normal hover:border-focus hover:text-focus focus:border-focus focus:text-focus focus:shadow-focus focus:shadow-shadowNormal ' + radius" />
+                        <LandBtn text="کاتالوگ" :to="'/l/' + landSlug + '/p/' + product.slug" :classNames="'w-full text-sm lg:text-base font-bold cursor-pointer h-11 flex_center text-normal bg-white border border-normal hover:border-focus hover:text-focus focus:border-focus focus:text-focus focus:shadow-focus focus:shadow-shadowNormal ' + radius" />
+                        <LandBtn text="خرید اقساطی" :to="'/l/' + landSlug + '/p/' + product.slug" :classNames="'w-full col-span-full text-sm lg:text-base font-bold cursor-pointer h-11 flex_center text-white bg-normal hover:bg-focus focus:bg-focus focus:shadow-focus focus:shadow-shadowNormal ' + radius" />
+                    </div>
+                </div>
+            </template>
+
+            <template v-if="productType == 4">
+                <div v-for="(product, index) in filteredList" :key="index"
+                    :class="'pl-6 pr-8 w-full pt-5 pb-8 flex flex-col ' + borderStyle + ' ' + (evenOdd ? 'evenOdd_cards ' : 'bg-white ') + radius">
+                    <h3 class="mb-1.5 font-bold lg:mb-1 text-lg sm:line-clamp-1 text-gray-900"> {{ product.name }} </h3>
+                    <div class="flex items-center justify-between gap-4">
+                        <div class="flex-none h-32 lg:h-28 xl:h-32">
+                            <img :src="product.image" alt="mammut" class="object-contain h-full" />
+                        </div>
+                        <div class="flex flex-col w-40 gap-2 shrink">
+                            <LandBtn text="مشخصات" :to="'/l/' + landSlug + '/p/' + product.slug" :classNames="'w-full text-sm lg:text-base font-bold cursor-pointer h-11 flex_center text-normal bg-white border border-normal hover:border-focus hover:text-focus focus:border-focus focus:text-focus focus:shadow-focus focus:shadow-shadowNormal ' + radius" />
+                            <LandBtn text="کاتالوگ" :to="'/l/' + landSlug + '/p/' + product.slug" :classNames="'w-full text-sm lg:text-base font-bold cursor-pointer h-11 flex_center text-normal bg-white border border-normal hover:border-focus hover:text-focus focus:border-focus focus:text-focus focus:shadow-focus focus:shadow-shadowNormal ' + radius" />
+                            <LandBtn text="خرید اقساطی" :to="'/l/' + landSlug + '/p/' + product.slug" :classNames="'w-full text-sm lg:text-base font-bold cursor-pointer h-11 flex_center text-normal bg-white border border-normal hover:border-focus hover:text-focus focus:border-focus focus:text-focus focus:shadow-focus focus:shadow-shadowNormal ' + radius" />
+                        </div>
                     </div>
                 </div>
             </template>
@@ -43,9 +90,13 @@ export default {
             type: String,
             default: 'rounded-md',
         },
+        beforeRadius: {
+            type: String,
+            default: 'before:rounded-md',
+        },
         classType: {
             type: String,
-            default: null,
+            default: 1,
         },
         landSlug: {
             type: String,
@@ -57,7 +108,7 @@ export default {
         },
         productType: {
             type: Number,
-            default: 1,
+            default: 4,
         },
         list: {
             type: Array,

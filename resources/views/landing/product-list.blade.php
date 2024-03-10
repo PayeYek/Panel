@@ -14,6 +14,17 @@
         default => 'rounded-md'
     };
 
+    $radiusSizeBefore = match($land->styles->radius."") {
+        '0' => 'before:rounded-none',
+        '2' => 'before:rounded-sm',
+        '4' => 'before:rounded',
+        '6' => 'before:rounded-md',
+        '8' => 'before:rounded-lg',
+        '12' => 'before:rounded-xl',
+        '16' => 'before:rounded-2xl',
+        default => 'before:rounded-md'
+    };
+
     $borderStyle = '';
     switch ($land->styles->product_type."") {
         case '7':
@@ -66,7 +77,8 @@
             break;
     }
 
-    $classType = match($land->styles->product_type."") {
+    // $classType = match($land->styles->product_type."") {
+    $classType = match('4') {
         '1' => 'lg:grid-cols-5 gap-4 sm:grid-cols-2',
         '2', '3' => 'lg:grid-cols-4 gap-4 sm:grid-cols-2',
         '4' => 'sm:grid-cols-2 lg:grid-cols-3 gap-4',
@@ -106,7 +118,8 @@
             list="{{ $land->products }}"
             landSlug="{{ $land->slug }}"
             borderStyle="{{ $borderStyle }}"
-            :evenOdd=true />
+            :evenOdd=true
+            beforeRadius="{{ $radiusSizeBefore }}" />
         
     
         {{-- products --}}
