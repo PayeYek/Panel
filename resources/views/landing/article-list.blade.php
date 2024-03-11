@@ -8,7 +8,7 @@
         '1' => 'grid grid-cols-1 gap-4 default_container',
         '2' => 'gap-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 default_container',
         '3' => 'grid grid-cols-1 border border-dark-100 p-4 rounded-custom mx-4 lg:default_container',
-        '4' => 'grid grid-cols-1 border border-dark-100 p-4 rounded-custom',
+        '4' => 'grid grid-cols-1 border border-dark-100 p-4 rounded-custom mx-4 lg:default_container',
         default => null
     };
 
