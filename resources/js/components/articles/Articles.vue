@@ -145,26 +145,30 @@ export default {
 
         const filteredArticles = computed(() => {
             return articleList.value.filter(article => {
+                // Filter by category
                 if (categoryFilterState.value !== 'all' && article.type !== categoryFilterState.value) {
                     return false;
                 }
-                return searchFilterState.value === "" || article.title.includes(searchFilterState.value);
+
+                // Filter by search term (title or description)
+                if (searchFilterState.value) {
+                    const searchString = searchFilterState.value.toLowerCase();
+                    const title = article.title?.toLowerCase() ?? "";
+                    const description = article.description?.toLowerCase() ?? "";
+                    return title.includes(searchString) || description.includes(searchString);
+                }
+
+                return true;
             });
         });
 
         const changeFilter = (filter) => {
             categoryFilterState.value = filter
+            searchFilterState.value = ""
         }
 
         const filterArticleByName = debounce(() => {
             categoryFilterState.value = "all"
-            filteredArticles.value = articleList.value.filter(article => {
-                if(searchFilterState.value === "") {
-                    return article
-                } else {
-                    return article.title.includes(searchFilterState.value)
-                }
-            })
         }, 300);
 
         watch(searchFilterState, filterArticleByName);
