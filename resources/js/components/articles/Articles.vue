@@ -1,48 +1,149 @@
 <template>
 
-    <section class="default_container max-w-96 mx-auto lg:hidden mb-6">
-        <section class="flex items-center gap-4" v-if="showSearchshowSearch">
-            <select class="h-12 w-full text-base font-bold text-gray-900 border border-dark-100 focus:ring-0 focus:border-dark-100 outline-none rounded-custom">
-                <option value="0" selected disabled> دسته بندی </option>
-            </select>
-            <button type="button" class="w-12 h-12 cursor-pointer flex-none rounded-custom flex_center border border-dark-100" v-on:click="data.showSearch = true">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M16.9284 17.0396L20.4016 20.3996M19.2816 11.4396C19.2816 15.7695 15.7715 19.2796 11.4416 19.2796C7.11165 19.2796 3.60156 15.7695 3.60156 11.4396C3.60156 7.1097 7.11165 3.59961 11.4416 3.59961C15.7715 3.59961 19.2816 7.1097 19.2816 11.4396Z" stroke="#111827" stroke-width="2" stroke-linecap="round"/>
-                </svg>
-            </button>
-        </section>
-
-        <form action="#" class="w-full h-12 relative" v-else>
-            <input type="text" class="w-full h-full outline-none border border-dark-100 focus:ring-0 focus:border-dark-100 rounded-custom px-10 placeholder:text-[#888b93] text-sm font-normal text-gray-900" placeholder="جستجو مطلب" />
+    <section class="default_container flex flex-col sm:flex-row-reverse sm:justify-between sm:items-center gap-4 mb-8">
+        <form action="#" class="w-full h-12 relative sm:w-72">
+            <input type="text" class="w-full h-full outline-none border-b border-x-0 border-t-0 border-b-dark-100 focus:ring-0 focus:border-b-dark-100 pl-10 pr-3 placeholder:text-[#888b93] text-sm font-normal text-gray-900" placeholder="جستجو مطلب" />
             <button type="button" class="w-8 h-8 absolute left-2 top-2 cursor-pointer flex-none flex_center">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M16.9284 17.0396L20.4016 20.3996M19.2816 11.4396C19.2816 15.7695 15.7715 19.2796 11.4416 19.2796C7.11165 19.2796 3.60156 15.7695 3.60156 11.4396C3.60156 7.1097 7.11165 3.59961 11.4416 3.59961C15.7715 3.59961 19.2816 7.1097 19.2816 11.4396Z" stroke="#111827" stroke-width="2" stroke-linecap="round"/>
                 </svg>
             </button>
-            <!-- close btn -->
-            <button type="button" class="w-8 h-8 absolute right-2 top-2 cursor-pointer flex-none flex_center" v-on:click="data.showSearch = false">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M12 12L6 6M12 12L18 18M12 12L18 6M12 12L6 18" stroke="#111827" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-            </button>
         </form>
+
+        <!-- filters -->
+        <ul class="flex items-center flex-wrap gap-x-2 gap-y-4 list-none text-base font-bold *:rounded-custom *:flex_center *:h-8 *:px-3 *:cursor-pointer *:border *:border-stone-700 *:text-stone-700">
+            <li :class="filterState === 'all' ? '!border-normal !text-normal' : ''" @click="changeFilter('all')"> همه موارد </li>
+            <li :class="filterState === 'news' ? '!border-normal !text-normal' : ''" @click="changeFilter('news')"> اخبار </li>
+            <li :class="filterState === 'sell' ? '!border-normal !text-normal' : ''" @click="changeFilter('sell')"> فروش </li>
+            <li :class="filterState === 'blog' ? '!border-normal !text-normal' : ''" @click="changeFilter('blog')"> وبلاگ </li>
+        </ul>
+    </section>
+
+    <section :class="'mb-4 ' + gridStyle">
+        <template v-for="(article, index) in filteredList" :key="index">
+            <ArticleLink v-if="type == 1" :href="'/l/' + landSlug + '/a/' + article.slug" :class="'flex flex-col sm:flex-row rounded-custom bg-white overflow-hidden ' + borderStyle">
+                <!-- image -->
+                <div
+                    class="overflow-hidden md:flex-none w-full relative pt-[61%] sm:pt-0 sm:w-72 md:w-80 lg:w-[23rem] sm:flex-none">
+                    <img :src="article.image" :alt="article.title" class="absolute top-0 left-0 object-cover w-full h-full sm:static" />
+                </div>
+                <!-- docs -->
+                <div class="px-6 pb-6 pt-2.5 md:pl-10 flex flex-col sm:justify-center sm:flex-1">
+                    <h3 class="mb-4 text-lg font-bold text-gray-900 line-clamp-1"> {{ article.title }} </h3>
+                    <p
+                        class="text-sm text-justify line-clamp-5 sm:line-clamp-3 lg:line-clamp-2 lg:h-16 leading-7 sm:h-20 lg:leading-8 mb-4 font-normal text-dark-500 ">
+                        {{ article.description }}
+                    </p>
+                </div>
+            </ArticleLink>
+
+            <ArticleLink v-if="type == 2" :href="'/l/' + landSlug + '/a/' + article.slug" :class="'flex flex-col w-full flex-none overflow-hidden rounded-custom bg-white '+ borderStyle">
+                <div class="relative w-full pt-[62%]">
+                    <img :src="article.image" :alt="article.title" class="absolute top-0 left-0 w-full h-full object-cover" />
+                </div>
+                <!-- info -->
+                <div class="px-4 pt-3 pb-4">
+                    <h3 class="mb-2 text-sm font-bold text-gray-900 line-clamp-1"> {{ article.title }} </h3>
+                    <p class="mb-3 text-xs font-normal leading-5 h-10 text-justify text-gray-900  line-clamp-2">
+                        {{ article.description }}
+                    </p>
+                </div>
+            </ArticleLink>
+
+            <ArticleLink v-if="type == 3" :href="'/l/' + landSlug + '/a/' + article.slug" class="flex flex-col sm:flex-row bg-white border-t first:border-t-0 py-4 first:pt-0 last:pb-0 border-dark-100">
+                <!-- image -->
+                <div
+                    class="overflow-hidden md:flex-none w-full relative pt-[61%] sm:pt-0 sm:w-72 md:w-80 lg:w-[23rem] sm:flex-none mb-3 sm:mb-0 rounded-custom">
+                    <img :src="article.image" :alt="article.title" class="absolute top-0 left-0 object-cover w-full h-full sm:static" />
+                </div>
+                <!-- docs -->
+                <div class="px-6 md:pl-8 flex flex-col sm:justify-center sm:flex-1">
+                    <h3 class="mb-4 text-lg font-bold text-gray-900 line-clamp-1"> {{ article.title }} </h3>
+                    <p
+                        class="text-sm text-justify lg:text-base line-clamp-5 sm:line-clamp-3 lg:line-clamp-2 lg:h-24 leading-7 sm:h-20 lg:leading-8 mb-4 font-normal text-dark-500">
+                        {{ article.description }}
+                    </p>
+                </div>
+            </ArticleLink>
+
+            <div v-if="type == 4" class="flex flex-col sm:flex-row bg-white border-t first:border-t-0 py-4 first:pt-0 last:pb-0 border-dark-100">
+                <!-- image -->
+                <div
+                    class="overflow-hidden md:flex-none w-full relative pt-[61%] sm:pt-0 sm:w-72 md:w-80 lg:w-[23rem] sm:flex-none mb-3 sm:mb-0 rounded-custom">
+                    <img :src="article.image" :alt="article.title" class="absolute top-0 left-0 object-cover w-full h-full sm:static" />
+                </div>
+                <!-- docs -->
+                <div class="px-6 md:pl-8 flex flex-col sm:justify-center sm:flex-1">
+                    <h3 class="mb-4 text-lg font-bold text-gray-900 line-clamp-1"> {{ article.title }} </h3>
+                    <p
+                        class="text-sm text-justify lg:text-base line-clamp-5 sm:line-clamp-3 lg:line-clamp-2 lg:h-24 leading-7 sm:h-20 lg:leading-8 mb-4 font-normal text-dark-500">
+                        {{ article.description }}
+                    </p>
+                    <div class="flex items-center justify-between">
+                        <p class="text-dark-500 text-sm font-normal lg:text-base"> 4 مهر 1400 </p>
+                        <ArticleLink :href="'/l/' + landSlug + '/a/' + article.slug" class="text-sm font-bold flex items-center px-6 gap-4 text-normal">
+                            <span> ادامه </span>
+                            <svg class="fill-current" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M8 16L9.41 14.59L3.83 9L16 9V7L3.83 7L9.41 1.41L8 0L0 8L8 16Z" fill="current"/>
+                            </svg>
+                        </ArticleLink>
+                    </div>
+                </div>
+            </div>
+        </template>
     </section>
 
 </template>
 
 <script>
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
 
 export default {
     name: 'Articles',
 
-    setup(){
-        const showSearch = ref(false);
+    props: {
+        gridStyle: {
+            type: String,
+            required: true,
+        },
+        landSlug: {
+            type: String,
+            required: true,
+        },
+        type: {
+            type: String,
+            required: true,
+        },
+        data: {
+            type: String,
+            required: true,
+        },
+        borderStyle: {
+            type: String,
+            required: true,
+        },
+    },
 
+    setup(props){
+        console.log(JSON.parse(props.data));
+        const articleList = ref(JSON.parse(props.data));
+        const filterState = ref('all');
+
+        const changeFilter = (filter) => {
+            filterState.value = filter
+        }
+
+        const filteredList = computed(() => {
+            return filterState.value === "all"
+                ? articleList.value 
+                : articleList.value.filter(articleType => articleType.type === filterState.value);
+        });
         
 
         return {
-            showSearch,
+            filterState,
+            changeFilter,
+            filteredList,
         }
     }
 }

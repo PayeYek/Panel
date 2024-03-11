@@ -88,6 +88,12 @@ export default {
                 shadowLight: 'var(--theme-shadow-light)',
                 shadowNormal: 'var(--theme-shadow-normal)',
                 shadowFocus: 'var(--theme-shadow-focus)',
+                stone: {
+                    200: "#f3f3f4", // background
+                    400: "#d2d2d2", // border
+                    700: "#58595b", // text color
+                    950: "#1a1b1d", // footer bg
+                },
             },
             borderRadius: {
                 'custom': 'var(--theme-rarius)',

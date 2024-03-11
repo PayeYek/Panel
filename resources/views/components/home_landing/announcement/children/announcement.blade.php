@@ -55,7 +55,7 @@
         <li class="flex flex-col sm:flex-row bg-white border-t first:border-t-0 py-4 first:pt-0 last:pb-0 border-dark-100">
             {{-- image --}}
             <div
-                class="overflow-hidden md:flex-none w-full relative pt-[61%] sm:pt-0 sm:w-72 md:w-80 lg:w-[23rem] sm:flex-none mb-3 sm:mb-0 rounded-custom overflow-hidden">
+                class="overflow-hidden md:flex-none w-full relative pt-[61%] sm:pt-0 sm:w-72 md:w-80 lg:w-[23rem] sm:flex-none mb-3 sm:mb-0 rounded-custom">
                 <img src="{{ $image }}" alt="{{ $title }}" class="absolute top-0 left-0 object-cover w-full h-full sm:static" />
             </div>
             {{-- docs --}}
@@ -76,7 +76,7 @@
         <li class="flex flex-col sm:flex-row bg-white border-t first:border-t-0 py-4 first:pt-0 last:pb-0 border-dark-100">
             {{-- image --}}
             <div
-                class="overflow-hidden md:flex-none w-full relative pt-[61%] sm:pt-0 sm:w-72 md:w-80 lg:w-[23rem] sm:flex-none mb-3 sm:mb-0 rounded-custom overflow-hidden">
+                class="overflow-hidden md:flex-none w-full relative pt-[61%] sm:pt-0 sm:w-72 md:w-80 lg:w-[23rem] sm:flex-none mb-3 sm:mb-0 rounded-custom">
                 <img src="{{ $image }}" alt="{{ $title }}" class="absolute top-0 left-0 object-cover w-full h-full sm:static" />
             </div>
             {{-- docs --}}

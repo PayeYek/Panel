@@ -7,7 +7,7 @@
     }
 
     :root{
-        --theme-normal: #B91C1C;
+        --theme-normal: #d50000;
         --theme-focus: #9A0707;
         --theme-shadow-light: rgba(212, 17, 24, 0.3);
         --theme-shadow-normal: rgba(212, 17, 24, 0.5);
@@ -15,7 +15,7 @@
         --theme-rarius: 8px;
     }
     .theme_arian{
-        --theme-normal: #B91C1C;
+        --theme-normal: #d50000;
         --theme-focus: #9A0707;
         --theme-shadow-light: rgba(212, 17, 24, 0.3);
         --theme-shadow-normal: rgba(212, 17, 24, 0.5);
