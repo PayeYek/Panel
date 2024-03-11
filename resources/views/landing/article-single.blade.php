@@ -92,7 +92,7 @@
 
     {{-- type 2 --}}
     @if ($articleType === '2')
-    <main class="pt-20 sm:pt-24 relative default_container">
+    <main class="pt-4 relative default_container">
         {{-- breadcrumbs --}}
         {{-- <x-common_landing.breadcrumbs :data="$breadcrumbs" /> --}}
         <section class="flex flex-col lg:flex-row lg:items-start gap-8">
@@ -175,7 +175,7 @@
 
     {{-- type 3 --}}
     @if ($articleType === '3')
-    <main class="pt-20 sm:pt-24 relative default_container">
+    <main class="pt-4 relative default_container">
         {{-- breadcrumbs --}}
         {{-- <x-common_landing.breadcrumbs :data="$breadcrumbs" /> --}}
 
@@ -258,7 +258,7 @@
 
     {{-- type 4 --}}
     @if ($articleType === '4')
-    <main class="pt-20 sm:pt-24 relative default_container">
+    <main class="pt-4 relative default_container">
         {{-- breadcrumbs --}}
         {{-- <x-common_landing.breadcrumbs :data="$breadcrumbs" /> --}}
 
@@ -290,9 +290,9 @@
                         <h3 class="text-xl lg:text-lg font-black text-white"> فهرست آخرین اخبار و اطلاعیه ها </h3>
                     </div>
                     {{-- more articles --}}
-                    <ul class="flex flex-col gap-4 list-none">
+                    <section class="flex flex-col gap-4">
                         @foreach ($land->articles->take(3) as $article)
-                            <li class="grid grid-cols-10 bg-white w-full rounded-custom overflow-hidden {{ $borderType }}">
+                            <Link href="{{ route('landing.article.show',['page'=> $land->slug, 'article'=> $article->slug]) }}" class="grid grid-cols-10 bg-white w-full rounded-custom overflow-hidden {{ $borderType }}">
                                 <div class="relative w-full pt-[62%] col-span-4">
                                     <img src="{{ $article->image }}" alt="{{ $article->title }}" class="absolute top-0 left-0 w-full h-full object-cover" />
                                 </div>
@@ -301,9 +301,9 @@
                                     <p class="text-base lg:text-sm font-normal text-gray-900 sm:text-justify lg:text-right line-clamp-1 sm:line-clamp-2 sm:h-12 lg:h-10 mb-3 sm:mb-0"> {{ $article->title }} </p>
                                     <p class="text-xs font-normal text-normal line-clamp-1"> {{ jdate($article->created_at)->format('%B %d، %Y') }} </p>
                                 </div>
-                            </li>
+                            </Link>
                         @endforeach
-                    </ul>
+                    </section>
                 </section>
 
                 {{-- contact to expert --}}
@@ -325,7 +325,7 @@
 
     {{-- type 5 --}}
     @if ($articleType === '5')
-    <main class="pt-20 sm:pt-24 relative default_container">
+    <main class="pt-4 relative default_container">
         {{-- breadcrumbs --}}
         {{-- <x-common_landing.breadcrumbs :data="$breadcrumbs" /> --}}
 
@@ -373,9 +373,9 @@
                     </button>
                 </form>
                 {{-- more articles --}}
-                <ul class="flex flex-col gap-4 list-none">
+                <section class="flex flex-col gap-4">
                     @foreach ($land->articles->take(3) as $article)
-                        <li class="grid grid-cols-10 bg-white w-full rounded-custom overflow-hidden {{ $borderType }}">
+                        <Link href="{{ route('landing.article.show',['page'=> $land->slug, 'article'=> $article->slug]) }}" class="grid grid-cols-10 bg-white w-full rounded-custom overflow-hidden {{ $borderType }}">
                             <div class="relative w-full pt-[62%] col-span-4 border-l border-l-dark-100">
                                 <img src="{{ $article->image }}" alt="{{ $article->title }}" class="absolute top-0 left-0 w-full h-full object-cover" />
                             </div>
@@ -384,9 +384,9 @@
                                 <p class="text-base font-normal text-gray-900 sm:text-justify lg:text-right line-clamp-1 sm:line-clamp-2 mb-3 sm:h-12 lg:h-10 lg:text-sm sm:mb-0"> {{ $article->title }} </p>
                                 <p class="text-xs font-normal text-normal line-clamp-1"> {{ jdate($article->created_at)->format('%B %d، %Y') }} </p>
                             </div>
-                        </li>
+                        </Link>
                     @endforeach
-                </ul>
+                </section>
             </section>
         </section>
     </main>

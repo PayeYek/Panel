@@ -1,6 +1,7 @@
 <x-layout.default.main :land="$land">
 
-    <main class="pt-24">
+    <main class="pt-4">
+        {{-- <Articles /> --}}
         {{-- filter --}}
         <x-splade-data default="{ showSearch: false }">
             {{-- mobile filter --}}
