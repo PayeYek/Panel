@@ -221,7 +221,7 @@ export default {
         const allCities = ref(null);
         const clickOnState = (id) => {
             // const cities = document.querySelectorAll('.cities');
-
+            
             for (let index = 0; index < allCities.value.length; index++) {
                 const element = allCities.value[index];
                 element.classList.remove('fill-normal', 'hover:fill-normal');
