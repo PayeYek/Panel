@@ -24,22 +24,12 @@
                         <option value="4">Yellow</option>
                     </x-splade-select>
 
-                    <x-splade-select name="product_type" label="Product card type">
-                        <option value="1">{{ __('View type') }} 1</option>
-                        <option value="2">{{ __('View type') }} 2</option>
-                        <option value="3">{{ __('View type') }} 3</option>
-                        <option value="4">{{ __('View type') }} 4</option>
-                        <option value="5">{{ __('View type') }} 5</option>
-                        <option value="6">{{ __('View type') }} 6</option>
-                        <option value="7">{{ __('View type') }} 7</option>
-                       <option value="8">{{ __('View type') }} 8</option>
-                       <option value="9">{{ __('View type') }} 9</option>
-                       <option value="10">{{ __('View type') }} 10</option>
-                       <option value="11">{{ __('View type') }} 11</option>
+                    <x-splade-select name="border_type" label="نمای اشیاء">
+                        <option value="0">حاشیه دار</option>
+                        <option value="1">سایه دار</option>
                     </x-splade-select>
 
-
-                    <x-splade-select name="article_type" label="Article card type">
+                    <x-splade-select name="product_card_type" label="Product card type">
                         <option value="1">{{ __('View type') }} 1</option>
                         <option value="2">{{ __('View type') }} 2</option>
                         <option value="3">{{ __('View type') }} 3</option>
@@ -48,20 +38,41 @@
                         <option value="6">{{ __('View type') }} 6</option>
                         <option value="7">{{ __('View type') }} 7</option>
                         <option value="8">{{ __('View type') }} 8</option>
+                        <option value="9">{{ __('View type') }} 9</option>
+                        <option value="10">{{ __('View type') }} 10</option>
+                        <option value="11">{{ __('View type') }} 11</option>
                     </x-splade-select>
 
-                    <x-splade-select name="video_type" label="Video card type">
+                    <x-splade-select name="product_list_type" label="مدل چینش صفحه محصول">
                         <option value="1">{{ __('View type') }} 1</option>
                         <option value="2">{{ __('View type') }} 2</option>
                         <option value="3">{{ __('View type') }} 3</option>
                         <option value="4">{{ __('View type') }} 4</option>
                         <option value="5">{{ __('View type') }} 5</option>
-                        <option value="6">{{ __('View type') }} 6</option>
-                        <option value="7">{{ __('View type') }} 7</option>
-                        <option value="8">{{ __('View type') }} 8</option>
                     </x-splade-select>
 
-                    <x-splade-select name="slide_type" label="Slide type">
+                    <x-splade-select name="product_striped" label="نمای راه راه محصولات">
+                        <option value="0">غیرفعال</option>
+                        <option value="1">فعال</option>
+                    </x-splade-select>
+
+                    <x-splade-select name="article_card_type" label="Article card type">
+                        <option value="1">{{ __('View type') }} 1</option>
+                        <option value="2">{{ __('View type') }} 2</option>
+                        <option value="3">{{ __('View type') }} 3</option>
+                        <option value="4">{{ __('View type') }} 4</option>
+                    </x-splade-select>
+
+                    <x-splade-select name="article_striped" label="نمای راه راه مقالات">
+                        <option value="0">غیرفعال</option>
+                        <option value="1">فعال</option>
+                    </x-splade-select>
+
+                    <x-splade-select name="video_card_type" label="Video card type">
+                        <option value="1">{{ __('View type') }} 1</option>
+                    </x-splade-select>
+
+                    <x-splade-select name="category_card_type" label="قالب نمایشی موارد در صفحه محصولات">
                         <option value="1">{{  __('View type') }} 1</option>
                         <option value="2">{{  __('View type') }} 2</option>
                         <option value="3">{{  __('View type') }} 3</option>
@@ -70,12 +81,22 @@
                         <option value="6">{{  __('View type') }} 6</option>
                         <option value="7">{{  __('View type') }} 7</option>
                         <option value="8">{{  __('View type') }} 8</option>
+                        <option value="9">{{  __('View type') }} 9</option>
+                        <option value="10">{{  __('View type') }} 10</option>
+                        <option value="11">{{  __('View type') }} 11</option>
                     </x-splade-select>
 
-                    <x-splade-select name="slide_anim" label="Slide anim">
+                    <x-splade-select name="category_striped" label="نمای راه راه دسته بندی">
+                        <option value="0">غیرفعال</option>
+                        <option value="1">فعال</option>
+                    </x-splade-select>
+
+                    <x-splade-select name="slider_anim" label="انیمیشن اسلایدر">
                         <option value="1">{{ __('Animation') }} 1</option>
-                        <option value="2">{{ __('Animation') }} 2</option>
-                        <option value="3">{{ __('Animation') }} 3</option>
+                    </x-splade-select>
+
+                    <x-splade-select name="slider_type" label="قالب اسلایدر">
+                        <option value="1">{{ __('Animation') }} 1</option>
                     </x-splade-select>
 
                 </x-layout.panel.form.division>
