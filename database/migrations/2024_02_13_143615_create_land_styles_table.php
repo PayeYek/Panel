@@ -13,13 +13,13 @@ return new class extends Migration {
         Schema::create('land_styles', function (Blueprint $table) {
             $table->id();
             $table->foreignId('land_id')->constrained()->cascadeOnDelete();
-            $table->integer('color')->default(1);
-            $table->integer('radius')->default(0);
-            $table->integer('border_type')->default(0);
-            $table->integer('product_card_type')->default(1);
-            $table->integer('product_list_type')->default(1);
-            $table->integer('product_striped')->default(0);
-            $table->integer('article_card_type')->default(1);
+            $table->integer('color')->default(1); // color type
+            $table->integer('radius')->default(0); // border radius type
+            $table->integer('border_type')->default(0); // border or shadow
+            $table->integer('product_card_type')->default(1); // product card type in landing page
+            $table->integer('product_list_type')->default(1); // list of articles in landing page
+            $table->integer('product_striped')->default(0); // even 0r odd bg for product list in landing page
+            $table->integer('article_card_type')->default(1); // even 0r odd bg for article list in landing page
             $table->integer('article_striped')->default(0);
             $table->integer('video_card_type')->default(1);
             $table->integer('category_card_type')->default(1);

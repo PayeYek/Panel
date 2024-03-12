@@ -1,5 +1,4 @@
 <x-layout.default.main :land="$land">
-
     <main class="">
         {{-- slider --}}
         @if($land->slides)
@@ -10,7 +9,7 @@
         <x-home_landing.productCategories :landSlug="$land->slug" :data="$data" />
 
         {{-- favorites --}}
-        <x-home_landing.products :landSlug="$land->slug" :data="$land->products" :type="$land->styles->product_type" evenOdd="false" />
+        <x-home_landing.products :landSlug="$land->slug" :data="$land->products" :type="$land->styles->product_card_type" evenOdd="false" />
 
         {{-- notifications --}}
         <x-home_landing.announcement :landSlug="$land->slug" :data="$land->articles" type="{{ $land->styles->article_type }}" />
