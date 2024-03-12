@@ -16,17 +16,20 @@ return new class extends Migration {
             $table->integer('color')->default(1);
             $table->integer('radius')->default(0);
             $table->integer('border_type')->default(0);
-            $table->integer('l_product_type')->default(1);
-            $table->integer('l_article_type')->default(1);
-            $table->integer('video_type')->default(1);
-            $table->integer('slide_type')->default(1);
-            $table->integer('slide_anim')->default(1);
+            $table->integer('product_card_type')->default(1);
             $table->integer('product_list_type')->default(1);
-            $table->integer('product_list_category')->default(1); /* Category Type */
-            $table->integer('product_list_card_mode')->default(1); /* Even and odd */
-            $table->integer('product_single_type')->default(1);
-            $table->integer('article_single_type')->default(1);
-            $table->integer('article_single_type')->default(1);
+            $table->integer('product_striped')->default(0);
+            $table->integer('article_card_type')->default(1);
+            $table->integer('article_striped')->default(0);
+            $table->integer('video_card_type')->default(1);
+            $table->integer('category_card_type')->default(1);
+            $table->integer('category_striped')->default(0);
+            $table->integer('a_card_type')->default(1);
+            $table->integer('a_view_type')->default(1);
+            $table->integer('a_table_type')->default(1);
+            $table->integer('a_striped')->default(0);
+            $table->integer('slider_type')->default(1);
+            $table->integer('slider_anim')->default(1);
             $table->timestamps();
         });
     }
