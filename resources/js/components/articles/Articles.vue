@@ -120,7 +120,6 @@
 import { ref, computed, watch } from 'vue';
 // import moment from 'moment';
 import 'moment-jalaali';
-import debounce from 'lodash/debounce';
 
 export default {
     name: 'Articles',
