@@ -20,6 +20,12 @@
             <p class="text-justify text-sm md:text-base md:mb-10 lg:mb-14 font-normal leading-6 md:leading-7 mb-5">
                 شرکت آرین دیزل پایا به عنوان نماینده رسمی خودروهای سبک تجاری (Light Truck) شرکت جک موتورز در ایران می باشد که با بهره وری از تجارب ارزنده مدیران و مهندسان خویش در عرصه خودروسازی، نسبت به انتخاب و عرضه محصولات کیفی، قابل اطمینان و رقابتی اقدام نموده است. با توجه به خط مشی این شرکت و در راستای کسب حداکثری رضایت مشتریان، شرکت آرین دیزل نسبت به ارائه مدل های مناسب، سخت کار و سازگار با اقلیم ایران با قیمت های رقابتی و شرایط فروش متنوع و نیز خدمات پس از فروش بطور گسترده در سطح کشور اقدام نموده است.
             </p>
+
+            {{-- chart --}}
+            <AmChart />
+            {{-- <div class="w-full h-96" id="chartdiv">
+              
+            </div> --}}
             {{-- branches --}}
             <section class="grid grid-cols-1 text-normal md:grid-cols-2 gap-6 mb-4">
                 <div class="{{ $borderStyle }} flex flex-col px-16 md:px-12 pt-4 pb-12 bg-white rounded-custom">

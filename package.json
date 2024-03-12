@@ -25,6 +25,7 @@
         "vue": "^3.4.15"
     },
     "dependencies": {
+        "@amcharts/amcharts5": "^5.8.4",
         "flickity": "^3.0.0",
         "lodash": "^4.17.21",
         "moment": "^2.30.1",
