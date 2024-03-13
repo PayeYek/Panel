@@ -445,7 +445,7 @@
     }
 
     .evenOdd_cards{
-        @apply even:bg-white even:dark:bg-dark-700 odd:bg-[#e7e8e9] odd:dark:bg-slate-700;
+        @apply even:bg-white odd:bg-[#f5f5f5];
     }
 
     .vacant_btn_theme_warning{

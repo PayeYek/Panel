@@ -2,13 +2,15 @@
     'type' => '1',
     'image' => '/',
     'name' => '',
+    'model' => '',
     'productSlug' => '',
     'landSlug' => '',
-    'evenOdd' => 'false',
+    'evenOdd' => '0',
     'description' => '',
     'borderType' => '1',
     'categoryId' => '',
 ])
+{{-- @dd($evenOdd) --}}
 @php
     // $radiusSize = match($radius) {
     //     '0' => 'rounded-none',
@@ -285,6 +287,21 @@
                 <x-home_landing.products.children.linkBtn text="خرید اقساطی" href="{{ route('landing.product.show',['page'=> $landSlug, 'product'=> $productSlug]) }}" class="w-40 rounded-custom before:rounded-custom text-white bg-normal hover:bg-focus focus:bg-focus focus:shadow-focus focus:shadow-shadowNormal" />
             </div>
         </div>
+    @break
+
+    @case(12)
+        <li :class="'pt-2 px-8 w-72 sm:w-96 lg:w-full pb-5 lg:pb-2.5 lg:pt-4 items-center flex flex-col rounded-custom ' + ({{ $evenOdd }} == '1' ? 'evenOdd_cards' : 'bg-white')">
+            <div class="mb-3 h-52">
+                <img src="{{ $image }}" alt="{{ $name }}" class="object-contain h-full" draggable="false" />
+            </div>
+            <h3 class="mb-5 font-bold text-xl lg:line-clamp-1 text-stone-700"> {{ $name }} </h3>
+            <h4 class="mb-6 font-normal text-sm lg:line-clamp-1 text-stone-700"> مدل:  {{ $model }} </h4>
+            <div class="grid grid-cols-2 gap-3 w-56 lg:w-full">
+                <x-home_landing.products.children.linkBtn text="فروش اقساطی" href="{{ route('landing.product.show',['page'=> $landSlug, 'product'=> $productSlug]) }}" class="sameCategoryBtnStyle castegoryBtnfilled rounded-custom col-span-2" />
+                <x-home_landing.products.children.linkBtn text="کاتالوگ" href="{{ route('landing.product.show',['page'=> $landSlug, 'product'=> $productSlug]) }}" class="sameCategoryBtnStyle categoryBtnEmpty rounded-custom" />
+                <x-home_landing.products.children.linkBtn text="مشخصات" href="{{ route('landing.product.show',['page'=> $landSlug, 'product'=> $productSlug]) }}" class="sameCategoryBtnStyle categoryBtnEmpty rounded-custom" />
+            </div>
+        </li>
     @break
 
     @default

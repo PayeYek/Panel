@@ -3,21 +3,10 @@
     'evenOdd' => 'false',
     'data' => '',
     'landSlug' => '',
-    'borderType' => '1',
+    'borderType' => '0',
 ])
 
 @php
-    // $radiusSize = match($radius) {
-    //     '0' => 'rounded-none',
-    //     '2' => 'rounded-sm',
-    //     '4' => 'rounded',
-    //     '6' => 'rounded-md',
-    //     '8' => 'rounded-lg',
-    //     '12' => 'rounded-xl',
-    //     '16' => 'rounded-2xl',
-    //     default => 'rounded-md'
-    // };
-
     $borderStyle = '';
     switch ($type."") {
         case '7':
@@ -48,30 +37,37 @@
                 '1' => 'drop-shadow-base',
                 default => 'border border-dark-100'
             };
+        case '12':
+            $borderStyle = match($borderType) {
+                '0' => '',
+                '1' => 'drop-shadow-base',
+                default => 'border border-dark-100'
+            };
             break;
     }
     
     $classType = match($type."") {
-        '1' => 'lg:grid-cols-5 gap-4 sm:grid-cols-2',
-        '2', '3' => 'lg:grid-cols-4 gap-4 sm:grid-cols-2',
-        '4' => 'sm:grid-cols-2 lg:grid-cols-3 gap-4',
-        '5', '6' => 'md:grid-cols-2 gap-4',
-        '7' => 'md:grid-cols-1 rounded-custom overflow-hidden ' . $borderStyle,
-        '8' => 'md:grid-cols-1 rounded-custom overflow-hidden sm:rounded-none sm:overflow-visible sm:gap-4 ' . $borderStyle,
-        '9' => 'sm:grid-cols-2 lg:grid-cols-4 rounded-custom overflow-hidden ' . $borderStyle,
-        '10' => 'sm:grid-cols-2 lg:grid-cols-3 rounded-custom overflow-hidden ' . $borderStyle,
-        '11' => 'md:grid-cols-1 rounded-custom overflow-hidden ' . $borderStyle,
+        '1' => 'grid grid-cols-1 lg:grid-cols-5 gap-4 sm:grid-cols-2',
+        '2', '3' => 'grid grid-cols-1 lg:grid-cols-4 gap-4 sm:grid-cols-2',
+        '4' => 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4',
+        '5', '6' => 'grid grid-cols-1 md:grid-cols-2 gap-4',
+        '7' => 'grid grid-cols-1 md:grid-cols-1 rounded-custom overflow-hidden ' . $borderStyle,
+        '8' => 'grid grid-cols-1 md:grid-cols-1 rounded-custom overflow-hidden sm:rounded-none sm:overflow-visible sm:gap-4 ' . $borderStyle,
+        '9' => 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 rounded-custom overflow-hidden ' . $borderStyle,
+        '10' => 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 rounded-custom overflow-hidden ' . $borderStyle,
+        '11' => 'grid grid-cols-1 md:grid-cols-1 rounded-custom overflow-hidden ' . $borderStyle,
+        '12' => 'grid grid-cols-1 mx-auto w-72 sm:w-96  lg:flex lg:items-start lg:justify-center lg:gap-0 lg:w-full lg:mx-0 gap-2',
         default => 'lg:grid-cols-5 gap-4 sm:grid-cols-2'
     };
 @endphp
-
-<div class="grid grid-cols-1 {{ $classType }}">
-    @foreach ($data as $product)
+<div class=" {{ $classType }}">
+    @foreach ($data->take(4) as $product)
         <x-home_landing.products.children.product
             :type="$type"
             :evenOdd="$evenOdd"
             :image="$product->image"
             :name="$product->name"
+            :model="$product->model"
             :landSlug="$landSlug"
             :productSlug="$product->slug"
             :description="$product->description"

@@ -1,23 +1,25 @@
 <template>
-    <section class="mb-2.5 lg:mb-8 relative z-[1] sm:default_container">
-        <swiper
-            :modules="modules"
-            :slides-per-view="1"
-            :navigation="false"
-            :autoplay="{delay: 3500, disableOnInteraction: false}"
-            :pagination="{ clickable: true }"
-            class="land_slider slider_type_1"
-        >
-            <swiper-slide v-for="slide in slides">
-                <a href="#" class="relative w-full pt-[44%] block rounded-b-custom overflow-hidden">
-                    <img class="object-cover w-full h-full top-0 left-0 absolute" :src="slide.image" :alt="slide.alt">
-                    <div class="absolute top-2/3 text-white py-8 px-20 text-2xl z-[1] bg-shadowFocus rounded-l-custom">
-                        <span v-text="slide.alt"></span>
-                    </div>
-                </a>
-            </swiper-slide>
-        </swiper>
-    </section>
+    <!-- <section class=""> -->
+        <section class="mb-6 lg:mb-8 default_container">
+            <swiper
+                :modules="modules"
+                :slides-per-view="1"
+                :navigation="false"
+                :autoplay="{delay: 3500, disableOnInteraction: false}"
+                :pagination="{ clickable: true }"
+                class="land_slider slider_type_1"
+            >
+                <swiper-slide v-for="(slide, index) in slides" :key="index">
+                    <a href="#" class="relative w-full pt-[44%] block rounded-b-custom overflow-hidden">
+                        <img class="object-cover w-full h-full top-0 left-0 absolute" :src="slide.image" :alt="slide.alt">
+                        <ul class="list-disc list-inside absolute top-2.5 right-1 py-1 px-2 z-[1] bg-white/80 text-xs rounded-custom">
+                            <li class="line-clamp-1" v-text="slide.alt"></li>
+                        </ul>
+                    </a>
+                </swiper-slide>
+            </swiper>
+        </section>
+    <!-- </section> -->
 </template>
 
 <script>
