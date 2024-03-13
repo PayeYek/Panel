@@ -7,14 +7,14 @@
     switch ($land->styles->product_type."") {
         case '7':
             $borderStyle = 'drop-shadow-base';
-    
+
             break;
         case '8':
             $borderStyle = match($borderType) {
                 '1' => 'drop-shadow-base sm:drop-shadow-none',
                 default => 'border border-dark-100 sm:border-0'
             };
-    
+
             break;
         case '9':
             $borderStyle = match($borderType) {
@@ -96,8 +96,8 @@
             landSlug="{{ $land->slug }}"
             borderStyle="{{ $borderStyle }}"
             :evenOdd=false />
-        
-    
+
+
         {{-- products --}}
         {{-- <x-home_landing.products :showSectionTitle=false :landSlug="$land->slug" :data="$land->products" type="11" evenOdd="true" radius="{{ $land->styles->radius }}" /> --}}
     </main>

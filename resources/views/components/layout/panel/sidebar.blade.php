@@ -19,6 +19,7 @@
                 <x-layout.panel.menu title="Pages" route="panel.landing.land.index" icon="iconsax-lin-note-2"/>
                 <x-layout.panel.menu title="Slides" route="panel.landing.slide.index"
                                      icon="iconsax-lin-slider-horizontal"/>
+                <x-layout.panel.menu title="Agencies" route="panel.landing.agency.index" icon="iconsax-lin-shop"/>
                 <x-layout.panel.menu title="Articles" route="panel.landing.article.index" icon="iconsax-lin-book"/>
                 <x-layout.panel.menu title="Videos" route="panel.landing.video.index" icon="iconsax-lin-video-square"/>
                 <x-layout.panel.menu title="Files" route="panel.landing.file.index" icon="iconsax-lin-document-upload"/>

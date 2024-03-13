@@ -60,6 +60,8 @@ Route::middleware(['splade'])->group(function () {
                 Route::resource('color', \App\Http\Controllers\Panel\Land\ColorController::class)->except('show');
             });
 
+            // Land Agencies
+            Route::resource('agency', \App\Http\Controllers\Panel\Land\AgencyController::class)->except('show');
             // Land Articles
             Route::resource('article', \App\Http\Controllers\Panel\Land\ArticleController::class)->except('show');
             // Land Slides

@@ -15,58 +15,25 @@ class LandStyleRequest extends FormRequest
     public function rules()
     {
         return [
-            'land_id'      => 'required|numeric',
-            'color'        => 'required|numeric',
-            'radius'       => 'required|numeric',
-            'product_type' => 'required|numeric',
-//            'product_view' => 'required|numeric',
-            'article_type' => 'required|numeric',
-//            'article_view' => 'required|numeric',
-            'video_type'   => 'required|numeric',
-//            'video_view'   => 'required|numeric',
-            'slide_type'   => 'required|numeric',
-            'slide_anim'   => 'required|numeric',
+            'land_id'            => 'required|numeric',
+            'color'              => 'required|numeric',
+            'radius'             => 'required|numeric',
+            'border_type'        => 'required|numeric',
+            'product_card_type'  => 'required|numeric',
+            'product_list_type'  => 'required|numeric',
+            'product_striped'    => 'required|numeric',
+            'article_card_type'  => 'required|numeric',
+            'article_striped'    => 'required|numeric',
+            'video_card_type'    => 'required|numeric',
+            'category_card_type' => 'required|numeric',
+            'category_striped'   => 'required|numeric',
+            'a_card_type'        => 'required|numeric',
+            'a_view_type'        => 'required|numeric',
+            'a_table_type'       => 'required|numeric',
+            'a_striped'          => 'required|numeric',
+            'slider_type'        => 'required|numeric',
+            'slider_anim'        => 'required|numeric',
         ];
-
-//        if ($this->method() == 'POST') {
-//            return [
-//                'attributes'   => 'required|array',
-//                'attributes.*' => 'required|numeric',
-//            ];
-//        }
-//
-//        if (in_array($this->method(), ['PUT', 'PATCH'])) {
-//
-//            //todo
-//            return [
-//                'land_id'     => 'required|numeric',
-//                'brand_id'    => 'required|numeric',
-//                'category_id' => 'required|numeric',
-//                'colors'      => 'required',
-//                'colors.*'    => 'required|distinct:1',
-//                'name'        => 'required|string',
-//                'model'       => 'nullable|string',
-//                'year'        => 'nullable|string',
-//                'tonnage'     => 'nullable|string',
-//                'axle'        => 'nullable|string',
-//                'usage'       => 'nullable|string',
-//                'cabin'       => 'nullable|string',
-//                'description' => 'nullable',
-//                'body'        => 'nullable',
-//                'catalog'     => 'nullable|file|mimes:pdf|max:10240',
-//                'manual'      => 'nullable|file|mimes:pdf|max:10240',
-//                'image'       => $this->getValidationRuleImage(),
-//                'pictures'       => 'nullable|array',
-//                'pictures.*'       => $this->getValidationRulePictures(),
-//                'slug'        => [
-//                    'required',
-//                    'string',
-//                    Rule::unique("land_products")->ignore($this->product->id)
-//                ],
-//
-//            ];
-//        }
-//        return null;
     }
 
 }
