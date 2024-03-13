@@ -14,7 +14,7 @@
         @endphp
 
         <div class="flex flex-col justify-center {{$inFooter? '': 'max-w-48'}}">
-            <h1 class="font-bold font-bakh text-2xl md:text-lg text-center md:text-start {{$inFooter? '': 'truncate'}}">{{$land->title ?? ''}}</h1>
+            <h1 class="font-bold font-iran text-2xl md:text-lg text-center md:text-start {{$inFooter? '': 'truncate'}}">{{$land->title ?? ''}}</h1>
             <h2 class="-mt-0.5 text-base md:text-xs font-inter text-gray-400 text-center md:text-start {{$inFooter? '': 'truncate'}}">
                 {{$english ?? ''}}
             </h2>
@@ -36,8 +36,8 @@
         @endphp
 
         <div class="flex flex-col {{$inFooter? '': ' justify-center max-w-48'}}">
-            <h1 class="text-sm font-bold font-bakh">{{$land->title ?? ''}}</h1>
-            <h2 class="text-[10px] text-gray-400 font-inter text-start">
+            <h1 class="text-sm lg:text-base font-bold font-iran">{{$land->title ?? ''}}</h1>
+            <h2 class="text-[10px] lg:text-xs text-gray-400 font-inter text-start">
                 {{$english ?? ''}}
             </h2>
         </div>
