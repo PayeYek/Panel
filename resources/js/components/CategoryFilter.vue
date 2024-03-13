@@ -19,13 +19,14 @@
         <div :class="'grid grid-cols-1 ' + classType">
             <template v-if="productType != 12">
                 <template v-for="(product, index) in filteredList">
-    
+
                     <div v-if="productType == 1" :key="index"
                         :class="'pt-2 px-8 w-full pb-5 items-center flex flex-col rounded-custom ' + borderStyle + ' ' + (evenOdd ? 'evenOdd_cards ' : 'bg-white ')">
                         <div class="mb-2 h-36">
                             <img :src="product.image" :alt="product.name" class="object-contain h-full" />
                         </div>
-                        <h3 class="mb-5 font-bold lg:mb-4 text-lg sm:line-clamp-1 text-stone-700"> {{ product.name }} </h3>
+                        <h3 class="mb-5 font-bold lg:mb-4 text-lg sm:line-clamp-1 text-stone-700"> {{ product.name }}
+                        </h3>
                         <div class="flex flex-col gap-4 w-56 lg:w-full">
                             <LandBtn text="مشخصات" :to="'/l/' + landSlug + '/p/' + product.slug"
                                 classNames="sameCategoryBtnStyle categoryBtnEmpty rounded-custom" />
@@ -35,7 +36,7 @@
                                 classNames="sameCategoryBtnStyle categoryBtnEmpty rounded-custom" />
                         </div>
                     </div>
-    
+
                     <div v-if="productType == 2" :key="index"
                         :class="'px-8 w-full pt-1 pb-8 items-center flex flex-col rounded-custom ' + borderStyle + ' ' + (evenOdd ? 'evenOdd_cards ' : 'bg-white ')">
                         <div class="h-32 mb-0.5">
@@ -52,7 +53,7 @@
                                 classNames="'col-span-full sameCategoryBtnStyle categoryBtnEmpty rounded-custom'" />
                         </div>
                     </div>
-    
+
                     <div v-if="productType == 3" :key="index"
                         :class="'px-8 w-full pt-1 pb-8 items-center flex flex-col rounded-custom ' + borderStyle + ' ' + (evenOdd ? 'evenOdd_cards ' : 'bg-white ')">
                         <div class="h-32 mb-0.5">
@@ -69,7 +70,7 @@
                                 classNames="'col-span-full sameCategoryBtnStyle castegoryBtnfilled rounded-custom'" />
                         </div>
                     </div>
-    
+
                     <div v-if="productType == 4" :key="index"
                         :class="'pl-6 pr-8 w-full pt-5 pb-8 flex flex-col rounded-custom ' + borderStyle + ' ' + (evenOdd ? 'evenOdd_cards ' : 'bg-white ')">
                         <h3 class="mb-1.5 font-bold lg:mb-1 text-lg sm:line-clamp-1 text-stone-700"> {{ product.name }}
@@ -88,14 +89,15 @@
                             </div>
                         </div>
                     </div>
-    
+
                     <div v-if="productType == 5" :key="index"
                         :class="'px-6 gap-2 w-full pt-6 pb-10 flex items-center rounded-custom ' + borderStyle + ' ' + (evenOdd ? 'evenOdd_cards ' : 'bg-white ')">
                         <div class="flex-none h-28 sm:h-32">
                             <img :src="product.image" :alt="product.name" class="object-contain h-full" />
                         </div>
                         <div class="flex flex-col flex-1 gap-4">
-                            <h3 class="mb-1.5 font-bold lg:mb-1 text-lg sm:line-clamp-1 text-stone-700"> {{ product.name }}
+                            <h3 class="mb-1.5 font-bold lg:mb-1 text-lg sm:line-clamp-1 text-stone-700"> {{ product.name
+                                }}
                             </h3>
                             <div class="grid w-full grid-cols-2 gap-2 mr-auto max-w-72">
                                 <LandBtn text="مشخصات" :to="'/l/' + landSlug + '/p/' + product.slug"
@@ -107,14 +109,15 @@
                             </div>
                         </div>
                     </div>
-    
+
                     <div v-if="productType == 6" :key="index"
                         :class="'px-6 gap-2 w-full pt-6 pb-10 flex items-center rounded-custom ' + borderStyle + ' ' + (evenOdd ? 'evenOdd_cards ' : 'bg-white ')">
                         <div class="flex-none h-28 sm:h-32">
                             <img :src="product.image" :alt="product.name" class="object-contain h-full" />
                         </div>
                         <div class="flex flex-col flex-1 gap-4">
-                            <h3 class="mb-1.5 font-bold lg:mb-1 text-lg sm:line-clamp-1 text-stone-700"> {{ product.name }}
+                            <h3 class="mb-1.5 font-bold lg:mb-1 text-lg sm:line-clamp-1 text-stone-700"> {{ product.name
+                                }}
                             </h3>
                             <div class="grid w-full grid-cols-2 gap-2 mr-auto max-w-72">
                                 <LandBtn text="مشخصات" :to="'/l/' + landSlug + '/p/' + product.slug"
@@ -126,7 +129,7 @@
                             </div>
                         </div>
                     </div>
-    
+
                     <div v-if="productType == 7" :key="index"
                         :class="`flex flex-col w-full sm:flex-row sm:items-center lg:pl-14 sm:gap-4 lg:gap-10 xl:gap-16 px-6 pb-6 pt-4 sm:py-6 after:absolute after:content-[''] after:top-0 after:left-[5%] after:w-[90%] after:h-px after:border-t first:after:hidden after:border-dark-100 relative ` + (evenOdd ? 'evenOdd_cards ' : 'bg-white ')">
                         <div
@@ -134,7 +137,8 @@
                             <img :src="product.image" :alt="product.name" class="object-contain h-full" />
                         </div>
                         <div class="mb-4 sm:mb-0 sm:flex-1">
-                            <h3 class="mb-2 font-bold lg:mb-1 text-lg sm:line-clamp-1 text-stone-700"> {{ product.name }}
+                            <h3 class="mb-2 font-bold lg:mb-1 text-lg sm:line-clamp-1 text-stone-700"> {{ product.name
+                                }}
                             </h3>
                             <p
                                 class="text-sm leading-6 text-justify text-[#818284] dark:text-white font-medium line-clamp-2">
@@ -150,7 +154,7 @@
                                 classNames="sameCategoryBtnStyle castegoryBtnfilled rounded-custom" />
                         </div>
                     </div>
-    
+
                     <div v-if="productType == 8" :key="index"
                         :class="`flex flex-col w-full sm:flex-row sm:items-center lg:pl-14 sm:gap-4 lg:gap-10 xl:gap-16 px-6 sm:pr-10 pb-6 pt-4 sm:py-6 after:absolute after:content-[''] after:top-0 after:left-[5%] after:w-[90%] after:h-px after:border-t first:after:hidden after:border-dark-100 sm:after:hidden relative before:bg-normal before:absolute before:content-[''] before:top-0 before:right-0 before:w-4 before:hidden sm:before:block before:h-full overflow-hidden sm:rounded-custom` + borderStyle + ' ' + (evenOdd ? 'evenOdd_cards ' : 'bg-white ')">
                         <div
@@ -173,13 +177,14 @@
                                 classNames="sameCategoryBtnStyle castegoryBtnfilled rounded-custom" />
                         </div>
                     </div>
-    
+
                     <div v-if="productType == 9" :key="index"
                         :class="'px-8 lg:px-5 xl:px-8 py-5 sm:pb-12 w-full items-center flex flex-col sm:border-l sm:border-l-dark-100 sm:[&:nth-child(2n+2)]:border-l-0 lg:[&:nth-child(2n+2)]:border-l lg:[&:nth-child(4n+4)]:border-l-0 border-t border-t-dark-100 first:border-t-0 sm:first:rounded-none sm:last:rounded-none sm:[&:nth-of-type(-n+2)]:border-t-0 lg:[&:nth-of-type(-n+2)]:border-t lg:[&:nth-of-type(-n+4)]:border-t-0 ' + (evenOdd ? 'evenOdd_cards ' : 'bg-white ')">
                         <div class="h-32 mb-2">
                             <img :src="product.image" :alt="product.name" class="object-contain h-full" />
                         </div>
-                        <h3 class="mb-5 font-bold lg:mb-4 text-lg sm:line-clamp-1 text-stone-700"> {{ product.name }} </h3>
+                        <h3 class="mb-5 font-bold lg:mb-4 text-lg sm:line-clamp-1 text-stone-700"> {{ product.name }}
+                        </h3>
                         <div class="flex flex-col gap-4 w-56 mx-auto sm:mx-0">
                             <LandBtn text="مشخصات" :to="'/l/' + landSlug + '/p/' + product.slug"
                                 classNames="sameCategoryBtnStyle categoryBtnEmpty rounded-custom" />
@@ -189,7 +194,7 @@
                                 classNames="sameCategoryBtnStyle categoryBtnEmpty rounded-custom" />
                         </div>
                     </div>
-    
+
                     <div v-if="productType == 10" :key="index"
                         :class="'border-b last:border-b-0 border-dark-100 pl-6 pr-8 w-full pt-5 pb-8 sm:border-l sm:[&:nth-child(2n)]:border-l-0 lg:[&:nth-child(2n)]:border-l lg:[&:nth-child(3n)]:border-l-0 flex flex-col ' + (evenOdd ? 'evenOdd_cards ' : 'bg-white ')">
                         <h3 class="mb-1.5 font-bold lg:mb-1 text-lg sm:line-clamp-1 text-stone-700"> {{ product.name }}
@@ -208,7 +213,7 @@
                             </div>
                         </div>
                     </div>
-    
+
                     <div v-if="productType == 11" :key="index"
                         :class="`flex flex-col w-full sm:flex-row sm:items-center lg:pl-14 sm:gap-4 lg:gap-10 xl:gap-16 px-6 pb-6 pt-4 sm:py-6 after:absolute after:content-[''] after:top-0 after:left-0 after:w-full after:h-px after:border-t first:after:hidden after:border-dark-100 relative ` + (evenOdd ? 'evenOdd_cards ' : 'bg-white ')">
                         <div
@@ -216,7 +221,8 @@
                             <img :src="product.image" :alt="product.name" class="object-contain h-full" />
                         </div>
                         <div class="mb-4 sm:mb-0 sm:flex-1">
-                            <h3 class="mb-2 font-bold lg:mb-1 text-lg sm:line-clamp-1 text-stone-700"> {{ product.name }}
+                            <h3 class="mb-2 font-bold lg:mb-1 text-lg sm:line-clamp-1 text-stone-700"> {{ product.name
+                                }}
                             </h3>
                             <p
                                 class="text-sm leading-6 text-justify text-[#818284] dark:text-white font-medium line-clamp-2">
@@ -301,6 +307,7 @@ export default {
         const brandCategories = ref([]);
         const removeDuplicated = ref([]);
         const filteredList = ref([]);
+        const allProductsList = ref([]);
 
         function remove_duplicates_es6(arr) {
             let s = new Set(arr);
@@ -320,27 +327,70 @@ export default {
             reject();
         })
 
-        if (props.productType == 12) {
-            getAllBrands.then(() => {
-                for (let index = 0; index < removeDuplicated.value.length; index++) {
-                    filteredList.value.push([]);
-                    const element = removeDuplicated.value[index];
-                    productList.value.filter(product => {
-                        product.products.map(item => {
-                            if (item.brand_id == element) {
-                                filteredList.value[index].push(item);
-                            }
-                        })
-                    })
-                }
+        let getAllCategories = new Promise(function (resolve, reject) {
+            productList.value.map(product => {
+                product.products.map(item => {
+                    allProductsList.value.push(item)
+                })
             })
+            resolve();
+            reject();
+        })
 
-            watch(filterState, () => {
-                updateFilteredList();
-            });
-        } else {
-            filteredList.value = productList.value;
-        }
+        // console.log(brandCategories.value);
+
+        // const nonTwelveFilteredList = computed(() => {
+        //     return filterState.value == 0
+        //         ? productList.value
+        //         : productList.value.filter(item => item.category_id == filterState.value);
+        // });
+
+        watch(() => props.productType, (newType) => {
+            if (newType == 12) {
+                getAllBrands.then(() => {
+                    for (let index = 0; index < removeDuplicated.value.length; index++) {
+                        filteredList.value.push([]);
+                        const element = removeDuplicated.value[index];
+                        productList.value.filter(product => {
+                            product.products.map(item => {
+                                if (item.brand_id == element) {
+                                    filteredList.value[index].push(item);
+                                }
+                            })
+                        })
+                    }
+                })
+
+                watch(filterState, () => {
+                    updateFilteredList();
+                });
+            } else {
+                getAllCategories.then(() => {
+                    if(filterState.value == 0){
+                        filteredList.value = allProductsList.value;
+                    } else {
+                        filteredList.value = allProductsList.value.filter(item => item.category_id == filterState.value)
+                    }
+                    
+                })
+                // filteredList.value = computed(() => {
+                //     return filterState.value == 0
+                //     ? allProductsList.value
+                //     : allProductsList.value.filter(item => item.category_id == filterState.value)
+                // });
+            }
+        }, { immediate: true });
+
+        watch(() => filterState.value, (newVal) => {
+            if (props.productType !== 12) {
+                if(newVal == 0){
+                    filteredList.value = allProductsList.value;
+                } else {
+                    filteredList.value = allProductsList.value.filter(item => item.category_id == filterState.value)
+                }
+            }
+            console.log(filteredList.value);
+        });
 
         const updateFilteredList = () => {
             if (filterState.value == 0) {
@@ -376,22 +426,10 @@ export default {
             }
         };
 
-
-
-
-
         // filteredList.value = computed(() => {
-        //     if(props.productType == 12){
-        //         if(filterState.value == 0 ){
-
-        //         } else {
-
-        //         }
-        //     } else {
-        //         return filterState.value == 0 
-        //             ? productList.value 
-        //             : productList.value.filter(categoryId => categoryId.category_id == filterState.value);
-        //     }
+        //     return filterState.value == 0 
+        //         ? productList.value 
+        //         : productList.value.filter(categoryId => categoryId.category_id == filterState.value);
         // });
 
         return {

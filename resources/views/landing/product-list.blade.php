@@ -56,7 +56,7 @@
     }
 
     // $classType = match($land->styles->category_card_type."") {
-    $classType = match("12") {
+    $classType = match($land->styles->category_card_type."") {
         '1' => 'lg:grid-cols-5 gap-4 sm:grid-cols-2',
         '2', '3' => 'lg:grid-cols-4 gap-4 sm:grid-cols-2',
         '4' => 'sm:grid-cols-2 lg:grid-cols-3 gap-4',
@@ -75,7 +75,7 @@
         <CategoryFilter
             classType="{{ $classType }}"
             {{-- type="{{ $land->styles->category_card_type }}" --}}
-            productType="12"
+            productType="{{ $land->styles->category_card_type }}"
             list="{{ $data }}"
             landSlug="{{ $land->slug }}"
             borderStyle="{{ $borderStyle }}"
