@@ -53,7 +53,7 @@
                         <h4 class="text-sm sm:text-base font-bold text-normal flex-none leading-7"> بهمن 1402 </h4>
                     </div>
                     <p class="mb-2 text-sm font-normal leading-6 sm:leading-7 sm:h-20 sm:mb-3 text-justify text-slate-700 line-clamp-3 h-[72px]">
-                        {{ $article->description }} {{ $article->description }}
+                        {{ $article->description }}
                     </p>
                     <x-home_landing.announcement.children.linkBtn text="بیشتر" href="{{ route('landing.article.show',['page'=> $landSlug, 'article'=> $article->slug]) }}" class="mx-auto text-white bg-slate-700" />
                 </div>

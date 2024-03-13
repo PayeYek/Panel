@@ -33,31 +33,22 @@
     </script>
 @endpush
 
-<section class="mb-4 sm:mb-8 lg:mb-20 relative z-[3] lg:default_container" id="video-player-container">
+<section class="mb-4 sm:mb-8 lg:mb-16 relative z-[3] lg:default_container" id="video-player-container">
     {{-- header --}}
-    <div class="flex items-center justify-between mb-4 px-4">
-        <h3 class="text-xl font-normal lg:text-2xl text-gray-900"> ویدیو ها </h3>
-        <a href="#" class="flex items-center gap-2 text-xs font-normal text-normal hover:text-focus" v-if="{{ $showAllBtn }}">
-            <span> نمایش همه </span>
-            <svg class="stroke-current" width="20" height="20" viewBox="0 0 20 20" fill="none"
-                xmlns="http://www.w3.org/2000/svg">
-                <path
-                    d="M8.88759 15.8327L3.33203 9.99935M3.33203 9.99935L8.88759 4.16602M3.33203 9.99935L16.6654 9.99935"
-                    stroke="current" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-            </svg>
-        </a>
-    </div>
-    <ul class="flex items-center lg:grid px-4 lg:px-0 gap-4 list-none {{ $data->count() == 1 ? '' : ($data->count() == 2 ? 'md:grid-cols-2 overflow-auto md:overflow-visible' : 'overflow-auto lg:overflow-visible lg:grid-cols-3') }}">
-        @foreach ($data->take(3) as $video)
-            <li class="flex-none lg:w-full {{ $data->count() == 1 ? 'w-full' : ($data->count() == 2 ? 'w-96 sm:w-[28rem] md:w-full' : 'w-64 sm:w-80 md:w-96') }}" data-videoLink="{{ $video->link }}">
+    <h3  class="mb-2 text-base sm:text-lg font-bold text-center text-slate-700"> ویدیو ها </h3>
+    <hr class="w-60 sm:w-96 border-normal mb-6 lg:mb-0 mx-auto" />
+    {{-- show all --}}
+    <Link href="#" class="text-base font-normal text-normal mr-auto mb-3 hidden lg:inline-block float-left px-2 cursor-pointer" v-if="{{ $showAllBtn }}"> نمایش همه </Link>
+    <ul class="flex px-4 lg:px-0 list-none lg:w-full {{ $data->count() == 1 ? 'justify-center' : 'gap-4 sm:flex-row sm:items-center flex-col lg:grid lg:grid-cols-2 overflow-auto lg:overflow-visible' }}">
+        @foreach ($data->take(2) as $video)
+            <li class="flex-none {{ $data->count() == 1 ? 'w-full sm:w-[448px] md:w-[480px]' : 'w-full sm:w-[448px] md:w-[480px] lg:w-full' }}" data-videoLink="{{ $video->link }}">
                 <div class="relative w-full pt-[62%] cursor-pointer rounded-custom overflow-hidden drop-shadow-base videoThumbnails" onclick="showVideoByThumbnail(this)">
                     <img src="{{ $video->image }}" alt="{{ $video->alt }}" class="absolute top-0 left-0 w-full h-full object-cover z-[1]" />
-                    <x-icons.playIcon class="w-12 h-12 sm:w-20 sm:h-20 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-[3]" />
+                    <x-icons.playIcon class="size-14 sm:w-20 sm:h-20 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-[3]" />
                     <div class="absolute text-white bottom-0 left-0 w-full z-[2] flex flex-col justify-end px-4 pb-5 bg-gradient-to-t from-black to-transparent h-1/2">
-                        <p class="text-base sm:text-xl lg:text-base font-bold w-full line-clamp-2"> {{ $video->alt }} </p>
+                        <p class="text-sm sm:text-lg font-bold w-full line-clamp-1"> {{ $video->alt }} </p>
                     </div>
                 </div>
-
             </li>
             @endforeach
         </ul>
