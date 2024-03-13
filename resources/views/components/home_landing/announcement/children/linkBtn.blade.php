@@ -2,4 +2,4 @@
     'text' => '',
 ])
 
-<Link {{ $attributes->merge(['class' => 'text-sm font-bold flex_center h-8 w-[6.5rem]' ])}}> {{ $text }} </Link>
+<Link {{ $attributes->merge(['class' => 'text-lg font-semibold flex_center h-10 w-32 rounded-custom' ])}}> {{ $text }} </Link>

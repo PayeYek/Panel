@@ -17,6 +17,9 @@ import Articles from "@/components/articles/Articles.vue";
 import ArticleLink from "@/components/articles/ArticleLink.vue";
 import AmChart from "@/components/map/AmChart.vue";
 import Branches from "@/components/map/Branches.vue";
+// import Swiper from 'swiper';
+// import 'swiper/css/bundle';
+// let Swiper = require('swiper');
 
 import { createApp } from "vue";
 import { renderSpladeApp, SpladePlugin } from "@protonemedia/laravel-splade";

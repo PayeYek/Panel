@@ -1,4 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+@import 'swiper/swiper-bundle.css';
+
 
 @tailwind base;
 @layer base{
@@ -692,6 +694,32 @@
 
 .desktop_pdp_slider .swiper-button-prev{
     @apply left-4 lg:left-6 before:-rotate-[135deg];
+}
+
+.swiper.articleSliderType5{
+    @apply px-4 lg:px-0;
+}
+.articleSliderType5 .articleSliderType5-next, .articleSliderType5 .articleSliderType5-prev{
+    @apply h-full top-0 hidden lg:flex w-28 justify-center items-start pt-28 xl:pt-32 after:size-12 after:flex_center after:bg-white/70 after:rounded-custom after:border after:border-[#7B808C] before:absolute before:top-32 xl:before:top-36 before:size-2 before:translate-x-1/2 before:translate-y-1/2;
+}
+.articleSliderType5 .swiper-slide{
+    @apply w-72 lg:w-auto sm:w-[22rem];
+}
+.articleSliderType5 .articleSliderType5-prev{
+    @apply bg-gradient-to-r from-transparent to-white right-0 before:border-r-[#2F3136] before:border-t-[#2F3136] before:border-r-2 before:border-t-2 before:content-[''] before:right-14 before:rotate-45;
+}
+.articleSliderType5 .articleSliderType5-next{
+    @apply bg-gradient-to-l from-transparent to-white left-0 before:border-l-[#2F3136] before:border-b-[#2F3136] before:border-l-2 before:border-b-2 before:content-[''] before:left-12 before:rotate-45;
+}
+
+.articleSliderType5 .articleSliderType5-pagination{
+    @apply static
+}
+.articleSliderType5 .articleSliderType5-pagination .swiper-pagination-bullet{
+    @apply w-2 h-2 rounded-lg opacity-50 bg-normal;
+}
+.articleSliderType5 .articleSliderType5-pagination .swiper-pagination-bullet.swiper-pagination-bullet-active{
+    @apply w-4 opacity-100;
 }
 /* swiper ends */
 

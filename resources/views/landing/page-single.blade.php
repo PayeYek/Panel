@@ -33,7 +33,7 @@
         <x-home_landing.products :landSlug="$land->slug" :data="$land->products" :type="$land->styles->product_card_type" :borderType="$land->styles->border_type" evenOdd="{{ $land->styles->product_striped }}" />
 
         {{-- notifications --}}
-        <x-home_landing.announcement :landSlug="$land->slug" :data="$land->articles" type="{{ $land->styles->article_type }}" />
+        <x-home_landing.announcement :landSlug="$land->slug" :data="$land->articles" type="5" :borderType="$land->styles->border_type" evenOdd="{{ $land->styles->article_striped }}" />
 
         {{-- videos --}}
         <x-home_landing.videos :data="$land->videos" />
