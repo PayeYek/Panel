@@ -1,10 +1,10 @@
 <template>
-    <section class="default_container mb-8 lg:flex lg:items-center lg:gap-4">
-        <p class="mb-4 lg:mb-0 text-base font-bold text-stone-700 text-center"> محصولات </p>
+    <section class="default_container mb-12 flex items-center gap-4">
+        <p class="text-lg font-normal text-stone-700 text-center"> محصولات </p>
         <div
-            class="h-10 w-full max-w-96 mx-auto lg:w-36 lg:mx-0 before:absolute before:content-[''] before:w-2 before:h-2 before:border-r-2 before:border-b-2 before:border-normal before:top-1/2 before:left-4 before:-translate-y-1/2 before:rotate-45 relative">
+            class="h-11 w-40 before:absolute before:content-[''] before:w-2 before:h-2 before:border-r-2 before:border-b-2 before:border-slate-700 before:top-1/2 before:left-4 before:-translate-y-1/2 before:rotate-45 relative">
             <select id="selectFilter"
-                class="w-full h-full border focus:ring-0 outline-none !bg-none text-normal border-normal focus:border-focus rounded-custom"
+                class="w-full h-full border focus:ring-0 outline-none !bg-none text-slate-700 border-slate-700 focus:border-slate-700 rounded-custom"
                 v-model="filterState">
                 <option value="0"> همه محصولات </option>
                 <option value="1"> کامیون </option>
@@ -244,16 +244,17 @@
             <template v-if="productType == 12">
                 <template v-for="(product, index) in filteredList" :key="index">
                     <section class="flex flex-col" v-if="product.length > 0">
-                        <p class="text-xl font-bold mb-4 text-slate-700 text-center"> محصولات SHACMOTO </p>
-                        <hr class="w-96 border-normal mb-6 mx-auto" />
-                        <ul class="flex flex-col lg:flex-row lg:items-start lg:justify-center gap-0">
+                        <p class="text-base lg:text-xl font-bold mb-4 text-slate-700 text-center"> محصولات SHACMOTO </p>
+                        <hr class="w-56 lg:w-96 border-normal mb-4 lg:mb-6 mx-auto" />
+                        <ul class="flex flex-col lg:flex-row mx-auto lg:items-start lg:justify-center gap-0">
                             <li v-for="(item, index) in product" :key="index"
-                                :class="'pt-2 px-8 w-72 pb-5 items-center flex flex-col rounded-custom ' + (evenOdd ? 'evenOdd_cards' : 'bg-white')">
+                                :class="'pt-2 px-8 w-72 sm:w-96 lg:w-full lg:max-w-72 pb-5 lg:pt-3 items-center flex flex-col rounded-custom ' + (evenOdd ? 'evenOdd_cards' : 'bg-white')">
                                 <div class="mb-2 h-52">
                                     <img :src="item.image" :alt="item.name" class="object-contain h-full" />
                                 </div>
-                                <h3 class="mb-5 font-bold text-xl lg:line-clamp-1 text-stone-700"> {{ item.name }} </h3>
-                                <div class="grid grid-cols-1 lg:grid-cols-2 gap-3 w-56 lg:w-full">
+                                <h3 class="mb-5 font-bold text-xl line-clamp-2 lg:line-clamp-1 text-stone-700 lg:h-[28px]"> {{ item.name }} </h3>
+                                <h3 class="mb-6 font-normal text-sm line-clamp-1 text-stone-700 h-5"> مدل: {{ item.model }} </h3>
+                                <div class="grid grid-cols-2 gap-3 w-56 lg:w-full">
                                     <LandBtn text="خرید اقساطی" :to="'/l/' + landSlug + '/p/' + item.slug"
                                         classNames="sameCategoryBtnStyle castegoryBtnfilled rounded-custom col-span-2" />
                                     <LandBtn text="مشخصات" :to="'/l/' + landSlug + '/p/' + item.slug"
