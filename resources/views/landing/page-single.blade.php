@@ -8,7 +8,7 @@
         {{-- products category --}}
         {{-- <x-home_landing.productCategories :landSlug="$land->slug" :data="$data" /> --}}
         <section class="default_container">
-            <section class="grid grid-cols-1 sm:grid-cols-2 mb-12 gap-4 *:rounded-custom sm:*:rounded-none sm:rounded-custom sm:overflow-hidden sm:gap-0 *:bg-[#f5f5f5] *:flex_center *:flex-col *:text-slate-700 *:aspect-video">
+            <section class="grid grid-cols-1 sm:grid-cols-2 mb-12 gap-4 *:rounded-custom sm:*:rounded-none sm:rounded-custom sm:overflow-hidden sm:gap-0 *:bg-[#f5f5f5] *:flex_center *:flex-col *:text-stone-700 *:aspect-video">
                 {{-- branches --}}
                 <Link href="#">
                     <svg class="size-8 stroke-normal mb-3" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">

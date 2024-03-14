@@ -674,7 +674,7 @@
 
 /* swiper starts */
 .slider_type_1 .swiper-pagination .swiper-pagination-bullet{
-    @apply w-2 h-2 transition-transform duration-300 bg-white rounded-full opacity-50;
+    @apply w-2 h-2 transition-transform duration-300 bg-stone-700 rounded-full opacity-50;
 }
 .slider_type_1 .swiper-pagination .swiper-pagination-bullet-active{
     @apply w-6 opacity-80;

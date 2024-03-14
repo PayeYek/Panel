@@ -49,13 +49,13 @@
                 {{-- info --}}
                 <div class="px-2 pt-3 pb-4">
                     <div class="flex_between gap-4 mb-1">
-                        <h3 class="text-base sm:text-lg font-bold text-slate-700 line-clamp-1 leading-7"> {{ $article->title }} </h3>
+                        <h3 class="text-base sm:text-lg font-bold text-stone-700 line-clamp-1 leading-7"> {{ $article->title }} </h3>
                         <h4 class="text-sm sm:text-base font-bold text-normal flex-none leading-7"> بهمن 1402 </h4>
                     </div>
-                    <p class="mb-2 text-sm font-normal leading-6 sm:leading-7 sm:h-20 sm:mb-3 text-justify text-slate-700 line-clamp-3 h-[72px]">
+                    <p class="mb-2 text-sm font-normal leading-6 sm:leading-7 sm:h-20 sm:mb-3 text-justify text-stone-700 line-clamp-3 h-[72px]">
                         {{ $article->description }}
                     </p>
-                    <x-home_landing.announcement.children.linkBtn text="بیشتر" href="{{ route('landing.article.show',['page'=> $landSlug, 'article'=> $article->slug]) }}" class="mx-auto text-white bg-slate-700" />
+                    <x-home_landing.announcement.children.linkBtn text="بیشتر" href="{{ route('landing.article.show',['page'=> $landSlug, 'article'=> $article->slug]) }}" class="mx-auto text-white bg-stone-700" />
                 </div>
             </div>
             @endforeach

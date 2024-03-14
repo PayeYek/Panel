@@ -35,7 +35,7 @@
 
 <section class="mb-4 sm:mb-8 lg:mb-16 relative z-[3] lg:default_container" id="video-player-container">
     {{-- header --}}
-    <h3  class="mb-2 text-base sm:text-lg font-bold text-center text-slate-700"> ویدیو ها </h3>
+    <h3  class="mb-2 text-base sm:text-lg font-bold text-center text-stone-700"> ویدیو ها </h3>
     <hr class="w-60 sm:w-96 border-normal mb-6 lg:mb-0 mx-auto" />
     {{-- show all --}}
     <Link href="#" class="text-base font-normal text-normal mr-auto mb-3 hidden lg:inline-block float-left px-2 cursor-pointer" v-if="{{ $showAllBtn }}"> نمایش همه </Link>

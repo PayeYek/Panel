@@ -35,7 +35,7 @@
 
     {{-- guide btns --}}
     <div class="flex_center flex-col gap-2 md:max-w-[524px] md:flex-row lg:gap-4">
-        <x-pdp_landing.linkBtn text="دانلود کاتالوگ" class="rounded-custom text-normal bg-white border border-normal hover:border-focus hover:text-focus focus:border-focus focus:text-focus focus:shadow-focus focus:shadow-shadowNormal" />
-        <x-pdp_landing.linkBtn text="مشاوره و خرید" class="rounded-custom text-white bg-normal hover:bg-focus focus:bg-focus focus:shadow-focus focus:shadow-shadowNormal" />
+        <Link class="rounded-custom text-white bg-stone-700 flex_center text-lg font-bold h-11 cursor-pointer w-52"> مشاوره و خرید </Link>
+        <Link class="rounded-custom text-stone-700 bg-white border border-stone-700 flex_center text-lg font-bold h-11 cursor-pointer w-52"> دانلود کاتالوگ </Link>
     </div>
 </section>

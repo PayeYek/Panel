@@ -9,6 +9,7 @@
         {{-- product detail --}}
         <section
             class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8 lg:gap-12 xl:gap-16 default_container mb-8 lg:mb-12 xl:mb-16">
+            <h1 class="md:hidden text-xl font-bold text-stone-700 mb-5"> {{ $product->name }} </h1>
             {{-- product images --}}
             <section class="md:flex flex-col gap-3">
                 {{-- desktop slider --}}

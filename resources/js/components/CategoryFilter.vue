@@ -2,9 +2,9 @@
     <section class="default_container mb-12 flex items-center gap-4">
         <p class="text-lg font-normal text-stone-700 text-center"> محصولات </p>
         <div
-            class="h-11 w-40 before:absolute before:content-[''] before:w-2 before:h-2 before:border-r-2 before:border-b-2 before:border-slate-700 before:top-1/2 before:left-4 before:-translate-y-1/2 before:rotate-45 relative">
+            class="h-11 w-40 before:absolute before:content-[''] before:w-2 before:h-2 before:border-r-2 before:border-b-2 before:border-stone-700 before:top-1/2 before:left-4 before:-translate-y-1/2 before:rotate-45 relative">
             <select id="selectFilter"
-                class="w-full h-full border focus:ring-0 outline-none !bg-none text-slate-700 border-slate-700 focus:border-slate-700 rounded-custom"
+                class="w-full h-full border focus:ring-0 outline-none !bg-none text-stone-700 border-stone-700 focus:border-stone-700 rounded-custom"
                 v-model="filterState">
                 <option value="0"> همه محصولات </option>
                 <option value="1"> کامیون </option>
@@ -244,7 +244,7 @@
             <template v-if="productType == 12">
                 <template v-for="(product, index) in filteredList" :key="index">
                     <section class="flex flex-col" v-if="product.length > 0">
-                        <p class="text-base lg:text-xl font-bold mb-4 text-slate-700 text-center"> محصولات SHACMOTO </p>
+                        <p class="text-base lg:text-xl font-bold mb-4 text-stone-700 text-center"> محصولات SHACMOTO </p>
                         <hr class="w-56 lg:w-96 border-normal mb-4 lg:mb-6 mx-auto" />
                         <ul class="flex flex-col lg:flex-row mx-auto lg:items-start lg:justify-center gap-0">
                             <li v-for="(item, index) in product" :key="index"
