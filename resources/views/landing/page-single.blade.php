@@ -39,7 +39,10 @@
         <x-home_landing.videos :data="$land->videos" />
 
         {{-- terms of sale --}}
-        <x-home_landing.termsOfSale />
+        {{-- <x-home_landing.termsOfSale /> --}}
+
+        {{-- quick access --}}
+        <x-home_landing.quickaccess />
     </main>
 
 

@@ -9,7 +9,7 @@
     'showSectionTitle' => true,
 ])
 
-<section class="mb-4 lg:mb-16 relative z-[1] {{ $type == 2 || $type == 5 ? 'lg:default_container' : 'default_container' }}">
+<section class="mb-4 lg:mb-16 relative {{ $type == 2 || $type == 5 ? 'lg:default_container' : 'default_container' }}">
     @if ($showSectionTitle)
         <h3  class="mb-2 text-base sm:text-lg font-bold text-center text-slate-700"> آخرین اخبار و اطلاعیه ها </h3>
         <hr class="w-60 sm:w-96 border-normal mb-6 lg:mb-0 mx-auto" />
