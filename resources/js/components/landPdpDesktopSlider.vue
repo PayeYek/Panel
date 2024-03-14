@@ -16,7 +16,6 @@
                 </div>
             </div>
         </div>
-    
     </section>
 
     <!-- modal layer -->
