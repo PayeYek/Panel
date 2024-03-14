@@ -2,8 +2,10 @@
 
 namespace App\Tables\Landing;
 
+use App\Models\Land;
 use App\Models\LandAgency;
-use App\Models\LandArticle;
+use App\Models\Province;
+use App\Models\ProvinceCity;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 use ProtoneMedia\Splade\AbstractTable;
@@ -29,18 +31,20 @@ class Agencies extends AbstractTable
             $query->where(function ($query) use ($value) {
                 Collection::wrap($value)->each(function ($value) use ($query) {
                     $query
-                        ->orWhere('title', 'LIKE', "%{$value}%")
-                        ->orWhere('slug', 'LIKE', "%{$value}%")
-                        ->orWhere('body', 'LIKE', "%{$value}%");
+                        ->orWhere('name', 'LIKE', "%{$value}%")
+                        ->orWhere('code', 'LIKE', "%{$value}%")
+                        ->orWhere('address', 'LIKE', "%{$value}%")
+                        ->orWhere('description', 'LIKE', "%{$value}%")
+                        ->orWhere('manager', 'LIKE', "%{$value}%");
                 });
             });
         });
 
         return QueryBuilder::for(LandAgency::class)
-            ->with('land')
+//            ->with(['land'])
             ->defaultSort('-id')
-            ->allowedSorts(['id', 'title'])
-            ->allowedFilters(['slug', 'title', 'body', $globalSearch]);
+            ->allowedSorts(['land.title', 'province.name', 'city.name', 'code'])
+            ->allowedFilters(['land_id', 'province.name', 'city_id', 'code', $globalSearch]);
     }
 
     public function configure(SpladeTable $table)
@@ -53,55 +57,70 @@ class Agencies extends AbstractTable
             label: __('Id'),
             hidden: true,
             sortable: true,
-        //searchable: true,
-        //highlight: true,
-        //exportAs: false,
         );
 
         $table->column(
-            key: 'title',
-            label: __('Title'),
-            hidden: true,
+            key: 'land.title',
+            label: __('Landing'),
             sortable: true,
-            searchable: true,
-            highlight: true,
-        //exportAs: false,
         );
+
         $table->column(
-            key: 'slug',
-            label: __('Slug'),
-            hidden: true,
+            key: 'province.name',
+            label: __('Province'),
             sortable: true,
-            searchable: true,
-        //highlight: true,
-        //exportAs: false,
         );
+
         $table->column(
-            key: 'type',
-            label: __('Type'),
-        //hidden: true,
-        //sortable: true,
-        //searchable: true,
-        //highlight: true,
-        //exportAs: false,
+            key: 'city.name',
+            label: __('City'),
+            sortable: true,
         );
+
+        $table->column(
+            key: 'code',
+            label: __('Agency Code'),
+            sortable: true,
+        );
+
+        $table->column(
+            key: 'name',
+            label: __('Name'),
+            sortable: true,
+        );
+
+        $table->column(
+            key: 'manager',
+            label: __('Manager'),
+            sortable: true,
+        );
+
+        // $table->column(
+        //     key: 'address',
+        //     label: __('Address'),
+        // );
 
         /** Actions */
         $table->column(
             key: 'action',
             label: __('Actions'),
-            //canBeHidden: true,
-            //hidden: true,
-            //sortable: true,
-            //searchable: true,
-            //highlight: true,
-            //classes: false,
-            //alignment: 'right'
             exportAs: false,
         );
 
         /** Columns */
         $table->paginate();
 
+        /** Filters */
+        $table->selectFilter('land_id', Land::all()->mapWithKeys(function ($item) {
+            return [$item->id => __($item->title)];
+        })->toArray(), label: __('Landing'));
+
+        $table->selectFilter('province_id', Province::all()->mapWithKeys(function ($item) {
+            return [$item->id => __($item->title)];
+        })->toArray(), label: __('Province'));
+
+        $table->selectFilter('city_id', ProvinceCity::all()->mapWithKeys(function ($item) {
+            return [$item->id => __($item->title)];
+        })->toArray(), label: __('City'));
     }
 }
