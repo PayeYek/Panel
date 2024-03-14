@@ -353,6 +353,7 @@ export default {
                         const element = removeDuplicated.value[index];
                         productList.value.filter(product => {
                             product.products.map(item => {
+                                console.log(item);
                                 if (item.brand_id == element) {
                                     filteredList.value[index].push(item);
                                 }
