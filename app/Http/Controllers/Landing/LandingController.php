@@ -92,11 +92,14 @@ class LandingController extends Controller
         }
         $cats = array_unique($cats);
 
-        $data = array();
+        $data = collect();
         foreach ($cats as $cat) {
             $item['category'] = LandCategory::find($cat);
-            $item['products'] = LandProduct::where('land_id', $land->id)->where('category_id', $cat)->get();
-            $data[] = $item;
+            $item['products'] = LandProduct::with('brand')->where('land_id', $land->id)->where('category_id', $cat)->get()->map(function ($product) {
+                $product->brand;
+                return  $product;
+            });
+            $data->add(collect($item)) ;
         }
 
         $data = collect($data);

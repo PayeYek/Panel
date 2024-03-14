@@ -42,5 +42,4 @@ class LandBrand extends Model
         return $this->attributes["image"];
     }
 
-
 }

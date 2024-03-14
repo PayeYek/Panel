@@ -7,14 +7,14 @@
     switch ($land->styles->category_card_type."") {
         case '7':
             $borderStyle = 'drop-shadow-base';
-    
+
             break;
         case '8':
             $borderStyle = match($borderType) {
                 '1' => 'drop-shadow-base sm:drop-shadow-none',
                 default => 'border border-dark-100 sm:border-0'
             };
-    
+
             break;
         case '9':
             $borderStyle = match($borderType) {

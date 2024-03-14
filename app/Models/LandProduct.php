@@ -191,7 +191,7 @@ class LandProduct extends Model
 
     public function brand()
     {
-        return $this->belongsTo(LandBrand::class);
+        return $this->belongsTo(LandBrand::class, 'brand_id');
     }
 
     public function products()

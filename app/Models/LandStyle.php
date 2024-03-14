@@ -2,9 +2,7 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Str;
 
 class LandStyle extends Model
 {
@@ -13,14 +11,21 @@ class LandStyle extends Model
         'land_id',
         'color',
         'radius',
-        'product_type',
-        'product_view',
-        'article_type',
-        'article_view',
-        'video_type',
-        'video_view',
-        'slide_type',
-        'slide_anim',
+        'border_type',
+        'product_card_type',
+        'product_list_type',
+        'product_striped',
+        'article_card_type',
+        'article_striped',
+        'video_card_type',
+        'category_card_type',
+        'category_striped',
+        'a_card_type',
+        'a_view_type',
+        'a_table_type',
+        'a_striped',
+        'slider_type',
+        'slider_anim',
     ];
 
     public function land()
