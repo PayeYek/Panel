@@ -1,23 +1,28 @@
 <template>
-    <div class="w-full pt-[100%] relative hidden md:block">
-        <div class="absolute inset-0 cursor-pointer">
-            <img :src="mainImage" :alt="name" class="w-full h-full object-cover rounded-custom" />
+    <section class="hidden lg:flex items-start gap-4">
+        <!-- thumbnails -->
+        <div class="grid grid-cols-1 gap-4 flex-none w-24">
+            <div v-for="(thumb, index) in thumbGallery" :key="index" class="aspect-square w-full cursor-pointer relative overflow-hidden rounded-custom"
+                @click="showSliderWithSliderTo(index)">
+                <img :src="thumb" :alt="name" class="w-full h-full rounded-custom object-cover" />
+                <div class="w-full h-full bg-black/60 absolute top-0 left-0 flex_center text-white/60 font-normal text-[60px]" v-if="index == 4 && thumbGalleryLength > 5"> {{ thumbGalleryLength - 5 }} + </div>
+            </div>
         </div>
-    </div>
 
-    <!-- thumbnails -->
-    <div class="md:grid hidden grid-cols-3 gap-3">
-        <div v-for="(thumb, index) in thumbGallery" :key="index" class="aspect-video w-full cursor-pointer relative overflow-hidden rounded-custom"
-            @click="showSliderWithSliderTo(index)">
-            <img :src="thumb" :alt="name" class="w-full h-full rounded-custom object-cover" />
-            <div class="w-full h-full bg-black/60 absolute top-0 left-0 flex_center text-white/60 font-normal text-[60px]" v-if="index == 2 && thumbGalleryLength > 3"> {{ thumbGalleryLength - 3 }} + </div>
+        <div class="flex-1">
+            <div class="w-full pt-[100%] relative">
+                <div class="absolute inset-0 cursor-pointer">
+                    <img :src="mainImage" :alt="name" class="w-full h-full object-cover rounded-custom" />
+                </div>
+            </div>
         </div>
-    </div>
+    
+    </section>
 
     <!-- modal layer -->
-    <div class="hidden md:block bg-black/60 fixed inset-0 z-[3]" v-show="openModal" @click="closeModal"></div>
+    <div class="hidden lg:block bg-black/60 fixed inset-0 z-[3]" v-show="openModal" @click="closeModal"></div>
 
-    <section class="hidden md:flex_center w-2/3 max-w-[640px] lg:max-w-[796px] xl:max-w-[900px] 2xl:max-w-[1024px] mx-auto translate-x-1/2 -translate-y-1/2 fixed top-1/2 right-1/2 z-[4]" v-show="openModal">
+    <section class="hidden lg:flex_center w-2/3 max-w-[640px] lg:max-w-[796px] xl:max-w-[900px] 2xl:max-w-[1024px] mx-auto translate-x-1/2 -translate-y-1/2 fixed top-1/2 right-1/2 z-[4]" v-show="openModal">
             <swiper :modules="modules" speed="750" :slides-per-view="1" :space-between="16" :navigation="true"
                 class="desktop_pdp_slider w-full">
                 <swiper-slide v-for="slide in oldGallery">
@@ -83,10 +88,10 @@ export default {
             openModal.value = false
         }
 
-        if(thumbnails.length <= 3){
+        if(thumbnails.length <= 5){
             thumbGallery.value = thumbnails;
         } else {
-            thumbGallery.value = thumbnails.slice(0, -(thumbnails.length-3));
+            thumbGallery.value = thumbnails.slice(0, -(thumbnails.length-5));
         }
 
         return {

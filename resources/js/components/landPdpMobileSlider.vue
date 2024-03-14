@@ -1,5 +1,5 @@
 <template>
-    <section class="mb-2.5 lg:mb-8 relative z-[1] sm:default_container md:hidden">
+    <section class="mb-2.5 lg:mb-8 relative z-[1] sm:default_container lg:hidden">
         <swiper :modules="modules" speed="750" :slides-per-view="1" :pagination="{ clickable: true }" class="slider_type_1">
             <swiper-slide v-for="slide in newGallery">
                 <div class="relative pt-[100%] w-full">

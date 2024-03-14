@@ -3,33 +3,33 @@
     'product' => '',
 ])
 
-<section class="lg:pt-24 flex flex-col-reverse gap-4">
-    <h1 class="hidden md:block text-2xl lg:text-[32px] font-medium text-normal mb-8 lg:mb-11 line-clamp-1"> {{ $productName }} </h1>
+<section class="lg:pt-12 flex flex-col-reverse lg:flex-col gap-4 lg:col-span-4">
+    <h1 class="hidden lg:block text-2xl lg:text-[32px] font-medium text-normal mb-8 lg:mb-11 line-clamp-1"> {{ $productName }} </h1>
     {{-- boxes --}}
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-2 md:gap-3 text-sm 2xl:text-[15px] md:max-w-[524px]">
-        <div class="md:aspect-square h-12 grid grid-cols-2 content-center px-3 bg-dark-50 gap-1 rounded-custom">
-            <p class="font-medium text-normal line-clamp-1"> نوع کاربری </p>
-            <p class="text-stone-700 line-clamp-1 font-normal"> {{ $product->usage }} </p>
+    <div class="grid grid-cols-1 gap-2 text-sm lg:mb-16">
+        <div class="h-12 grid grid-cols-2 lg:grid-cols-5 content-center px-3 lg:px-4 bg-[#F2F2F2] gap-1 rounded-custom">
+            <p class="font-medium text-normal line-clamp-1 lg:col-span-2"> نوع کاربری </p>
+            <p class="text-stone-700 line-clamp-1 font-normal lg:col-span-3"> {{ $product->usage }} </p>
         </div>
-        <div class="md:aspect-square h-12 grid grid-cols-2 content-center p-1 bg-dark-50 gap-1 rounded-custom">
-            <p class="font-medium text-normal line-clamp-1"> نوع کابین </p>
-            <p class="text-stone-700 line-clamp-1 font-normal">  {{ $product->cabin == 0 ? 'بدون خواب' : 'خواب دار' }} </p>
+        <div class="h-12 grid grid-cols-2 lg:grid-cols-5 content-center px-3 lg:px-4 bg-[#F2F2F2] gap-1 rounded-custom">
+            <p class="font-medium text-normal line-clamp-1 lg:col-span-2"> نوع کابین </p>
+            <p class="text-stone-700 line-clamp-1 font-normal lg:col-span-3">  {{ $product->cabin == 0 ? 'بدون خواب' : 'خواب دار' }} </p>
         </div>
-        <div class="md:aspect-square h-12 grid grid-cols-2 content-center p-1 bg-dark-50 gap-1 rounded-custom">
-            <p class="font-medium text-normal line-clamp-1"> تناژ </p>
-            <p class="text-stone-700 line-clamp-1 font-normal"> {{ $product->tonnage }} </p>
+        <div class="h-12 grid grid-cols-2 lg:grid-cols-5 content-center px-3 lg:px-4 bg-[#F2F2F2] gap-1 rounded-custom">
+            <p class="font-medium text-normal line-clamp-1 lg:col-span-2"> تناژ </p>
+            <p class="text-stone-700 line-clamp-1 font-normal lg:col-span-3"> {{ $product->tonnage }} </p>
         </div>
-        <div class="md:aspect-square h-12 grid grid-cols-2 content-center p-1 bg-dark-50 gap-1 rounded-custom">
-            <p class="font-medium text-normal line-clamp-1"> تعداد محور چرخ‌ها </p>
-            <p class="text-stone-700 line-clamp-1 font-normal"> {{ $product->axle == 1 ? 'تک محوره' : ($product->axle == 2 ? 'جفت محوره' : 'سه محوره') }} </p>
+        <div class="h-12 grid grid-cols-2 lg:grid-cols-5 content-center px-3 lg:px-4 bg-[#F2F2F2] gap-1 rounded-custom">
+            <p class="font-medium text-normal line-clamp-1 lg:col-span-2"> تعداد محور چرخ‌ها </p>
+            <p class="text-stone-700 line-clamp-1 font-normal lg:col-span-3"> {{ $product->axle == 1 ? 'تک محوره' : ($product->axle == 2 ? 'جفت محوره' : 'سه محوره') }} </p>
         </div>
-        <div class="md:aspect-square h-12 grid grid-cols-2 content-center p-1 bg-dark-50 gap-1 rounded-custom">
-            <p class="font-medium text-normal line-clamp-1"> سال </p>
-            <p class="text-stone-700 line-clamp-1 font-normal"> {{ $product->year }} </p>
+        <div class="h-12 grid grid-cols-2 lg:grid-cols-5 content-center px-3 lg:px-4 bg-[#F2F2F2] gap-1 rounded-custom">
+            <p class="font-medium text-normal line-clamp-1 lg:col-span-2"> سال </p>
+            <p class="text-stone-700 line-clamp-1 font-normal lg:col-span-3"> {{ $product->year }} </p>
         </div>
-        <div class="md:aspect-square h-12 grid grid-cols-2 content-center p-1 bg-dark-50 gap-1 rounded-custom">
-            <p class="font-medium text-normal line-clamp-1"> مدل </p>
-            <p class="text-stone-700 line-clamp-1 font-normal"> {{ $product->model }} </p>
+        <div class="h-12 grid grid-cols-2 lg:grid-cols-5 content-center px-3 lg:px-4 bg-[#F2F2F2] gap-1 rounded-custom">
+            <p class="font-medium text-normal line-clamp-1 lg:col-span-2"> مدل </p>
+            <p class="text-stone-700 line-clamp-1 font-normal lg:col-span-3"> {{ $product->model }} </p>
         </div>
     </div>
 
