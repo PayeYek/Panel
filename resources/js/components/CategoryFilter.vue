@@ -309,6 +309,7 @@ export default {
         const filteredList = ref([]);
         const allProductsList = ref([]);
 
+        // console.log(0, typeof filteredList.value);
         function remove_duplicates_es6(arr) {
             let s = new Set(arr);
             let it = s.values();
@@ -323,6 +324,7 @@ export default {
                 })
             })
             removeDuplicated.value = remove_duplicates_es6(brandCategories.value)
+            
             resolve();
             reject();
         })
@@ -347,13 +349,15 @@ export default {
 
         watch(() => props.productType, (newType) => {
             if (newType == 12) {
+                filteredList.value = [];
+                // console.log(0, typeof filteredList.value);
                 getAllBrands.then(() => {
                     for (let index = 0; index < removeDuplicated.value.length; index++) {
                         filteredList.value.push([]);
+                        // console.log(1, typeof filteredList.value);
                         const element = removeDuplicated.value[index];
                         productList.value.filter(product => {
                             product.products.map(item => {
-                                console.log(item);
                                 if (item.brand_id == element) {
                                     filteredList.value[index].push(item);
                                 }
@@ -362,17 +366,19 @@ export default {
                     }
                 })
 
-                watch(filterState, () => {
-                    updateFilteredList();
-                });
+
+                // watch(() => filterState.value, () => {
+                //     // console.log(1 , filteredList.value);
+                //     updateFilteredList();
+                // });
             } else {
                 getAllCategories.then(() => {
-                    if(filterState.value == 0){
+                    if (filterState.value == 0) {
                         filteredList.value = allProductsList.value;
                     } else {
                         filteredList.value = allProductsList.value.filter(item => item.category_id == filterState.value)
                     }
-                    
+
                 })
                 // filteredList.value = computed(() => {
                 //     return filterState.value == 0
@@ -383,14 +389,44 @@ export default {
         }, { immediate: true });
 
         watch(() => filterState.value, (newVal) => {
-            if (props.productType !== 12) {
-                if(newVal == 0){
+            if (props.productType != 12) {
+                if (newVal == 0) {
                     filteredList.value = allProductsList.value;
                 } else {
-                    filteredList.value = allProductsList.value.filter(item => item.category_id == filterState.value)
+                    filteredList.value = allProductsList.value.filter(item => item.category_id == newVal)
+                }
+            } else {
+                filteredList.value = [];
+                if (newVal == 0) {
+                    getAllBrands.then(() => {
+                        for (let index = 0; index < removeDuplicated.value.length; index++) {
+                            filteredList.value.push([]);
+                            const element = removeDuplicated.value[index];
+                            productList.value.filter(product => {
+                                product.products.map(item => {
+                                    if (item.brand_id == element) {
+                                        filteredList.value[index].push(item);
+                                    }
+                                })
+                            })
+                        }
+                    })
+                } else {
+                    getAllBrands.then(() => {
+                        for (let index = 0; index < removeDuplicated.value.length; index++) {
+                            filteredList.value.push([]);
+                            const element = removeDuplicated.value[index];
+                            productList.value.filter(product => {
+                                product.products.map(item => {
+                                    if (item.brand_id == element && item.category_id == filterState.value) {
+                                        filteredList.value[index].push(item);
+                                    }
+                                })
+                            })
+                        }
+                    })
                 }
             }
-            console.log(filteredList.value);
         });
 
         const updateFilteredList = () => {
