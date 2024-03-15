@@ -28,113 +28,119 @@
         </ul>
     </section>
 
-    <section :class="'mb-4 ' + gridStyle">
-        <template v-for="(article, index) in filteredArticles">
-            <ArticleLink v-if="type == 1" :key="index" :href="'/l/' + landSlug + '/a/' + article.slug"
-                :class="'flex flex-col sm:flex-row rounded-custom bg-white overflow-hidden ' + borderStyle">
-                <!-- image -->
-                <div
-                    class="overflow-hidden md:flex-none w-full relative pt-[61%] sm:pt-0 sm:w-72 md:w-80 lg:w-[23rem] sm:flex-none">
-                    <img :src="article.image" :alt="article.title"
-                        class="absolute top-0 left-0 object-cover w-full h-full sm:static" />
-                </div>
-                <!-- docs -->
-                <div class="px-6 pb-6 pt-2.5 md:pl-10 flex flex-col sm:justify-center sm:flex-1">
-                    <h3 class="mb-4 text-lg font-bold text-stone-700 line-clamp-1"> {{ article.title }} </h3>
-                    <p
-                        class="mb-4 text-sm font-normal leading-7 text-justify line-clamp-5 sm:line-clamp-3 lg:line-clamp-2 lg:h-16 sm:h-20 lg:leading-8 text-dark-500 ">
-                        {{ article.description }}
-                    </p>
-                </div>
-            </ArticleLink>
-
-            <ArticleLink v-if="type == 2" :key="index" :href="'/l/' + landSlug + '/a/' + article.slug"
-                :class="'flex flex-col w-full flex-none overflow-hidden rounded-custom bg-white ' + borderStyle">
-                <div class="relative w-full pt-[62%]">
-                    <img :src="article.image" :alt="article.title"
-                        class="absolute top-0 left-0 object-cover w-full h-full" />
-                </div>
-                <!-- info -->
-                <div class="px-4 pt-3 pb-4">
-                    <h3 class="mb-2 text-sm font-bold text-stone-700 line-clamp-1"> {{ article.title }} </h3>
-                    <p class="h-10 mb-3 text-xs font-normal leading-5 text-justify text-stone-700 line-clamp-2">
-                        {{ article.description }}
-                    </p>
-                </div>
-            </ArticleLink>
-
-            <ArticleLink v-if="type == 3" :key="index" :href="'/l/' + landSlug + '/a/' + article.slug"
-                class="flex flex-col py-4 bg-white border-t sm:flex-row first:border-t-0 first:pt-0 last:pb-0 border-dark-100">
-                <!-- image -->
-                <div
-                    class="overflow-hidden md:flex-none w-full relative pt-[61%] sm:pt-0 sm:w-72 md:w-80 lg:w-[23rem] sm:flex-none mb-3 sm:mb-0 rounded-custom">
-                    <img :src="article.image" :alt="article.title"
-                        class="absolute top-0 left-0 object-cover w-full h-full sm:static" />
-                </div>
-                <!-- docs -->
-                <div class="flex flex-col px-6 md:pl-8 sm:justify-center sm:flex-1">
-                    <h3 class="mb-4 text-lg font-bold text-stone-700 line-clamp-1"> {{ article.title }} </h3>
-                    <p
-                        class="mb-4 text-sm font-normal leading-7 text-justify lg:text-base line-clamp-5 sm:line-clamp-3 lg:line-clamp-2 lg:h-24 sm:h-20 lg:leading-8 text-dark-500">
-                        {{ article.description }}
-                    </p>
-                </div>
-            </ArticleLink>
-
-            <div v-if="type == 4" :key="index"
-                class="flex flex-col py-4 bg-white border-t sm:flex-row first:border-t-0 first:pt-0 last:pb-0 border-dark-100">
-                <!-- image -->
-                <div
-                    class="overflow-hidden md:flex-none w-full relative pt-[61%] sm:pt-0 sm:w-72 md:w-80 lg:w-[23rem] sm:flex-none mb-3 sm:mb-0 rounded-custom">
-                    <img :src="article.image" :alt="article.title"
-                        class="absolute top-0 left-0 object-cover w-full h-full sm:static" />
-                </div>
-                <!-- docs -->
-                <div class="flex flex-col px-6 md:pl-8 sm:justify-center sm:flex-1">
-                    <h3 class="mb-4 text-lg font-bold text-stone-700 line-clamp-1"> {{ article.title }} </h3>
-                    <p
-                        class="mb-4 text-sm font-normal leading-7 text-justify lg:text-base line-clamp-5 sm:line-clamp-3 lg:line-clamp-2 lg:h-24 sm:h-20 lg:leading-8 text-dark-500">
-                        {{ article.description }}
-                    </p>
-                    <div class="flex items-center justify-between">
-                        <p class="text-sm font-normal text-dark-500 lg:text-base"> {{ renderDate(article.created_at) }}
-                        </p>
-                        <ArticleLink :href="'/l/' + landSlug + '/a/' + article.slug"
-                            class="flex items-center gap-4 px-4 text-sm font-bold text-normal">
-                            <span> ادامه </span>
-                            <svg class="fill-current" width="16" height="16" viewBox="0 0 16 16" fill="none"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path d="M8 16L9.41 14.59L3.83 9L16 9V7L3.83 7L9.41 1.41L8 0L0 8L8 16Z"
-                                    fill="current" />
-                            </svg>
-                        </ArticleLink>
-                    </div>
-                </div>
-            </div>
-
-            <ArticleLink v-if="type == 5" :key="index" :href="'/l/' + landSlug + '/a/' + article.slug"
-                :class="'flex flex-col sm:flex-row bg-white overflow-hidden relative lg:py-6 lg:rounded-custom lg:px-4 ' + borderStyle  + (evenOdd == 1 ? ' evenOdd_cards' : ' bg-white')">
-                <!-- image -->
-                <div
-                    class="overflow-hidden md:flex-none w-full relative pt-[61%] sm:pt-0 sm:w-72 md:w-80 lg:w-[23rem] sm:flex-none">
-                    <img :src="article.image" :alt="article.title"
-                        class="absolute top-0 left-0 object-cover w-full h-full sm:static rounded-custom" />
-                </div>
-                <!-- docs -->
-                <div class="px-6 pb-6 pt-2.5 md:pl-10 lg:pl-4 flex flex-wrap sm:flex-1">
-                    <div class="order-1 w-2/3 sm:w-full sm:mb-4 lg:flex_between lg:gap-8">
-                        <h3 class="text-lg font-bold text-stone-700 line-clamp-2 sm:line-clamp-1"> {{ article.title }} </h3>
-                        <h4 class="absolute top-4 left-3 sm:left-auto sm:right-52 sm:top-2 md:right-60 lg:static px-3 py-1.5 lg:px-2 lg:w-28 lg:flex_center text-sm font-bold rounded-full bg-stone-400 text-stone-700"> {{ article.type === "blog" ? 'بلاگ' : (article.type === "sell" ? 'اطلاعیه' : (article.type === "news" ? 'خبر' : article.type)) }} </h4>
-                    </div>
-                    <h3 class="flex justify-end order-2 w-1/3 text-base font-normal sm:order-3 text-stone-700 sm:w-full sm:justify-start"> {{ renderDate(article.created_at) }} </h3>
-
+    <template v-if="filteredArticles">
+        <section :class="'mb-4 ' + gridStyle">
+            <template v-for="(article, index) in filteredArticles">
+                <ArticleLink v-if="type == 1" :key="index" :href="'/l/' + landSlug + '/a/' + article.slug"
+                    :class="'flex flex-col sm:flex-row rounded-custom bg-white overflow-hidden ' + borderStyle">
+                    <!-- image -->
                     <div
-                        class="order-3 w-full mt-2 text-sm font-normal leading-7 text-justify sm:mb-2 sm:mt-0 sm:order-2 line-clamp-5 sm:line-clamp-3 lg:line-clamp-2 lg:h-16 sm:h-20 lg:leading-8 text-dark-500">
-                        {{ article.description }}
+                        class="overflow-hidden md:flex-none w-full relative pt-[61%] sm:pt-0 sm:w-72 md:w-80 lg:w-[23rem] sm:flex-none">
+                        <img :src="article.image" :alt="article.title"
+                            class="absolute top-0 left-0 object-cover w-full h-full sm:static" />
+                    </div>
+                    <!-- docs -->
+                    <div class="px-6 pb-6 pt-2.5 md:pl-10 flex flex-col sm:justify-center sm:flex-1">
+                        <h3 class="mb-4 text-lg font-bold text-stone-700 line-clamp-1"> {{ article.title }} </h3>
+                        <p
+                            class="mb-4 text-sm font-normal leading-7 text-justify line-clamp-5 sm:line-clamp-3 lg:line-clamp-2 lg:h-16 sm:h-20 lg:leading-8 text-dark-500 ">
+                            {{ article.description }}
+                        </p>
+                    </div>
+                </ArticleLink>
+    
+                <ArticleLink v-if="type == 2" :key="index" :href="'/l/' + landSlug + '/a/' + article.slug"
+                    :class="'flex flex-col w-full flex-none overflow-hidden rounded-custom bg-white ' + borderStyle">
+                    <div class="relative w-full pt-[62%]">
+                        <img :src="article.image" :alt="article.title"
+                            class="absolute top-0 left-0 object-cover w-full h-full" />
+                    </div>
+                    <!-- info -->
+                    <div class="px-4 pt-3 pb-4">
+                        <h3 class="mb-2 text-sm font-bold text-stone-700 line-clamp-1"> {{ article.title }} </h3>
+                        <p class="h-10 mb-3 text-xs font-normal leading-5 text-justify text-stone-700 line-clamp-2">
+                            {{ article.description }}
+                        </p>
+                    </div>
+                </ArticleLink>
+    
+                <ArticleLink v-if="type == 3" :key="index" :href="'/l/' + landSlug + '/a/' + article.slug"
+                    class="flex flex-col py-4 bg-white border-t sm:flex-row first:border-t-0 first:pt-0 last:pb-0 border-dark-100">
+                    <!-- image -->
+                    <div
+                        class="overflow-hidden md:flex-none w-full relative pt-[61%] sm:pt-0 sm:w-72 md:w-80 lg:w-[23rem] sm:flex-none mb-3 sm:mb-0 rounded-custom">
+                        <img :src="article.image" :alt="article.title"
+                            class="absolute top-0 left-0 object-cover w-full h-full sm:static" />
+                    </div>
+                    <!-- docs -->
+                    <div class="flex flex-col px-6 md:pl-8 sm:justify-center sm:flex-1">
+                        <h3 class="mb-4 text-lg font-bold text-stone-700 line-clamp-1"> {{ article.title }} </h3>
+                        <p
+                            class="mb-4 text-sm font-normal leading-7 text-justify lg:text-base line-clamp-5 sm:line-clamp-3 lg:line-clamp-2 lg:h-24 sm:h-20 lg:leading-8 text-dark-500">
+                            {{ article.description }}
+                        </p>
+                    </div>
+                </ArticleLink>
+    
+                <div v-if="type == 4" :key="index"
+                    class="flex flex-col py-4 bg-white border-t sm:flex-row first:border-t-0 first:pt-0 last:pb-0 border-dark-100">
+                    <!-- image -->
+                    <div
+                        class="overflow-hidden md:flex-none w-full relative pt-[61%] sm:pt-0 sm:w-72 md:w-80 lg:w-[23rem] sm:flex-none mb-3 sm:mb-0 rounded-custom">
+                        <img :src="article.image" :alt="article.title"
+                            class="absolute top-0 left-0 object-cover w-full h-full sm:static" />
+                    </div>
+                    <!-- docs -->
+                    <div class="flex flex-col px-6 md:pl-8 sm:justify-center sm:flex-1">
+                        <h3 class="mb-4 text-lg font-bold text-stone-700 line-clamp-1"> {{ article.title }} </h3>
+                        <p
+                            class="mb-4 text-sm font-normal leading-7 text-justify lg:text-base line-clamp-5 sm:line-clamp-3 lg:line-clamp-2 lg:h-24 sm:h-20 lg:leading-8 text-dark-500">
+                            {{ article.description }}
+                        </p>
+                        <div class="flex items-center justify-between">
+                            <p class="text-sm font-normal text-dark-500 lg:text-base"> {{ renderDate(article.created_at) }}
+                            </p>
+                            <ArticleLink :href="'/l/' + landSlug + '/a/' + article.slug"
+                                class="flex items-center gap-4 px-4 text-sm font-bold text-normal">
+                                <span> ادامه </span>
+                                <svg class="fill-current" width="16" height="16" viewBox="0 0 16 16" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M8 16L9.41 14.59L3.83 9L16 9V7L3.83 7L9.41 1.41L8 0L0 8L8 16Z"
+                                        fill="current" />
+                                </svg>
+                            </ArticleLink>
+                        </div>
                     </div>
                 </div>
-            </ArticleLink>
-        </template>
+    
+                <ArticleLink v-if="type == 5" :key="index" :href="'/l/' + landSlug + '/a/' + article.slug"
+                    :class="'flex flex-col sm:flex-row bg-white overflow-hidden relative ' + borderStyle  + (evenOdd == 1 ? ' evenOdd_cards rounded-custom sm:py-2 sm:px-1 lg:py-6 lg:px-4' : ' bg-white')">
+                    <!-- image -->
+                    <div
+                        class="overflow-hidden md:flex-none w-full relative pt-[61%] sm:pt-0 sm:w-72 md:w-80 lg:w-[23rem] sm:flex-none">
+                        <img :src="article.image" :alt="article.title"
+                            class="absolute top-0 left-0 object-cover w-full h-full sm:static rounded-custom" />
+                    </div>
+                    <!-- docs -->
+                    <div class="px-6 pb-6 pt-2.5 md:pl-10 lg:pl-4 flex flex-wrap sm:flex-1">
+                        <div class="order-1 w-2/3 sm:w-full sm:mb-4 lg:flex_between lg:gap-8">
+                            <h3 class="text-lg font-bold text-stone-700 line-clamp-2 sm:line-clamp-1"> {{ article.title }} </h3>
+                            <h4 class="absolute top-4 left-3 sm:left-auto sm:right-56 sm:top-4 md:right-64 lg:static px-3 py-1.5 lg:px-2 lg:w-28 lg:flex_center text-sm font-bold rounded-full bg-stone-400 text-stone-700"> {{ article.type === "blog" ? 'بلاگ' : (article.type === "sell" ? 'اطلاعیه' : (article.type === "news" ? 'خبر' : article.type)) }} </h4>
+                        </div>
+                        <h3 class="flex justify-end order-2 w-1/3 text-base font-normal sm:order-3 text-stone-700 sm:w-full sm:justify-start"> {{ renderDate(article.created_at) }} </h3>
+    
+                        <div
+                            class="order-3 w-full mt-2 text-sm font-normal leading-7 text-justify sm:mb-2 sm:mt-0 sm:order-2 line-clamp-5 sm:line-clamp-3 lg:line-clamp-2 lg:h-16 sm:h-20 lg:leading-8 text-dark-500">
+                            {{ article.description }}
+                        </div>
+                    </div>
+                </ArticleLink>
+            </template>
+        </section>
+    </template>
+
+    <section class="flex_center h-60" v-else>
+        
     </section>
 
 </template>
