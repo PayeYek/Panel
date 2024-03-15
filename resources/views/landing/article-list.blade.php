@@ -4,12 +4,14 @@
         '2' => 'gap-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 default_container',
         '3' => 'grid grid-cols-1 border border-dark-100 p-4 rounded-custom mx-4 lg:default_container',
         '4' => 'grid grid-cols-1 border border-dark-100 p-4 rounded-custom mx-4 lg:default_container',
-        default => null
+        '5' => 'grid grid-cols-1 gap-14 lg:gap-6 lg:divide-y-2 lg:divide-y-stone-400 default_container',
+        default => 'grid grid-cols-1 gap-4 default_container',
     };
 
     $borderStyle = match($land->styles->border_type."") {
-        '0'  => 'drop-shadow-base',
-        '1'  => 'border border-dark-100',
+        '0'  => '',
+        '1'  => 'drop-shadow-base',
+        '2'  => 'border border-dark-100',
         default => 'drop-shadow-base'
     };
 @endphp
