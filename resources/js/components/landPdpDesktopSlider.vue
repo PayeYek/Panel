@@ -1,43 +1,49 @@
 <template>
-    <section class="hidden lg:flex items-start gap-4">
+    <section class="items-start hidden gap-4 lg:flex">
         <!-- thumbnails -->
-        <div class="grid grid-cols-1 gap-4 flex-none w-24">
-            <div v-for="(thumb, index) in thumbGallery" :key="index" class="aspect-square w-full cursor-pointer relative overflow-hidden rounded-custom"
+        <div class="grid flex-none w-24 grid-cols-1 gap-4">
+            <div v-for="(thumb, index) in thumbGallery" :key="index"
+                class="relative w-full overflow-hidden cursor-pointer aspect-square rounded-custom"
                 @click="showSliderWithSliderTo(index)">
-                <img :src="thumb" :alt="name" class="w-full h-full rounded-custom object-cover" />
-                <div class="w-full h-full bg-black/60 absolute top-0 left-0 flex_center text-white/60 font-normal text-[60px]" v-if="index == 4 && thumbGalleryLength > 5"> {{ thumbGalleryLength - 5 }} + </div>
+                <img :src="thumb" :alt="name" class="object-cover w-full h-full rounded-custom" />
+                <div class="w-full h-full bg-black/60 absolute top-0 left-0 flex_center text-white/60 font-normal text-[60px]"
+                    v-if="index == 4 && thumbGalleryLength > 5"> {{ thumbGalleryLength - 5 }} + </div>
             </div>
         </div>
 
         <div class="flex-1">
             <div class="w-full pt-[100%] relative">
                 <div class="absolute inset-0 cursor-pointer">
-                    <img :src="mainImage" :alt="name" class="w-full h-full object-cover rounded-custom" />
+                    <img :src="mainImage" :alt="name" class="object-cover w-full h-full rounded-custom" />
                 </div>
             </div>
         </div>
     </section>
 
     <!-- modal layer -->
-    <div class="hidden lg:block bg-black/60 fixed inset-0 z-[3]" v-show="openModal" @click="closeModal"></div>
+    <div class="hidden lg:block bg-black/60 fixed inset-0 z-[4]" v-show="openModal" @click="closeModal"></div>
 
-    <section class="hidden lg:flex_center w-2/3 max-w-[640px] lg:max-w-[796px] xl:max-w-[900px] 2xl:max-w-[1024px] mx-auto translate-x-1/2 -translate-y-1/2 fixed top-1/2 right-1/2 z-[4]" v-show="openModal">
-            <swiper :modules="modules" speed="750" :slides-per-view="1" :space-between="16" :navigation="true"
-                class="desktop_pdp_slider w-full">
-                <swiper-slide v-for="slide in oldGallery">
-                    <div class="relative pt-[62%] w-full">
-                        <img loading="lazy" class="object-cover absolute w-full h-full top-0 left-0" :src="slide"
-                            :alt="slide" />
+    <section
+        class="hidden lg:flex_center w-2/3 max-w-[640px] lg:max-w-[796px] xl:max-w-[900px] 2xl:max-w-[1024px] mx-auto translate-x-1/2 -translate-y-1/2 fixed top-1/2 right-1/2 z-[5]"
+        v-show="openModal">
+        <swiper :modules="modules" speed="750" :slides-per-view="1" :space-between="16" :navigation="true"
+            class="w-full desktop_pdp_slider">
+            <swiper-slide v-for="slide in oldGallery">
+                <div class="relative pt-[62%] w-full">
+                    <img loading="lazy" class="absolute top-0 left-0 object-cover w-full h-full" :src="slide"
+                        :alt="slide" />
+                        <div class="absolute text-white bottom-0 left-0 w-full z-[2] bg-gradient-to-t from-black/90 to-transparent h-1/3">
                     </div>
-                </swiper-slide>
-                <!-- closeModal -->
-                <button type="button" class="cursor-pointer p-1 absolute top-4 left-5 z-[1]" @click="closeModal">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M12 12L6 6M12 12L18 18M12 12L18 6M12 12L6 18" stroke="#111827" stroke-width="2"
-                            stroke-linecap="round" stroke-linejoin="round" />
-                    </svg>
-                </button>
-            </swiper>
+                </div>
+            </swiper-slide>
+            <!-- closeModal -->
+            <button type="button" class="cursor-pointer p-1 absolute top-4 left-5 z-[1]" @click="closeModal">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 12L6 6M12 12L18 18M12 12L18 6M12 12L6 18" stroke="#111827" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+            </button>
+        </swiper>
     </section>
 </template>
 
@@ -61,13 +67,9 @@ export default {
     },
     setup(props) {
         const oldGallery = ref(JSON.parse(props.slides).pictures);
-        // const newGallery = ref(null);
         const thumbnails = [...oldGallery.value];
         const thumbGallery = ref(null);
         const thumbGalleryLength = ref(null);
-        // const copyOfGallery = [...oldGallery.value];
-        // const newSlide = ref(JSON.parse(props.slides).image);
-        // newGallery.value = [newSlide.value].concat(oldGallery.value);
         const openModal = ref(false)
         const desktopSliderSwiper = ref(null)
         const showSliderWithSliderTo = ref(null)
@@ -87,15 +89,14 @@ export default {
             openModal.value = false
         }
 
-        if(thumbnails.length <= 5){
+        if (thumbnails.length <= 5) {
             thumbGallery.value = thumbnails;
         } else {
-            thumbGallery.value = thumbnails.slice(0, -(thumbnails.length-5));
+            thumbGallery.value = thumbnails.slice(0, -(thumbnails.length - 5));
         }
 
         return {
             modules: [Navigation],
-            // newGallery,
             oldGallery,
             showSliderWithSliderTo,
             openModal,

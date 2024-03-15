@@ -53,13 +53,13 @@
     }
 
     .custom_article_styles h2{
-        @apply text-3xl mb-4;
+        @apply mb-4 text-3xl;
     }
     .custom_article_styles h3{
         @apply text-2xl mb-2.5;
     }
     .custom_article_styles p{
-        @apply text-sm lg:text-xl leading-7 lg:leading-8 font-normal;
+        @apply text-sm font-normal leading-7 lg:text-xl lg:leading-8;
     }
     .custom_article_styles a{
         @apply text-base leading-7 font-bold text-[#1EA0FF] underline underline-offset-[6px];
@@ -472,38 +472,38 @@
         @apply text-white bg-blue-700 hover:bg-blue-800 focus:bg-blue-800 focus:shadow-focus focus:shadow-blue-700/50;
     }
     .vacant_btn_theme_rose{
-        @apply text-rose-700 bg-white border border-rose-700 hover:border-rose-800 hover:text-rose-800 focus:border-rose-800 focus:text-rose-800 focus:shadow-focus focus:shadow-rose-700/50;
+        @apply bg-white border text-rose-700 border-rose-700 hover:border-rose-800 hover:text-rose-800 focus:border-rose-800 focus:text-rose-800 focus:shadow-focus focus:shadow-rose-700/50;
     }
     .fill_btn_theme_rose_empty{
-        @apply text-rose-700 bg-white border border-rose-700 hover:border-rose-800 hover:text-rose-800 focus:border-rose-800 focus:text-rose-800 focus:shadow-focus focus:shadow-rose-700/50;
+        @apply bg-white border text-rose-700 border-rose-700 hover:border-rose-800 hover:text-rose-800 focus:border-rose-800 focus:text-rose-800 focus:shadow-focus focus:shadow-rose-700/50;
     }
     .fill_btn_theme_rose_filled{
         @apply text-white bg-rose-700 hover:bg-rose-800 focus:bg-rose-800 focus:shadow-focus focus:shadow-rose-700/50;
     }
     .vacant_btn_theme_zinc{
-        @apply text-zinc-700 bg-white border border-zinc-700 hover:border-zinc-800 hover:text-zinc-800 focus:border-zinc-800 focus:text-zinc-800 focus:shadow-focus focus:shadow-zinc-700/50;
+        @apply bg-white border text-zinc-700 border-zinc-700 hover:border-zinc-800 hover:text-zinc-800 focus:border-zinc-800 focus:text-zinc-800 focus:shadow-focus focus:shadow-zinc-700/50;
     }
     .fill_btn_theme_zinc_empty{
-        @apply text-zinc-700 bg-white border border-zinc-700 hover:border-zinc-800 hover:text-zinc-800 focus:border-zinc-800 focus:text-zinc-800 focus:shadow-focus focus:shadow-zinc-700/50;
+        @apply bg-white border text-zinc-700 border-zinc-700 hover:border-zinc-800 hover:text-zinc-800 focus:border-zinc-800 focus:text-zinc-800 focus:shadow-focus focus:shadow-zinc-700/50;
     }
     .fill_btn_theme_zinc_filled{
         @apply text-white bg-zinc-700 hover:bg-zinc-800 focus:bg-zinc-800 focus:shadow-focus focus:shadow-zinc-700/50;
     }
     .vacant_btn_theme_cobalt{
-        @apply text-cobalt-700 bg-white border border-cobalt-700 hover:border-cobalt-800 hover:text-cobalt-800 focus:border-cobalt-800 focus:text-cobalt-800 focus:shadow-focus focus:shadow-cobalt-700/50;
+        @apply bg-white border text-cobalt-700 border-cobalt-700 hover:border-cobalt-800 hover:text-cobalt-800 focus:border-cobalt-800 focus:text-cobalt-800 focus:shadow-focus focus:shadow-cobalt-700/50;
     }
     .fill_btn_theme_cobalt_empty{
-        @apply text-cobalt-700 bg-white border border-cobalt-700 hover:border-cobalt-800 hover:text-cobalt-800 focus:border-cobalt-800 focus:text-cobalt-800 focus:shadow-focus focus:shadow-cobalt-700/50;
+        @apply bg-white border text-cobalt-700 border-cobalt-700 hover:border-cobalt-800 hover:text-cobalt-800 focus:border-cobalt-800 focus:text-cobalt-800 focus:shadow-focus focus:shadow-cobalt-700/50;
     }
     .fill_btn_theme_cobalt_filled{
         @apply text-white bg-cobalt-700 hover:bg-cobalt-800 focus:bg-cobalt-800 focus:shadow-focus focus:shadow-cobalt-700/50;
     }
 
     .sameCategoryBtnStyle{
-        @apply text-sm lg:text-lg font-bold cursor-pointer w-full h-11 flex_center;
+        @apply w-full text-sm font-bold cursor-pointer lg:text-lg h-11 flex_center;
     }
     .categoryBtnEmpty{
-        @apply text-stone-700 bg-white border border-stone-700;
+        @apply bg-white border text-stone-700 border-stone-700;
     }
     .castegoryBtnfilled{
         @apply text-white bg-stone-700;
@@ -677,18 +677,18 @@
 
 /* swiper starts */
 .slider_type_1 .swiper-pagination .swiper-pagination-bullet{
-    @apply w-2 h-2 transition-transform duration-300 bg-stone-700 rounded-full opacity-50;
+    @apply w-2 h-2 transition-transform duration-300 rounded-full opacity-50 bg-stone-700;
 }
 .slider_type_1 .swiper-pagination .swiper-pagination-bullet-active{
     @apply w-6 opacity-80;
 }
 
 .desktop_pdp_slider .swiper-button-next, .desktop_pdp_slider .swiper-button-prev{
-    @apply absolute top-1/2 z-[1] cursor-pointer -translate-y-1/2 w-10 h-10 lg:w-12 lg:h-12 rounded-lg bg-white/70 flex_center drop-shadow-[2px_4px_15px_rgba(255,255,255,0.25)] before:absolute before:content-[''] before:w-2 before:h-2 before:border-r-2 before:border-t-2 before:border-gray-900;
+    @apply absolute top-1/2 z-[1] cursor-pointer -translate-y-1/2 w-10 h-10 lg:w-12 lg:h-12 rounded-lg bg-white/70 flex_center drop-shadow-[2px_4px_15px_rgba(255,255,255,0.25)] before:absolute before:content-[''] before:w-2 before:h-2 before:border-r-2 before:border-t-2 before:border-gray-900 after:hidden lg:before:w-3 lg:before:h-3;
 }
 
 .desktop_pdp_slider .swiper-button-next.swiper-button-disabled, .desktop_pdp_slider .swiper-button-prev.swiper-button-disabled{
-    @apply opacity-40 pointer-events-none;
+    @apply pointer-events-none opacity-40;
 }
 
 .desktop_pdp_slider .swiper-button-next{
@@ -696,7 +696,7 @@
 }
 
 .desktop_pdp_slider .swiper-button-prev{
-    @apply left-4 lg:left-6 before:-rotate-[135deg];
+    @apply left-4 lg:left-6 before:-rotate-[135deg] right-auto;
 }
 
 .swiper.articleSliderType5{
@@ -728,7 +728,7 @@
 
 /* tab styules starts */
 .l_tab_styles li.active{
-    @apply before:block font-bold;
+    @apply font-bold before:block;
 }
 /* tab styules ends */
 
@@ -758,7 +758,7 @@
 }
 
 /* .custom_table_container.not_comparison table tbody tr{
-    @apply border-b last:border-b-2 border-b-gray-900/30 last:border-gray-900 h-16;
+    @apply h-16 border-b last:border-b-2 border-b-gray-900/30 last:border-gray-900;
 }
 .custom_table_container.not_comparison table tbody tr:last-child td{
     @apply text-sm py-1.5;
