@@ -28,7 +28,7 @@
         </ul>
     </section>
 
-    <template v-if="filteredArticles">
+    <template v-if="filteredArticles.length != 0">
         <section :class="'mb-4 ' + gridStyle">
             <template v-for="(article, index) in filteredArticles">
                 <ArticleLink v-if="type == 1" :key="index" :href="'/l/' + landSlug + '/a/' + article.slug"
@@ -48,7 +48,7 @@
                         </p>
                     </div>
                 </ArticleLink>
-    
+
                 <ArticleLink v-if="type == 2" :key="index" :href="'/l/' + landSlug + '/a/' + article.slug"
                     :class="'flex flex-col w-full flex-none overflow-hidden rounded-custom bg-white ' + borderStyle">
                     <div class="relative w-full pt-[62%]">
@@ -63,7 +63,7 @@
                         </p>
                     </div>
                 </ArticleLink>
-    
+
                 <ArticleLink v-if="type == 3" :key="index" :href="'/l/' + landSlug + '/a/' + article.slug"
                     class="flex flex-col py-4 bg-white border-t sm:flex-row first:border-t-0 first:pt-0 last:pb-0 border-dark-100">
                     <!-- image -->
@@ -81,7 +81,7 @@
                         </p>
                     </div>
                 </ArticleLink>
-    
+
                 <div v-if="type == 4" :key="index"
                     class="flex flex-col py-4 bg-white border-t sm:flex-row first:border-t-0 first:pt-0 last:pb-0 border-dark-100">
                     <!-- image -->
@@ -98,7 +98,8 @@
                             {{ article.description }}
                         </p>
                         <div class="flex items-center justify-between">
-                            <p class="text-sm font-normal text-dark-500 lg:text-base"> {{ renderDate(article.created_at) }}
+                            <p class="text-sm font-normal text-dark-500 lg:text-base"> {{ renderDate(article.created_at)
+                                }}
                             </p>
                             <ArticleLink :href="'/l/' + landSlug + '/a/' + article.slug"
                                 class="flex items-center gap-4 px-4 text-sm font-bold text-normal">
@@ -112,9 +113,9 @@
                         </div>
                     </div>
                 </div>
-    
+
                 <ArticleLink v-if="type == 5" :key="index" :href="'/l/' + landSlug + '/a/' + article.slug"
-                    :class="'flex flex-col sm:flex-row bg-white overflow-hidden relative ' + borderStyle  + (evenOdd == 1 ? ' evenOdd_cards rounded-custom sm:py-2 sm:px-1 lg:py-6 lg:px-4' : ' bg-white')">
+                    :class="'flex flex-col sm:flex-row bg-white overflow-hidden relative ' + borderStyle + (evenOdd == 1 ? ' evenOdd_cards rounded-custom sm:py-2 sm:px-1 lg:py-6 lg:px-4' : ' bg-white')">
                     <!-- image -->
                     <div
                         class="overflow-hidden md:flex-none w-full relative pt-[61%] sm:pt-0 sm:w-72 md:w-80 lg:w-[23rem] sm:flex-none">
@@ -124,11 +125,17 @@
                     <!-- docs -->
                     <div class="px-6 pb-6 pt-2.5 md:pl-10 lg:pl-4 flex flex-wrap sm:flex-1">
                         <div class="order-1 w-2/3 sm:w-full sm:mb-4 lg:flex_between lg:gap-8">
-                            <h3 class="text-lg font-bold text-stone-700 line-clamp-2 sm:line-clamp-1"> {{ article.title }} </h3>
-                            <h4 class="absolute top-4 left-3 sm:left-auto sm:right-56 sm:top-4 md:right-64 lg:static px-3 py-1.5 lg:px-2 lg:w-28 lg:flex_center text-sm font-bold rounded-full bg-stone-400 text-stone-700"> {{ article.type === "blog" ? 'بلاگ' : (article.type === "sell" ? 'اطلاعیه' : (article.type === "news" ? 'خبر' : article.type)) }} </h4>
+                            <h3 class="text-lg font-bold text-stone-700 line-clamp-2 sm:line-clamp-1"> {{ article.title
+                                }} </h3>
+                            <h4
+                                class="absolute top-4 left-3 sm:left-auto sm:right-56 sm:top-4 md:right-64 lg:static px-3 py-1.5 lg:px-2 lg:w-28 lg:flex_center text-sm font-bold rounded-full bg-stone-400 text-stone-700">
+                                {{ article.type === "blog" ? 'بلاگ' : (article.type === "sell" ? 'اطلاعیه' :
+                    (article.type === "news" ? 'خبر' : article.type)) }} </h4>
                         </div>
-                        <h3 class="flex justify-end order-2 w-1/3 text-base font-normal sm:order-3 text-stone-700 sm:w-full sm:justify-start"> {{ renderDate(article.created_at) }} </h3>
-    
+                        <h3
+                            class="flex justify-end order-2 w-1/3 text-base font-normal sm:order-3 text-stone-700 sm:w-full sm:justify-start">
+                            {{ renderDate(article.created_at) }} </h3>
+
                         <div
                             class="order-3 w-full mt-2 text-sm font-normal leading-7 text-justify sm:mb-2 sm:mt-0 sm:order-2 line-clamp-5 sm:line-clamp-3 lg:line-clamp-2 lg:h-16 sm:h-20 lg:leading-8 text-dark-500">
                             {{ article.description }}
@@ -139,8 +146,19 @@
         </section>
     </template>
 
-    <section class="flex_center h-60" v-else>
-        
+    <section class="relative flex-col gap-4 flex_center h-80 sm:h-96" v-else>
+        <p class="pb-4 text-base font-normal border-b sm:text-lg border-b-normal text-stone-700"> محتوایی با این مشخصات
+            پیدا
+            نشد. </p>
+        <p class="text-sm font-normal sm:text-base text-stone-700"> پیشنهاد می کنیم فیلتر ها را تغییر دهید. </p>
+
+        <!-- icon -->
+        <svg class="absolute translate-x-1/2 -translate-y-1/2 size-80 sm:size-96 top-1/2 right-1/2" viewBox="0 0 362 362" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path opacity="0.2"
+                d="M281.179 283.479L351.799 351.799M329.026 169.613C329.026 257.654 257.654 329.026 169.613 329.026C81.571 329.026 10.1992 257.654 10.1992 169.613C10.1992 81.571 81.571 10.1992 169.613 10.1992C257.654 10.1992 329.026 81.571 329.026 169.613Z"
+                stroke="#58595B" stroke-width="20" stroke-linecap="round" />
+        </svg>
+
     </section>
 
 </template>
