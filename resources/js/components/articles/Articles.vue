@@ -113,7 +113,7 @@
             </div>
 
             <ArticleLink v-if="type == 5" :key="index" :href="'/l/' + landSlug + '/a/' + article.slug"
-                :class="'flex flex-col sm:flex-row bg-white overflow-hidden relative lg:pt-6 lg:first:pt-0 ' + borderStyle">
+                :class="'flex flex-col sm:flex-row bg-white overflow-hidden relative lg:py-6 lg:rounded-custom lg:px-4 ' + borderStyle  + (evenOdd == 1 ? ' evenOdd_cards' : ' bg-white')">
                 <!-- image -->
                 <div
                     class="overflow-hidden md:flex-none w-full relative pt-[61%] sm:pt-0 sm:w-72 md:w-80 lg:w-[23rem] sm:flex-none">
@@ -121,7 +121,7 @@
                         class="absolute top-0 left-0 object-cover w-full h-full sm:static rounded-custom" />
                 </div>
                 <!-- docs -->
-                <div class="px-6 pb-6 pt-2.5 md:pl-10 flex flex-wrap sm:flex-1">
+                <div class="px-6 pb-6 pt-2.5 md:pl-10 lg:pl-4 flex flex-wrap sm:flex-1">
                     <div class="order-1 w-2/3 sm:w-full sm:mb-4 lg:flex_between lg:gap-8">
                         <h3 class="text-lg font-bold text-stone-700 line-clamp-2 sm:line-clamp-1"> {{ article.title }} </h3>
                         <h4 class="absolute top-4 left-3 sm:left-auto sm:right-52 sm:top-2 md:right-60 lg:static px-3 py-1.5 lg:px-2 lg:w-28 lg:flex_center text-sm font-bold rounded-full bg-stone-400 text-stone-700"> {{ article.type === "blog" ? 'بلاگ' : (article.type === "sell" ? 'اطلاعیه' : (article.type === "news" ? 'خبر' : article.type)) }} </h4>
@@ -166,6 +166,10 @@ export default {
         },
         borderStyle: {
             type: String,
+            required: true,
+        },
+        evenOdd: {
+            type: [String, Number],
             required: true,
         },
     },

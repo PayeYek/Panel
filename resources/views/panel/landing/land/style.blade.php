@@ -62,6 +62,7 @@
                         <option value="2">{{ __('View type') }} 2</option>
                         <option value="3">{{ __('View type') }} 3</option>
                         <option value="4">{{ __('View type') }} 4</option>
+                        <option value="5">{{ __('View type') }} 5</option>
                     </x-splade-select>
 
                     <x-splade-select name="article_striped" label="نمای راه راه مقالات">

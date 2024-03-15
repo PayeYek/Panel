@@ -4,7 +4,7 @@
         '2' => 'gap-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 default_container',
         '3' => 'grid grid-cols-1 border border-dark-100 p-4 rounded-custom mx-4 lg:default_container',
         '4' => 'grid grid-cols-1 border border-dark-100 p-4 rounded-custom mx-4 lg:default_container',
-        '5' => 'grid grid-cols-1 gap-14 lg:gap-6 lg:divide-y-2 lg:divide-y-stone-400 default_container',
+        '5' => 'grid grid-cols-1 gap-14 lg:gap-0 lg:divide-y-2 lg:divide-y-stone-400 default_container',
         default => 'grid grid-cols-1 gap-4 default_container',
     };
 
@@ -18,7 +18,13 @@
 
 <x-layout.default.main :land="$land">
     <main class="pt-4">
-        <Articles gridStyle="{{ $gridCols }}" type="{{ $land->styles->a_card_type }}" landSlug="{{ $land->slug }}" data="{{ $land->articles }}" borderStyle="{{ $borderStyle }}" />
+        <Articles
+            gridStyle="{{ $gridCols }}"
+            type="{{ $land->styles->a_card_type }}"
+            landSlug="{{ $land->slug }}"
+            data="{{ $land->articles }}"
+            borderStyle="{{ $borderStyle }}"
+            evenOdd="{{ $land->styles->a_striped }}" />
     </main>
 
 </x-layout.default.main>
