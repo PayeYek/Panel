@@ -21,6 +21,8 @@ class SlideRequest extends FormRequest
                 'image' => 'required|image|mimes:jpg,jpeg,png,webp|max:2048',
                 'alt' => 'required|string',
                 'link' => 'required|url',
+                'infos' => 'nullable|array',
+                'infos.*' => 'nullable|string',
                 'status'       => 'required|boolean',
             ];
         }
@@ -32,6 +34,8 @@ class SlideRequest extends FormRequest
                 'image' => $this->getValidationRuleImage(),
                 'alt' => 'required|string',
                 'link' => 'required|url',
+                'infos' => 'nullable|array',
+                'infos.*' => 'nullable|string',
                 'status'       => 'required|boolean',
             ];
         }
