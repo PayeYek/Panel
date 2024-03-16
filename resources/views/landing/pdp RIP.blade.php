@@ -8,7 +8,7 @@
             <ul class="flex flex-col gap-2 text-gray-900">
                 <li class="p-4 drop-shadow-base bg-white rounded-custom lg:px-8">
                     {{-- title --}}
-                    <p class="text-sm lg:text-base font-bold"> بررسی اجمالی </p>
+                    <p class="text-sm lg:text-base font-medium"> بررسی اجمالی </p>
 
                     <div class="lg:pr-2 pb-4 mt-4">
                         <div class="text-sm !leading-8 lg:text-base font-normal pb-4 text-justify">
@@ -28,7 +28,7 @@
                             {{-- title --}}
                             <div class="flex items-center justify-between cursor-pointer"
                                  @click="data.toggle = !data.toggle">
-                                <p class="text-sm lg:text-base font-bold"> {{ \App\Models\LandAttribute::whereId($key)->first()->name }} </p>
+                                <p class="text-sm lg:text-base font-medium"> {{ \App\Models\LandAttribute::whereId($key)->first()->name }} </p>
                                 <button type="button" class="cursor-pointer">
                                     <svg class="duration-1000" :class="data.toggle ? 'rotate-180' : 'rotate-0'"
                                          width="24" height="24" viewBox="0 0 24 24" fill="none"
@@ -58,7 +58,7 @@
                         <x-splade-data default="{ toggle: false }">
                             <li class="p-4 drop-shadow-base bg-white rounded-custom lg:px-8">
                                 {{-- user name --}}
-                                <p class="block text-sm leading-6 lg:leading-7 lg:text-base font-bold text-[#585d68] border-b border-[#e7e8e9] mb-3 pb-0.5">
+                                <p class="block text-sm leading-6 lg:leading-7 lg:text-base font-medium text-[#585d68] border-b border-[#e7e8e9] mb-3 pb-0.5">
                                     {{ $comment->name }} </p>
                                 {{-- user viewpoint --}}
                                 <div class="flex justify-between items-start gap-10 sm:px-4">
@@ -108,7 +108,7 @@
             </ul>
             @if($comments->count() > 3)
                 <button type="button"
-                        class="mx-auto text-normal text-sm font-bold lg:text-base cursor-pointer block"> مشاهده همه
+                        class="mx-auto text-normal text-sm font-medium lg:text-base cursor-pointer block"> مشاهده همه
                     دیدگاه ها
                 </button>
             @endif

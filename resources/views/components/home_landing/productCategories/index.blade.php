@@ -35,9 +35,9 @@
 {{-- @dd($data); --}}
 <section
     class="default_container flex items-center flex-col md:flex-row gap-2.5 lg:gap-3 mb-9 lg:mb-16 md:justify-start relative z-[1]">
-    <h3 class="text-lg font-bold text-gray-900 dark:text-white"> محصولات </h3>
+    <h3 class="text-lg font-medium text-gray-900 dark:text-white"> محصولات </h3>
     <div
-        class="flex flex-col flex-wrap items-center content-center w-full h-20 text-base font-bold md:flex-row md:flex-nowrap md:content-normal md:h-auto gap-y-4 gap-x-5">
+        class="flex flex-col flex-wrap items-center content-center w-full h-20 text-base font-medium md:flex-row md:flex-nowrap md:content-normal md:h-auto gap-y-4 gap-x-5">
         @foreach ($data as $item)
             <a href="{{ route('landing.product.category', ['page' => $landSlug, 'category' => $item["category"]->slug]) }}"
                 class="h-8 rounded-custom w-36 flex_center bg-white shadow-[0_2px_8px] shadow-shadowLight text-normal hover:text-focus ">

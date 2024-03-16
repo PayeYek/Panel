@@ -5,7 +5,7 @@
 
 <section class="default_container">
     <p
-        class="pr-4 relative text-xl mb-7 font-bold text-stone-700 before:top-1/2 before:right-0 before:-translate-y-1/2 before:bg-normal before:h-12 before:w-1 before:rounded-l-custom before:absolute before:content-['']">
+        class="pr-4 relative text-xl mb-7 font-medium text-stone-700 before:top-1/2 before:right-0 before:-translate-y-1/2 before:bg-normal before:h-12 before:w-1 before:rounded-l-custom before:absolute before:content-['']">
         ثبت دیدگاه </p>
     <div
         class="md:w-[40rem] lg:w-[49rem] xl:w-[56rem] md:mx-auto md:pt-10 md:border md:border-[#E2E8F0] md:rounded-custom md:py-12 md:px-24 lg:px-36 xl:px-52">

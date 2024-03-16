@@ -107,7 +107,7 @@
             <div class="mb-2 h-36">
                 <img src="{{ $image }}" alt="mammut" class="object-contain h-full" />
             </div>
-            <h3 class="mb-5 font-bold lg:mb-4 text-lg sm:line-clamp-1 text-gray-900"> {{ $name }} </h3>
+            <h3 class="mb-5 font-medium lg:mb-4 text-lg sm:line-clamp-1 text-gray-900"> {{ $name }} </h3>
             <div class="flex flex-col gap-4">
                 <x-home_landing.products.children.linkBtn text="مشخصات" href="{{ route('landing.product.show',['page'=> $landSlug, 'product'=> $productSlug]) }}" class="rounded-custom before:rounded-custom bg-white border border-normal hover:border-focus hover:text-focus focus:border-focus focus:text-focus focus:shadow-focus focus:shadow-shadowNormal" />
                 <x-home_landing.products.children.linkBtn text="کاتالوگ" href="{{ route('landing.product.show',['page'=> $landSlug, 'product'=> $productSlug]) }}" class="rounded-custom before:rounded-custom bg-white border border-normal hover:border-focus hover:text-focus focus:border-focus focus:text-focus focus:shadow-focus focus:shadow-shadowNormal" />
@@ -122,7 +122,7 @@
             <div class="h-32 mb-0.5">
                 <img src="{{ $image }}" alt="mammut" class="object-contain h-full" />
             </div>
-            <h3 class="mb-0.5 font-bold lg:mb-1 text-lg sm:line-clamp-1 text-gray-900"> {{ $name }} </h3>
+            <h3 class="mb-0.5 font-medium lg:mb-1 text-lg sm:line-clamp-1 text-gray-900"> {{ $name }} </h3>
             <div class="grid w-56 grid-cols-2 lg:w-full xl:w-56 gap-2">
                 <x-home_landing.products.children.linkBtn text="مشخصات" href="{{ route('landing.product.show',['page'=> $landSlug, 'product'=> $productSlug]) }}" class="w-full rounded-custom before:rounded-custom bg-white border border-normal hover:border-focus hover:text-focus focus:border-focus focus:text-focus focus:shadow-focus focus:shadow-shadowNormal" />
                 <x-home_landing.products.children.linkBtn text="کاتالوگ" href="{{ route('landing.product.show',['page'=> $landSlug, 'product'=> $productSlug]) }}" class="w-full rounded-custom before:rounded-custom bg-white border border-normal hover:border-focus hover:text-focus focus:border-focus focus:text-focus focus:shadow-focus focus:shadow-shadowNormal" />
@@ -137,7 +137,7 @@
             <div class="h-32 mb-0.5">
                 <img src="{{ $image }}" alt="mammut" class="object-contain h-full" />
             </div>
-            <h3 class="mb-0.5 font-bold lg:mb-1 text-lg sm:line-clamp-1 text-gray-900"> {{ $name }} </h3>
+            <h3 class="mb-0.5 font-medium lg:mb-1 text-lg sm:line-clamp-1 text-gray-900"> {{ $name }} </h3>
             <div class="grid w-56 grid-cols-2 lg:w-full xl:w-56 gap-2">
                 <x-home_landing.products.children.linkBtn text="مشخصات" href="{{ route('landing.product.show',['page'=> $landSlug, 'product'=> $productSlug]) }}" class="w-full rounded-custom before:rounded-custom bg-white border border-normal hover:border-focus hover:text-focus focus:border-focus focus:text-focus focus:shadow-focus focus:shadow-shadowNormal" />
                 <x-home_landing.products.children.linkBtn text="کاتالوگ" href="{{ route('landing.product.show',['page'=> $landSlug, 'product'=> $productSlug]) }}" class="w-full rounded-custom before:rounded-custom bg-white border border-normal hover:border-focus hover:text-focus focus:border-focus focus:text-focus focus:shadow-focus focus:shadow-shadowNormal" />
@@ -149,7 +149,7 @@
     @case(4)
         <div data-category="{{ $categoryId }}"
             class="{{ $borderStyle }} rounded-custom pl-6 pr-8 w-full pt-5 pb-8 {{ $evenOdd == 'true' ? 'evenOdd_cards' : 'bg-white' }} flex flex-col product_card">
-            <h3 class="mb-1.5 font-bold lg:mb-1 text-lg sm:line-clamp-1 text-gray-900"> {{ $name }} </h3>
+            <h3 class="mb-1.5 font-medium lg:mb-1 text-lg sm:line-clamp-1 text-gray-900"> {{ $name }} </h3>
             <div class="flex items-center justify-between gap-4">
                 <div class="flex-none h-32 lg:h-28 xl:h-32">
                     <img src="{{ $image }}" alt="mammut" class="object-contain h-full" />
@@ -170,7 +170,7 @@
                 <img src="{{ $image }}" alt="mammut" class="object-contain h-full" />
             </div>
             <div class="flex flex-col flex-1 gap-4">
-                <h3 class="mb-1.5 font-bold lg:mb-1 text-lg sm:line-clamp-1 text-gray-900"> {{ $name }} </h3>
+                <h3 class="mb-1.5 font-medium lg:mb-1 text-lg sm:line-clamp-1 text-gray-900"> {{ $name }} </h3>
                 <div class="grid w-full grid-cols-2 gap-2 mr-auto max-w-72">
                     <x-home_landing.products.children.linkBtn text="مشخصات" href="{{ route('landing.product.show',['page'=> $landSlug, 'product'=> $productSlug]) }}" class="w-full rounded-custom before:rounded-custom bg-white border border-normal hover:border-focus hover:text-focus focus:border-focus focus:text-focus focus:shadow-focus focus:shadow-shadowNormal" />
                     <x-home_landing.products.children.linkBtn text="کاتالوگ" href="{{ route('landing.product.show',['page'=> $landSlug, 'product'=> $productSlug]) }}" class="w-full rounded-custom before:rounded-custom bg-white border border-normal hover:border-focus hover:text-focus focus:border-focus focus:text-focus focus:shadow-focus focus:shadow-shadowNormal" />
@@ -187,7 +187,7 @@
                 <img src="{{ $image }}" alt="mammut" class="object-contain h-full" />
             </div>
             <div class="flex flex-col flex-1 gap-4">
-                <h3 class="mb-1.5 font-bold lg:mb-1 text-lg sm:line-clamp-1 text-gray-900"> {{ $name }} </h3>
+                <h3 class="mb-1.5 font-medium lg:mb-1 text-lg sm:line-clamp-1 text-gray-900"> {{ $name }} </h3>
                 <div class="grid w-full grid-cols-2 gap-2 mr-auto max-w-72">
                     <x-home_landing.products.children.linkBtn text="مشخصات" href="{{ route('landing.product.show',['page'=> $landSlug, 'product'=> $productSlug]) }}" class="w-full rounded-custom before:rounded-custom bg-white border border-normal hover:border-focus hover:text-focus focus:border-focus focus:text-focus focus:shadow-focus focus:shadow-shadowNormal" />
                     <x-home_landing.products.children.linkBtn text="کاتالوگ" href="{{ route('landing.product.show',['page'=> $landSlug, 'product'=> $productSlug]) }}" class="w-full rounded-custom before:rounded-custom bg-white border border-normal hover:border-focus hover:text-focus focus:border-focus focus:text-focus focus:shadow-focus focus:shadow-shadowNormal" />
@@ -204,7 +204,7 @@
                 <img src="{{ $image }}" alt="mammut" class="object-contain h-full" />
             </div>
             <div class="mb-4 sm:mb-0 sm:flex-1">
-                <h3 class="mb-2 font-bold lg:mb-1 text-lg sm:line-clamp-1 text-gray-900"> {{ $name }} </h3>
+                <h3 class="mb-2 font-medium lg:mb-1 text-lg sm:line-clamp-1 text-gray-900"> {{ $name }} </h3>
                 <p class="text-sm leading-6 text-justify text-[#818284] dark:text-white font-medium line-clamp-2">
                     {{ $description }}
                 </p>
@@ -224,7 +224,7 @@
                 <img src="{{ $image }}" alt="mammut" class="object-contain h-full" />
             </div>
             <div class="mb-4 sm:mb-0 sm:flex-1">
-                <h3 class="mb-2 sm:gap-4 font-bold lg:mb-1 text-lg text-gray-900"> {{ $name }} </h3>
+                <h3 class="mb-2 sm:gap-4 font-medium lg:mb-1 text-lg text-gray-900"> {{ $name }} </h3>
                 <p class="text-sm leading-6 text-justify text-[#818284] dark:text-white font-medium line-clamp-2">
                     {{ $description }}
                 </p>
@@ -243,7 +243,7 @@
             <div class="h-32 mb-2">
                 <img src="{{ $image }}" alt="mammut" class="object-contain h-full" />
             </div>
-            <h3 class="mb-5 font-bold lg:mb-4 text-lg sm:line-clamp-1 text-gray-900"> {{ $name }} </h3>
+            <h3 class="mb-5 font-medium lg:mb-4 text-lg sm:line-clamp-1 text-gray-900"> {{ $name }} </h3>
             <div class="flex flex-col gap-4">
                 <x-home_landing.products.children.linkBtn text="مشخصات" href="{{ route('landing.product.show',['page'=> $landSlug, 'product'=> $productSlug]) }}" class="w-40 rounded-custom before:rounded-custom bg-white border border-normal hover:border-focus hover:text-focus focus:border-focus focus:text-focus focus:shadow-focus focus:shadow-shadowNormal" />
                 <x-home_landing.products.children.linkBtn text="کاتالوگ" href="{{ route('landing.product.show',['page'=> $landSlug, 'product'=> $productSlug]) }}" class="w-40 rounded-custom before:rounded-custom bg-white border border-normal hover:border-focus hover:text-focus focus:border-focus focus:text-focus focus:shadow-focus focus:shadow-shadowNormal" />
@@ -255,7 +255,7 @@
     @case(10)
         <div data-category="{{ $categoryId }}"
             class="border-b last:border-b-0 border-dark-100 pl-6 pr-8 w-full pt-5 pb-8 {{ $evenOdd == 'true' ? 'evenOdd_cards' : 'bg-white' }} sm:border-l sm:[&:nth-child(2n)]:border-l-0 lg:[&:nth-child(2n)]:border-l lg:[&:nth-child(3n)]:border-l-0 flex flex-col product_card">
-            <h3 class="mb-1.5 font-bold lg:mb-1 text-lg sm:line-clamp-1 text-gray-900"> {{ $name }} </h3>
+            <h3 class="mb-1.5 font-medium lg:mb-1 text-lg sm:line-clamp-1 text-gray-900"> {{ $name }} </h3>
             <div class="flex items-center justify-between gap-4">
                 <div class="flex-none h-32 lg:h-28 xl:h-32">
                     <img src="{{ $image }}" alt="mammut" class="object-contain h-full" />
@@ -276,7 +276,7 @@
                 <img src="{{ $image }}" alt="mammut" class="object-contain h-full" />
             </div>
             <div class="mb-4 sm:mb-0 sm:flex-1">
-                <h3 class="mb-2 font-bold lg:mb-1 text-lg sm:line-clamp-1 text-gray-900"> {{ $name }} </h3>
+                <h3 class="mb-2 font-medium lg:mb-1 text-lg sm:line-clamp-1 text-gray-900"> {{ $name }} </h3>
                 <p class="text-sm leading-6 text-justify text-[#818284] dark:text-white font-medium line-clamp-2">
                     {{ $description }}
                 </p>
@@ -294,7 +294,7 @@
             <div class="mb-3 h-52">
                 <img src="{{ $image }}" alt="{{ $name }}" class="object-contain h-full" draggable="false" />
             </div>
-            <h3 class="mb-5 font-bold text-xl lg:line-clamp-1 text-stone-700"> {{ $name }} </h3>
+            <h3 class="mb-5 font-medium text-xl lg:line-clamp-1 text-stone-700"> {{ $name }} </h3>
             <h4 class="mb-6 font-normal text-sm lg:line-clamp-1 text-stone-700"> مدل:  {{ $model }} </h4>
             <div class="grid grid-cols-2 gap-3 w-56 lg:w-full">
                 <x-home_landing.products.children.linkBtn text="فروش اقساطی" href="{{ route('landing.product.show',['page'=> $landSlug, 'product'=> $productSlug]) }}" class="sameCategoryBtnStyle castegoryBtnfilled rounded-custom col-span-2" />
