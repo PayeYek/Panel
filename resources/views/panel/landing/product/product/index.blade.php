@@ -39,7 +39,7 @@
 
     @cell('attribute', $item)
     <div>
-        <Link href="{{ route('panel.landing.product.attribute.edit', $item->id) }}">
+        <Link href="{{ route('panel.landing.product.product.attribute.edit', $item->id) }}">
             {{__('Attribute')}}
         </Link>
     </div>
