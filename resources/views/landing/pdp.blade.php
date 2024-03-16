@@ -102,8 +102,8 @@
                                     {{ $comment->comment }}
                                 </div>
 
-                                <div class="flex items-center text-sm font-normal justify-end gap-5 text-stone-700">
-                                    {{-- like --}}
+                                {{-- <div class="flex items-center text-sm font-normal justify-end gap-5 text-stone-700">
+                                    like
                                     <button type="button" class="flex items-center gap-2">
                                         <svg class="h-5 stroke-current" viewBox="0 0 24 22" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <path d="M1.79169 8.9668H5.82198V19.6982H1.79341C1.6816 19.6985 1.57085 19.6766 1.46749 19.634C1.36413 19.5914 1.27019 19.5288 1.19105 19.4498C1.11192 19.3708 1.04913 19.277 1.00629 19.1737C0.963456 19.0705 0.941406 18.9597 0.941406 18.8479V9.81708C0.941406 9.59157 1.03099 9.3753 1.19045 9.21584C1.34991 9.05638 1.56618 8.9668 1.79169 8.9668Z" stroke="current" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -111,7 +111,7 @@
                                         </svg>
                                         <p> 0 </p>
                                     </button>
-                                    {{-- dislike --}}
+                                    dislike
                                     <button type="button" class="flex items-center gap-2">
                                         <svg class="h-5 stroke-current" viewBox="0 0 24 22" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <path d="M1.79169 13.0332H5.82198V2.30177H1.79341C1.6816 2.30155 1.57085 2.32338 1.46749 2.36601C1.36413 2.40864 1.27019 2.47123 1.19105 2.55021C1.11192 2.62919 1.04913 2.723 1.00629 2.82627C0.963456 2.92955 0.941406 3.04025 0.941406 3.15206V12.1829C0.941406 12.4084 1.03099 12.6247 1.19045 12.7842C1.34991 12.9436 1.56618 13.0332 1.79169 13.0332Z" stroke="current" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -119,7 +119,7 @@
                                         </svg>
                                         <p> 0 </p>
                                     </button>
-                                </div>
+                                </div> --}}
                             </div>
                         </li>
                     @endforeach

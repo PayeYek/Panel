@@ -244,7 +244,7 @@
             <template v-if="productType == 12">
                 <template v-for="(product, index) in filteredList" :key="index">
                     <section class="flex flex-col" v-if="product.length > 0">
-                        <p class="text-base lg:text-xl font-bold mb-4 text-stone-700 text-center"> محصولات SHACMOTO </p>
+                        <p class="text-base lg:text-xl font-bold mb-4 text-stone-700 text-center"> محصولات {{ product[0].brand.title }} </p>
                         <hr class="w-56 lg:w-96 border-normal mb-4 lg:mb-6 mx-auto" />
                         <ul class="flex flex-col lg:flex-row mx-auto lg:items-start lg:justify-center gap-0">
                             <li v-for="(item, index) in product" :key="index"
@@ -272,7 +272,7 @@
 </template>
 
 <script>
-import { ref, computed, watch } from 'vue';
+import { ref, watch, onMounted } from 'vue';
 
 export default {
     name: 'CategoryFilter',
@@ -309,6 +309,9 @@ export default {
         const removeDuplicated = ref([]);
         const filteredList = ref([]);
         const allProductsList = ref([]);
+        onMounted(() => {
+            console.log(filteredList.value);
+        })
 
         // console.log(0, typeof filteredList.value);
         function remove_duplicates_es6(arr) {

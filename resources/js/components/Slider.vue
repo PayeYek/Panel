@@ -12,7 +12,7 @@
                 <a href="#" class="relative w-full pt-[44%] block rounded-b-custom overflow-hidden">
                     <img class="object-cover w-full h-full top-0 left-0 absolute" :src="slide.image" :alt="slide.alt">
                     <ul class="list-disc list-inside absolute top-2.5 right-1 py-1 px-2 z-[1] bg-white/80 text-xs rounded-custom">
-                        <li class="line-clamp-1" v-text="slide.alt"></li>
+                        <li v-for="(li, innerIndex) in slide.att" :key="innerIndex" v-if="li !== ''" :class="{ 'line-clamp-1': true, 'hidden': innerIndex > 1, 'sm:block': innerIndex > 1, 'lg:block': innerIndex > 3 }" class="line-clamp-1" v-text="slide.alt"></li>
                     </ul>
                 </a>
             </swiper-slide>
