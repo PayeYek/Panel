@@ -50,7 +50,7 @@ export default {
         Swiper,
         SwiperSlide
     },
-    setup(){
+    setup(props){
         const breakpoints = {
             320: {
                 slidesPerView: "auto",
@@ -61,6 +61,8 @@ export default {
                 spaceBetween: 20,
             },
         }
+
+        console.log(props.slides);
 
         return {
             breakpoints,

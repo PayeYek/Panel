@@ -6,7 +6,7 @@
         default => '',
     };
 @endphp
-
+{{-- @dd($land->articles) --}}
 <x-layout.default.main :land="$land">
 
     <main class="relative pt-4 default_container mb-8 sm:mb-24 lg:mb-28">

@@ -4,9 +4,6 @@
         @if ($land->slides)
             <Slider :slides="{{ $land->slides }}" />
         @endif
-        {{-- @dd($land->styles->product_striped) --}}
-        {{-- products category --}}
-        {{-- <x-home_landing.productCategories :landSlug="$land->slug" :data="$data" /> --}}
         <section class="default_container">
             <section
                 class="grid grid-cols-1 sm:grid-cols-2 mb-12 gap-4 lg:gap-5 lg:rounded-none lg:*:rounded-custom *:rounded-custom sm:*:rounded-none sm:rounded-custom sm:overflow-hidden sm:gap-0 *:bg-[#f5f5f5] *:flex_center *:flex-col *:text-stone-700">
@@ -43,7 +40,7 @@
             evenOdd="{{ $land->styles->product_striped }}" />
 
         {{-- articles --}}
-        <x-home_landing.announcement :landSlug="$land->slug" :data="$land->articles" type="5" :borderType="$land->styles->border_type"
+        <x-home_landing.announcement :landSlug="$land->slug" :data="$land->articles" :land="$land" :type="$land->styles->article_card_type" :borderType="$land->styles->border_type"
             evenOdd="{{ $land->styles->article_striped }}" />
 
         {{-- videos --}}
@@ -61,9 +58,6 @@
             <div class="w-full max-w-[640px] lg:max-w-[796px] xl:max-w-[900px] 2xl:max-w-[1024px] mx-auto iframe_styles flex_center"
                 id="ifame-box"></div>
         </section>
-
-        {{-- terms of sale --}}
-        {{-- <x-home_landing.termsOfSale /> --}}
 
         {{-- quick access --}}
         <x-home_landing.quickaccess :landSlug="$land->slug" />
