@@ -9,9 +9,9 @@
         {{-- <x-home_landing.productCategories :landSlug="$land->slug" :data="$data" /> --}}
         <section class="default_container">
             <section
-                class="grid grid-cols-1 sm:grid-cols-2 mb-12 gap-4 lg:gap-5 lg:rounded-none lg:*:rounded-custom *:rounded-custom sm:*:rounded-none sm:rounded-custom sm:overflow-hidden sm:gap-0 *:bg-[#f5f5f5] *:flex_center *:flex-col *:text-stone-700 h-40">
+                class="grid grid-cols-1 sm:grid-cols-2 mb-12 gap-4 lg:gap-5 lg:rounded-none lg:*:rounded-custom *:rounded-custom sm:*:rounded-none sm:rounded-custom sm:overflow-hidden sm:gap-0 *:bg-[#f5f5f5] *:flex_center *:flex-col *:text-stone-700">
                 {{-- branches --}}
-                <Link href="#" class="h-full">
+                <Link href="#" class="h-40">
                     <svg class="size-8 stroke-normal mb-3" viewBox="0 0 32 32" fill="none"
                         xmlns="http://www.w3.org/2000/svg">
                         <path
@@ -25,7 +25,7 @@
                     <p class="text-center text-sm font-normal"> نمایش لیست نماینده ها </p>
                 </Link>
                 {{-- terms of sale --}}
-                <Link href="#" class="h-full">
+                <Link href="#" class="h-40">
                     <svg class="size-8 fill-normal mb-3" viewBox="0 0 32 32" fill="none"
                         xmlns="http://www.w3.org/2000/svg">
                         <path

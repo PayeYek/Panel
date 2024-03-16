@@ -708,6 +708,33 @@
     @apply left-4 lg:left-6 before:-rotate-[135deg] right-auto;
 }
 
+.swiper.articleSliderTypeFive{
+    @apply px-4 lg:px-0;
+}
+.articleSliderTypeFive .swiper-button-next, .articleSliderTypeFive .swiper-button-prev{
+    @apply h-full top-0 hidden lg:flex w-28 justify-center items-start pt-28 xl:pt-32 after:size-12 after:flex_center after:bg-white/70 after:rounded-custom after:border after:border-[#7B808C] before:absolute before:top-32 xl:before:top-36 before:size-2 before:translate-x-1/2 before:translate-y-1/2;
+}
+.articleSliderTypeFive .swiper-slide{
+    @apply w-72 lg:w-auto sm:w-[22rem];
+}
+.articleSliderTypeFive .swiper-button-prev{
+    @apply bg-gradient-to-r from-transparent to-white right-0 before:border-r-[#2F3136] before:border-t-[#2F3136] before:border-r-2 before:border-t-2 before:content-[''] before:right-14 before:rotate-45;
+}
+.articleSliderTypeFive .swiper-button-next{
+    @apply bg-gradient-to-l from-transparent to-white left-0 before:border-l-[#2F3136] before:border-b-[#2F3136] before:border-l-2 before:border-b-2 before:content-[''] before:left-12 before:rotate-45;
+}
+
+.articleSliderTypeFive .swiper-pagination{
+    @apply static;
+}
+.articleSliderTypeFive .swiper-pagination .swiper-pagination-bullet{
+    @apply w-2 h-2 rounded-lg opacity-50 bg-normal;
+}
+.articleSliderTypeFive .swiper-pagination .swiper-pagination-bullet.swiper-pagination-bullet-active{
+    @apply w-4 opacity-100;
+}
+
+
 .swiper.articleSliderType5{
     @apply px-4 lg:px-0;
 }

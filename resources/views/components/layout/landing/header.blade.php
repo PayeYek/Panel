@@ -26,8 +26,8 @@
                 {{-- <SwitchStyle class="hidden sm:block" /> --}}
                 {{-- <Breakpoint class="shrink-0 {{ app()->environment('production') ? 'hidden' : '' }}" /> --}}
                 {{-- term of sale --}}
-                <Link class="w-28 sm:w-36 h-11 px-0.5 text-lg font-bold text-white bg-normal hover:bg-focus focus:bg-focus focus:shadow-focus focus:shadow-shadowNormal rounded-custom flex_center"
-                    href="{{ route('landing.product.list', ['page' => $land->slug]) }}">{{ __('Terms of sale') }}</Link>
+                <Link class="w-28 sm:w-32 h-10 px-0.5 text-sm sm:text-base font-normal text-white bg-normal hover:bg-focus focus:bg-focus focus:shadow-focus focus:shadow-shadowNormal rounded-custom flex_center"
+                    href="{{ route('landing.article.list', ['page' => $land->slug]) }}">{{ __('Terms of sale') }}</Link>
             </section>
 
             {{-- visible on desktop --}}
