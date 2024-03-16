@@ -25,7 +25,7 @@ $gap = match($land->styles->a_striped."") {
 @endphp
 
 <x-layout.default.main :land="$land">
-    <main class="pt-4">
+    <main class="pt-4 mb-8 sm:mb-24 lg:mb-28">
         <Articles
             gridStyle="{{ $gridCols }}"
             type="{{ $land->styles->a_card_type }}"

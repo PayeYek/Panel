@@ -21,22 +21,22 @@
     @php
 
         $buttons = [
-        [
-        'title'=>'دسترسی سریع',
-        'items' => [
-                        ['name' => 'محصولات', 'link' => route('landing.product.list', ['page' => $land->slug])],
-                        //['name' => 'کاتالوگ‌ها',  'link' => route('landing.page.catalogs', ['page' => $land->slug])],
-                        ['name' => 'درباره ما',  'link' => route('landing.page.about', ['page' => $land->slug])]
-                   ]
-        ],
-        [
-        'title'=>'دانستنی',
-        'items' => [
-                        ['name' => 'نمایندگی فروش مجاز', 'link' => route('landing.page.show', ['page' => $land->slug])],
-                        ['name' => 'اطلاعیه های فروش',  'link' => route('landing.article.list', ['page' => $land->slug])],
-                        ['name' => 'مطالب وبلاگ',  'link' => route('landing.article.list', ['page' => $land->slug])]
-                   ]
-        ],
+            [
+            'title'=>'دسترسی سریع',
+            'items' => [
+                            ['name' => 'محصولات', 'link' => route('landing.product.list', ['page' => $land->slug])],
+                            //['name' => 'کاتالوگ‌ها',  'link' => route('landing.page.catalogs', ['page' => $land->slug])],
+                            ['name' => 'درباره ما',  'link' => route('landing.page.about', ['page' => $land->slug])]
+                    ]
+            ],
+            [
+            'title'=>'دانستنی',
+            'items' => [
+                            ['name' => 'نمایندگی فروش مجاز', 'link' => route('landing.page.show', ['page' => $land->slug])],
+                            ['name' => 'اطلاعیه های فروش',  'link' => route('landing.article.list', ['page' => $land->slug])],
+                            ['name' => 'مطالب وبلاگ',  'link' => route('landing.article.list', ['page' => $land->slug])]
+                    ]
+            ],
         ];
 
         $cats = array();

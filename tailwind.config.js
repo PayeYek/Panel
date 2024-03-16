@@ -93,6 +93,7 @@ export default {
                     200: "#f3f3f4", // background
                     400: "#d2d2d2", // border
                     700: "#58595b", // text color
+                    900: "#1c1c1c", // footer color
                     950: "#1a1b1d", // footer bg
                 },
             },

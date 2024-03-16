@@ -676,8 +676,17 @@
 }
 
 /* swiper starts */
+.slider_type_1 .swiper-button-prev, .slider_type_1 .swiper-button-next {
+    @apply hidden top-auto bottom-8 drop-shadow-base rounded-custom size-12 bg-white/70 lg:flex_center after:text-base after:font-bold after:text-[#2F3136] after:rotate-180;
+}
+.slider_type_1 .swiper-button-prev {
+    @apply after:content-['prev'];
+}
+.slider_type_1 .swiper-button-next {
+    @apply after:content-['next'];
+}
 .slider_type_1 .swiper-pagination .swiper-pagination-bullet{
-    @apply w-2 h-2 transition-transform duration-300 rounded-full opacity-50 bg-stone-700;
+    @apply w-2 h-2 transition-transform duration-300 rounded-full opacity-50 bg-white;
 }
 .slider_type_1 .swiper-pagination .swiper-pagination-bullet-active{
     @apply w-6 opacity-80;

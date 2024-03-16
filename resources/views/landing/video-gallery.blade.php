@@ -30,7 +30,7 @@
 
 <x-layout.default.main :land="$land">
 
-    <main class="pt-4 relative">
+    <main class="pt-4 relative mb-8 sm:mb-24 lg:mb-28">
         {{-- breadcrumbs --}}
         <x-common_landing.breadcrumbs :data="$breadcrumbs" />
 
@@ -58,7 +58,7 @@
         </section>
 
 
-        <section class="grid grid-cols-1 gap-5 default_container">
+        <section class="grid grid-cols-1 sm:grid-cols-2 gap-5 default_container">
             @foreach ($land->videos as $video)
                 <div class="w-full" data-videoLink="{{ $video->link }}">
                     <div class="relative w-full pt-[62%] cursor-pointer rounded-custom overflow-hidden videoThumbnails" onclick="showVideoByThumbnail(this)">

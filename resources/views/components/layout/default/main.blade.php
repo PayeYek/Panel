@@ -6,8 +6,9 @@
     <x-layout.landing.header :land="$land"/>
     {{ $slot }}
 
-    <div class="default_container relative z-[1]">
+    <x-layout.landing.newfooter :land="$land"/>
+    {{-- <div class="default_container relative z-[1]">
         <x-layout.landing.footer :land="$land"/>
-    </div>
+    </div> --}}
 </section>
 @stack('script')
