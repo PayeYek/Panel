@@ -1,10 +1,14 @@
+@props([
+    'landSlug' => '/',
+])
+
 <section class="mb-4 lg:mb-16 default_container">
     <h3  class="mb-2 text-base sm:text-lg font-bold text-center text-stone-700"> آخرین اخبار و اطلاعیه ها </h3>
     <hr class="w-60 sm:w-96 border-normal mb-6 mx-auto" />
 
     <section class="grid grid-cols-1 md:grid-cols-5 gap-4">
         {{-- products --}}
-        <Link class="h-[72px] bg-[#1A1B1D] rounded-custom px-5 flex items-center md:flex-col md:h-auto md:pt-10 lg:pt-14 lg:pb-16 md:pb-12 md:px-2 sm:h-20 text-white gap-4 sm:gap-6 md:gap-8 lg:gap-12">
+        <Link href="{{ route('landing.product.list', ['page' => $landSlug]) }}" class="h-[72px] bg-[#1A1B1D] rounded-custom px-5 flex items-center md:flex-col md:h-auto md:pt-10 lg:pt-14 lg:pb-16 md:pb-12 md:px-2 sm:h-20 text-white gap-4 sm:gap-6 md:gap-8 lg:gap-12">
             {{-- image --}}
             <div class="flex_center size-12 sm:size-14 md:size-12 lg:size-16 xl:size-20 rounded-full bg-white">
                 <svg class="h-6 sm:h-8 md:h-6 stroke-normal lg:h-8 xl:h-10" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -47,7 +51,7 @@
             </div>
         </Link>
         {{-- agencies --}}
-        <Link class="h-[72px] bg-[#1A1B1D] rounded-custom px-5 flex items-center md:flex-col md:h-auto md:pt-10 lg:pt-14 lg:pb-16 md:pb-12 md:px-2 sm:h-20 text-white text-sm font-normal sm:text-base md:text-sm lg:text-xl xl:text-2xl gap-4 sm:gap-6 md:gap-8 lg:gap-12">
+        <Link href="{{ route('landing.sales', ['page' => $landSlug]) }}" class="h-[72px] bg-[#1A1B1D] rounded-custom px-5 flex items-center md:flex-col md:h-auto md:pt-10 lg:pt-14 lg:pb-16 md:pb-12 md:px-2 sm:h-20 text-white text-sm font-normal sm:text-base md:text-sm lg:text-xl xl:text-2xl gap-4 sm:gap-6 md:gap-8 lg:gap-12">
             {{-- image --}}
             <div class="flex_center size-12 sm:size-14 md:size-12 lg:size-16 xl:size-20 rounded-full bg-white">
                 <svg class="h-6 sm:h-8 md:h-6 stroke-normal lg:h-8 xl:h-10" viewBox="0 0 18 22" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -62,7 +66,7 @@
             </div>
         </Link>
         {{-- announcements --}}
-        <Link class="h-[72px] bg-[#1A1B1D] rounded-custom px-5 flex items-center md:flex-col md:h-auto md:pt-10 lg:pt-14 lg:pb-16 md:pb-12 md:px-2 sm:h-20 text-white text-sm font-normal sm:text-base md:text-sm lg:text-xl xl:text-2xl gap-4 sm:gap-6 md:gap-8 lg:gap-12">
+        <Link href="{{ route('landing.article.list', ['page' => $landSlug]) }}" class="h-[72px] bg-[#1A1B1D] rounded-custom px-5 flex items-center md:flex-col md:h-auto md:pt-10 lg:pt-14 lg:pb-16 md:pb-12 md:px-2 sm:h-20 text-white text-sm font-normal sm:text-base md:text-sm lg:text-xl xl:text-2xl gap-4 sm:gap-6 md:gap-8 lg:gap-12">
             {{-- image --}}
             <div class="flex_center size-12 sm:size-14 md:size-12 lg:size-16 xl:size-20 rounded-full bg-white">
                 <svg class="h-6 sm:h-8 md:h-6 fill-normal lg:h-8 xl:h-10" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">

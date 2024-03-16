@@ -42,7 +42,7 @@
                         <p class="text-base font-normal text-stone-700 leading-7"> 021-44000990 </p>
                     </a>
                     <!-- address on utilities -->
-                    <a href="#" class="text-[#1EA0FF] text-base font-bold underline underline-offset-[6px]"> مسیریابی </a>
+                    <a href="geo:35.7330071,51.3335077" class="text-[#1EA0FF] text-base font-bold underline underline-offset-[6px]"> مسیریابی </a>
                 </section>
             </div>
             <div class="p-4 rounded-custom border border-stone-700/20">
@@ -93,7 +93,7 @@ export default {
     },
 
     setup() {
-        const branchState = ref(false);
+        const branchState = ref(true);
 
         const toggleBranchVisiblity = () => {
             branchState.value = !branchState.value;

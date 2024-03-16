@@ -52,7 +52,7 @@ export default {
         };
 
         // props.slides.map(item => {
-        //     console.log(item.infos[1]);
+            console.log(props.slides);
             
         // })
         return {

@@ -52,7 +52,7 @@
             <h3 class="mb-2 text-base sm:text-lg font-bold text-center text-stone-700"> ویدیو ها </h3>
             <hr class="w-60 sm:w-96 border-normal mb-6 lg:mb-0 mx-auto" />
             {{-- show all --}}
-            <Link href="#"
+            <Link href="{{ route('landing.videos', ['page' => $land->slug]) }}"
                 class="text-base font-normal text-normal mr-auto mb-3 hidden lg:inline-block float-left px-2 cursor-pointer"> نمایش همه </Link>
             <x-home_landing.videos :data="$land->videos" />
         </section>
@@ -66,7 +66,7 @@
         {{-- <x-home_landing.termsOfSale /> --}}
 
         {{-- quick access --}}
-        <x-home_landing.quickaccess />
+        <x-home_landing.quickaccess :landSlug="$land->slug" />
     </main>
 
 
