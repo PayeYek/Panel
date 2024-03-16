@@ -1,5 +1,5 @@
 <template>
-    <Link :to="href" :class="classNames">
+    <Link :href="href" :class="classNames">
         <slot />
     </Link>
 </template>

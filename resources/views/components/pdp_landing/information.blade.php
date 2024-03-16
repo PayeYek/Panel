@@ -48,6 +48,6 @@
     {{-- guide btns --}}
     <div class="flex_center flex-col gap-2 md:max-w-[524px] md:flex-row lg:gap-4">
         <Link class="text-lg font-bold text-white cursor-pointer rounded-custom bg-stone-700 flex_center h-11 w-52"> مشاوره و خرید </Link>
-        <Link class="text-lg font-bold bg-white border cursor-pointer rounded-custom text-stone-700 border-stone-700 flex_center h-11 w-52"> دانلود کاتالوگ </Link>
+        <Link href="{{ $product->catalog }}" class="text-lg font-bold bg-white border cursor-pointer rounded-custom text-stone-700 border-stone-700 flex_center h-11 w-52"> دانلود کاتالوگ </Link>
     </div>
 </section>

@@ -1,5 +1,5 @@
 <x-layout.default.main :land="$land">
-
+{{-- @dd($product) --}}
     {{-- type 1 --}}
     <main class="pt-4 relative mb-8 sm:mb-24 lg:mb-28">
 
