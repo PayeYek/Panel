@@ -16,11 +16,30 @@ class LandSlide extends Model
         'image',
         'alt',
         'link',
+        'infos',
         'view',
         'status',
         'published_at',
         'expired_at',
     ];
+
+    protected $casts = [
+        'infos' => 'array',
+    ];
+
+//    public function setInfosAttribute($value)
+//    {
+//        $this->attributes['infos'] = empty($value) ? json_encode([]) : json_encode($value);
+//    }
+//
+//
+//    public function getInfosAttribute()
+//    {
+//        $data = $this->attributes["infos"];
+//
+//        return is_null($data) ? [] : $data;
+//    }
+
     public function getImageAttribute()
     {
         $item = $this->attributes['image'];
@@ -31,6 +50,7 @@ class LandSlide extends Model
 
         return Str::isUrl($item) ? $item : asset('storage/' . $item);
     }
+
     public function getImage()
     {
         return $this->attributes["image"];

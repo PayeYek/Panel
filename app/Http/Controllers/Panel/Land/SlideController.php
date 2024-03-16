@@ -55,6 +55,8 @@ class SlideController extends Controller
 
     public function update(SlideRequest $request, LandSlide $slide)
     {
+
+//        dd(request()->all(), $request->validated() );
         $data = $request->validated();
 
         /* Update new image */

@@ -19,6 +19,11 @@
                     <x-splade-input name="alt" label="Alternative text" required/>
                     <x-splade-input name="link" label="Link" required ltr/>
 
+                    <x-splade-input name="infos[0]" label="Information"/>
+                    <x-splade-input name="infos[1]" label="Information"/>
+                    <x-splade-input name="infos[2]" label="Information"/>
+                    <x-splade-input name="infos[3]" label="Information"/>
+
                     {{--STATUS--}}
                     <x-splade-group name="status" label="Status" inline required>
                         <x-splade-radio name="status" value="0" label="Invisible"/>
@@ -26,6 +31,7 @@
                     </x-splade-group>
 
                 </x-layout.panel.form.division>
+
                 <x-splade-submit label="Create"/>
 
             </x-layout.panel.form.card>

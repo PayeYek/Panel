@@ -29,6 +29,32 @@ class LandAgency extends Model
         'telephones' => 'array',
     ];
 
+/*    public function setTypesAttribute($value)
+    {
+        $this->attributes['types'] = empty($value) ? json_encode([]) : json_encode($value);
+    }
+
+
+    public function getTypesAttribute()
+    {
+        $data = $this->attributes["types"];
+
+        return is_null($data) ? [] : $data;
+    }
+
+    public function setTelephonesAttribute($value)
+    {
+        $this->attributes['telephones'] = empty($value) ? json_encode([]) : json_encode($value);
+    }
+
+
+    public function getTelephonesAttribute()
+    {
+        $data = $this->attributes["telephones"];
+
+        return is_null($data) ? [] : $data;
+    }*/
+
     public function land()
     {
         return $this->belongsTo(Land::class, 'land_id');
