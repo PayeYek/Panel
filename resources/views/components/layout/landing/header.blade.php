@@ -26,7 +26,7 @@
                 {{-- <SwitchStyle class="hidden sm:block" /> --}}
                 {{-- <Breakpoint class="shrink-0 {{ app()->environment('production') ? 'hidden' : '' }}" /> --}}
                 {{-- term of sale --}}
-                <Link class="w-24 h-8 px-2 text-xs font-bold text-white bg-normal hover:bg-focus focus:bg-focus focus:shadow-focus focus:shadow-shadowNormal rounded-custom flex_center"
+                <Link class="w-28 sm:w-36 h-11 px-0.5 text-lg font-bold text-white bg-normal hover:bg-focus focus:bg-focus focus:shadow-focus focus:shadow-shadowNormal rounded-custom flex_center"
                     href="{{ route('landing.page.show', ['page' => $land->slug]) }}">{{ __('Terms of sale') }}</Link>
             </section>
 

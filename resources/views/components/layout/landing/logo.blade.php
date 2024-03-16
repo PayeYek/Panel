@@ -35,7 +35,7 @@
             $english = Str::title(str_replace('-', ' ', $land->slug));
         @endphp
 
-        <div class="flex flex-col {{$inFooter? '': ' justify-center max-w-48'}}">
+        <div class="hidden sm:flex flex-col {{$inFooter? '': ' justify-center max-w-48'}}">
             <h1 class="text-sm lg:text-base font-bold font-iran">{{$land->title ?? ''}}</h1>
             <h2 class="text-[10px] lg:text-xs text-gray-400 font-inter text-start">
                 {{$english ?? ''}}
