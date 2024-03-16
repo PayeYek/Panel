@@ -4,7 +4,7 @@ import vue from "@vitejs/plugin-vue";
 
 export default defineConfig({
     server: {
-        host: '127.0.0.1',
+        // host: '127.0.0.1',
         // host: '192.168.140.78',
         // host: '192.168.120.155',
     },

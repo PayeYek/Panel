@@ -3,192 +3,85 @@ var __commonJS = (cb, mod) => function __require() {
   return mod || (0, cb[__getOwnPropNames(cb)[0]])((mod = { exports: {} }).exports, mod), mod.exports;
 };
 import { createServer } from "http";
-import require$$0 from "@vue/compiler-dom";
-import require$$1 from "@vue/runtime-dom";
-import require$$2 from "@vue/shared";
+import * as runtimeDom from "@vue/runtime-dom";
+import { registerRuntimeCompiler, initCustomFormatter, warn, ref, computed, defineComponent, onMounted, onUnmounted, h, Fragment, watchEffect, watch, provide, inject, Teleport, reactive, unref, normalizeClass, cloneVNode, nextTick, shallowRef, openBlock, createBlock, createCommentVNode, createElementBlock, normalizeStyle, KeepAlive, createVNode, renderList, onBeforeUnmount, renderSlot, withModifiers, createElementVNode, resolveComponent, withCtx, withDirectives, resolveDynamicComponent, normalizeProps, guardReactiveProps, vShow, createSSRApp } from "@vue/runtime-dom";
+import { compile } from "@vue/compiler-dom";
+import { isString, NOOP, extend, generateCodeFrame, EMPTY_OBJ } from "@vue/shared";
 import { renderToString } from "@vue/server-renderer";
 import ne from "axios";
 var require_ssr = __commonJS({
   "ssr.js"(exports, module) {
-    var vue = { exports: {} };
-    var vue_cjs_prod = {};
     /**
     * vue v3.4.15
     * (c) 2018-present Yuxi (Evan) You and Vue contributors
     * @license MIT
     **/
-    var hasRequiredVue_cjs_prod;
-    function requireVue_cjs_prod() {
-      if (hasRequiredVue_cjs_prod)
-        return vue_cjs_prod;
-      hasRequiredVue_cjs_prod = 1;
-      (function(exports2) {
-        Object.defineProperty(exports2, "__esModule", { value: true });
-        var compilerDom = require$$0;
-        var runtimeDom = require$$1;
-        var shared = require$$2;
-        function _interopNamespaceDefault(e) {
-          var n = /* @__PURE__ */ Object.create(null);
-          if (e) {
-            for (var k in e) {
-              n[k] = e[k];
-            }
-          }
-          n.default = e;
-          return Object.freeze(n);
-        }
-        var runtimeDom__namespace = /* @__PURE__ */ _interopNamespaceDefault(runtimeDom);
-        const compileCache = /* @__PURE__ */ new WeakMap();
-        function getCache(options) {
-          let c = compileCache.get(options != null ? options : shared.EMPTY_OBJ);
-          if (!c) {
-            c = /* @__PURE__ */ Object.create(null);
-            compileCache.set(options != null ? options : shared.EMPTY_OBJ, c);
-          }
-          return c;
-        }
-        function compileToFunction(template, options) {
-          if (!shared.isString(template)) {
-            if (template.nodeType) {
-              template = template.innerHTML;
-            } else {
-              return shared.NOOP;
-            }
-          }
-          const key = template;
-          const cache = getCache(options);
-          const cached = cache[key];
-          if (cached) {
-            return cached;
-          }
-          if (template[0] === "#") {
-            const el2 = document.querySelector(template);
-            template = el2 ? el2.innerHTML : ``;
-          }
-          const opts = shared.extend(
-            {
-              hoistStatic: true,
-              onError: void 0,
-              onWarn: shared.NOOP
-            },
-            options
-          );
-          if (!opts.isCustomElement && typeof customElements !== "undefined") {
-            opts.isCustomElement = (tag) => !!customElements.get(tag);
-          }
-          const { code } = compilerDom.compile(template, opts);
-          const render = new Function("Vue", code)(runtimeDom__namespace);
-          render._rc = true;
-          return cache[key] = render;
-        }
-        runtimeDom.registerRuntimeCompiler(compileToFunction);
-        exports2.compile = compileToFunction;
-        Object.keys(runtimeDom).forEach(function(k) {
-          if (k !== "default" && !Object.prototype.hasOwnProperty.call(exports2, k))
-            exports2[k] = runtimeDom[k];
-        });
-      })(vue_cjs_prod);
-      return vue_cjs_prod;
+    function initDev() {
+      {
+        initCustomFormatter();
+      }
     }
-    var vue_cjs = {};
-    /**
-    * vue v3.4.15
-    * (c) 2018-present Yuxi (Evan) You and Vue contributors
-    * @license MIT
-    **/
-    var hasRequiredVue_cjs;
-    function requireVue_cjs() {
-      if (hasRequiredVue_cjs)
-        return vue_cjs;
-      hasRequiredVue_cjs = 1;
-      (function(exports2) {
-        Object.defineProperty(exports2, "__esModule", { value: true });
-        var compilerDom = require$$0;
-        var runtimeDom = require$$1;
-        var shared = require$$2;
-        function _interopNamespaceDefault(e) {
-          var n = /* @__PURE__ */ Object.create(null);
-          if (e) {
-            for (var k in e) {
-              n[k] = e[k];
-            }
-          }
-          n.default = e;
-          return Object.freeze(n);
+    if (!!(process.env.NODE_ENV !== "production")) {
+      initDev();
+    }
+    const compileCache = /* @__PURE__ */ new WeakMap();
+    function getCache(options) {
+      let c = compileCache.get(options != null ? options : EMPTY_OBJ);
+      if (!c) {
+        c = /* @__PURE__ */ Object.create(null);
+        compileCache.set(options != null ? options : EMPTY_OBJ, c);
+      }
+      return c;
+    }
+    function compileToFunction(template, options) {
+      if (!isString(template)) {
+        if (template.nodeType) {
+          template = template.innerHTML;
+        } else {
+          !!(process.env.NODE_ENV !== "production") && warn(`invalid template option: `, template);
+          return NOOP;
         }
-        var runtimeDom__namespace = /* @__PURE__ */ _interopNamespaceDefault(runtimeDom);
-        const compileCache = /* @__PURE__ */ new WeakMap();
-        function getCache(options) {
-          let c = compileCache.get(options != null ? options : shared.EMPTY_OBJ);
-          if (!c) {
-            c = /* @__PURE__ */ Object.create(null);
-            compileCache.set(options != null ? options : shared.EMPTY_OBJ, c);
-          }
-          return c;
+      }
+      const key = template;
+      const cache = getCache(options);
+      const cached = cache[key];
+      if (cached) {
+        return cached;
+      }
+      if (template[0] === "#") {
+        const el2 = document.querySelector(template);
+        if (!!(process.env.NODE_ENV !== "production") && !el2) {
+          warn(`Template element not found or is empty: ${template}`);
         }
-        function compileToFunction(template, options) {
-          if (!shared.isString(template)) {
-            if (template.nodeType) {
-              template = template.innerHTML;
-            } else {
-              runtimeDom.warn(`invalid template option: `, template);
-              return shared.NOOP;
-            }
-          }
-          const key = template;
-          const cache = getCache(options);
-          const cached = cache[key];
-          if (cached) {
-            return cached;
-          }
-          if (template[0] === "#") {
-            const el2 = document.querySelector(template);
-            if (!el2) {
-              runtimeDom.warn(`Template element not found or is empty: ${template}`);
-            }
-            template = el2 ? el2.innerHTML : ``;
-          }
-          const opts = shared.extend(
-            {
-              hoistStatic: true,
-              onError,
-              onWarn: (e) => onError(e, true)
-            },
-            options
-          );
-          if (!opts.isCustomElement && typeof customElements !== "undefined") {
-            opts.isCustomElement = (tag) => !!customElements.get(tag);
-          }
-          const { code } = compilerDom.compile(template, opts);
-          function onError(err, asWarning = false) {
-            const message = asWarning ? err.message : `Template compilation error: ${err.message}`;
-            const codeFrame = err.loc && shared.generateCodeFrame(
-              template,
-              err.loc.start.offset,
-              err.loc.end.offset
-            );
-            runtimeDom.warn(codeFrame ? `${message}
+        template = el2 ? el2.innerHTML : ``;
+      }
+      const opts = extend(
+        {
+          hoistStatic: true,
+          onError: !!(process.env.NODE_ENV !== "production") ? onError : void 0,
+          onWarn: !!(process.env.NODE_ENV !== "production") ? (e) => onError(e, true) : NOOP
+        },
+        options
+      );
+      if (!opts.isCustomElement && typeof customElements !== "undefined") {
+        opts.isCustomElement = (tag) => !!customElements.get(tag);
+      }
+      const { code } = compile(template, opts);
+      function onError(err, asWarning = false) {
+        const message = asWarning ? err.message : `Template compilation error: ${err.message}`;
+        const codeFrame = err.loc && generateCodeFrame(
+          template,
+          err.loc.start.offset,
+          err.loc.end.offset
+        );
+        warn(codeFrame ? `${message}
 ${codeFrame}` : message);
-          }
-          const render = new Function("Vue", code)(runtimeDom__namespace);
-          render._rc = true;
-          return cache[key] = render;
-        }
-        runtimeDom.registerRuntimeCompiler(compileToFunction);
-        exports2.compile = compileToFunction;
-        Object.keys(runtimeDom).forEach(function(k) {
-          if (k !== "default" && !Object.prototype.hasOwnProperty.call(exports2, k))
-            exports2[k] = runtimeDom[k];
-        });
-      })(vue_cjs);
-      return vue_cjs;
+      }
+      const render = new Function("Vue", code)(runtimeDom);
+      render._rc = true;
+      return cache[key] = render;
     }
-    if (process.env.NODE_ENV === "production") {
-      vue.exports = requireVue_cjs_prod();
-    } else {
-      vue.exports = requireVue_cjs();
-    }
-    var vueExports = vue.exports;
+    registerRuntimeCompiler(compileToFunction);
     function Ds(e, t) {
       for (var r = -1, n = e == null ? 0 : e.length; ++r < n && t(e[r], r, e) !== false; )
         ;
@@ -384,7 +277,7 @@ ${codeFrame}` : message);
         });
       }
     }
-    const Mt = vueExports.ref(0), ie = vueExports.ref(1), R = vueExports.ref({}), ae = vueExports.ref(0), zt = vueExports.ref({}), tt = {}, $e = typeof window > "u";
+    const Mt = ref(0), ie = ref(1), R = ref({}), ae = ref(0), zt = ref({}), tt = {}, $e = typeof window > "u";
     function fo(e, t, r) {
       $e || window.addEventListener("popstate", po.bind(this)), Object.keys(t).length > 0 && Mt.value++, tt[ie.value] = new yi(ie.value), Hr(r), Gt(r.head), Ur(e);
       const n = $e ? "" : location.href, i = Dr(
@@ -434,7 +327,7 @@ ${codeFrame}` : message);
     function bi(e) {
       $e || (window.history.replaceState(e, "", e.url), ye("history:replaced-state", { url: e.url }));
     }
-    const ur = vueExports.ref(0), Nr = vueExports.ref(null);
+    const ur = ref(0), Nr = ref(null);
     function vo(e) {
       const t = URL.createObjectURL(e.data), r = e.headers["content-disposition"].split("filename=")[1], n = document.createElement("a");
       n.href = t, n.download = r, document.body.appendChild(n), n.click(), setTimeout(() => {
@@ -460,8 +353,8 @@ ${codeFrame}` : message);
       ae.value = 0, zt.value = {};
       let s = e.data.html, a = e.data.dynamics;
       const o = Object.keys(R.value.dynamics).length > 0, l = Object.keys(a).length > 0;
-      t ? (l && te(a, (f, h) => {
-        a[h] += `<!-- ${ur.value} -->`;
+      t ? (l && te(a, (f, h2) => {
+        a[h2] += `<!-- ${ur.value} -->`;
       }), (!l || !o) && (s += `<!-- ${ur.value} -->`)) : (l && Mt.value++, (!l || !o) && (ie.value++, tt[ie.value] = tt[ie.value] || new yi(ie.value)));
       let u = e.data.splade.persistentLayout && i === e.data.splade.persistentLayout, c = 0;
       !$e && e.data.splade.preserveScroll && (c = window.scrollY), Ur(
@@ -484,15 +377,15 @@ ${codeFrame}` : message);
     function yo() {
       ae.value--, Gt(wo(ae.value));
     }
-    const wi = vueExports.ref({}), Si = (e) => wi.value[e], bo = (e) => Object.keys(Si.value[e]).length > 0, Oi = vueExports.ref({}), wo = (e) => Oi.value[e], $i = vueExports.ref({}), So = (e) => $i.value[e], rt = vueExports.ref([]);
+    const wi = ref({}), Si = (e) => wi.value[e], bo = (e) => Object.keys(Si.value[e]).length > 0, Oi = ref({}), wo = (e) => Oi.value[e], $i = ref({}), So = (e) => $i.value[e], rt = ref([]);
     function Oo(e) {
       rt.value.push(e);
     }
-    const $o = vueExports.computed(() => co(rt.value));
+    const $o = computed(() => co(rt.value));
     function Eo(e) {
       rt.value[e].dismissed = true, rt.value[e].html = null;
     }
-    const Vr = vueExports.ref(null);
+    const Vr = ref(null);
     function To(e, t, r, n, i, s, a) {
       let o, l;
       typeof i > "u" && (i = false), typeof s > "u" && (s = false), typeof a > "u" && (a = false);
@@ -514,16 +407,16 @@ ${codeFrame}` : message);
     function xo() {
       Vr.value = null;
     }
-    const Ei = vueExports.ref({});
+    const Ei = ref({});
     function Hr(e) {
       Nr.value = e.persistentLayout, Ei.value = e.shared ? e.shared : {}, $i.value[ae.value] = e.flash ? e.flash : {}, Oi.value[ae.value] = e.head ? e.head : {}, oo(e.toasts ? e.toasts : [], (t) => {
         rt.value.push(t);
       }), wi.value[ae.value] = e.errors ? e.errors : {};
     }
-    const Ti = vueExports.ref(() => {
-    }), xi = vueExports.ref(() => {
-    }), _i = vueExports.ref(() => {
-    }), Ii = vueExports.ref(() => {
+    const Ti = ref(() => {
+    }), xi = ref(() => {
+    }), _i = ref(() => {
+    }), Ii = ref(() => {
     });
     function Gt(e) {
       Ti.value(e);
@@ -540,7 +433,7 @@ ${codeFrame}` : message);
     function Pi(e) {
       Ii.value(e);
     }
-    const Wr = vueExports.ref({});
+    const Wr = ref({});
     function qi(e, t, r) {
       Wr.value[e] = t, r && Io(e, t);
     }
@@ -611,7 +504,7 @@ ${codeFrame}` : message);
     function Co(e) {
       return Ke(e, "GET", {}, { "X-Splade-Modal": "modal" }, false);
     }
-    const Gr = vueExports.ref({});
+    const Gr = ref({});
     function Fo(e) {
       const t = Gr.value[e];
       return t ? (ae.value++, Ai(t.html, t.type), true) : false;
@@ -693,9 +586,9 @@ ${codeFrame}` : message);
       currentStack: ae,
       // ref
       stackType: _o,
-      pageVisitId: vueExports.computed(() => R.value.pageVisitId),
+      pageVisitId: computed(() => R.value.pageVisitId),
       // ref
-      dynamicVisitId: vueExports.computed(() => R.value.dynamicVisitId),
+      dynamicVisitId: computed(() => R.value.dynamicVisitId),
       // ref
       isSsr: $e,
       openPreloadedModal: Fo,
@@ -725,18 +618,18 @@ ${codeFrame}` : message);
         }
       },
       setup(e) {
-        const t = e, r = vueExports.ref(null);
+        const t = e, r = ref(null);
         function n() {
-          r.value = vueExports.h({
+          r.value = h({
             template: t.html,
             data() {
               return { ...t.passthrough };
             }
-          }), vueExports.nextTick(() => {
+          }), nextTick(() => {
             p.emit("rendered");
           });
         }
-        return vueExports.watch(() => t.html, n, { immediate: true }), (i, s) => e.html ? (vueExports.openBlock(), vueExports.createBlock(vueExports.unref(r), { key: 0 })) : vueExports.createCommentVNode("", true);
+        return watch(() => t.html, n, { immediate: true }), (i, s) => e.html ? (openBlock(), createBlock(unref(r), { key: 0 })) : createCommentVNode("", true);
       }
     }, Vo = {
       __name: "ServerError",
@@ -748,7 +641,7 @@ ${codeFrame}` : message);
       },
       emits: ["close"],
       setup(e, { emit: t }) {
-        const r = e, n = vueExports.ref(null);
+        const r = e, n = ref(null);
         function i() {
           const o = document.createElement("html");
           o.innerHTML = r.html, o.querySelectorAll("a").forEach((u) => u.setAttribute("target", "_top")), document.body.style.overflow = "hidden";
@@ -763,11 +656,11 @@ ${codeFrame}` : message);
         function a() {
           document.body.style.overflow = "visible", document.removeEventListener("keydown", s), t("close");
         }
-        return vueExports.onMounted(() => i()), (o, l) => (vueExports.openBlock(), vueExports.createElementBlock("div", {
+        return onMounted(() => i()), (o, l) => (openBlock(), createElementBlock("div", {
           style: { position: "fixed", top: "0px", right: "0px", bottom: "0px", left: "0px", "z-index": "200000", "box-sizing": "border-box", height: "100vh", width: "100vw", "background-color": "rgb(0 0 0 / 0.75)", padding: "2rem" },
           onClick: a
         }, [
-          vueExports.createElementVNode("iframe", {
+          createElementVNode("iframe", {
             ref_key: "iframeElement",
             ref: n,
             class: "bg-white w-full h-full"
@@ -825,8 +718,8 @@ ${codeFrame}` : message);
       },
       setup(e) {
         const t = e;
-        vueExports.provide("stack", 0);
-        const r = vueExports.ref(), n = vueExports.ref([]), i = vueExports.ref(null), s = vueExports.ref(null), a = vueExports.ref(true), o = vueExports.inject("$spladeOptions") || {}, l = vueExports.computed(() => p.currentStack.value < 1 ? [] : {
+        provide("stack", 0);
+        const r = ref(), n = ref([]), i = ref(null), s = ref(null), a = ref(true), o = inject("$spladeOptions") || {}, l = computed(() => p.currentStack.value < 1 ? [] : {
           filter: "blur(4px)",
           "transition-property": "filter",
           "transition-duration": "150ms",
@@ -835,19 +728,19 @@ ${codeFrame}` : message);
         function u() {
           i.value = null;
         }
-        function c(h) {
-          n.value[h] = null, p.popStack();
+        function c(h2) {
+          n.value[h2] = null, p.popStack();
         }
-        function v(h) {
+        function v(h2) {
           const m = document.createElement("meta");
-          te(h, (d, b) => {
+          te(h2, (d, b) => {
             m[b] = d;
           }), document.getElementsByTagName("head")[0].appendChild(m);
         }
-        function g(h) {
+        function g(h2) {
           var d;
           let m = "meta";
-          te(h, (b, O) => {
+          te(h2, (b, O) => {
             m = `${m}[${O}="${b}"]`;
           });
           try {
@@ -855,25 +748,25 @@ ${codeFrame}` : message);
           } catch {
           }
         }
-        p.setOnHead((h) => {
+        p.setOnHead((h2) => {
           var m;
           if (!p.isSsr) {
             if (s.value === null) {
-              s.value = h.meta;
+              s.value = h2.meta;
               return;
             }
             if (s.value.forEach((d) => {
               g(d);
-            }), s.value = h.meta, document.title = h.title, h.meta.forEach((d) => {
+            }), s.value = h2.meta, document.title = h2.title, h2.meta.forEach((d) => {
               v(d);
-            }), (m = document.querySelector('link[rel="canonical"]')) == null || m.remove(), h.canonical) {
+            }), (m = document.querySelector('link[rel="canonical"]')) == null || m.remove(), h2.canonical) {
               const d = document.createElement("link");
-              d.rel = "canonical", d.href = h.canonical, document.getElementsByTagName("head")[0].appendChild(d);
+              d.rel = "canonical", d.href = h2.canonical, document.getElementsByTagName("head")[0].appendChild(d);
             }
           }
         });
-        const f = (h, m) => {
-          n.value = [], r.value = h, vueExports.nextTick(() => {
+        const f = (h2, m) => {
+          n.value = [], r.value = h2, nextTick(() => {
             if (!p.isSsr) {
               const d = window.location.hash;
               d && document.getElementById(d.substring(1)) ? window.location.hash = d : window.scrollTo(0, m);
@@ -885,58 +778,58 @@ ${codeFrame}` : message);
             });
           });
         };
-        return p.setOnHtml((h, m, d) => {
+        return p.setOnHtml((h2, m, d) => {
           if (!p.isSsr && document.startViewTransition && o.view_transitions && d)
-            return document.startViewTransition(() => f(h, m));
-          f(h, m);
-        }), p.setOnModal(function(h, m) {
-          n.value[p.currentStack.value] && (a.value = false), n.value[p.currentStack.value] = { html: h, type: m }, vueExports.nextTick(() => {
+            return document.startViewTransition(() => f(h2, m));
+          f(h2, m);
+        }), p.setOnModal(function(h2, m) {
+          n.value[p.currentStack.value] && (a.value = false), n.value[p.currentStack.value] = { html: h2, type: m }, nextTick(() => {
             a.value = true;
           });
-        }), p.setOnServerError(function(h) {
-          i.value = h;
-        }), p.init(t.initialHtml, t.initialDynamics, t.initialSpladeData), vueExports.onMounted(() => {
+        }), p.setOnServerError(function(h2) {
+          i.value = h2;
+        }), p.init(t.initialHtml, t.initialDynamics, t.initialSpladeData), onMounted(() => {
           if (p.isSsr)
             return;
-          const h = se(t.el) ? document.getElementById(t.el) : t.el;
+          const h2 = se(t.el) ? document.getElementById(t.el) : t.el;
           ["components", "html", "dynamics", "splade"].forEach((m) => {
-            delete h.dataset[m];
+            delete h2.dataset[m];
           });
-        }), (h, m) => (vueExports.openBlock(), vueExports.createElementBlock("div", null, [
-          vueExports.unref(p).isSsr ? (vueExports.openBlock(), vueExports.createBlock(ue, {
-            key: `visit.${vueExports.unref(p).pageVisitId.value}`,
-            style: vueExports.normalizeStyle(l.value),
+        }), (h2, m) => (openBlock(), createElementBlock("div", null, [
+          unref(p).isSsr ? (openBlock(), createBlock(ue, {
+            key: `visit.${unref(p).pageVisitId.value}`,
+            style: normalizeStyle(l.value),
             html: r.value
-          }, null, 8, ["style", "html"])) : (vueExports.openBlock(), vueExports.createBlock(vueExports.KeepAlive, {
+          }, null, 8, ["style", "html"])) : (openBlock(), createBlock(KeepAlive, {
             key: 0,
-            max: vueExports.unref(o).max_keep_alive
+            max: unref(o).max_keep_alive
           }, [
-            (vueExports.openBlock(), vueExports.createBlock(ue, {
-              key: `visit.${vueExports.unref(p).pageVisitId.value}`,
-              style: vueExports.normalizeStyle(l.value),
+            (openBlock(), createBlock(ue, {
+              key: `visit.${unref(p).pageVisitId.value}`,
+              style: normalizeStyle(l.value),
               html: r.value
             }, null, 8, ["style", "html"]))
           ], 1032, ["max"])),
-          vueExports.createVNode(ue, { html: e.components }, null, 8, ["html"]),
-          (vueExports.openBlock(true), vueExports.createElementBlock(vueExports.Fragment, null, vueExports.renderList(vueExports.unref(p).currentStack.value, (d) => (vueExports.openBlock(), vueExports.createBlock(ue, {
+          createVNode(ue, { html: e.components }, null, 8, ["html"]),
+          (openBlock(true), createElementBlock(Fragment, null, renderList(unref(p).currentStack.value, (d) => (openBlock(), createBlock(ue, {
             key: `modal.${d}`,
             type: n.value[d].type,
             html: n.value[d].html,
             stack: d,
-            "on-top-of-stack": vueExports.unref(p).currentStack.value === d,
+            "on-top-of-stack": unref(p).currentStack.value === d,
             animate: a.value,
             onClose: (b) => c(d)
           }, null, 8, ["type", "html", "stack", "on-top-of-stack", "animate", "onClose"]))), 128)),
-          i.value ? (vueExports.openBlock(), vueExports.createBlock(Vo, {
+          i.value ? (openBlock(), createBlock(Vo, {
             key: 2,
             html: i.value,
             onClose: u
-          }, null, 8, ["html"])) : vueExports.createCommentVNode("", true)
+          }, null, 8, ["html"])) : createCommentVNode("", true)
         ]));
       }
     };
     function Cp(e) {
-      return () => vueExports.h(Ho, e);
+      return () => h(Ho, e);
     }
     var Uo = Object.prototype, Wo = Uo.hasOwnProperty;
     function zo(e, t) {
@@ -1231,8 +1124,8 @@ ${codeFrame}` : message);
       let { as: o, ...l } = Bi(e, ["unmount", "static"]), u = (s = r.default) == null ? void 0 : s.call(r, n), c = {};
       if (n) {
         let v = false, g = [];
-        for (let [f, h] of Object.entries(n))
-          typeof h == "boolean" && (v = true), h === true && g.push(f);
+        for (let [f, h2] of Object.entries(n))
+          typeof h2 == "boolean" && (v = true), h2 === true && g.push(f);
         v && (c["data-headlessui-state"] = g.join(" "));
       }
       if (o === "template") {
@@ -1243,17 +1136,17 @@ ${codeFrame}` : message);
 `), "", "You can apply a few solutions:", ['Add an `as="..."` prop, to ensure that we render an actual element instead of a "template".', "Render a single element as the child so that we can forward the props onto that element."].map((m) => `  - ${m}`).join(`
 `)].join(`
 `));
-          let f = Ri((a = v.props) != null ? a : {}, l), h = vueExports.cloneVNode(v, f);
+          let f = Ri((a = v.props) != null ? a : {}, l), h2 = cloneVNode(v, f);
           for (let m in f)
-            m.startsWith("on") && (h.props || (h.props = {}), h.props[m] = f[m]);
-          return h;
+            m.startsWith("on") && (h2.props || (h2.props = {}), h2.props[m] = f[m]);
+          return h2;
         }
         return Array.isArray(u) && u.length === 1 ? u[0] : u;
       }
-      return vueExports.h(o, Object.assign({}, l, c), { default: () => u });
+      return h(o, Object.assign({}, l, c), { default: () => u });
     }
     function Li(e) {
-      return e.flatMap((t) => t.type === vueExports.Fragment ? Li(t.children) : [t]);
+      return e.flatMap((t) => t.type === Fragment ? Li(t.children) : [t]);
     }
     function Ri(...e) {
       if (e.length === 0)
@@ -1304,10 +1197,10 @@ ${codeFrame}` : message);
       return Zr() !== null;
     }
     function Zr() {
-      return vueExports.inject(Mi, null);
+      return inject(Mi, null);
     }
     function Kl(e) {
-      vueExports.provide(Mi, e);
+      provide(Mi, e);
     }
     var Jl = Object.defineProperty, Ql = (e, t, r) => t in e ? Jl(e, t, { enumerable: true, configurable: true, writable: true, value: r }) : e[t] = r, Cn = (e, t, r) => (Ql(e, typeof t != "symbol" ? t + "" : t, r), r);
     class Yl {
@@ -1392,7 +1285,7 @@ ${codeFrame}` : message);
     function Lt(e, t, { sorted: r = true, relativeTo: n = null, skipElements: i = [] } = {}) {
       var s;
       let a = (s = Array.isArray(e) ? e.length > 0 ? e[0].ownerDocument : document : e == null ? void 0 : e.ownerDocument) != null ? s : document, o = Array.isArray(e) ? r ? su(e) : e : eu(e);
-      i.length > 0 && o.length > 1 && (o = o.filter((h) => !i.includes(h))), n = n ?? a.activeElement;
+      i.length > 0 && o.length > 1 && (o = o.filter((h2) => !i.includes(h2))), n = n ?? a.activeElement;
       let l = (() => {
         if (t & 5)
           return 1;
@@ -1413,25 +1306,25 @@ ${codeFrame}` : message);
       do {
         if (v >= g || v + g <= 0)
           return 0;
-        let h = u + v;
+        let h2 = u + v;
         if (t & 16)
-          h = (h + g) % g;
+          h2 = (h2 + g) % g;
         else {
-          if (h < 0)
+          if (h2 < 0)
             return 3;
-          if (h >= g)
+          if (h2 >= g)
             return 1;
         }
-        f = o[h], f == null || f.focus(c), v += l;
+        f = o[h2], f == null || f.focus(c), v += l;
       } while (f !== a.activeElement);
       return t & 6 && iu(f) && f.select(), 2;
     }
     function fr(e, t, r) {
-      Et.isServer || vueExports.watchEffect((n) => {
+      Et.isServer || watchEffect((n) => {
         document.addEventListener(e, t, r), n(() => document.removeEventListener(e, t, r));
       });
     }
-    function au(e, t, r = vueExports.computed(() => true)) {
+    function au(e, t, r = computed(() => true)) {
       function n(s, a) {
         if (!r.value || s.defaultPrevented)
           return;
@@ -1450,7 +1343,7 @@ ${codeFrame}` : message);
         }
         return !tu(o, Ni.Loose) && o.tabIndex !== -1 && s.preventDefault(), t(s, o);
       }
-      let i = vueExports.ref(null);
+      let i = ref(null);
       fr("mousedown", (s) => {
         var a, o;
         r.value && (i.value = ((o = (a = s.composedPath) == null ? void 0 : a.call(s)) == null ? void 0 : o[0]) || s.target);
@@ -1459,7 +1352,7 @@ ${codeFrame}` : message);
       }, true), fr("blur", (s) => n(s, () => window.document.activeElement instanceof HTMLIFrameElement ? window.document.activeElement : null), true);
     }
     var Nt = ((e) => (e[e.None = 1] = "None", e[e.Focusable = 2] = "Focusable", e[e.Hidden = 4] = "Hidden", e))(Nt || {});
-    let wr = vueExports.defineComponent({ name: "Hidden", props: { as: { type: [Object, String], default: "div" }, features: { type: Number, default: 1 } }, setup(e, { slots: t, attrs: r }) {
+    let wr = defineComponent({ name: "Hidden", props: { as: { type: [Object, String], default: "div" }, features: { type: Number, default: 1 } }, setup(e, { slots: t, attrs: r }) {
       return () => {
         let { features: n, ...i } = e, s = { "aria-hidden": (n & 2) === 2 ? true : void 0, style: { position: "fixed", top: 1, left: 1, width: 1, height: 0, padding: 0, margin: -1, overflow: "hidden", clip: "rect(0, 0, 0, 0)", whiteSpace: "nowrap", borderWidth: "0", ...(n & 4) === 4 && (n & 2) !== 2 && { display: "none" } } };
         return Z({ ourProps: s, theirProps: i, slot: {}, attrs: r, slots: t, name: "Hidden" });
@@ -1469,19 +1362,19 @@ ${codeFrame}` : message);
       return /iPhone/gi.test(window.navigator.platform) || /Mac/gi.test(window.navigator.platform) && window.navigator.maxTouchPoints > 0;
     }
     function lu(e, t, r) {
-      Et.isServer || vueExports.watchEffect((n) => {
+      Et.isServer || watchEffect((n) => {
         window.addEventListener(e, t, r), n(() => window.removeEventListener(e, t, r));
       });
     }
     var vt = ((e) => (e[e.Forwards = 0] = "Forwards", e[e.Backwards = 1] = "Backwards", e))(vt || {});
     function uu() {
-      let e = vueExports.ref(0);
+      let e = ref(0);
       return lu("keydown", (t) => {
         t.key === "Tab" && (e.value = t.shiftKey ? 1 : 0);
       }), e;
     }
     function Vi(e, t, r, n) {
-      Et.isServer || vueExports.watchEffect((i) => {
+      Et.isServer || watchEffect((i) => {
         e = e ?? window, e.addEventListener(t, r, n), i(() => e.removeEventListener(t, r, n));
       });
     }
@@ -1509,25 +1402,25 @@ ${codeFrame}` : message);
       return t;
     }
     var Wi = ((e) => (e[e.None = 1] = "None", e[e.InitialFocus = 2] = "InitialFocus", e[e.TabLock = 4] = "TabLock", e[e.FocusLock = 8] = "FocusLock", e[e.RestoreFocus = 16] = "RestoreFocus", e[e.All = 30] = "All", e))(Wi || {});
-    let pt = Object.assign(vueExports.defineComponent({ name: "FocusTrap", props: { as: { type: [Object, String], default: "div" }, initialFocus: { type: Object, default: null }, features: { type: Number, default: 30 }, containers: { type: [Object, Function], default: vueExports.ref(/* @__PURE__ */ new Set()) } }, inheritAttrs: false, setup(e, { attrs: t, slots: r, expose: n }) {
-      let i = vueExports.ref(null);
+    let pt = Object.assign(defineComponent({ name: "FocusTrap", props: { as: { type: [Object, String], default: "div" }, initialFocus: { type: Object, default: null }, features: { type: Number, default: 30 }, containers: { type: [Object, Function], default: ref(/* @__PURE__ */ new Set()) } }, inheritAttrs: false, setup(e, { attrs: t, slots: r, expose: n }) {
+      let i = ref(null);
       n({ el: i, $el: i });
-      let s = vueExports.computed(() => Tt(i)), a = vueExports.ref(false);
-      vueExports.onMounted(() => a.value = true), vueExports.onUnmounted(() => a.value = false), fu({ ownerDocument: s }, vueExports.computed(() => a.value && !!(e.features & 16)));
-      let o = pu({ ownerDocument: s, container: i, initialFocus: vueExports.computed(() => e.initialFocus) }, vueExports.computed(() => a.value && !!(e.features & 2)));
-      hu({ ownerDocument: s, container: i, containers: e.containers, previousActiveElement: o }, vueExports.computed(() => a.value && !!(e.features & 8)));
+      let s = computed(() => Tt(i)), a = ref(false);
+      onMounted(() => a.value = true), onUnmounted(() => a.value = false), fu({ ownerDocument: s }, computed(() => a.value && !!(e.features & 16)));
+      let o = pu({ ownerDocument: s, container: i, initialFocus: computed(() => e.initialFocus) }, computed(() => a.value && !!(e.features & 2)));
+      hu({ ownerDocument: s, container: i, containers: e.containers, previousActiveElement: o }, computed(() => a.value && !!(e.features & 8)));
       let l = uu();
       function u(f) {
-        let h = D(i);
-        h && ((m) => m())(() => {
+        let h2 = D(i);
+        h2 && ((m) => m())(() => {
           fe(l.value, { [vt.Forwards]: () => {
-            Lt(h, qe.First, { skipElements: [f.relatedTarget] });
+            Lt(h2, qe.First, { skipElements: [f.relatedTarget] });
           }, [vt.Backwards]: () => {
-            Lt(h, qe.Last, { skipElements: [f.relatedTarget] });
+            Lt(h2, qe.Last, { skipElements: [f.relatedTarget] });
           } });
         });
       }
-      let c = vueExports.ref(false);
+      let c = ref(false);
       function v(f) {
         f.key === "Tab" && (c.value = true, requestAnimationFrame(() => {
           c.value = false;
@@ -1536,14 +1429,14 @@ ${codeFrame}` : message);
       function g(f) {
         if (!a.value)
           return;
-        let h = Ui(e.containers);
-        D(i) instanceof HTMLElement && h.add(D(i));
+        let h2 = Ui(e.containers);
+        D(i) instanceof HTMLElement && h2.add(D(i));
         let m = f.relatedTarget;
-        m instanceof HTMLElement && m.dataset.headlessuiFocusGuard !== "true" && (zi(h, m) || (c.value ? Lt(D(i), fe(l.value, { [vt.Forwards]: () => qe.Next, [vt.Backwards]: () => qe.Previous }) | qe.WrapAround, { relativeTo: f.target }) : f.target instanceof HTMLElement && We(f.target)));
+        m instanceof HTMLElement && m.dataset.headlessuiFocusGuard !== "true" && (zi(h2, m) || (c.value ? Lt(D(i), fe(l.value, { [vt.Forwards]: () => qe.Next, [vt.Backwards]: () => qe.Previous }) | qe.WrapAround, { relativeTo: f.target }) : f.target instanceof HTMLElement && We(f.target)));
       }
       return () => {
-        let f = {}, h = { ref: i, onKeydown: v, onFocusout: g }, { features: m, initialFocus: d, containers: b, ...O } = e;
-        return vueExports.h(vueExports.Fragment, [!!(m & 4) && vueExports.h(wr, { as: "button", type: "button", "data-headlessui-focus-guard": true, onFocus: u, features: Nt.Focusable }), Z({ ourProps: h, theirProps: { ...t, ...O }, slot: f, attrs: t, slots: r, name: "FocusTrap" }), !!(m & 4) && vueExports.h(wr, { as: "button", type: "button", "data-headlessui-focus-guard": true, onFocus: u, features: Nt.Focusable })]);
+        let f = {}, h$1 = { ref: i, onKeydown: v, onFocusout: g }, { features: m, initialFocus: d, containers: b, ...O } = e;
+        return h(Fragment, [!!(m & 4) && h(wr, { as: "button", type: "button", "data-headlessui-focus-guard": true, onFocus: u, features: Nt.Focusable }), Z({ ourProps: h$1, theirProps: { ...t, ...O }, slot: f, attrs: t, slots: r, name: "FocusTrap" }), !!(m & 4) && h(wr, { as: "button", type: "button", "data-headlessui-focus-guard": true, onFocus: u, features: Nt.Focusable })]);
       };
     } }), { features: Wi }), He = [];
     cu(() => {
@@ -1553,8 +1446,8 @@ ${codeFrame}` : message);
       window.addEventListener("click", e, { capture: true }), window.addEventListener("mousedown", e, { capture: true }), window.addEventListener("focus", e, { capture: true }), document.body.addEventListener("click", e, { capture: true }), document.body.addEventListener("mousedown", e, { capture: true }), document.body.addEventListener("focus", e, { capture: true });
     });
     function du(e) {
-      let t = vueExports.ref(He.slice());
-      return vueExports.watch([e], ([r], [n]) => {
+      let t = ref(He.slice());
+      return watch([e], ([r], [n]) => {
         n === true && r === false ? Hi(() => {
           t.value.splice(0);
         }) : n === false && r === true && (t.value = He.slice());
@@ -1565,19 +1458,19 @@ ${codeFrame}` : message);
     }
     function fu({ ownerDocument: e }, t) {
       let r = du(t);
-      vueExports.onMounted(() => {
-        vueExports.watchEffect(() => {
+      onMounted(() => {
+        watchEffect(() => {
           var n, i;
           t.value || ((n = e.value) == null ? void 0 : n.activeElement) === ((i = e.value) == null ? void 0 : i.body) && We(r());
         }, { flush: "post" });
-      }), vueExports.onUnmounted(() => {
+      }), onUnmounted(() => {
         We(r());
       });
     }
     function pu({ ownerDocument: e, container: t, initialFocus: r }, n) {
-      let i = vueExports.ref(null), s = vueExports.ref(false);
-      return vueExports.onMounted(() => s.value = true), vueExports.onUnmounted(() => s.value = false), vueExports.onMounted(() => {
-        vueExports.watch([t, r, n], (a, o) => {
+      let i = ref(null), s = ref(false);
+      return onMounted(() => s.value = true), onUnmounted(() => s.value = false), onMounted(() => {
+        watch([t, r, n], (a, o) => {
           if (a.every((u, c) => (o == null ? void 0 : o[c]) === u) || !n.value)
             return;
           let l = D(t);
@@ -1621,8 +1514,8 @@ ${codeFrame}` : message);
       return false;
     }
     let pr = /* @__PURE__ */ new Map(), ht = /* @__PURE__ */ new Map();
-    function Fn(e, t = vueExports.ref(true)) {
-      vueExports.watchEffect((r) => {
+    function Fn(e, t = ref(true)) {
+      watchEffect((r) => {
         var n;
         if (!t.value)
           return;
@@ -1645,10 +1538,10 @@ ${codeFrame}` : message);
     }
     let Gi = Symbol("ForcePortalRootContext");
     function mu() {
-      return vueExports.inject(Gi, false);
+      return inject(Gi, false);
     }
-    let Sr = vueExports.defineComponent({ name: "ForcePortalRoot", props: { as: { type: [Object, String], default: "template" }, force: { type: Boolean, default: false } }, setup(e, { slots: t, attrs: r }) {
-      return vueExports.provide(Gi, e.force), () => {
+    let Sr = defineComponent({ name: "ForcePortalRoot", props: { as: { type: [Object, String], default: "template" }, force: { type: Boolean, default: false } }, setup(e, { slots: t, attrs: r }) {
+      return provide(Gi, e.force), () => {
         let { force: n, ...i } = e;
         return Z({ theirProps: i, ourProps: {}, slot: {}, slots: t, attrs: r, name: "ForcePortalRoot" });
       };
@@ -1666,11 +1559,11 @@ ${codeFrame}` : message);
       let n = t.createElement("div");
       return n.setAttribute("id", "headlessui-portal-root"), t.body.appendChild(n);
     }
-    let Xi = vueExports.defineComponent({ name: "Portal", props: { as: { type: [Object, String], default: "div" } }, setup(e, { slots: t, attrs: r }) {
-      let n = vueExports.ref(null), i = vueExports.computed(() => Tt(n)), s = mu(), a = vueExports.inject(Ki, null), o = vueExports.ref(s === true || a == null ? vu(n.value) : a.resolveTarget());
-      return vueExports.watchEffect(() => {
+    let Xi = defineComponent({ name: "Portal", props: { as: { type: [Object, String], default: "div" } }, setup(e, { slots: t, attrs: r }) {
+      let n = ref(null), i = computed(() => Tt(n)), s = mu(), a = inject(Ki, null), o = ref(s === true || a == null ? vu(n.value) : a.resolveTarget());
+      return watchEffect(() => {
         s || a != null && (o.value = a.resolveTarget());
-      }), vueExports.onUnmounted(() => {
+      }), onUnmounted(() => {
         var l, u;
         let c = (l = i.value) == null ? void 0 : l.getElementById("headlessui-portal-root");
         c && o.value === c && o.value.children.length <= 0 && ((u = o.value.parentElement) == null || u.removeChild(o.value));
@@ -1678,20 +1571,20 @@ ${codeFrame}` : message);
         if (o.value === null)
           return null;
         let l = { ref: n, "data-headlessui-portal": "" };
-        return vueExports.h(vueExports.Teleport, { to: o.value }, Z({ ourProps: l, theirProps: e, slot: {}, attrs: r, slots: t, name: "Portal" }));
+        return h(Teleport, { to: o.value }, Z({ ourProps: l, theirProps: e, slot: {}, attrs: r, slots: t, name: "Portal" }));
       };
-    } }), Ki = Symbol("PortalGroupContext"), gu = vueExports.defineComponent({ name: "PortalGroup", props: { as: { type: [Object, String], default: "template" }, target: { type: Object, default: null } }, setup(e, { attrs: t, slots: r }) {
-      let n = vueExports.reactive({ resolveTarget() {
+    } }), Ki = Symbol("PortalGroupContext"), gu = defineComponent({ name: "PortalGroup", props: { as: { type: [Object, String], default: "template" }, target: { type: Object, default: null } }, setup(e, { attrs: t, slots: r }) {
+      let n = reactive({ resolveTarget() {
         return e.target;
       } });
-      return vueExports.provide(Ki, n), () => {
+      return provide(Ki, n), () => {
         let { target: i, ...s } = e;
         return Z({ theirProps: s, ourProps: {}, slot: {}, attrs: t, slots: r, name: "PortalGroup" });
       };
     } }), Ji = Symbol("StackContext");
     var Or = ((e) => (e[e.Add = 0] = "Add", e[e.Remove = 1] = "Remove", e))(Or || {});
     function yu() {
-      return vueExports.inject(Ji, () => {
+      return inject(Ji, () => {
       });
     }
     function bu({ type: e, enabled: t, element: r, onUpdate: n }) {
@@ -1699,41 +1592,41 @@ ${codeFrame}` : message);
       function s(...a) {
         n == null || n(...a), i(...a);
       }
-      vueExports.onMounted(() => {
-        vueExports.watch(t, (a, o) => {
+      onMounted(() => {
+        watch(t, (a, o) => {
           a ? s(0, e, r) : o === true && s(1, e, r);
         }, { immediate: true, flush: "sync" });
-      }), vueExports.onUnmounted(() => {
+      }), onUnmounted(() => {
         t.value && s(1, e, r);
-      }), vueExports.provide(Ji, s);
+      }), provide(Ji, s);
     }
     let Qi = Symbol("DescriptionContext");
     function wu() {
-      let e = vueExports.inject(Qi, null);
+      let e = inject(Qi, null);
       if (e === null)
         throw new Error("Missing parent");
       return e;
     }
-    function Su({ slot: e = vueExports.ref({}), name: t = "Description", props: r = {} } = {}) {
-      let n = vueExports.ref([]);
+    function Su({ slot: e = ref({}), name: t = "Description", props: r = {} } = {}) {
+      let n = ref([]);
       function i(s) {
         return n.value.push(s), () => {
           let a = n.value.indexOf(s);
           a !== -1 && n.value.splice(a, 1);
         };
       }
-      return vueExports.provide(Qi, { register: i, slot: e, name: t, props: r }), vueExports.computed(() => n.value.length > 0 ? n.value.join(" ") : void 0);
+      return provide(Qi, { register: i, slot: e, name: t, props: r }), computed(() => n.value.length > 0 ? n.value.join(" ") : void 0);
     }
-    vueExports.defineComponent({ name: "Description", props: { as: { type: [Object, String], default: "p" }, id: { type: String, default: () => `headlessui-description-${Ye()}` } }, setup(e, { attrs: t, slots: r }) {
+    defineComponent({ name: "Description", props: { as: { type: [Object, String], default: "p" }, id: { type: String, default: () => `headlessui-description-${Ye()}` } }, setup(e, { attrs: t, slots: r }) {
       let n = wu();
-      return vueExports.onMounted(() => vueExports.onUnmounted(n.register(e.id))), () => {
-        let { name: i = "Description", slot: s = vueExports.ref({}), props: a = {} } = n, { id: o, ...l } = e, u = { ...Object.entries(a).reduce((c, [v, g]) => Object.assign(c, { [v]: vueExports.unref(g) }), {}), id: o };
+      return onMounted(() => onUnmounted(n.register(e.id))), () => {
+        let { name: i = "Description", slot: s = ref({}), props: a = {} } = n, { id: o, ...l } = e, u = { ...Object.entries(a).reduce((c, [v, g]) => Object.assign(c, { [v]: unref(g) }), {}), id: o };
         return Z({ ourProps: u, theirProps: l, slot: s.value, attrs: t, slots: r, name: i });
       };
     } });
     function Ou(e) {
-      let t = vueExports.shallowRef(e.getSnapshot());
-      return vueExports.onUnmounted(e.subscribe(() => {
+      let t = shallowRef(e.getSnapshot());
+      return onUnmounted(e.subscribe(() => {
         t.value = e.getSnapshot();
       })), t;
     }
@@ -1858,11 +1751,11 @@ ${codeFrame}` : message);
       }
     });
     function Iu(e, t, r) {
-      let n = Ou(Ue), i = vueExports.computed(() => {
+      let n = Ou(Ue), i = computed(() => {
         let s = e.value ? n.value.get(e.value) : void 0;
         return s ? s.count > 0 : false;
       });
-      return vueExports.watch([e, t], ([s, a], [o], l) => {
+      return watch([e, t], ([s, a], [o], l) => {
         if (!s || !a)
           return;
         Ue.dispatch("PUSH", s, r);
@@ -1875,60 +1768,60 @@ ${codeFrame}` : message);
     var Au = ((e) => (e[e.Open = 0] = "Open", e[e.Closed = 1] = "Closed", e))(Au || {});
     let $r = Symbol("DialogContext");
     function xt(e) {
-      let t = vueExports.inject($r, null);
+      let t = inject($r, null);
       if (t === null) {
         let r = new Error(`<${e} /> is missing a parent <Dialog /> component.`);
         throw Error.captureStackTrace && Error.captureStackTrace(r, xt), r;
       }
       return t;
     }
-    let qt = "DC8F892D-2EBD-447C-A4C8-A03058436FF4", en = vueExports.defineComponent({ name: "Dialog", inheritAttrs: false, props: { as: { type: [Object, String], default: "div" }, static: { type: Boolean, default: false }, unmount: { type: Boolean, default: true }, open: { type: [Boolean, String], default: qt }, initialFocus: { type: Object, default: null }, id: { type: String, default: () => `headlessui-dialog-${Ye()}` } }, emits: { close: (e) => true }, setup(e, { emit: t, attrs: r, slots: n, expose: i }) {
+    let qt = "DC8F892D-2EBD-447C-A4C8-A03058436FF4", en = defineComponent({ name: "Dialog", inheritAttrs: false, props: { as: { type: [Object, String], default: "div" }, static: { type: Boolean, default: false }, unmount: { type: Boolean, default: true }, open: { type: [Boolean, String], default: qt }, initialFocus: { type: Object, default: null }, id: { type: String, default: () => `headlessui-dialog-${Ye()}` } }, emits: { close: (e) => true }, setup(e, { emit: t, attrs: r, slots: n, expose: i }) {
       var s;
-      let a = vueExports.ref(false);
-      vueExports.onMounted(() => {
+      let a = ref(false);
+      onMounted(() => {
         a.value = true;
       });
-      let o = vueExports.ref(0), l = Zr(), u = vueExports.computed(() => e.open === qt && l !== null ? (l.value & G.Open) === G.Open : e.open), c = vueExports.ref(null), v = vueExports.ref(null), g = vueExports.computed(() => Tt(c));
+      let o = ref(0), l = Zr(), u = computed(() => e.open === qt && l !== null ? (l.value & G.Open) === G.Open : e.open), c = ref(null), v = ref(null), g = computed(() => Tt(c));
       if (i({ el: c, $el: c }), !(e.open !== qt || l !== null))
         throw new Error("You forgot to provide an `open` prop to the `Dialog`.");
       if (typeof u.value != "boolean")
         throw new Error(`You provided an \`open\` prop to the \`Dialog\`, but the value is not a boolean. Received: ${u.value === qt ? void 0 : e.open}`);
-      let f = vueExports.computed(() => a.value && u.value ? 0 : 1), h = vueExports.computed(() => f.value === 0), m = vueExports.computed(() => o.value > 1), d = vueExports.inject($r, null) !== null, b = vueExports.computed(() => m.value ? "parent" : "leaf"), O = vueExports.computed(() => l !== null ? (l.value & G.Closing) === G.Closing : false), A = vueExports.computed(() => d || O.value ? false : h.value), S = vueExports.computed(() => {
+      let f = computed(() => a.value && u.value ? 0 : 1), h$1 = computed(() => f.value === 0), m = computed(() => o.value > 1), d = inject($r, null) !== null, b = computed(() => m.value ? "parent" : "leaf"), O = computed(() => l !== null ? (l.value & G.Closing) === G.Closing : false), A = computed(() => d || O.value ? false : h$1.value), S = computed(() => {
         var E, T, I;
         return (I = Array.from((T = (E = g.value) == null ? void 0 : E.querySelectorAll("body > *")) != null ? T : []).find((C) => C.id === "headlessui-portal-root" ? false : C.contains(D(v)) && C instanceof HTMLElement)) != null ? I : null;
       });
       Fn(S, A);
-      let $ = vueExports.computed(() => m.value ? true : h.value), w = vueExports.computed(() => {
+      let $ = computed(() => m.value ? true : h$1.value), w = computed(() => {
         var E, T, I;
         return (I = Array.from((T = (E = g.value) == null ? void 0 : E.querySelectorAll("[data-headlessui-portal]")) != null ? T : []).find((C) => C.contains(D(v)) && C instanceof HTMLElement)) != null ? I : null;
       });
-      Fn(w, $), bu({ type: "Dialog", enabled: vueExports.computed(() => f.value === 0), element: c, onUpdate: (E, T) => {
+      Fn(w, $), bu({ type: "Dialog", enabled: computed(() => f.value === 0), element: c, onUpdate: (E, T) => {
         if (T === "Dialog")
           return fe(E, { [Or.Add]: () => o.value += 1, [Or.Remove]: () => o.value -= 1 });
       } });
-      let _ = Su({ name: "DialogDescription", slot: vueExports.computed(() => ({ open: u.value })) }), q = vueExports.ref(null), P = { titleId: q, panelRef: vueExports.ref(null), dialogState: f, setTitleId(E) {
+      let _ = Su({ name: "DialogDescription", slot: computed(() => ({ open: u.value })) }), q = ref(null), P = { titleId: q, panelRef: ref(null), dialogState: f, setTitleId(E) {
         q.value !== E && (q.value = E);
       }, close() {
         t("close", false);
       } };
-      vueExports.provide($r, P);
+      provide($r, P);
       function k() {
         var E, T, I;
         return [...Array.from((T = (E = g.value) == null ? void 0 : E.querySelectorAll("html > *, body > *, [data-headlessui-portal]")) != null ? T : []).filter((C) => !(C === document.body || C === document.head || !(C instanceof HTMLElement) || C.contains(D(v)) || P.panelRef.value && C.contains(P.panelRef.value))), (I = P.panelRef.value) != null ? I : c.value];
       }
-      let j = vueExports.computed(() => !(!h.value || m.value));
+      let j = computed(() => !(!h$1.value || m.value));
       au(() => k(), (E, T) => {
-        P.close(), vueExports.nextTick(() => T == null ? void 0 : T.focus());
+        P.close(), nextTick(() => T == null ? void 0 : T.focus());
       }, j);
-      let H = vueExports.computed(() => !(m.value || f.value !== 0));
+      let H = computed(() => !(m.value || f.value !== 0));
       Vi((s = g.value) == null ? void 0 : s.defaultView, "keydown", (E) => {
         H.value && (E.defaultPrevented || E.key === ji.Escape && (E.preventDefault(), E.stopPropagation(), P.close()));
       });
-      let F = vueExports.computed(() => !(O.value || f.value !== 0 || d));
+      let F = computed(() => !(O.value || f.value !== 0 || d));
       return Iu(g, F, (E) => {
         var T;
         return { containers: [...(T = E.containers) != null ? T : [], k] };
-      }), vueExports.watchEffect((E) => {
+      }), watchEffect((E) => {
         if (f.value !== 0)
           return;
         let T = D(c);
@@ -1943,10 +1836,10 @@ ${codeFrame}` : message);
         I.observe(T), E(() => I.disconnect());
       }), () => {
         let { id: E, open: T, initialFocus: I, ...C } = e, ge = { ...r, ref: c, id: E, role: "dialog", "aria-modal": f.value === 0 ? true : void 0, "aria-labelledby": q.value, "aria-describedby": _.value }, U = { open: f.value === 0 };
-        return vueExports.h(Sr, { force: true }, () => [vueExports.h(Xi, () => vueExports.h(gu, { target: c.value }, () => vueExports.h(Sr, { force: false }, () => vueExports.h(pt, { initialFocus: I, containers: k, features: h.value ? fe(b.value, { parent: pt.features.RestoreFocus, leaf: pt.features.All & ~pt.features.FocusLock }) : pt.features.None }, () => Z({ ourProps: ge, theirProps: C, slot: U, attrs: r, slots: n, visible: f.value === 0, features: Dt.RenderStrategy | Dt.Static, name: "Dialog" }))))), vueExports.h(wr, { features: Nt.Hidden, ref: v })]);
+        return h(Sr, { force: true }, () => [h(Xi, () => h(gu, { target: c.value }, () => h(Sr, { force: false }, () => h(pt, { initialFocus: I, containers: k, features: h$1.value ? fe(b.value, { parent: pt.features.RestoreFocus, leaf: pt.features.All & ~pt.features.FocusLock }) : pt.features.None }, () => Z({ ourProps: ge, theirProps: C, slot: U, attrs: r, slots: n, visible: f.value === 0, features: Dt.RenderStrategy | Dt.Static, name: "Dialog" }))))), h(wr, { features: Nt.Hidden, ref: v })]);
       };
     } });
-    vueExports.defineComponent({ name: "DialogOverlay", props: { as: { type: [Object, String], default: "div" }, id: { type: String, default: () => `headlessui-dialog-overlay-${Ye()}` } }, setup(e, { attrs: t, slots: r }) {
+    defineComponent({ name: "DialogOverlay", props: { as: { type: [Object, String], default: "div" }, id: { type: String, default: () => `headlessui-dialog-overlay-${Ye()}` } }, setup(e, { attrs: t, slots: r }) {
       let n = xt("DialogOverlay");
       function i(s) {
         s.target === s.currentTarget && (s.preventDefault(), s.stopPropagation(), n.close());
@@ -1956,17 +1849,17 @@ ${codeFrame}` : message);
         return Z({ ourProps: { id: s, "aria-hidden": true, onClick: i }, theirProps: a, slot: { open: n.dialogState.value === 0 }, attrs: t, slots: r, name: "DialogOverlay" });
       };
     } });
-    vueExports.defineComponent({ name: "DialogBackdrop", props: { as: { type: [Object, String], default: "div" }, id: { type: String, default: () => `headlessui-dialog-backdrop-${Ye()}` } }, inheritAttrs: false, setup(e, { attrs: t, slots: r, expose: n }) {
-      let i = xt("DialogBackdrop"), s = vueExports.ref(null);
-      return n({ el: s, $el: s }), vueExports.onMounted(() => {
+    defineComponent({ name: "DialogBackdrop", props: { as: { type: [Object, String], default: "div" }, id: { type: String, default: () => `headlessui-dialog-backdrop-${Ye()}` } }, inheritAttrs: false, setup(e, { attrs: t, slots: r, expose: n }) {
+      let i = xt("DialogBackdrop"), s = ref(null);
+      return n({ el: s, $el: s }), onMounted(() => {
         if (i.panelRef.value === null)
           throw new Error("A <DialogBackdrop /> component is being used, but a <DialogPanel /> component is missing.");
       }), () => {
         let { id: a, ...o } = e, l = { id: a, ref: s, "aria-hidden": true };
-        return vueExports.h(Sr, { force: true }, () => vueExports.h(Xi, () => Z({ ourProps: l, theirProps: { ...t, ...o }, slot: { open: i.dialogState.value === 0 }, attrs: t, slots: r, name: "DialogBackdrop" })));
+        return h(Sr, { force: true }, () => h(Xi, () => Z({ ourProps: l, theirProps: { ...t, ...o }, slot: { open: i.dialogState.value === 0 }, attrs: t, slots: r, name: "DialogBackdrop" })));
       };
     } });
-    let tn = vueExports.defineComponent({ name: "DialogPanel", props: { as: { type: [Object, String], default: "div" }, id: { type: String, default: () => `headlessui-dialog-panel-${Ye()}` } }, setup(e, { attrs: t, slots: r, expose: n }) {
+    let tn = defineComponent({ name: "DialogPanel", props: { as: { type: [Object, String], default: "div" }, id: { type: String, default: () => `headlessui-dialog-panel-${Ye()}` } }, setup(e, { attrs: t, slots: r, expose: n }) {
       let i = xt("DialogPanel");
       n({ el: i.panelRef, $el: i.panelRef });
       function s(a) {
@@ -1977,10 +1870,10 @@ ${codeFrame}` : message);
         return Z({ ourProps: l, theirProps: o, slot: { open: i.dialogState.value === 0 }, attrs: t, slots: r, name: "DialogPanel" });
       };
     } });
-    vueExports.defineComponent({ name: "DialogTitle", props: { as: { type: [Object, String], default: "h2" }, id: { type: String, default: () => `headlessui-dialog-title-${Ye()}` } }, setup(e, { attrs: t, slots: r }) {
+    defineComponent({ name: "DialogTitle", props: { as: { type: [Object, String], default: "h2" }, id: { type: String, default: () => `headlessui-dialog-title-${Ye()}` } }, setup(e, { attrs: t, slots: r }) {
       let n = xt("DialogTitle");
-      return vueExports.onMounted(() => {
-        n.setTitleId(e.id), vueExports.onUnmounted(() => n.setTitleId(null));
+      return onMounted(() => {
+        n.setTitleId(e.id), onUnmounted(() => n.setTitleId(null));
       }), () => {
         let { id: i, ...s } = e;
         return Z({ ourProps: { id: i }, theirProps: s, slot: { open: n.dialogState.value === 0 }, attrs: t, slots: r, name: "DialogTitle" });
@@ -2023,16 +1916,16 @@ ${codeFrame}` : message);
     let rn = Symbol("TransitionContext");
     var Cu = ((e) => (e.Visible = "visible", e.Hidden = "hidden", e))(Cu || {});
     function Fu() {
-      return vueExports.inject(rn, null) !== null;
+      return inject(rn, null) !== null;
     }
     function ku() {
-      let e = vueExports.inject(rn, null);
+      let e = inject(rn, null);
       if (e === null)
         throw new Error("A <TransitionChild /> is used but it is missing a parent <TransitionRoot />.");
       return e;
     }
     function Lu() {
-      let e = vueExports.inject(nn, null);
+      let e = inject(nn, null);
       if (e === null)
         throw new Error("A <TransitionChild /> is used but it is missing a parent <TransitionRoot />.");
       return e;
@@ -2042,8 +1935,8 @@ ${codeFrame}` : message);
       return "children" in e ? Zt(e.children) : e.value.filter(({ state: t }) => t === "visible").length > 0;
     }
     function Yi(e) {
-      let t = vueExports.ref([]), r = vueExports.ref(false);
-      vueExports.onMounted(() => r.value = true), vueExports.onUnmounted(() => r.value = false);
+      let t = ref([]), r = ref(false);
+      onMounted(() => r.value = true), onUnmounted(() => r.value = false);
       function n(s, a = Ce.Hidden) {
         let o = t.value.findIndex(({ id: l }) => l === s);
         o !== -1 && (fe(a, { [Ce.Unmount]() {
@@ -2058,8 +1951,8 @@ ${codeFrame}` : message);
       }
       return { children: t, register: i, unregister: n };
     }
-    let Zi = Dt.RenderStrategy, lt = vueExports.defineComponent({ props: { as: { type: [Object, String], default: "div" }, show: { type: [Boolean], default: null }, unmount: { type: [Boolean], default: true }, appear: { type: [Boolean], default: false }, enter: { type: [String], default: "" }, enterFrom: { type: [String], default: "" }, enterTo: { type: [String], default: "" }, entered: { type: [String], default: "" }, leave: { type: [String], default: "" }, leaveFrom: { type: [String], default: "" }, leaveTo: { type: [String], default: "" } }, emits: { beforeEnter: () => true, afterEnter: () => true, beforeLeave: () => true, afterLeave: () => true }, setup(e, { emit: t, attrs: r, slots: n, expose: i }) {
-      let s = vueExports.ref(0);
+    let Zi = Dt.RenderStrategy, lt = defineComponent({ props: { as: { type: [Object, String], default: "div" }, show: { type: [Boolean], default: null }, unmount: { type: [Boolean], default: true }, appear: { type: [Boolean], default: false }, enter: { type: [String], default: "" }, enterFrom: { type: [String], default: "" }, enterTo: { type: [String], default: "" }, entered: { type: [String], default: "" }, leave: { type: [String], default: "" }, leaveFrom: { type: [String], default: "" }, leaveTo: { type: [String], default: "" } }, emits: { beforeEnter: () => true, afterEnter: () => true, beforeLeave: () => true, afterLeave: () => true }, setup(e, { emit: t, attrs: r, slots: n, expose: i }) {
+      let s = ref(0);
       function a() {
         s.value |= G.Opening, t("beforeEnter");
       }
@@ -2073,27 +1966,27 @@ ${codeFrame}` : message);
         s.value &= ~G.Closing, t("afterLeave");
       }
       if (!Fu() && Xl())
-        return () => vueExports.h(ut, { ...e, onBeforeEnter: a, onAfterEnter: o, onBeforeLeave: l, onAfterLeave: u }, n);
-      let c = vueExports.ref(null), v = vueExports.computed(() => e.unmount ? Ce.Unmount : Ce.Hidden);
+        return () => h(ut, { ...e, onBeforeEnter: a, onAfterEnter: o, onBeforeLeave: l, onAfterLeave: u }, n);
+      let c = ref(null), v = computed(() => e.unmount ? Ce.Unmount : Ce.Hidden);
       i({ el: c, $el: c });
-      let { show: g, appear: f } = ku(), { register: h, unregister: m } = Lu(), d = vueExports.ref(g.value ? "visible" : "hidden"), b = { value: true }, O = Ye(), A = { value: false }, S = Yi(() => {
+      let { show: g, appear: f } = ku(), { register: h$1, unregister: m } = Lu(), d = ref(g.value ? "visible" : "hidden"), b = { value: true }, O = Ye(), A = { value: false }, S = Yi(() => {
         !A.value && d.value !== "hidden" && (d.value = "hidden", m(O), u());
       });
-      vueExports.onMounted(() => {
-        let F = h(O);
-        vueExports.onUnmounted(F);
-      }), vueExports.watchEffect(() => {
+      onMounted(() => {
+        let F = h$1(O);
+        onUnmounted(F);
+      }), watchEffect(() => {
         if (v.value === Ce.Hidden && O) {
           if (g.value && d.value !== "visible") {
             d.value = "visible";
             return;
           }
-          fe(d.value, { hidden: () => m(O), visible: () => h(O) });
+          fe(d.value, { hidden: () => m(O), visible: () => h$1(O) });
         }
       });
       let $ = Ne(e.enter), w = Ne(e.enterFrom), _ = Ne(e.enterTo), q = Ne(e.entered), P = Ne(e.leave), k = Ne(e.leaveFrom), j = Ne(e.leaveTo);
-      vueExports.onMounted(() => {
-        vueExports.watchEffect(() => {
+      onMounted(() => {
+        watchEffect(() => {
           if (d.value === "visible") {
             let F = D(c);
             if (F instanceof Comment && F.data === "")
@@ -2109,30 +2002,30 @@ ${codeFrame}` : message);
           A.value = false, I === Er.Finished && (Zt(S) || (d.value = "hidden", m(O), u()));
         })));
       }
-      return vueExports.onMounted(() => {
-        vueExports.watch([g], (F, E, T) => {
+      return onMounted(() => {
+        watch([g], (F, E, T) => {
           H(T), b.value = false;
         }, { immediate: true });
-      }), vueExports.provide(nn, S), Kl(vueExports.computed(() => fe(d.value, { visible: G.Open, hidden: G.Closed }) | s.value)), () => {
-        let { appear: F, show: E, enter: T, enterFrom: I, enterTo: C, entered: ge, leave: U, leaveFrom: ct, leaveTo: It, ...Ie } = e, Ze = { ref: c }, Ae = { ...Ie, ...f.value && g.value && Et.isServer ? { class: vueExports.normalizeClass([r.class, Ie.class, ...$, ...w]) } : {} };
+      }), provide(nn, S), Kl(computed(() => fe(d.value, { visible: G.Open, hidden: G.Closed }) | s.value)), () => {
+        let { appear: F, show: E, enter: T, enterFrom: I, enterTo: C, entered: ge, leave: U, leaveFrom: ct, leaveTo: It, ...Ie } = e, Ze = { ref: c }, Ae = { ...Ie, ...f.value && g.value && Et.isServer ? { class: normalizeClass([r.class, Ie.class, ...$, ...w]) } : {} };
         return Z({ theirProps: Ae, ourProps: Ze, slot: {}, slots: n, attrs: r, features: Zi, visible: d.value === "visible", name: "TransitionChild" });
       };
-    } }), Ru = lt, ut = vueExports.defineComponent({ inheritAttrs: false, props: { as: { type: [Object, String], default: "div" }, show: { type: [Boolean], default: null }, unmount: { type: [Boolean], default: true }, appear: { type: [Boolean], default: false }, enter: { type: [String], default: "" }, enterFrom: { type: [String], default: "" }, enterTo: { type: [String], default: "" }, entered: { type: [String], default: "" }, leave: { type: [String], default: "" }, leaveFrom: { type: [String], default: "" }, leaveTo: { type: [String], default: "" } }, emits: { beforeEnter: () => true, afterEnter: () => true, beforeLeave: () => true, afterLeave: () => true }, setup(e, { emit: t, attrs: r, slots: n }) {
-      let i = Zr(), s = vueExports.computed(() => e.show === null && i !== null ? (i.value & G.Open) === G.Open : e.show);
-      vueExports.watchEffect(() => {
+    } }), Ru = lt, ut = defineComponent({ inheritAttrs: false, props: { as: { type: [Object, String], default: "div" }, show: { type: [Boolean], default: null }, unmount: { type: [Boolean], default: true }, appear: { type: [Boolean], default: false }, enter: { type: [String], default: "" }, enterFrom: { type: [String], default: "" }, enterTo: { type: [String], default: "" }, entered: { type: [String], default: "" }, leave: { type: [String], default: "" }, leaveFrom: { type: [String], default: "" }, leaveTo: { type: [String], default: "" } }, emits: { beforeEnter: () => true, afterEnter: () => true, beforeLeave: () => true, afterLeave: () => true }, setup(e, { emit: t, attrs: r, slots: n }) {
+      let i = Zr(), s = computed(() => e.show === null && i !== null ? (i.value & G.Open) === G.Open : e.show);
+      watchEffect(() => {
         if (![true, false].includes(s.value))
           throw new Error('A <Transition /> is used but it is missing a `:show="true | false"` prop.');
       });
-      let a = vueExports.ref(s.value ? "visible" : "hidden"), o = Yi(() => {
+      let a = ref(s.value ? "visible" : "hidden"), o = Yi(() => {
         a.value = "hidden";
-      }), l = vueExports.ref(true), u = { show: s, appear: vueExports.computed(() => e.appear || !l.value) };
-      return vueExports.onMounted(() => {
-        vueExports.watchEffect(() => {
+      }), l = ref(true), u = { show: s, appear: computed(() => e.appear || !l.value) };
+      return onMounted(() => {
+        watchEffect(() => {
           l.value = false, s.value ? a.value = "visible" : Zt(o) || (a.value = "hidden");
         });
-      }), vueExports.provide(nn, o), vueExports.provide(rn, u), () => {
+      }), provide(nn, o), provide(rn, u), () => {
         let c = Bi(e, ["show", "appear", "unmount", "onBeforeEnter", "onBeforeLeave", "onAfterEnter", "onAfterLeave"]), v = { unmount: e.unmount };
-        return Z({ ourProps: { ...v, as: "template" }, theirProps: {}, slot: {}, slots: { ...n, default: () => [vueExports.h(Ru, { onBeforeEnter: () => t("beforeEnter"), onAfterEnter: () => t("afterEnter"), onBeforeLeave: () => t("beforeLeave"), onAfterLeave: () => t("afterLeave"), ...r, ...v, ...c }, n.default)] }, attrs: {}, features: Zi, visible: a.value === "visible", name: "Transition" });
+        return Z({ ourProps: { ...v, as: "template" }, theirProps: {}, slot: {}, slots: { ...n, default: () => [h(Ru, { onBeforeEnter: () => t("beforeEnter"), onAfterEnter: () => t("afterEnter"), onBeforeLeave: () => t("beforeLeave"), onAfterLeave: () => t("afterLeave"), ...r, ...v, ...c }, n.default)] }, attrs: {}, features: Zi, visible: a.value === "visible", name: "Transition" });
       };
     } });
     const Bu = {
@@ -2475,7 +2368,7 @@ ${codeFrame}` : message);
         var _ = n, q = i;
         return n = i = void 0, u = w, a = e.apply(q, _), a;
       }
-      function h(w) {
+      function h2(w) {
         return u = w, o = setTimeout(b, t), c ? f(w) : a;
       }
       function m(w) {
@@ -2505,7 +2398,7 @@ ${codeFrame}` : message);
         var w = mr(), _ = d(w);
         if (n = arguments, i = this, l = w, _) {
           if (o === void 0)
-            return h(l);
+            return h2(l);
           if (v)
             return clearTimeout(o), o = setTimeout(b, t), f(l);
         }
@@ -2659,20 +2552,20 @@ ${codeFrame}` : message);
         }
       },
       setup(e) {
-        const t = e, r = vueExports.ref(null), n = vueExports.ref(null), i = vueExports.ref(null);
-        return vueExports.onMounted(() => {
+        const t = e, r = ref(null), n = ref(null), i = ref(null);
+        return onMounted(() => {
           r.value = (s) => {
             n.value.children[0].contains(s.target) || t.ignoreInnerTargets && n.value.contains(s.target) || t.do();
           }, document.addEventListener("click", r.value), document.addEventListener("touchstart", r.value), t.closeOnEscape && (i.value = (s) => {
             t.opened && s.key === "Escape" && t.do();
           }, document.addEventListener("keydown", i.value));
-        }), vueExports.onBeforeUnmount(() => {
+        }), onBeforeUnmount(() => {
           document.removeEventListener("click", r.value), document.removeEventListener("touchstart", r.value), t.closeOnEscape && document.removeEventListener("keydown", i.value);
-        }), (s, a) => (vueExports.openBlock(), vueExports.createElementBlock("div", {
+        }), (s, a) => (openBlock(), createElementBlock("div", {
           ref_key: "root",
           ref: n
         }, [
-          vueExports.renderSlot(s.$slots, "default")
+          renderSlot(s.$slots, "default")
         ], 512));
       }
     };
@@ -3035,7 +2928,7 @@ ${codeFrame}` : message);
     }
     function cn(e, t) {
       t === void 0 && (t = {});
-      var r = t, n = r.placement, i = n === void 0 ? e.placement : n, s = r.strategy, a = s === void 0 ? e.strategy : s, o = r.boundary, l = o === void 0 ? dc : o, u = r.rootBoundary, c = u === void 0 ? as : u, v = r.elementContext, g = v === void 0 ? mt : v, f = r.altBoundary, h = f === void 0 ? false : f, m = r.padding, d = m === void 0 ? 0 : m, b = kc(typeof d != "number" ? d : Lc(d, nr)), O = g === mt ? fc : mt, A = e.rects.popper, S = e.elements[h ? O : g], $ = Fc(Xe(S) ? S : S.contextElement || je(e.elements.popper), l, c, a), w = it(e.elements.reference), _ = ls({
+      var r = t, n = r.placement, i = n === void 0 ? e.placement : n, s = r.strategy, a = s === void 0 ? e.strategy : s, o = r.boundary, l = o === void 0 ? dc : o, u = r.rootBoundary, c = u === void 0 ? as : u, v = r.elementContext, g = v === void 0 ? mt : v, f = r.altBoundary, h2 = f === void 0 ? false : f, m = r.padding, d = m === void 0 ? 0 : m, b = kc(typeof d != "number" ? d : Lc(d, nr)), O = g === mt ? fc : mt, A = e.rects.popper, S = e.elements[h2 ? O : g], $ = Fc(Xe(S) ? S : S.contextElement || je(e.elements.popper), l, c, a), w = it(e.elements.reference), _ = ls({
         reference: w,
         element: A,
         strategy: "absolute",
@@ -3094,7 +2987,7 @@ ${codeFrame}` : message);
             var A = Tc(_c([].concat(n, c.options.modifiers)));
             return c.orderedModifiers = A.filter(function(S) {
               return S.enabled;
-            }), h(), f.update();
+            }), h2(), f.update();
           },
           // Sync update – it will always be executed, even if not necessary. This
           // is useful for low frequency updates where sync behavior simplifies the
@@ -3143,7 +3036,7 @@ ${codeFrame}` : message);
         f.setOptions(u).then(function(d) {
           !g && u.onFirstUpdate && u.onFirstUpdate(d);
         });
-        function h() {
+        function h2() {
           c.orderedModifiers.forEach(function(d) {
             var b = d.name, O = d.options, A = O === void 0 ? {} : O, S = d.effect;
             if (typeof S == "function") {
@@ -3218,7 +3111,7 @@ ${codeFrame}` : message);
       };
     }
     function Vn(e) {
-      var t, r = e.popper, n = e.popperRect, i = e.placement, s = e.variation, a = e.offsets, o = e.position, l = e.gpuAcceleration, u = e.adaptive, c = e.roundOffsets, v = e.isFixed, g = a.x, f = g === void 0 ? 0 : g, h = a.y, m = h === void 0 ? 0 : h, d = typeof c == "function" ? c({
+      var t, r = e.popper, n = e.popperRect, i = e.placement, s = e.variation, a = e.offsets, o = e.position, l = e.gpuAcceleration, u = e.adaptive, c = e.roundOffsets, v = e.isFixed, g = a.x, f = g === void 0 ? 0 : g, h2 = a.y, m = h2 === void 0 ? 0 : h2, d = typeof c == "function" ? c({
         x: f,
         y: m
       }) : {
@@ -3347,7 +3240,7 @@ ${codeFrame}` : message);
       return n > r ? r : n;
     }
     function Yc(e) {
-      var t = e.state, r = e.options, n = e.name, i = r.mainAxis, s = i === void 0 ? true : i, a = r.altAxis, o = a === void 0 ? false : a, l = r.boundary, u = r.rootBoundary, c = r.altBoundary, v = r.padding, g = r.tether, f = g === void 0 ? true : g, h = r.tetherOffset, m = h === void 0 ? 0 : h, d = cn(t, {
+      var t = e.state, r = e.options, n = e.name, i = r.mainAxis, s = i === void 0 ? true : i, a = r.altAxis, o = a === void 0 ? false : a, l = r.boundary, u = r.rootBoundary, c = r.altBoundary, v = r.padding, g = r.tether, f = g === void 0 ? true : g, h2 = r.tetherOffset, m = h2 === void 0 ? 0 : h2, d = cn(t, {
         boundary: l,
         rootBoundary: u,
         padding: v,
@@ -3408,22 +3301,22 @@ ${codeFrame}` : message);
     }
     function rd(e, t) {
       t === void 0 && (t = {});
-      var r = t, n = r.placement, i = r.boundary, s = r.rootBoundary, a = r.padding, o = r.flipVariations, l = r.allowedAutoPlacements, u = l === void 0 ? pc : l, c = at(n), v = c ? o ? jn : jn.filter(function(h) {
-        return at(h) === c;
-      }) : nr, g = v.filter(function(h) {
-        return u.indexOf(h) >= 0;
+      var r = t, n = r.placement, i = r.boundary, s = r.rootBoundary, a = r.padding, o = r.flipVariations, l = r.allowedAutoPlacements, u = l === void 0 ? pc : l, c = at(n), v = c ? o ? jn : jn.filter(function(h2) {
+        return at(h2) === c;
+      }) : nr, g = v.filter(function(h2) {
+        return u.indexOf(h2) >= 0;
       });
       g.length === 0 && (g = v);
-      var f = g.reduce(function(h, m) {
-        return h[m] = cn(e, {
+      var f = g.reduce(function(h2, m) {
+        return h2[m] = cn(e, {
           placement: m,
           boundary: i,
           rootBoundary: s,
           padding: a
-        })[Fe(m)], h;
+        })[Fe(m)], h2;
       }, {});
-      return Object.keys(f).sort(function(h, m) {
-        return f[h] - f[m];
+      return Object.keys(f).sort(function(h2, m) {
+        return f[h2] - f[m];
       });
     }
     function nd(e) {
@@ -3435,13 +3328,13 @@ ${codeFrame}` : message);
     function id(e) {
       var t = e.state, r = e.options, n = e.name;
       if (!t.modifiersData[n]._skip) {
-        for (var i = r.mainAxis, s = i === void 0 ? true : i, a = r.altAxis, o = a === void 0 ? true : a, l = r.fallbackPlacements, u = r.padding, c = r.boundary, v = r.rootBoundary, g = r.altBoundary, f = r.flipVariations, h = f === void 0 ? true : f, m = r.allowedAutoPlacements, d = t.options.placement, b = Fe(d), O = b === d, A = l || (O || !h ? [Bt(d)] : nd(d)), S = [d].concat(A).reduce(function(Ae, Pe) {
+        for (var i = r.mainAxis, s = i === void 0 ? true : i, a = r.altAxis, o = a === void 0 ? true : a, l = r.fallbackPlacements, u = r.padding, c = r.boundary, v = r.rootBoundary, g = r.altBoundary, f = r.flipVariations, h2 = f === void 0 ? true : f, m = r.allowedAutoPlacements, d = t.options.placement, b = Fe(d), O = b === d, A = l || (O || !h2 ? [Bt(d)] : nd(d)), S = [d].concat(A).reduce(function(Ae, Pe) {
           return Ae.concat(Fe(Pe) === un ? rd(t, {
             placement: Pe,
             boundary: c,
             rootBoundary: v,
             padding: u,
-            flipVariations: h,
+            flipVariations: h2,
             allowedAutoPlacements: m
           }) : Pe);
         }, []), $ = t.rects.reference, w = t.rects.popper, _ = /* @__PURE__ */ new Map(), q = true, P = S[0], k = 0; k < S.length; k++) {
@@ -3463,7 +3356,7 @@ ${codeFrame}` : message);
           _.set(j, U);
         }
         if (q)
-          for (var ct = h ? 3 : 1, It = function(Pe) {
+          for (var ct = h2 ? 3 : 1, It = function(Pe) {
             var dt = S.find(function(At) {
               var Me = _.get(At);
               if (Me)
@@ -3556,7 +3449,7 @@ ${codeFrame}` : message);
         }
       },
       mounted: async function() {
-        this.teleport && await vueExports.nextTick();
+        this.teleport && await nextTick();
         const e = this.teleport ? document.querySelector(`div[data-splade-dropdown-id="${this.spladeId}"]`) : this.$refs.tooltip.children[0];
         this.popper = Kc(this.$refs.button, e, {
           placement: this.placement,
@@ -3574,25 +3467,25 @@ ${codeFrame}` : message);
       }
     }, od = { ref: "tooltip" };
     function ld(e, t, r, n, i, s) {
-      const a = vueExports.resolveComponent("OnClickOutside");
-      return vueExports.openBlock(), vueExports.createBlock(a, {
-        style: vueExports.normalizeStyle(s.wrapperStyle),
+      const a = resolveComponent("OnClickOutside");
+      return openBlock(), createBlock(a, {
+        style: normalizeStyle(s.wrapperStyle),
         do: s.hide,
         opened: i.opened,
         "ignore-inner-targets": !r.closeOnClick
       }, {
-        default: vueExports.withCtx(() => [
-          vueExports.createElementVNode("div", {
+        default: withCtx(() => [
+          createElementVNode("div", {
             ref: "button",
-            style: vueExports.normalizeStyle(s.buttonStyle)
+            style: normalizeStyle(s.buttonStyle)
           }, [
-            vueExports.renderSlot(e.$slots, "button", {
+            renderSlot(e.$slots, "button", {
               toggle: s.toggle,
               disabled: r.disabled
             })
           ], 4),
-          vueExports.createElementVNode("div", od, [
-            vueExports.renderSlot(e.$slots, "default", {
+          createElementVNode("div", od, [
+            renderSlot(e.$slots, "default", {
               hide: s.hide,
               opened: i.opened
             })
@@ -3621,18 +3514,18 @@ ${codeFrame}` : message);
         }
       },
       setup(e) {
-        const t = vueExports.inject("$splade") || {}, r = vueExports.inject("$spladeOptions") || {};
-        return (n, i) => vueExports.unref(t).isSsr ? (vueExports.openBlock(), vueExports.createBlock(ue, {
+        const t = inject("$splade") || {}, r = inject("$spladeOptions") || {};
+        return (n, i) => unref(t).isSsr ? (openBlock(), createBlock(ue, {
           key: e.keepAliveKey,
-          html: vueExports.unref(t).htmlForDynamicComponent(e.name),
+          html: unref(t).htmlForDynamicComponent(e.name),
           passthrough: e.passthrough
-        }, null, 8, ["html", "passthrough"])) : (vueExports.openBlock(), vueExports.createBlock(vueExports.KeepAlive, {
+        }, null, 8, ["html", "passthrough"])) : (openBlock(), createBlock(KeepAlive, {
           key: 0,
-          max: vueExports.unref(r).max_keep_alive
+          max: unref(r).max_keep_alive
         }, [
-          (vueExports.openBlock(), vueExports.createBlock(ue, {
+          (openBlock(), createBlock(ue, {
             key: e.keepAliveKey,
-            html: vueExports.unref(t).htmlForDynamicComponent(e.name),
+            html: unref(t).htmlForDynamicComponent(e.name),
             passthrough: e.passthrough
           }, null, 8, ["html", "passthrough"]))
         ], 1032, ["max"]));
@@ -3817,9 +3710,9 @@ ${codeFrame}` : message);
         return u == t && c == e;
       var v = -1, g = true, f = r & Td ? new Ht() : void 0;
       for (s.set(e, t), s.set(t, e); ++v < o; ) {
-        var h = e[v], m = t[v];
+        var h2 = e[v], m = t[v];
         if (n)
-          var d = a ? n(m, h, v, t, e, s) : n(h, m, v, e, t, s);
+          var d = a ? n(m, h2, v, t, e, s) : n(h2, m, v, e, t, s);
         if (d !== void 0) {
           if (d)
             continue;
@@ -3828,13 +3721,13 @@ ${codeFrame}` : message);
         }
         if (f) {
           if (!Od(t, function(b, O) {
-            if (!$d(f, O) && (h === b || i(h, b, r, n, s)))
+            if (!$d(f, O) && (h2 === b || i(h2, b, r, n, s)))
               return f.push(O);
           })) {
             g = false;
             break;
           }
-        } else if (!(h === m || i(h, m, r, n, s))) {
+        } else if (!(h2 === m || i(h2, m, r, n, s))) {
           g = false;
           break;
         }
@@ -3929,9 +3822,9 @@ ${codeFrame}` : message);
         if (!(a ? g in t : Yd.call(t, g)))
           return false;
       }
-      var f = s.get(e), h = s.get(t);
-      if (f && h)
-        return f == t && h == e;
+      var f = s.get(e), h2 = s.get(t);
+      if (f && h2)
+        return f == t && h2 == e;
       var m = true;
       s.set(e, t), s.set(t, e);
       for (var d = a; ++v < l; ) {
@@ -3991,9 +3884,9 @@ ${codeFrame}` : message);
       if (g && !c)
         return s || (s = new Se()), a || hi(e) ? ds(e, t, r, n, i, s) : Vd(e, t, l, r, n, i, s);
       if (!(r & df)) {
-        var f = c && ri.call(e, "__wrapped__"), h = v && ri.call(t, "__wrapped__");
-        if (f || h) {
-          var m = f ? e.value() : e, d = h ? t.value() : t;
+        var f = c && ri.call(e, "__wrapped__"), h2 = v && ri.call(t, "__wrapped__");
+        if (f || h2) {
+          var m = f ? e.value() : e, d = h2 ? t.value() : t;
           return s || (s = new Se()), i(m, d, r, n, s);
         }
       }
@@ -4330,8 +4223,8 @@ ${codeFrame}` : message);
                     cancelToken: g.token,
                     responseType: "blob"
                   }).then((f) => {
-                    const h = new File([f.data], a.name, { type: a.type });
-                    o(h);
+                    const h2 = new File([f.data], a.name, { type: a.type });
+                    o(h2);
                   }).catch(function(f) {
                     axios.isCancel(f) || l(f);
                   }), {
@@ -4403,8 +4296,8 @@ ${codeFrame}` : message);
       }
     }, Lf = { ref: "file" };
     function Rf(e, t, r, n, i, s) {
-      return vueExports.openBlock(), vueExports.createElementBlock("div", Lf, [
-        vueExports.renderSlot(e.$slots, "default", {
+      return openBlock(), createElementBlock("div", Lf, [
+        renderSlot(e.$slots, "default", {
           handleFileInput: s.handleFileInput,
           filenames: i.filenames
         })
@@ -4903,8 +4796,8 @@ ${codeFrame}` : message);
       }
     }, Vf = { ref: "input" };
     function Hf(e, t, r, n, i, s) {
-      return vueExports.openBlock(), vueExports.createElementBlock("div", Vf, [
-        vueExports.renderSlot(e.$slots, "default", { disabled: i.disabled })
+      return openBlock(), createElementBlock("div", Vf, [
+        renderSlot(e.$slots, "default", { disabled: i.disabled })
       ], 512);
     }
     const Uf = /* @__PURE__ */ _e(Nf, [["render", Hf]]), Wf = {
@@ -4949,8 +4842,8 @@ ${codeFrame}` : message);
       }
     }, zf = { ref: "jodit" };
     function Gf(e, t, r, n, i, s) {
-      return vueExports.openBlock(), vueExports.createElementBlock("div", zf, [
-        vueExports.renderSlot(e.$slots, "default")
+      return openBlock(), createElementBlock("div", zf, [
+        renderSlot(e.$slots, "default")
       ], 512);
     }
     const Xf = /* @__PURE__ */ _e(Wf, [["render", Gf]]), Kf = {
@@ -5003,12 +4896,12 @@ ${codeFrame}` : message);
       }
     };
     function Jf(e, t, r, n, i, s) {
-      const a = vueExports.resolveComponent("Render");
-      return i.html ? (vueExports.openBlock(), vueExports.createBlock(a, {
+      const a = resolveComponent("Render");
+      return i.html ? (openBlock(), createBlock(a, {
         key: 0,
         html: i.html,
         passthrough: r.passthrough
-      }, null, 8, ["html", "passthrough"])) : r.show ? vueExports.renderSlot(e.$slots, "default", { key: 1 }) : vueExports.createCommentVNode("", true);
+      }, null, 8, ["html", "passthrough"])) : r.show ? renderSlot(e.$slots, "default", { key: 1 }) : createCommentVNode("", true);
     }
     const Qf = /* @__PURE__ */ _e(Kf, [["render", Jf]]), Yf = ["href", "onClick"], Zf = {
       __name: "Link",
@@ -5100,7 +4993,7 @@ ${codeFrame}` : message);
         }
       },
       setup(e) {
-        const t = e, r = vueExports.inject("stack"), n = vueExports.ref(null);
+        const t = e, r = inject("stack"), n = ref(null);
         function i() {
           if (n.value = null, !t.confirm)
             return s();
@@ -5143,11 +5036,11 @@ ${codeFrame}` : message);
           const c = t.data instanceof FormData ? t.data : pn(t.data);
           l !== "POST" && (c.append("_method", l), l = "POST"), n.value && (c.append(se(t.requirePassword) && t.requirePassword ? t.requirePassword : "password", n.value), n.value = null), p.request(t.href, l, c, u, t.replace);
         }
-        return (a, o) => (vueExports.openBlock(), vueExports.createElementBlock("a", {
+        return (a, o) => (openBlock(), createElementBlock("a", {
           href: e.href,
-          onClick: vueExports.withModifiers(i, ["exact", "prevent"])
+          onClick: withModifiers(i, ["exact", "prevent"])
         }, [
-          vueExports.renderSlot(a.$slots, "default")
+          renderSlot(a.$slots, "default")
         ], 8, Yf));
       }
     }, ep = {
@@ -5320,12 +5213,12 @@ ${codeFrame}` : message);
       }
     };
     function np(e, t, r, n, i, s) {
-      const a = vueExports.resolveComponent("Render");
-      return i.html ? (vueExports.openBlock(), vueExports.createBlock(a, {
+      const a = resolveComponent("Render");
+      return i.html ? (openBlock(), createBlock(a, {
         key: 0,
         html: i.html,
         passthrough: r.passthrough
-      }, null, 8, ["html", "passthrough"])) : i.loading ? vueExports.renderSlot(e.$slots, "placeholder", { key: 1 }) : vueExports.renderSlot(e.$slots, "default", { key: 2 });
+      }, null, 8, ["html", "passthrough"])) : i.loading ? renderSlot(e.$slots, "placeholder", { key: 1 }) : renderSlot(e.$slots, "default", { key: 2 });
     }
     const ip = /* @__PURE__ */ _e(rp, [["render", np]]), sp = {
       props: {
@@ -5628,8 +5521,8 @@ ${codeFrame}` : message);
       }
     }, lp = { ref: "select" };
     function up(e, t, r, n, i, s) {
-      return vueExports.openBlock(), vueExports.createElementBlock("div", lp, [
-        vueExports.renderSlot(e.$slots, "default", { loading: i.loading })
+      return openBlock(), createElementBlock("div", lp, [
+        renderSlot(e.$slots, "default", { loading: i.loading })
       ], 512);
     }
     const cp = /* @__PURE__ */ _e(op, [["render", up]]), dp = {
@@ -5836,7 +5729,7 @@ ${codeFrame}` : message);
          * Forces the given Search Input key to be visible, and focuses the input element.
          */
         showSearchInput(e) {
-          this.forcedVisibleSearchInputs = [...this.forcedVisibleSearchInputs, e], vueExports.nextTick(() => {
+          this.forcedVisibleSearchInputs = [...this.forcedVisibleSearchInputs, e], nextTick(() => {
             document.querySelector(`[name="searchInput-${e}"]`).focus();
           });
         },
@@ -5901,7 +5794,7 @@ ${codeFrame}` : message);
             "X-Splade-Modal-Target": this.stack
           } : {};
           p.replace(s, o).then(() => {
-            this.isLoading = false, typeof t < "u" && t && vueExports.nextTick(() => {
+            this.isLoading = false, typeof t < "u" && t && nextTick(() => {
               const u = document.querySelector(`[name="${t.name}"]`);
               u.focus(), a && (u.value = a);
             });
@@ -5970,7 +5863,7 @@ ${codeFrame}` : message);
       data() {
         return {
           isMounted: false,
-          Teleport: vueExports.Teleport
+          Teleport
         };
       },
       /*
@@ -5982,13 +5875,13 @@ ${codeFrame}` : message);
       }
     };
     function gp(e, t, r, n, i, s) {
-      return vueExports.withDirectives((vueExports.openBlock(), vueExports.createBlock(vueExports.resolveDynamicComponent(i.isMounted ? i.Teleport : "div"), vueExports.normalizeProps(vueExports.guardReactiveProps(e.$attrs)), {
-        default: vueExports.withCtx(() => [
-          vueExports.renderSlot(e.$slots, "default")
+      return withDirectives((openBlock(), createBlock(resolveDynamicComponent(i.isMounted ? i.Teleport : "div"), normalizeProps(guardReactiveProps(e.$attrs)), {
+        default: withCtx(() => [
+          renderSlot(e.$slots, "default")
         ]),
         _: 3
       }, 16)), [
-        [vueExports.vShow, i.isMounted]
+        [vShow, i.isMounted]
       ]);
     }
     const yp = /* @__PURE__ */ _e(vp, [["render", gp]]), bp = {
@@ -6012,7 +5905,7 @@ ${codeFrame}` : message);
       watch: {
         modelValue() {
           !this.autosize || !this.autosizeInstance || import("autosize").then((e) => {
-            vueExports.nextTick(() => e.default.update(this.element));
+            nextTick(() => e.default.update(this.element));
           });
         }
       },
@@ -6031,8 +5924,8 @@ ${codeFrame}` : message);
       }
     }, wp = { ref: "textarea" };
     function Sp(e, t, r, n, i, s) {
-      return vueExports.openBlock(), vueExports.createElementBlock("div", wp, [
-        vueExports.renderSlot(e.$slots, "default")
+      return openBlock(), createElementBlock("div", wp, [
+        renderSlot(e.$slots, "default")
       ], 512);
     }
     const Op = /* @__PURE__ */ _e(bp, [["render", Sp]]), $p = {
@@ -6268,7 +6161,7 @@ ${codeFrame}` : message);
         if (p.isSsr)
           return;
         const r = `preserveScroll-${t.arg}`, n = p.restore(r);
-        n && vueExports.nextTick(() => {
+        n && nextTick(() => {
           typeof e.scrollTo == "function" ? e.scrollTo(n.left, n.top) : (e.scrollTop = n.top, e.scrollLeft = n.left);
         });
         const i = function() {
@@ -6436,7 +6329,7 @@ ${codeFrame}` : message);
       }).listen(i, () => console.log(`Splade SSR server started on port ${i}.`));
     }
     kp(createServer, renderToString, (props) => {
-      return vueExports.createSSRApp({
+      return createSSRApp({
         render: Cp(props)
       }).use(Fp);
     });
