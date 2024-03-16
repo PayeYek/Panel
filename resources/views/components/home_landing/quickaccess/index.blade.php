@@ -3,7 +3,7 @@
 ])
 
 <section class="mb-4 lg:mb-16 default_container">
-    <h3  class="mb-2 text-base sm:text-lg font-bold text-center text-stone-700"> آخرین اخبار و اطلاعیه ها </h3>
+    <h3  class="mb-2 text-base sm:text-lg font-medium text-center text-stone-700"> آخرین اخبار و اطلاعیه ها </h3>
     <hr class="w-60 sm:w-96 border-normal mb-6 mx-auto" />
 
     <section class="grid grid-cols-1 md:grid-cols-5 gap-4">
@@ -18,7 +18,7 @@
             </div>
             {{-- titles --}}
             <div>
-                <p class="hidden md:block mb-1 font-bold text-base md:text-sm lg:font-normal lg:text-xl xl:text-2xl text-center"> Products </p>
+                <p class="hidden md:block mb-1 font-medium text-base md:text-sm lg:font-normal lg:text-xl xl:text-2xl text-center"> Products </p>
                 <p class="text-sm lg:text-base font-normal text-center"> محصولات </p>
             </div>
         </Link>
@@ -32,7 +32,7 @@
             </div>
             {{-- titles --}}
             <div>
-                <p class="hidden md:block mb-1 font-bold text-base md:text-sm lg:font-normal lg:text-xl xl:text-2xl text-center"> Terms of sale </p>
+                <p class="hidden md:block mb-1 font-medium text-base md:text-sm lg:font-normal lg:text-xl xl:text-2xl text-center"> Terms of sale </p>
                 <p class="text-sm lg:text-base font-normal text-center"> شرایط فروش </p>
             </div>
         </Link>
@@ -46,7 +46,7 @@
             </div>
             {{-- titles --}}
             <div>
-                <p class="hidden md:block mb-1 font-bold text-base md:text-sm lg:font-normal lg:text-xl xl:text-2xl text-center"> Blog </p>
+                <p class="hidden md:block mb-1 font-medium text-base md:text-sm lg:font-normal lg:text-xl xl:text-2xl text-center"> Blog </p>
                 <p class="text-sm lg:text-base font-normal text-center"> بلاگ </p>
             </div>
         </Link>
@@ -61,7 +61,7 @@
             </div>
             {{-- titles --}}
             <div>
-                <p class="hidden md:block mb-1 font-bold text-base md:text-sm lg:font-normal lg:text-xl xl:text-2xl text-center"> Agencies </p>
+                <p class="hidden md:block mb-1 font-medium text-base md:text-sm lg:font-normal lg:text-xl xl:text-2xl text-center"> Agencies </p>
                 <p class="text-sm lg:text-base font-normal text-center"> نمایندگی ها </p>
             </div>
         </Link>
@@ -75,7 +75,7 @@
             </div>
             {{-- titles --}}
             <div>
-                <p class="hidden md:block mb-1 font-bold text-base md:text-sm lg:font-normal lg:text-xl xl:text-2xl text-center"> Announcements </p>
+                <p class="hidden md:block mb-1 font-medium text-base md:text-sm lg:font-normal lg:text-xl xl:text-2xl text-center"> Announcements </p>
                 <p class="text-sm lg:text-base font-normal text-center"> اطلاعیه ها </p>
             </div>
         </Link>

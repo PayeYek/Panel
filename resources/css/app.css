@@ -62,7 +62,7 @@
         @apply text-sm font-normal leading-7 lg:text-xl lg:leading-8;
     }
     .custom_article_styles a{
-        @apply text-base leading-7 font-bold text-[#1EA0FF] underline underline-offset-[6px];
+        @apply text-base leading-7 font-medium text-[#1EA0FF] underline underline-offset-[6px];
     }
     .custom_article_styles{
         @apply *:text-[#58595b];
@@ -500,7 +500,7 @@
     }
 
     .sameCategoryBtnStyle{
-        @apply w-full text-sm font-bold cursor-pointer lg:text-lg h-11 flex_center;
+        @apply w-full text-sm font-medium cursor-pointer lg:text-lg h-11 flex_center;
     }
     .categoryBtnEmpty{
         @apply bg-white border text-stone-700 border-stone-700;
@@ -764,7 +764,7 @@
 
 /* tab styules starts */
 .l_tab_styles li.active{
-    @apply font-bold before:block;
+    @apply font-medium before:block;
 }
 /* tab styules ends */
 
@@ -784,7 +784,7 @@
     @apply border-b-2 border-b-gray-900;
 }
 .custom_table_container table thead tr td{
-    @apply text-sm font-bold leading-6 px-4 py-1.5 [&:not(:first-child)]:text-center lg:first:pr-8;
+    @apply text-sm font-medium leading-6 px-4 py-1.5 [&:not(:first-child)]:text-center lg:first:pr-8;
 }
 .custom_table_container table tbody tr{
     @apply border-b [&:nth-last-child(1)]:border-b-2 border-b-gray-900/30 [&:nth-last-child(1)]:border-gray-900 h-16 last:border-b-0;
@@ -811,7 +811,7 @@
     @apply border-b-2 border-b-dark-500;
 }
 .custom_table_striped_container table thead tr td{
-    @apply text-sm font-bold leading-6 px-4 py-1.5 [&:not(:first-child)]:text-center lg:first:pr-8;
+    @apply text-sm font-medium leading-6 px-4 py-1.5 [&:not(:first-child)]:text-center lg:first:pr-8;
 }
 .custom_table_striped_container table tbody tr{
     @apply h-12 odd:bg-white even:bg-dark-50 hover:bg-[#eee] transition-colors;

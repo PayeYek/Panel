@@ -25,7 +25,7 @@
                         <div class="mb-2 h-36">
                             <img :src="product.image" :alt="product.name" class="object-contain h-full" />
                         </div>
-                        <h3 class="mb-5 font-bold lg:mb-4 text-lg sm:line-clamp-1 text-stone-700"> {{ product.name }}
+                        <h3 class="mb-5 font-medium lg:mb-4 text-lg sm:line-clamp-1 text-stone-700"> {{ product.name }}
                         </h3>
                         <div class="flex flex-col gap-4 w-56 lg:w-full">
                             <LandBtn text="مشخصات" :to="'/l/' + landSlug + '/p/' + product.slug"
@@ -42,7 +42,7 @@
                         <div class="h-32 mb-0.5">
                             <img :src="product.image" :alt="product.name" class="object-contain h-full" />
                         </div>
-                        <h3 class="mb-0.5 font-bold lg:mb-1 text-lg sm:line-clamp-1 text-stone-700"> {{ product.name }}
+                        <h3 class="mb-0.5 font-medium lg:mb-1 text-lg sm:line-clamp-1 text-stone-700"> {{ product.name }}
                         </h3>
                         <div class="grid w-56 grid-cols-2 lg:w-full gap-2">
                             <LandBtn text="مشخصات" :to="'/l/' + landSlug + '/p/' + product.slug"
@@ -59,7 +59,7 @@
                         <div class="h-32 mb-0.5">
                             <img :src="product.image" :alt="product.name" class="object-contain h-full" />
                         </div>
-                        <h3 class="mb-0.5 font-bold lg:mb-1 text-lg sm:line-clamp-1 text-stone-700"> {{ product.name }}
+                        <h3 class="mb-0.5 font-medium lg:mb-1 text-lg sm:line-clamp-1 text-stone-700"> {{ product.name }}
                         </h3>
                         <div class="grid w-56 grid-cols-2 lg:w-full xl:w-56 gap-2">
                             <LandBtn text="مشخصات" :to="'/l/' + landSlug + '/p/' + product.slug"
@@ -73,7 +73,7 @@
 
                     <div v-if="productType == 4" :key="index"
                         :class="'pl-6 pr-8 w-full pt-5 pb-8 flex flex-col rounded-custom ' + borderStyle + ' ' + (evenOdd ? 'evenOdd_cards ' : 'bg-white ')">
-                        <h3 class="mb-1.5 font-bold lg:mb-1 text-lg sm:line-clamp-1 text-stone-700"> {{ product.name }}
+                        <h3 class="mb-1.5 font-medium lg:mb-1 text-lg sm:line-clamp-1 text-stone-700"> {{ product.name }}
                         </h3>
                         <div class="flex items-center justify-between gap-4">
                             <div class="flex-none h-32 lg:h-28 xl:h-32">
@@ -96,7 +96,7 @@
                             <img :src="product.image" :alt="product.name" class="object-contain h-full" />
                         </div>
                         <div class="flex flex-col flex-1 gap-4">
-                            <h3 class="mb-1.5 font-bold lg:mb-1 text-lg sm:line-clamp-1 text-stone-700"> {{ product.name
+                            <h3 class="mb-1.5 font-medium lg:mb-1 text-lg sm:line-clamp-1 text-stone-700"> {{ product.name
                                 }}
                             </h3>
                             <div class="grid w-full grid-cols-2 gap-2 mr-auto max-w-72">
@@ -116,7 +116,7 @@
                             <img :src="product.image" :alt="product.name" class="object-contain h-full" />
                         </div>
                         <div class="flex flex-col flex-1 gap-4">
-                            <h3 class="mb-1.5 font-bold lg:mb-1 text-lg sm:line-clamp-1 text-stone-700"> {{ product.name
+                            <h3 class="mb-1.5 font-medium lg:mb-1 text-lg sm:line-clamp-1 text-stone-700"> {{ product.name
                                 }}
                             </h3>
                             <div class="grid w-full grid-cols-2 gap-2 mr-auto max-w-72">
@@ -137,7 +137,7 @@
                             <img :src="product.image" :alt="product.name" class="object-contain h-full" />
                         </div>
                         <div class="mb-4 sm:mb-0 sm:flex-1">
-                            <h3 class="mb-2 font-bold lg:mb-1 text-lg sm:line-clamp-1 text-stone-700"> {{ product.name
+                            <h3 class="mb-2 font-medium lg:mb-1 text-lg sm:line-clamp-1 text-stone-700"> {{ product.name
                                 }}
                             </h3>
                             <p
@@ -162,7 +162,7 @@
                             <img :src="product.image" :alt="product.name" class="object-contain h-full" />
                         </div>
                         <div class="mb-4 sm:mb-0 sm:flex-1">
-                            <h3 class="mb-2 sm:gap-4 font-bold lg:mb-1 text-lg text-stone-700"> {{ product.name }} </h3>
+                            <h3 class="mb-2 sm:gap-4 font-medium lg:mb-1 text-lg text-stone-700"> {{ product.name }} </h3>
                             <p
                                 class="text-sm leading-6 text-justify text-[#818284] dark:text-white font-medium line-clamp-2">
                                 {{ product.description }}
@@ -183,7 +183,7 @@
                         <div class="h-32 mb-2">
                             <img :src="product.image" :alt="product.name" class="object-contain h-full" />
                         </div>
-                        <h3 class="mb-5 font-bold lg:mb-4 text-lg sm:line-clamp-1 text-stone-700"> {{ product.name }}
+                        <h3 class="mb-5 font-medium lg:mb-4 text-lg sm:line-clamp-1 text-stone-700"> {{ product.name }}
                         </h3>
                         <div class="flex flex-col gap-4 w-56 mx-auto sm:mx-0">
                             <LandBtn text="مشخصات" :to="'/l/' + landSlug + '/p/' + product.slug"
@@ -197,7 +197,7 @@
 
                     <div v-if="productType == 10" :key="index"
                         :class="'border-b last:border-b-0 border-dark-100 pl-6 pr-8 w-full pt-5 pb-8 sm:border-l sm:[&:nth-child(2n)]:border-l-0 lg:[&:nth-child(2n)]:border-l lg:[&:nth-child(3n)]:border-l-0 flex flex-col ' + (evenOdd ? 'evenOdd_cards ' : 'bg-white ')">
-                        <h3 class="mb-1.5 font-bold lg:mb-1 text-lg sm:line-clamp-1 text-stone-700"> {{ product.name }}
+                        <h3 class="mb-1.5 font-medium lg:mb-1 text-lg sm:line-clamp-1 text-stone-700"> {{ product.name }}
                         </h3>
                         <div class="flex items-center justify-between gap-4">
                             <div class="flex-none h-32 lg:h-28 xl:h-32">
@@ -221,7 +221,7 @@
                             <img :src="product.image" :alt="product.name" class="object-contain h-full" />
                         </div>
                         <div class="mb-4 sm:mb-0 sm:flex-1">
-                            <h3 class="mb-2 font-bold lg:mb-1 text-lg sm:line-clamp-1 text-stone-700"> {{ product.name
+                            <h3 class="mb-2 font-medium lg:mb-1 text-lg sm:line-clamp-1 text-stone-700"> {{ product.name
                                 }}
                             </h3>
                             <p
@@ -244,7 +244,7 @@
             <template v-if="productType == 12">
                 <template v-for="(product, index) in filteredList" :key="index">
                     <section class="flex flex-col" v-if="product.length > 0">
-                        <p class="text-base lg:text-xl font-bold mb-4 text-stone-700 text-center"> محصولات {{ product[0].brand.title }} </p>
+                        <p class="text-base lg:text-xl font-medium mb-4 text-stone-700 text-center"> محصولات {{ product[0].brand.title }} </p>
                         <hr class="w-56 lg:w-96 border-normal mb-4 lg:mb-6 mx-auto" />
                         <ul class="flex flex-col lg:flex-row mx-auto lg:items-start lg:justify-center gap-0">
                             <li v-for="(item, index) in product" :key="index"
@@ -252,7 +252,7 @@
                                 <div class="mb-2 h-52">
                                     <img :src="item.image" :alt="item.name" class="object-contain h-full" />
                                 </div>
-                                <h3 class="mb-5 font-bold text-xl line-clamp-2 lg:line-clamp-1 text-stone-700 lg:h-[28px]"> {{ item.name }} </h3>
+                                <h3 class="mb-5 font-medium text-xl line-clamp-2 lg:line-clamp-1 text-stone-700 lg:h-[28px]"> {{ item.name }} </h3>
                                 <h3 class="mb-6 font-normal text-sm line-clamp-1 text-stone-700 h-5"> مدل: {{ item.model }} </h3>
                                 <div class="grid grid-cols-2 gap-3 w-56 lg:w-full">
                                     <LandBtn text="خرید اقساطی" :to="'/l/' + landSlug + '/p/' + item.slug"

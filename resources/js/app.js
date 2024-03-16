@@ -15,6 +15,7 @@ import landPdpDesktopSlider from "@/components/landPdpDesktopSlider.vue";
 import CategoryFilter from "@/components/CategoryFilter.vue";
 import Articles from "@/components/articles/Articles.vue";
 import MoreArticles from "@/components/articles/MoreArticles.vue";
+import PdpMoreArticles from "@/components/articles/PdpMoreArticles.vue";
 import ArticleLink from "@/components/articles/ArticleLink.vue";
 import AmChart from "@/components/map/AmChart.vue";
 import Branches from "@/components/map/Branches.vue";
@@ -67,6 +68,7 @@ createApp({ render: renderSpladeApp({ el }) })
     .component('CategoryFilter', CategoryFilter)
     .component('Articles', Articles)
     .component('MoreArticles', MoreArticles)
+    .component('PdpMoreArticles', PdpMoreArticles)
     .component('ArticleLink', ArticleLink)
     .component('AmChart', AmChart)
     .component('Branches', Branches)

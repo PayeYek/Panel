@@ -39,7 +39,7 @@
     <section class="default_container grid grid-cols-1 md:grid-cols-4 lg:grid-cols-5 gap-10 md:gap-4 mb-16 lg:gap-10">
         {{-- about --}}
         <section class="flex flex-col gap-4 md:gap-8 lg:col-span-2">
-            <p class="text-white text-base font-bold"> درباره شرکت </p>
+            <p class="text-white text-base font-medium"> درباره شرکت </p>
             <div class="text-sm font-normal text-white leading-7 text-justify">
                 {{$land->description}}
             </div>
@@ -52,7 +52,7 @@
                     <section class="flex flex-col md:gap-8">
                         {{-- title --}}
                         <div class="flex items-center justify-between">
-                            <p class="text-base font-bold"> {{ $button['title'] }} </p>
+                            <p class="text-base font-medium"> {{ $button['title'] }} </p>
                             <button type="button" class="cursor-pointer md:hidden" @click="data.dropdown = !data.dropdown">
                                 <svg :class="data.dropdown ? 'rotate-180' : 'rotate-0'" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M17 14L11.9992 9.42L7 14" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>

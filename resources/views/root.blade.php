@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" dir="{{ \App\Support\Help::isRTL() ? 'rtl' : 'ltr' }}" class="scrollbar-thin theme_arian rounded_md">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" dir="{{ \App\Support\Help::isRTL() ? 'rtl' : 'ltr' }}" class="scrollbar-thin theme_arian">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">

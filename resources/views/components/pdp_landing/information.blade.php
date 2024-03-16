@@ -48,8 +48,8 @@
     {{-- guide btns --}}
     <x-splade-data default="{ toggleModal: false }">
         <div class="flex_center flex-col gap-2 md:flex-row lg:gap-4">
-            <buttton class="text-lg font-bold text-white cursor-pointer rounded-custom bg-stone-700 flex_center h-11 w-52" @click="data.toggleModal = true"> مشاوره و خرید </buttton>
-            <Link href="{{ $product->catalog }}" class="text-lg font-bold bg-white border cursor-pointer rounded-custom text-stone-700 border-stone-700 flex_center h-11 w-52"> دانلود کاتالوگ </Link>
+            <buttton class="text-lg font-medium text-white cursor-pointer rounded-custom bg-stone-700 flex_center h-11 w-52" @click="data.toggleModal = true"> مشاوره و خرید </buttton>
+            <Link href="{{ $product->catalog }}" class="text-lg font-medium bg-white border cursor-pointer rounded-custom text-stone-700 border-stone-700 flex_center h-11 w-52"> دانلود کاتالوگ </Link>
         </div>
         {{-- modal layer --}}
         <div class="fixed inset-0 bg-black/60 z-[5]" v-show="data.toggleModal" @click="data.toggleModal = false"></div>
@@ -67,7 +67,7 @@
                     class="bg-white mb-5 max-w-64 h-11 border border-[#CFD1D4] focus:border-[#CFD1D4] focus:ring-0 rounded-custom outline-none w-full placeholder:text-[#acacac] text-base font-normal px-3 text-stone-700 tracking-widest"
                     placeholder="09" />
                 <button type="submit"
-                    class="w-full text-base font-bold text-white rounded-custom flex_center max-w-64 h-11 bg-normal hover:bg-focus focus:bg-focus focus:shadow-focus focus:shadow-shadowNormal">
+                    class="w-full text-base font-medium text-white rounded-custom flex_center max-w-64 h-11 bg-normal hover:bg-focus focus:bg-focus focus:shadow-focus focus:shadow-shadowNormal">
                     ثبت درخواست </button>
             </form>
         </section>

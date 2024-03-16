@@ -16,7 +16,7 @@
 
         <!-- filters -->
         <ul
-            class="flex items-center flex-wrap gap-x-2 gap-y-4 list-none text-base font-bold *:rounded-custom *:flex_center *:h-8 *:px-3 *:cursor-pointer *:border *:border-stone-700 *:text-stone-700">
+            class="flex items-center flex-wrap gap-x-2 gap-y-4 list-none text-base font-medium *:rounded-custom *:flex_center *:h-8 *:px-3 *:cursor-pointer *:border *:border-stone-700 *:text-stone-700">
             <li :class="categoryFilterState === 'all' ? '!border-normal !text-normal' : ''"
                 @click="changeFilter('all')"> همه موارد </li>
             <li :class="categoryFilterState === 'news' ? '!border-normal !text-normal' : ''"
@@ -41,7 +41,7 @@
                     </div>
                     <!-- docs -->
                     <div class="px-6 pb-6 pt-2.5 md:pl-10 flex flex-col sm:justify-center sm:flex-1">
-                        <h3 class="mb-4 text-lg font-bold text-stone-700 line-clamp-1"> {{ article.title }} </h3>
+                        <h3 class="mb-4 text-lg font-medium text-stone-700 line-clamp-1"> {{ article.title }} </h3>
                         <p
                             class="mb-4 text-sm font-normal leading-7 text-justify line-clamp-5 sm:line-clamp-3 lg:line-clamp-2 lg:h-16 sm:h-20 lg:leading-8 text-dark-500 ">
                             {{ article.description }}
@@ -57,7 +57,7 @@
                     </div>
                     <!-- info -->
                     <div class="px-4 pt-3 pb-4">
-                        <h3 class="mb-2 text-sm font-bold text-stone-700 line-clamp-1"> {{ article.title }} </h3>
+                        <h3 class="mb-2 text-sm font-medium text-stone-700 line-clamp-1"> {{ article.title }} </h3>
                         <p class="h-10 mb-3 text-xs font-normal leading-5 text-justify text-stone-700 line-clamp-2">
                             {{ article.description }}
                         </p>
@@ -74,7 +74,7 @@
                     </div>
                     <!-- docs -->
                     <div class="flex flex-col px-6 md:pl-8 sm:justify-center sm:flex-1">
-                        <h3 class="mb-4 text-lg font-bold text-stone-700 line-clamp-1"> {{ article.title }} </h3>
+                        <h3 class="mb-4 text-lg font-medium text-stone-700 line-clamp-1"> {{ article.title }} </h3>
                         <p
                             class="mb-4 text-sm font-normal leading-7 text-justify lg:text-base line-clamp-5 sm:line-clamp-3 lg:line-clamp-2 lg:h-24 sm:h-20 lg:leading-8 text-dark-500">
                             {{ article.description }}
@@ -92,7 +92,7 @@
                     </div>
                     <!-- docs -->
                     <div class="flex flex-col px-6 md:pl-8 sm:justify-center sm:flex-1">
-                        <h3 class="mb-4 text-lg font-bold text-stone-700 line-clamp-1"> {{ article.title }} </h3>
+                        <h3 class="mb-4 text-lg font-medium text-stone-700 line-clamp-1"> {{ article.title }} </h3>
                         <p
                             class="mb-4 text-sm font-normal leading-7 text-justify lg:text-base line-clamp-5 sm:line-clamp-3 lg:line-clamp-2 lg:h-24 sm:h-20 lg:leading-8 text-dark-500">
                             {{ article.description }}
@@ -102,7 +102,7 @@
                                 }}
                             </p>
                             <ArticleLink :href="'/l/' + landSlug + '/a/' + article.slug"
-                                class="flex items-center gap-4 px-4 text-sm font-bold text-normal">
+                                class="flex items-center gap-4 px-4 text-sm font-medium text-normal">
                                 <span> ادامه </span>
                                 <svg class="fill-current" width="16" height="16" viewBox="0 0 16 16" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
@@ -125,10 +125,10 @@
                     <!-- docs -->
                     <div class="px-6 pb-6 pt-2.5 md:pl-10 lg:pl-4 flex flex-wrap sm:flex-1">
                         <div class="order-1 w-2/3 sm:w-full sm:mb-4 lg:flex_between lg:gap-8">
-                            <h3 class="text-lg font-bold text-stone-700 line-clamp-2 sm:line-clamp-1"> {{ article.title
+                            <h3 class="text-lg font-medium text-stone-700 line-clamp-2 sm:line-clamp-1"> {{ article.title
                                 }} </h3>
                             <h4
-                                class="absolute top-4 left-3 sm:left-auto sm:right-56 sm:top-4 md:right-64 lg:static px-3 py-1.5 lg:px-2 lg:w-28 lg:flex_center text-sm font-bold rounded-full bg-stone-400 text-stone-700">
+                                class="absolute top-4 left-3 sm:left-auto sm:right-56 sm:top-4 md:right-64 lg:static px-3 py-1.5 lg:px-2 lg:w-28 lg:flex_center text-sm font-medium rounded-full bg-stone-400 text-stone-700">
                                 {{ article.type === "blog" ? 'بلاگ' : (article.type === "sell" ? 'اطلاعیه' :
                     (article.type === "news" ? 'خبر' : article.type)) }} </h4>
                         </div>

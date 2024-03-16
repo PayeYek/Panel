@@ -9,7 +9,7 @@
         {{-- product detail --}}
         <section
             class="grid grid-cols-1 lg:grid-cols-10 gap-4 lg:gap-10 xl:gap-16 default_container mb-14 lg:mb-12 xl:mb-16">
-            <h1 class="lg:hidden text-xl font-bold text-stone-700 mb-5"> {{ $product->name }} </h1>
+            <h1 class="lg:hidden text-xl font-medium text-stone-700 mb-5"> {{ $product->name }} </h1>
             {{-- product images --}}
             <section class="lg:flex flex-col gap-3 lg:col-span-6">
                 {{-- desktop slider --}}
@@ -27,7 +27,7 @@
         {{-- Further Details --}}
         <section class="default_container mb-20">
             <p
-                class="pr-4 relative text-xl mb-7 font-bold text-stone-700 before:top-1/2 before:right-0 before:-translate-y-1/2 before:bg-normal before:h-12 before:w-1 before:rounded-l-custom before:absolute before:content-['']">
+                class="pr-4 relative text-xl mb-7 font-medium text-stone-700 before:top-1/2 before:right-0 before:-translate-y-1/2 before:bg-normal before:h-12 before:w-1 before:rounded-l-custom before:absolute before:content-['']">
                 درباره محصول </p>
             <div class="pb-4 text-justify custom_article_styles">
                 {!! $product->body !!}
@@ -37,7 +37,7 @@
         {{-- Technical Specifications --}}
         <section class="default_container mb-20">
             <p
-                class="pr-4 relative text-xl mb-7 font-bold text-stone-700 before:top-1/2 before:right-0 before:-translate-y-1/2 before:bg-normal before:h-12 before:w-1 before:rounded-l-custom before:absolute before:content-['']">
+                class="pr-4 relative text-xl mb-7 font-medium text-stone-700 before:top-1/2 before:right-0 before:-translate-y-1/2 before:bg-normal before:h-12 before:w-1 before:rounded-l-custom before:absolute before:content-['']">
                 مشخصات </p>
             <ul class="flex flex-col gap-2 text-stone-700">
                 @foreach ($product->attributes->sortBy('parent_id')->groupBy('parent_id') as $key => $attrs)
@@ -46,7 +46,7 @@
                             {{-- title --}}
                             <div class="flex items-center justify-between cursor-pointer"
                                 @click="data.toggle = !data.toggle">
-                                <p class="text-sm lg:text-base font-bold">
+                                <p class="text-sm lg:text-base font-medium">
                                     {{ \App\Models\LandAttribute::whereId($key)->first()->name }} </p>
                                 <button type="button" class="cursor-pointer">
                                     <svg class="duration-1000" :class="data.toggle ? 'rotate-180' : 'rotate-0'"
@@ -72,7 +72,7 @@
         {{-- videos --}}
         <section class="mb-20 relative default_container" id="video-player-container">
             <p
-                class="pr-4 relative text-xl mb-7 font-bold text-stone-700 before:top-1/2 before:right-0 before:-translate-y-1/2 before:bg-normal before:h-12 before:w-1 before:rounded-l-custom before:absolute before:content-['']">
+                class="pr-4 relative text-xl mb-7 font-medium text-stone-700 before:top-1/2 before:right-0 before:-translate-y-1/2 before:bg-normal before:h-12 before:w-1 before:rounded-l-custom before:absolute before:content-['']">
                 ویدیو </p>
             <x-home_landing.videos :data="$product->videos" />
         </section>
@@ -87,14 +87,14 @@
         {{-- viewpoint --}}
         <section class="default_container mb-20">
             <p
-                class="pr-4 relative text-xl mb-7 font-bold text-stone-700 before:top-1/2 before:right-0 before:-translate-y-1/2 before:bg-normal before:h-12 before:w-1 before:rounded-l-custom before:absolute before:content-['']">
+                class="pr-4 relative text-xl mb-7 font-medium text-stone-700 before:top-1/2 before:right-0 before:-translate-y-1/2 before:bg-normal before:h-12 before:w-1 before:rounded-l-custom before:absolute before:content-['']">
                 دیدگاه </p>
             <ul class="flex flex-col gap-7 text-gray-900">
                 @if ($comments->count() > 0)
                     @foreach ($comments as $comment)
                         <li>
                             {{-- user name --}}
-                            <p class="block text-base font-bold text-stone-700 mb-1.5"> {{ $comment->name }} </p>
+                            <p class="block text-base font-medium text-stone-700 mb-1.5"> {{ $comment->name }} </p>
 
                             {{-- user viewpoint --}}
                             <div class="flex flex-col gap-4 bg-stone-700/5 rounded-custom p-4">
@@ -131,7 +131,7 @@
                 @endif
             </ul>
             @if ($comments->count() > 3)
-                <button type="button" class="mx-auto text-normal mt-10 text-sm font-bold lg:text-base cursor-pointer block">
+                <button type="button" class="mx-auto text-normal mt-10 text-sm font-medium lg:text-base cursor-pointer block">
                     مشاهده همه
                     دیدگاه ها
                 </button>

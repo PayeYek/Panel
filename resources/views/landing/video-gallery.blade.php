@@ -50,7 +50,7 @@
     
             <!-- filters -->
             <ul
-                class="flex items-center flex-wrap gap-x-2 gap-y-4 list-none text-base font-bold *:rounded-custom *:flex_center *:h-8 *:px-3 *:cursor-pointer *:border *:border-stone-700 *:text-stone-700">
+                class="flex items-center flex-wrap gap-x-2 gap-y-4 list-none text-base font-medium *:rounded-custom *:flex_center *:h-8 *:px-3 *:cursor-pointer *:border *:border-stone-700 *:text-stone-700">
                 <li> جدید ترین </li>
                 <li> قدیمی ترین </li>
                 <li> پربیننده ترین </li>
@@ -65,7 +65,7 @@
                         <img src="{{ $video->image }}" alt="{{ $video->alt }}" class="absolute top-0 left-0 w-full h-full object-cover z-[1]" />
                         <x-icons.playIcon class="size-14 sm:w-20 sm:h-20 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-[3]" />
                         <div class="absolute text-white bottom-0 left-0 w-full z-[2] flex flex-col justify-end px-4 pb-5 bg-gradient-to-t from-black/90 to-transparent h-1/2">
-                            <p class="w-full text-sm font-bold sm:text-lg line-clamp-1"> {{ $video->alt }} </p>
+                            <p class="w-full text-sm font-medium sm:text-lg line-clamp-1"> {{ $video->alt }} </p>
                         </div>
                     </div>
                 </div>

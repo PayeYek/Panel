@@ -2,7 +2,7 @@
     <li class="flex flex-col">
         <div class="flex_between gap-4">
             <p
-                class="pr-4 leading-8 relative text-normal text-base font-bold before:absolute before:content-[''] before:w-1 before:h-full before:top-0 before:right-0 before:rounded-l before:bg-normal">
+                class="pr-4 leading-8 relative text-normal text-base font-medium before:absolute before:content-[''] before:w-1 before:h-full before:top-0 before:right-0 before:rounded-l before:bg-normal">
                 نمایندگی 2111 تهران </p>
             <div class="cursor-pointer p-0.5" @click="toggleBranchVisiblity">
                 <svg :class="'stroke-normal size-6 duration-300 ' + (branchState ? 'rotate-180' : '')"
@@ -15,7 +15,7 @@
         <section :class="'flex flex-col gap-4 overflow-hidden duration-300 ' + (branchState ? ' max-h-[32rem] py-4' : ' max-h-0 py-0')">
             <div class="p-4 rounded-custom border border-stone-700/20">
                 <!-- title -->
-                <p class="text-base font-bold text-stone-700 mb-4"> شعبه مرکزی </p>
+                <p class="text-base font-medium text-stone-700 mb-4"> شعبه مرکزی </p>
                 <section>
                     <!-- location -->
                     <div class="flex items-start gap-3.5 mb-4">
@@ -42,12 +42,12 @@
                         <p class="text-base font-normal text-stone-700 leading-7"> 021-44000990 </p>
                     </a>
                     <!-- address on utilities -->
-                    <a href="geo:35.7330071,51.3335077" class="text-[#1EA0FF] text-base font-bold underline underline-offset-[6px]"> مسیریابی </a>
+                    <a href="geo:35.7330071,51.3335077" class="text-[#1EA0FF] text-base font-medium underline underline-offset-[6px]"> مسیریابی </a>
                 </section>
             </div>
             <div class="p-4 rounded-custom border border-stone-700/20">
                 <!-- title -->
-                <p class="text-base font-bold text-stone-700 mb-4"> شعبه اسلامشهر </p>
+                <p class="text-base font-medium text-stone-700 mb-4"> شعبه اسلامشهر </p>
                 <section>
                     <!-- location -->
                     <div class="flex items-start gap-3.5 mb-4">
@@ -73,7 +73,7 @@
                         <p class="text-base font-normal text-stone-700 leading-7"> 021-91006663 </p>
                     </a>
                     <!-- address on utilities -->
-                    <a href="#" class="text-[#1EA0FF] text-base font-bold underline underline-offset-[6px]"> مسیریابی </a>
+                    <a href="#" class="text-[#1EA0FF] text-base font-medium underline underline-offset-[6px]"> مسیریابی </a>
                 </section>
             </div>
         </section>

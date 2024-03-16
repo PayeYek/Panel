@@ -6,7 +6,7 @@
         default => '',
     };
 @endphp
-
+{{-- @dd($land->articles) --}}
 <x-layout.default.main :land="$land">
 
     <main class="relative pt-4 default_container mb-8 sm:mb-24 lg:mb-28">
@@ -16,8 +16,8 @@
                 <x-common_landing.breadcrumbs :data="$breadcrumbs" />
 
                 <div class="flex items-start justify-between gap-4 mb-2.5 md:mb-4 text-normal">
-                    <h1 class="text-xl font-bold leading-8 sm:text-2xl"> {{ $article->title }} </h1>
-                    <p class="flex-none mt-1 text-sm font-normal"> 12 بهمن 1402 </p>
+                    <h1 class="text-xl font-medium leading-8 sm:text-2xl"> {{ $article->title }} </h1>
+                    <p class="flex-none mt-1 text-sm font-normal"> {{ jdate($article->created_at)->format('%B، %Y') }} </p>
                 </div>
 
                 <div class="w-full relative pt-[56%] mb-2 md:mb-4 lg:mb-8 rounded-custom overflow-hidden">
@@ -46,7 +46,7 @@
                             class="bg-white mb-5 max-w-64 h-11 border border-[#CFD1D4] focus:border-[#CFD1D4] focus:ring-0 rounded-custom outline-none w-full placeholder:text-[#acacac] text-base font-normal px-3 text-stone-700 tracking-widest"
                             placeholder="09" />
                         <button type="submit"
-                            class="w-full text-base font-bold text-white rounded-custom flex_center max-w-64 h-11 bg-normal hover:bg-focus focus:bg-focus focus:shadow-focus focus:shadow-shadowNormal">
+                            class="w-full text-base font-medium text-white rounded-custom flex_center max-w-64 h-11 bg-normal hover:bg-focus focus:bg-focus focus:shadow-focus focus:shadow-shadowNormal">
                             ثبت درخواست </button>
                     </form>
                 </section>
@@ -54,7 +54,7 @@
                 {{-- articles --}}
                 <section class="relative flex flex-col pb-10 sm:pb-0">
                     {{-- header --}}
-                        <h3 class="mb-2 text-base font-bold text-center sm:text-lg text-stone-700"> آخرین اخبار و اطلاعیه ها
+                        <h3 class="mb-2 text-base font-medium text-center sm:text-lg text-stone-700"> آخرین اخبار و اطلاعیه ها
                         </h3>
                         <hr class="mx-auto mb-6 w-60 sm:w-96 border-normal lg:mb-0" />
                         {{-- show all --}}
@@ -74,8 +74,8 @@
                     {{-- description --}}
                     <section class="order-1 w-full lg:flex-1 lg:order-2">
                         <div class="flex items-start justify-between gap-4 mb-2.5 md:mb-4 text-normal">
-                            <h1 class="text-xl font-bold leading-8 sm:text-2xl"> {{ $article->title }} </h1>
-                            <p class="flex-none mt-1 text-sm font-normal"> 12 بهمن 1402 </p>
+                            <h1 class="text-xl font-medium leading-8 sm:text-2xl"> {{ $article->title }} </h1>
+                            <p class="flex-none mt-1 text-sm font-normal"> {{ jdate($article->created_at)->format('%B، %Y') }} </p>
                         </div>
 
                         <div class="w-full relative pt-[56%] mb-2 md:mb-4 lg:mb-8 rounded-custom overflow-hidden">
@@ -98,7 +98,7 @@
                         <section class="relative pb-10 sm:pb-0 lg:pb-10">
                             {{-- header --}}
                             <div class="flex items-center mb-4 sm:justify-between lg:px-4">
-                                <h3 class="text-lg font-bold text-gray-900 md:text-xl lg:text-lg"> آخرین اخبار و اطلاعیه ها
+                                <h3 class="text-lg font-medium text-gray-900 md:text-xl lg:text-lg"> آخرین اخبار و اطلاعیه ها
                                 </h3>
                                 <a href="#"
                                     class="absolute bottom-0 flex items-center gap-2 text-base font-normal sm:static lg:absolute right-4 lg:right-auto lg:left-2 text-normal">
@@ -121,14 +121,14 @@
                                         {{-- info --}}
                                         <div class="flex flex-col px-5 pt-2 pb-4">
                                             <p
-                                                class="mb-2 text-lg font-bold text-justify text-gray-900 md:line-clamp-1 lg:line-clamp-none">
+                                                class="mb-2 text-lg font-medium text-justify text-gray-900 md:line-clamp-1 lg:line-clamp-none">
                                                 {{ $article->title }} </p>
                                             <p
                                                 class="mb-3 text-sm font-normal leading-7 text-justify text-gray-900 line-clamp-3 md:h-20 lg:h-auto">
                                                 {{ $article->description }}
                                             </p>
                                             <a href="{{ route('landing.article.show', ['page' => $land->slug, 'article' => $article->slug]) }}"
-                                                class="flex items-center gap-3 pt-1 pb-2 mr-auto text-sm font-bold text-normal">
+                                                class="flex items-center gap-3 pt-1 pb-2 mr-auto text-sm font-medium text-normal">
                                                 <span> ادامه </span>
                                                 <svg class="stroke-current" width="20" height="20"
                                                     viewBox="0 0 20 20" fill="none"
@@ -159,7 +159,7 @@
                                     class="bg-dark-50 mb-12 h-10 w-full max-w-72 border-0 focus:ring-0 rounded-custom outline-none w-full placeholder:text-[#888b93] text-sm font-normal px-3 text-gray-900"
                                     placeholder="09" />
                                 <button type="submit"
-                                    class="w-full text-base font-bold text-white rounded-custom flex_center max-w-72 h-11 bg-normal hover:bg-focus focus:bg-focus focus:shadow-focus focus:shadow-shadowNormal">
+                                    class="w-full text-base font-medium text-white rounded-custom flex_center max-w-72 h-11 bg-normal hover:bg-focus focus:bg-focus focus:shadow-focus focus:shadow-shadowNormal">
                                     ثبت درخواست </button>
                             </form>
                         </section>
@@ -175,8 +175,8 @@
                     {{-- description --}}
                     <section class="w-full lg:flex-1">
                         <div class="flex items-start justify-between gap-4 mb-2.5 md:mb-4 text-normal">
-                            <h1 class="text-xl font-bold leading-8 sm:text-2xl"> {{ $article->title }} </h1>
-                            <p class="flex-none mt-1 text-sm font-normal"> 12 بهمن 1402 </p>
+                            <h1 class="text-xl font-medium leading-8 sm:text-2xl"> {{ $article->title }} </h1>
+                            <p class="flex-none mt-1 text-sm font-normal"> {{ jdate($article->created_at)->format('%B، %Y') }} </p>
                         </div>
 
                         <div class="w-full relative pt-[56%] mb-2 md:mb-4 lg:mb-8 rounded-custom overflow-hidden">
@@ -199,7 +199,7 @@
                         <section class="relative pb-10 sm:pb-0 lg:pb-10">
                             {{-- header --}}
                             <div class="flex items-center mb-4 sm:justify-between lg:px-4">
-                                <h3 class="text-lg font-bold text-gray-900 md:text-xl lg:text-lg"> آخرین اخبار و اطلاعیه ها
+                                <h3 class="text-lg font-medium text-gray-900 md:text-xl lg:text-lg"> آخرین اخبار و اطلاعیه ها
                                 </h3>
                                 <a href="#"
                                     class="absolute bottom-0 flex items-center gap-2 text-base font-normal sm:static lg:absolute right-4 lg:right-auto lg:left-2 text-normal">
@@ -222,14 +222,14 @@
                                         {{-- info --}}
                                         <div class="flex flex-col px-5 pt-2 pb-4">
                                             <p
-                                                class="mb-2 text-lg font-bold text-justify text-gray-900 md:line-clamp-1 lg:line-clamp-none">
+                                                class="mb-2 text-lg font-medium text-justify text-gray-900 md:line-clamp-1 lg:line-clamp-none">
                                                 {{ $article->title }} </p>
                                             <p
                                                 class="mb-3 text-sm font-normal leading-7 text-justify text-gray-900 line-clamp-3 md:h-20 lg:h-auto">
                                                 {{ $article->description }}
                                             </p>
                                             <a href="{{ route('landing.article.show', ['page' => $land->slug, 'article' => $article->slug]) }}"
-                                                class="flex items-center gap-3 pt-1 pb-2 mr-auto text-sm font-bold text-normal">
+                                                class="flex items-center gap-3 pt-1 pb-2 mr-auto text-sm font-medium text-normal">
                                                 <span> ادامه </span>
                                                 <svg class="stroke-current" width="20" height="20"
                                                     viewBox="0 0 20 20" fill="none"
@@ -260,7 +260,7 @@
                                     class="bg-white mb-12 h-10 w-full max-w-72 border-0 focus:ring-0 rounded-custom outline-none w-full placeholder:text-[#888b93] text-sm font-normal px-3 text-gray-900"
                                     placeholder="09" />
                                 <button type="submit"
-                                    class="w-full text-base font-bold text-white border border-white rounded-custom flex_center max-w-72 h-11">
+                                    class="w-full text-base font-medium text-white border border-white rounded-custom flex_center max-w-72 h-11">
                                     ثبت درخواست </button>
                             </form>
                         </section>
@@ -276,9 +276,9 @@
                     {{-- description --}}
                     <section class="order-1 w-full lg:flex-1 lg:order-2">
                         <div class="flex items-start justify-between gap-4 mb-2.5 md:mb-4 text-normal">
-                            <h1 class="text-xl font-bold leading-8 sm:text-2xl"> {{ $article->title }} </h1>
+                            <h1 class="text-xl font-medium leading-8 sm:text-2xl"> {{ $article->title }} </h1>
                             <p class="flex-none mt-1 text-sm font-normal">
-                                {{ jdate($article->created_at)->format('%B %d، %Y') }} </p>
+                                {{ jdate($article->created_at)->format('%B، %Y') }} </p>
                         </div>
 
                         <div class="w-full relative pt-[56%] mb-2 md:mb-4 lg:mb-8 rounded-custom overflow-hidden">
@@ -320,7 +320,7 @@
                                             class="mb-3 text-base font-normal text-gray-900 lg:text-sm sm:text-justify lg:text-right line-clamp-1 sm:line-clamp-2 sm:h-12 lg:h-10 sm:mb-0">
                                             {{ $article->title }} </p>
                                         <p class="text-xs font-normal text-normal line-clamp-1">
-                                            {{ jdate($article->created_at)->format('%B %d، %Y') }} </p>
+                                            {{ jdate($article->created_at)->format('%B، %Y') }} </p>
                                     </div>
                                     </Link>
                                 @endforeach
@@ -341,7 +341,7 @@
                                     class="bg-dark-50 mb-12 max-w-72 h-10 border-0 focus:ring-0 rounded-custom outline-none w-full placeholder:text-[#888b93] text-sm font-normal px-3 text-gray-900"
                                     placeholder="09" />
                                 <button type="submit"
-                                    class="w-full text-base font-bold text-white rounded-custom flex_center max-w-72 h-11 bg-normal">
+                                    class="w-full text-base font-medium text-white rounded-custom flex_center max-w-72 h-11 bg-normal">
                                     ثبت درخواست </button>
                             </form>
                         </section>
@@ -357,9 +357,9 @@
                     {{-- description --}}
                     <section class="order-1 w-full lg:flex-1 lg:order-2">
                         <div class="flex items-start justify-between gap-4 mb-2.5 md:mb-4 text-normal">
-                            <h1 class="text-xl font-bold leading-8 sm:text-2xl"> {{ $article->title }} </h1>
+                            <h1 class="text-xl font-medium leading-8 sm:text-2xl"> {{ $article->title }} </h1>
                             <p class="flex-none mt-1 text-sm font-normal">
-                                {{ jdate($article->created_at)->format('%B %d، %Y') }} </p>
+                                {{ jdate($article->created_at)->format('%B، %Y') }} </p>
                         </div>
 
                         <div class="w-full relative pt-[56%] mb-2 md:mb-4 lg:mb-8 rounded-custom overflow-hidden">
@@ -390,7 +390,7 @@
                                     class="bg-dark-50 mb-6 max-w-72 h-10 border-0 focus:ring-0 rounded-custom outline-none w-full placeholder:text-[#888b93] text-sm font-normal px-3 text-gray-900"
                                     placeholder="09" />
                                 <button type="submit"
-                                    class="w-full text-base font-bold text-white border border-white rounded-custom flex_center max-w-72 h-11">
+                                    class="w-full text-base font-medium text-white border border-white rounded-custom flex_center max-w-72 h-11">
                                     ثبت درخواست </button>
                             </form>
                         </section>
@@ -429,7 +429,7 @@
                                         class="mb-3 text-base font-normal text-gray-900 sm:text-justify lg:text-right line-clamp-1 sm:line-clamp-2 sm:h-12 lg:h-10 lg:text-sm sm:mb-0">
                                         {{ $article->title }} </p>
                                     <p class="text-xs font-normal text-normal line-clamp-1">
-                                        {{ jdate($article->created_at)->format('%B %d، %Y') }} </p>
+                                        {{ jdate($article->created_at)->format('%B، %Y') }} </p>
                                 </div>
                                 </Link>
                             @endforeach

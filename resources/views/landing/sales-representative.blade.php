@@ -10,7 +10,7 @@
     <main class="pt-4 relative mb-8 sm:mb-24 lg:mb-28">
         {{-- titles --}}
         <section class="default_container">
-            <p class="text-[10px] md:text-sm md:font-bold font-normal mb-6 text-stone-700"> نمایندگی فروش </p>
+            <p class="text-[10px] md:text-sm md:font-medium font-normal mb-6 text-stone-700"> نمایندگی فروش </p>
             <h1 class="text-center px-8 text-2xl md:text-[32px] font-normal mb-5 md:mb-8 text-normal"> نمایندگی 2111 آرین دیزل </h1>
             <h3 class="text-xl font-normal mb-6 text-stone-700 md:text-2xl"> آرین دیزل </h3>
             <p class="text-justify text-sm md:text-base md:mb-10 lg:mb-14 font-normal leading-6 md:leading-7 mb-5">
@@ -23,7 +23,7 @@
             {{-- send message --}}
             <section class="bg-white border border-[#E2E8F0] rounded-custom px-4 pb-8 pt-2 sm:pt-4 md:pt-8 sm:pb-10 md:pb-12">
                 <div class="md:w-[492px] md:mx-auto">
-                    <p class="text-base font-bold mb-4 text-normal text-center md:text-right md:mb-6"> ارسال پیام </p>
+                    <p class="text-base font-medium mb-4 text-normal text-center md:text-right md:mb-6"> ارسال پیام </p>
                     <p class="text-sm md:text-base font-normal text-stone-700 mb-12 md:mb-4 text-center md:text-right"> در صورت نیاز به مشاوره و خدمت با ما همراه باشید. </p>
                     {{-- form --}}
                     <section class="flex flex-col items-center">
