@@ -13,7 +13,7 @@
         @vite('resources/js/app.js')
     </head>
     {{-- loader-hide-scrollbar --}}
-    <body class="antialiased">
+    <body class="antialiased loader-hide-scrollbar">
         @production
             <x-layout.loader.html/>
         @endproduction
