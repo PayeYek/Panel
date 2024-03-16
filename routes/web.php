@@ -114,6 +114,7 @@ Route::middleware(['splade'])->group(function () {
             });
 
             Route::get('{page}/sales', 'sales')->name('sales');
+            Route::get('{page}/videos', 'videos')->name('videos');
 
         });
 

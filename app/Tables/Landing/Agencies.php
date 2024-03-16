@@ -41,10 +41,11 @@ class Agencies extends AbstractTable
         });
 
         return QueryBuilder::for(LandAgency::class)
-//            ->with(['land'])
+            ->with(['land', 'province' , 'city'])
+//            ->join('provinces', 'land_agencies.province_id', '=', 'provinces.id')
             ->defaultSort('-id')
-            ->allowedSorts(['land.title', 'province.name', 'city.name', 'code'])
-            ->allowedFilters(['land_id', 'province.name', 'city_id', 'code', $globalSearch]);
+            ->allowedSorts(['land.title', 'name', 'manager', 'code'])
+            ->allowedFilters(['land_id', 'province_id', 'city_id', 'code', $globalSearch]);
     }
 
     public function configure(SpladeTable $table)
@@ -116,11 +117,11 @@ class Agencies extends AbstractTable
         })->toArray(), label: __('Landing'));
 
         $table->selectFilter('province_id', Province::all()->mapWithKeys(function ($item) {
-            return [$item->id => __($item->title)];
+            return [$item->id => __($item->name)];
         })->toArray(), label: __('Province'));
 
         $table->selectFilter('city_id', ProvinceCity::all()->mapWithKeys(function ($item) {
-            return [$item->id => __($item->title)];
+            return [$item->id => __($item->name)];
         })->toArray(), label: __('City'));
     }
 }
