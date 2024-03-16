@@ -16,8 +16,7 @@
                     <h3
                         class="text-base font-bold leading-7 sm:text-lg text-stone-700 line-clamp-1">
                         {{ article.title }} </h3>
-                    <h4 class="flex-none text-sm font-bold leading-7 sm:text-base text-normal"> بهمن
-                        1402 </h4>
+                    <h4 class="flex-none text-sm font-bold leading-7 sm:text-base text-normal"> {{ renderDate(article.created_at) }} </h4>
                 </div>
                 <p
                     class="mb-2 text-sm font-normal leading-6 sm:leading-7 sm:h-20 sm:mb-3 text-justify text-stone-700 line-clamp-3 h-[72px]">
@@ -34,6 +33,7 @@
 <script>
 import {Autoplay, Navigation, Pagination} from 'swiper/modules';
 import {Swiper, SwiperSlide} from 'swiper/vue';
+import 'moment-jalaali';
 
 import 'swiper/css';
 import 'swiper/css/pagination';
@@ -50,7 +50,7 @@ export default {
         Swiper,
         SwiperSlide
     },
-    setup(props){
+    setup(){
         const breakpoints = {
             320: {
                 slidesPerView: "auto",
@@ -62,11 +62,15 @@ export default {
             },
         }
 
-        console.log(props.slides);
+        // convert date to fa local
+        const renderDate = (string) => {
+            return new Intl.DateTimeFormat('fa-IR', { dateStyle: 'medium' }).format(new Date(string))
+        }
 
         return {
             breakpoints,
             modules: [Navigation, Pagination, Autoplay],
+            renderDate,
         }
     }
 

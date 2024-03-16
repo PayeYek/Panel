@@ -17,7 +17,7 @@
 
                 <div class="flex items-start justify-between gap-4 mb-2.5 md:mb-4 text-normal">
                     <h1 class="text-xl font-bold leading-8 sm:text-2xl"> {{ $article->title }} </h1>
-                    <p class="flex-none mt-1 text-sm font-normal"> 12 بهمن 1402 </p>
+                    <p class="flex-none mt-1 text-sm font-normal"> {{ jdate($article->created_at)->format('%B %d، %Y') }} </p>
                 </div>
 
                 <div class="w-full relative pt-[56%] mb-2 md:mb-4 lg:mb-8 rounded-custom overflow-hidden">
@@ -75,7 +75,7 @@
                     <section class="order-1 w-full lg:flex-1 lg:order-2">
                         <div class="flex items-start justify-between gap-4 mb-2.5 md:mb-4 text-normal">
                             <h1 class="text-xl font-bold leading-8 sm:text-2xl"> {{ $article->title }} </h1>
-                            <p class="flex-none mt-1 text-sm font-normal"> 12 بهمن 1402 </p>
+                            <p class="flex-none mt-1 text-sm font-normal"> {{ jdate($article->created_at)->format('%B %d، %Y') }} </p>
                         </div>
 
                         <div class="w-full relative pt-[56%] mb-2 md:mb-4 lg:mb-8 rounded-custom overflow-hidden">
@@ -176,7 +176,7 @@
                     <section class="w-full lg:flex-1">
                         <div class="flex items-start justify-between gap-4 mb-2.5 md:mb-4 text-normal">
                             <h1 class="text-xl font-bold leading-8 sm:text-2xl"> {{ $article->title }} </h1>
-                            <p class="flex-none mt-1 text-sm font-normal"> 12 بهمن 1402 </p>
+                            <p class="flex-none mt-1 text-sm font-normal"> {{ jdate($article->created_at)->format('%B %d، %Y') }} </p>
                         </div>
 
                         <div class="w-full relative pt-[56%] mb-2 md:mb-4 lg:mb-8 rounded-custom overflow-hidden">
