@@ -1,11 +1,11 @@
 <template>
 
-    <section class="default_container flex flex-col sm:flex-row-reverse sm:justify-between sm:items-center gap-4 mb-8">
-        <section class="w-full h-12 relative sm:w-72">
+    <section class="flex flex-col gap-4 mb-8 default_container sm:flex-row-reverse sm:justify-between sm:items-center">
+        <section class="relative w-full h-12 sm:w-72">
             <input type="text"
-                class="w-full h-full outline-none border-b border-x-0 border-t-0 border-b-dark-100 focus:ring-0 focus:border-b-dark-100 pl-10 pr-3 placeholder:text-[#888b93] text-sm font-normal text-gray-900"
+                class="w-full h-full outline-none border-b border-x-0 border-t-0 border-b-dark-100 focus:ring-0 focus:border-b-dark-100 pl-10 pr-3 placeholder:text-[#888b93] text-sm font-normal text-stone-700"
                 placeholder="جستجو مطلب" v-model="searchFilterState" @keyup="filterArticleByName" />
-            <div class="w-8 h-8 absolute left-2 top-2 flex-none flex_center">
+            <div class="absolute flex-none w-8 h-8 left-2 top-2 flex_center">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path
                         d="M16.9284 17.0396L20.4016 20.3996M19.2816 11.4396C19.2816 15.7695 15.7715 19.2796 11.4416 19.2796C7.11165 19.2796 3.60156 15.7695 3.60156 11.4396C3.60156 7.1097 7.11165 3.59961 11.4416 3.59961C15.7715 3.59961 19.2816 7.1097 19.2816 11.4396Z"
@@ -28,90 +28,137 @@
         </ul>
     </section>
 
-    <section :class="'mb-4 ' + gridStyle">
-        <template v-for="(article, index) in filteredArticles">
-            <ArticleLink v-if="type == 1" :key="index" :href="'/l/' + landSlug + '/a/' + article.slug"
-                :class="'flex flex-col sm:flex-row rounded-custom bg-white overflow-hidden ' + borderStyle">
-                <!-- image -->
-                <div
-                    class="overflow-hidden md:flex-none w-full relative pt-[61%] sm:pt-0 sm:w-72 md:w-80 lg:w-[23rem] sm:flex-none">
-                    <img :src="article.image" :alt="article.title"
-                        class="absolute top-0 left-0 object-cover w-full h-full sm:static" />
-                </div>
-                <!-- docs -->
-                <div class="px-6 pb-6 pt-2.5 md:pl-10 flex flex-col sm:justify-center sm:flex-1">
-                    <h3 class="mb-4 text-lg font-bold text-gray-900 line-clamp-1"> {{ article.title }} </h3>
-                    <p
-                        class="text-sm text-justify line-clamp-5 sm:line-clamp-3 lg:line-clamp-2 lg:h-16 leading-7 sm:h-20 lg:leading-8 mb-4 font-normal text-dark-500 ">
-                        {{ article.description }}
-                    </p>
-                </div>
-            </ArticleLink>
-
-            <ArticleLink v-if="type == 2" :key="index" :href="'/l/' + landSlug + '/a/' + article.slug"
-                :class="'flex flex-col w-full flex-none overflow-hidden rounded-custom bg-white ' + borderStyle">
-                <div class="relative w-full pt-[62%]">
-                    <img :src="article.image" :alt="article.title"
-                        class="absolute top-0 left-0 w-full h-full object-cover" />
-                </div>
-                <!-- info -->
-                <div class="px-4 pt-3 pb-4">
-                    <h3 class="mb-2 text-sm font-bold text-gray-900 line-clamp-1"> {{ article.title }} </h3>
-                    <p class="mb-3 text-xs font-normal leading-5 h-10 text-justify text-gray-900  line-clamp-2">
-                        {{ article.description }}
-                    </p>
-                </div>
-            </ArticleLink>
-
-            <ArticleLink v-if="type == 3" :key="index" :href="'/l/' + landSlug + '/a/' + article.slug"
-                class="flex flex-col sm:flex-row bg-white border-t first:border-t-0 py-4 first:pt-0 last:pb-0 border-dark-100">
-                <!-- image -->
-                <div
-                    class="overflow-hidden md:flex-none w-full relative pt-[61%] sm:pt-0 sm:w-72 md:w-80 lg:w-[23rem] sm:flex-none mb-3 sm:mb-0 rounded-custom">
-                    <img :src="article.image" :alt="article.title"
-                        class="absolute top-0 left-0 object-cover w-full h-full sm:static" />
-                </div>
-                <!-- docs -->
-                <div class="px-6 md:pl-8 flex flex-col sm:justify-center sm:flex-1">
-                    <h3 class="mb-4 text-lg font-bold text-gray-900 line-clamp-1"> {{ article.title }} </h3>
-                    <p
-                        class="text-sm text-justify lg:text-base line-clamp-5 sm:line-clamp-3 lg:line-clamp-2 lg:h-24 leading-7 sm:h-20 lg:leading-8 mb-4 font-normal text-dark-500">
-                        {{ article.description }}
-                    </p>
-                </div>
-            </ArticleLink>
-
-            <div v-if="type == 4" :key="index"
-                class="flex flex-col sm:flex-row bg-white border-t first:border-t-0 py-4 first:pt-0 last:pb-0 border-dark-100">
-                <!-- image -->
-                <div
-                    class="overflow-hidden md:flex-none w-full relative pt-[61%] sm:pt-0 sm:w-72 md:w-80 lg:w-[23rem] sm:flex-none mb-3 sm:mb-0 rounded-custom">
-                    <img :src="article.image" :alt="article.title"
-                        class="absolute top-0 left-0 object-cover w-full h-full sm:static" />
-                </div>
-                <!-- docs -->
-                <div class="px-6 md:pl-8 flex flex-col sm:justify-center sm:flex-1">
-                    <h3 class="mb-4 text-lg font-bold text-gray-900 line-clamp-1"> {{ article.title }} </h3>
-                    <p
-                        class="text-sm text-justify lg:text-base line-clamp-5 sm:line-clamp-3 lg:line-clamp-2 lg:h-24 leading-7 sm:h-20 lg:leading-8 mb-4 font-normal text-dark-500">
-                        {{ article.description }}
-                    </p>
-                    <div class="flex items-center justify-between">
-                        <p class="text-dark-500 text-sm font-normal lg:text-base"> {{ renderDate(article.created_at) }}
+    <template v-if="filteredArticles.length != 0">
+        <section :class="'mb-4 ' + gridStyle">
+            <template v-for="(article, index) in filteredArticles">
+                <ArticleLink v-if="type == 1" :key="index" :href="'/l/' + landSlug + '/a/' + article.slug"
+                    :class="'flex flex-col sm:flex-row rounded-custom bg-white overflow-hidden ' + borderStyle">
+                    <!-- image -->
+                    <div
+                        class="overflow-hidden md:flex-none w-full relative pt-[61%] sm:pt-0 sm:w-72 md:w-80 lg:w-[23rem] sm:flex-none">
+                        <img :src="article.image" :alt="article.title"
+                            class="absolute top-0 left-0 object-cover w-full h-full sm:static" />
+                    </div>
+                    <!-- docs -->
+                    <div class="px-6 pb-6 pt-2.5 md:pl-10 flex flex-col sm:justify-center sm:flex-1">
+                        <h3 class="mb-4 text-lg font-bold text-stone-700 line-clamp-1"> {{ article.title }} </h3>
+                        <p
+                            class="mb-4 text-sm font-normal leading-7 text-justify line-clamp-5 sm:line-clamp-3 lg:line-clamp-2 lg:h-16 sm:h-20 lg:leading-8 text-dark-500 ">
+                            {{ article.description }}
                         </p>
-                        <ArticleLink :href="'/l/' + landSlug + '/a/' + article.slug"
-                            class="text-sm font-bold flex items-center px-4 gap-4 text-normal">
-                            <span> ادامه </span>
-                            <svg class="fill-current" width="16" height="16" viewBox="0 0 16 16" fill="none"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path d="M8 16L9.41 14.59L3.83 9L16 9V7L3.83 7L9.41 1.41L8 0L0 8L8 16Z"
-                                    fill="current" />
-                            </svg>
-                        </ArticleLink>
+                    </div>
+                </ArticleLink>
+
+                <ArticleLink v-if="type == 2" :key="index" :href="'/l/' + landSlug + '/a/' + article.slug"
+                    :class="'flex flex-col w-full flex-none overflow-hidden rounded-custom bg-white ' + borderStyle">
+                    <div class="relative w-full pt-[62%]">
+                        <img :src="article.image" :alt="article.title"
+                            class="absolute top-0 left-0 object-cover w-full h-full" />
+                    </div>
+                    <!-- info -->
+                    <div class="px-4 pt-3 pb-4">
+                        <h3 class="mb-2 text-sm font-bold text-stone-700 line-clamp-1"> {{ article.title }} </h3>
+                        <p class="h-10 mb-3 text-xs font-normal leading-5 text-justify text-stone-700 line-clamp-2">
+                            {{ article.description }}
+                        </p>
+                    </div>
+                </ArticleLink>
+
+                <ArticleLink v-if="type == 3" :key="index" :href="'/l/' + landSlug + '/a/' + article.slug"
+                    class="flex flex-col py-4 bg-white border-t sm:flex-row first:border-t-0 first:pt-0 last:pb-0 border-dark-100">
+                    <!-- image -->
+                    <div
+                        class="overflow-hidden md:flex-none w-full relative pt-[61%] sm:pt-0 sm:w-72 md:w-80 lg:w-[23rem] sm:flex-none mb-3 sm:mb-0 rounded-custom">
+                        <img :src="article.image" :alt="article.title"
+                            class="absolute top-0 left-0 object-cover w-full h-full sm:static" />
+                    </div>
+                    <!-- docs -->
+                    <div class="flex flex-col px-6 md:pl-8 sm:justify-center sm:flex-1">
+                        <h3 class="mb-4 text-lg font-bold text-stone-700 line-clamp-1"> {{ article.title }} </h3>
+                        <p
+                            class="mb-4 text-sm font-normal leading-7 text-justify lg:text-base line-clamp-5 sm:line-clamp-3 lg:line-clamp-2 lg:h-24 sm:h-20 lg:leading-8 text-dark-500">
+                            {{ article.description }}
+                        </p>
+                    </div>
+                </ArticleLink>
+
+                <div v-if="type == 4" :key="index"
+                    class="flex flex-col py-4 bg-white border-t sm:flex-row first:border-t-0 first:pt-0 last:pb-0 border-dark-100">
+                    <!-- image -->
+                    <div
+                        class="overflow-hidden md:flex-none w-full relative pt-[61%] sm:pt-0 sm:w-72 md:w-80 lg:w-[23rem] sm:flex-none mb-3 sm:mb-0 rounded-custom">
+                        <img :src="article.image" :alt="article.title"
+                            class="absolute top-0 left-0 object-cover w-full h-full sm:static" />
+                    </div>
+                    <!-- docs -->
+                    <div class="flex flex-col px-6 md:pl-8 sm:justify-center sm:flex-1">
+                        <h3 class="mb-4 text-lg font-bold text-stone-700 line-clamp-1"> {{ article.title }} </h3>
+                        <p
+                            class="mb-4 text-sm font-normal leading-7 text-justify lg:text-base line-clamp-5 sm:line-clamp-3 lg:line-clamp-2 lg:h-24 sm:h-20 lg:leading-8 text-dark-500">
+                            {{ article.description }}
+                        </p>
+                        <div class="flex items-center justify-between">
+                            <p class="text-sm font-normal text-dark-500 lg:text-base"> {{ renderDate(article.created_at)
+                                }}
+                            </p>
+                            <ArticleLink :href="'/l/' + landSlug + '/a/' + article.slug"
+                                class="flex items-center gap-4 px-4 text-sm font-bold text-normal">
+                                <span> ادامه </span>
+                                <svg class="fill-current" width="16" height="16" viewBox="0 0 16 16" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M8 16L9.41 14.59L3.83 9L16 9V7L3.83 7L9.41 1.41L8 0L0 8L8 16Z"
+                                        fill="current" />
+                                </svg>
+                            </ArticleLink>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </template>
+
+                <ArticleLink v-if="type == 5" :key="index" :href="'/l/' + landSlug + '/a/' + article.slug"
+                    :class="'flex flex-col sm:flex-row bg-white overflow-hidden relative ' + borderStyle + (evenOdd == 1 ? ' evenOdd_cards rounded-custom sm:py-2 sm:px-1 lg:py-6 lg:px-4' : ' bg-white')">
+                    <!-- image -->
+                    <div
+                        class="overflow-hidden md:flex-none w-full relative pt-[61%] sm:pt-0 sm:w-72 md:w-80 lg:w-[23rem] sm:flex-none">
+                        <img :src="article.image" :alt="article.title"
+                            class="absolute top-0 left-0 object-cover w-full h-full sm:static rounded-custom" />
+                    </div>
+                    <!-- docs -->
+                    <div class="px-6 pb-6 pt-2.5 md:pl-10 lg:pl-4 flex flex-wrap sm:flex-1">
+                        <div class="order-1 w-2/3 sm:w-full sm:mb-4 lg:flex_between lg:gap-8">
+                            <h3 class="text-lg font-bold text-stone-700 line-clamp-2 sm:line-clamp-1"> {{ article.title
+                                }} </h3>
+                            <h4
+                                class="absolute top-4 left-3 sm:left-auto sm:right-56 sm:top-4 md:right-64 lg:static px-3 py-1.5 lg:px-2 lg:w-28 lg:flex_center text-sm font-bold rounded-full bg-stone-400 text-stone-700">
+                                {{ article.type === "blog" ? 'بلاگ' : (article.type === "sell" ? 'اطلاعیه' :
+                    (article.type === "news" ? 'خبر' : article.type)) }} </h4>
+                        </div>
+                        <h3
+                            class="flex justify-end order-2 w-1/3 text-base font-normal sm:order-3 text-stone-700 sm:w-full sm:justify-start">
+                            {{ renderDate(article.created_at) }} </h3>
+
+                        <div
+                            class="order-3 w-full mt-2 text-sm font-normal leading-7 text-justify sm:mb-2 sm:mt-0 sm:order-2 line-clamp-5 sm:line-clamp-3 lg:line-clamp-2 lg:h-16 sm:h-20 lg:leading-8 text-dark-500">
+                            {{ article.description }}
+                        </div>
+                    </div>
+                </ArticleLink>
+            </template>
+        </section>
+    </template>
+
+    <section class="relative flex-col gap-4 flex_center h-80 sm:h-96" v-else>
+        <p class="pb-4 text-base font-normal border-b sm:text-lg border-b-normal text-stone-700"> محتوایی با این مشخصات
+            پیدا
+            نشد. </p>
+        <p class="text-sm font-normal sm:text-base text-stone-700"> پیشنهاد می کنیم فیلتر ها را تغییر دهید. </p>
+
+        <!-- icon -->
+        <svg class="absolute translate-x-1/2 -translate-y-1/2 size-80 sm:size-96 top-1/2 right-1/2" viewBox="0 0 362 362" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path opacity="0.2"
+                d="M281.179 283.479L351.799 351.799M329.026 169.613C329.026 257.654 257.654 329.026 169.613 329.026C81.571 329.026 10.1992 257.654 10.1992 169.613C10.1992 81.571 81.571 10.1992 169.613 10.1992C257.654 10.1992 329.026 81.571 329.026 169.613Z"
+                stroke="#58595B" stroke-width="20" stroke-linecap="round" />
+        </svg>
+
     </section>
 
 </template>
@@ -134,7 +181,7 @@ export default {
             required: true,
         },
         type: {
-            type: String,
+            type: [String, Number],
             required: true,
         },
         data: {
@@ -143,6 +190,10 @@ export default {
         },
         borderStyle: {
             type: String,
+            required: true,
+        },
+        evenOdd: {
+            type: [String, Number],
             required: true,
         },
     },

@@ -3,39 +3,51 @@
     'product' => '',
 ])
 
-<section class="lg:pt-24">
-    <h1 class="hidden md:block text-2xl lg:text-[32px] font-medium text-normal mb-8 lg:mb-11 line-clamp-1"> {{ $productName }} </h1>
+<section class="flex flex-col-reverse gap-4 lg:pt-6 lg:flex-col lg:col-span-4">
+    <h1 class="hidden lg:block text-2xl lg:text-[32px] font-medium text-normal mb-8 lg:mb-11 line-clamp-1"> {{ $productName }} </h1>
     {{-- boxes --}}
-    <div class="grid grid-cols-3 gap-3 text-sm 2xl:text-[15px] font-normal mb-4 md:max-w-[524px]">
-        <div class="aspect-square flex_center flex-col p-1 bg-dark-50 gap-1 rounded-custom">
-            <p class="line-clamp-1 text-normal"> نوع کاربری </p>
-            <p class="text-gray-900 line-clamp-1 font-semibold"> {{ $product->usage }} </p>
-        </div>
-        <div class="aspect-square flex_center flex-col p-1 bg-dark-50 gap-1 rounded-custom">
-            <p class="text-normal line-clamp-1"> نوع کابین </p>
-            <p class="text-gray-900 line-clamp-1 font-semibold">  {{ $product->cabin == 0 ? 'بدون خواب' : 'خواب دار' }} </p>
-        </div>
-        <div class="aspect-square flex_center flex-col p-1 bg-dark-50 gap-1 rounded-custom">
-            <p class="text-normal line-clamp-1"> تناژ </p>
-            <p class="text-gray-900 line-clamp-1 font-semibold"> {{ $product->tonnage }} </p>
-        </div>
-        <div class="aspect-square flex_center flex-col p-1 bg-dark-50 gap-1 rounded-custom">
-            <p class="text-normal line-clamp-1"> تعداد محور چرخ‌ها </p>
-            <p class="text-gray-900 line-clamp-1 font-semibold"> {{ $product->axle == 1 ? 'تک محوره' : ($product->axle == 2 ? 'جفت محوره' : 'سه محوره') }} </p>
-        </div>
-        <div class="aspect-square flex_center flex-col p-1 bg-dark-50 gap-1 rounded-custom">
-            <p class="text-normal line-clamp-1"> سال </p>
-            <p class="text-gray-900 line-clamp-1 font-semibold"> {{ $product->year }} </p>
-        </div>
-        <div class="aspect-square flex_center flex-col p-1 bg-dark-50 gap-1 rounded-custom">
-            <p class="text-normal line-clamp-1"> مدل </p>
-            <p class="text-gray-900 line-clamp-1 font-semibold"> {{ $product->model }} </p>
-        </div>
+    <div class="grid grid-cols-1 gap-2 text-sm lg:mb-16">
+        @if ($product->usage)
+            <div class="h-12 grid grid-cols-2 lg:grid-cols-5 content-center px-3 lg:px-4 bg-[#F2F2F2] gap-1 rounded-custom">
+                <p class="font-medium text-normal line-clamp-1 lg:col-span-2"> نوع کاربری </p>
+                <p class="font-normal text-stone-700 line-clamp-1 lg:col-span-3"> {{ $product->usage }} </p>
+            </div>
+        @endif
+        @if ($product->cabin)
+            <div class="h-12 grid grid-cols-2 lg:grid-cols-5 content-center px-3 lg:px-4 bg-[#F2F2F2] gap-1 rounded-custom">
+                <p class="font-medium text-normal line-clamp-1 lg:col-span-2"> نوع کابین </p>
+                <p class="font-normal text-stone-700 line-clamp-1 lg:col-span-3">  {{ $product->cabin == 0 ? 'بدون خواب' : 'خواب دار' }} </p>
+            </div>
+        @endif
+        @if ($product->tonnage)
+            <div class="h-12 grid grid-cols-2 lg:grid-cols-5 content-center px-3 lg:px-4 bg-[#F2F2F2] gap-1 rounded-custom">
+                <p class="font-medium text-normal line-clamp-1 lg:col-span-2"> تناژ </p>
+                <p class="font-normal text-stone-700 line-clamp-1 lg:col-span-3"> {{ $product->tonnage }} </p>
+            </div>
+        @endif
+        @if ($product->axle)
+            <div class="h-12 grid grid-cols-2 lg:grid-cols-5 content-center px-3 lg:px-4 bg-[#F2F2F2] gap-1 rounded-custom">
+                <p class="font-medium text-normal line-clamp-1 lg:col-span-2"> تعداد محور چرخ‌ها </p>
+                <p class="font-normal text-stone-700 line-clamp-1 lg:col-span-3"> {{ $product->axle == 1 ? 'تک محوره' : ($product->axle == 2 ? 'جفت محوره' : 'سه محوره') }} </p>
+            </div>
+        @endif
+        @if ($product->year)
+            <div class="h-12 grid grid-cols-2 lg:grid-cols-5 content-center px-3 lg:px-4 bg-[#F2F2F2] gap-1 rounded-custom">
+                <p class="font-medium text-normal line-clamp-1 lg:col-span-2"> سال </p>
+                <p class="font-normal text-stone-700 line-clamp-1 lg:col-span-3"> {{ $product->year }} </p>
+            </div>
+        @endif
+        @if ($product->model)
+            <div class="h-12 grid grid-cols-2 lg:grid-cols-5 content-center px-3 lg:px-4 bg-[#F2F2F2] gap-1 rounded-custom">
+                <p class="font-medium text-normal line-clamp-1 lg:col-span-2"> مدل </p>
+                <p class="font-normal text-stone-700 line-clamp-1 lg:col-span-3"> {{ $product->model }} </p>
+            </div>
+        @endif
     </div>
 
     {{-- guide btns --}}
     <div class="flex_center flex-col gap-2 md:max-w-[524px] md:flex-row lg:gap-4">
-        <x-pdp_landing.linkBtn text="دانلود کاتالوگ" class="rounded-custom text-normal bg-white border border-normal hover:border-focus hover:text-focus focus:border-focus focus:text-focus focus:shadow-focus focus:shadow-shadowNormal" />
-        <x-pdp_landing.linkBtn text="مشاوره و خرید" class="rounded-custom text-white bg-normal hover:bg-focus focus:bg-focus focus:shadow-focus focus:shadow-shadowNormal" />
+        <Link class="text-lg font-bold text-white cursor-pointer rounded-custom bg-stone-700 flex_center h-11 w-52"> مشاوره و خرید </Link>
+        <Link class="text-lg font-bold bg-white border cursor-pointer rounded-custom text-stone-700 border-stone-700 flex_center h-11 w-52"> دانلود کاتالوگ </Link>
     </div>
 </section>
