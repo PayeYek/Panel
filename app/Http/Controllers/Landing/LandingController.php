@@ -179,8 +179,12 @@ class LandingController extends Controller
         SEO::title($land->title . ' | ویدیوها')
             ->description("اطلاع از آخرین اطلاعایه های فروش خودرو، بررسی تخصصی خودروها و آخرین اخبار درباره شرکت و محصولات")
             ->keywords(['اطلاعیه فروش', 'بررسی تخصصی', 'آخرین خبر']);
+        /* BREADCRUMBS */
+        $breadcrumbs = [];
+        $breadcrumbs[] = ['title' => __('Home'), 'url' => route('landing.page.show', ['page' => $land->slug])];
+        $breadcrumbs[] = ['title' => __('Videos'), 'url' => null];
 
-        return view('landing.article-list', compact('land'));
+        return view('landing.video-gallery', compact('land', 'breadcrumbs'));
     }
 
     public function articles($page)
@@ -191,12 +195,7 @@ class LandingController extends Controller
             ->description("اطلاع از آخرین اطلاعایه های فروش خودرو، بررسی تخصصی خودروها و آخرین اخبار درباره شرکت و محصولات")
             ->keywords(['اطلاعیه فروش', 'بررسی تخصصی', 'آخرین خبر']);
 
-        /* BREADCRUMBS */
-        $breadcrumbs = [];
-        $breadcrumbs[] = ['title' => __('Home'), 'url' => route('landing.page.show', ['page' => $land->slug])];
-        $breadcrumbs[] = ['title' => __('Videos'), 'url' => null];
-
-        return view('landing.video-gallery', compact('land', 'breadcrumbs'));
+        return view('landing.article-list', compact('land'));
     }
 
     public function article($page, $article)
@@ -219,6 +218,7 @@ class LandingController extends Controller
 
     public function sales($page)
     {
+
         $land = $this->getLand($page);
         return view('landing.sales-representative', compact('land'));
     }
