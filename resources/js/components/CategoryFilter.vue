@@ -272,7 +272,7 @@
 </template>
 
 <script>
-import { ref, watch, onMounted } from 'vue';
+import { ref, watch } from 'vue';
 
 export default {
     name: 'CategoryFilter',
@@ -309,9 +309,6 @@ export default {
         const removeDuplicated = ref([]);
         const filteredList = ref([]);
         const allProductsList = ref([]);
-        onMounted(() => {
-            console.log(filteredList.value);
-        })
 
         // console.log(0, typeof filteredList.value);
         function remove_duplicates_es6(arr) {
