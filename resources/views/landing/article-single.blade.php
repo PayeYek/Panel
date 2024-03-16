@@ -6,33 +6,7 @@
         default => '',
     };
 @endphp
-@push('script')
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-    <script type="module">
-        var swiper2 = new Swiper(".articleSliderType5", {
-            slidesPerView: "auto",
-            spaceBetween: 20,
-            breakpoints: {
-                320: {
-                    slidesPerView: "auto",
-                    spaceBetween: 20,
-                },
-                1024: {
-                    slidesPerView: 3,
-                    spaceBetween: 20,
-                },
-            },
-            navigation: {
-                nextEl: ".articleSliderType5-next",
-                prevEl: ".articleSliderType5-prev",
-            },
-            pagination: {
-                el: ".articleSliderType5-pagination",
-            },
-        });
-    </script>
-@endpush
-{{-- @dd($breadcrumbs) --}}
+
 <x-layout.default.main :land="$land">
 
     <main class="relative pt-4 default_container mb-8 sm:mb-24 lg:mb-28">
@@ -84,41 +58,10 @@
                         </h3>
                         <hr class="mx-auto mb-6 w-60 sm:w-96 border-normal lg:mb-0" />
                         {{-- show all --}}
-                        <Link href="#"
+                        <Link href="{{ route('landing.article.list', ['page' => $land->slug]) }}"
                             class="hidden float-left px-2 mb-3 mr-auto text-base font-normal cursor-pointer text-normal lg:inline-block">
                         نمایش همه </Link>
-                        <div class="w-full swiper articleSliderType5">
-                            <div class="mb-4 swiper-wrapper">
-                                @foreach ($land->articles as $article)
-                                    <div :class="'swiper-slide flex flex-col flex-none overflow-hidden rounded-custom {{ $borderType }} ' + ({{ $land->styles->article_striped.'' }} === '1' ? 'evenOdd_cards' : 'bg-white')">
-                                        <div class="relative w-full pt-[62%]">
-                                            <img src="{{ $article->image }}" alt="{{ $article->title }}"
-                                                class="absolute top-0 left-0 object-cover w-full h-full" />
-                                        </div>
-                                        {{-- info --}}
-                                        <div class="px-2 pt-3 pb-4">
-                                            <div class="gap-4 mb-1 flex_between">
-                                                <h3
-                                                    class="text-base font-bold leading-7 sm:text-lg text-stone-700 line-clamp-1">
-                                                    {{ $article->title }} </h3>
-                                                <h4 class="flex-none text-sm font-bold leading-7 sm:text-base text-normal"> بهمن
-                                                    1402 </h4>
-                                            </div>
-                                            <p
-                                                class="mb-2 text-sm font-normal leading-6 sm:leading-7 sm:h-20 sm:mb-3 text-justify text-stone-700 line-clamp-3 h-[72px]">
-                                                {{ $article->description }}
-                                            </p>
-                                            <x-home_landing.announcement.children.linkBtn text="بیشتر"
-                                                href="{{ route('landing.article.show', ['page' => $land->slug, 'article' => $article->slug]) }}"
-                                                class="mx-auto text-white bg-stone-700" />
-                                        </div>
-                                    </div>
-                                @endforeach
-                            </div>
-                            <div class="swiper-button-next articleSliderType5-next"></div>
-                            <div class="swiper-button-prev articleSliderType5-prev"></div>
-                            <div class="swiper-pagination articleSliderType5-pagination"></div>
-                        </div>
+                        <MoreArticles :slides="{{ $land->articles }}" borderType="{{ $borderType }}" striped="{{$land->styles->article_striped}}" landSlug="{{ $land->slug }}" />
                 </section>
             @endif
                 
