@@ -72,14 +72,25 @@ class LandingController extends Controller
             ->description("{$land->title}: پیشگام در صنعت خودروهای سنگین ایران. کاوش در محصولات و خدمات باکیفیت ما، از کامیون‌های دیزلی گرفته تا خدمات پس از فروش. بیاموزید چگونه {$land->title} با نوآوری‌ها و استانداردهای بالای خود در بازار خودروهای سنگین پیشتاز است.")
             ->keywords($keywords);
 
-        return view('landing.page-about', compact('land'));
+
+        /* BREADCRUMBS */
+        $breadcrumbs = [];
+        $breadcrumbs[] = ['title' => __('Home'), 'url' => route('landing.page.show', ['page' => $land->slug])];
+        $breadcrumbs[] = ['title' => __('About us'), 'url' => null ];
+
+        return view('landing.page-about', compact('land', 'breadcrumbs'));
     }
 
     public function catalogs($page)
     {
         $land = $this->getLand($page);
 
-        return view('landing.page-catalog-list', compact('land'));
+        /* BREADCRUMBS */
+        $breadcrumbs = [];
+        $breadcrumbs[] = ['title' => __('Home'), 'url' => route('landing.page.show', ['page' => $land->slug])];
+        $breadcrumbs[] = ['title' => 'کاتالوگ', 'url' => null ];
+
+        return view('landing.page-catalog-list', compact('land', 'breadcrumbs'));
     }
 
     public function products($page)
@@ -108,7 +119,12 @@ class LandingController extends Controller
             ->description("{$land->title}: پیشگام در صنعت خودروهای سنگین ایران. کاوش در محصولات و خدمات باکیفیت ما، از کامیون‌های دیزلی گرفته تا خدمات پس از فروش. بیاموزید چگونه {$land->title} با نوآوری‌ها و استانداردهای بالای خود در بازار خودروهای سنگین پیشتاز است.")
             ->keywords([$land->title]);
 
-        return view('landing.product-list', compact('land', 'data'));
+        /* BREADCRUMBS */
+        $breadcrumbs = [];
+        $breadcrumbs[] = ['title' => __('Home'), 'url' => route('landing.page.show', ['page' => $land->slug])];
+        $breadcrumbs[] = ['title' => __('Products'), 'url' => null ];
+
+        return view('landing.product-list', compact('land', 'data', 'breadcrumbs'));
     }
 
     public function product($page, $product)
@@ -168,7 +184,12 @@ class LandingController extends Controller
 
         $data = collect($data);
 
-        return view('landing.categories', compact('land', 'data'));
+        /* BREADCRUMBS */
+        $breadcrumbs = [];
+        $breadcrumbs[] = ['title' => __('Home'), 'url' => route('landing.page.show', ['page' => $land->slug])];
+        $breadcrumbs[] = ['title' => __('Categories'), 'url' => null ];
+
+        return view('landing.categories', compact('land', 'data', 'breadcrumbs'));
 
     }
 
@@ -195,6 +216,11 @@ class LandingController extends Controller
             ->description("اطلاع از آخرین اطلاعایه های فروش خودرو، بررسی تخصصی خودروها و آخرین اخبار درباره شرکت و محصولات")
             ->keywords(['اطلاعیه فروش', 'بررسی تخصصی', 'آخرین خبر']);
 
+        /* BREADCRUMBS */
+        $breadcrumbs = [];
+        $breadcrumbs[] = ['title' => __('Home'), 'url' => route('landing.page.show', ['page' => $land->slug])];
+        $breadcrumbs[] = ['title' => __('Articles'), 'url' => null ];
+
         return view('landing.article-list', compact('land'));
     }
 
@@ -218,9 +244,14 @@ class LandingController extends Controller
 
     public function sales($page)
     {
-
         $land = $this->getLand($page);
-        return view('landing.sales-representative', compact('land'));
+
+        /* BREADCRUMBS */
+        $breadcrumbs = [];
+        $breadcrumbs[] = ['title' => __('Home'), 'url' => route('landing.page.show', ['page' => $land->slug])];
+        $breadcrumbs[] = ['title' => __('Sales Agency'), 'url' => null ];
+
+        return view('landing.sales-representative', compact('land', 'breadcrumbs'));
     }
 
     public function getLand($page): Land
