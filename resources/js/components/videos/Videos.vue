@@ -46,7 +46,7 @@
 </template>
 
 <script>
-import { ref, computed, onMounted } from 'vue';
+import { ref, onMounted, computed } from 'vue';
 
 export default {
     name: 'Videos',
@@ -60,22 +60,32 @@ export default {
     setup(props){
         const activeSort = ref(null);
         const videoList = ref(JSON.parse(props.data));
-        const sortedVideoList = ref([]);
         const isPlaying = ref(false);
         const videoIframe = ref(null);
+        const searchFilterState = ref("");
+
+        const sortedVideoList = computed(() => {
+            let filteredVideos = [...videoList.value];
+
+            // Apply search filter if search term is provided
+            if (searchFilterState.value.trim() !== '') {
+                const searchTerm = searchFilterState.value.trim().toLowerCase();
+                filteredVideos = filteredVideos.filter(video =>
+                    video.alt.toLowerCase().includes(searchTerm)
+                );
+            }
+
+            // Apply sorting based on the active sort parameter
+            if (activeSort.value === 'ASC') {
+                filteredVideos.sort((a, b) => new Date(a.created_at) - new Date(b.created_at));
+            } else if (activeSort.value === 'DESC') {
+                filteredVideos.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
+            }
+
+            return filteredVideos;
+        })
+
         const sortByParam = param => {
-
-            sortedVideoList.value = [...videoList.value];
-            sortedVideoList.value.sort((a, b) => {
-                const dateA = new Date(a.created_at);
-                const dateB = new Date(b.created_at);
-
-                if (param === 'ASC') {
-                    return dateA - dateB;
-                } else {
-                    return dateB - dateA;
-                }
-            })
             activeSort.value = param;
         }
 
@@ -100,6 +110,7 @@ export default {
             isPlaying,
             videoIframe,
             hideVideoByThumbnail,
+            searchFilterState,
         }
     }
 }
