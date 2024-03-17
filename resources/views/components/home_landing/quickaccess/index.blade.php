@@ -75,7 +75,7 @@
             </div>
             {{-- titles --}}
             <div>
-                <p class="hidden md:block mb-1 font-medium text-base md:text-sm lg:font-normal lg:text-xl xl:text-2xl text-center"> Announcements </p>
+                <p class="hidden md:block mb-1 font-medium text-base md:text-sm lg:font-normal lg:text-xl xl:text-2xl text-center"> Notify </p>
                 <p class="text-sm lg:text-base font-normal text-center"> اطلاعیه ها </p>
             </div>
         </Link>

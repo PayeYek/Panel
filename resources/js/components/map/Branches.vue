@@ -73,7 +73,7 @@
                         <p class="text-base font-normal text-stone-700 leading-7"> 021-91006663 </p>
                     </a>
                     <!-- address on utilities -->
-                    <a href="#" class="text-[#1EA0FF] text-base font-medium underline underline-offset-[6px]"> مسیریابی </a>
+                    <a href="geo:35.5664514,51.2684246" class="text-[#1EA0FF] text-base font-medium underline underline-offset-[6px]"> مسیریابی </a>
                 </section>
             </div>
         </section>

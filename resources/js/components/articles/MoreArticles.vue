@@ -22,8 +22,7 @@
                     class="mb-2 text-sm font-normal leading-6 sm:leading-7 sm:h-20 sm:mb-3 text-justify text-stone-700 line-clamp-3 h-[72px]">
                     {{ article.description }}
                 </p>
-                <ArticleLink :href="'/l/' + landSlug + '/a/' + article.slug" classNames="mx-auto text-white bg-stone-700 text-lg font-semibold flex_center h-10 w-32 rounded-custom"> بیشتر </ArticleLink>
-
+                <ArticleLink :href="'/l/' + landSlug + '/a/' + article.slug" classNames="mx-auto text-white bg-stone-700 text-lg font-medium flex_center h-10 w-32 rounded-custom"> بیشتر </ArticleLink>
             </div>
         </swiper-slide>
 </swiper>
