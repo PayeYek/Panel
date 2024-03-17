@@ -75,10 +75,7 @@ export default {
                 } else {
                     return dateB - dateA;
                 }
-
-                // activeSort.value = param
             })
-            // console.log(param);
             activeSort.value = param;
         }
 
