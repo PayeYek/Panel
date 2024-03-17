@@ -29,13 +29,11 @@
 @endpush
 <x-layout.default.main :land="$land">
 
-    <main class="pt-4 relative mb-8 sm:mb-24 lg:mb-28 default_container">
+    <main class="pt-4 relative mb-8 sm:mb-24 lg:mb-28">
         {{-- breadcrumbs --}}
         <x-common_landing.breadcrumbs :data="$breadcrumbs" />
 
-        <Videos data="{{ $land->videos }}" />
-
-        {{-- <section class="flex flex-col gap-4 mb-8 lg:mb-16 default_container sm:flex-row-reverse sm:justify-between sm:items-center">
+        <section class="flex flex-col gap-4 mb-8 lg:mb-16 default_container sm:flex-row-reverse sm:justify-between sm:items-center">
             <section class="relative w-full h-12 sm:w-72">
                 <input type="text"
                     class="w-full h-full outline-none border-b border-x-0 border-t-0 border-b-dark-100 focus:ring-0 focus:border-b-dark-100 pl-10 pr-3 placeholder:text-[#888b93] text-sm font-normal text-stone-700"
@@ -49,7 +47,7 @@
                 </div>
             </section>
     
-            sort filters
+            <!-- sort filters -->
             <ul
                 class="flex items-center flex-wrap gap-x-2 gap-y-4 list-none text-base font-medium *:rounded-custom *:flex_center *:h-8 *:px-3 *:cursor-pointer *:border *:border-stone-700 *:text-stone-700">
                 <li> جدید ترین </li>
@@ -77,7 +75,7 @@
             onclick="hideVideoByThumbnail(this)">
             <div class="w-full max-w-[640px] lg:max-w-[796px] xl:max-w-[900px] 2xl:max-w-[1024px] mx-auto iframe_styles flex_center"
                 id="ifame-box"></div>
-        </section> --}}
+        </section>
 
     </main>
 

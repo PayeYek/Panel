@@ -19,6 +19,7 @@ import PdpMoreArticles from "@/components/articles/PdpMoreArticles.vue";
 import ArticleLink from "@/components/articles/ArticleLink.vue";
 import AmChart from "@/components/map/AmChart.vue";
 import Branches from "@/components/map/Branches.vue";
+import Videos from "@/components/videos/Videos.vue";
 // import Swiper from 'swiper';
 // import 'swiper/css/bundle';
 // let Swiper = require('swiper');
@@ -72,6 +73,7 @@ createApp({ render: renderSpladeApp({ el }) })
     .component('ArticleLink', ArticleLink)
     .component('AmChart', AmChart)
     .component('Branches', Branches)
+    .component('Videos', Videos)
     // .directive("click-outside", clickOutside)
     .mount(el);
 
