@@ -25,70 +25,77 @@
         </section>
 
         {{-- Further Details --}}
-        <section class="default_container mb-20">
-            <p
-                class="pr-4 relative text-xl mb-7 font-medium text-stone-700 before:top-1/2 before:right-0 before:-translate-y-1/2 before:bg-normal before:h-12 before:w-1 before:rounded-l-custom before:absolute before:content-['']">
-                درباره محصول </p>
-            <div class="pb-4 text-justify custom_article_styles">
-                {!! $product->body !!}
-            </div>
-        </section>
+        @if ($product->body != null)
+            <section class="default_container mb-20">
+                <p
+                    class="pr-4 relative text-xl mb-7 font-medium text-stone-700 before:top-1/2 before:right-0 before:-translate-y-1/2 before:bg-normal before:h-12 before:w-1 before:rounded-l-custom before:absolute before:content-['']">
+                    درباره محصول </p>
+                <div class="pb-4 text-justify custom_article_styles">
+                    {!! $product->body !!}
+                </div>
+            </section>
+        @endif
 
         {{-- Technical Specifications --}}
-        <section class="default_container mb-20">
-            <p
-                class="pr-4 relative text-xl mb-7 font-medium text-stone-700 before:top-1/2 before:right-0 before:-translate-y-1/2 before:bg-normal before:h-12 before:w-1 before:rounded-l-custom before:absolute before:content-['']">
-                مشخصات </p>
-            <ul class="flex flex-col gap-2 text-stone-700">
-                @foreach ($product->attributes->sortBy('parent_id')->groupBy('parent_id') as $key => $attrs)
-                    <x-splade-data default="{ toggle: {{ $loop->index == 0 ? 'true' : 'false' }} }">
-                        <li class="p-4 bg-stone-200 rounded-custom lg:px-8">
-                            {{-- title --}}
-                            <div class="flex items-center justify-between cursor-pointer"
-                                @click="data.toggle = !data.toggle">
-                                <p class="text-sm lg:text-base font-medium">
-                                    {{ \App\Models\LandAttribute::whereId($key)->first()->name }} </p>
-                                <button type="button" class="cursor-pointer">
-                                    <svg class="duration-1000" :class="data.toggle ? 'rotate-180' : 'rotate-0'"
-                                        width="24" height="24" viewBox="0 0 24 24" fill="none"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M7 10L12.0008 14.58L17 10" stroke="#111827" stroke-width="2"
-                                            stroke-linecap="round" stroke-linejoin="round" />
-                                    </svg>
-                                </button>
-                            </div>
-                            <ul class="list-inside list-disc marker:text-stone-700 text-sm lg:text-base font-normal flex flex-col gap-2 duration-1000 overflow-hidden lg:pr-2"
-                                v-bind:class="data.toggle ? 'max-h-96 pb-4 mt-4' : 'max-h-0 pb-0'">
-                                @foreach ($attrs as $attr)
-                                    <li> {{ $attr->name }} : {{ $attr->pivot->value->value }} </li>
-                                @endforeach
-                            </ul>
-                        </li>
-                    </x-splade-data>
-                @endforeach
-            </ul>
-        </section>
+        @if ($product->attributes->count() > 0)
+            <section class="default_container mb-20">
+                <p
+                    class="pr-4 relative text-xl mb-7 font-medium text-stone-700 before:top-1/2 before:right-0 before:-translate-y-1/2 before:bg-normal before:h-12 before:w-1 before:rounded-l-custom before:absolute before:content-['']">
+                    مشخصات </p>
+                <ul class="flex flex-col gap-2 text-stone-700">
+                    @foreach ($product->attributes->sortBy('parent_id')->groupBy('parent_id') as $key => $attrs)
+                        <x-splade-data default="{ toggle: {{ $loop->index == 0 ? 'true' : 'false' }} }">
+                            <li class="p-4 bg-stone-200 rounded-custom lg:px-8">
+                                {{-- title --}}
+                                <div class="flex items-center justify-between cursor-pointer"
+                                    @click="data.toggle = !data.toggle">
+                                    <p class="text-sm lg:text-base font-medium">
+                                        {{ \App\Models\LandAttribute::whereId($key)->first()->name }} </p>
+                                    <button type="button" class="cursor-pointer">
+                                        <svg class="duration-1000" :class="data.toggle ? 'rotate-180' : 'rotate-0'"
+                                            width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M7 10L12.0008 14.58L17 10" stroke="#111827" stroke-width="2"
+                                                stroke-linecap="round" stroke-linejoin="round" />
+                                        </svg>
+                                    </button>
+                                </div>
+                                <ul class="list-inside list-disc marker:text-stone-700 text-sm lg:text-base font-normal flex flex-col gap-2 duration-1000 overflow-hidden lg:pr-2"
+                                    v-bind:class="data.toggle ? 'max-h-96 pb-4 mt-4' : 'max-h-0 pb-0'">
+                                    @foreach ($attrs as $attr)
+                                        <li> {{ $attr->name }} : {{ $attr->pivot->value->value }} </li>
+                                    @endforeach
+                                </ul>
+                            </li>
+                        </x-splade-data>
+                    @endforeach
+                </ul>
+            </section>
+        @endif
 
         {{-- videos --}}
-        <section class="mb-20 relative default_container" id="video-player-container">
-            <p
-                class="pr-4 relative text-xl mb-7 font-medium text-stone-700 before:top-1/2 before:right-0 before:-translate-y-1/2 before:bg-normal before:h-12 before:w-1 before:rounded-l-custom before:absolute before:content-['']">
-                ویدیو </p>
-            <x-home_landing.videos :data="$product->videos" />
-        </section>
+        @if ($product->videos->count())
+            <section class="mb-20 relative default_container" id="video-player-container">
+                <p
+                    class="pr-4 relative text-xl mb-7 font-medium text-stone-700 before:top-1/2 before:right-0 before:-translate-y-1/2 before:bg-normal before:h-12 before:w-1 before:rounded-l-custom before:absolute before:content-['']">
+                    ویدیو </p>
+                <x-home_landing.videos :data="$product->videos" />
+            </section>
 
-        {{-- video modal --}}
-        <section class="fixed inset-0 z-[4] bg-black/60 hidden" id="ifame-container"
-            onclick="hideVideoByThumbnail(this)">
-            <div class="w-full max-w-[640px] lg:max-w-[796px] xl:max-w-[900px] 2xl:max-w-[1024px] mx-auto iframe_styles flex_center"
-                id="ifame-box"></div>
-        </section>
+            {{-- video modal --}}
+            <section class="fixed inset-0 z-[4] bg-black/60 hidden" id="ifame-container"
+                onclick="hideVideoByThumbnail(this)">
+                <div class="w-full max-w-[640px] lg:max-w-[796px] xl:max-w-[900px] 2xl:max-w-[1024px] mx-auto iframe_styles flex_center"
+                    id="ifame-box"></div>
+            </section>
+        @endif
+
 
         {{-- viewpoint --}}
         <section class="default_container mb-20">
             <p
-                class="pr-4 relative text-xl mb-7 font-medium text-stone-700 before:top-1/2 before:right-0 before:-translate-y-1/2 before:bg-normal before:h-12 before:w-1 before:rounded-l-custom before:absolute before:content-['']">
-                دیدگاه </p>
+            class="pr-4 relative text-xl mb-7 font-medium text-stone-700 before:top-1/2 before:right-0 before:-translate-y-1/2 before:bg-normal before:h-12 before:w-1 before:rounded-l-custom before:absolute before:content-['']">
+            دیدگاه </p>
             <ul class="flex flex-col gap-7 text-gray-900">
                 @if ($comments->count() > 0)
                     @foreach ($comments as $comment)
