@@ -56,7 +56,8 @@
         '9' => 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 rounded-custom overflow-hidden ' . $borderStyle,
         '10' => 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 rounded-custom overflow-hidden ' . $borderStyle,
         '11' => 'grid grid-cols-1 md:grid-cols-1 rounded-custom overflow-hidden ' . $borderStyle,
-        '12' => 'grid grid-cols-1 mx-auto w-72 sm:w-96  lg:flex lg:items-start lg:justify-center lg:gap-0 lg:w-full lg:mx-0 gap-2',
+        '12' => 'grid grid-cols-1 mx-auto w-72 sm:w-96 lg:flex lg:items-start lg:justify-center lg:gap-0 lg:w-full lg:mx-0 gap-2',
+        '13' => 'grid grid-cols-1 mx-auto w-72 sm:w-96 lg:w-full lg:mx-0 gap-4 lg:grid-cols-4',
         default => 'lg:grid-cols-5 gap-4 sm:grid-cols-2'
     };
 @endphp

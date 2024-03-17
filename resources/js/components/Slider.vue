@@ -6,7 +6,7 @@
             :navigation="true"
             :autoplay="{delay: 3500, disableOnInteraction: false}"
             :pagination="{ clickable: true }"
-            class="land_slider slider_type_1"
+            :class="'land_slider slider_type_1 ' + sliderStyle"
         >
             <swiper-slide v-for="(slide, index) in slides" :key="index">
                 <a href="#" class="relative w-full pt-[44%] block rounded-b-custom overflow-hidden">
@@ -30,6 +30,8 @@ import {Autoplay, Navigation, Pagination} from 'swiper/modules';
 // Import Swiper Vue.js components
 import {Swiper, SwiperSlide} from 'swiper/vue';
 
+import { ref } from 'vue';
+
 // Import Swiper styles
 import 'swiper/css';
 import 'swiper/css/pagination';
@@ -38,12 +40,18 @@ export default {
     props: {
         slides: Object,
         radiusB: String,
+        sliderType: {
+            type: Number,
+            default: 1,
+        }
     },
     components: {
         Swiper,
         SwiperSlide
     },
     setup(props) {
+        const sliderStyle = ref("");
+
         const onSwiper = (swiper) => {
             //console.log(swiper);
         };
@@ -52,12 +60,25 @@ export default {
         };
 
         // props.slides.map(item => {
-            
+            console.log(props.sliderType);
         // })
+        switch (props.sliderType) {
+            case 1:
+                sliderStyle.value = "";
+                break;
+        
+            case 2:
+                sliderStyle.value = "arrow-center";
+                break;
+        
+            default:
+                break;
+        }
         return {
             onSwiper,
             onSlideChange,
             modules: [Navigation, Pagination, Autoplay],
+            sliderStyle,
         };
     }
 }
