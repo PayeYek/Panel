@@ -164,7 +164,8 @@
 </template>
 
 <script>
-import { ref, computed, watch } from 'vue';
+import { ref, computed, watch, onMounted } from 'vue';
+// import { useRouter, useRoute } from 'vue-router'
 // import moment from 'moment';
 import 'moment-jalaali';
 
@@ -202,6 +203,13 @@ export default {
         const articleList = ref(JSON.parse(props.data));
         const categoryFilterState = ref('all');
         const searchFilterState = ref("");
+        const queryParam = ref('all');
+        // get filter params
+        onMounted(() => {
+            const urlParams = new URLSearchParams(window.location.search);
+            queryParam.value = urlParams.get('f') != null ? urlParams.get('f') : 'all';
+            changeFilter(queryParam.value)
+        })
 
         // convert date to fa local
         const renderDate = (string) => {
@@ -228,13 +236,13 @@ export default {
         });
 
         const changeFilter = (filter) => {
-            categoryFilterState.value = filter
-            searchFilterState.value = ""
+            categoryFilterState.value = filter;
+            searchFilterState.value = "";
         }
 
         const filterArticleByName = () => {
             setTimeout(() => {
-                categoryFilterState.value = "all"
+                categoryFilterState.value = "all";
             }, 300);
         }
 

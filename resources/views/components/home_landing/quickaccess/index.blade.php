@@ -66,7 +66,7 @@
             </div>
         </Link>
         {{-- announcements --}}
-        <Link href="{{ route('landing.article.list', ['page' => $landSlug, 'f' => 'notify']) }}"  class="h-[72px] bg-[#1A1B1D] rounded-custom px-5 flex items-center md:flex-col md:h-auto md:pt-10 lg:pt-14 lg:pb-16 md:pb-12 md:px-2 sm:h-20 text-white text-sm font-normal sm:text-base md:text-sm lg:text-xl xl:text-2xl gap-4 sm:gap-6 md:gap-8 lg:gap-12">
+        <Link href="{{ route('landing.article.list', ['page' => $landSlug, 'f' => 'sell']) }}"  class="h-[72px] bg-[#1A1B1D] rounded-custom px-5 flex items-center md:flex-col md:h-auto md:pt-10 lg:pt-14 lg:pb-16 md:pb-12 md:px-2 sm:h-20 text-white text-sm font-normal sm:text-base md:text-sm lg:text-xl xl:text-2xl gap-4 sm:gap-6 md:gap-8 lg:gap-12">
             {{-- image --}}
             <div class="flex_center size-12 sm:size-14 md:size-12 lg:size-16 xl:size-20 rounded-full bg-white">
                 <svg class="h-6 sm:h-8 md:h-6 fill-normal lg:h-8 xl:h-10" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">

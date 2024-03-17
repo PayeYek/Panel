@@ -28,7 +28,7 @@ export default {
     },
     setup(props) {
         const gallery = ref(JSON.parse(props.slides).pictures);
-        console.log(JSON.parse(props.slides));
+        // console.log(JSON.parse(props.slides));
         const newGallery = ref(null);
         const copyOfGallery = [...gallery.value];
         const newSlide = ref(JSON.parse(props.slides).image)

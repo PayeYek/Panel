@@ -54,11 +54,15 @@
         {{-- modal layer --}}
         <div class="fixed inset-0 bg-black/60 z-[5]" v-show="data.toggleModal" @click="data.toggleModal = false"></div>
         {{-- modal content --}}
-        <section class="flex flex-col bg-white rounded-custom fixed top-0 right-0 w-full h-full sm:h-auto sm:max-w-[36rem] md:max-w-[40rem] lg:max-w-[44rem] sm:top-1/2 sm:right-1/2 sm:translate-x-1/2 sm:-translate-y-1/2 z-[6] overflow-hidden" v-show="data.toggleModal">
+        <section class="flex flex-col bg-white sm:rounded-custom fixed top-0 right-0 w-full h-full sm:h-auto sm:max-w-[36rem] md:max-w-[40rem] lg:max-w-[44rem] sm:top-1/2 sm:right-1/2 sm:translate-x-1/2 sm:-translate-y-1/2 z-[6] overflow-hidden" v-show="data.toggleModal">
             {{-- title --}}
             <div
-                class="w-full h-20 text-xl font-black text-white lg:text-2xl bg-stone-700 drop-shadow-base flex_center">
+                class="w-full h-20 text-xl font-black text-white lg:text-2xl bg-stone-700 drop-shadow-base flex_center relative">
                 <p> ارتباط با کارشناسان فروش </p>
+                {{-- close btn --}}
+                <svg @click="data.toggleModal = false" class="size-6 sm:hidden absolute top-4 left-4" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 12L6 6M12 12L18 18M12 12L18 6M12 12L6 18" stroke="#eaeaea" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
             </div>
             <form action="#" method="#" class="flex flex-col items-center px-5 pt-6 pb-10">
                 <p class="mb-6 text-base font-normal leading-7 text-center text-stone-700"> جهت ارتباط و اطلاع از
