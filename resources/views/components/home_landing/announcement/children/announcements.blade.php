@@ -17,8 +17,8 @@
 
     $borderStyle = match ($borderType) {
         '0' => '',
-        '1' => 'drop-shadow-base',
-        '2' => 'border border-dark-100',
+        '1' => 'border border-stone-400',
+        '2' => 'drop-shadow-base',
         default => '',
     };
 

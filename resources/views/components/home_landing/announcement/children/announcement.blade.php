@@ -11,9 +11,10 @@
 
 @php
     $borderStyle = match($borderType) {
-        '1'  => 'drop-shadow-base',
-        '2'  => 'border border-dark-100',
-        default => 'drop-shadow-base'
+        '0'  => '',
+        '1'  => 'border border-stone-400',
+        '2'  => 'drop-shadow-base',
+        default => ''
     };
 @endphp
 @switch($type)
@@ -26,7 +27,7 @@
             </div>
             {{-- docs --}}
             <div class="px-6 pb-6 pt-2.5 md:pl-10 flex flex-col sm:justify-center sm:flex-1">
-                <h3 class="mb-4 text-lg font-medium text-gray-900 line-clamp-1"> {{ $title }} </h3>
+                <h3 class="mb-4 text-lg font-medium text-stone-700 line-clamp-1"> {{ $title }} </h3>
                 <p
                     class="text-sm text-justify line-clamp-5 sm:line-clamp-3 lg:line-clamp-2 lg:h-16 leading-7 sm:h-20 lg:leading-8 mb-4 font-normal text-dark-500 ">
                     {{ $description }}
@@ -43,8 +44,8 @@
             </div>
             {{-- info --}}
             <div class="px-4 pt-3 pb-4">
-                <h3 class="mb-2 text-sm font-medium text-gray-900 line-clamp-1"> {{ $title }} </h3>
-                <p class="mb-3 text-xs font-normal leading-5 h-10 text-justify text-gray-900  line-clamp-2">
+                <h3 class="mb-2 text-sm font-medium text-stone-700 line-clamp-1"> {{ $title }} </h3>
+                <p class="mb-3 text-xs font-normal leading-5 h-10 text-justify text-stone-700  line-clamp-2">
                     {{ $description }}
                 </p>
                 <x-home_landing.announcement.children.linkBtn text="بیشتر" href="{{ route('landing.article.show',['page'=> $landSlug, 'article'=> $articleSlug]) }}" class="mx-auto lg:ml-0 rounded-custom text-white bg-normal hover:bg-focus focus:shadow-focus focus:shadow-shadowNormal" />
@@ -60,7 +61,7 @@
             </div>
             {{-- docs --}}
             <div class="px-6 md:pl-8 flex flex-col sm:justify-center sm:flex-1">
-                <h3 class="mb-4 text-lg font-medium text-gray-900 line-clamp-1"> {{ $title }} </h3>
+                <h3 class="mb-4 text-lg font-medium text-stone-700 line-clamp-1"> {{ $title }} </h3>
                 <p
                     class="text-sm text-justify lg:text-base line-clamp-5 sm:line-clamp-3 lg:line-clamp-2 lg:h-24 leading-7 sm:h-20 lg:leading-8 mb-4 font-normal text-dark-500">
                     {{ $description }}
@@ -76,19 +77,19 @@
         <li class="flex flex-col sm:flex-row bg-white border-t first:border-t-0 py-4 first:pt-0 last:pb-0 border-dark-100">
             {{-- image --}}
             <div
-                class="overflow-hidden md:flex-none w-full relative pt-[61%] sm:pt-0 sm:w-72 md:w-80 lg:w-[23rem] sm:flex-none mb-3 sm:mb-0 rounded-custom">
+                class="overflow-hidden md:flex-none w-full relative pt-[61%] sm:pt-0 sm:w-72 md:w-80 lg:w-[23rem] sm:flex-none mb-3 sm:mb-0 rounded-t-custom">
                 <img src="{{ $image }}" alt="{{ $title }}" class="absolute top-0 left-0 object-cover w-full h-full sm:static" />
             </div>
             {{-- docs --}}
-            <div class="px-6 md:pl-8 flex flex-col sm:justify-center sm:flex-1">
-                <h3 class="mb-4 text-lg font-medium text-gray-900 line-clamp-1"> {{ $title }} </h3>
+            <div class="px-5 md:pl-8 flex flex-col sm:justify-center sm:flex-1">
+                <h3 class="mb-1 text-base font-medium text-stone-700 line-clamp-1"> {{ $title }} </h3>
+                <h4 class="text-normal text-sm font-normal mb-4"> اسفند 1402 </h4>
                 <p
-                    class="text-sm text-justify lg:text-base line-clamp-5 sm:line-clamp-3 lg:line-clamp-2 lg:h-24 leading-7 sm:h-20 lg:leading-8 mb-4 font-normal text-dark-500">
+                    class="text-sm text-justify lg:text-base line-clamp-3 lg:line-clamp-2 lg:h-24 leading-7 sm:h-20 lg:leading-8 mb-4 font-normal text-dark-500">
                     {{ $description }}
                 </p>
                 <div class="flex items-center justify-between">
-                    <p class="text-dark-500 text-sm font-normal lg:text-base"> 4 مهر 1400 </p>
-                    <a href="{{ route('landing.article.show',['page'=> $landSlug, 'article'=> $articleSlug]) }}" class="text-sm font-medium flex items-center px-6 gap-4 text-normal">
+                    <a href="{{ route('landing.article.show',['page'=> $landSlug, 'article'=> $articleSlug]) }}" class="text-sm font-medium flex items-center gap-4 text-stone-700">
                         <span> ادامه </span>
                         <svg class="fill-current" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M8 16L9.41 14.59L3.83 9L16 9V7L3.83 7L9.41 1.41L8 0L0 8L8 16Z" fill="current"/>

@@ -68,8 +68,15 @@
             companyName="{{ $land->title }}"
             evenOdd="{{ $land->styles->product_striped }}" />
 
+            {{-- :type="$land->styles->article_card_type" --}}
         {{-- articles --}}
-        <x-home_landing.announcement :landSlug="$land->slug" :data="$land->articles" :land="$land" :type="$land->styles->article_card_type" :borderType="$land->styles->border_type"
+        <x-home_landing.announcement
+            :landSlug="$land->slug"
+            :data="$land->articles"
+            :land="$land"
+            :landType="$land->styles->land_id"
+            :type="$land->styles->article_card_type"
+            :borderType="$land->styles->border_type"
             evenOdd="{{ $land->styles->article_striped }}" />
 
         {{-- videos --}}
