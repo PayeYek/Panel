@@ -67,11 +67,8 @@
     .custom_article_styles{
         @apply *:text-[#58595b];
     }
-    .rounded_md .custom_article_styles img{
-        @apply rounded-custom;
-    }
     .custom_article_styles img{
-        @apply aspect-video;
+        @apply rounded-custom aspect-video;
     }
 }
 @tailwind components;
