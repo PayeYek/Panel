@@ -1,5 +1,6 @@
 @props([
     'data' => '[]',
+    'type' => 1,
 ])
 
 @push('script')
@@ -32,26 +33,53 @@
     </script>
 @endpush
 
-{{-- <section class="mb-4 sm:mb-8 lg:mb-16 relative z-[3] lg:default_container" id="video-player-container"> --}}
-    {{-- header --}}
-    {{-- <h3  class="mb-2 text-base font-medium text-center sm:text-lg text-stone-700"> ویدیو ها </h3> --}}
-    {{-- <hr class="mx-auto mb-6 w-60 sm:w-96 border-normal lg:mb-0" /> --}}
-    {{-- show all --}}
-    {{-- <Link href="#" class="hidden float-left px-2 mb-3 mr-auto text-base font-normal cursor-pointer text-normal lg:inline-block" v-if="{{ $showAllBtn }}"> نمایش همه </Link> --}}
-    <ul class="flex list-none lg:w-full {{ $data->count() == 1 ? 'justify-center' : 'gap-4 sm:flex-row sm:items-center flex-col lg:grid lg:grid-cols-2 overflow-auto lg:overflow-visible' }}">
-        @foreach ($data->take(2) as $video)
-            <li class="flex-none {{ $data->count() == 1 ? 'w-full sm:w-[448px] md:w-[480px] lg:w-[558px]' : 'w-full sm:w-[448px] md:w-[480px] lg:w-full' }}" data-videoLink="{{ $video->link }}">
-                <div class="relative w-full pt-[62%] cursor-pointer rounded-custom overflow-hidden videoThumbnails" onclick="showVideoByThumbnail(this)">
-                    <img src="{{ $video->image }}" alt="{{ $video->alt }}" class="absolute top-0 left-0 w-full h-full object-cover z-[1]" />
-                    <x-icons.playIcon class="size-14 sm:w-20 sm:h-20 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-[3]" />
-                    <div class="absolute text-white bottom-0 left-0 w-full z-[2] flex flex-col justify-end px-4 pb-5 bg-gradient-to-t from-black/90 to-transparent h-1/2">
-                        <p class="w-full text-sm font-medium sm:text-lg line-clamp-1"> {{ $video->alt }} </p>
+@switch($type)
+    @case(1)
+        <ul class="flex list-none lg:w-full {{ $data->count() == 1 ? 'justify-center' : 'gap-4 sm:flex-row sm:items-center flex-col lg:grid lg:grid-cols-2 overflow-auto lg:overflow-visible' }}">
+            @foreach ($data->take(2) as $video)
+                <li class="flex-none {{ $data->count() == 1 ? 'w-full sm:w-[448px] md:w-[480px] lg:w-[558px]' : 'w-full sm:w-[448px] md:w-[480px] lg:w-full' }}" data-videoLink="{{ $video->link }}">
+                    <div class="relative w-full pt-[62%] cursor-pointer rounded-custom overflow-hidden videoThumbnails" onclick="showVideoByThumbnail(this)">
+                        <img src="{{ $video->image }}" alt="{{ $video->alt }}" class="absolute top-0 left-0 w-full h-full object-cover z-[1]" />
+                        <x-icons.playIcon class="size-14 sm:w-20 sm:h-20 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-[3]" />
+                        <div class="absolute text-white bottom-0 left-0 w-full z-[2] flex flex-col justify-end px-4 pb-5 bg-gradient-to-t from-black/90 to-transparent h-1/2">
+                            <p class="w-full text-sm font-medium sm:text-lg line-clamp-1"> {{ $video->alt }} </p>
+                        </div>
                     </div>
+                </li>
+                @endforeach
+            </ul>
+        @break
+    @case(2)
+            <ul class="flex list-none lg:w-full {{ $data->count() == 1 ? 'justify-center' : 'gap-4 sm:flex-row sm:items-center flex-col lg:grid lg:grid-cols-2 overflow-auto lg:overflow-visible' }}">
+                @foreach ($data->take(2) as $video)
+                    <li class="flex-none {{ $data->count() == 1 ? 'w-full sm:w-[448px] md:w-[480px] lg:w-[558px]' : 'w-full sm:w-[448px] md:w-[480px] lg:w-full' }}" data-videoLink="{{ $video->link }}">
+                        <div class="relative w-full pt-[62%] cursor-pointer rounded-custom overflow-hidden videoThumbnails" onclick="showVideoByThumbnail(this)">
+                            <img src="{{ $video->image }}" alt="{{ $video->alt }}" class="absolute top-0 left-0 w-full h-full object-cover z-[1]" />
+                            <x-icons.playIcon class="size-14 sm:w-20 sm:h-20 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-[3]" />
+                            <div class="absolute text-white bottom-5 left-0 w-full z-[2] flex items-center px-4 lg:px-6 bg-gradient-to-r from-[rgba(46,48,146,0.5)] to-[rgba(46,48,146,1)] h-8 sm:h-10 lg:h-14">
+                                <p class="w-full text-sm font-medium sm:text-base lg:text-lg line-clamp-1"> {{ $video->alt }} </p>
+                            </div>
+                        </div>
+                    </li>
+                @endforeach
+            </ul>
+        @break
+    @default
+        
+@endswitch
+
+
+
+        {{-- <ul class="flex list-none lg:w-full {{ $data->count() == 1 ? 'justify-center' : 'gap-4 sm:flex-row sm:items-center flex-col lg:grid lg:grid-cols-2 overflow-auto lg:overflow-visible' }}">
+    @foreach ($data->take(2) as $video)
+        <li class="flex-none {{ $data->count() == 1 ? 'w-full sm:w-[448px] md:w-[480px] lg:w-[558px]' : 'w-full sm:w-[448px] md:w-[480px] lg:w-full' }}" data-videoLink="{{ $video->link }}">
+            <div class="relative w-full pt-[62%] cursor-pointer rounded-custom overflow-hidden videoThumbnails" onclick="showVideoByThumbnail(this)">
+                <img src="{{ $video->image }}" alt="{{ $video->alt }}" class="absolute top-0 left-0 w-full h-full object-cover z-[1]" />
+                <x-icons.playIcon class="size-14 sm:w-20 sm:h-20 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-[3]" />
+                <div class="absolute text-white bottom-5 left-0 w-full z-[2] flex items-center px-4 bg-gradient-to-r from-[rgba(46,48,146,0.5)] to-[rgba(46,48,146,1)] h-8">
+                    <p class="w-full text-sm font-medium sm:text-lg line-clamp-1"> {{ $video->alt }} </p>
                 </div>
-            </li>
-            @endforeach
-        </ul>
-{{-- </section>
-<section class="fixed inset-0 z-[4] bg-black/60 hidden" id="ifame-container" onclick="hideVideoByThumbnail(this)">
-    <div class="w-full max-w-[640px] lg:max-w-[796px] xl:max-w-[900px] 2xl:max-w-[1024px] mx-auto iframe_styles flex_center" id="ifame-box"></div>
-</section> --}}
+            </div>
+        </li>
+    @endforeach
+</ul> --}}

@@ -1,5 +1,5 @@
 <x-layout.default.main :land="$land">
-    <main class="mb-8 sm:mb-24 lg:mb-28">
+    <main class="">
         {{-- slider --}}
         @if ($land->slides)
             <Slider :slides="{{ $land->slides }}" :sliderType="{{ $land->styles->land_id }}" />
@@ -68,7 +68,6 @@
             companyName="{{ $land->title }}"
             evenOdd="{{ $land->styles->product_striped }}" />
 
-            {{-- :type="$land->styles->article_card_type" --}}
         {{-- articles --}}
         <x-home_landing.announcement
             :landSlug="$land->slug"
@@ -80,23 +79,63 @@
             evenOdd="{{ $land->styles->article_striped }}" />
 
         {{-- videos --}}
-        <section class="mb-4 sm:mb-8 lg:mb-16 relative z-[3] lg:default_container" id="video-player-container">
-            {{-- header --}}
-            <h3 class="mb-2 text-base sm:text-lg font-medium text-center text-stone-700"> ویدیو ها </h3>
-            <hr class="w-60 sm:w-96 border-normal mb-6 lg:mb-0 mx-auto" />
-            {{-- show all --}}
-            <Link href="{{ route('landing.videos', ['page' => $land->slug]) }}"
-                class="text-base font-normal text-normal mr-auto mb-3 hidden lg:inline-block float-left px-2 cursor-pointer"> نمایش همه </Link>
-            <x-home_landing.videos :data="$land->videos" />
+        <section class="mb-4 sm:mb-8 lg:mb-16 relative z-[3] default_container" id="video-player-container">
+            @switch($land->styles->land_id)
+                @case(1)
+                    {{-- header --}}
+                    <h3 class="mb-2 text-base sm:text-lg font-medium text-center text-stone-700"> ویدیو ها </h3>
+                    <hr class="w-60 sm:w-96 border-normal mb-6 lg:mb-0 mx-auto" />
+                    {{-- show all --}}
+                    <Link href="{{ route('landing.videos', ['page' => $land->slug]) }}"
+                        class="text-base font-normal text-normal mr-auto mb-3 hidden lg:inline-block float-left px-2 cursor-pointer"> نمایش همه </Link>
+                    
+                    @break
+                @case(2)
+                    <div class="flex items-center gap-4 mb-2 lg:mb-4">
+                        {{-- circle --}}
+                        <div class="size-3 rounded-full bg-normal"></div>
+                        <h3 class="mb-2 text-xl font-normal text-center text-stone-700"> ویدیو ها </h3>
+                        <Link href="{{ route('landing.videos', ['page' => $land->slug]) }}" class="text-normal text-base font-medium hidden sm:block"> (مشاهده همه) </Link>
+                    </div>
+                    @break
+                @default
+                    
+            @endswitch
+            <x-home_landing.videos
+                :data="$land->videos"
+                :type="$land->styles->video_card_type" />
         </section>
+
+        {{-- video modal --}}
         <section class="fixed inset-0 z-[4] bg-black/60 hidden" id="ifame-container"
             onclick="hideVideoByThumbnail(this)">
             <div class="w-full max-w-[640px] lg:max-w-[796px] xl:max-w-[900px] 2xl:max-w-[1024px] mx-auto iframe_styles flex_center"
                 id="ifame-box"></div>
         </section>
 
-        {{-- quick access --}}
-        <x-home_landing.quickaccess :landSlug="$land->slug" />
+        @switch($land->styles->land_id)
+            @case(1)
+                {{-- quick access --}}
+                <x-home_landing.quickaccess :landSlug="$land->slug" classnames="mb-8 sm:mb-24 lg:mb-28" />
+                @break
+            @case(2)
+                <section class="bg-stone-200 pt-20 pb-14 lg:pt-16 lg:pb-24 relative">
+                    <svg class="absolute left-1/2 -translate-x-1/2 top-[-34px]" width="137" height="70" viewBox="0 0 137 70" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M129.267 35C97.7671 35 105.767 70 70.7671 70C35.7671 70 39.7671 35 9.76701 35C-27.233 35 51.4371 0 70.7671 0C90.0971 0 158.767 35 129.267 35Z" fill="white"/>
+                    </svg>
+                    <form action="#" class="default_container flex flex-col items-center">
+                        <p class="text-base lg:text-xl xl:text-2xl font-semibold mb-6 lg:mb-4 text-center text-stone-700"> ارتباط با کارشناسان فروش </p>
+                        <p class="text-sm lg:text-base font-normal mb-3 lg:mb-4 text-center text-stone-700"> جهت ارتباط و اطلاع از شرایط فروش شماره خود را وارد کنید. </p>
+                        <input type="number" name="phone" class="h-11 w-full max-w-64 focus:ring-0 dir-ltr mb-16 outline-none rounded-custom border border-[#CFD1D4] focus:border-[#CFD1D4] placeholder:text-[#ACACAC]" placeholder="09" />
+                        <button type="submit" class="rounded-custom h-11 w-full max-w-64 flex_center cursor-pointer bg-normal text-lg font-medium text-white"> ارسال </button>
+                    </form>
+                </section>
+                @break
+            @default
+                
+        @endswitch
+
+
     </main>
 
 
