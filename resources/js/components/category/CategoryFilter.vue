@@ -1,5 +1,6 @@
 <template>
-    <section class="default_container mb-12 flex items-center gap-4">
+    
+    <section v-if="filterType == 1" class="default_container mb-12 flex items-center gap-4">
         <p class="text-lg font-normal text-stone-700 text-center"> محصولات </p>
         <div
             class="h-11 w-40 before:absolute before:content-[''] before:w-2 before:h-2 before:border-r-2 before:border-b-2 before:border-stone-700 before:top-1/2 before:left-4 before:-translate-y-1/2 before:rotate-45 relative">
@@ -13,6 +14,15 @@
                 <option value="5"> ون </option>
             </select>
         </div>
+    </section>
+
+    <section class="default_container mb-8">
+        <ul v-if="filterType == 2" class="text-base font-medium text-stone-700 flex items-center gap-2">
+            <li @click="changeFilter(0)" :class="filterState == 0 ? 'text-white bg-normal border-normal ' : ''" class="h-10 px-3 flex items-center cursor-pointer rounded-custom border border-stone-400"> همه </li>
+            <li @click="changeFilter(1)" :class="filterState == 1 ? 'text-white bg-normal border-normal ' : ''" class="h-10 px-3 flex items-center cursor-pointer rounded-custom border border-stone-400"> کامیون </li>
+            <li @click="changeFilter(4)" :class="filterState == 4 ? 'text-white bg-normal border-normal ' : ''" class="h-10 px-3 flex items-center cursor-pointer rounded-custom border border-stone-400"> کامیونت </li>
+            <li @click="changeFilter(6)" :class="filterState == 6 ? 'text-white bg-normal border-normal ' : ''" class="h-10 px-3 flex items-center cursor-pointer rounded-custom border border-stone-400"> اتوبوس </li>
+        </ul>
     </section>
 
     <section class="mb-4 lg:mb-16 relative z-[1] default_container">
@@ -238,6 +248,33 @@
                                 classNames="sameCategoryBtnStyle castegoryBtnfilled rounded-custom" />
                         </div>
                     </div>
+
+                    <div v-if="productType == 13" :key="index"
+                        :class="'border border-stone-400 rounded-custom px-8 w-full pt-5 pb-8 items-center flex flex-col product_card ' + (evenOdd ? 'evenOdd_cards ' : 'bg-white ')">
+                        <div class="h-56 aspect-square mb-3">
+                            <img :src="product.image" :alt="product.name" class="object-contain h-full" />
+                        </div>
+                        <h3 class="mb-3 font-medium text-lg line-clamp-1 text-stone-700 text-center lg:text-xl"> {{ product.name }} </h3>
+                        <h3 class="mb-3 font-medium text-base line-clamp-1 text-stone-700 text-center"> مدل: {{ product.model }} </h3>
+                        <div class="flex flex-col w-56 lg:w-full xl:w-56 gap-3">
+                            <Link :href="'/l/' + landSlug + '/p/' + product.slug" class="w-full col-span-full h-11 flex_center rounded-custom before:rounded-custom text-white bg-normal hover:bg-focus focus:bg-focus focus:shadow-focus focus:shadow-shadowNormal text-lg font-medium"> فروش اقساطی </Link>
+                            <div class="flex items-center gap-2">
+                                <Link :href="'/l/' + landSlug + '/p/' + product.slug" class="w-full h-11 flex-1 flex_center rounded-custom before:rounded-custom text-normal border border-normal text-lg font-medium"> مشخصات </Link>
+                                <Link :href="'/l/' + landSlug + '/p/' + product.slug" class="size-11 flex-none flex_center rounded-custom before:rounded-custom border border-normal text-lg font-medium">
+                                    <svg width="28" height="32" viewBox="0 0 28 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <g clip-path="url(#clip0_1243_2960)">
+                                            <path d="M26.7207 6.78571C27.0541 7.11905 27.3399 7.57143 27.5781 8.14286C27.8162 8.71429 27.9353 9.2381 27.9353 9.71429V30.2857C27.9353 30.7619 27.7686 31.1667 27.4352 31.5C27.1018 31.8333 26.6969 32 26.2206 32H2.21471C1.7384 32 1.33354 31.8333 1.00012 31.5C0.666708 31.1667 0.5 30.7619 0.5 30.2857V1.71429C0.5 1.2381 0.666708 0.833333 1.00012 0.5C1.33354 0.166667 1.7384 0 2.21471 0H18.2186C18.6949 0 19.2189 0.119048 19.7904 0.357143C20.362 0.595238 20.8145 0.880952 21.1479 1.21429L26.7207 6.78571ZM18.7902 2.42857V9.14286H25.5061C25.3871 8.79762 25.2561 8.55357 25.1132 8.41072L19.5225 2.82143C19.3796 2.67857 19.1355 2.54762 18.7902 2.42857ZM25.649 29.7143V11.4286H18.2186C17.7423 11.4286 17.3375 11.2619 17.004 10.9286C16.6706 10.5952 16.5039 10.1905 16.5039 9.71429V2.28571H2.78627V29.7143H25.649ZM16.4682 19.125C16.8612 19.4345 17.3613 19.7679 17.9686 20.125C18.6711 20.0417 19.3677 20 20.0584 20C21.8088 20 22.8626 20.2917 23.2199 20.875C23.4104 21.1369 23.4223 21.4464 23.2556 21.8036C23.2556 21.8155 23.2496 21.8274 23.2377 21.8393L23.202 21.875V21.8929C23.1305 22.3452 22.7078 22.5714 21.9338 22.5714C21.3623 22.5714 20.6776 22.4524 19.8797 22.2143C19.0819 21.9762 18.3079 21.6607 17.5578 21.2679C14.9262 21.5536 12.5922 22.0476 10.556 22.75C8.73416 25.869 7.29333 27.4286 6.23355 27.4286C6.05493 27.4286 5.88823 27.3869 5.73343 27.3036L5.30475 27.0893C5.29284 27.0774 5.25712 27.0476 5.19758 27C5.0785 26.881 5.04278 26.6667 5.09041 26.3571C5.19758 25.881 5.53099 25.3363 6.09066 24.7232C6.65032 24.1101 7.43622 23.5357 8.44838 23C8.61508 22.8929 8.75202 22.9286 8.85919 23.1071C8.88301 23.131 8.89491 23.1548 8.89491 23.1786C9.51411 22.1667 10.1512 20.994 10.8061 19.6607C11.6158 18.0417 12.235 16.4821 12.6637 14.9821C12.3779 14.006 12.1963 13.0565 12.1189 12.1339C12.0415 11.2113 12.0802 10.4524 12.235 9.85714C12.366 9.38095 12.6161 9.14286 12.9852 9.14286H13.3782C13.652 9.14286 13.8604 9.23214 14.0033 9.41072C14.2176 9.66072 14.2712 10.0655 14.1641 10.625C14.1402 10.6964 14.1164 10.744 14.0926 10.7679C14.1045 10.8036 14.1105 10.8512 14.1105 10.9107V11.4464C14.0867 12.9107 14.0033 14.0536 13.8604 14.875C14.5153 16.8274 15.3846 18.244 16.4682 19.125ZM6.17996 26.4643C6.79916 26.1786 7.61484 25.2381 8.62699 23.6429C8.0197 24.119 7.49874 24.619 7.06411 25.1429C6.62948 25.6667 6.33476 26.1071 6.17996 26.4643ZM13.2888 10.0357C13.1102 10.5357 13.0983 11.3214 13.2531 12.3929C13.265 12.3095 13.3067 12.0476 13.3782 11.6071C13.3782 11.5714 13.4198 11.3155 13.5032 10.8393C13.5151 10.7917 13.5389 10.744 13.5746 10.6964C13.5627 10.6845 13.5568 10.6726 13.5568 10.6607C13.5449 10.6369 13.5389 10.619 13.5389 10.6071C13.527 10.3452 13.4496 10.131 13.3067 9.96429C13.3067 9.97619 13.3008 9.9881 13.2888 10V10.0357ZM11.074 21.8393C12.6816 21.1964 14.3724 20.7143 16.1467 20.3929C16.1229 20.381 16.0455 20.3244 15.9145 20.2232C15.7835 20.122 15.6882 20.0417 15.6287 19.9821C14.7237 19.1845 13.9676 18.1369 13.3603 16.8393C13.0388 17.8631 12.5446 19.0357 11.8778 20.3571C11.5206 21.0238 11.2526 21.5179 11.074 21.8393ZM22.6126 21.5536C22.3268 21.2679 21.4932 21.125 20.1119 21.125C21.0169 21.4583 21.7552 21.625 22.3268 21.625C22.4935 21.625 22.6007 21.619 22.6483 21.6071C22.6483 21.5952 22.6364 21.5774 22.6126 21.5536Z" fill="#2E3E92"/>
+                                        </g>
+                                        <defs>
+                                            <clipPath id="clip0_1243_2960">
+                                                <rect width="27.4353" height="32" fill="white" transform="translate(0.5)"/>
+                                            </clipPath>
+                                        </defs>
+                                    </svg>
+                                </Link>
+                            </div>
+                        </div>
+                    </div>
                 </template>
             </template>
 
@@ -301,6 +338,10 @@ export default {
             type: Boolean,
             default: false,
         },
+        filterType: {
+            type: [Number, String],
+            default: 1,
+        },
     },
     setup(props) {
         const productList = ref(JSON.parse(props.list));
@@ -309,6 +350,7 @@ export default {
         const removeDuplicated = ref([]);
         const filteredList = ref([]);
         const allProductsList = ref([]);
+        console.log(productList.value);
 
         // console.log(0, typeof filteredList.value);
         function remove_duplicates_es6(arr) {
@@ -340,7 +382,11 @@ export default {
             reject();
         })
 
-        // console.log(brandCategories.value);
+        const changeFilter = (filter) => {
+            console.log(filter);
+            filterState.value = filter
+        }
+        
 
         // const nonTwelveFilteredList = computed(() => {
         //     return filterState.value == 0
@@ -473,6 +519,7 @@ export default {
         return {
             filterState,
             filteredList,
+            changeFilter,
         }
     }
 }

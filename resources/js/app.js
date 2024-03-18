@@ -12,7 +12,7 @@ import ShowPassword from "@/components/ShowPassword.vue";
 import LandBtn from "@/components/LandBtn.vue";
 import landPdpMobileSlider from "@/components/landPdpMobileSlider.vue";
 import landPdpDesktopSlider from "@/components/landPdpDesktopSlider.vue";
-import CategoryFilter from "@/components/CategoryFilter.vue";
+import CategoryFilter from "@/components/category/CategoryFilter.vue";
 import Articles from "@/components/articles/Articles.vue";
 import MoreArticles from "@/components/articles/MoreArticles.vue";
 import PdpMoreArticles from "@/components/articles/PdpMoreArticles.vue";
