@@ -55,7 +55,6 @@
             break;
     }
 
-    // $classType = match($land->styles->category_card_type."") {
     $classType = match($land->styles->category_card_type."") {
         '1' => 'lg:grid-cols-5 gap-4 sm:grid-cols-2',
         '2', '3' => 'lg:grid-cols-4 gap-4 sm:grid-cols-2',

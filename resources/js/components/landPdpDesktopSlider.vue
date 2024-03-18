@@ -12,7 +12,7 @@
         </div>
 
         <div class="flex-1">
-            <div class="w-full pt-[100%] relative">
+            <div class="w-full pt-[100%] relative border border-[#DBDBDB] rounded-custom">
                 <div class="absolute inset-0 cursor-pointer">
                     <img :src="mainImage" :alt="name" class="object-cover w-full h-full rounded-custom" />
                 </div>
