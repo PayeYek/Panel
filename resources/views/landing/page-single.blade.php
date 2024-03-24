@@ -41,15 +41,15 @@
                 @case(2)
                     <section class="grid grid-cols-1 sm:grid-cols-3 gap-4 *:h-20 sm:*:h-32 sm:*:flex-col sm:*:justify-center sm:*:gap-4 md:*:h-36 lg:*:h-40 *:w-full *:rounded-custom *:bg-stone-200 *:flex *:items-center *:gap-5 *:px-4 text-sm lg:text-base font-medium text-stone-700 mb-4 md:mb-8 lg:mb-12">
                         <Link href="{{ route('landing.product.list', ['page' => $land->slug]) }}" class="w-full">
-                            <img src="" alt="" class="w-20 object-contain h-16" />
+                            <img src="http://127.0.0.1:8000/storage/media/land/files/PeXC7isWCxB61sIFymVIIJ52TGmSEUsLDLBXs9Pg.png" alt="دسته بندی محصولات" class="w-24 object-cover h-16" />
                             <p> دسته بندی محصولات </p>
                         </Link>
                         <Link href="{{ route('landing.article.list', ['page' => $land->slug, 'f' => 'news']) }}" class="w-full">
-                            <img src="" alt="" class="w-20 object-contain h-16" />
+                            <img src="http://127.0.0.1:8000/storage/media/land/files/akLbg6Xe3QA6cETaO8stmxkFJxUWukl8koB3WDgb.png" alt="آخرین اخبار" class="w-24 object-cover h-16" />
                             <p> آخرین اخبار </p>
                         </Link>
                         <Link href="{{ route('landing.article.list', ['page' => $land->slug, 'f' => 'sell']) }}" class="w-full">
-                            <img src="" alt="" class="w-20 object-contain h-16" />
+                            <img src="http://127.0.0.1:8000/storage/media/land/files/G4P7QGDVXU1H9wmctqzIht4DM1denuxG2bY58HRF.png" alt="شرایط فروش" class="w-24 object-cover h-16" />
                             <p> شرایط فروش </p>
                         </Link>
                     </section>

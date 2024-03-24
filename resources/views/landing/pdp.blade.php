@@ -50,7 +50,7 @@
         @endif
 
         {{-- Technical Specifications --}}
-        @if ($product->attributes->count() > 0)
+        @if ($product->attributes->count())
             <section class="default_container mb-20">
                 <p
                     class="relative text-xl mb-7 font-medium text-stone-700 {{ $tabStyle }}">
@@ -105,39 +105,41 @@
 
 
         {{-- viewpoint --}}
-        <section class="default_container mb-20">
-            <p
-            class="relative text-xl mb-7 font-medium text-stone-700 {{ $tabStyle }}">
-            دیدگاه </p>
-            <ul class="flex flex-col gap-7 text-gray-900">
-                @if ($comments->count() > 0)
-                    @foreach ($comments as $comment)
-                        <li>
-                            {{-- user name --}}
-                            <p class="block text-base font-medium text-stone-700 mb-1.5 mr-2"> {{ $comment->name }} </p>
+        @if ($comments->count())
+            <section class="default_container mb-20">
+                <p
+                class="relative text-xl mb-7 font-medium text-stone-700 {{ $tabStyle }}">
+                دیدگاه </p>
+                <ul class="flex flex-col gap-7 text-gray-900">
+                    @if ($comments->count() > 0)
+                        @foreach ($comments as $comment)
+                            <li>
+                                {{-- user name --}}
+                                <p class="block text-base font-medium text-stone-700 mb-1.5 mr-2"> {{ $comment->name }} </p>
 
-                            {{-- user viewpoint --}}
-                            <div class="{{ $borderStyle }} rounded-custom p-4">
-                                <div class="font-normal leading-6 lg:leading-7 text-justify text-sm lg:text-base">
-                                    {{ $comment->comment }}
+                                {{-- user viewpoint --}}
+                                <div class="{{ $borderStyle }} rounded-custom p-4">
+                                    <div class="font-normal leading-6 lg:leading-7 text-justify text-sm lg:text-base">
+                                        {{ $comment->comment }}
+                                    </div>
                                 </div>
-                            </div>
+                            </li>
+                        @endforeach
+                    @else
+                        <li
+                            class="h-44 w-full flex_center text-center text-normal leading-6 lg:leading-7 text-sm lg:text-base">
+                            شما می توانید نظر خود را با ما در میان بگذارید.
                         </li>
-                    @endforeach
-                @else
-                    <li
-                        class="h-44 w-full flex_center text-center text-normal leading-6 lg:leading-7 text-sm lg:text-base">
-                        شما می توانید نظر خود را با ما در میان بگذارید.
-                    </li>
+                    @endif
+                </ul>
+                @if ($comments->count() > 3)
+                    <button type="button" class="mx-auto text-normal mt-10 text-sm font-medium lg:text-base cursor-pointer block">
+                        مشاهده همه
+                        دیدگاه ها
+                    </button>
                 @endif
-            </ul>
-            @if ($comments->count() > 3)
-                <button type="button" class="mx-auto text-normal mt-10 text-sm font-medium lg:text-base cursor-pointer block">
-                    مشاهده همه
-                    دیدگاه ها
-                </button>
-            @endif
-        </section>
+            </section>
+        @endif
 
         {{-- add viewpoint --}}
         <x-pdp_landing.addViewpoint :land="$land" :product="$product" :tabStyle="$tabStyle" />
