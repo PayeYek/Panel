@@ -236,7 +236,7 @@ export default {
             const urlParams = new URLSearchParams(window.location.search);
             queryParam.value = urlParams.get('f') != null ? urlParams.get('f') : 'all';
             
-            changeFilter(queryParam.value)
+            changeFilter(queryParam.value);
         })
 
         // convert date to fa local

@@ -67,7 +67,7 @@
         '11' => 'md:grid-cols-1 rounded-custom overflow-hidden ' . $borderStyle,
         '12' => 'gap-12',
         '13' => 'gap-4 lg:grid-cols-4',
-        default => 'lg:grid-cols-5 gap-4 sm:grid-cols-2'
+        default => 'lg:grid-cols-5 gap-4 sm:grid-cols-2',
     };
 @endphp
 <x-layout.default.main :land="$land">

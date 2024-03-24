@@ -24,7 +24,7 @@
     <x-layout.landing.header :land="$land"/>
     {{ $slot }}
 
-    <x-layout.landing.newfooter :land="$land"/>
+    <x-layout.landing.footer :land="$land"/>
     {{-- <div class="default_container relative z-[1]">
         <x-layout.landing.footer :land="$land"/>
     </div> --}}

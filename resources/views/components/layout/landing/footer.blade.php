@@ -1,26 +1,5 @@
-@props(['land'=>null])
-
-{{--ADVERTISE--}}
-{{--<section class="mt-5 md:mt-16 xl:rounded-md overflow-hidden">
-    <div class="carousel-cell">
-        <img class="h-[220px] md:h-[400px] object-cover"
-             src="{{ asset('assets/images/test/Arian diesel 02 resize.jpg') }}" alt="{{ 'alt' }}"/>
-    </div>
-</section>--}}
-
-{{--FOOTER: LOGO, DESC | LINKS: HOME, NEWS, ARTICLES, PRODUCTS, SALLER--}}
-<footer
-    class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-5 mt-5 md:mt-16 mx-5 xl:mx-0 px-10 bg-gray-200 dark:bg-gray-800/90 rounded-t-lg py-10">
-    <section class="flex flex-col md:col-span-full lg:col-span-2">
-        <x-layout.landing.logo :land="$land" in-footer/>
-        <p class="text-sm mt-6 md:mt-3 text-justify">
-            {{$land->description}}
-        </p>
-    </section>
-
-    @php
-
-        $buttons = [
+@php
+    $buttons = [
             [
             'title'=>'دسترسی سریع',
             'items' => [
@@ -54,45 +33,50 @@
             $data['items'][] = $item;
         }
         $buttons[] = $data;
+@endphp
 
-        $footerLinkseStyle = match($land->styles->color."") {
-            '1' => 'hover:text-red-800',
-            '2' => 'hover:text-blue-800',
-            '3' => 'hover:text-rose-800',
-            '4' => 'hover:text-zinc-800',
-            '5' => 'hover:text-cobalt-800',
-            default => 'hover:text-red-800'
-        };
+<footer class="bg-stone-900 px-10 py-10">
+    <section class="default_container grid grid-cols-1 md:grid-cols-4 lg:grid-cols-5 gap-10 md:gap-4 mb-16 lg:gap-10">
+        {{-- about --}}
+        <section class="flex flex-col gap-4 md:gap-8 lg:col-span-2">
+            <p class="text-white text-base font-medium"> درباره شرکت </p>
+            <div class="text-sm font-normal text-white leading-7 text-justify">
+                {{$land->description}}
+            </div>
+        </section>
 
-    @endphp
-
-    @foreach($buttons as  $button)
-        <main class="mt-10 md:mt-0">
-            <header class="flex items-center justify-between">
-                <div class="bg-gray-500/20 flex-1 h-0.5"></div>
-                <h4 class="font-medium font-bakh bg-gray-500/20 rounded-md px-3 py-1">{{ $button['title'] }}</h4>
-                <div class="bg-gray-500/20 flex-1 h-0.5"></div>
-            </header>
-            <ul class="flex flex-col gap-4 mt-5 items-center justify-stretch">
-                @isset($button['items'])
-                    @foreach($button['items'] as  $item)
-                        <li class="w-full flex">
-                            <a href="{{ $item['link'] }}"
-                               class="w-full text-sm {{ $footerLinkseStyle }} bg-gray-500/10 text-center md:text-start rounded-md px-3 py-1 transition-all duration-100">{{ $item['name'] }}</a>
-                        </li>
-                    @endforeach
-                @endisset
-            </ul>
-        </main>
-    @endforeach
-
-    <section
-        class="md:pt-5 border-none md:border-t md:border-dashed border-gray-500/20 col-span-full flex flex-col md:flex-row-reverse items-center justify-between gap-5">
-        <x-layout.landing.social colorPalette="{{ $land->styles->color }}" />
-        <span class="text-xs text-center md:text-start border-t md:border-none border-dashed border-gray-500 py-2">
-                {{__('message.rights', ['brand' => 'نام برند', 'year' => jdate()->getYear()])}}
-            {{--{{__('message.rights', ['brand' => $land->title, 'year' => jdate()->getYear()])}}--}}
-            </span>
+        {{-- footer lists --}}
+        <section class="grid grid-cols-1 md:grid-cols-3 md:col-span-3 gap-8 md:gap-4 lg:gap-10 text-white lg:col-span-3">
+            @foreach($buttons as  $button)
+                <x-splade-data default="{ dropdown: false }">
+                    <section class="flex flex-col md:gap-8">
+                        {{-- title --}}
+                        <div class="flex items-center justify-between">
+                            <p class="text-base font-medium"> {{ $button['title'] }} </p>
+                            <button type="button" class="cursor-pointer md:hidden" @click="data.dropdown = !data.dropdown">
+                                <svg :class="data.dropdown ? 'rotate-180' : 'rotate-0'" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M17 14L11.9992 9.42L7 14" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </button>
+                        </div>
+                        {{-- items --}}
+                        <div class="flex flex-col gap-4 overflow-hidden duration-300" :class="data.dropdown ? 'py-4 md:py-0 max-h-60 md:max-h-full' : 'py-0 max-h-0 md:max-h-full'">
+                            @isset($button['items'])
+                                @foreach($button['items'] as  $item)
+                                    <Link href="{{ $item['link'] }}"> {{ $item['name'] }} </Link>
+                                @endforeach
+                            @endisset
+                        </div>
+                    </section>
+                </x-splade-data>
+            @endforeach
+        </section>
     </section>
 
+    <section class="flex_center flex-col gap-10 md:flex-row-reverse md:justify-between default_container">
+        <x-layout.landing.social :inFooter=true />
+        <span class="text-xs sm:text-sm text-center font-normal text-white">
+            {{__('message.rights', ['brand' => 'نام برند', 'year' => jdate()->getYear()])}}
+        </span> 
+    </section>
 </footer>

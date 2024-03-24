@@ -283,9 +283,9 @@
                     <section class="flex flex-col" v-if="product.length > 0">
                         <p class="text-base lg:text-xl font-medium mb-4 text-stone-700 text-center"> محصولات {{ product[0].brand.title }} </p>
                         <hr class="w-56 lg:w-96 border-normal mb-4 lg:mb-6 mx-auto" />
-                        <ul class="flex flex-col lg:flex-row mx-auto lg:items-start lg:justify-center gap-0">
+                        <ul class="flex flex-col lg:flex-row mx-auto lg:items-start lg:justify-center lg:flex-wrap gap-0">
                             <li v-for="(item, index) in product" :key="index"
-                                :class="'pt-2 px-8 w-72 sm:w-96 lg:w-full lg:max-w-72 pb-5 lg:pt-3 items-center flex flex-col rounded-custom ' + (evenOdd ? 'evenOdd_cards' : 'bg-white')">
+                                :class="'pt-2 px-8 w-72 sm:w-96 lg:w-full lg:max-w-[17rem] pb-5 lg:pt-3 items-center flex flex-col rounded-custom ' + (evenOdd ? 'evenOdd_cards' : 'bg-white')">
                                 <div class="mb-2 h-52">
                                     <img :src="item.image" :alt="item.name" class="object-contain h-full" />
                                 </div>
@@ -309,7 +309,7 @@
 </template>
 
 <script>
-import { ref, watch } from 'vue';
+import { ref, watch, onMounted } from 'vue';
 
 export default {
     name: 'CategoryFilter',
@@ -350,7 +350,8 @@ export default {
         const removeDuplicated = ref([]);
         const filteredList = ref([]);
         const allProductsList = ref([]);
-        console.log(productList.value);
+        const queryParam = ref('0');
+        const firstTime = ref(false);
 
         // console.log(0, typeof filteredList.value);
         function remove_duplicates_es6(arr) {
@@ -382,9 +383,21 @@ export default {
             reject();
         })
 
+        // get filter params
+        onMounted(() => {
+            const urlParams = new URLSearchParams(window.location.search);
+            queryParam.value = urlParams.get('category') != null ? urlParams.get('category') : '0';
+            
+            changeFilter(queryParam.value);
+        })
+
         const changeFilter = (filter) => {
-            console.log(filter);
-            filterState.value = filter
+            if(firstTime.value)
+            {
+                window.history.replaceState( {}, "",`?category=${filter}`);
+            }
+            filterState.value = filter;
+            firstTime.value = true;
         }
         
 
