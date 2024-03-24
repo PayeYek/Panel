@@ -1,5 +1,5 @@
 <x-layout.default.main :land="$land">
-    <main class="">
+    <main class="mb-8 sm:mb-24 lg:mb-28">
         {{-- slider --}}
         @if ($land->slides)
             <Slider :slides="{{ $land->slides }}" :sliderType="{{ $land->styles->land_id }}" />
@@ -77,7 +77,6 @@
             :type="$land->styles->article_card_type"
             :borderType="$land->styles->border_type"
             evenOdd="{{ $land->styles->article_striped }}" />
-
         {{-- videos --}}
         <section class="mb-4 sm:mb-8 lg:mb-16 relative z-[3] default_container" id="video-player-container">
             @switch($land->styles->land_id)
@@ -134,7 +133,6 @@
             @default
                 
         @endswitch
-
 
     </main>
 
