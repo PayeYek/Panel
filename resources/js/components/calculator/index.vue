@@ -7,13 +7,13 @@
                 <option v-for="(product, index) in list" :key="index" :value="product.id"> {{ product.name }} </option>
             </select>
             <!-- range slider -->
-            <section class="">
+            <section class="range-slider">
                 <p class="text-sm font-medium text-stone-700 mb-4"> مبلغ مورد نظر خود را وارد کنید. </p>
                 <div class="flex items-center justify-between mb-4">
                     <p class="text-base font-medium text-normal"> 15000000 تومان </p>
                     <p class="text-xl font-medium text-normal"> {{ loanInitialValue }} تومان </p>
                 </div>
-                <input type="range" class="dir-rtl w-full range-slider" :min="loanMin" :max='loanMax' :value="loanInitialValue" v-model="loanInitialValue" :step="loanSteps" @change="calculateDeposite" />
+                <input type="range" class="dir-rtl w-full" :min="loanMin" :max='loanMax' :value="loanInitialValue" v-model="loanInitialValue" :step="loanSteps" @change="calculateDeposite" />
             </section>
 
             <!-- range slider -->

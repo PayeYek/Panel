@@ -845,3 +845,62 @@
     @apply text-sm py-1.5 px-4 lg:first:pr-8;
 } */
 /* table custom styles ends */
+
+/* range slider starts */
+.range-slider {
+    --trackHeight: 0.5rem;
+    --thumbRadius: 1rem;
+  }
+  .range-slider input[type="range"] {
+    position: relative;
+    appearance: none;
+    /* pointer-events: none; */
+    border-radius: 999px;
+    z-index: 0;
+  }
+  
+  /* ::before element to replace the slider track */
+  /* .range-slider input[type="range"]::before {
+    content: "";
+    position: absolute;
+    width: var(--ProgressPercent, 100%);
+    height: 100%;
+    background: #aaa; */
+    /* z-index: -1; */
+    /* pointer-events: none;
+    border-radius: 999px;
+  } */
+  
+  /* `::-webkit-slider-runnable-track` targets the track (background) of a range slider in chrome and safari browsers. */
+  .range-slider input[type="range"]::-webkit-slider-runnable-track {
+    appearance: none;
+    background: #ddd;
+    height: var(--trackHeight);
+    border-radius: 999px;
+  }
+  
+  /* `::-moz-range-track` targets the track (background) of a range slider in Mozilla Firefox. */
+  .range-slider input[type="range"]::-moz-range-track {
+    appearance: none;
+    background: #e62020;
+    height: var(--trackHeight);
+    border-radius: 999px;
+  }
+  
+  .range-slider input[type="range"]::-webkit-slider-thumb {
+    position: relative;
+    top: 50%;
+    transform: translate(0, -50%);
+    width: var(--thumbRadius);
+    height: var(--thumbRadius);
+    /* margin-top: calc((var(--trackHeight) - var(--thumbRadius)) / 2); */
+    background: #00bd7e;
+    border-radius: 999px;
+    pointer-events: all;
+    appearance: none;
+    z-index: 1;
+  }
+  .range-slider input[type="range"]::-ms-fill-lower { 
+    background: #ddd;
+}
+/* range slider ends */
