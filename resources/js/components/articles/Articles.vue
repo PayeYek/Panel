@@ -229,6 +229,8 @@ export default {
         const categoryFilterState = ref('all');
         const searchFilterState = ref("");
         const queryParam = ref('all');
+        const firstTime = ref(false);
+
         // get filter params
         onMounted(() => {
             const urlParams = new URLSearchParams(window.location.search);
@@ -262,9 +264,13 @@ export default {
         });
 
         const changeFilter = (filter) => {
-            window.history.replaceState( [], "",`?f=${filter}`);
+            if(firstTime.value)
+            {
+                window.history.replaceState( {}, "",`?f=${filter}`);
+            }
             categoryFilterState.value = filter;
             searchFilterState.value = "";
+            firstTime.value = true;
         }
 
         const filterArticleByName = () => {
