@@ -233,6 +233,7 @@ export default {
         onMounted(() => {
             const urlParams = new URLSearchParams(window.location.search);
             queryParam.value = urlParams.get('f') != null ? urlParams.get('f') : 'all';
+            
             changeFilter(queryParam.value)
         })
 
@@ -261,6 +262,7 @@ export default {
         });
 
         const changeFilter = (filter) => {
+            window.history.replaceState( [], "",`?f=${filter}`);
             categoryFilterState.value = filter;
             searchFilterState.value = "";
         }
