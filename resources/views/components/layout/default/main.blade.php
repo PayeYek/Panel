@@ -22,7 +22,9 @@
     <x-layout.landing.sidebar :land="$land"/>
     {{--HEADER: LOGO | LINKS: HOME, PRODUCTS, SALLER, ABOUT | SALLER --}}
     <x-layout.landing.header :land="$land"/>
-    {{ $slot }}
+    <section class="min-h-[calc(100vh-488px)]">
+        {{ $slot }}
+    </section>
 
     <x-layout.landing.footer :land="$land"/>
     {{-- <div class="default_container relative z-[1]">
