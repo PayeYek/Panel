@@ -344,24 +344,24 @@ export default {
         },
     },
     setup(props) {
-        const productList = ref(JSON.parse(props.list));
-        console.log(productList.value);
-        const filterState = ref(0);
-        const categories = ref([]);
-        const brandCategories = ref([]);
-        const removeDuplicated = ref([]);
-        const filteredList = ref([]);
-        const allProductsList = ref([]);
-        const queryParam = ref('0');
-        const firstTime = ref(false);
+        const productList = ref(JSON.parse(props.list)); // List of products
+        const filterState = ref(0); // Current filter state
+        const categories = ref([]); // List of categories
+        const brandCategories = ref([]); // List of brand categories
+        const removeDuplicated = ref([]); // List of unique brand categories
+        const filteredList = ref([]); // Filtered list of products
+        const allProductsList = ref([]); // List of all products
+        const queryParam = ref('0'); // Query parameter
+        const firstTime = ref(false); // Flag to track if it's the first time setting filter
 
-        // console.log(0, typeof filteredList.value);
+        // Function to remove duplicates from an array
         function remove_duplicates_es6(arr) {
             let s = new Set(arr);
             let it = s.values();
             return Array.from(it);
         }
 
+        // Promise to get all brand categories
         let getAllBrands = new Promise(function (resolve, reject) {
             productList.value.map(brand => {
                 return brand.products.map(item => {
@@ -372,9 +372,9 @@ export default {
             removeDuplicated.value = remove_duplicates_es6(brandCategories.value)
             
             resolve();
-            reject();
         })
 
+        // Promise to get all categories
         let getAllCategories = new Promise(function (resolve, reject) {
             productList.value.map(product => {
                 product.products.map(item => {
@@ -382,23 +382,21 @@ export default {
                 })
             })
             resolve();
-            reject();
         })
 
-        // get filter params
+        // Get filter parameters on component mount
         onMounted(() => {
             const urlParams = new URLSearchParams(window.location.search);
             queryParam.value = urlParams.get('category') != null ? urlParams.get('category') : '0';
             
             changeFilter(queryParam.value);
 
-        })
             categories.value = productList.value.map(category => {
                 return category.category
             })
+        })
 
-            console.log(categories.value);
-
+        // Function to change filter state
         const changeFilter = (filter) => {
             if(firstTime.value)
             {
@@ -409,20 +407,14 @@ export default {
         }
         
 
-        // const nonTwelveFilteredList = computed(() => {
-        //     return filterState.value == 0
-        //         ? productList.value
-        //         : productList.value.filter(item => item.category_id == filterState.value);
-        // });
 
+        // Watch for changes in product type
         watch(() => props.productType, (newType) => {
             if (newType == 12) {
                 filteredList.value = [];
-                // console.log(0, typeof filteredList.value);
                 getAllBrands.then(() => {
                     for (let index = 0; index < removeDuplicated.value.length; index++) {
                         filteredList.value.push([]);
-                        // console.log(1, typeof filteredList.value);
                         const element = removeDuplicated.value[index];
                         productList.value.filter(product => {
                             product.products.map(item => {
@@ -433,12 +425,6 @@ export default {
                         })
                     }
                 })
-
-
-                // watch(() => filterState.value, () => {
-                //     // console.log(1 , filteredList.value);
-                //     updateFilteredList();
-                // });
             } else {
                 getAllCategories.then(() => {
                     if (filterState.value == 0) {
@@ -448,14 +434,10 @@ export default {
                     }
 
                 })
-                // filteredList.value = computed(() => {
-                //     return filterState.value == 0
-                //     ? allProductsList.value
-                //     : allProductsList.value.filter(item => item.category_id == filterState.value)
-                // });
             }
         }, { immediate: true });
 
+        // Watch for changes in filter state
         watch(() => filterState.value, (newVal) => {
             if (props.productType != 12) {
                 if (newVal == 0) {
@@ -464,9 +446,9 @@ export default {
                     filteredList.value = allProductsList.value.filter(item => item.category_id == newVal)
                 }
             } else {
-                filteredList.value = [];
                 if (newVal == 0) {
                     getAllBrands.then(() => {
+                        filteredList.value = [];
                         for (let index = 0; index < removeDuplicated.value.length; index++) {
                             filteredList.value.push([]);
                             const element = removeDuplicated.value[index];
@@ -481,12 +463,15 @@ export default {
                     })
                 } else {
                     getAllBrands.then(() => {
+                        filteredList.value = [];
+                        console.log(filteredList.value);
                         for (let index = 0; index < removeDuplicated.value.length; index++) {
                             filteredList.value.push([]);
                             const element = removeDuplicated.value[index];
                             productList.value.filter(product => {
                                 product.products.map(item => {
                                     if (item.brand_id == element && item.category_id == filterState.value) {
+                                        console.log(item);
                                         filteredList.value[index].push(item);
                                     }
                                 })
@@ -497,46 +482,6 @@ export default {
             }
         });
 
-        const updateFilteredList = () => {
-            if (filterState.value == 0) {
-                filteredList.value = [];
-                getAllBrands.then(() => {
-                    for (let index = 0; index < removeDuplicated.value.length; index++) {
-                        filteredList.value.push([]);
-                        const element = removeDuplicated.value[index];
-                        productList.value.filter(product => {
-                            product.products.map(item => {
-                                if (item.brand_id == element) {
-                                    filteredList.value[index].push(item);
-                                }
-                            })
-                        })
-                    }
-                })
-            } else {
-                filteredList.value = [];
-                getAllBrands.then(() => {
-                    for (let index = 0; index < removeDuplicated.value.length; index++) {
-                        filteredList.value.push([]);
-                        const element = removeDuplicated.value[index];
-                        productList.value.filter(product => {
-                            product.products.map(item => {
-                                if (item.brand_id == element && item.category_id == filterState.value) {
-                                    filteredList.value[index].push(item);
-                                }
-                            })
-                        })
-                    }
-                })
-            }
-        };
-
-
-        // filteredList.value = computed(() => {
-        //     return filterState.value == 0 
-        //         ? productList.value 
-        //         : productList.value.filter(categoryId => categoryId.category_id == filterState.value);
-        // });
 
         return {
             filterState,
