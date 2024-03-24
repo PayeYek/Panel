@@ -20,42 +20,42 @@ export default {
     ],
     safelist: [
         'iframe_styles',
-    //     'before:rounded-none',
-    //     'before:rounded-sm',
-    //     'before:rounded',
-    //     'before:rounded-xl',
-    //     'before:rounded-r-none',
-    //     'before:rounded-r-sm',
-    //     'before:rounded-r',
-    //     'before:rounded-r-xl',
-    //     'rounded-none',
-    //     'rounded',
-    //     'rounded-sm',
-    //     'rounded-xl',
-    //     'first:rounded-t-none',
-    //     'first:rounded-t',
-    //     'first:rounded-t-sm',
-    //     'first:rounded-t-xl',
-    //     'last:rounded-b-none',
-    //     'last:rounded-b',
-    //     'last:rounded-b-sm',
-    //     'last:rounded-b-xl',
-    //     'sm:rounded-none',
-    //     'sm:rounded',
-    //     'sm:rounded-sm',
-    //     'sm:rounded-xl',
-    //     'gap-x-4',
-    //     'gap-y-4',
-    //     'sm:gap-x-4',
-    //     'sm:gap-y-4',
+        //     'before:rounded-none',
+        //     'before:rounded-sm',
+        //     'before:rounded',
+        //     'before:rounded-xl',
+        //     'before:rounded-r-none',
+        //     'before:rounded-r-sm',
+        //     'before:rounded-r',
+        //     'before:rounded-r-xl',
+        //     'rounded-none',
+        //     'rounded',
+        //     'rounded-sm',
+        //     'rounded-xl',
+        //     'first:rounded-t-none',
+        //     'first:rounded-t',
+        //     'first:rounded-t-sm',
+        //     'first:rounded-t-xl',
+        //     'last:rounded-b-none',
+        //     'last:rounded-b',
+        //     'last:rounded-b-sm',
+        //     'last:rounded-b-xl',
+        //     'sm:rounded-none',
+        //     'sm:rounded',
+        //     'sm:rounded-sm',
+        //     'sm:rounded-xl',
+        //     'gap-x-4',
+        //     'gap-y-4',
+        //     'sm:gap-x-4',
+        //     'sm:gap-y-4',
     ],
     // darkMode: 'false',
     theme: {
         extend: {
-            // backgroundColor: {
-            //     normal: 'var(--theme-normal)',
-            //     focus: 'var(--theme-focus)',
-            // },
+            animation: {
+                'pulse-custom': 'pulse-custom 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite', // Define your custom animation
+                'jump-around': 'jump-around 0.5s cubic-bezier(0.4, 0, 0.6, 1)',
+            },
             colors: {
                 primary: { "50": "#eff6ff", "100": "#dbeafe", "200": "#bfdbfe", "300": "#93c5fd", "400": "#60a5fa", "500": "#3b82f6", "600": "#2563eb", "700": "#1d4ed8", "800": "#1e40af", "900": "#1e3a8a", "950": "#172554" },
                 dark: {
@@ -98,7 +98,7 @@ export default {
                 },
             },
             borderRadius: {
-                'custom': 'var(--theme-rarius)',
+                'custom': 'var(--theme-radius)',
             },
             dropShadow: {
                 'red': '0 2px 8px rgba(185,28,28,0.3)',
@@ -122,7 +122,30 @@ export default {
                 yekan: "IRANYekanX, serif !important",
                 iran: "IRANSansX, serif !important",
                 inter: "Inter, IRANSansX, sans-serif !important",
-            }
+            },
+            keyframes: {
+                'pulse-custom': {
+                    '0%, 100%': { opacity: 1 },
+                    '50%': { opacity: 0.65 },
+                },
+                'jump-around': {
+                    '0%, 100%': {
+                        transform: 'translateX(0px)',
+                    },
+                    '20%': {
+                        transform: 'translateX(6px)',
+                    },
+                    '40%': {
+                        transform: 'translateX(-6px)',
+                    },
+                    '60%': {
+                        transform: 'translateX(6px)',
+                    },
+                    '80%': {
+                        transform: 'translateX(-6px)',
+                    },
+                },
+            },
         },
     },
 

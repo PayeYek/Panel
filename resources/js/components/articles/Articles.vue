@@ -172,10 +172,10 @@
     </template>
 
     <section class="relative flex-col gap-4 flex_center h-80 sm:h-96" v-else>
-        <p class="pb-4 text-base font-normal border-b sm:text-lg border-b-normal text-stone-700"> محتوایی با این مشخصات
+        <p class="pb-4 text-base font-normal border-b sm:text-lg border-b-normal text-stone-700 mr-6"> محتوایی با این مشخصات
             پیدا
             نشد. </p>
-        <p class="text-sm font-normal sm:text-base text-stone-700"> پیشنهاد می کنیم فیلتر ها را تغییر دهید. </p>
+        <p class="text-sm font-normal sm:text-base text-stone-700 mr-6"> پیشنهاد می کنیم فیلتر ها را تغییر دهید. </p>
 
         <!-- icon -->
         <svg class="absolute translate-x-1/2 -translate-y-1/2 size-80 sm:size-96 top-1/2 right-1/2" viewBox="0 0 362 362" fill="none" xmlns="http://www.w3.org/2000/svg">

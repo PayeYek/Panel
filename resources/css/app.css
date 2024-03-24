@@ -14,7 +14,7 @@
         --theme-shadow-light: rgba(212, 17, 24, 0.3);
         --theme-shadow-normal: rgba(212, 17, 24, 0.5);
         --theme-shadow-focus: rgba(212, 17, 24, 0.8);
-        --theme-rarius: 8px;
+        --theme-radius: 8px;
     }
     .theme_arian{
         --theme-normal: #d50000;
@@ -31,25 +31,25 @@
         --theme-shadow-focus: rgba(21, 23, 105, 0.8);
     }
     .rounded_none{
-        --theme-rarius: 0px;
+        --theme-radius: 0px;
     }
     .rounded_sm{
-        --theme-rarius: 2px;
+        --theme-radius: 2px;
     }
     .rounded_base{
-        --theme-rarius: 4px;
+        --theme-radius: 4px;
     }
     .rounded_md{
-        --theme-rarius: 6px;
+        --theme-radius: 6px;
     }
     .rounded_lg{
-        --theme-rarius: 8px;
+        --theme-radius: 8px;
     }
     .rounded_xl{
-        --theme-rarius: 12px;
+        --theme-radius: 12px;
     }
     .rounded_2xl{
-        --theme-rarius: 16px;
+        --theme-radius: 16px;
     }
 
     .custom_article_styles h2{
@@ -69,6 +69,18 @@
     }
     .custom_article_styles img{
         @apply rounded-custom aspect-video;
+    }
+
+    /* Chrome, Safari, Edge, Opera */
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+    }
+
+    /* Firefox */
+    input[type=number] {
+    -moz-appearance: textfield;
     }
 }
 @tailwind components;

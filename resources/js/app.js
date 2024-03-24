@@ -20,6 +20,7 @@ import ArticleLink from "@/components/articles/ArticleLink.vue";
 import AmChart from "@/components/map/AmChart.vue";
 import Branches from "@/components/map/Branches.vue";
 import Videos from "@/components/videos/Videos.vue";
+import Calculator from "@/components/calculator/index.vue";
 // import Swiper from 'swiper';
 // import 'swiper/css/bundle';
 // let Swiper = require('swiper');
@@ -74,6 +75,7 @@ createApp({ render: renderSpladeApp({ el }) })
     .component('AmChart', AmChart)
     .component('Branches', Branches)
     .component('Videos', Videos)
+    .component('Calculator', Calculator)
     // .directive("click-outside", clickOutside)
     .mount(el);
 
@@ -89,3 +91,11 @@ window.onload = function () {
     }
 }
 
+if(document.getElementById('scrollToTopBtn')){
+    document.getElementById('scrollToTopBtn').addEventListener("click", () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth',
+        });
+    })
+}

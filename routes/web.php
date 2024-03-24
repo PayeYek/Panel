@@ -99,6 +99,8 @@ Route::middleware(['splade'])->group(function () {
                 Route::get('{page}', 'page')->name('show');
                 Route::get('{page}/about', 'about')->name('about');
                 Route::get('{page}/catalogs', 'catalogs')->name('catalogs');
+                Route::get('{page}/progress', 'progress')->name('index');
+
             });
 
             Route::name('product.')->group(function () {
@@ -122,6 +124,8 @@ Route::middleware(['splade'])->group(function () {
         $lands = \App\Models\Land::get();
         return view('landing.index', compact('lands'));
     })->name('index');
+
+
 
 
 });
