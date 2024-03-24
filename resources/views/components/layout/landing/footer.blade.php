@@ -29,7 +29,7 @@
         foreach ($cats as $cat) {
             $c = \App\Models\LandCategory::find($cat);
             $item['name'] = $c->title;
-            $item['link'] = route('landing.product.category', ['page' => $land->slug, 'category' => $c->slug]);
+            $item['link'] = route('landing.product.list', ['page' => $land->slug, 'category' => $c->id]);
             $data['items'][] = $item;
         }
         $buttons[] = $data;
@@ -77,6 +77,6 @@
         <x-layout.landing.social :inFooter=true />
         <span class="text-xs sm:text-sm text-center font-normal text-white">
             {{__('message.rights', ['brand' => 'نام برند', 'year' => jdate()->getYear()])}}
-        </span> 
+        </span>
     </section>
 </footer>

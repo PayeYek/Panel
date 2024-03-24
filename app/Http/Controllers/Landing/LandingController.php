@@ -136,7 +136,10 @@ class LandingController extends Controller
         $product = LandProduct::with('category')->where('slug', $product)->firstOrFail();
 
         /* COMMENTS APPROVED */
-        $comments = LandComment::where('land_id', $land->id)->where('product_id', $product->id)->get();
+        $comments = LandComment::where('land_id', $land->id)
+            ->where('product_id', $product->id)
+            ->where('approved', true)
+            ->get();
 
         /* SEO */
         SEO::title($land->title . ' | ' . $product->name)
