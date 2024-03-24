@@ -9,7 +9,7 @@
 
     <section class="grid grid-cols-1 md:grid-cols-5 gap-4">
         {{-- products --}}
-        <Link href="{{ route('landing.product.list', ['page' => $landSlug]) }}" class="h-[72px] bg-[#1A1B1D] relative group rounded-custom px-5 flex items-center md:flex-col md:h-auto md:pt-10 lg:pt-14 lg:pb-16 md:pb-12 md:px-2 sm:h-20 text-white gap-4 sm:gap-6 md:gap-8 lg:gap-12">
+        <Link href="{{ route('landing.product.list', ['page' => $landSlug]) }}" class="h-[72px] bg-[#1A1B1D] relative group rounded-custom px-5 flex items-center md:flex-col md:h-auto md:pt-10 lg:pt-14 overflow-hidden lg:pb-16 md:pb-12 md:px-2 sm:h-20 text-white gap-4 sm:gap-6 md:gap-8 lg:gap-12">
             {{-- image --}}
             <div class="flex_center size-12 sm:size-14 md:size-12 lg:size-16 xl:size-20 rounded-full group-hover:animate-jump-around bg-white relative z-[1]">
                 <svg class="h-6 sm:h-8 md:h-6 stroke-normal lg:h-8 xl:h-10" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -28,7 +28,7 @@
                 classNames='absolute top-0 -left-64 group-hover:left-0 transition-all group-hover:animate-pulse-custom w-auto h-full hidden md:block' />
         </Link>
         {{-- terms of sale --}}
-        <Link href="{{ route('landing.article.list', ['page' => $landSlug, 'f' => 'sell']) }}" class="h-[72px] bg-[#1A1B1D] group relative rounded-custom px-5 flex items-center md:flex-col md:h-auto md:pt-10 lg:pt-14 lg:pb-16 md:pb-12 md:px-2 sm:h-20 text-white text-sm font-normal sm:text-base md:text-sm lg:text-xl xl:text-2xl gap-4 sm:gap-6 md:gap-8 lg:gap-12">
+        <Link href="{{ route('landing.article.list', ['page' => $landSlug, 'f' => 'sell']) }}" class="h-[72px] bg-[#1A1B1D] group relative rounded-custom px-5 flex items-center md:flex-col md:h-auto md:pt-10 lg:pt-14 overflow-hidden lg:pb-16 md:pb-12 md:px-2 sm:h-20 text-white text-sm font-normal sm:text-base md:text-sm lg:text-xl xl:text-2xl gap-4 sm:gap-6 md:gap-8 lg:gap-12">
             {{-- image --}}
             <div class="flex_center size-12 sm:size-14 md:size-12 lg:size-16 xl:size-20 group-hover:animate-jump-around rounded-full bg-white relative z-[1]">
                 <svg class="h-6 sm:h-8 md:h-6 fill-normal lg:h-8 xl:h-10" viewBox="0 0 16 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -46,7 +46,7 @@
                 classNames='absolute top-0 -left-64 group-hover:left-0 transition-all group-hover:animate-pulse-custom w-auto h-full hidden md:block' />
         </Link>
         {{-- blog --}}
-        <Link href="{{ route('landing.article.list', ['page' => $landSlug, 'f' => 'blog']) }}" class="h-[72px] bg-[#1A1B1D] group relative rounded-custom px-5 flex items-center md:flex-col md:h-auto md:pt-10 lg:pt-14 lg:pb-16 md:pb-12 md:px-2 sm:h-20 text-white text-sm font-normal sm:text-base md:text-sm lg:text-xl xl:text-2xl gap-4 sm:gap-6 md:gap-8 lg:gap-12">
+        <Link href="{{ route('landing.article.list', ['page' => $landSlug, 'f' => 'blog']) }}" class="h-[72px] bg-[#1A1B1D] group relative rounded-custom px-5 flex items-center md:flex-col md:h-auto md:pt-10 lg:pt-14 overflow-hidden lg:pb-16 md:pb-12 md:px-2 sm:h-20 text-white text-sm font-normal sm:text-base md:text-sm lg:text-xl xl:text-2xl gap-4 sm:gap-6 md:gap-8 lg:gap-12">
             {{-- image --}}
             <div class="flex_center size-12 sm:size-14 md:size-12 lg:size-16 xl:size-20 group-hover:animate-jump-around rounded-full bg-white relative z-[1]">
                 <svg class="h-6 sm:h-8 md:h-6 fill-normal lg:h-8 xl:h-10" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -63,9 +63,9 @@
                 classNames='absolute top-0 -left-64 group-hover:left-0 transition-all group-hover:animate-pulse-custom w-auto h-full hidden md:block' />
         </Link>
         {{-- agencies --}}
-        <Link href="{{ route('landing.sales', ['page' => $landSlug]) }}" class="h-[72px] bg-[#1A1B1D] group rounded-custom relative px-5 flex items-center md:flex-col md:h-auto md:pt-10 lg:pt-14 lg:pb-16 md:pb-12 md:px-2 sm:h-20 text-white text-sm font-normal sm:text-base md:text-sm lg:text-xl xl:text-2xl gap-4 sm:gap-6 md:gap-8 lg:gap-12">
+        <Link href="{{ route('landing.sales', ['page' => $landSlug]) }}" class="h-[72px] bg-[#1A1B1D] group rounded-custom relative px-5 flex items-center md:flex-col md:h-auto md:pt-10 lg:pt-14 overflow-hidden lg:pb-16 md:pb-12 md:px-2 sm:h-20 text-white text-sm font-normal sm:text-base md:text-sm lg:text-xl xl:text-2xl gap-4 sm:gap-6 md:gap-8 lg:gap-12">
             {{-- image --}}
-            <div class="flex_center size-12 sm:size-14 md:size-12 lg:size-16 xl:size-20 rounded-full bg-white  group-hover:animate-jump-aroundrelative z-[1]">
+            <div class="flex_center size-12 sm:size-14 md:size-12 lg:size-16 xl:size-20 rounded-full bg-white group-hover:animate-jump-around relative z-[1]">
                 <svg class="h-6 sm:h-8 md:h-6 stroke-normal lg:h-8 xl:h-10" viewBox="0 0 18 22" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M9 12C10.6569 12 12 10.6569 12 9C12 7.34315 10.6569 6 9 6C7.34315 6 6 7.34315 6 9C6 10.6569 7.34315 12 9 12Z" stroke="current" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                     <path d="M9 1C6.87827 1 4.84344 1.84285 3.34315 3.34315C1.84285 4.84344 1 6.87827 1 9C1 10.892 1.402 12.13 2.5 13.5L9 21L15.5 13.5C16.598 12.13 17 10.892 17 9C17 6.87827 16.1571 4.84344 14.6569 3.34315C13.1566 1.84285 11.1217 1 9 1Z" stroke="current" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -81,7 +81,7 @@
                 classNames='absolute top-0 -left-64 group-hover:left-0 transition-all group-hover:animate-pulse-custom w-auto h-full hidden md:block' />
         </Link>
         {{-- announcements --}}
-        <Link href="{{ route('landing.article.list', ['page' => $landSlug, 'f' => 'sell']) }}"  class="h-[72px] bg-[#1A1B1D] group relative rounded-custom px-5 flex items-center md:flex-col md:h-auto md:pt-10 lg:pt-14 lg:pb-16 md:pb-12 md:px-2 sm:h-20 text-white text-sm font-normal sm:text-base md:text-sm lg:text-xl xl:text-2xl gap-4 sm:gap-6 md:gap-8 lg:gap-12">
+        <Link href="{{ route('landing.article.list', ['page' => $landSlug, 'f' => 'sell']) }}"  class="h-[72px] bg-[#1A1B1D] group relative rounded-custom px-5 flex items-center md:flex-col md:h-auto md:pt-10 lg:pt-14 overflow-hidden lg:pb-16 md:pb-12 md:px-2 sm:h-20 text-white text-sm font-normal sm:text-base md:text-sm lg:text-xl xl:text-2xl gap-4 sm:gap-6 md:gap-8 lg:gap-12">
             {{-- image --}}
             <div class="flex_center size-12 sm:size-14 md:size-12 lg:size-16 xl:size-20 rounded-full group-hover:animate-jump-around bg-white relative z-[1]">
                 <svg class="h-6 sm:h-8 md:h-6 fill-normal lg:h-8 xl:h-10" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
