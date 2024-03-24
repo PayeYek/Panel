@@ -28,10 +28,10 @@
                     {{-- form --}}
                     <section class="flex flex-col items-center">
                         <form action="#" id="addComment" class="grid grid-cols-1 md:grid-cols-2 md:gap-x-10 md:gap-y-4 gap-2 w-56 mb-6 md:mb-20 md:w-full">
-                            <input name="fullName" type="text" class="col-span-full border border-[#E2E8F0] focus:border-[#E2E8F0] h-12 focus:ring-0 rounded-custom outline-none w-full placeholder:text-[#888b93] text-sm font-normal pr-3 pl-6 text-stone-700 dir-rtl" placeholder="نام و نام خانوادگی (اجباری)" />
-                            <input name="phone" type="tel" class="border border-[#E2E8F0] focus:border-[#E2E8F0] h-12 focus:ring-0 rounded-custom outline-none w-full placeholder:text-[#888b93] text-sm font-normal pr-3 pl-6 text-stone-700 dir-rtl" placeholder="شماره همراه (اجباری)" />
-                            <input id="email" required name="email" type="text" class="border border-[#E2E8F0] focus:border-[#E2E8F0] h-12 focus:ring-0 rounded-custom outline-none w-full placeholder:text-[#888b93] text-sm font-normal pr-3 pl-6 text-stone-700 dir-rtl" placeholder="ایمیل (اجباری)" />
-                            <textarea required name="comment" class="col-span-full border border-[#E2E8F0] focus:border-[#E2E8F0] h-full resize-none peer focus:ring-0 rounded-custom outline-none w-full placeholder:text-[#888b93] text-sm font-normal pr-3 pl-6 text-stone-700" placeholder="دیدگاه (اجباری)"></textarea>
+                            <input name="fullName" type="text" class="col-span-full border border-[#E2E8F0] focus:border-[#E2E8F0] h-12 focus:ring-0 rounded-custom outline-none w-full placeholder:text-[#888b93] text-sm font-normal pr-3 pl-6 text-stone-700 dir-rtl" placeholder="نام و نام خانوادگی" />
+                            <input name="phone" type="tel" class="border border-[#E2E8F0] focus:border-[#E2E8F0] h-12 focus:ring-0 rounded-custom outline-none w-full placeholder:text-[#888b93] text-sm font-normal pr-3 pl-6 text-stone-700 dir-rtl" placeholder="شماره همراه" />
+                            <input id="email" required name="email" type="text" class="border border-[#E2E8F0] focus:border-[#E2E8F0] h-12 focus:ring-0 rounded-custom outline-none w-full placeholder:text-[#888b93] text-sm font-normal pr-3 pl-6 text-stone-700 dir-rtl" placeholder="ایمیل" />
+                            <textarea required name="comment" class="col-span-full border border-[#E2E8F0] focus:border-[#E2E8F0] h-full resize-none peer focus:ring-0 rounded-custom outline-none w-full placeholder:text-[#888b93] text-sm font-normal pr-3 pl-6 text-stone-700" placeholder="دیدگاه"></textarea>
                         </form>
                         <button type="submit" form="addComment" class="flex_center w-64 h-11 text-white bg-normal hover:bg-focus focus:bg-focus focus:shadow-focus focus:shadow-shadowNormal rounded-custom"> ارسال </button>
                     </section>
