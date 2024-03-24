@@ -19,9 +19,9 @@
     <section class="default_container mb-8">
         <ul v-if="filterType == 2" class="text-base font-medium text-stone-700 flex items-center gap-2">
             <li @click="changeFilter(0)" :class="filterState == 0 ? 'text-white bg-normal border-normal ' : ''" class="h-10 px-3 flex items-center cursor-pointer rounded-custom border border-stone-400"> همه </li>
-            <li @click="changeFilter(1)" :class="filterState == 1 ? 'text-white bg-normal border-normal ' : ''" class="h-10 px-3 flex items-center cursor-pointer rounded-custom border border-stone-400"> کامیون </li>
-            <li @click="changeFilter(4)" :class="filterState == 4 ? 'text-white bg-normal border-normal ' : ''" class="h-10 px-3 flex items-center cursor-pointer rounded-custom border border-stone-400"> کامیونت </li>
-            <li @click="changeFilter(6)" :class="filterState == 6 ? 'text-white bg-normal border-normal ' : ''" class="h-10 px-3 flex items-center cursor-pointer rounded-custom border border-stone-400"> اتوبوس </li>
+            <template v-for="(category, index) in categories" :key="index">
+                <li @click="changeFilter(category.id)" :class="filterState == category.id ? 'text-white bg-normal border-normal ' : ''" class="h-10 px-3 flex items-center cursor-pointer rounded-custom border border-stone-400"> {{ category.title }} </li>
+            </template>
         </ul>
     </section>
 
@@ -345,7 +345,9 @@ export default {
     },
     setup(props) {
         const productList = ref(JSON.parse(props.list));
+        console.log(productList.value);
         const filterState = ref(0);
+        const categories = ref([]);
         const brandCategories = ref([]);
         const removeDuplicated = ref([]);
         const filteredList = ref([]);
@@ -389,7 +391,13 @@ export default {
             queryParam.value = urlParams.get('category') != null ? urlParams.get('category') : '0';
             
             changeFilter(queryParam.value);
+
         })
+            categories.value = productList.value.map(category => {
+                return category.category
+            })
+
+            console.log(categories.value);
 
         const changeFilter = (filter) => {
             if(firstTime.value)
@@ -523,6 +531,7 @@ export default {
             }
         };
 
+
         // filteredList.value = computed(() => {
         //     return filterState.value == 0 
         //         ? productList.value 
@@ -533,6 +542,7 @@ export default {
             filterState,
             filteredList,
             changeFilter,
+            categories,
         }
     }
 }
