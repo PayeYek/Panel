@@ -38,7 +38,7 @@
 
     
     // switch ($land->styles->border_type."") {
-    switch ("0") {
+    switch ("2") {
         case '0':
             // $borderStyle = match($land->styles->category_card_type."") {
             $borderStyle = match("9") {
@@ -51,10 +51,11 @@
         case '1':
             // $borderStyle = match($land->styles->category_card_type."") {
             $borderStyle = match("9") {
-                '1', '2', '3', '4', '5', '6'  => 'border border-dark-400',
-                '7', '9', '10' => 'border border-dark-400',
-                '8' => 'sm:border border-dark-400',
-                default => 'border border-dark-400'
+                '1', '2', '3', '4', '5', '6'  => 'border border-stone-400',
+                '7', '10' => 'border border-stone-400',
+                '8' => 'sm:border border-stone-400',
+                '9' => 'border border-stone-400',
+                default => 'border border-stone-400'
             };
             break;
         case '2':
@@ -76,7 +77,7 @@
         '5' => 'md:grid-cols-2 gap-4',
         '7' => 'md:grid-cols-1 rounded-custom overflow-hidden ' . $borderStyle,
         '8' => 'md:grid-cols-1 rounded-custom overflow-hidden sm:rounded-none sm:overflow-visible sm:gap-4',
-        '9' => 'sm:grid-cols-2 lg:grid-cols-4 rounded-custom overflow-hidden ' . $borderStyle,
+        '9' => 'sm:grid-cols-2 lg:grid-cols-4 rounded-custom overflow-hidden gap-px ' . $borderStyle,
         '10' => 'sm:grid-cols-2 lg:grid-cols-3 rounded-custom overflow-hidden ' . $borderStyle,
         '11' => 'md:grid-cols-1 rounded-custom overflow-hidden ' . $borderStyle,
         '12' => 'gap-12',

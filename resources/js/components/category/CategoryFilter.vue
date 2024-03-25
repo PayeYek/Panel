@@ -188,7 +188,7 @@
                         </div>
                     </div>
 
-                    <div v-if="productType == 9" :key="index"
+                    <!-- <div v-if="productType == 9" :key="index"
                         :class="'px-8 lg:px-5 xl:px-8 py-5 sm:pb-12 w-full items-center flex flex-col sm:border-l sm:border-l-dark-100 sm:[&:nth-child(2n+2)]:border-l-0 lg:[&:nth-child(2n+2)]:border-l lg:[&:nth-child(4n+4)]:border-l-0 border-t border-t-dark-100 first:border-t-0 sm:first:rounded-none sm:last:rounded-none sm:[&:nth-of-type(-n+2)]:border-t-0 lg:[&:nth-of-type(-n+2)]:border-t lg:[&:nth-of-type(-n+4)]:border-t-0 ' + (evenOdd ? 'evenOdd_cards ' : 'bg-white ')">
                         <div class="h-32 mb-2">
                             <img :src="product.image" :alt="product.name" class="object-contain h-full" />
@@ -202,6 +202,23 @@
                                 classNames="sameCategoryBtnStyle categoryBtnEmpty rounded-custom" />
                             <LandBtn text="خرید اقساطی" :to="'/l/' + landSlug + '/p/' + product.slug"
                                 classNames="sameCategoryBtnStyle categoryBtnEmpty rounded-custom" />
+                        </div>
+                    </div> -->
+
+                    <div v-if="productType == 9" :key="index"
+                        :class="'px-8 lg:px-5 xl:px-8 py-5 sm:pb-12 w-full items-center flex flex-col sm:first:rounded-none sm:last:rounded-none shadow-[0px_0px_0px_1px_#d2d2d2] ' + (evenOdd ? 'evenOdd_cards ' : 'bg-white ')">
+                        <div class="h-32 mb-2">
+                            <img :src="product.image" :alt="product.name" class="object-contain h-full" />
+                        </div>
+                        <h3 class="mb-5 font-medium lg:mb-4 text-lg sm:line-clamp-1 text-stone-700"> {{ product.name }}
+                        </h3>
+                        <div class="flex flex-col gap-4 w-56 mx-auto sm:mx-0">
+                            <LandBtn text="مشخصات" :to="'/l/' + landSlug + '/p/' + product.slug"
+                                classNames="sameCategoryBtnStyle categoryBtnEmpty rounded-custom" />
+                            <LandBtn text="کاتالوگ" :to="'/l/' + landSlug + '/p/' + product.slug"
+                                classNames="sameCategoryBtnStyle categoryBtnEmpty rounded-custom" />
+                            <LandBtn text="فروش اقساطی" :to="'/l/' + landSlug + '/p/' + product.slug"
+                                classNames="sameCategoryBtnStyle castegoryBtnfilled rounded-custom" />
                         </div>
                     </div>
 
