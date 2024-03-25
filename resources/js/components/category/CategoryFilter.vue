@@ -120,26 +120,6 @@
                         </div>
                     </div>
 
-                    <!-- <div v-if="productType == 6" :key="index"
-                        :class="'px-6 gap-2 w-full pt-6 pb-10 flex items-center rounded-custom ' + borderStyle + ' ' + (evenOdd ? 'evenOdd_cards ' : 'bg-white ')">
-                        <div class="flex-none min-w-28 h-28 sm:min-w-32 sm:h-32">
-                            <img :src="product.image" :alt="product.name" class="object-contain h-full" />
-                        </div>
-                        <div class="flex flex-col flex-1 gap-4">
-                            <h3 class="mb-1.5 font-medium lg:mb-1 text-lg sm:line-clamp-1 text-stone-700"> {{ product.name
-                                }}
-                            </h3>
-                            <div class="grid w-full grid-cols-2 gap-2 mr-auto max-w-72">
-                                <LandBtn text="مشخصات" :to="'/l/' + landSlug + '/p/' + product.slug"
-                                    classNames="sameCategoryBtnStyle categoryBtnEmpty rounded-custom" />
-                                <LandBtn text="کاتالوگ" :to="'/l/' + landSlug + '/p/' + product.slug"
-                                    classNames="sameCategoryBtnStyle categoryBtnEmpty rounded-custom" />
-                                <LandBtn text="خرید اقساطی" :to="'/l/' + landSlug + '/p/' + product.slug"
-                                    classNames="col-span-full sameCategoryBtnStyle castegoryBtnfilled rounded-custom" />
-                            </div>
-                        </div>
-                    </div> -->
-
                     <div v-if="productType == 6" :key="index"
                         :class="`flex flex-col w-full sm:flex-row sm:items-center lg:pl-14 sm:gap-4 lg:gap-10 xl:gap-16 px-6 pb-6 pt-4 sm:py-6 after:absolute after:content-[''] after:top-0 after:left-[5%] after:w-[90%] after:h-px after:border-t first:after:hidden after:border-dark-100 relative ` + (evenOdd ? 'evenOdd_cards ' : 'bg-white ')">
                         <div
@@ -187,23 +167,6 @@
                                 classNames="sameCategoryBtnStyle castegoryBtnfilled rounded-custom" />
                         </div>
                     </div>
-
-                    <!-- <div v-if="productType == 9" :key="index"
-                        :class="'px-8 lg:px-5 xl:px-8 py-5 sm:pb-12 w-full items-center flex flex-col sm:border-l sm:border-l-dark-100 sm:[&:nth-child(2n+2)]:border-l-0 lg:[&:nth-child(2n+2)]:border-l lg:[&:nth-child(4n+4)]:border-l-0 border-t border-t-dark-100 first:border-t-0 sm:first:rounded-none sm:last:rounded-none sm:[&:nth-of-type(-n+2)]:border-t-0 lg:[&:nth-of-type(-n+2)]:border-t lg:[&:nth-of-type(-n+4)]:border-t-0 ' + (evenOdd ? 'evenOdd_cards ' : 'bg-white ')">
-                        <div class="h-32 mb-2">
-                            <img :src="product.image" :alt="product.name" class="object-contain h-full" />
-                        </div>
-                        <h3 class="mb-5 font-medium lg:mb-4 text-lg sm:line-clamp-1 text-stone-700"> {{ product.name }}
-                        </h3>
-                        <div class="flex flex-col gap-4 w-56 mx-auto sm:mx-0">
-                            <LandBtn text="مشخصات" :to="'/l/' + landSlug + '/p/' + product.slug"
-                                classNames="sameCategoryBtnStyle categoryBtnEmpty rounded-custom" />
-                            <LandBtn text="کاتالوگ" :to="'/l/' + landSlug + '/p/' + product.slug"
-                                classNames="sameCategoryBtnStyle categoryBtnEmpty rounded-custom" />
-                            <LandBtn text="خرید اقساطی" :to="'/l/' + landSlug + '/p/' + product.slug"
-                                classNames="sameCategoryBtnStyle categoryBtnEmpty rounded-custom" />
-                        </div>
-                    </div> -->
 
                     <div v-if="productType == 8" :key="index"
                         :class="'px-8 lg:px-5 xl:px-8 py-5 sm:pb-12 w-full items-center flex flex-col sm:first:rounded-none sm:last:rounded-none shadow-[0px_0px_0px_1px_#d2d2d2] ' + (evenOdd ? 'evenOdd_cards ' : 'bg-white ')">
