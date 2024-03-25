@@ -1,6 +1,6 @@
 <template>
     
-    <section v-if="filterType == 1" class="default_container mb-12 flex items-center gap-4">
+    <section v-if="filterType == 0" class="default_container mb-12 flex items-center gap-4">
         <p class="text-lg font-normal text-stone-700 text-center"> محصولات </p>
         <div
             class="h-11 w-40 before:absolute before:content-[''] before:w-2 before:h-2 before:border-r-2 before:border-b-2 before:border-stone-700 before:top-1/2 before:left-4 before:-translate-y-1/2 before:rotate-45 relative">
@@ -16,8 +16,8 @@
         </div>
     </section>
 
-    <section class="default_container mb-8">
-        <ul v-if="filterType == 2" class="text-base font-medium text-stone-700 flex items-center gap-2">
+    <section v-if="filterType == 1" class="default_container mb-8">
+        <ul class="text-base font-medium text-stone-700 flex items-center gap-2">
             <li @click="changeFilter(0)" :class="filterState == 0 ? 'text-white bg-normal border-normal ' : ''" class="h-10 px-3 flex items-center cursor-pointer rounded-custom border border-stone-400"> همه </li>
             <template v-for="(category, index) in categories" :key="index">
                 <li @click="changeFilter(category.id)" :class="filterState == category.id ? 'text-white bg-normal border-normal ' : ''" class="h-10 px-3 flex items-center cursor-pointer rounded-custom border border-stone-400"> {{ category.title }} </li>
@@ -27,7 +27,7 @@
 
     <section class="mb-4 lg:mb-16 relative z-[1] default_container">
         <div :class="'grid grid-cols-1 ' + classType">
-            <template v-if="productType != 12">
+            <template v-if="productType != 11">
                 <template v-for="(product, index) in filteredList">
 
                     <div v-if="productType == 1" :key="index"
@@ -140,7 +140,7 @@
                         </div>
                     </div> -->
 
-                    <div v-if="productType == 7" :key="index"
+                    <div v-if="productType == 6" :key="index"
                         :class="`flex flex-col w-full sm:flex-row sm:items-center lg:pl-14 sm:gap-4 lg:gap-10 xl:gap-16 px-6 pb-6 pt-4 sm:py-6 after:absolute after:content-[''] after:top-0 after:left-[5%] after:w-[90%] after:h-px after:border-t first:after:hidden after:border-dark-100 relative ` + (evenOdd ? 'evenOdd_cards ' : 'bg-white ')">
                         <div
                             class="h-[11.5rem] sm:h-32 md:h-36 lg:h-40 sm:mx-0 sm:w-32 md:w-36 lg:w-40 sm:flex-none mx-auto mb-2.5 sm:mb-0">
@@ -165,7 +165,7 @@
                         </div>
                     </div>
 
-                    <div v-if="productType == 8" :key="index"
+                    <div v-if="productType == 7" :key="index"
                         :class="`flex flex-col w-full sm:flex-row sm:items-center lg:pl-14 sm:gap-4 lg:gap-10 xl:gap-16 px-6 sm:pr-10 pb-6 pt-4 sm:py-6 after:absolute after:content-[''] after:top-0 after:left-[5%] after:w-[90%] after:h-px after:border-t first:after:hidden after:border-dark-100 sm:after:hidden relative before:bg-normal before:absolute before:content-[''] before:top-0 before:right-0 before:w-4 before:hidden sm:before:block before:h-full overflow-hidden sm:rounded-custom ` + borderStyle + ' ' + (evenOdd ? 'evenOdd_cards ' : 'bg-white ')">
                         <div
                             class="h-[11.5rem] sm:h-32 md:h-36 lg:h-40 sm:mx-0 sm:w-32 md:w-36 lg:w-40 sm:flex-none mx-auto mb-2.5 sm:mb-0">
@@ -205,7 +205,7 @@
                         </div>
                     </div> -->
 
-                    <div v-if="productType == 9" :key="index"
+                    <div v-if="productType == 8" :key="index"
                         :class="'px-8 lg:px-5 xl:px-8 py-5 sm:pb-12 w-full items-center flex flex-col sm:first:rounded-none sm:last:rounded-none shadow-[0px_0px_0px_1px_#d2d2d2] ' + (evenOdd ? 'evenOdd_cards ' : 'bg-white ')">
                         <div class="h-32 mb-2">
                             <img :src="product.image" :alt="product.name" class="object-contain h-full" />
@@ -222,7 +222,7 @@
                         </div>
                     </div>
 
-                    <div v-if="productType == 10" :key="index"
+                    <div v-if="productType == 9" :key="index"
                         :class="'border-b last:border-b-0 border-dark-100 pl-6 pr-8 w-full pt-5 pb-8 sm:border-l sm:[&:nth-child(2n)]:border-l-0 lg:[&:nth-child(2n)]:border-l lg:[&:nth-child(3n)]:border-l-0 flex flex-col ' + (evenOdd ? 'evenOdd_cards ' : 'bg-white ')">
                         <h3 class="mb-1.5 font-medium lg:mb-1 text-lg sm:line-clamp-1 text-stone-700"> {{ product.name }}
                         </h3>
@@ -241,7 +241,7 @@
                         </div>
                     </div>
 
-                    <div v-if="productType == 11" :key="index"
+                    <div v-if="productType == 10" :key="index"
                         :class="`flex flex-col w-full sm:flex-row sm:items-center lg:pl-14 sm:gap-4 lg:gap-10 xl:gap-16 px-6 pb-6 pt-4 sm:py-6 after:absolute after:content-[''] after:top-0 after:left-0 after:w-full after:h-px after:border-t first:after:hidden after:border-dark-100 relative ` + (evenOdd ? 'evenOdd_cards ' : 'bg-white ')">
                         <div
                             class="h-[11.5rem] sm:h-32 md:h-36 lg:h-40 sm:mx-0 sm:w-32 md:w-36 lg:w-40 sm:flex-none mx-auto mb-2.5 sm:mb-0">
@@ -266,7 +266,7 @@
                         </div>
                     </div>
 
-                    <div v-if="productType == 13" :key="index"
+                    <div v-if="productType == 12" :key="index"
                         :class="'rounded-custom px-8 w-full pt-5 pb-8 items-center flex flex-col product_card ' + borderStyle + ' ' + (evenOdd ? 'evenOdd_cards ' : 'bg-white ')">
                         <div class="h-56 aspect-square mb-3">
                             <img :src="product.image" :alt="product.name" class="object-contain h-full" />
@@ -295,7 +295,7 @@
                 </template>
             </template>
 
-            <template v-if="productType == 12">
+            <template v-if="productType == 11">
                 <template v-for="(product, index) in filteredList" :key="index">
                     <section class="flex flex-col" v-if="product.length > 0">
                         <p class="text-base lg:text-xl font-medium mb-4 text-stone-700 text-center"> محصولات {{ product[0].brand.title }} </p>
@@ -427,7 +427,7 @@ export default {
 
         // Watch for changes in product type
         watch(() => props.productType, (newType) => {
-            if (newType == 12) {
+            if (newType == 11) {
                 filteredList.value = [];
                 getAllBrands.then(() => {
                     for (let index = 0; index < removeDuplicated.value.length; index++) {
@@ -456,7 +456,7 @@ export default {
 
         // Watch for changes in filter state
         watch(() => filterState.value, (newVal) => {
-            if (props.productType != 12) {
+            if (props.productType != 11) {
                 if (newVal == 0) {
                     filteredList.value = allProductsList.value;
                 } else {

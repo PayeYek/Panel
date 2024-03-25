@@ -8,7 +8,7 @@
 
             <x-layout.panel.form.alerts/>
 
-            <x-layout.panel.form.card title="الگو کلی" desc="">
+            <x-layout.panel.form.card title="الگوی کلی" desc="">
                 <x-layout.panel.form.division :col="2">
                     <x-splade-select name="radius" label="Radius">
                         <option value="0">0 PX</option>
@@ -96,8 +96,6 @@
 
             <x-layout.panel.form.card title="صفحه محصولات" desc="الگوی صفحه محصولات">
                 <x-layout.panel.form.division :col="2">
-                    
-
                     <x-splade-select name="category_card_type" label="قالب نمایشی موارد در صفحه محصولات">
                         <option value="1">{{  __('View type') }} 1</option>
                         <option value="2">{{  __('View type') }} 2</option>
@@ -116,6 +114,11 @@
                     <x-splade-select name="category_striped" label="نمای راه راه دسته بندی">
                         <option value="0">غیرفعال</option>
                         <option value="1">فعال</option>
+                    </x-splade-select>
+
+                    <x-splade-select name="category_filter_type" label="نوع فیلتر">
+                        <option value="0">تب</option>
+                        <option value="1"> انتخابی </option>
                     </x-splade-select>
                 </x-layout.panel.form.division>
             </x-layout.panel.form.card>
