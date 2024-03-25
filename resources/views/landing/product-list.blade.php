@@ -38,10 +38,10 @@
 
     
     // switch ($land->styles->border_type."") {
-    switch ("2") {
+    switch ("0") {
         case '0':
             // $borderStyle = match($land->styles->category_card_type."") {
-            $borderStyle = match("0") {
+            $borderStyle = match("9") {
                 '1', '2', '3', '4', '5', '6'  => '',
                 '7', '9', '10' => '',
                 '8' => '',
@@ -50,18 +50,18 @@
             break;
         case '1':
             // $borderStyle = match($land->styles->category_card_type."") {
-            $borderStyle = match("1") {
+            $borderStyle = match("9") {
                 '1', '2', '3', '4', '5', '6'  => 'border border-dark-400',
-                '7', '9', '10' => '',
-                '8' => '',
-                default => ''
+                '7', '9', '10' => 'border border-dark-400',
+                '8' => 'sm:border border-dark-400',
+                default => 'border border-dark-400'
             };
             break;
         case '2':
             // $borderStyle = match($land->styles->category_card_type."") {
-            $borderStyle = match("2") {
+            $borderStyle = match("9") {
                 '1', '2', '3', '4', '5', '6'  => 'drop-shadow-base',
-                '7', '9', '10' => '',
+                '7', '9', '10' => 'drop-shadow-base',
                 '8' => 'sm:drop-shadow-base',
                 default => 'drop-shadow-base'
             };
@@ -69,13 +69,13 @@
     }
 
     // $classType = match($land->styles->category_card_type."") {
-    $classType = match("3") {
+    $classType = match("9") {
         '1' => 'lg:grid-cols-5 gap-4 sm:grid-cols-2',
         '2', '3' => 'lg:grid-cols-4 gap-4 sm:grid-cols-2',
         '4' => 'sm:grid-cols-2 lg:grid-cols-3 gap-4',
-        '5', '6' => 'md:grid-cols-2 gap-4',
+        '5' => 'md:grid-cols-2 gap-4',
         '7' => 'md:grid-cols-1 rounded-custom overflow-hidden ' . $borderStyle,
-        '8' => 'md:grid-cols-1 rounded-custom overflow-hidden sm:rounded-none sm:overflow-visible sm:gap-4 ' . $borderStyle,
+        '8' => 'md:grid-cols-1 rounded-custom overflow-hidden sm:rounded-none sm:overflow-visible sm:gap-4',
         '9' => 'sm:grid-cols-2 lg:grid-cols-4 rounded-custom overflow-hidden ' . $borderStyle,
         '10' => 'sm:grid-cols-2 lg:grid-cols-3 rounded-custom overflow-hidden ' . $borderStyle,
         '11' => 'md:grid-cols-1 rounded-custom overflow-hidden ' . $borderStyle,
@@ -93,7 +93,7 @@
             classType="{{ $classType }}"
             filterType="2"
             {{-- productType="{{ $land->styles->category_card_type }}" --}}
-            productType="3"
+            productType="9"
             list="{{ $data }}"
             landSlug="{{ $land->slug }}"
             borderStyle="{{ $borderStyle }}"

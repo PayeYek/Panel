@@ -512,10 +512,10 @@
         @apply w-full font-medium cursor-pointer text-lg h-11 flex_center;
     }
     .categoryBtnEmpty{
-        @apply bg-white border text-stone-700 border-stone-400;
+        @apply bg-white border text-stone-700 border-stone-400 hover:border-stone-500;
     }
     .castegoryBtnfilled{
-        @apply text-white bg-stone-700;
+        @apply text-white bg-stone-700 hover:bg-stone-800;
     }
 }
 

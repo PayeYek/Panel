@@ -94,15 +94,15 @@
                                     classNames="sameCategoryBtnStyle categoryBtnEmpty rounded-custom" />
                                 <LandBtn text="کاتالوگ" :to="'/l/' + landSlug + '/p/' + product.slug"
                                     classNames="sameCategoryBtnStyle categoryBtnEmpty rounded-custom" />
-                                <LandBtn text="خرید اقساطی" :to="'/l/' + landSlug + '/p/' + product.slug"
-                                    classNames="sameCategoryBtnStyle categoryBtnEmpty rounded-custom" />
+                                <LandBtn text="فروش اقساطی" :to="'/l/' + landSlug + '/p/' + product.slug"
+                                    classNames="sameCategoryBtnStyle castegoryBtnfilled rounded-custom" />
                             </div>
                         </div>
                     </div>
 
                     <div v-if="productType == 5" :key="index"
                         :class="'px-6 gap-2 w-full pt-6 pb-10 flex items-center rounded-custom ' + borderStyle + ' ' + (evenOdd ? 'evenOdd_cards ' : 'bg-white ')">
-                        <div class="flex-none h-28 sm:h-32">
+                        <div class="flex-none min-w-28 h-28 sm:min-w-32 sm:h-32">
                             <img :src="product.image" :alt="product.name" class="object-contain h-full" />
                         </div>
                         <div class="flex flex-col flex-1 gap-4">
@@ -114,15 +114,15 @@
                                     classNames="sameCategoryBtnStyle categoryBtnEmpty rounded-custom" />
                                 <LandBtn text="کاتالوگ" :to="'/l/' + landSlug + '/p/' + product.slug"
                                     classNames="sameCategoryBtnStyle categoryBtnEmpty rounded-custom" />
-                                <LandBtn text="خرید اقساطی" :to="'/l/' + landSlug + '/p/' + product.slug"
-                                    classNames="'col-span-full sameCategoryBtnStyle categoryBtnEmpty rounded-custom'" />
+                                <LandBtn text="فروش اقساطی" :to="'/l/' + landSlug + '/p/' + product.slug"
+                                    classNames="col-span-full sameCategoryBtnStyle castegoryBtnfilled rounded-custom" />
                             </div>
                         </div>
                     </div>
 
-                    <div v-if="productType == 6" :key="index"
+                    <!-- <div v-if="productType == 6" :key="index"
                         :class="'px-6 gap-2 w-full pt-6 pb-10 flex items-center rounded-custom ' + borderStyle + ' ' + (evenOdd ? 'evenOdd_cards ' : 'bg-white ')">
-                        <div class="flex-none h-28 sm:h-32">
+                        <div class="flex-none min-w-28 h-28 sm:min-w-32 sm:h-32">
                             <img :src="product.image" :alt="product.name" class="object-contain h-full" />
                         </div>
                         <div class="flex flex-col flex-1 gap-4">
@@ -138,7 +138,7 @@
                                     classNames="col-span-full sameCategoryBtnStyle castegoryBtnfilled rounded-custom" />
                             </div>
                         </div>
-                    </div>
+                    </div> -->
 
                     <div v-if="productType == 7" :key="index"
                         :class="`flex flex-col w-full sm:flex-row sm:items-center lg:pl-14 sm:gap-4 lg:gap-10 xl:gap-16 px-6 pb-6 pt-4 sm:py-6 after:absolute after:content-[''] after:top-0 after:left-[5%] after:w-[90%] after:h-px after:border-t first:after:hidden after:border-dark-100 relative ` + (evenOdd ? 'evenOdd_cards ' : 'bg-white ')">
@@ -166,7 +166,7 @@
                     </div>
 
                     <div v-if="productType == 8" :key="index"
-                        :class="`flex flex-col w-full sm:flex-row sm:items-center lg:pl-14 sm:gap-4 lg:gap-10 xl:gap-16 px-6 sm:pr-10 pb-6 pt-4 sm:py-6 after:absolute after:content-[''] after:top-0 after:left-[5%] after:w-[90%] after:h-px after:border-t first:after:hidden after:border-dark-100 sm:after:hidden relative before:bg-normal before:absolute before:content-[''] before:top-0 before:right-0 before:w-4 before:hidden sm:before:block before:h-full overflow-hidden sm:rounded-custom` + borderStyle + ' ' + (evenOdd ? 'evenOdd_cards ' : 'bg-white ')">
+                        :class="`flex flex-col w-full sm:flex-row sm:items-center lg:pl-14 sm:gap-4 lg:gap-10 xl:gap-16 px-6 sm:pr-10 pb-6 pt-4 sm:py-6 after:absolute after:content-[''] after:top-0 after:left-[5%] after:w-[90%] after:h-px after:border-t first:after:hidden after:border-dark-100 sm:after:hidden relative before:bg-normal before:absolute before:content-[''] before:top-0 before:right-0 before:w-4 before:hidden sm:before:block before:h-full overflow-hidden sm:rounded-custom ` + borderStyle + ' ' + (evenOdd ? 'evenOdd_cards ' : 'bg-white ')">
                         <div
                             class="h-[11.5rem] sm:h-32 md:h-36 lg:h-40 sm:mx-0 sm:w-32 md:w-36 lg:w-40 sm:flex-none mx-auto mb-2.5 sm:mb-0">
                             <img :src="product.image" :alt="product.name" class="object-contain h-full" />
