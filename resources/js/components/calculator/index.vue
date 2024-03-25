@@ -7,13 +7,21 @@
                 <option v-for="(product, index) in list" :key="index" :value="product.id"> {{ product.name }} </option>
             </select>
             <!-- range slider -->
-            <section class="range-slider">
+            <section class="">
                 <p class="text-sm font-medium text-stone-700 mb-4"> مبلغ مورد نظر خود را وارد کنید. </p>
                 <div class="flex items-center justify-between mb-4">
                     <p class="text-base font-medium text-normal"> 15000000 تومان </p>
                     <p class="text-xl font-medium text-normal"> {{ loanInitialValue }} تومان </p>
                 </div>
-                <input type="range" class="dir-rtl w-full" :min="loanMin" :max='loanMax' :value="loanInitialValue" v-model="loanInitialValue" :step="loanSteps" @change="calculateDeposite" />
+                <input
+                    :style="{ background: priceSliderBackground }"
+                    type="range" class="dir-rtl w-full range__input"
+                    :min="loanMin"
+                    :max="loanMax"
+                    :value="loanInitialValue"
+                    v-model="loanInitialValue"
+                    :step="loanSteps"
+                    @change="calculateDeposite" />
             </section>
 
             <!-- range slider -->
@@ -23,7 +31,15 @@
                     <p class="text-base font-medium text-normal"> 1 ماه </p>
                     <p class="text-xl font-medium text-normal"> {{ monthlyInitialValue }} ماهه </p>
                 </div>
-                <input type="range" class="dir-rtl w-full" :min="monthlymin" :max='monthlyMax' :value="monthlyInitialValue" v-model="monthlyInitialValue" :step="monthlySteps" @change="calculateDeposite" />
+                <input
+                    :style="{ background: monthSliderBackground }"
+                    type="range" class="dir-rtl w-full range__input"
+                    :min="monthlyMin"
+                    :max="monthlyMax"
+                    :value="monthlyInitialValue"
+                    v-model="monthlyInitialValue"
+                    :step="monthlySteps"
+                    @change="calculateDeposite" />
             </section>
         </section>
 
@@ -44,7 +60,7 @@
 </template>
 
 <script>
-import { ref } from 'vue';
+import { ref, watch, computed } from 'vue';
 
 
 export default {
@@ -52,7 +68,7 @@ export default {
     props: {
         list: Array,
     },
-    setup(){
+    setup() {
         const selectedProduct = ref("");
         const loanSteps = ref(1000000);
         const loanMin = ref(15000000);
@@ -64,9 +80,21 @@ export default {
         const monthlyInitialValue = ref(6);
         const loanInitalPerMonth = ref(0);
         const loanInitalTotal = ref(0);
-        
+
+        const generatePriceBackground = (value) => {
+            let percentage = (value - loanMin.value) / (loanMax.value - loanMin.value) * 100;
+            return `linear-gradient(to left, #878787 ${percentage}%, #d2d2d2 ${percentage}%)`;
+        };
+
+        const generateMonthBackground = (value) => {
+            let percentage = (value - monthlyMin.value) / (monthlyMax.value - monthlyMin.value) * 100;
+            return `linear-gradient(to left, #878787 ${percentage}%, #d2d2d2 ${percentage}%)`;
+        };
+
+        const priceSliderBackground = computed(() => generatePriceBackground(loanInitialValue.value));
+        const monthSliderBackground = computed(() => generateMonthBackground(monthlyInitialValue.value));
+
         const calculateDeposite = (e) => {
-            
         }
 
         return {
@@ -82,6 +110,8 @@ export default {
             calculateDeposite,
             loanInitalPerMonth,
             loanInitalTotal,
+            priceSliderBackground,
+            monthSliderBackground,
         }
     }
 }
