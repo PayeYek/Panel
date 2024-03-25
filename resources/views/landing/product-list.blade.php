@@ -38,31 +38,26 @@
 
     
     // switch ($land->styles->border_type."") {
-    switch ("2") {
+    switch ("0") {
         case '0':
             // $borderStyle = match($land->styles->category_card_type."") {
-            $borderStyle = match("9") {
-                '1', '2', '3', '4', '5', '6'  => '',
-                '7', '9', '10' => '',
-                '8' => '',
+            $borderStyle = match("13") {
+                '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11'  => '',
                 default => ''
             };
             break;
         case '1':
             // $borderStyle = match($land->styles->category_card_type."") {
-            $borderStyle = match("9") {
-                '1', '2', '3', '4', '5', '6'  => 'border border-stone-400',
-                '7', '10' => 'border border-stone-400',
+            $borderStyle = match("13") {
+                '1', '2', '3', '4', '5', '6', '7','9', '10', '11'  => 'border border-stone-400',
                 '8' => 'sm:border border-stone-400',
-                '9' => 'border border-stone-400',
                 default => 'border border-stone-400'
             };
             break;
         case '2':
             // $borderStyle = match($land->styles->category_card_type."") {
-            $borderStyle = match("9") {
-                '1', '2', '3', '4', '5', '6'  => 'drop-shadow-base',
-                '7', '9', '10' => 'drop-shadow-base',
+            $borderStyle = match("13") {
+                '1', '2', '3', '4', '5', '6', '7', '9', '10', '11', '12'  => 'drop-shadow-base',
                 '8' => 'sm:drop-shadow-base',
                 default => 'drop-shadow-base'
             };
@@ -70,7 +65,7 @@
     }
 
     // $classType = match($land->styles->category_card_type."") {
-    $classType = match("9") {
+    $classType = match("13") {
         '1' => 'lg:grid-cols-5 gap-4 sm:grid-cols-2',
         '2', '3' => 'lg:grid-cols-4 gap-4 sm:grid-cols-2',
         '4' => 'sm:grid-cols-2 lg:grid-cols-3 gap-4',
@@ -94,7 +89,7 @@
             classType="{{ $classType }}"
             filterType="2"
             {{-- productType="{{ $land->styles->category_card_type }}" --}}
-            productType="9"
+            productType="13"
             list="{{ $data }}"
             landSlug="{{ $land->slug }}"
             borderStyle="{{ $borderStyle }}"

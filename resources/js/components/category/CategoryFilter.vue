@@ -235,8 +235,8 @@
                                     classNames="sameCategoryBtnStyle categoryBtnEmpty rounded-custom" />
                                 <LandBtn text="کاتالوگ" :to="'/l/' + landSlug + '/p/' + product.slug"
                                     classNames="sameCategoryBtnStyle categoryBtnEmpty rounded-custom" />
-                                <LandBtn text="خرید اقساطی" :to="'/l/' + landSlug + '/p/' + product.slug"
-                                    classNames="sameCategoryBtnStyle categoryBtnEmpty rounded-custom" />
+                                <LandBtn text="فروش اقساطی" :to="'/l/' + landSlug + '/p/' + product.slug"
+                                    classNames="sameCategoryBtnStyle castegoryBtnfilled rounded-custom" />
                             </div>
                         </div>
                     </div>
@@ -267,7 +267,7 @@
                     </div>
 
                     <div v-if="productType == 13" :key="index"
-                        :class="'border border-stone-400 rounded-custom px-8 w-full pt-5 pb-8 items-center flex flex-col product_card ' + (evenOdd ? 'evenOdd_cards ' : 'bg-white ')">
+                        :class="'rounded-custom px-8 w-full pt-5 pb-8 items-center flex flex-col product_card ' + borderStyle + ' ' + (evenOdd ? 'evenOdd_cards ' : 'bg-white ')">
                         <div class="h-56 aspect-square mb-3">
                             <img :src="product.image" :alt="product.name" class="object-contain h-full" />
                         </div>
@@ -300,9 +300,9 @@
                     <section class="flex flex-col" v-if="product.length > 0">
                         <p class="text-base lg:text-xl font-medium mb-4 text-stone-700 text-center"> محصولات {{ product[0].brand.title }} </p>
                         <hr class="w-56 lg:w-96 border-normal mb-4 lg:mb-6 mx-auto" />
-                        <ul class="flex flex-col lg:flex-row mx-auto lg:items-start lg:justify-center lg:flex-wrap gap-0">
+                        <ul class="flex flex-col lg:flex-row mx-auto lg:items-start lg:justify-center lg:flex-wrap gap-1">
                             <li v-for="(item, index) in product" :key="index"
-                                :class="'pt-2 px-8 w-72 sm:w-96 lg:w-full lg:max-w-[17rem] pb-5 lg:pt-3 items-center flex flex-col rounded-custom ' + (evenOdd ? 'evenOdd_cards' : 'bg-white')">
+                                :class="'pt-2 px-8 w-72 sm:w-96 lg:w-full lg:max-w-[17rem] pb-5 lg:pt-3 items-center flex flex-col rounded-custom ' + borderStyle + ' ' + (evenOdd ? 'evenOdd_cards' : 'bg-white')">
                                 <div class="mb-2 h-52">
                                     <img :src="item.image" :alt="item.name" class="object-contain h-full" />
                                 </div>
