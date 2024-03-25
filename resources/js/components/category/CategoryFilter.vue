@@ -42,8 +42,8 @@
                                 classNames="sameCategoryBtnStyle categoryBtnEmpty rounded-custom" />
                             <LandBtn text="کاتالوگ" :to="'/l/' + landSlug + '/p/' + product.slug"
                                 classNames="sameCategoryBtnStyle categoryBtnEmpty rounded-custom" />
-                            <LandBtn text="خرید اقساطی" :to="'/l/' + landSlug + '/p/' + product.slug"
-                                classNames="sameCategoryBtnStyle categoryBtnEmpty rounded-custom" />
+                            <LandBtn text="فروش اقساطی" :to="'/l/' + landSlug + '/p/' + product.slug"
+                                classNames="sameCategoryBtnStyle castegoryBtnfilled rounded-custom" />
                         </div>
                     </div>
 
@@ -59,8 +59,8 @@
                                 classNames="sameCategoryBtnStyle categoryBtnEmpty rounded-custom" />
                             <LandBtn text="کاتالوگ" :to="'/l/' + landSlug + '/p/' + product.slug"
                                 classNames="sameCategoryBtnStyle categoryBtnEmpty rounded-custom" />
-                            <LandBtn text="خرید اقساطی" :to="'/l/' + landSlug + '/p/' + product.slug"
-                                classNames="'col-span-full sameCategoryBtnStyle categoryBtnEmpty rounded-custom'" />
+                            <LandBtn text="فروش اقساطی" :to="'/l/' + landSlug + '/p/' + product.slug"
+                                classNames="col-span-full sameCategoryBtnStyle castegoryBtnfilled rounded-custom" />
                         </div>
                     </div>
 
@@ -76,8 +76,8 @@
                                 classNames="sameCategoryBtnStyle categoryBtnEmpty rounded-custom" />
                             <LandBtn text="کاتالوگ" :to="'/l/' + landSlug + '/p/' + product.slug"
                                 classNames="sameCategoryBtnStyle categoryBtnEmpty rounded-custom" />
-                            <LandBtn text="خرید اقساطی" :to="'/l/' + landSlug + '/p/' + product.slug"
-                                classNames="'col-span-full sameCategoryBtnStyle castegoryBtnfilled rounded-custom'" />
+                            <LandBtn text="فروش اقساطی" :to="'/l/' + landSlug + '/p/' + product.slug"
+                                classNames="col-span-full sameCategoryBtnStyle castegoryBtnfilled rounded-custom" />
                         </div>
                     </div>
 

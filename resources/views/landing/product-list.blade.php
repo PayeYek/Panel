@@ -4,58 +4,72 @@
 
 @php
     $borderStyle = '';
-    switch ($land->styles->category_card_type."") {
-        case '7':
-            $borderStyle = 'drop-shadow-base';
+    // switch ($land->styles->category_card_type."") {
+    //     case '7':
+    //         $borderStyle = 'drop-shadow-base';
 
-            break;
-        case '8':
-            $borderStyle = match($borderType) {
-                '1' => 'drop-shadow-base sm:drop-shadow-none',
-                default => 'border border-dark-100 sm:border-0'
-            };
+    //         break;
+    //     case '8':
+    //         $borderStyle = match($borderType) {
+    //             '1' => 'drop-shadow-base sm:drop-shadow-none',
+    //             default => 'border border-dark-100 sm:border-0'
+    //         };
 
-            break;
-        case '9':
-            $borderStyle = match($borderType) {
-                '1' => 'drop-shadow-base',
-                default => 'border border-dark-100'
-            };
-            break;
-        case '10':
-            $borderStyle = match($borderType) {
-                '1' => 'drop-shadow-base',
-                default => 'border border-dark-100'
-            };
-            break;
-        case '11':
-            $borderStyle = match($borderType) {
-                '1' => 'drop-shadow-base',
-                default => 'border border-dark-100'
-            };
-            break;
-    }
+    //         break;
+    //     case '9':
+    //         $borderStyle = match($borderType) {
+    //             '1' => 'drop-shadow-base',
+    //             default => 'border border-dark-100'
+    //         };
+    //         break;
+    //     case '10':
+    //         $borderStyle = match($borderType) {
+    //             '1' => 'drop-shadow-base',
+    //             default => 'border border-dark-100'
+    //         };
+    //         break;
+    //     case '11':
+    //         $borderStyle = match($borderType) {
+    //             '1' => 'drop-shadow-base',
+    //             default => 'border border-dark-100'
+    //         };
+    //         break;
+    // }
 
-    switch ($land->styles->border_type."") {
+    
+    // switch ($land->styles->border_type."") {
+    switch ("2") {
+        case '0':
+            // $borderStyle = match($land->styles->category_card_type."") {
+            $borderStyle = match("0") {
+                '1', '2', '3', '4', '5', '6'  => '',
+                '7', '9', '10' => '',
+                '8' => '',
+                default => ''
+            };
+            break;
         case '1':
-            $borderStyle = match($land->styles->category_card_type."") {
+            // $borderStyle = match($land->styles->category_card_type."") {
+            $borderStyle = match("1") {
+                '1', '2', '3', '4', '5', '6'  => 'border border-dark-400',
+                '7', '9', '10' => '',
+                '8' => '',
+                default => ''
+            };
+            break;
+        case '2':
+            // $borderStyle = match($land->styles->category_card_type."") {
+            $borderStyle = match("2") {
                 '1', '2', '3', '4', '5', '6'  => 'drop-shadow-base',
                 '7', '9', '10' => '',
                 '8' => 'sm:drop-shadow-base',
                 default => 'drop-shadow-base'
             };
             break;
-        case '2':
-            $borderStyle = match($land->styles->category_card_type."") {
-                '1', '2', '3', '4', '5', '6'  => 'border border-dark-100',
-                '7', '9', '10' => '',
-                '8' => 'sm:border sm:border-dark-100',
-                default => 'border border-dark-100'
-            };
-            break;
     }
 
-    $classType = match($land->styles->category_card_type."") {
+    // $classType = match($land->styles->category_card_type."") {
+    $classType = match("3") {
         '1' => 'lg:grid-cols-5 gap-4 sm:grid-cols-2',
         '2', '3' => 'lg:grid-cols-4 gap-4 sm:grid-cols-2',
         '4' => 'sm:grid-cols-2 lg:grid-cols-3 gap-4',
@@ -74,11 +88,12 @@
     <main class="pt-4 relative">
         {{-- breadcrumbs --}}
         <x-common_landing.breadcrumbs :data="$breadcrumbs" />
+
         <CategoryFilter
             classType="{{ $classType }}"
-            {{-- type="{{ $land->styles->category_card_type }}" --}}
             filterType="2"
-            productType="{{ $land->styles->category_card_type }}"
+            {{-- productType="{{ $land->styles->category_card_type }}" --}}
+            productType="3"
             list="{{ $data }}"
             landSlug="{{ $land->slug }}"
             borderStyle="{{ $borderStyle }}"
