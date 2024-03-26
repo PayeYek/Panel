@@ -4,85 +4,59 @@
 
 @php
     $borderStyle = '';
-    switch ($land->styles->category_card_type."") {
-        case '7':
-            $borderStyle = 'drop-shadow-base';
-
-            break;
-        case '8':
-            $borderStyle = match($borderType) {
-                '1' => 'drop-shadow-base sm:drop-shadow-none',
-                default => 'border border-dark-100 sm:border-0'
-            };
-
-            break;
-        case '9':
-            $borderStyle = match($borderType) {
-                '1' => 'drop-shadow-base',
-                default => 'border border-dark-100'
-            };
-            break;
-        case '10':
-            $borderStyle = match($borderType) {
-                '1' => 'drop-shadow-base',
-                default => 'border border-dark-100'
-            };
-            break;
-        case '11':
-            $borderStyle = match($borderType) {
-                '1' => 'drop-shadow-base',
-                default => 'border border-dark-100'
-            };
-            break;
-    }
-
     switch ($land->styles->border_type."") {
+        case '0':
+            $borderStyle = match($land->styles->category_card_type."") {
+                '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11'  => '',
+                default => ''
+            };
+            break;
         case '1':
             $borderStyle = match($land->styles->category_card_type."") {
-                '1', '2', '3', '4', '5', '6'  => 'drop-shadow-base',
-                '7', '9', '10' => '',
-                '8' => 'sm:drop-shadow-base',
-                default => 'drop-shadow-base'
+                '1', '2', '3', '4', '5', '6', '7','9', '10', '11'  => 'border border-stone-400',
+                '8' => 'sm:border border-stone-400',
+                default => 'border border-stone-400'
             };
             break;
         case '2':
             $borderStyle = match($land->styles->category_card_type."") {
-                '1', '2', '3', '4', '5', '6'  => 'border border-dark-100',
-                '7', '9', '10' => '',
-                '8' => 'sm:border sm:border-dark-100',
-                default => 'border border-dark-100'
+                '1', '2', '3', '4', '5', '6', '7', '9', '10', '11'  => 'drop-shadow-base',
+                '8' => 'sm:drop-shadow-base',
+                default => 'drop-shadow-base'
             };
             break;
     }
 
     $classType = match($land->styles->category_card_type."") {
         '1' => 'lg:grid-cols-5 gap-4 sm:grid-cols-2',
-        '2', '3' => 'lg:grid-cols-4 gap-4 sm:grid-cols-2',
-        '4' => 'sm:grid-cols-2 lg:grid-cols-3 gap-4',
-        '5', '6' => 'md:grid-cols-2 gap-4',
-        '7' => 'md:grid-cols-1 rounded-custom overflow-hidden ' . $borderStyle,
-        '8' => 'md:grid-cols-1 rounded-custom overflow-hidden sm:rounded-none sm:overflow-visible sm:gap-4 ' . $borderStyle,
-        '9' => 'sm:grid-cols-2 lg:grid-cols-4 rounded-custom overflow-hidden ' . $borderStyle,
-        '10' => 'sm:grid-cols-2 lg:grid-cols-3 rounded-custom overflow-hidden ' . $borderStyle,
-        '11' => 'md:grid-cols-1 rounded-custom overflow-hidden ' . $borderStyle,
-        '12' => 'gap-12',
-        '13' => 'gap-4 lg:grid-cols-4',
+        '2' => 'lg:grid-cols-4 gap-4 sm:grid-cols-2',
+        '3' => 'sm:grid-cols-2 lg:grid-cols-3 gap-4',
+        '4' => 'md:grid-cols-2 gap-4',
+        '5' => 'md:grid-cols-1 rounded-custom overflow-hidden ' . $borderStyle,
+        '6' => 'md:grid-cols-1 rounded-custom overflow-hidden sm:rounded-none sm:overflow-visible sm:gap-4 sm:border-0 ' . $borderStyle,
+        '7' => 'sm:grid-cols-2 lg:grid-cols-4 rounded-custom overflow-hidden gap-px ' . $borderStyle,
+        '8' => 'sm:grid-cols-2 lg:grid-cols-3 rounded-custom overflow-hidden ' . $borderStyle,
+        '9' => 'md:grid-cols-1 rounded-custom overflow-hidden ' . $borderStyle,
+        '10' => 'gap-12',
+        '11' => 'gap-4 lg:grid-cols-4',
         default => 'lg:grid-cols-5 gap-4 sm:grid-cols-2',
     };
 @endphp
+
 <x-layout.default.main :land="$land">
     <main class="pt-4 relative">
         {{-- breadcrumbs --}}
         <x-common_landing.breadcrumbs :data="$breadcrumbs" />
+
         <CategoryFilter
             classType="{{ $classType }}"
-            {{-- type="{{ $land->styles->category_card_type }}" --}}
-            filterType="2"
+            {{-- filterType="{{ $land->styles->category_filter_type }}" --}}
+            filterType="1"
             productType="{{ $land->styles->category_card_type }}"
             list="{{ $data }}"
             landSlug="{{ $land->slug }}"
             borderStyle="{{ $borderStyle }}"
-            :evenOdd=true />
+            :evenOdd="{{ $land->styles->category_striped }}" />
 
             @if ($land->styles->land_id == 2)
                 <section class="bg-stone-200 pt-20 pb-14 lg:pt-16 lg:pb-24 relative">

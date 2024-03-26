@@ -73,7 +73,7 @@
                                         </svg>
                                     </button>
                                 </div>
-                                <ul class="list-inside list-disc marker:text-stone-700 text-sm lg:text-base font-normal flex flex-col gap-2 duration-1000 overflow-hidden lg:pr-2"
+                                <ul class="list-inside list-disc marker:text-stone-700 text-sm lg:text-base font-normal grid grid-cols-1 md:grid-cols-2 gap-2 duration-1000 overflow-hidden lg:pr-2"
                                     v-bind:class="data.toggle ? 'max-h-96 pb-4 mt-4' : 'max-h-0 pb-0'">
                                     @foreach ($attrs as $attr)
                                         <li> {{ $attr->name }} : {{ $attr->pivot->value->value }} </li>

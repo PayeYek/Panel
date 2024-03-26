@@ -509,13 +509,13 @@
     }
 
     .sameCategoryBtnStyle{
-        @apply w-full text-sm font-medium cursor-pointer lg:text-lg h-11 flex_center;
+        @apply w-full font-medium cursor-pointer text-lg h-11 flex_center;
     }
     .categoryBtnEmpty{
-        @apply bg-white border text-stone-700 border-stone-700;
+        @apply bg-white border text-stone-700 border-stone-400 hover:border-stone-500;
     }
     .castegoryBtnfilled{
-        @apply text-white bg-stone-700;
+        @apply text-white bg-stone-700 hover:bg-stone-800;
     }
 }
 
@@ -845,3 +845,65 @@
     @apply text-sm py-1.5 px-4 lg:first:pr-8;
 } */
 /* table custom styles ends */
+
+/* range slider starts */
+.range__input {
+    width: 100%;
+    -webkit-appearance: none;
+    height: 8px;
+    border-radius: 6px;
+    background: linear-gradient(to right, green 0%, red 0%);
+    outline: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .range__input::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background-color: #f3f3f4 !important;
+    border: #58595b 4px solid !important;
+    cursor: pointer;
+    -webkit-transition: background .15s ease-in-out;
+    transition: background .15s ease-in-out;
+  }
+  
+  .range__input::-webkit-slider-thumb:hover {
+    background-color: #d2d2d2 !important;
+  }
+  
+  .range__input::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    border: 0;
+    border-radius: 50%;
+    background: #f0932b;
+    border: #f9ca24 5px solid;
+    cursor: pointer;
+    -webkit-transition: background .15s ease-in-out;
+    transition: background .15s ease-in-out;
+  }
+  
+  .range__input::-moz-range-thumb:hover {
+    background: #f9ca24;
+  }
+  
+  /* remove border */
+  input::-moz-focus-inner, input::-moz-focus-outer {
+    border: 0;
+  }
+  
+  .range__slider {
+    width: 45%;
+  }
+  
+  .range__value {
+    width: 35%;
+    margin-left: 45px;    
+    text-align: center;
+    border-left: #e6e4e4 1px solid;
+  }
+/* range slider ends */

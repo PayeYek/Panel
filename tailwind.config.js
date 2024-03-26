@@ -92,7 +92,9 @@ export default {
                 stone: {
                     200: "#f3f3f4", // background
                     400: "#d2d2d2", // border
+                    500: "#adadad", // border hover
                     700: "#58595b", // text color
+                    800: "#454545", // text color hover
                     900: "#1c1c1c", // footer color
                     950: "#1a1b1d", // footer bg
                 },

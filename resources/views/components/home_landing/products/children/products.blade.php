@@ -46,7 +46,8 @@
             break;
     }
     
-    $classType = match($type."") {
+    // $classType = match($type."") {
+    $classType = match("1") {
         '1' => 'grid grid-cols-1 lg:grid-cols-5 gap-4 sm:grid-cols-2',
         '2', '3' => 'grid grid-cols-1 lg:grid-cols-4 gap-4 sm:grid-cols-2',
         '4' => 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4',
@@ -61,10 +62,11 @@
         default => 'lg:grid-cols-5 gap-4 sm:grid-cols-2'
     };
 @endphp
-<div class=" {{ $classType }}">
+<div class="w-full {{ $classType }}">
     @foreach ($data->take(4) as $product)
         <x-home_landing.products.children.product
-            :type="$type"
+            {{-- :type="$type" --}}
+            type="1"
             :evenOdd="$evenOdd"
             :image="$product->image"
             :name="$product->name"
@@ -73,6 +75,7 @@
             :productSlug="$product->slug"
             :description="$product->description"
             :categoryId="$product->category_id"
+            :borderType="$borderType"
             />
     @endforeach
 </div>

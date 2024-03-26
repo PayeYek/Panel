@@ -1,5 +1,5 @@
 <template>
-    <section class="grid grid-cols-1 mb-8 sm:grid-cols-2 sm:gap-2 lg:gap-5">
+    <section class="grid grid-cols-1 mb-8 sm:mb-24 lg:mb-28 sm:grid-cols-2 sm:gap-2 lg:gap-5">
         <div class="mb-2 sm:hidden order-1">
             <select class="rounded-custom w-full border border-stone-700/20">
                 <option value="1" selected> تهران </option>

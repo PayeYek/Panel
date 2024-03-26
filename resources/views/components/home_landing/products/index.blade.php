@@ -9,6 +9,115 @@
     // 'showSectionTitle' => true,
 ])
 
+@php
+
+    // $borderStyle = '';
+    // switch ($type."") {
+    //     case '7':
+    //         $borderStyle = 'drop-shadow-base';
+    
+    //         break;
+    //     case '8':
+    //         $borderStyle = match($borderType) {
+    //             '1' => 'drop-shadow-base sm:drop-shadow-none',
+    //             default => 'border border-dark-100 sm:border-0'
+    //         };
+    
+    //         break;
+    //     case '9':
+    //         $borderStyle = match($borderType) {
+    //             '1' => 'drop-shadow-base',
+    //             default => 'border border-dark-100'
+    //         };
+    //         break;
+    //     case '10':
+    //         $borderStyle = match($borderType) {
+    //             '1' => 'drop-shadow-base',
+    //             default => 'border border-dark-100'
+    //         };
+    //         break;
+    //     case '11':
+    //         $borderStyle = match($borderType) {
+    //             '1' => 'drop-shadow-base',
+    //             default => 'border border-dark-100'
+    //         };
+    //     case '12':
+    //         $borderStyle = match($borderType) {
+    //             '0' => '',
+    //             '1' => 'drop-shadow-base',
+    //             default => 'border border-dark-100'
+    //         };
+    //         break;
+    // }
+
+    $borderStyle = '';
+    switch ($borderType."") {
+        case '0':
+            $borderStyle = match($type."") {
+                '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'  => '',
+                default => ''
+            };
+            break;
+        case '1':
+            $borderStyle = match($type."") {
+                '1', '2', '3', '4', '5', '6', '7','9', '10', '11', '12'  => 'border border-stone-400',
+                '8' => 'border border-stone-400',
+                default => 'border border-stone-400'
+            };
+            break;
+        case '2':
+            $borderStyle = match($type."") {
+                '1', '2', '3', '4', '5', '6', '7', '9', '10', '11', '12'  => 'drop-shadow-base',
+                '8' => 'drop-shadow-base',
+                default => 'drop-shadow-base'
+            };
+            break;
+    }
+
+    $classType = match($type."") {
+        '1', '2' => 'grid grid-cols-1 lg:grid-cols-4 gap-4 sm:grid-cols-2',
+        '3', '4' => 'grid grid-cols-1 lg:grid-cols-3 gap-4',
+        '5' => 'grid grid-cols-1 rounded-custom overflow-hidden ' . $borderStyle,
+        '6' => 'grid grid-cols-1 rounded-custom overflow-hidden sm:border-0 sm:gap-4 ' . $borderStyle,
+        '7' => 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 rounded-custom overflow-hidden ' . $borderStyle,
+        '8' => 'grid grid-cols-1 lg:grid-cols-3 rounded-custom overflow-hidden ' . $borderStyle,
+        '9', '10' => 'grid grid-cols-1 rounded-custom overflow-hidden ' . $borderStyle,
+        '11', '12' => 'grid grid-cols-1 gap-4 lg:grid-cols-4',
+        default => 'grid grid-cols-1 lg:grid-cols-4 gap-4 sm:grid-cols-2'
+    };
+
+    // $childBorderStyle='';
+
+    // switch ($borderType) {
+    //     case '0':
+    //         $childBorderStyle = match($type."") {
+    //             '1', '2', '3', '4', '5', '6'  => '',
+    //             '7', '9', '10' => '',
+    //             '8' => '',
+    //             default => ''
+    //         };
+    //         break;
+    //     case '1':
+    //         $childBorderStyle = match($type."") {
+    //             '1', '2', '3', '4', '5', '6'  => 'drop-shadow-base',
+    //             '7', '9', '10' => '',
+    //             '8' => 'sm:drop-shadow-base',
+    //             default => 'drop-shadow-base'
+    //         };
+    //         break;
+    //     case '2':
+    //         $childBorderStyle = match($type."") {
+    //             '1', '2', '3', '4', '5', '6'  => 'border border-dark-100',
+    //             '7', '9', '10' => '',
+    //             '8' => 'sm:border sm:border-dark-100',
+    //             default => 'border border-dark-100'
+    //         };
+    //         break;
+    // }
+
+    
+@endphp
+
 
 <section class="mb-4 lg:mb-16 relative z-[1] default_container">
     @switch($landType)
@@ -25,5 +134,13 @@
             
     @endswitch
 
-    <x-home_landing.products.children.products :type="$type" :evenOdd="$evenOdd" :data="$data" :landSlug="$landSlug" :borderType="$borderType" />
+    {{-- <x-home_landing.products.children.products :type="$type" :evenOdd="$evenOdd" :data="$data" :landSlug="$landSlug" :borderType="$borderType" /> --}}
+    <div class="w-full {{ $classType }}">
+        <Products
+            type="{{ $type }}"
+            evenOdd="{{ $evenOdd }}"
+            data="{!! $data !!}"
+            landSlug="{{ $landSlug }}"
+            borderStyle="{{ $borderStyle }}" />
+    </div>
 </section>

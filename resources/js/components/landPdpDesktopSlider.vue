@@ -30,8 +30,7 @@
             class="w-full desktop_pdp_slider">
             <swiper-slide v-for="slide in oldGallery">
                 <div class="relative pt-[62%] w-full">
-                    <img loading="lazy" class="absolute top-0 left-0 object-cover w-full h-full" :src="slide"
-                        :alt="slide" />
+                    <img class="absolute top-0 left-0 object-cover w-full h-full" :src="slide" :alt="name" />
                         <div class="absolute text-white bottom-0 left-0 w-full z-[2] bg-gradient-to-t from-black/90 to-transparent h-1/3">
                     </div>
                 </div>
@@ -94,6 +93,7 @@ export default {
         } else {
             thumbGallery.value = thumbnails.slice(0, -(thumbnails.length - 5));
         }
+
 
         return {
             modules: [Navigation],
