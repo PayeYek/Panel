@@ -152,9 +152,9 @@ class LandingController extends Controller
         $breadcrumbs[] = ['title' => __('Products'), 'url' => route('landing.product.list', ['page' => $land->slug])];
         $breadcrumbs[] = [
             'title' => $product->category->title,
-            'url'   => route('landing.product.category', [
+            'url'   => route('landing.product.list', [
                 'page'     => $land->slug,
-                'category' => $product->category->slug
+                'category' => $product->category->id
             ])
         ];
         $breadcrumbs[] = ['title' => $product->name, 'url' => null];
