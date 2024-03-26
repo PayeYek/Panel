@@ -7,20 +7,20 @@
     switch ($land->styles->border_type."") {
         case '0':
             $borderStyle = match($land->styles->category_card_type."") {
-                '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'  => '',
+                '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11'  => '',
                 default => ''
             };
             break;
         case '1':
             $borderStyle = match($land->styles->category_card_type."") {
-                '1', '2', '3', '4', '5', '6', '7','9', '10', '11', '12'  => 'border border-stone-400',
+                '1', '2', '3', '4', '5', '6', '7','9', '10', '11'  => 'border border-stone-400',
                 '8' => 'sm:border border-stone-400',
                 default => 'border border-stone-400'
             };
             break;
         case '2':
             $borderStyle = match($land->styles->category_card_type."") {
-                '1', '2', '3', '4', '5', '6', '7', '9', '10', '11', '12'  => 'drop-shadow-base',
+                '1', '2', '3', '4', '5', '6', '7', '9', '10', '11'  => 'drop-shadow-base',
                 '8' => 'sm:drop-shadow-base',
                 default => 'drop-shadow-base'
             };
@@ -29,16 +29,16 @@
 
     $classType = match($land->styles->category_card_type."") {
         '1' => 'lg:grid-cols-5 gap-4 sm:grid-cols-2',
-        '2', '3' => 'lg:grid-cols-4 gap-4 sm:grid-cols-2',
-        '4' => 'sm:grid-cols-2 lg:grid-cols-3 gap-4',
-        '5' => 'md:grid-cols-2 gap-4',
-        '6' => 'md:grid-cols-1 rounded-custom overflow-hidden ' . $borderStyle,
-        '7' => 'md:grid-cols-1 rounded-custom overflow-hidden sm:rounded-none sm:overflow-visible sm:gap-4',
-        '8' => 'sm:grid-cols-2 lg:grid-cols-4 rounded-custom overflow-hidden gap-px ' . $borderStyle,
-        '9' => 'sm:grid-cols-2 lg:grid-cols-3 rounded-custom overflow-hidden ' . $borderStyle,
-        '10' => 'md:grid-cols-1 rounded-custom overflow-hidden ' . $borderStyle,
-        '11' => 'gap-12',
-        '12' => 'gap-4 lg:grid-cols-4',
+        '2' => 'lg:grid-cols-4 gap-4 sm:grid-cols-2',
+        '3' => 'sm:grid-cols-2 lg:grid-cols-3 gap-4',
+        '4' => 'md:grid-cols-2 gap-4',
+        '5' => 'md:grid-cols-1 rounded-custom overflow-hidden ' . $borderStyle,
+        '6' => 'md:grid-cols-1 rounded-custom overflow-hidden sm:rounded-none sm:overflow-visible sm:gap-4 sm:border-0 ' . $borderStyle,
+        '7' => 'sm:grid-cols-2 lg:grid-cols-4 rounded-custom overflow-hidden gap-px ' . $borderStyle,
+        '8' => 'sm:grid-cols-2 lg:grid-cols-3 rounded-custom overflow-hidden ' . $borderStyle,
+        '9' => 'md:grid-cols-1 rounded-custom overflow-hidden ' . $borderStyle,
+        '10' => 'gap-12',
+        '11' => 'gap-4 lg:grid-cols-4',
         default => 'lg:grid-cols-5 gap-4 sm:grid-cols-2',
     };
 @endphp

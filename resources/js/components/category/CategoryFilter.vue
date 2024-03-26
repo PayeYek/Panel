@@ -27,7 +27,7 @@
 
     <section class="mb-4 lg:mb-16 relative z-[1] default_container">
         <div :class="'grid grid-cols-1 ' + classType">
-            <template v-if="productType != 11">
+            <template v-if="productType != 10">
                 <template v-for="(product, index) in filteredList">
 
                     <div v-if="productType == 1" :key="index"
@@ -35,8 +35,7 @@
                         <div class="mb-2 h-36">
                             <img :src="product.image" :alt="product.name" class="object-contain h-full" />
                         </div>
-                        <h3 class="mb-5 font-medium lg:mb-4 text-lg sm:line-clamp-1 text-stone-700"> {{ product.name }}
-                        </h3>
+                        <h3 class="mb-5 font-medium lg:mb-4 text-lg sm:line-clamp-1 text-stone-700"> {{ product.name }} </h3>
                         <div class="flex flex-col gap-4 w-56 lg:w-full">
                             <LandBtn text="مشخصات" :to="'/l/' + landSlug + '/p/' + product.slug"
                                 classNames="sameCategoryBtnStyle categoryBtnEmpty rounded-custom" />
@@ -65,23 +64,6 @@
                     </div>
 
                     <div v-if="productType == 3" :key="index"
-                        :class="'px-8 w-full pt-1 pb-8 items-center flex flex-col rounded-custom ' + borderStyle + ' ' + (evenOdd ? 'evenOdd_cards ' : 'bg-white ')">
-                        <div class="h-32 mb-0.5">
-                            <img :src="product.image" :alt="product.name" class="object-contain h-full" />
-                        </div>
-                        <h3 class="mb-0.5 font-medium lg:mb-1 text-lg sm:line-clamp-1 text-stone-700"> {{ product.name }}
-                        </h3>
-                        <div class="grid w-56 grid-cols-2 lg:w-full xl:w-56 gap-2">
-                            <LandBtn text="مشخصات" :to="'/l/' + landSlug + '/p/' + product.slug"
-                                classNames="sameCategoryBtnStyle categoryBtnEmpty rounded-custom" />
-                            <LandBtn text="کاتالوگ" :to="'/l/' + landSlug + '/p/' + product.slug"
-                                classNames="sameCategoryBtnStyle categoryBtnEmpty rounded-custom" />
-                            <LandBtn text="فروش اقساطی" :to="'/l/' + landSlug + '/p/' + product.slug"
-                                classNames="col-span-full sameCategoryBtnStyle castegoryBtnfilled rounded-custom" />
-                        </div>
-                    </div>
-
-                    <div v-if="productType == 4" :key="index"
                         :class="'pl-6 pr-8 w-full pt-5 pb-8 flex flex-col rounded-custom ' + borderStyle + ' ' + (evenOdd ? 'evenOdd_cards ' : 'bg-white ')">
                         <h3 class="mb-1.5 font-medium lg:mb-1 text-lg sm:line-clamp-1 text-stone-700"> {{ product.name }}
                         </h3>
@@ -100,7 +82,7 @@
                         </div>
                     </div>
 
-                    <div v-if="productType == 5" :key="index"
+                    <div v-if="productType == 4" :key="index"
                         :class="'px-6 gap-2 w-full pt-6 pb-10 flex items-center rounded-custom ' + borderStyle + ' ' + (evenOdd ? 'evenOdd_cards ' : 'bg-white ')">
                         <div class="flex-none min-w-28 h-28 sm:min-w-32 sm:h-32">
                             <img :src="product.image" :alt="product.name" class="object-contain h-full" />
@@ -120,7 +102,7 @@
                         </div>
                     </div>
 
-                    <div v-if="productType == 6" :key="index"
+                    <div v-if="productType == 5" :key="index"
                         :class="`flex flex-col w-full sm:flex-row sm:items-center lg:pl-14 sm:gap-4 lg:gap-10 xl:gap-16 px-6 pb-6 pt-4 sm:py-6 after:absolute after:content-[''] after:top-0 after:left-[5%] after:w-[90%] after:h-px after:border-t first:after:hidden after:border-dark-100 relative ` + (evenOdd ? 'evenOdd_cards ' : 'bg-white ')">
                         <div
                             class="h-[11.5rem] sm:h-32 md:h-36 lg:h-40 sm:mx-0 sm:w-32 md:w-36 lg:w-40 sm:flex-none mx-auto mb-2.5 sm:mb-0">
@@ -145,8 +127,8 @@
                         </div>
                     </div>
 
-                    <div v-if="productType == 7" :key="index"
-                        :class="`flex flex-col w-full sm:flex-row sm:items-center lg:pl-14 sm:gap-4 lg:gap-10 xl:gap-16 px-6 sm:pr-10 pb-6 pt-4 sm:py-6 after:absolute after:content-[''] after:top-0 after:left-[5%] after:w-[90%] after:h-px after:border-t first:after:hidden after:border-dark-100 sm:after:hidden relative before:bg-normal before:absolute before:content-[''] before:top-0 before:right-0 before:w-4 before:hidden sm:before:block before:h-full overflow-hidden sm:rounded-custom ` + borderStyle + ' ' + (evenOdd ? 'evenOdd_cards ' : 'bg-white ')">
+                    <div v-if="productType == 6" :key="index"
+                        :class="`flex flex-col w-full sm:flex-row sm:items-center lg:pl-14 sm:gap-4 lg:gap-10 xl:gap-16 px-6 sm:pr-10 pb-6 pt-4 sm:py-6 after:absolute after:content-[''] after:top-0 after:left-[5%] after:w-[90%] after:h-px after:border-t first:after:hidden after:border-dark-100 sm:after:hidden relative before:bg-normal before:absolute before:content-[''] before:top-0 before:right-0 before:w-4 before:hidden sm:before:block before:h-full overflow-hidden sm:rounded-custom border-0 sm:border drop-shadow-none ` + borderStyle + ' ' + (evenOdd ? 'evenOdd_cards ' : 'bg-white ')">
                         <div
                             class="h-[11.5rem] sm:h-32 md:h-36 lg:h-40 sm:mx-0 sm:w-32 md:w-36 lg:w-40 sm:flex-none mx-auto mb-2.5 sm:mb-0">
                             <img :src="product.image" :alt="product.name" class="object-contain h-full" />
@@ -168,7 +150,7 @@
                         </div>
                     </div>
 
-                    <div v-if="productType == 8" :key="index"
+                    <div v-if="productType == 7" :key="index"
                         :class="'px-8 lg:px-5 xl:px-8 py-5 sm:pb-12 w-full items-center flex flex-col sm:first:rounded-none sm:last:rounded-none shadow-[0px_0px_0px_1px_#d2d2d2] ' + (evenOdd ? 'evenOdd_cards ' : 'bg-white ')">
                         <div class="h-32 mb-2">
                             <img :src="product.image" :alt="product.name" class="object-contain h-full" />
@@ -185,7 +167,7 @@
                         </div>
                     </div>
 
-                    <div v-if="productType == 9" :key="index"
+                    <div v-if="productType == 8" :key="index"
                         :class="'border-b last:border-b-0 border-dark-100 pl-6 pr-8 w-full pt-5 pb-8 sm:border-l sm:[&:nth-child(2n)]:border-l-0 lg:[&:nth-child(2n)]:border-l lg:[&:nth-child(3n)]:border-l-0 flex flex-col ' + (evenOdd ? 'evenOdd_cards ' : 'bg-white ')">
                         <h3 class="mb-1.5 font-medium lg:mb-1 text-lg sm:line-clamp-1 text-stone-700"> {{ product.name }}
                         </h3>
@@ -204,7 +186,7 @@
                         </div>
                     </div>
 
-                    <div v-if="productType == 10" :key="index"
+                    <div v-if="productType == 9" :key="index"
                         :class="`flex flex-col w-full sm:flex-row sm:items-center lg:pl-14 sm:gap-4 lg:gap-10 xl:gap-16 px-6 pb-6 pt-4 sm:py-6 after:absolute after:content-[''] after:top-0 after:left-0 after:w-full after:h-px after:border-t first:after:hidden after:border-dark-100 relative ` + (evenOdd ? 'evenOdd_cards ' : 'bg-white ')">
                         <div
                             class="h-[11.5rem] sm:h-32 md:h-36 lg:h-40 sm:mx-0 sm:w-32 md:w-36 lg:w-40 sm:flex-none mx-auto mb-2.5 sm:mb-0">
@@ -229,7 +211,7 @@
                         </div>
                     </div>
 
-                    <div v-if="productType == 12" :key="index"
+                    <div v-if="productType == 11" :key="index"
                         :class="'rounded-custom px-8 w-full pt-5 pb-8 items-center flex flex-col product_card ' + borderStyle + ' ' + (evenOdd ? 'evenOdd_cards ' : 'bg-white ')">
                         <div class="h-56 aspect-square mb-3">
                             <img :src="product.image" :alt="product.name" class="object-contain h-full" />
@@ -258,7 +240,7 @@
                 </template>
             </template>
 
-            <template v-if="productType == 11">
+            <template v-if="productType == 10">
                 <template v-for="(product, index) in filteredList" :key="index">
                     <section class="flex flex-col" v-if="product.length > 0">
                         <p class="text-base lg:text-xl font-medium mb-4 text-stone-700 text-center"> محصولات {{ product[0].brand.title }} </p>
@@ -390,7 +372,7 @@ export default {
 
         // Watch for changes in product type
         watch(() => props.productType, (newType) => {
-            if (newType == 11) {
+            if (newType == 10) {
                 filteredList.value = [];
                 getAllBrands.then(() => {
                     for (let index = 0; index < removeDuplicated.value.length; index++) {
@@ -419,7 +401,7 @@ export default {
 
         // Watch for changes in filter state
         watch(() => filterState.value, (newVal) => {
-            if (props.productType != 11) {
+            if (props.productType != 10) {
                 if (newVal == 0) {
                     filteredList.value = allProductsList.value;
                 } else {
