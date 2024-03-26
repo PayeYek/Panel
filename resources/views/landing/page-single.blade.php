@@ -64,10 +64,8 @@
             :landSlug="$land->slug"
             :landType="$land->styles->land_id"
             :data="$land->products"
-            {{-- :type="$land->styles->product_card_type" --}}
-            type="6"
+            :type="$land->styles->product_card_type"
             :borderType="$land->styles->border_type"
-            {{-- borderType="2" --}}
             companyName="{{ $land->title }}"
             evenOdd="{{ $land->styles->product_striped }}" />
 
