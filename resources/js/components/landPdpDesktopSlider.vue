@@ -6,7 +6,7 @@
                 class="relative w-full overflow-hidden cursor-pointer aspect-square rounded-custom"
                 @click="showSliderWithSliderTo(index)">
                 <img :src="thumb" :alt="name" class="object-cover w-full h-full rounded-custom" />
-                <div class="w-full h-full bg-black/60 absolute top-0 left-0 flex_center text-white/60 font-normal text-[60px]"
+                <div class="w-full h-full bg-black/60 absolute top-0 left-0 flex_center text-white/60 font-normal text-5xl"
                     v-if="index == 4 && thumbGalleryLength > 5"> {{ thumbGalleryLength - 5 }} + </div>
             </div>
         </div>
