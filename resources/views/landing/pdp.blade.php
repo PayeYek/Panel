@@ -55,7 +55,7 @@
                 <p
                     class="relative text-xl mb-7 font-medium text-stone-700 {{ $tabStyle }}">
                     مشخصات </p>
-                <ul class="flex flex-col gap-2 text-stone-700">
+                <ul class="grid grid-cols-1 md:grid-cols-2 gap-2 text-stone-700">
                     @foreach ($product->attributes->sortBy('parent_id')->groupBy('parent_id') as $key => $attrs)
                         <x-splade-data default="{ toggle: {{ $loop->index == 0 ? 'true' : 'false' }} }">
                             <li class="p-4 bg-stone-200 rounded-custom lg:px-8">
@@ -73,7 +73,7 @@
                                         </svg>
                                     </button>
                                 </div>
-                                <ul class="list-inside list-disc marker:text-stone-700 text-sm lg:text-base font-normal grid grid-cols-1 md:grid-cols-2 gap-2 duration-1000 overflow-hidden lg:pr-2"
+                                <ul class="list-inside list-disc marker:text-stone-700 text-sm lg:text-base font-normal flex flex-col gap-2 duration-1000 overflow-hidden lg:pr-2"
                                     v-bind:class="data.toggle ? 'max-h-96 pb-4 mt-4' : 'max-h-0 pb-0'">
                                     @foreach ($attrs as $attr)
                                         <li> {{ $attr->name }} : {{ $attr->pivot->value->value }} </li>
