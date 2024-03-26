@@ -6,7 +6,7 @@
                 class="relative w-full overflow-hidden cursor-pointer aspect-square rounded-custom"
                 @click="showSliderWithSliderTo(index)">
                 <img :src="thumb" :alt="name" class="object-cover w-full h-full rounded-custom" />
-                <div class="w-full h-full bg-black/60 absolute top-0 left-0 flex_center text-white/60 font-normal text-[60px]"
+                <div class="w-full h-full bg-black/60 absolute top-0 left-0 flex_center text-white/60 font-normal text-5xl"
                     v-if="index == 4 && thumbGalleryLength > 5"> {{ thumbGalleryLength - 5 }} + </div>
             </div>
         </div>
@@ -31,8 +31,7 @@
             <swiper-slide v-for="slide in oldGallery">
                 <div class="relative pt-[62%] w-full">
                     <img class="absolute top-0 left-0 object-cover w-full h-full" :src="slide" :alt="name" />
-                        <div class="absolute text-white bottom-0 left-0 w-full z-[2] bg-gradient-to-t from-black/90 to-transparent h-1/3">
-                    </div>
+                    <div class="absolute text-white bottom-0 left-0 w-full z-[2] bg-gradient-to-t from-black/90 to-transparent h-1/3"></div>
                 </div>
             </swiper-slide>
             <!-- closeModal -->
