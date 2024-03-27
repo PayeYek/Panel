@@ -117,7 +117,8 @@ Route::middleware(['splade'])->group(function () {
 
             Route::get('{page}/sales', 'sales')->name('sales');
             Route::get('{page}/videos', 'videos')->name('videos');
-
+            
+            Route::get('{page}/advertise', 'advertise')->name('advertise');
         });
 
     Route::get('/', function () {
@@ -132,5 +133,10 @@ Route::middleware(['splade'])->group(function () {
 
 /* LOCALIZATION */
 Route::get('/lang/{locale}', [\App\Http\Controllers\Controller::class, 'languageUi']);
+
+
+// Route::get('/advertise', function (){
+//     return view('test.adverise');
+// });
 
 

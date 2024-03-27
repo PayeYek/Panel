@@ -22,6 +22,7 @@ import AmChart from "@/components/map/AmChart.vue";
 import Branches from "@/components/map/Branches.vue";
 import Videos from "@/components/videos/Videos.vue";
 import Calculator from "@/components/calculator/index.vue";
+import Advertise from "@/components/advertise/Advertise.vue";
 // import Swiper from 'swiper';
 // import 'swiper/css/bundle';
 // let Swiper = require('swiper');
@@ -78,6 +79,7 @@ createApp({ render: renderSpladeApp({ el }) })
     .component('Branches', Branches)
     .component('Videos', Videos)
     .component('Calculator', Calculator)
+    .component('Advertise', Advertise)
     // .directive("click-outside", clickOutside)
     .mount(el);
 
