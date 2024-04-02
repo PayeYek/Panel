@@ -1,6 +1,5 @@
 @props([
     'type' => '1',
-    'colorPalette' => '2',
     'title' => '',
     'description' => '',
     'image' => '',

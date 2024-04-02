@@ -26,7 +26,7 @@
 @endphp
 @if ($type.'' !== '5')
     <ul class="mb-4 {{ $gridCols }} list-none sm:mb-0 w-full">
-        @foreach ($data as $article)
+        {{-- @foreach ($data as $article)
             <x-home_landing.announcement.children.announcement 
                 :type="$type"
                 :evenOdd="$evenOdd"
@@ -37,7 +37,9 @@
                 :articleSlug="$article->slug"
                 :createdat="$article->created_at"
                 :landSlug="$landSlug" />
-        @endforeach
+        @endforeach --}}
+        {{-- :land="$land" --}}
+        <HomeArticles :landSlug="$landSlug" data="{!! $data !!}" borderStyle="{{ $borderStyle }}" type="{{ $type }}" :evenOdd="$evenOdd" />
     </ul>
 @else
     <section class="w-full">
