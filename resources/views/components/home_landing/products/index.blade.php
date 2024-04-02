@@ -54,7 +54,7 @@
     switch ($borderType."") {
         case '0':
             $borderStyle = match($type."") {
-                '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'  => '',
+                '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13'  => '',
                 default => ''
             };
             break;
@@ -62,6 +62,7 @@
             $borderStyle = match($type."") {
                 '1', '2', '3', '4', '5', '6', '7','9', '10', '11', '12'  => 'border border-stone-400',
                 '8' => 'border border-stone-400',
+                '13' => 'border-y border-x-4 border-stone-400',
                 default => 'border border-stone-400'
             };
             break;
@@ -83,6 +84,7 @@
         '8' => 'grid grid-cols-1 lg:grid-cols-3 rounded-custom overflow-hidden ' . $borderStyle,
         '9', '10' => 'grid grid-cols-1 rounded-custom overflow-hidden ' . $borderStyle,
         '11', '12' => 'grid grid-cols-1 gap-4 lg:grid-cols-4',
+        '13' => 'grid grid-cols-1',
         default => 'grid grid-cols-1 lg:grid-cols-4 gap-4 sm:grid-cols-2'
     };
 

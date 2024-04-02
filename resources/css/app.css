@@ -30,6 +30,13 @@
         --theme-shadow-normal: rgba(21, 23, 105, 0.5);
         --theme-shadow-focus: rgba(21, 23, 105, 0.8);
     }
+    .theme_arya{
+        --theme-normal: #ED2027;
+        --theme-focus: #D41118;
+        --theme-shadow-light: rgba(185, 28, 28, 0.3);
+        --theme-shadow-normal: rgba(185, 28, 28, 0.5);
+        --theme-shadow-focus: rgba(185, 28, 28, 0.8);
+    }
     .rounded_none{
         --theme-radius: 0px;
     }

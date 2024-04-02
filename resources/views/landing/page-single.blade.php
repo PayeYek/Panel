@@ -54,6 +54,19 @@
                         </Link>
                     </section>
                     @break
+                @case(7)
+                    <section class="*:h-20 sm:*:h-32 flex flex-col items-center *:justify-center sm:*:gap-4 md:*:h-36 lg:*:h-40 rounded-custom bg-stone-200 *:flex *:items-center text-xl font-normal text-stone-700 mb-4 md:mb-8 lg:mb-12">
+                        <Link href="{{ route('landing.product.list', ['page' => $land->slug]) }}" class="relative before:bottom-0 before:left-1/2 before:w-32 before:-translate-x-1/2 before:h-px before:bg-stone-400 before:absolute before:content-['']">
+                            <p> فروش اینترنتی </p>
+                        </Link>
+                        <Link href="{{ route('landing.article.list', ['page' => $land->slug, 'f' => 'news']) }}" class="relative before:bottom-0 before:left-1/2 before:w-32 before:-translate-x-1/2 before:h-px before:bg-stone-400 before:absolute before:content-['']">
+                            <p> طرح های ویژه </p>
+                        </Link>
+                        <Link href="{{ route('landing.article.list', ['page' => $land->slug, 'f' => 'sell']) }}" class="">
+                            <p> آخرین اخبار </p>
+                        </Link>
+                    </section>
+                    @break
                 @default
                     
             @endswitch
