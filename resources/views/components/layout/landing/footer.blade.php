@@ -74,7 +74,7 @@
     </section>
 
     <section class="flex_center flex-col gap-10 md:flex-row-reverse md:justify-between default_container">
-        <x-layout.landing.social :inFooter=true />
+        <x-layout.landing.social inFooter />
         <span class="text-xs sm:text-sm text-center font-normal text-white">
             {{__('message.rights', ['brand' => 'نام برند', 'year' => jdate()->getYear()])}}
         </span>

@@ -34,6 +34,15 @@
                     <option value="{{__('Bari')}}">{{__('Bari')}}</option>
                     <option value="{{__('Keshandeh')}}">{{__('Keshandeh')}}</option>
                     <option value="{{__('Kompresi')}}">{{__('Kompresi')}}</option>
+                    <option value="{{__('Yakhchali')}}">{{__('Yakhchali')}}</option>
+                    <option value="{{__('Atashneshani')}}">{{__('Atashneshani')}}</option>
+                    <option value="{{__('Chadori')}}">{{__('Chadori')}}</option>
+                    <option value="{{__('Tanker')}}">{{__('Tanker')}}</option>
+                    <option value="{{__('Kafi')}}">{{__('Kafi')}}</option>
+                    <option value="{{__('Tigheh')}}">{{__('Tigheh')}}</option>
+                    <option value="{{__('OtagheIzolehMosaghafFelezi')}}">{{__('OtagheIzolehMosaghafFelezi')}}</option>
+                    <option value="{{__('OtagheIzolehMosaghafChadori')}}">{{__('OtagheIzolehMosaghafChadori')}}</option>
+                    <option value="{{__('OtagheIzolehYakhchaldar')}}">{{__('OtagheIzolehYakhchaldar')}}</option>
                 </x-splade-select>
 
                 <x-splade-select name="cabin" label="Cabin type">
