@@ -14,9 +14,9 @@
 @php
     
     $bgStyle = match($type."") {
-        '1', '3', '4', '6', '7', '8', '9', '10', '11', '12'  => 'default_container',
+        '1', '3', '4', '6'  => 'default_container',
         '2', '5'  => 'lg:default_container',
-        '13'  => 'bg-stone-200',
+        '7'  => 'bg-stone-200 py-4 sm:py-10 md:py-14 lg:pt-16 lg:pb-20 xl:pb-24',
         default => ''
     };
 
@@ -68,5 +68,5 @@
     @default
 @endswitch
     {{-- <HomeArticles :landSlug="$landSlug" data="{!! $data !!}" borderStyle="{{ $borderStyle }}" :land="$land" type="{{ $type }}" :evenOdd="$evenOdd" /> --}}
-    <x-home_landing.announcement.children.announcements :landSlug="$landSlug" :data="$data" :land="$land" :type="$type" :evenOdd="$evenOdd" />
+    <x-home_landing.announcement.children.announcements :landSlug="$landSlug" :data="$data" borderType="{{ $borderType }}" :land="$land" :type="$type" :evenOdd="$evenOdd" />
 </section>

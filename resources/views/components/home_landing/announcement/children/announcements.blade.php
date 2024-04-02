@@ -13,6 +13,7 @@
         3 => 'grid grid-cols-1 border border-dark-100 p-4 rounded-custom',
         4 => 'grid grid-cols-1 border border-dark-100 p-4 rounded-custom',
         6 => 'grid grid-cols-1 gap-5',
+        7 => 'grid grid-cols-1 sm:grid-cols-2 gap-4 default_container',
         default => '',
     };
 
