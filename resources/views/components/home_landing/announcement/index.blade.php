@@ -29,12 +29,6 @@
 
 @endphp
 
-{{-- @push('script')
-    <script>
-        console.log("$data => ", <?=json_encode($data)?>);
-    </script>
-@endpush --}}
-
 <section class="mb-4 lg:mb-16 relative {{ $bgStyle }}">
 
 @switch($landType)

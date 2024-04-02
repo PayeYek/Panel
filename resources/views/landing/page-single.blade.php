@@ -91,6 +91,7 @@
             :type="$land->styles->article_card_type"
             :borderType="$land->styles->border_type"
             evenOdd="{{ $land->styles->article_striped }}" />
+
         {{-- videos --}}
         <section class="mb-4 sm:mb-8 lg:mb-16 relative z-[3] default_container" id="video-player-container">
             @switch($land->styles->land_id)
@@ -109,6 +110,19 @@
                         <div class="size-3 rounded-full bg-normal"></div>
                         <h3 class="mb-2 text-xl font-normal text-center text-stone-700"> ویدیو ها </h3>
                         <Link href="{{ route('landing.videos', ['page' => $land->slug]) }}" class="text-normal text-base font-medium hidden sm:block"> (مشاهده همه) </Link>
+                    </div>
+                    @break
+                @case(7)
+                    <div class="flex items-center justify-between gap-4 mb-2 lg:mb-4">
+                        <div class="hidden sm:flex items-center gap-4">
+                            {{-- circle --}}
+                            <div class="size-3 bg-normal"></div>
+                            <h3 class="mb-2 text-xl font-normal text-center text-stone-700"> ویدیو ها </h3>
+                        </div>
+                        <Link href="{{ route('landing.article.list', ['page' => $land->slug]) }}" class="text-base font-medium">
+                            <span class="hidden sm:block text-normal"> آرشیو ویدیو ها </span>
+                            <span class="sm:hidden block text-stone-700"> ویدیو ها </span>
+                        </Link>
                     </div>
                     @break
                 @default

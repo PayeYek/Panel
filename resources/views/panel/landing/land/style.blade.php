@@ -73,6 +73,8 @@
 
                     <x-splade-select name="video_card_type" label="Video card type">
                         <option value="1">{{ __('View type') }} 1</option>
+                        <option value="2">{{ __('View type') }} 2</option>
+                        <option value="3">{{ __('View type') }} 3</option>
                     </x-splade-select>
 
                     <x-splade-select name="slider_anim" label="انیمیشن اسلایدر">
