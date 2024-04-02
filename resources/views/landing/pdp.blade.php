@@ -2,6 +2,7 @@
     $tabStyle = match($land->styles->land_id) {
         1 => 'pr-4 before:top-1/2 before:right-0 before:-translate-y-1/2 before:bg-normal before:h-12 before:w-1 before:rounded-l-custom before:absolute before:content-[]',
         2 => 'before:size-3 before:bg-normal before:rounded-full before:absolute befopre:content-[] before:top-2 before:right-0 pr-6 lg:pr-8',
+        7 => 'before:size-3 before:bg-normal before:absolute befopre:content-[] before:top-2 before:right-0 pr-6 lg:pr-8',
         default => ''
     };
 
@@ -23,7 +24,7 @@
 
         {{-- product detail --}}
         <section
-            class="grid grid-cols-1 lg:grid-cols-10 gap-4 lg:gap-10 xl:gap-16 default_container mb-14 lg:mb-12 xl:mb-16">
+            class="grid grid-cols-1 lg:grid-cols-10 gap-4 lg:gap-5 default_container mb-14 lg:mb-12 xl:mb-16">
             <h1 class="lg:hidden text-xl font-medium text-stone-700 mb-5"> {{ $product->name }} </h1>
             {{-- product images --}}
             <section class="lg:flex flex-col gap-3 lg:col-span-6">

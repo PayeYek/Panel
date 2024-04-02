@@ -1,20 +1,22 @@
 <template>
-    <section class="items-start hidden gap-4 lg:flex">
+    <section class="grid-cols-5 gap-5 hidden lg:grid">
         <!-- thumbnails -->
-        <div class="grid flex-none w-24 grid-cols-1 gap-4">
-            <div v-for="(thumb, index) in thumbGallery" :key="index"
-                class="relative w-full overflow-hidden cursor-pointer aspect-square rounded-custom"
-                @click="showSliderWithSliderTo(index)">
-                <img :src="thumb" :alt="name" class="object-cover w-full h-full rounded-custom" />
-                <div class="w-full h-full bg-black/60 absolute top-0 left-0 flex_center text-white/60 font-normal text-5xl"
-                    v-if="index == 4 && thumbGalleryLength > 5"> {{ thumbGalleryLength - 5 }} + </div>
+        <div class="col-span-1 w-full pt-0.5">
+            <div class="grid grid-cols-1 gap-4">
+                <div v-for="(thumb, index) in thumbGallery" :key="index"
+                    class="relative w-full overflow-hidden cursor-pointer aspect-square rounded-custom"
+                    @click="showSliderWithSliderTo(index)">
+                    <img :src="thumb" :alt="name" class="object-cover w-full h-full rounded-custom" />
+                    <div class="w-full h-full bg-black/60 absolute top-0 left-0 flex_center text-white/60 font-normal text-5xl"
+                        v-if="index == 3 && thumbGalleryLength > 4"> {{ thumbGalleryLength - 4 }} + </div>
+                </div>
             </div>
         </div>
 
-        <div class="flex-1">
+        <div class="col-span-4">
             <div class="w-full pt-[100%] relative border border-[#DBDBDB] rounded-custom">
                 <div class="absolute inset-0 cursor-pointer">
-                    <img :src="mainImage" :alt="name" class="object-cover w-full h-full rounded-custom" />
+                    <img :src="mainImage" :alt="name" class="object-contain w-full h-full rounded-custom" />
                 </div>
             </div>
         </div>
@@ -87,10 +89,10 @@ export default {
             openModal.value = false
         }
 
-        if (thumbnails.length <= 5) {
+        if (thumbnails.length <= 4) {
             thumbGallery.value = thumbnails;
         } else {
-            thumbGallery.value = thumbnails.slice(0, -(thumbnails.length - 5));
+            thumbGallery.value = thumbnails.slice(0, -(thumbnails.length - 4));
         }
 
 
