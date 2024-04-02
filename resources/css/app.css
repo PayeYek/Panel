@@ -686,10 +686,13 @@
 
 /* swiper starts */
 .slider_type_1 .swiper-button-prev, .slider_type_1 .swiper-button-next {
-    @apply hidden top-auto bottom-8 drop-shadow-base rounded-custom size-12 bg-white/70 lg:flex_center after:text-base after:font-bold after:text-[#2F3136] after:rotate-180;
+    @apply hidden top-auto bottom-8 drop-shadow-base rounded-custom size-12 lg:flex_center after:text-base after:font-bold after:rotate-180;
 }
 .slider_type_1.arrow-center .swiper-button-prev, .slider_type_1.arrow-center .swiper-button-next {
-    @apply bottom-1/2 translate-y-1/2;
+    @apply bottom-1/2 translate-y-1/2 bg-white/70 after:text-[#2F3136];
+}
+.slider_type_1.arrow-center-transparent .swiper-button-prev, .slider_type_1.arrow-center-transparent .swiper-button-next {
+    @apply bottom-1/2 translate-y-1/2 bg-transparent border border-stone-200 after:text-stone-200;
 }
 .slider_type_1 .swiper-button-prev {
     @apply after:content-['prev'];

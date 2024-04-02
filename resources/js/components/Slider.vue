@@ -58,7 +58,6 @@ export default {
         const onSlideChange = () => {
             //console.log('slide change');
         };
-
         // props.slides.map(item => {
             console.log(props.sliderType);
         // })
@@ -69,6 +68,10 @@ export default {
         
             case 2:
                 sliderStyle.value = "arrow-center";
+                break;
+        
+            case 7:
+                sliderStyle.value = "arrow-center-transparent";
                 break;
         
             default:
