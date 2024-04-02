@@ -9,30 +9,30 @@
     }
 
     :root{
-        --theme-normal: #d50000;
-        --theme-focus: #9A0707;
+        --theme-normal: 213,0,0;
+        --theme-focus: 154,7,7;
         --theme-shadow-light: rgba(212, 17, 24, 0.3);
         --theme-shadow-normal: rgba(212, 17, 24, 0.5);
         --theme-shadow-focus: rgba(212, 17, 24, 0.8);
         --theme-radius: 8px;
     }
     .theme_arian{
-        --theme-normal: #d50000;
-        --theme-focus: #9A0707;
+        --theme-normal: 213,0,0;
+        --theme-focus: 154,7,7;
         --theme-shadow-light: rgba(212, 17, 24, 0.3);
         --theme-shadow-normal: rgba(212, 17, 24, 0.5);
         --theme-shadow-focus: rgba(212, 17, 24, 0.8);
     }
     .theme_saipa{
-        --theme-normal: #2E3092;
-        --theme-focus: #151769;
+        --theme-normal: 46,48,146;
+        --theme-focus: 21,23,105;
         --theme-shadow-light: rgba(21, 23, 105, 0.3);
         --theme-shadow-normal: rgba(21, 23, 105, 0.5);
         --theme-shadow-focus: rgba(21, 23, 105, 0.8);
     }
     .theme_arya{
-        --theme-normal: #ED2027;
-        --theme-focus: #D41118;
+        --theme-normal: 237,32,39;
+        --theme-focus: 212,17,24;
         --theme-shadow-light: rgba(185, 28, 28, 0.3);
         --theme-shadow-normal: rgba(185, 28, 28, 0.5);
         --theme-shadow-focus: rgba(185, 28, 28, 0.8);

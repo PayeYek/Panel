@@ -37,6 +37,18 @@ $gap = match($land->styles->a_striped."") {
             data="{{ $land->articles }}"
             borderStyle="{{ $borderStyle }}"
             evenOdd="{{ $land->styles->a_striped }}" />
+
+            {{-- contact to expert --}}
+            @switch($land->styles->land_id)
+                @case(2)
+                    <x-home_landing.contact.type-one />
+                @break
+
+                @case(7)
+                    <x-home_landing.contact.type-two />
+                @break
+
+            @endswitch
     </main>
 
 </x-layout.default.main>
