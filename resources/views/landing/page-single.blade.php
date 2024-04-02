@@ -55,14 +55,14 @@
                     </section>
                     @break
                 @case(7)
-                    <section class="*:h-20 sm:*:h-32 flex flex-col items-center *:justify-center sm:*:gap-4 md:*:h-36 lg:*:h-40 rounded-custom bg-stone-200 *:flex *:items-center text-xl font-normal text-stone-700 mb-4 md:mb-8 lg:mb-12">
-                        <Link href="{{ route('landing.product.list', ['page' => $land->slug]) }}" class="relative before:bottom-0 before:left-1/2 before:w-32 before:-translate-x-1/2 before:h-px before:bg-stone-400 before:absolute before:content-['']">
-                            <p> فروش اینترنتی </p>
+                    <section class="*:h-20 sm:*:h-32 flex flex-col md:flex-row items-center md:*:flex-1 *:justify-center rounded-custom bg-stone-200 *:flex *:items-center text-xl md:text-2xl lg:text-3xl font-normal lg:font-medium text-stone-700 mb-4 md:mb-8 lg:mb-12">
+                        <Link href="{{ route('landing.product.list', ['page' => $land->slug]) }}" class="relative before:bottom-0 before:left-1/2 before:w-32 before:-translate-x-1/2 before:h-px before:bg-stone-400 before:absolute before:content-[''] md:before:left-0 md:before:bottom-1/2 md:before:w-px md:before:h-14 md:before:translate-x-0 md:before:translate-y-1/2">
+                            <p> دسته بندی محصولات </p>
                         </Link>
-                        <Link href="{{ route('landing.article.list', ['page' => $land->slug, 'f' => 'news']) }}" class="relative before:bottom-0 before:left-1/2 before:w-32 before:-translate-x-1/2 before:h-px before:bg-stone-400 before:absolute before:content-['']">
+                        <Link href="{{ route('landing.article.list', ['page' => $land->slug, 'f' => 'sell']) }}" class="relative before:bottom-0 before:left-1/2 before:w-32 before:-translate-x-1/2 before:h-px before:bg-stone-400 before:absolute before:content-[''] md:before:left-0 md:before:bottom-1/2 md:before:w-px md:before:h-14 md:before:translate-x-0 md:before:translate-y-1/2">
                             <p> طرح های ویژه </p>
                         </Link>
-                        <Link href="{{ route('landing.article.list', ['page' => $land->slug, 'f' => 'sell']) }}" class="">
+                        <Link href="{{ route('landing.article.list', ['page' => $land->slug, 'f' => 'news']) }}" class="">
                             <p> آخرین اخبار </p>
                         </Link>
                     </section>
@@ -161,6 +161,27 @@
                         <p class="text-sm lg:text-base font-normal mb-3 lg:mb-4 text-center text-stone-700"> جهت ارتباط و اطلاع از شرایط فروش شماره خود را وارد کنید. </p>
                         <input type="tel" name="phone" class="h-11 w-full max-w-64 focus:ring-0 dir-ltr mb-16 outline-none rounded-custom border border-[#CFD1D4] focus:border-[#CFD1D4] placeholder:text-[#ACACAC]" placeholder="09" />
                         <button type="submit" class="rounded-custom h-11 w-full max-w-64 flex_center cursor-pointer bg-normal text-lg font-medium text-white"> ارسال </button>
+                    </form>
+                </section>
+                @break
+            @case(7)
+                {{-- contact to expert --}}
+                <section
+                    class="flex flex-col pt-8 lg:pt-16 lg:pb-14 pb-24 bg-stone-950 border-x-2 lg:border-x-4 border-normal default_container lg:rounded-custom overflow-hidden mx-4 lg:mx-auto mb-8 lg:mb-12 bg-[url('https://paye1.com/storage/media/land/files/ISX8tSBCNQXQhcIE9FVZ5CNQmGNoXahyGBl4ZgEl.png')]">
+                    {{-- title --}}
+                    <div
+                        class="w-full text-xl lg:text-2xl font-medium text-white text-center mb-6 lg:mb-10">
+                        <p> ارتباط با کارشناسان فروش </p>
+                    </div>
+                    <form action="#" method="#" class="flex flex-col items-center px-5">
+                        <p class="mb-10 text-sm lg:text-base font-normal leading-6 text-center text-white"> جهت ارتباط و اطلاع از
+                            شرایط فروش شماره خود را وارد کنید. </p>
+                        <input name="phone" type="tel"
+                            class="bg-stone-200/10 mb-6 lg:mb-10 max-w-64 h-11 border border-[#CFD1D4] focus:border-[#CFD1D4] focus:ring-0 rounded-custom outline-none w-full placeholder:text-[#acacac] text-base font-normal px-3 text-stone-700 tracking-widest"
+                            placeholder="09" />
+                        <button type="submit"
+                            class="w-full text-base font-medium text-normal rounded-custom flex_center max-w-64 h-11 bg-transparent border-y border-x-4 border-normal">
+                            ارسال </button>
                     </form>
                 </section>
                 @break

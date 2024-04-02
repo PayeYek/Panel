@@ -295,7 +295,7 @@
                 <LandBtn text="کاتالوگ" :to="'/l/' + landSlug + '/p/' + product.slug"
                     classNames="sameCategoryBtnStyle categoryBtnEmpty border-x-4 rounded-custom" />
                 <LandBtn text="شرایط فروش" :to="'/l/' + landSlug + '/p/' + product.slug"
-                    classNames="sameCategoryBtnStyle text-normal bg-transparent border-y border-x-4 border-normal castegoryBtnfilled rounded-custom col-span-full" />
+                    classNames="sameCategoryBtnStyle text-normal bg-transparent border-y border-x-4 border-normal hover:border-focus rounded-custom col-span-full" />
             </div>
         </div>
     </template>
