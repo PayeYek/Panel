@@ -255,7 +255,7 @@
 
     <template v-if="type == 12">
         <div v-for="(product, index) in productList.slice(0, 4)" :key="index"
-            :class="'pt-2 px-8 w-72 sm:w-96 lg:w-full lg:max-w-[17rem] pb-5 lg:pt-3 items-center flex flex-col rounded-custom ' + borderStyle + ' ' + (evenOdd ? 'evenOdd_cards' : 'bg-white')">
+            :class="'pt-2 px-8 w-72 sm:w-96 lg:w-full lg:max-w-[17rem] pb-5 lg:pt-3 items-center flex flex-col rounded-custom mx-auto lg:mx-0 ' + borderStyle + ' ' + (evenOdd ? 'evenOdd_cards' : 'bg-white')">
             <div class="mb-2 h-52">
                 <img :src="product.image" :alt="product.name" class="object-contain h-full" />
             </div>
