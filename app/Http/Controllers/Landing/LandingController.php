@@ -224,7 +224,7 @@ class LandingController extends Controller
         $breadcrumbs[] = ['title' => __('Home'), 'url' => route('landing.page.show', ['page' => $land->slug])];
         $breadcrumbs[] = ['title' => __('Articles'), 'url' => null ];
 
-        return view('landing.article-list', compact('land'));
+        return view('landing.article-list', compact('land', 'breadcrumbs'));
     }
 
     public function article($page, $article)

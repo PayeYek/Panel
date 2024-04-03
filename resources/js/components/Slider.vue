@@ -9,7 +9,7 @@
             :class="'land_slider slider_type_1 ' + sliderStyle"
         >
             <swiper-slide v-for="(slide, index) in slides" :key="index">
-                <a href="#" class="relative w-full pt-[44%] block rounded-b-custom overflow-hidden">
+                <a :href="slide.link" class="relative w-full pt-[44%] block rounded-b-custom overflow-hidden">
                     <img class="object-cover w-full h-full top-0 left-0 absolute" :src="slide.image" :alt="slide.alt">
                     <ul v-if="slide.infos" class="list-disc list-inside absolute top-2.5 sm:top-4 sm:right-2 right-1 py-1 px-2 sm:px-4 sm:py-2 space-y-1.5 z-[1] bg-white/80 text-xs font-medium text-stone-700 rounded-custom">
                         <template v-for="(li, innerIndex) in slide.infos" :key="innerIndex">
@@ -26,9 +26,9 @@
 
 <script>
 // import Swiper core and required modules
-import {Autoplay, Navigation, Pagination} from 'swiper/modules';
+import { Autoplay, Navigation, Pagination } from 'swiper/modules';
 // Import Swiper Vue.js components
-import {Swiper, SwiperSlide} from 'swiper/vue';
+import { Swiper, SwiperSlide } from 'swiper/vue';
 
 import { ref } from 'vue';
 
@@ -59,11 +59,10 @@ export default {
             //console.log('slide change');
         };
         // props.slides.map(item => {
-            console.log(props.sliderType);
         // })
         switch (props.sliderType) {
             case 1:
-                sliderStyle.value = "";
+                sliderStyle.value = "arrow-bottom";
                 break;
         
             case 2:

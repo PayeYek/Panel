@@ -60,12 +60,12 @@
             :evenOdd="{{ $land->styles->category_striped }}" />
 
             @switch($land->styles->land_id)
-            @case(2)
-                <x-home_landing.contact.type-one />
+                @case(2)
+                    <x-home_landing.contact.type-one />
                 @break
 
                 @case(7)
-                <x-home_landing.contact.type-two />
+                    <x-home_landing.contact.type-two />
                 @break
 
             @endswitch

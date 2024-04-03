@@ -29,7 +29,7 @@
     </section>
 
     <template v-if="filteredArticles.length != 0">
-        <section :class="'mb-4 ' + gridStyle">
+        <section :class="'mb-10 ' + gridStyle">
             <template v-for="(article, index) in filteredArticles">
                 <ArticleLink v-if="type == 1" :key="index" :href="'/l/' + landSlug + '/a/' + article.slug"
                     :class="'flex flex-col sm:flex-row rounded-custom bg-white overflow-hidden ' + borderStyle">
@@ -171,7 +171,7 @@
         </section>
     </template>
 
-    <section class="relative flex-col gap-4 flex_center h-80 sm:h-96" v-else>
+    <section class="relative flex-col gap-4 flex_center h-80 sm:h-96 mb-10" v-else>
         <p class="pb-4 text-base font-normal border-b sm:text-lg border-b-normal text-stone-700 mr-6"> محتوایی با این مشخصات
             پیدا
             نشد. </p>

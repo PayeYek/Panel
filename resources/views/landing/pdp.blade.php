@@ -1,8 +1,14 @@
 @php
     $tabStyle = match($land->styles->land_id) {
-        1 => 'pr-4 before:top-1/2 before:right-0 before:-translate-y-1/2 before:bg-normal before:h-12 before:w-1 before:rounded-l-custom before:absolute before:content-[]',
-        2 => 'before:size-3 before:bg-normal before:rounded-full before:absolute befopre:content-[] before:top-2 before:right-0 pr-6 lg:pr-8',
-        7 => 'before:size-3 before:bg-normal before:absolute befopre:content-[] before:top-2 before:right-0 pr-6 lg:pr-8',
+        1 => 'pr-4 before:top-1/2 before:right-0 before:-translate-y-1/2 before:bg-normal before:h-12 before:w-1 before:rounded-l-custom before:absolute before:content-[""]',
+        2 => 'before:size-3 before:bg-normal before:rounded-full before:absolute befopre:content-[""] before:top-2 before:right-0 pr-6 lg:pr-8',
+        7 => 'before:size-3 before:bg-normal before:absolute befopre:content-[""] before:top-2 before:right-0 pr-6 lg:pr-8',
+        default => ''
+    };
+
+    $technicalStyle = match($land->styles->land_id) {
+        1, 2 => '',
+        7 => 'border-r-4 border-stone-400',
         default => ''
     };
 
@@ -10,6 +16,12 @@
         0  => 'bg-stone-700/5',
         1  => 'border border-stone-400',
         2  => 'drop-shadow-base',
+        default => ''
+    };
+
+    $extraStyle = match($land->styles->land_id) {
+        1, 2  => '',
+        7  => 'border-r-4',
         default => ''
     };
 @endphp
@@ -37,7 +49,7 @@
             </section>
 
             {{-- info --}}
-            <x-pdp_landing.information productName="{{ $product->name }}" :product="$product" />
+            <x-pdp_landing.information :landId="$land->styles->land_id" productName="{{ $product->name }}" :product="$product" />
         </section>
 
         {{-- Further Details --}}
@@ -58,9 +70,9 @@
                     مشخصات </p>
                 <ul class="grid grid-cols-1 md:grid-cols-2 gap-2 text-stone-700">
                     @foreach ($product->attributes->sortBy('parent_id')->groupBy('parent_id') as $key => $attrs)
-                        <x-splade-data default="{ toggle: {{ $loop->index == 0 ? 'true' : 'false' }} }">
+                        <x-splade-data default="{ toggle: false }">
                             <li>
-                                <section class="p-4 bg-stone-200 rounded-custom lg:px-8">
+                                <section class="p-4 bg-stone-200 rounded-custom lg:px-8 {{ $technicalStyle }}">
                                     {{-- title --}}
                                     <div class="flex items-center justify-between cursor-pointer"
                                         @click="data.toggle = !data.toggle">
@@ -121,7 +133,7 @@
                                 <p class="block text-base font-medium text-stone-700 mb-1.5 mr-2"> {{ $comment->name }} </p>
 
                                 {{-- user viewpoint --}}
-                                <div class="{{ $borderStyle }} rounded-custom p-4">
+                                <div class="{{ $borderStyle }} {{ $extraStyle }} rounded-custom p-4">
                                     <div class="font-normal leading-6 lg:leading-7 text-justify text-sm lg:text-base">
                                         {{ $comment->comment }}
                                     </div>
@@ -145,7 +157,15 @@
         @endif
 
         {{-- add viewpoint --}}
-        <x-pdp_landing.addViewpoint :land="$land" :product="$product" :tabStyle="$tabStyle" />
+        @switch($land->styles->land_id)
+            @case(1)
+            @case(2)
+                <x-pdp_landing.addViewpoint :land="$land" :product="$product" :tabStyle="$tabStyle" />
+            @break
+            @case(7)
+                <x-home_landing.contact.type-two />
+            @break
+        @endswitch
     </main>
 
 </x-layout.default.main>

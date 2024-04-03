@@ -28,7 +28,7 @@ $gap = match($land->styles->a_striped."") {
 <x-layout.default.main :land="$land">
     <main class="pt-4 mb-8 sm:mb-24 lg:mb-28">
         {{-- breadcrumbs --}}
-        {{-- <x-common_landing.breadcrumbs :data="$breadcrumbs" /> --}}
+        <x-common_landing.breadcrumbs :data="$breadcrumbs" />
 
         <Articles
             gridStyle="{{ $gridCols }}"
@@ -38,17 +38,17 @@ $gap = match($land->styles->a_striped."") {
             borderStyle="{{ $borderStyle }}"
             evenOdd="{{ $land->styles->a_striped }}" />
 
-            {{-- contact to expert --}}
-            @switch($land->styles->land_id)
-                @case(2)
-                    <x-home_landing.contact.type-one />
-                @break
+        {{-- contact to expert --}}
+        @switch($land->styles->land_id)
+            @case(2)
+                <x-home_landing.contact.type-one />
+            @break
 
-                @case(7)
-                    <x-home_landing.contact.type-two />
-                @break
+            @case(7)
+                <x-home_landing.contact.type-two />
+            @break
 
-            @endswitch
+        @endswitch
     </main>
 
 </x-layout.default.main>
