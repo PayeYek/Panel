@@ -158,6 +158,9 @@
                         <Link href="{{ route('landing.videos', ['page' => $land->slug]) }}" class="text-normal text-base font-medium hidden sm:block"> (مشاهده همه) </Link>
                     </div>
                     @break
+                @case(6)
+                    <h3 class="mb-6 text-lg lg:text-2xl font-medium text-center text-stone-700"> ویدیو ها </h3>
+                    @break
                 @case(7)
                     <div class="flex items-center justify-between gap-4 mb-2 lg:mb-4">
                         <div class="hidden sm:flex items-center gap-4">

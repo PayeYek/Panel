@@ -54,7 +54,7 @@
         </div>
         @break
     @case(6)
-    <h3 class="mb-6 text-lg lg:text-2xl font-medium text-center text-stone-700"> اخبار و مقالات </h3>
+        <h3 class="mb-6 text-lg lg:text-2xl font-medium text-center text-stone-700"> اخبار و مقالات </h3>
         @break
     @case(7)
         <div class="flex items-center justify-between gap-4 mb-2 lg:mb-4 default_container">
