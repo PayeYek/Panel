@@ -184,6 +184,21 @@
             </li>
         </template>
     </template>
+
+    <template v-if="type == 8">
+        <li v-for="(article, index) in (ArticlesList.length > 2 ? ArticlesList.slice(0, 2) : ArticlesList)" :key="index" :href="'/l/' + landSlug + '/a/' + article.slug" class="aspect-video rounded-custom overflow-hidden bg-center bg-cover bg-no-repeat hover:scale-[1.025] duration-300" :style="{'background-image': 'url(' + article.image + ')'}">
+            <Link class="bg-gradient-to-t w-full h-full flex flex-col gap-2 p-4 justify-end from-black/80 to-black/25">
+                <p class="text-lg lg:text-2xl font-medium text-white line-clamp-1"> {{ article.title }} </p>
+                <p class="text-sm font-normal text-white line-clamp-1"> {{ article.description }} </p>
+            </Link>
+        </li>
+        <!-- extra items -->
+        <li v-if="ArticlesList.length > 2" class="aspect-video rounded-custom overflow-hidden bg-center bg-cover bg-no-repeat bg-[url(https://paye1.com/storage/media/land/files/TSjaNrAaA470PmgitjoXLMwUJTHKQVvoVt62fvDP.png)] hover:scale-[1.025] duration-300">
+            <div class="flex_center bg-gradient-to-t from-black/80 to-black/25 w-full h-full">
+                <Link :href="'/l/' + landSlug + '/a/'" class="h-11 w-44 flex_center border border-white rounded-custom text-lg font-medium text-white bg-transparent hover:bg-black/20"> آرشیو اخبار و مقالات </Link>
+            </div>
+        </li>
+    </template>    
 </template>
 
 <script>
@@ -213,6 +228,8 @@ export default {
         // for (const [key, value] of Object.entries(ArticlesRowList.value)) {
         //    console.log(key);
         // }
+
+        console.log(ArticlesList.value);
         return {
             ArticlesList,
             renderDate,

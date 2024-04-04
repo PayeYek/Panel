@@ -5,6 +5,7 @@
     'landSlug' => '/',
     'borderType' => '0',
     'evenOdd' => '0',
+    'landType' => 1,
 ])
 @php
     $gridCols = match ($type) {
@@ -14,6 +15,13 @@
         4 => 'grid grid-cols-1 border border-dark-100 p-4 rounded-custom',
         6 => 'grid grid-cols-1 gap-5',
         7 => 'grid grid-cols-1 sm:grid-cols-2 gap-4 default_container',
+        8 => 'grid grid-cols-1 gap-4 md:grid-cols-3',
+        default => '',
+    };
+
+    $containerStyle = match ($landType) {
+        1, 2, 7 => '',
+        6 => 'default_container',
         default => '',
     };
 
@@ -26,7 +34,7 @@
 
 @endphp
 @if ($type.'' !== '5')
-    <ul class="mb-4 {{ $gridCols }} list-none sm:mb-0 w-full">
+    <ul class="mb-4 {{ $gridCols }} {{ $containerStyle}} list-none sm:mb-0 w-full">
         {{-- @foreach ($data as $article)
             <x-home_landing.announcement.children.announcement 
                 :type="$type"
@@ -40,8 +48,9 @@
                 :landSlug="$landSlug" />
         @endforeach --}}
         {{-- :land="$land" --}}
-        <HomeArticles :landSlug="$landSlug" data="{!! $data !!}" borderStyle="{{ $borderStyle }}" type="{{ $type }}" :evenOdd="$evenOdd" />
+        <HomeArticles landSlug="{{ $landSlug }}" data="{!! $data !!}" borderStyle="{{ $borderStyle }}" type="{{ $type }}" :evenOdd="$evenOdd" />
     </ul>
+
 @else
     <section class="w-full">
         <PdpMoreArticles slides="{!! $land->articles !!}" borderType="{{ $borderType }}" striped="{{ $evenOdd }}" landSlug="{{ $landSlug }}" />

@@ -129,8 +129,8 @@
             {{-- show all --}}
             <Link href="{{ route('landing.product.list', ['page' => $landSlug]) }}" class="text-base font-normal text-normal mr-auto mb-3 hidden lg:inline-block float-left px-2 cursor-pointer"> نمایش همه </Link>
             @break
-        @case(2)
-            
+        @case(6)
+            <h3 class="mb-4 text-lg lg:text-2xl font-medium text-center text-stone-700"> محصولات </h3>
             @break
         @default
             
