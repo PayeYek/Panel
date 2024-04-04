@@ -54,13 +54,13 @@
     switch ($borderType."") {
         case '0':
             $borderStyle = match($type."") {
-                '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13'  => '',
+                '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14'  => '',
                 default => ''
             };
             break;
         case '1':
             $borderStyle = match($type."") {
-                '1', '2', '3', '4', '5', '6', '7','9', '10', '11', '12'  => 'border border-stone-400',
+                '1', '2', '3', '4', '5', '6', '7','9', '10', '11', '12', '14'  => 'border border-stone-400',
                 '8' => 'border border-stone-400',
                 '13' => 'border-y border-x-4 border-stone-400',
                 default => 'border border-stone-400'
@@ -68,7 +68,7 @@
             break;
         case '2':
             $borderStyle = match($type."") {
-                '1', '2', '3', '4', '5', '6', '7', '9', '10', '11', '12'  => 'drop-shadow-base',
+                '1', '2', '3', '4', '5', '6', '7', '9', '10', '11', '12', '14'  => 'drop-shadow-base',
                 '8' => 'drop-shadow-base',
                 default => 'drop-shadow-base'
             };
@@ -76,7 +76,7 @@
     }
 
     $classType = match($type."") {
-        '1', '2' => 'grid grid-cols-1 lg:grid-cols-4 gap-4 sm:grid-cols-2',
+        '1', '2', '14' => 'grid grid-cols-1 lg:grid-cols-4 gap-4 sm:grid-cols-2',
         '3', '4' => 'grid grid-cols-1 lg:grid-cols-3 gap-4',
         '5' => 'grid grid-cols-1 rounded-custom overflow-hidden ' . $borderStyle,
         '6' => 'grid grid-cols-1 rounded-custom overflow-hidden sm:border-0 sm:gap-4 ' . $borderStyle,

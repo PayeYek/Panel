@@ -54,6 +54,52 @@
                         </Link>
                     </section>
                     @break
+                @case(6)
+                    <section class="flex flex-col sm:flex-row items-center gap-4 text-stone-700 mb-4 sm:mb-8 lg:mb-12">
+                        <section class="group w-full prespective drop-shadow-base">
+                            <section class="bg-white rounded-custom h-40 sm:h-36 lg:h-44 relative w-full prespective-3d group-hover:rotateY-180 duration-300">
+                                <div class="flex flex-col justify-center h-full gap-4 px-8 lg:px-10 rounded-custom border-r-4 lg:border-r-8 border-r-normal absolute top-0 right-0 w-full backface-hidden">
+                                    <p class="text-lg font-medium lg:text-2xl"> دسته بندی محصولات </p>
+                                    <p class="text-sm leading-6 font-normal lg:text-base line-clamp-2"> گارانتی ماشین های کاریزان گارانتی ماشین های کاریزان </p>
+                                </div>
+    
+                                <div class="absolute top-0 right-0 w-full h-full rounded-custom drop-shadow-base bg-no-repeat bg-cover overflow-hidden bg-center bg-[url('https://paye1.com/storage/media/land/files/COzYlN8cuGnSowm5hVgg9XeiXGVbd2YQpbuWrVYv.png')] rotateY-180 backface-hidden">
+                                    <div class="w-full h-full flex_center bg-gradient-to-t from-black/80 to-transparent">
+                                        <Link href="{{ route('landing.product.list', ['page' => $land->slug]) }}" class="h-11 w-44 flex_center border border-white rounded-custom text-lg font-medium text-white bg-transparent hover:bg-white/10"> بیشتر بخوانید </Link>
+                                    </div>
+                                </div>
+                            </section>
+                        </section>
+                        <section class="group w-full prespective drop-shadow-base">
+                            <section class="bg-white rounded-custom h-40 sm:h-36 lg:h-44 relative w-full prespective-3d group-hover:rotateY-180 duration-300">
+                                <div class="flex flex-col justify-center h-full gap-4 px-8 lg:px-10 rounded-custom border-r-4 lg:border-r-8 border-r-normal absolute top-0 right-0 w-full backface-hidden">
+                                    <p class="text-lg font-medium lg:text-2xl"> شرایط فروش </p>
+                                    <p class="text-sm leading-6 font-normal lg:text-base line-clamp-2"> گارانتی ماشین های کاریزان گارانتی ماشین های کاریزان </p>
+                                </div>
+    
+                                <div class="absolute top-0 right-0 w-full h-full rounded-custom drop-shadow-base bg-no-repeat bg-cover overflow-hidden bg-center bg-[url('https://paye1.com/storage/media/land/files/bzLctE71e9mTL0hsv9YVqW8S7EzwuiNFVVSqrYoQ.png')] rotateY-180 backface-hidden">
+                                    <div class="w-full h-full flex_center bg-gradient-to-t from-black/80 to-transparent">
+                                        <Link href="{{ route('landing.article.list', ['page' => $land->slug, 'f' => 'sell']) }}" class="h-11 w-44 flex_center border border-white rounded-custom text-lg font-medium text-white bg-transparent hover:bg-white/10"> بیشتر بخوانید </Link>
+                                    </div>
+                                </div>
+                            </section>
+                        </section>
+                        <section class="group w-full prespective drop-shadow-base">
+                            <section class="bg-white rounded-custom h-40 sm:h-36 lg:h-44 relative w-full prespective-3d group-hover:rotateY-180 duration-300">
+                                <div class="flex flex-col justify-center h-full gap-4 px-8 lg:px-10 rounded-custom border-r-4 lg:border-r-8 border-r-normal absolute top-0 right-0 w-full backface-hidden">
+                                    <p class="text-lg font-medium lg:text-2xl"> اخبار و مقالات </p>
+                                    <p class="text-sm leading-6 font-normal lg:text-base line-clamp-2"> گارانتی ماشین های کاریزان گارانتی ماشین های کاریزان </p>
+                                </div>
+    
+                                <div class="absolute top-0 right-0 w-full h-full rounded-custom drop-shadow-base bg-no-repeat bg-cover overflow-hidden bg-center bg-[url('https://paye1.com/storage/media/land/files/QGAIVeIQZrUU3JFFaZ80fgMGHbfjojQfF5Si7Tqp.png')] rotateY-180 backface-hidden">
+                                    <div class="w-full h-full flex_center bg-gradient-to-t from-black/80 to-transparent">
+                                        <Link href="{{ route('landing.article.list', ['page' => $land->slug, 'f' => 'news']) }}" class="h-11 w-44 flex_center border border-white rounded-custom text-lg font-medium text-white bg-transparent hover:bg-white/10"> بیشتر بخوانید </Link>
+                                    </div>
+                                </div>
+                            </section>
+                        </section>
+                    </section>
+                    @break
                 @case(7)
                     <section class="*:h-20 sm:*:h-32 flex flex-col md:flex-row items-center md:*:flex-1 *:justify-center rounded-custom bg-stone-200 *:flex *:items-center text-xl md:text-2xl lg:text-3xl font-normal lg:font-medium text-stone-700 mb-4 md:mb-8 lg:mb-12">
                         <Link href="{{ route('landing.product.list', ['page' => $land->slug]) }}" class="relative before:bottom-0 before:left-1/2 before:w-32 before:-translate-x-1/2 before:h-px before:bg-stone-400 before:absolute before:content-[''] md:before:left-0 md:before:bottom-1/2 md:before:w-px md:before:h-14 md:before:translate-x-0 md:before:translate-y-1/2">

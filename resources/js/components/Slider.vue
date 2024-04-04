@@ -1,5 +1,5 @@
 <template>
-    <section class="mb-6 lg:mb-8 default_container">
+    <section :class="'mb-6 lg:mb-8 ' + containerStyle">
         <swiper
             :modules="modules"
             :slides-per-view="1"
@@ -18,6 +18,8 @@
                             </li>
                         </template>
                     </ul>
+                    <!-- gradient background -->
+                    <div v-if="sliderType == 6" class="absolute bottom-0 left-0 w-full h-12 sm:h-24 lg:h-32 xl:h-44 bg-gradient-to-t from-black/80 sm:from-black/90 to-transparent"></div>
                 </a>
             </swiper-slide>
         </swiper>
@@ -51,6 +53,7 @@ export default {
     },
     setup(props) {
         const sliderStyle = ref("");
+        const containerStyle = ref("");
 
         const onSwiper = (swiper) => {
             //console.log(swiper);
@@ -63,14 +66,22 @@ export default {
         switch (props.sliderType) {
             case 1:
                 sliderStyle.value = "arrow-bottom";
+                containerStyle.value = "default_container";
                 break;
         
             case 2:
                 sliderStyle.value = "arrow-center";
+                containerStyle.value = "default_container";
+                break;
+        
+            case 6:
+                sliderStyle.value = "arrow-blur-bottom";
+                containerStyle.value = "";
                 break;
         
             case 7:
                 sliderStyle.value = "arrow-center-transparent";
+                containerStyle.value = "default_container";
                 break;
         
             default:
@@ -81,6 +92,7 @@ export default {
             onSlideChange,
             modules: [Navigation, Pagination, Autoplay],
             sliderStyle,
+            containerStyle,
         };
     }
 }

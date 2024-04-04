@@ -59,7 +59,7 @@
     <template v-if="type == 4">
         <div v-for="(product, index) in productList.slice(0, 3)" :key="index"
             :class="'px-6 gap-2 w-full pt-6 pb-10 flex items-center rounded-custom ' + borderStyle + ' ' + (evenOdd ? 'evenOdd_cards ' : 'bg-white ')">
-            <div class="flex-none min-w-28 h-28 sm:min-w-32 sm:h-32">
+            <div class="flex-none min-w-28 h-28 sm:min-w-32 lg:max-w-32 sm:h-32">
                 <img :src="product.image" :alt="product.name" class="object-contain h-full" />
             </div>
             <div class="flex flex-col flex-1 gap-4">
@@ -155,10 +155,10 @@
             <h3 class="mb-1.5 font-medium lg:mb-1 text-lg sm:line-clamp-1 text-stone-700"> {{ product.name }}
             </h3>
             <div class="flex items-center justify-between gap-4">
-                <div class="flex-none h-32 lg:h-28 xl:h-32">
+                <div class="h-32 lg:h-28 xl:h-32">
                     <img :src="product.image" :alt="product.name" class="object-contain h-full" />
                 </div>
-                <div class="flex flex-col w-40 gap-2 shrink">
+                <div class="flex flex-col w-56 gap-2 shrink">
                     <LandBtn text="مشخصات" :to="'/l/' + landSlug + '/p/' + product.slug"
                         classNames="sameCategoryBtnStyle categoryBtnEmpty rounded-custom" />
                     <LandBtn text="کاتالوگ" :to="'/l/' + landSlug + '/p/' + product.slug"
@@ -299,6 +299,25 @@
             </div>
         </div>
     </template>
+
+    <template v-if="type == 14">
+        <div v-for="(product, index) in productList.slice(0, 4)" :key="index"
+            :class="'rounded-custom pt-2 px-8 w-full pb-5 items-center flex flex-col ' + borderStyle + (evenOdd == 1 ? ' evenOdd_cards' : ' bg-white')">
+            <div class="mb-1 h-48">
+                <img :src="product.image" :alt="product.name" class="object-contain h-full" />
+            </div>
+            <h3 class="mb-3 font-medium lg:mb-2 text-lg sm:line-clamp-1 text-stone-700"> {{ product.name }} </h3>
+            <div class="grid grid-cols-2 gap-2 w-56 lg:w-full">
+                <LandBtn text="مشخصات" :to="'/l/' + landSlug + '/p/' + product.slug"
+                    classNames="sameCategoryBtnStyle bg-transparent border border-normal hover:boder-focus text-normal hover:text-normal rounded-custom" />
+                <LandBtn text="کاتالوگ" :to="'/l/' + landSlug + '/p/' + product.slug"
+                    classNames="sameCategoryBtnStyle bg-transparent border border-normal hover:boder-focus text-normal hover:text-normal rounded-custom" />
+                <LandBtn text="فروش اقساطی" :to="'/l/' + landSlug + '/p/' + product.slug"
+                    classNames="sameCategoryBtnStyle text-white bg-normal hover:bg-focus rounded-custom col-span-2" />
+            </div>
+        </div>
+    </template>
+    
 </template>
 
 <script>
