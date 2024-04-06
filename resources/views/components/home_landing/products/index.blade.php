@@ -85,6 +85,7 @@
         '9', '10' => 'grid grid-cols-1 rounded-custom overflow-hidden ' . $borderStyle,
         '11', '12' => 'grid grid-cols-1 gap-4 lg:grid-cols-4',
         '13' => 'grid grid-cols-1',
+        '15' => 'grid grid-cols-1 gap-6 lg:grid-cols-4',
         default => 'grid grid-cols-1 lg:grid-cols-4 gap-4 sm:grid-cols-2'
     };
 
@@ -129,11 +130,16 @@
             {{-- show all --}}
             <Link href="{{ route('landing.product.list', ['page' => $landSlug]) }}" class="text-base font-normal text-normal mr-auto mb-3 hidden lg:inline-block float-left px-2 cursor-pointer"> نمایش همه </Link>
             @break
+        @case(4)
+            <h3 class="mb-4 text-lg lg:text-2xl font-medium text-center text-stone-700"> محصولات </h3>
+            {{-- <hr class="w-60 sm:w-96 border-normal mb-6 lg:mb-0 mx-auto" /> --}}
+            {{-- show all --}}
+            <Link href="{{ route('landing.product.list', ['page' => $landSlug]) }}" class="text-base font-normal text-link mr-auto mb-3 hidden lg:inline-block float-left px-2 cursor-pointer"> نمایش همه </Link>
+            @break
         @case(6)
             <h3 class="mb-4 text-lg lg:text-2xl font-medium text-center text-stone-700"> محصولات </h3>
             @break
         @default
-            
     @endswitch
 
     {{-- <x-home_landing.products.children.products :type="$type" :evenOdd="$evenOdd" :data="$data" :landSlug="$landSlug" :borderType="$borderType" /> --}}

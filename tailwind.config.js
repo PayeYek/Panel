@@ -98,6 +98,7 @@ export default {
                     900: "#1c1c1c", // footer color
                     950: "#1a1b1d", // footer bg
                 },
+                link: '#006FFF',
             },
             borderRadius: {
                 'custom': 'var(--theme-radius)',
