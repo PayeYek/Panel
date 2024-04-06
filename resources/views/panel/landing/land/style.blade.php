@@ -22,6 +22,7 @@
                     <x-splade-select name="color" label="Color">
                         <option value="1"> آرین دیزل </option>
                         <option value="2"> سایپا دیزل </option>
+                        <option value="5"> پیلسان </option>
                         <option value="6"> کاریزان </option>
                         <option value="7"> آریا دیزل </option>
                     </x-splade-select>
@@ -85,7 +86,11 @@
                     </x-splade-select>
 
                     <x-splade-select name="slider_type" label="قالب اسلایدر">
-                        <option value="1">{{ __('Animation') }} 1</option>
+                        <option value="1">{{ __('View type') }} 1</option>
+                        <option value="2">{{ __('View type') }} 2</option>
+                        <option value="3">{{ __('View type') }} 3</option>
+                        <option value="4">{{ __('View type') }} 4</option>
+                        <option value="5">{{ __('View type') }} 5</option>
                     </x-splade-select>
                 </x-layout.panel.form.division>
             </x-layout.panel.form.card>

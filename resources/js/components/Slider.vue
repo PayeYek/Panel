@@ -74,17 +74,22 @@ export default {
                 containerStyle.value = "default_container";
                 break;
         
-            case 6:
+            // case 5:
+            //     sliderStyle.value = "arrow-blur-bottom";
+            //     break;
+
+            case 3:
                 sliderStyle.value = "arrow-blur-bottom";
-                containerStyle.value = "";
                 break;
         
-            case 7:
+            case 4:
                 sliderStyle.value = "arrow-center-transparent";
                 containerStyle.value = "default_container";
                 break;
         
             default:
+                sliderStyle.value = "arrow-bottom";
+                containerStyle.value = "";
                 break;
         }
         return {

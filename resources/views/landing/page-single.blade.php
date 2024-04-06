@@ -3,7 +3,7 @@
     <main class="">
         {{-- slider --}}
         @if ($land->slides)
-            <Slider :slides="{{ $land->slides }}" :sliderType="{{ $land->styles->land_id }}" />
+            <Slider :slides="{{ $land->slides }}" :sliderType="{{ $land->styles->slider_type }}" />
         @endif
 
         <section class="default_container">
