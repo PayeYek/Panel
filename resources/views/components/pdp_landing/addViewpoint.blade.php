@@ -2,9 +2,10 @@
     'land' => null,
     'product' => null,
     'tabStyle' => '',
+    'marginbottom' => '',
 ])
 
-<section class="default_container">
+<section class="default_container {{ $marginbottom }}">
     <p
         class="relative text-xl mb-7 font-medium text-stone-700 {{ $tabStyle }}">
         ثبت دیدگاه </p>

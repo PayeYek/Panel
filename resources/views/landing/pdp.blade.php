@@ -2,12 +2,14 @@
     $tabStyle = match($land->styles->land_id) {
         1 => 'pr-4 before:top-1/2 before:right-0 before:-translate-y-1/2 before:bg-normal before:h-12 before:w-1 before:rounded-l-custom before:absolute before:content-[""]',
         2 => 'before:size-3 before:bg-normal before:rounded-full before:absolute befopre:content-[""] before:top-2 before:right-0 pr-6 lg:pr-8',
+        6 => 'before:size-3 before:border-2 before:border-normal before:rounded-full before:absolute befopre:content-[""] before:top-2 before:right-0 pr-6 lg:pr-8',
         7 => 'before:size-3 before:bg-normal before:absolute befopre:content-[""] before:top-2 before:right-0 pr-6 lg:pr-8',
         default => ''
     };
 
     $technicalStyle = match($land->styles->land_id) {
         1, 2 => '',
+        6 => 'border-r-4 border-normal',
         7 => 'border-r-4 border-stone-400',
         default => ''
     };
@@ -24,12 +26,17 @@
         7  => 'border-r-4',
         default => ''
     };
+
+    $marginBottom = match($land->styles->land_id."") {
+        '7'  => 'mb-8 sm:mb-24 lg:mb-28',
+        default => ''
+    };
 @endphp
 
 <x-layout.default.main :land="$land">
 {{-- @dd($product) --}}
     {{-- type 1 --}}
-    <main class="pt-4 relative mb-8 sm:mb-24 lg:mb-28">
+    <main class="pt-4 relative {{ $marginBottom }}">
 
         {{-- breadcrumbs --}}
         <x-common_landing.breadcrumbs :data="$breadcrumbs" />
@@ -100,14 +107,14 @@
                 </ul>
             </section>
         @endif
-{{-- @dd($product->videos->count()) --}}
+
         {{-- videos --}}
         @if ($product->videos->count())
             <section class="mb-20 relative default_container" id="video-player-container">
                 <p
                     class="relative text-xl mb-7 font-medium text-stone-700 {{ $tabStyle }}">
                     ویدیو </p>
-                <x-home_landing.videos :data="$product->videos" :type="$land->styles->video_card_type" />
+                <x-home_landing.videos :data="$product->videos" :type="$land->styles->video_card_type" :landSlug="$land->slug" />
             </section>
 
             {{-- video modal --}}
@@ -157,10 +164,13 @@
         @endif
 
         {{-- add viewpoint --}}
+        <x-pdp_landing.addViewpoint :land="$land" :product="$product" :tabStyle="$tabStyle" marginbottom="mb-20" />
         @switch($land->styles->land_id)
-            @case(1)
+            {{-- @case(1)
             @case(2)
-                <x-pdp_landing.addViewpoint :land="$land" :product="$product" :tabStyle="$tabStyle" />
+            @break --}}
+            @case(6)
+                <x-home_landing.contact.type-four />
             @break
             @case(7)
                 <x-home_landing.contact.type-two />

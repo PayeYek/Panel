@@ -74,10 +74,6 @@ export default {
                 containerStyle.value = "default_container";
                 break;
         
-            // case 5:
-            //     sliderStyle.value = "arrow-blur-bottom";
-            //     break;
-
             case 3:
                 sliderStyle.value = "arrow-blur-bottom";
                 break;

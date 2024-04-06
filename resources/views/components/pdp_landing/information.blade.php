@@ -7,6 +7,7 @@
 @php
     $boxStyle = match($landId) {
         1, 2  => 'bg-[#F2F2F2]',
+        6  => 'bg-[#F2F2F2] border-r-4 border-r-normal',
         7  => 'border border-r-4 border-stone-400',
         default => ''
     };

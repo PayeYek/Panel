@@ -758,6 +758,10 @@
     @apply w-6 opacity-80;
 }
 
+.slider_type_1.arrow-blur-bottom {
+    @apply relative before:absolute before:content-[''] before:left-0 before:w-full before:bottom-0 before:h-44 before:hidden lg:before:block before:z-[2] before:bg-gradient-to-t before:from-black before:to-transparent;
+}
+
 .desktop_pdp_slider .swiper-button-next, .desktop_pdp_slider .swiper-button-prev{
     @apply absolute top-1/2 z-[1] cursor-pointer -translate-y-1/2 w-10 h-10 lg:w-12 lg:h-12 rounded-lg bg-white/70 flex_center drop-shadow-[2px_4px_15px_rgba(255,255,255,0.25)] before:absolute before:content-[''] before:w-2 before:h-2 before:border-r-2 before:border-t-2 before:border-gray-900 after:hidden lg:before:w-3 lg:before:h-3;
 }
