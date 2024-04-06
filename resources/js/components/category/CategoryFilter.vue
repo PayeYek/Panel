@@ -263,6 +263,22 @@
                                 classNames="sameCategoryBtnStyle text-normal bg-transparent border-y border-x-4 border-normal hover:border-focus rounded-custom col-span-full" />
                         </div>
                     </div>
+
+                    <div v-if="productType == 13" :key="index"
+                        :class="'rounded-custom pt-2 px-8 w-full pb-5 items-center flex flex-col ' + borderStyle + (evenOdd == 1 ? ' evenOdd_cards' : ' bg-white')">
+                        <div class="mb-1 h-48">
+                            <img :src="product.image" :alt="product.name" class="object-contain h-full" />
+                        </div>
+                        <h3 class="mb-3 font-medium lg:mb-2 text-lg sm:line-clamp-1 text-stone-700"> {{ product.name }} </h3>
+                        <div class="grid grid-cols-2 gap-2 w-56 lg:w-full">
+                            <LandBtn text="مشخصات" :to="'/l/' + landSlug + '/p/' + product.slug"
+                                classNames="sameCategoryBtnStyle bg-transparent border border-normal hover:boder-focus text-normal hover:text-normal rounded-custom" />
+                            <LandBtn text="کاتالوگ" :to="'/l/' + landSlug + '/p/' + product.slug"
+                                classNames="sameCategoryBtnStyle bg-transparent border border-normal hover:boder-focus text-normal hover:text-normal rounded-custom" />
+                            <LandBtn text="فروش اقساطی" :to="'/l/' + landSlug + '/p/' + product.slug"
+                                classNames="sameCategoryBtnStyle text-white bg-normal hover:bg-focus rounded-custom col-span-2" />
+                        </div>
+                    </div>
                 </template>
             </template>
 

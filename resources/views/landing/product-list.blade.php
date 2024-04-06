@@ -40,6 +40,7 @@
         '10' => 'gap-12',
         '11' => 'gap-4 lg:grid-cols-4',
         '12' => 'gap-4',
+        '13' => 'gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4',
         default => 'lg:grid-cols-5 gap-4 sm:grid-cols-2',
     };
 @endphp
@@ -59,16 +60,20 @@
             borderStyle="{{ $borderStyle }}"
             :evenOdd="{{ $land->styles->category_striped }}" />
 
-            @switch($land->styles->land_id)
-                @case(2)
-                    <x-home_landing.contact.type-one />
-                @break
+        @switch($land->styles->land_id)
+            @case(2)
+                <x-home_landing.contact.type-one />
+            @break
 
-                @case(7)
-                    <x-home_landing.contact.type-two />
-                @break
+            @case(6)
+                <x-home_landing.contact.type-four />
+            @break
 
-            @endswitch
+            @case(7)
+                <x-home_landing.contact.type-two />
+            @break
+
+        @endswitch
     </main>
 
 

@@ -1,5 +1,5 @@
 @php
-$gap = match($land->styles->a_striped."") {
+    $gap = match($land->styles->a_striped."") {
         '0'  => 'gap-14 lg:gap-0',
         '1'  => 'gap-14 sm:gap-0',
         default => ''
@@ -22,11 +22,16 @@ $gap = match($land->styles->a_striped."") {
         default => 'drop-shadow-base'
     };
 
+    $marginBottom = match($land->styles->land_id."") {
+        '7'  => 'mb-8 sm:mb-24 lg:mb-28',
+        default => ''
+    };
+
     
 @endphp
 
 <x-layout.default.main :land="$land">
-    <main class="pt-4 mb-8 sm:mb-24 lg:mb-28">
+    <main class="pt-4 {{ $marginBottom }}">
         {{-- breadcrumbs --}}
         <x-common_landing.breadcrumbs :data="$breadcrumbs" />
 
@@ -42,6 +47,10 @@ $gap = match($land->styles->a_striped."") {
         @switch($land->styles->land_id)
             @case(2)
                 <x-home_landing.contact.type-one />
+            @break
+
+            @case(6)
+                <x-home_landing.contact.type-four />
             @break
 
             @case(7)

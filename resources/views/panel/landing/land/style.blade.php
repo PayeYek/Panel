@@ -20,10 +20,10 @@
                     </x-splade-select>
         
                     <x-splade-select name="color" label="Color">
-                        <option value="1">Red</option>
-                        <option value="2">Blue</option>
-                        <option value="3">Green</option>
-                        <option value="4">Yellow</option>
+                        <option value="1"> آرین دیزل </option>
+                        <option value="2"> سایپا دیزل </option>
+                        <option value="6"> کاریزان </option>
+                        <option value="7"> آریا دیزل </option>
                     </x-splade-select>
 
                     <x-splade-select name="border_type" label="نمای اشیاء">
@@ -117,6 +117,7 @@
                         <option value="10">{{  __('View type') }} 10</option>
                         <option value="11">{{  __('View type') }} 11</option>
                         <option value="12">{{  __('View type') }} 12</option>
+                        <option value="13">{{  __('View type') }} 13</option>
                     </x-splade-select>
 
                     <x-splade-select name="category_striped" label="نمای راه راه دسته بندی">
@@ -127,6 +128,42 @@
                     <x-splade-select name="category_filter_type" label="نوع فیلتر">
                         <option value="0">تب</option>
                         <option value="1"> انتخابی </option>
+                    </x-splade-select>
+                </x-layout.panel.form.division>
+            </x-layout.panel.form.card>
+
+            <x-layout.panel.form.card title="صفحه مقالات" desc="الگوی صفحه مقالات">
+                <x-layout.panel.form.division :col="2">
+                    <x-splade-select name="a_card_type" label="قالب نمایشی مقالات">
+                        <option value="1">{{  __('View type') }} 1</option>
+                        <option value="2">{{  __('View type') }} 2</option>
+                        <option value="3">{{  __('View type') }} 3</option>
+                        <option value="4">{{  __('View type') }} 4</option>
+                        <option value="5">{{  __('View type') }} 5</option>
+                        <option value="6">{{  __('View type') }} 6</option>
+                    </x-splade-select>
+
+                    <x-splade-select name="a_striped" label="نمای راه راه مقالات">
+                        <option value="0">غیرفعال</option>
+                        <option value="1">فعال</option>
+                    </x-splade-select>
+                </x-layout.panel.form.division>
+            </x-layout.panel.form.card>
+
+            <x-layout.panel.form.card title="صفحه مقاله" desc="الگوی صفحه مقاله">
+                <x-layout.panel.form.division :col="2">
+                    <x-splade-select name="a_view_type" label="قالب نمایشی مقاله">
+                        <option value="1">{{  __('View type') }} 1</option>
+                        <option value="2">{{  __('View type') }} 2</option>
+                        <option value="3">{{  __('View type') }} 3</option>
+                        <option value="4">{{  __('View type') }} 4</option>
+                        <option value="5">{{  __('View type') }} 5</option>
+                        <option value="6">{{  __('View type') }} 6</option>
+                    </x-splade-select>
+
+                    <x-splade-select name="a_table_type" label="قالب جداول">
+                        <option value="0"> حاشیه دار </option>
+                        <option value="1"> راه راه </option>
                     </x-splade-select>
                 </x-layout.panel.form.division>
             </x-layout.panel.form.card>

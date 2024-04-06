@@ -100,7 +100,7 @@
                 </ul>
             </section>
         @endif
-
+{{-- @dd($product->videos->count()) --}}
         {{-- videos --}}
         @if ($product->videos->count())
             <section class="mb-20 relative default_container" id="video-player-container">
