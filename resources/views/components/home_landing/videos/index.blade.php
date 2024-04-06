@@ -109,7 +109,7 @@
                             <div class="aspect-video relative rounded-custom overflow-hidden bg-center bg-cover bg-no-repeat hover:scale-[1.025] duration-300 videoThumbnails" onclick="showVideoByThumbnail(this)" style="background-image: url({{ $video->image }})">
                                 <x-icons.playIcon class="size-14 sm:w-20 sm:h-20 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-[3]" />
                                 <div class="bg-gradient-to-t w-full h-full flex flex-col gap-2 p-4 justify-end from-black/80 to-black/25">
-                                    <p class="text-lg @if($data->count() > 2 && $loop->index == 0) lg:text-2xl @endif font-medium text-white line-clamp-1 select-none"> {{ $video->alt }} </p>
+                                    <p class="text-lg @if($data->count() > 2 && $loop->index == 0) lg:text-2xl @endif font-medium text-[#FFD598] line-clamp-1 select-none"> {{ $video->alt }} </p>
                                 </div>
                             </div>
                         </li>
@@ -117,8 +117,8 @@
                     @if ($data->count() > 2)
                         <li class="flex-none w-full sm:w-[448px] md:w-[480px] lg:w-full">
                             <div class="aspect-video rounded-custom overflow-hidden bg-center bg-cover bg-no-repeat bg-[url(http://127.0.0.1:8000/storage/media/land/files/T5mqlbgjT1DxoTz8RsEfcoDmIxyMEDyWsmr3wEbH.png)] hover:scale-[1.025] duration-300">
-                                <div class="size-full flex_center bg-gradient-to-t from-black/80 to-black/25">
-                                    <Link href="{{ route('landing.videos', ['page' => $landSlug]) }}" class="h-11 w-44 flex_center border border-white rounded-custom text-lg font-medium text-white bg-transparent hover:bg-black/20"> آرشیو ویدیو ها </Link>
+                                <div class="size-full flex_center bg-gradient-to-t from-black/80 to-black/60">
+                                    <Link href="{{ route('landing.videos', ['page' => $landSlug]) }}" class="h-11 w-44 flex_center border-x-2 border-x-[#DBA14D] rounded-custom text-lg font-medium text-[#FFD598] bg-transparent hover:border-x-white hover:text-white"> آرشیو ویدیو ها </Link>
                                 </div>
                             </div>
                         </li>
