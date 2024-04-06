@@ -1,6 +1,7 @@
 @props([
     'data' => '[]',
     'type' => 1,
+    'landSlug' => '',
 ])
 
 @push('script')
@@ -81,18 +82,26 @@
         @break
     @case(4)
     {{-- @dd($data->count()) --}}
-            <ul class="flex list-none lg:w-full mb-8 lg:mb-16 {{ $data->count() == 1 ? 'justify-center' : 'gap-8 sm:flex-row sm:items-center flex-col lg:grid lg:grid-cols-2 overflow-auto lg:overflow-visible pb-4' }}">
+            <ul class="list-none lg:w-full mb-8 lg:mb-16 {{ $data->count() == 1 ? 'justify-center flex' : ($data->count() == 2 ? 'flex gap-8 sm:flex-row sm:items-center flex-col lg:grid lg:grid-cols-2 overflow-auto lg:overflow-visible pb-4' : 'flex gap-8 sm:flex-row sm:items-center flex-col lg:grid lg:grid-cols-3 lg:grid-row-2 overflow-auto lg:overflow-visible pb-4 lg:gap-x-4 lg:gap-y-2') }}">
                 @foreach ($data->take(2) as $video)
-                    <li class="flex-none {{ $data->count() == 1 ? 'w-full sm:w-[448px] md:w-[480px] lg:w-[558px]' : 'w-full sm:w-[448px] md:w-[480px] lg:w-full' }}" data-videoLink="{{ $video->link }}">
-                        <div class="relative w-full pt-[62%] cursor-pointer videoThumbnails" onclick="showVideoByThumbnail(this)">
-                            <img src="{{ $video->image }}" alt="{{ $video->alt }}" class="absolute top-0 left-0 w-full h-full object-cover z-[1] rounded-t-custom" />
+                    <li class="flex-none {{ $data->count() == 1 ? 'w-full sm:w-[448px] md:w-[480px] lg:w-[558px]' : ($data->count() == 2 ? 'w-full sm:w-[448px] md:w-[480px] lg:w-full' : 'w-full sm:w-[448px] md:w-[480px] lg:w-full lg:first:col-span-2 lg:first:row-span-2') }}" data-videoLink="{{ $video->link }}">
+                        <div class="aspect-video relative rounded-custom overflow-hidden bg-center bg-cover bg-no-repeat hover:scale-[1.025] duration-300 videoThumbnails" onclick="showVideoByThumbnail(this)" style="background-image: url({{ $video->image }})">
                             <x-icons.playIcon class="size-14 sm:w-20 sm:h-20 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-[3]" />
-                            <div class="absolute text-white -bottom-4 left-0 w-full z-[2] flex items-center px-4 lg:px-6 bg-stone-950 h-10 sm:h-10 lg:h-14 rounded-b-custom">
-                                <p class="w-full text-sm font-medium sm:text-base lg:text-lg line-clamp-1"> {{ $video->alt }} </p>
+                            <div class="bg-gradient-to-t w-full h-full flex flex-col gap-2 p-4 justify-end from-black/80 to-black/25">
+                                <p class="text-lg lg:text-2xl font-medium text-white line-clamp-1"> {{ $video->alt }} </p>
                             </div>
                         </div>
                     </li>
                 @endforeach
+                @if ($data->count() > 2)
+                    <li class="flex-none w-full sm:w-[448px] md:w-[480px] lg:w-full">
+                        <div class="aspect-video rounded-custom overflow-hidden bg-center bg-cover bg-no-repeat bg-[url(https://paye1.com/storage/media/land/files/t8dR260Ev5WfmN5CMI3dZ9bjXas1V1HO6rLRZEIP.png)] hover:scale-[1.025] duration-300">
+                            <div class="size-full flex_center bg-gradient-to-t from-black/80 to-black/25">
+                                <Link href="{{ route('landing.videos', ['page' => $landSlug]) }}" class="h-11 w-44 flex_center border border-white rounded-custom text-lg font-medium text-white bg-transparent hover:bg-black/20"> آرشیو ویدیو ها </Link>
+                            </div>
+                        </div>
+                    </li>
+                @endif
             </ul>
         @break
     @default

@@ -168,7 +168,7 @@
                             <div class="size-3 bg-normal"></div>
                             <h3 class="mb-2 text-xl font-normal text-center text-stone-700"> ویدیو ها </h3>
                         </div>
-                        <Link href="{{ route('landing.article.list', ['page' => $land->slug]) }}" class="text-base font-medium">
+                        <Link href="{{ route('landing.videos', ['page' => $land->slug]) }}" class="text-base font-medium">
                             <span class="hidden sm:block text-normal"> آرشیو ویدیو ها </span>
                             <span class="sm:hidden block text-stone-700"> ویدیو ها </span>
                         </Link>
@@ -179,7 +179,8 @@
             @endswitch
             <x-home_landing.videos
                 :data="$land->videos"
-                :type="$land->styles->video_card_type" />
+                :type="$land->styles->video_card_type"
+                :landSlug="$land->slug" />
         </section>
 
         {{-- video modal --}}
