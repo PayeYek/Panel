@@ -198,6 +198,10 @@
             @case(2)
                 <x-home_landing.contact.type-one />
                 @break
+            @case(6)
+                {{-- contact to expert --}}
+                <x-home_landing.contact.type-four />
+                @break
             @case(7)
                 {{-- contact to expert --}}
                 <x-home_landing.contact.type-two />

@@ -81,7 +81,6 @@
             </ul>
         @break
     @case(4)
-    {{-- @dd($data->count()) --}}
             <ul class="list-none lg:w-full mb-8 lg:mb-16 {{ $data->count() == 1 ? 'justify-center flex' : ($data->count() == 2 ? 'flex gap-8 sm:flex-row sm:items-center flex-col lg:grid lg:grid-cols-2 overflow-auto lg:overflow-visible pb-4' : 'flex gap-8 sm:flex-row sm:items-center flex-col lg:grid lg:grid-cols-3 lg:grid-row-2 overflow-auto lg:overflow-visible pb-4 lg:gap-x-4 lg:gap-y-2') }}">
                 @foreach ($data->take(2) as $video)
                     <li class="flex-none {{ $data->count() == 1 ? 'w-full sm:w-[448px] md:w-[480px] lg:w-[558px]' : ($data->count() == 2 ? 'w-full sm:w-[448px] md:w-[480px] lg:w-full' : 'w-full sm:w-[448px] md:w-[480px] lg:w-full lg:first:col-span-2 lg:first:row-span-2') }}" data-videoLink="{{ $video->link }}">
