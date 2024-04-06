@@ -16,6 +16,7 @@
         6 => 'grid grid-cols-1 gap-5',
         7 => 'grid grid-cols-1 sm:grid-cols-2 gap-4 default_container',
         8 => 'grid grid-cols-1 gap-4 md:grid-cols-3',
+        9 => 'grid grid-cols-1 gap-4 md:grid-cols-3',
         default => '',
     };
 

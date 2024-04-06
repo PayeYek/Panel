@@ -198,7 +198,26 @@
                 <Link :href="'/l/' + landSlug + '/a/'" class="h-11 w-44 flex_center border border-white rounded-custom text-lg font-medium text-white bg-transparent hover:bg-black/20"> آرشیو اخبار و مقالات </Link>
             </div>
         </li>
-    </template>    
+    </template>
+
+    <template v-if="type == 9">
+        <li v-for="(article, index) in ArticlesList" :key="index" :class="'flex flex-col w-60 lg:w-full flex-none overflow-hidden rounded-custom bg-white ' + borderStyle">
+            <ArticleLink :href="'/l/' + landSlug + '/a/' + article.slug" class="relative w-full pt-[62%]">
+                <img :src="article.image" :alt="article.title"
+                    class="absolute top-0 left-0 w-full h-full object-cover" />
+            </ArticleLink>
+            <!-- info -->
+            <div class="px-4 pt-3 pb-4">
+                <ArticleLink :href="'/l/' + landSlug + '/a/' + article.slug" class="mb-4 text-sm sm:text-base lg:text-lg font-medium text-stone-700 line-clamp-1"> {{ article.title }} </ArticleLink>
+                <p class="mb-6 text-xs sm:text-sm font-normal leading-5 sm:leading-6 md:h-12 text-justify text-stone-700 md:line-clamp-2">
+                    {{ article.description }}
+                </p>
+                <p class="text-xs sm:text-sm font-normal text-stone-700">
+                    {{ renderDate(article.created_at) }}
+                </p>
+            </div>
+        </li>
+    </template>
 </template>
 
 <script>
