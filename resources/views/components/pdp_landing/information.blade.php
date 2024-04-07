@@ -7,6 +7,7 @@
 @php
     $boxStyle = match($landId) {
         1, 2  => 'bg-[#F2F2F2]',
+        4  => 'relative before:absolute before:content-[""] before:bottom-0 before:inset-x-6 before:h-px before:bg-normal/30 last:before:bg-transparent',
         6  => 'bg-[#F2F2F2] border-r-4 border-r-normal',
         7  => 'border border-r-4 border-stone-400',
         default => ''
@@ -58,8 +59,8 @@
     {{-- guide btns --}}
     <x-splade-data default="{ toggleModal: false }">
         <div class="flex_center flex-col gap-2 md:flex-row lg:gap-4">
-            <buttton class="text-lg font-medium text-white cursor-pointer rounded-custom bg-stone-700 flex_center h-11 w-52" @click="data.toggleModal = true"> مشاوره و خرید </buttton>
-            <Link href="{{ $product->catalog }}" class="text-lg font-medium bg-white border cursor-pointer rounded-custom text-stone-700 border-stone-700 flex_center h-11 w-52"> دانلود کاتالوگ </Link>
+            <buttton class="text-lg font-medium text-white cursor-pointer rounded-custom bg-stone-700 hover:bg-stone-800 flex_center h-11 w-52" @click="data.toggleModal = true"> مشاوره و خرید </buttton>
+            <Link href="{{ $product->catalog }}" class="text-lg font-medium bg-white border cursor-pointer rounded-custom text-stone-700 border-stone-700 hover:text-stone-800 hover:border-stone-800 flex_center h-11 w-52"> دانلود کاتالوگ </Link>
         </div>
         {{-- modal layer --}}
         <div class="fixed inset-0 bg-black/60 z-[5]" v-show="data.toggleModal" @click="data.toggleModal = false"></div>
@@ -70,7 +71,7 @@
                 class="w-full h-20 text-xl font-black text-white lg:text-2xl bg-stone-700 drop-shadow-base flex_center relative">
                 <p> ارتباط با کارشناسان فروش </p>
                 {{-- close btn --}}
-                <svg @click="data.toggleModal = false" class="size-6 sm:hidden absolute top-4 left-4" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <svg @click="data.toggleModal = false" class="size-6 absolute top-4 left-4 cursor-pointer" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M12 12L6 6M12 12L18 18M12 12L18 6M12 12L6 18" stroke="#eaeaea" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
             </div>

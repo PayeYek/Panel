@@ -1,7 +1,7 @@
 <template>
     <section class="grid-cols-5 gap-5 hidden lg:grid">
         <!-- thumbnails -->
-        <div class="col-span-1 w-full pt-0.5">
+        <div v-if="oldGallery.length > 0" class="col-span-1 w-full pt-0.5">
             <div class="grid grid-cols-1 gap-4">
                 <div v-for="(thumb, index) in thumbGallery" :key="index"
                     class="relative w-full overflow-hidden cursor-pointer aspect-square rounded-custom"
@@ -13,7 +13,7 @@
             </div>
         </div>
 
-        <div class="col-span-4">
+        <div :class="oldGallery.length > 0 ? 'col-span-4' : 'col-span-5'">
             <div class="w-full pt-[100%] relative border border-[#DBDBDB] rounded-custom">
                 <div class="absolute inset-0 cursor-pointer">
                     <img :src="mainImage" :alt="name" class="object-contain w-full h-full rounded-custom" />
@@ -74,7 +74,7 @@ export default {
         const desktopSliderSwiper = ref(null)
         const showSliderWithSliderTo = ref(null)
         thumbGalleryLength.value = [...oldGallery.value].length
-
+// console.log(oldGallery.value.length);
         onMounted(() => {
             desktopSliderSwiper.value = document.querySelector('.desktop_pdp_slider').swiper
         })

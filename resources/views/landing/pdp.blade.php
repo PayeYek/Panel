@@ -2,6 +2,7 @@
     $tabStyle = match($land->styles->land_id) {
         1 => 'pr-4 before:top-1/2 before:right-0 before:-translate-y-1/2 before:bg-normal before:h-12 before:w-1 before:rounded-l-custom before:absolute before:content-[""]',
         2 => 'before:size-3 before:bg-normal before:rounded-full before:absolute befopre:content-[""] before:top-2 before:right-0 pr-6 lg:pr-8',
+        4 => 'before:size-3 before:border-y-2 before:border-normal before:border-l-2 before:rounded-full before:absolute befopre:content-[""] before:top-2 before:right-0 pr-6 lg:pr-8',
         6 => 'before:size-3 before:border-2 before:border-normal before:rounded-full before:absolute befopre:content-[""] before:top-2 before:right-0 pr-6 lg:pr-8',
         7 => 'before:size-3 before:bg-normal before:absolute befopre:content-[""] before:top-2 before:right-0 pr-6 lg:pr-8',
         default => ''
@@ -50,6 +51,7 @@
                 {{-- desktop slider --}}
                 <landPdpDesktopSlider name="{{ $product->name }}" mainImage="{{ $product->image }}"
                     slides="{{ $product }}" />
+                    {{-- @dd() --}}
 
                 {{-- mobile slider --}}
                 <landPdpMobileSlider slides="{{ $product }}" />
