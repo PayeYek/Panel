@@ -20,6 +20,7 @@ class LandStyle extends Model
         'video_card_type',
         'category_card_type',
         'category_striped',
+        'category_filter_type',
         'a_card_type',
         'a_view_type',
         'a_table_type',

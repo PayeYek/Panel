@@ -99,10 +99,6 @@
                 <x-layout.panel.form.division :col="2">
                     <x-splade-select name="product_list_type" label="مدل چینش صفحه محصول">
                         <option value="1">{{ __('View type') }} 1</option>
-                        <option value="2">{{ __('View type') }} 2</option>
-                        <option value="3">{{ __('View type') }} 3</option>
-                        <option value="4">{{ __('View type') }} 4</option>
-                        <option value="5">{{ __('View type') }} 5</option>
                     </x-splade-select>
                 </x-layout.panel.form.division>
             </x-layout.panel.form.card>
