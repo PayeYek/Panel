@@ -55,9 +55,9 @@
         <CategoryFilter
             classType="{{ $classType }}"
             {{-- filterType="{{ $land->styles->category_filter_type }}" --}}
-            filterType="1"
-            {{-- productType="{{ $land->styles->category_card_type }}" --}}
-            productType="14"
+            filterType="{{ $land->styles->category_filter_type }}"
+            productType="{{ $land->styles->category_card_type }}"
+            {{-- productType="14" --}}
             list="{{ $data }}"
             landSlug="{{ $land->slug }}"
             borderStyle="{{ $borderStyle }}"

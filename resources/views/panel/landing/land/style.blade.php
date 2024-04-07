@@ -8,7 +8,7 @@
 
             <x-layout.panel.form.alerts/>
 
-            <x-layout.panel.form.card title="الگوی کلی" desc="" state="true">
+            <x-layout.panel.form.card title="الگوی کلی" desc="">
                 <x-layout.panel.form.division :col="2">
                     <x-splade-select name="radius" label="Radius">
                         <option value="0">0 PX</option>
@@ -32,6 +32,11 @@
                         <option value="1">حاشیه دار</option>
                         <option value="2">سایه دار</option>
                     </x-splade-select>
+
+                    <x-splade-select name="category_filter_type" label="نوع فیلتر">
+                        <option value="0">تب</option>
+                        <option value="1"> انتخابی </option>
+                    </x-splade-select>
                 </x-layout.panel.form.division>
             </x-layout.panel.form.card>
 
@@ -52,6 +57,7 @@
                         <option value="12">{{ __('View type') }} 12</option>
                         <option value="13">{{ __('View type') }} 13</option>
                         <option value="14">{{ __('View type') }} 14</option>
+                        <option value="15">{{ __('View type') }} 15</option>
                     </x-splade-select>
 
                     <x-splade-select name="product_striped" label="نمای راه راه محصولات">
@@ -68,6 +74,7 @@
                         <option value="6">{{ __('View type') }} 6</option>
                         <option value="7">{{ __('View type') }} 7</option>
                         <option value="8">{{ __('View type') }} 8</option>
+                        <option value="9">{{ __('View type') }} 9</option>
                     </x-splade-select>
 
                     <x-splade-select name="article_striped" label="نمای راه راه مقالات">
@@ -80,6 +87,7 @@
                         <option value="2">{{ __('View type') }} 2</option>
                         <option value="3">{{ __('View type') }} 3</option>
                         <option value="4">{{ __('View type') }} 4</option>
+                        <option value="5">{{ __('View type') }} 5</option>
                     </x-splade-select>
 
                     <x-splade-select name="slider_anim" label="انیمیشن اسلایدر">
@@ -120,16 +128,12 @@
                         <option value="11">{{  __('View type') }} 11</option>
                         <option value="12">{{  __('View type') }} 12</option>
                         <option value="13">{{  __('View type') }} 13</option>
+                        <option value="14">{{  __('View type') }} 14</option>
                     </x-splade-select>
 
                     <x-splade-select name="category_striped" label="نمای راه راه دسته بندی">
                         <option value="0">غیرفعال</option>
                         <option value="1">فعال</option>
-                    </x-splade-select>
-
-                    <x-splade-select name="category_filter_type" label="نوع فیلتر">
-                        <option value="0">تب</option>
-                        <option value="1"> انتخابی </option>
                     </x-splade-select>
                 </x-layout.panel.form.division>
             </x-layout.panel.form.card>

@@ -1,7 +1,7 @@
 @props([
     'title' => null,
     'desc' => null,
-    'state' => 'false',
+    'state' => 'true',
 ])
 
 <section
