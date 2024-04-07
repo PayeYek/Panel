@@ -70,7 +70,7 @@
     @if ($land->styles->a_view_type.'' === '2')
         <main class="relative pt-4 default_container mb-8 sm:mb-24 lg:mb-28">
             {{-- breadcrumbs --}}
-            {{-- <x-common_landing.breadcrumbs :data="$breadcrumbs" /> --}}
+            <x-common_landing.breadcrumbs :data="$breadcrumbs" />
             <section class="flex flex-col gap-8 lg:flex-row lg:items-start">
                 {{-- description --}}
                 <section class="order-1 w-full lg:flex-1 lg:order-2">
@@ -80,7 +80,7 @@
                     </div>
 
                     <div class="w-full relative pt-[56%] mb-2 md:mb-4 lg:mb-8 rounded-custom overflow-hidden">
-                        <img src="https://paye1.com/storage/media/land/files/d2x7MNw4kS6JWjSomLV9hL2aN9sWkjbm7xgGAxqZ.jpg"
+                        <img src="{{ $article->image }}"
                             alt="{{ $article->title }}" class="absolute top-0 left-0 w-full h-full" />
                         <div
                             class="absolute z-[1] bottom-0 left-0 w-full h-1/3 bg-gradient-to-t from-black to-transparent">
@@ -96,12 +96,12 @@
                 {{-- left column --}}
                 <section class="flex flex-col order-2 gap-6 lg:w-72 lg:flex-none lg:order-1">
                     {{-- articles --}}
-                    <section class="relative pb-10 sm:pb-0 lg:pb-10">
+                    <section>
                         {{-- header --}}
                         <div class="flex items-center mb-4 sm:justify-between lg:px-4">
-                            <h3 class="text-lg font-medium text-gray-900 md:text-xl lg:text-lg"> آخرین اخبار و اطلاعیه ها
-                            </h3>
-                            <a href="#"
+                            <a href="{{ route('landing.article.list', ['page' => $land->slug]) }}" class="text-lg font-medium text-gray-900 md:text-xl lg:text-lg"> آخرین اخبار و اطلاعیه ها
+                            </a>
+                            {{-- <a href="{{ route('landing.article.list', ['page' => $land->slug]) }}"
                                 class="absolute bottom-0 flex items-center gap-2 text-base font-normal sm:static lg:absolute right-4 lg:right-auto lg:left-2 text-normal">
                                 <span> مشاهده همه </span>
                                 <svg class="stroke-current" width="24" height="24" viewBox="0 0 24 24"
@@ -109,12 +109,11 @@
                                     <path d="M15 17L10 12L15 7" stroke="current" stroke-linecap="round"
                                         stroke-linejoin="round" />
                                 </svg>
-                            </a>
+                            </a> --}}
                         </div>
                         <ul class="grid grid-cols-1 gap-4 list-none md:grid-cols-3 lg:grid-cols-1">
                             @foreach ($land->articles->take(3) as $article)
-                                <li
-                                    class="flex flex-col bg-white w-full rounded-custom overflow-hidden {{ $borderType }}">
+                                <li class="flex flex-col bg-white w-full rounded-custom overflow-hidden {{ $borderType }}">
                                     <div class="relative w-full pt-[62%] mb-2">
                                         <img src="{{ $article->image }}" alt="{{ $article->title }}"
                                             class="absolute top-0 left-0 w-full h-full" />
@@ -173,7 +172,7 @@
     @if ($land->styles->a_view_type.'' === '3')
         <main class="relative pt-4 default_container mb-8 sm:mb-24 lg:mb-28">
             {{-- breadcrumbs --}}
-            {{-- <x-common_landing.breadcrumbs :data="$breadcrumbs" /> --}}
+            <x-common_landing.breadcrumbs :data="$breadcrumbs" />
 
             <section class="flex flex-col gap-8 lg:flex-row lg:items-start">
                 {{-- description --}}
@@ -277,7 +276,7 @@
     @if ($land->styles->a_view_type.'' === '4')
         <main class="relative pt-4 default_container mb-8 sm:mb-24 lg:mb-28">
             {{-- breadcrumbs --}}
-            {{-- <x-common_landing.breadcrumbs :data="$breadcrumbs" /> --}}
+            <x-common_landing.breadcrumbs :data="$breadcrumbs" />
 
             <section class="flex flex-col gap-8 lg:flex-row lg:items-start">
                 {{-- description --}}
@@ -361,7 +360,7 @@
     @if ($land->styles->a_view_type.'' === '5')
         <main class="relative pt-4 default_container mb-8 sm:mb-24 lg:mb-28">
             {{-- breadcrumbs --}}
-            {{-- <x-common_landing.breadcrumbs :data="$breadcrumbs" /> --}}
+            <x-common_landing.breadcrumbs :data="$breadcrumbs" />
 
             <section class="flex flex-col gap-8 lg:flex-row lg:items-start">
                 {{-- description --}}
