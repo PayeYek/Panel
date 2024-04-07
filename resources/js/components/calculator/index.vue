@@ -1,7 +1,7 @@
 <template>
     <section class="grid grid-cols-1 lg:grid-cols-10 gap-5 default_container">
         <section class="flex flex-col lg:col-span-4">
-            <p class="text-lg font-medium text-stone-700 mb-4"> محاسبه اقساط </p>
+            <p class="text-lg font-medium text-stone-700 mb-4"> محاسبه گر اقساط </p>
             <!-- <select v-model="selectedProduct" class="mb-4">
                 <option value="" selected disabled> محصول مورد نظر را انتخاب کنید </option>
                 <option v-for="(product, index) in list" :key="index" :value="product.id"> {{ product.name }} </option>

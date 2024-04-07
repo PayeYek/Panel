@@ -8,7 +8,7 @@
 
             <x-layout.panel.form.alerts/>
 
-            <x-layout.panel.form.card title="الگوی کلی" desc="">
+            <x-layout.panel.form.card2 title="الگوی کلی" desc="">
                 <x-layout.panel.form.division :col="2">
                     <x-splade-select name="radius" label="Radius">
                         <option value="0">0 PX</option>
@@ -38,9 +38,9 @@
                         <option value="1"> انتخابی </option>
                     </x-splade-select>
                 </x-layout.panel.form.division>
-            </x-layout.panel.form.card>
+            </x-layout.panel.form.card2>
 
-            <x-layout.panel.form.card title="خانه" desc="الگوی صفحه اصلی">
+            <x-layout.panel.form.card2 title="خانه" desc="الگوی صفحه اصلی">
                 <x-layout.panel.form.division :col="2">
                     <x-splade-select name="product_card_type" label="Product card type">
                         <option value="1">{{ __('View type') }} 1</option>
@@ -102,17 +102,17 @@
                         <option value="5">{{ __('View type') }} 5</option>
                     </x-splade-select>
                 </x-layout.panel.form.division>
-            </x-layout.panel.form.card>
+            </x-layout.panel.form.card2>
 
-            <x-layout.panel.form.card title="صفحه محصول" desc="الگوی صفحه محصول">
+            <x-layout.panel.form.card2 title="صفحه محصول" desc="الگوی صفحه محصول">
                 <x-layout.panel.form.division :col="2">
                     <x-splade-select name="product_list_type" label="مدل چینش صفحه محصول">
                         <option value="1">{{ __('View type') }} 1</option>
                     </x-splade-select>
                 </x-layout.panel.form.division>
-            </x-layout.panel.form.card>
+            </x-layout.panel.form.card2>
 
-            <x-layout.panel.form.card title="صفحه محصولات" desc="الگوی صفحه محصولات">
+            <x-layout.panel.form.card2 title="صفحه محصولات" desc="الگوی صفحه محصولات">
                 <x-layout.panel.form.division :col="2">
                     <x-splade-select name="category_card_type" label="قالب نمایشی موارد در صفحه محصولات">
                         <option value="1">{{  __('View type') }} 1</option>
@@ -136,9 +136,9 @@
                         <option value="1">فعال</option>
                     </x-splade-select>
                 </x-layout.panel.form.division>
-            </x-layout.panel.form.card>
+            </x-layout.panel.form.card2>
 
-            <x-layout.panel.form.card title="صفحه مقالات" desc="الگوی صفحه مقالات">
+            <x-layout.panel.form.card2 title="صفحه مقالات" desc="الگوی صفحه مقالات">
                 <x-layout.panel.form.division :col="2">
                     <x-splade-select name="a_card_type" label="قالب نمایشی مقالات">
                         <option value="1">{{  __('View type') }} 1</option>
@@ -154,9 +154,9 @@
                         <option value="1">فعال</option>
                     </x-splade-select>
                 </x-layout.panel.form.division>
-            </x-layout.panel.form.card>
+            </x-layout.panel.form.card2>
 
-            <x-layout.panel.form.card title="صفحه مقاله" desc="الگوی صفحه مقاله">
+            <x-layout.panel.form.card2 title="صفحه مقاله" desc="الگوی صفحه مقاله">
                 <x-layout.panel.form.division :col="2">
                     <x-splade-select name="a_view_type" label="قالب نمایشی مقاله">
                         <option value="1">{{  __('View type') }} 1</option>
@@ -172,11 +172,11 @@
                         <option value="1"> راه راه </option>
                     </x-splade-select>
                 </x-layout.panel.form.division>
-            </x-layout.panel.form.card>
+            </x-layout.panel.form.card2>
 
             <x-splade-submit label="Update"/>
 
-            {{-- </x-layout.panel.form.card> --}}
+            {{-- </x-layout.panel.form.card2> --}}
         </x-splade-form>
     </x-splade-modal>
 </x-layout.admin>
