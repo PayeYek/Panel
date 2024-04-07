@@ -8,7 +8,7 @@
 
             <x-layout.panel.form.alerts/>
 
-            <x-layout.panel.form.card title="الگوی کلی" desc="">
+            <x-layout.panel.form.card title="الگوی کلی" desc="" state="true">
                 <x-layout.panel.form.division :col="2">
                     <x-splade-select name="radius" label="Radius">
                         <option value="0">0 PX</option>
@@ -28,8 +28,9 @@
                     </x-splade-select>
 
                     <x-splade-select name="border_type" label="نمای اشیاء">
-                        <option value="0">حاشیه دار</option>
-                        <option value="1">سایه دار</option>
+                        <option value="0">ساده</option>
+                        <option value="1">حاشیه دار</option>
+                        <option value="2">سایه دار</option>
                     </x-splade-select>
                 </x-layout.panel.form.division>
             </x-layout.panel.form.card>
