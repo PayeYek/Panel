@@ -116,7 +116,7 @@
                     @endforeach
                     @if ($data->count() > 2)
                         <li class="flex-none w-full sm:w-[448px] md:w-[480px] lg:w-full">
-                            <div class="aspect-video rounded-custom overflow-hidden bg-center bg-cover bg-no-repeat bg-[url(http://127.0.0.1:8000/storage/media/land/files/T5mqlbgjT1DxoTz8RsEfcoDmIxyMEDyWsmr3wEbH.png)] hover:scale-[1.025] duration-300">
+                            <div class="aspect-video rounded-custom overflow-hidden bg-center bg-cover bg-no-repeat hover:scale-[1.025] duration-300" style="background-image: url(https://paye1.com/storage/media/land/files/TxhDqKfxz3x5HukVh7GWz5Mv5lTpmt3lfo4xZecW.png)">
                                 <div class="size-full flex_center bg-gradient-to-t from-black/80 to-black/60">
                                     <Link href="{{ route('landing.videos', ['page' => $landSlug]) }}" class="h-11 w-44 flex_center border-x-2 border-x-[#DBA14D] rounded-custom text-lg font-medium text-[#FFD598] bg-transparent hover:border-x-white hover:text-white"> آرشیو ویدیو ها </Link>
                                 </div>

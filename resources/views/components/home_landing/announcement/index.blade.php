@@ -55,10 +55,16 @@
             </div>
             @break
         @case(4)
-            <h3 class="mb-6 text-lg lg:text-2xl font-medium text-center text-stone-700"> آخرین اخبار و اطلاعیه ها </h3>
-            {{-- <hr class="w-60 sm:w-96 border-normal mb-6 lg:mb-0 mx-auto" /> --}}
-            {{-- show all --}}
-            <Link href="{{ route('landing.article.list', ['page' => $landSlug]) }}" class="text-base font-normal text-link mr-auto mb-3 hidden lg:inline-block float-left px-2 cursor-pointer"> نمایش همه </Link>
+            <div class="relative mb-4">
+                <h3 class="text-lg lg:text-2xl font-medium text-center text-stone-700"> آخرین اخبار و اطلاعیه ها </h3>
+                {{-- show all --}}
+                <Link href="{{ route('landing.article.list', ['page' => $landSlug]) }}" class="absolute left-0 top-1 text-base font-medium text-stone-700 hidden lg:inline-flex px-2 cursor-pointer flex-row gap-2">
+                    <span> آرشیو اخبار و مقالات </span>
+                    <svg width="20" height="20" class="stroke-current" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M8.70833 15.8337L3.26562 10.0003M3.26562 10.0003L8.70833 4.16699M3.26562 10.0003L16.3281 10.0003" stroke="current" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </Link>
+            </div>
             @break
         @case(6)
             <h3 class="mb-6 text-lg lg:text-2xl font-medium text-center text-stone-700"> اخبار و مقالات </h3>

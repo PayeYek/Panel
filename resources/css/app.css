@@ -73,11 +73,14 @@
         --theme-radius: 16px;
     }
 
+    .custom_article_styles h1{
+        @apply mb-4 text-3xl font-medium;
+    }
     .custom_article_styles h2{
-        @apply mb-4 text-3xl;
+        @apply mb-4 text-[26px] font-medium;
     }
     .custom_article_styles h3{
-        @apply text-2xl mb-2.5;
+        @apply text-2xl mb-2.5 font-medium;
     }
     .custom_article_styles p{
         @apply text-sm font-normal leading-7 lg:text-xl lg:leading-8;
@@ -86,7 +89,7 @@
         @apply text-base leading-7 font-medium text-[#1EA0FF] underline underline-offset-[6px];
     }
     .custom_article_styles{
-        @apply *:text-[#58595b];
+        @apply *:text-stone-700;
     }
     .custom_article_styles img{
         @apply rounded-custom aspect-video;

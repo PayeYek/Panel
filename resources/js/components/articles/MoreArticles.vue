@@ -1,5 +1,5 @@
 <template>
-<swiper class="w-full swiper articleSliderTypeFive"
+<swiper :class="'w-full swiper articleSliderTypeFive ' + containerClass"
     :modules="modules"
     :slides-per-view="3"
     :spece-between="20"
@@ -43,6 +43,10 @@ export default {
         slides: Object,
         borderType: String,
         landSlug: String,
+        containerClass: {
+            type: String,
+            default: '',
+        },
         striped: [String, Number],
     },
     components: {

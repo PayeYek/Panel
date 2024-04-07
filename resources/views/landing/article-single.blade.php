@@ -61,7 +61,7 @@
                     <Link href="{{ route('landing.article.list', ['page' => $land->slug]) }}"
                         class="hidden float-left px-2 mb-3 mr-auto text-base font-normal cursor-pointer text-normal lg:inline-block">
                     نمایش همه </Link>
-                    <MoreArticles :slides="{{ $land->articles }}" borderType="{{ $borderType }}" striped="{{$land->styles->article_striped}}" landSlug="{{ $land->slug }}" />
+                    <MoreArticles :slides="{{ $land->articles }}" borderType="{{ $borderType }}" striped="{{$land->styles->article_striped}}" landSlug="{{ $land->slug }}" containerClass="{{ $land->styles->border_type == 2 ? '!py-6' : '' }}" />
             </section>
         </main>
     @endif
