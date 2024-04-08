@@ -105,9 +105,9 @@ export default {
     },
     setup() {
         const selectedProduct = ref("");
-        const loanSteps = ref(10000000);
+        const loanSteps = ref(20000000);
         const loanMin = ref(200000000);
-        const loanMax = ref(4000000000);
+        const loanMax = ref(3000000000);
         const loanInitialValue = ref(400000000);
         const manufacture = ref("internal");
         const initialMonth = ref(24);

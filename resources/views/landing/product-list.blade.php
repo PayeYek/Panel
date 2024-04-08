@@ -27,8 +27,8 @@
             break;
     }
 
-    // $classType = match($land->styles->category_card_type."") {
-    $classType = match("14") {
+    $classType = match($land->styles->category_card_type."") {
+    // $classType = match("14") {
         '1' => 'lg:grid-cols-5 gap-4 sm:grid-cols-2',
         '2' => 'lg:grid-cols-4 gap-4 sm:grid-cols-2',
         '3' => 'sm:grid-cols-2 lg:grid-cols-3 gap-4',
