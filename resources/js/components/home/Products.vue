@@ -1,18 +1,19 @@
 <template>
     <template v-if="type == 1">
-        <div v-for="(product, index) in productList.slice(0, 4)" :key="index"
-            :class="'rounded-custom pt-2 px-8 w-full pb-5 items-center flex flex-col ' + borderStyle + (evenOdd == 1 ? ' evenOdd_cards' : ' bg-white')">
-            <div class="mb-2 h-36">
+        <div v-for="(product, index) in productList.slice(0, 3)" :key="index"
+            :class="'w-60 py-5 first:pt-0 last:pb-0 items-center flex flex-col border-b border-b-stone-400 last:border-b-0 sm:border-b-0 sm:first:pt-5 sm:last:pb-5 sm:px-10 sm:flex-none sm:w-80 relative before:absolute before:content-[' + '] before:inset-y-10 before:left-0 before:w-px before:bg-[#ccc] last:before:bg-transparent before:hidden sm:before:block ' + borderStyle + (evenOdd == 1 ? ' evenOdd_cards' : ' bg-white')">
+            <div class="mb-2 h-48">
                 <img :src="product.image" :alt="product.name" class="object-contain h-full" />
             </div>
-            <h3 class="mb-5 font-medium lg:mb-4 text-lg sm:line-clamp-1 text-stone-700"> {{ product.name }} </h3>
-            <div class="flex flex-col gap-4 w-56 lg:w-52">
-                <LandBtn text="مشخصات" :to="'/l/' + landSlug + '/p/' + product.slug"
-                    classNames="sameCategoryBtnStyle categoryBtnEmpty rounded-custom" />
+            <h3 class="mb-5 font-medium text-base sm:text-lg lg:text-xl sm:line-clamp-1 text-stone-700"> {{ product.name }} </h3>
+            <p class="text-center text-sm font-normal leading-7 mb-3 h-14 line-clamp-2"> {{ product.description }} </p>
+            <div class="grid grid-cols-5 gap-2 w-56 lg:w-52">
+                <LandBtn text="خرید اقساطی" :to="'/l/' + landSlug + '/p/' + product.slug"
+                    classNames="sameCategoryBtnStyle text-white bg-normal hover:bg-focus col-span-5 rounded-b-custom rounded-tl-custom rounded-tr-2xl" />
+                <LandBtn text="مشخصات فنی" :to="'/l/' + landSlug + '/p/' + product.slug"
+                    classNames="sameCategoryBtnStyle border text-normal border-normal hover:border-focus col-span-3 rounded-custom" />
                 <LandBtn text="کاتالوگ" :to="'/l/' + landSlug + '/p/' + product.slug"
-                    classNames="sameCategoryBtnStyle categoryBtnEmpty rounded-custom" />
-                <LandBtn text="فروش اقساطی" :to="'/l/' + landSlug + '/p/' + product.slug"
-                    classNames="sameCategoryBtnStyle castegoryBtnfilled rounded-custom" />
+                    classNames="sameCategoryBtnStyle border text-normal border-normal hover:border-focus col-span-2 rounded-custom" />
             </div>
         </div>
     </template>

@@ -76,7 +76,8 @@
     }
 
     $classType = match($type."") {
-        '1', '2', '14' => 'grid grid-cols-1 lg:grid-cols-4 gap-4 sm:grid-cols-2',
+        '1' => 'flex flex-col gap-4 items-center sm:flex-row sm:overflow-auto lg:justify-center lg:overflow-hidden',
+        '2', '14' => 'grid grid-cols-1 lg:grid-cols-4 gap-4 sm:grid-cols-2',
         '3', '4' => 'grid grid-cols-1 lg:grid-cols-3 gap-4',
         '5' => 'grid grid-cols-1 rounded-custom overflow-hidden ' . $borderStyle,
         '6' => 'grid grid-cols-1 rounded-custom overflow-hidden sm:border-0 sm:gap-4 ' . $borderStyle,
