@@ -263,7 +263,7 @@ class LandingController extends Controller
         /* BREADCRUMBS */
         $breadcrumbs = [];
         $breadcrumbs[] = ['title' => __('Home'), 'url' => route('landing.page.show', ['page' => $land->slug])];
-        $breadcrumbs[] = ['title' => __('Progress'), 'url' => null ];
+        $breadcrumbs[] = ['title' => __('Calculator'), 'url' => null ];
 
         return view('landing.calculator', compact('land', 'breadcrumbs'));
     }

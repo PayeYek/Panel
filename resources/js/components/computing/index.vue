@@ -96,14 +96,14 @@
                     <p class="text-stone-700"> تومان </p>
                 </div>
                 <ul class="list-disc list-inside text-stone-700 text-sm font-normal mb-4">
-                    <li class="mb-1.5 last:mb-0"> قیمت ها به تومان می باشد. </li>
-                    <li class="mb-1.5 last:mb-0"> هزینه عملیات بدون ارزش افزوده محاسبه گردیده است. </li>
-                    <li class="mb-1.5 last:mb-0"> سود اقساط شما معادل نرخ مصوب بانک مرکزی یعنی 23 درصد است. </li>
+                    <li class="mb-2 last:mb-0"> مبلغ تسهیلات 40 تا 60 درصد ارزش وسیله نقلیه می باشد. </li>
+                    <li class="mb-2 last:mb-0"> هزینه عملیات بدون ارزش افزوده محاسبه گردیده است. </li>
+                    <li class="mb-2 last:mb-0"> سود اقساط شما معادل نرخ مصوب بانک مرکزی یعنی 23 درصد است. </li>
                 </ul>
                 <form action="#" class="border-2 border-white rounded-custom py-4 sm:py-6 sm:px-12 px-6 flex flex-col items-center">
                     <p class="text-center text-sm font-medium text-normal mb-2 lg:mb-4"> جهت مشاوره و خرید شماره خود را وارد کنید: </p>
-                    <input type="tel" class="w-full max-w-64 mx-auto h-12 rounded-custom bg-white border border-stone-200 focus:border-stone-200 mb-4 tracking-widest focus:ring-0 outline-none placeholder:text-stone-200 px-3" placeholder="0912" />
-                    <button class="w-full max-w-64 mx-auto h-12 rounded-custom border font-medium text-base border-normal text-normal hover:bg-normal hover:text-white" type="submit"> ثبت </button>
+                    <input type="tel" class="w-full max-w-64 mx-auto h-12 rounded-custom bg-white border border-stone-400 focus:border-stone-400 mb-4 tracking-widest focus:ring-0 outline-none placeholder:text-[#8A8B8C] px-3" placeholder="0912" />
+                    <button class="w-full max-w-64 mx-auto h-12 rounded-custom border font-medium text-base border-normal text-normal hover:bg-normal hover:text-white duration-200" type="submit"> ثبت </button>
                 </form>
             </section>
         </section>

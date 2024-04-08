@@ -527,5 +527,6 @@
     "None": "هیچکدام",
     "Unique ID of the commodity in the store": "شناسه انحصاری کالا در فروشگاه",
     "Commodity type and pricing": "نوع کالا و قیمت",
-    "Please specify the type of product and its price.": "لطفا نوع کالا و قیمت آن را تعیین کنید."
+    "Please specify the type of product and its price.": "لطفا نوع کالا و قیمت آن را تعیین کنید.",
+    "Calculator": "محاسبه اقساط"
 }
