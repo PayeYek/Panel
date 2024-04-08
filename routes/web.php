@@ -99,7 +99,7 @@ Route::middleware(['splade'])->group(function () {
                 Route::get('{page}', 'page')->name('show');
                 Route::get('{page}/about', 'about')->name('about');
                 Route::get('{page}/catalogs', 'catalogs')->name('catalogs');
-                Route::get('{page}/progress', 'progress')->name('index');
+                Route::get('{page}/calculator', 'calculator')->name('calculator');
 
             });
 

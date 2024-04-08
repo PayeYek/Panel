@@ -2,6 +2,7 @@
     'productName' => '',
     'product' => '',
     'landId' => '',
+    'landSlug' => '',
 ])
 
 @php
@@ -13,7 +14,7 @@
         default => ''
     };
 @endphp
-
+{{-- @dd($landSlug) --}}
 <section class="flex flex-col-reverse gap-4 lg:pt-6 lg:flex-col lg:col-span-4">
     <h1 class="hidden lg:block text-2xl lg:text-[32px] font-medium text-normal mb-8 lg:mb-11 line-clamp-1"> {{ $productName }} </h1>
     {{-- boxes --}}
@@ -57,20 +58,21 @@
     </div>
 
     {{-- guide btns --}}
-    <x-splade-data default="{ toggleModal: false }">
+    {{-- <x-splade-data default="{ toggleModal: false }"> --}}
         <div class="flex_center flex-col gap-2 md:flex-row lg:gap-4">
-            <buttton class="text-lg font-medium text-white cursor-pointer rounded-custom bg-stone-700 hover:bg-stone-800 flex_center h-11 w-52" @click="data.toggleModal = true"> مشاوره و خرید </buttton>
+            {{-- <buttton class="text-lg font-medium text-white cursor-pointer rounded-custom bg-stone-700 hover:bg-stone-800 flex_center h-11 w-52" @click="data.toggleModal = true"> مشاوره و خرید </buttton> --}}
+            <Link href="{{ route('landing.page.calculator', ['page' => $landSlug]) }}" class="text-lg font-medium text-white cursor-pointer rounded-custom bg-stone-700 hover:bg-stone-800 flex_center h-11 w-52" @click="data.toggleModal = true"> مشاوره و خرید </Link>
             <Link href="{{ $product->catalog }}" class="text-lg font-medium bg-white border cursor-pointer rounded-custom text-stone-700 border-stone-700 hover:text-stone-800 hover:border-stone-800 flex_center h-11 w-52"> دانلود کاتالوگ </Link>
         </div>
-        {{-- modal layer --}}
+        {{-- modal layer
         <div class="fixed inset-0 bg-black/60 z-[5]" v-show="data.toggleModal" @click="data.toggleModal = false"></div>
-        {{-- modal content --}}
+        modal content
         <section class="flex flex-col bg-white sm:rounded-custom fixed top-0 right-0 w-full h-full sm:h-auto sm:max-w-[36rem] md:max-w-[40rem] lg:max-w-[44rem] sm:top-1/2 sm:right-1/2 sm:translate-x-1/2 sm:-translate-y-1/2 z-[6] overflow-hidden" v-show="data.toggleModal">
-            {{-- title --}}
+            title
             <div
                 class="w-full h-20 text-xl font-black text-white lg:text-2xl bg-stone-700 drop-shadow-base flex_center relative">
                 <p> ارتباط با کارشناسان فروش </p>
-                {{-- close btn --}}
+                close btn
                 <svg @click="data.toggleModal = false" class="size-6 absolute top-4 left-4 cursor-pointer" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M12 12L6 6M12 12L18 18M12 12L18 6M12 12L6 18" stroke="#eaeaea" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
@@ -85,6 +87,6 @@
                     class="w-full text-base font-medium text-white rounded-custom flex_center max-w-64 h-11 bg-normal hover:bg-focus focus:bg-focus focus:shadow-focus focus:shadow-shadowNormal">
                     ثبت درخواست </button>
             </form>
-        </section>
-    </x-splade-data>
+        </section> --}}
+    {{-- </x-splade-data> --}}
 </section>

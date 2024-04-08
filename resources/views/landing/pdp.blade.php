@@ -33,7 +33,7 @@
         default => ''
     };
 @endphp
-
+{{-- @dd() --}}
 <x-layout.default.main :land="$land">
 {{-- @dd($product) --}}
     {{-- type 1 --}}
@@ -58,7 +58,7 @@
             </section>
 
             {{-- info --}}
-            <x-pdp_landing.information :landId="$land->styles->land_id" productName="{{ $product->name }}" :product="$product" />
+            <x-pdp_landing.information :landId="$land->styles->land_id" productName="{{ $product->name }}" :product="$product" :landSlug="$land->slug" />
         </section>
 
         {{-- Further Details --}}

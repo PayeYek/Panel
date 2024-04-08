@@ -5,6 +5,23 @@
             <!-- vehicle price amount -->
             <section class="mb-8 lg:mb-14">
                 <p class="text-sm pr-4 font-medium text-stone-700 mb-4 relative before:absolute before:content-[''] before:rounded-full before:bg-normal before:top-1.5 before:right-0 before:size-2"> مبلغ تسهیلات </p>
+                <div class="w-full h-12 mb-6 rounded-custom bg-stone-200 font-medium text-sm flex_between px-6">
+                    <!-- decrease -->
+                    <button type="button" :class="'p-1 cursor-pointer stroke-stone-700 ' + (loanInitialValue > loanMin ? '' : 'opacity-40 pointer-events-none')" @click="loanOrder('minus')">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14" />
+                        </svg>
+                        <span class="sr-only"> decrease </span>
+                    </button>
+                    <p> {{ numberWithCommas(loanInitialValue) }} </p>
+                    <!-- increase -->
+                    <button type="button" :class="'p-1 cursor-pointer stroke-stone-700 ' + (loanInitialValue < loanMax ? '' : 'opacity-40 pointer-events-none')" @click="loanOrder('plus')">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                        </svg>
+                        <span class="sr-only"> increase </span>
+                    </button>
+                </div>
                 <div class="h-2 w-full bg-stone-200 rounded-full mb-4 relative">
                     <input
                         :style="{ background: priceSliderBackground }"
@@ -17,7 +34,7 @@
                         @change="calculateDeposite" />
                 </div>
                 <div class="text-sm font-normal flex items-center justify-between mb-4 text-stone-700">
-                    <p> {{ numberWithCommas(loanInitialValue) }} <span class="text-xs"> تومان </span> </p>
+                    <p> {{ loanInitialValue < 200000000 ? 'کمتر از تسهیلات' : `${numberWithCommas(loanInitialValue)} تومان` }} </p>
                     <p> {{ numberWithCommas(loanMax) }} <span class="text-xs"> تومان </span> </p>
                 </div>
             </section>
@@ -63,10 +80,6 @@
             <section class="bg-[#EEF5FF] text-sm font-normal rounded-custom px-4 py-6 lg:py-14 lg:px-10">
                 <p class="text-lg font-medium text-stone-700 mb-4 lg:mb-6"> نتیجه محاسبه </p>
                 <div class="flex_between border bg-white border-stone-400 rounded-custom w-full h-12 pr-2 pl-6 mb-2 lg:mb-4">
-                    <p class="text-stone-500"> مبلغ تسهیلات: </p>
-                    <p class="text-stone-700"> تومان </p>
-                </div>
-                <div class="flex_between border bg-white border-stone-400 rounded-custom w-full h-12 pr-2 pl-6 mb-2 lg:mb-4">
                     <p class="text-stone-500"> مبلغ هر قسط: </p>
                     <p class="text-stone-700"> تومان </p>
                 </div>
@@ -82,11 +95,16 @@
                     <p class="text-stone-500"> هزینه عملیات: </p>
                     <p class="text-stone-700"> تومان </p>
                 </div>
-                <ul class="list-disc list-inside text-stone-700 text-sm font-normal">
+                <ul class="list-disc list-inside text-stone-700 text-sm font-normal mb-4">
                     <li class="mb-1.5 last:mb-0"> قیمت ها به تومان می باشد. </li>
                     <li class="mb-1.5 last:mb-0"> هزینه عملیات بدون ارزش افزوده محاسبه گردیده است. </li>
                     <li class="mb-1.5 last:mb-0"> سود اقساط شما معادل نرخ مصوب بانک مرکزی یعنی 23 درصد است. </li>
                 </ul>
+                <form action="#" class="border-2 border-white rounded-custom py-4 sm:py-6 sm:px-12 px-6 flex flex-col items-center">
+                    <p class="text-center text-sm font-medium text-normal mb-2 lg:mb-4"> جهت مشاوره و خرید شماره خود را وارد کنید: </p>
+                    <input type="tel" class="w-full max-w-64 mx-auto h-12 rounded-custom bg-white border border-stone-200 focus:border-stone-200 mb-4 tracking-widest focus:ring-0 outline-none placeholder:text-stone-200 px-3" placeholder="0912" />
+                    <button class="w-full max-w-64 mx-auto h-12 rounded-custom border font-medium text-base border-normal text-normal" type="submit"> ثبت </button>
+                </form>
             </section>
         </section>
     </section>
@@ -105,7 +123,7 @@ export default {
     },
     setup() {
         const selectedProduct = ref("");
-        const loanSteps = ref(20000000);
+        const loanSteps = ref(100000000);
         const loanMin = ref(200000000);
         const loanMax = ref(3000000000);
         const loanInitialValue = ref(400000000);
@@ -133,6 +151,14 @@ export default {
         const priceSliderBackground = computed(() => generatePriceBackground(loanInitialValue.value));
         // const monthSliderBackground = computed(() => generateMonthBackground(monthlyInitialValue.value));
 
+        const loanOrder = (payload) => {
+            if (loanInitialValue.value < loanMax.value && payload === 'plus') {
+                loanInitialValue.value += loanSteps.value
+            } else if(loanInitialValue.value > loanMin.value && payload === 'minus') {
+                loanInitialValue.value -= loanSteps.value
+            }
+        }
+
         const calculateDeposite = (e) => {
         }
 
@@ -145,6 +171,7 @@ export default {
             manufacture,
             initialMonth,
             numberWithCommas,
+            loanOrder,
             // monthlySteps,
             // monthlyMin,
             // monthlyMax,

@@ -257,7 +257,7 @@ class LandingController extends Controller
         return view('landing.sales-representative', compact('land', 'breadcrumbs'));
     }
 
-    public function progress($page){
+    public function calculator($page){
         $land = $this->getLand($page);
 
         /* BREADCRUMBS */
@@ -265,7 +265,7 @@ class LandingController extends Controller
         $breadcrumbs[] = ['title' => __('Home'), 'url' => route('landing.page.show', ['page' => $land->slug])];
         $breadcrumbs[] = ['title' => __('Progress'), 'url' => null ];
 
-        return view('landing.progress', compact('land', 'breadcrumbs'));
+        return view('landing.calculator', compact('land', 'breadcrumbs'));
     }
 
     public function advertise($page){
