@@ -51,6 +51,13 @@
         --theme-shadow-normal: rgba(39, 39, 39, 0.5);
         --theme-shadow-focus: rgba(39, 39, 39, 0.8);
     }
+    .theme_bahman{
+        --theme-normal: 15,15,15;
+        --theme-focus: 5,5,5;
+        --theme-shadow-light: rgba(5, 5, 5, 0.3);
+        --theme-shadow-normal: rgba(5, 5, 5, 0.5);
+        --theme-shadow-focus: rgba(5, 5, 5, 0.8);
+    }
     .rounded_none{
         --theme-radius: 0px;
     }

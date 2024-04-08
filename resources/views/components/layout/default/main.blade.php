@@ -3,6 +3,7 @@
         1 => 'theme_arian',
         2 => 'theme_saipa',
         4 => 'theme_pilsan',
+        5 => 'theme_bahman',
         6 => 'theme_carizan',
         7 => 'theme_arya',
         default => 'theme_arian',
