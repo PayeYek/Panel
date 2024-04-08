@@ -6,7 +6,7 @@
             <Slider :slides="{{ $land->slides }}" :sliderType="{{ $land->styles->slider_type }}" />
         @endif
 
-        <section class="default_container">
+        {{-- <section class="default_container"> --}}
             @switch($land->styles->land_id)
                 @case(1)
                     <x-home_landing.quick_access_panel.type_one landSlug="{{ $land->slug }}" />
@@ -17,6 +17,9 @@
                 @case(4)
                     <x-home_landing.quick_access_panel.type_four landSlug="{{ $land->slug }}" />
                     @break
+                @case(5)
+                    <x-home_landing.quick_access_panel.type_five landSlug="{{ $land->slug }}" :data="$data" />
+                        @break
                 @case(6)
                     <x-home_landing.quick_access_panel.type_six landSlug="{{ $land->slug }}" />
                     @break
@@ -27,7 +30,7 @@
                 @default
                     
             @endswitch
-        </section>
+        {{-- </section> --}}
 
         {{-- favorites --}}
         <x-home_landing.products

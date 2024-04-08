@@ -2,7 +2,7 @@
     'landSlug' => '',
 ])
 
-<section class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8 lg:mb-14">
+<section class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8 lg:mb-14 default_container">
     <section class="rounded-custom relative w-full aspect-video bg-no-repeat bg-cover bg-center bg-[url('https://paye1.com/storage/media/land/files/MwHxtT5HYWz6M2y6i9r3JKODUn3afBSt098ZxKRX.png')]">
         <div class="size-full flex_center rounded-custom bg-black/75">
             <Link href="{{ route('landing.product.list', ['page' => $landSlug]) }}" class="h-11 w-52 flex_center border-x-2 border-[#FFD598] rounded-custom text-lg font-medium text-[#FFD598] bg-transparent hover:border-white hover:text-white"> دسته بندی محصولات </Link>

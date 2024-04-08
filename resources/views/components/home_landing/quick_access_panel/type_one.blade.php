@@ -3,7 +3,7 @@
 ])
 
 <section
-    class="grid grid-cols-1 sm:grid-cols-2 mb-12 gap-4 lg:gap-5 lg:rounded-none lg:*:rounded-custom *:rounded-custom sm:*:rounded-none sm:rounded-custom sm:overflow-hidden sm:gap-0 *:bg-[#f5f5f5] *:flex_center *:flex-col *:text-stone-700">
+    class="grid default_container grid-cols-1 sm:grid-cols-2 mb-12 gap-4 lg:gap-5 lg:rounded-none lg:*:rounded-custom *:rounded-custom sm:*:rounded-none sm:rounded-custom sm:overflow-hidden sm:gap-0 *:bg-[#f5f5f5] *:flex_center *:flex-col *:text-stone-700">
     {{-- branches --}}
     <Link href="{{ route('landing.sales', ['page' => $landSlug]) }}" class="h-40">
         <svg class="size-8 stroke-normal mb-3" viewBox="0 0 32 32" fill="none"
