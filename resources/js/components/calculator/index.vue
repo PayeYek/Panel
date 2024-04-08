@@ -4,7 +4,7 @@
             <p class="text-lg font-medium text-normal mb-4"> محاسبه گر اقساط </p>
             <!-- vehicle price amount -->
             <section class="mb-8 lg:mb-14">
-                <p class="text-sm pr-4 font-medium text-stone-700 mb-4 relative before:absolute before:content-[''] before:rounded-full before:bg-normal before:top-1.5 before:right-0 before:size-2"> ارزش وسیله نقلیه </p>
+                <p class="text-sm pr-4 font-medium text-stone-700 mb-4 relative before:absolute before:content-[''] before:rounded-full before:bg-normal before:top-1.5 before:right-0 before:size-2"> مبلغ تسهیلات </p>
                 <div class="h-2 w-full bg-stone-200 rounded-full mb-4 relative">
                     <input
                         :style="{ background: priceSliderBackground }"
@@ -17,34 +17,27 @@
                         @change="calculateDeposite" />
                 </div>
                 <div class="text-sm font-normal flex items-center justify-between mb-4 text-stone-700">
-                    <p> {{ loanInitialValue }} <span class="text-xs"> میلیون تومان </span> </p>
-                    <p> {{ loanMax }} <span class="text-xs"> میلیون تومان </span> </p>
+                    <p> {{ numberWithCommas(loanInitialValue) }} <span class="text-xs"> تومان </span> </p>
+                    <p> {{ numberWithCommas(loanMax) }} <span class="text-xs"> تومان </span> </p>
                 </div>
             </section>
 
             <!-- discount percent -->
             <section class="mb-8 lg:mb-14">
-                <div class="flex items-center gap-2 pr-4 mb-4 relative before:absolute before:content-[''] before:rounded-full before:bg-normal before:top-1.5 before:right-0 before:size-2">
-                    <span class="text-sm font-medium text-stone-700"> میزان وام درخواستی </span>
-                    <div class="">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6 fill-[#599CFF] -scale-x-100 cursor-pointer">
-                            <path fill-rule="evenodd" d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12Zm11.378-3.917c-.89-.777-2.366-.777-3.255 0a.75.75 0 0 1-.988-1.129c1.454-1.272 3.776-1.272 5.23 0 1.513 1.324 1.513 3.518 0 4.842a3.75 3.75 0 0 1-.837.552c-.676.328-1.028.774-1.028 1.152v.75a.75.75 0 0 1-1.5 0v-.75c0-1.279 1.06-2.107 1.875-2.502.182-.088.351-.199.503-.331.83-.727.83-1.857 0-2.584ZM12 18a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Z" clip-rule="evenodd" />
-                        </svg>
-                    </div>
-                </div>
+                <p class="text-sm pr-4 font-medium text-stone-700 mb-4 relative before:absolute before:content-[''] before:rounded-full before:bg-normal before:top-1.5 before:right-0 before:size-2"> نوع خودرو </p>
 
                 <section class="flex_center lg:gap-4 gap-2 text-stone-700 text-sm font-normal">
                     <div>
-                        <input type="radio" value="40" v-model="percentage" name="percentage" id="fourty" class="hidden peer" />
-                        <label for="fourty" class="h-12 rounded-custom w-20 peer-checked:w-28 sm:w-32 sm:peer-checked:w-40 cursor-pointer lg:w-32 lg:peer-checked:w-40 border flex_center border-stone-400 bg-white peer-checked:border-[#599CFF] peer-checked:bg-[#EEF5FF] peer-checked:font-medium"> 40% </label>
+                        <input type="radio" value="internal" v-model="manufacture" name="manufacture" id="internal" class="hidden peer" />
+                        <label for="internal" class="h-12 rounded-custom w-20 peer-checked:w-28 sm:w-32 sm:peer-checked:w-40 cursor-pointer lg:w-32 lg:peer-checked:w-40 border flex_center border-stone-400 bg-white peer-checked:border-[#599CFF] peer-checked:bg-[#EEF5FF] peer-checked:font-medium"> داخلی </label>
                     </div>
                     <div>
-                        <input type="radio" value="50" v-model="percentage" name="percentage" id="fifty" class="hidden peer" />
-                        <label for="fifty" class="h-12 rounded-custom w-20 peer-checked:w-28 sm:w-32 sm:peer-checked:w-40 cursor-pointer lg:w-32 lg:peer-checked:w-40 border flex_center border-stone-400 bg-white peer-checked:border-[#599CFF] peer-checked:bg-[#EEF5FF] peer-checked:font-medium"> 50% </label>
+                        <input type="radio" value="chinese" v-model="manufacture" name="manufacture" id="chinese" class="hidden peer" />
+                        <label for="chinese" class="h-12 rounded-custom w-20 peer-checked:w-28 sm:w-32 sm:peer-checked:w-40 cursor-pointer lg:w-32 lg:peer-checked:w-40 border flex_center border-stone-400 bg-white peer-checked:border-[#599CFF] peer-checked:bg-[#EEF5FF] peer-checked:font-medium"> چینی </label>
                     </div>
                     <div>
-                        <input type="radio" value="60" v-model="percentage" name="percentage" id="sixty" class="hidden peer" />
-                        <label for="sixty" class="h-12 rounded-custom w-20 peer-checked:w-28 sm:w-32 sm:peer-checked:w-40 cursor-pointer lg:w-32 lg:peer-checked:w-40 border flex_center border-stone-400 bg-white peer-checked:border-[#599CFF] peer-checked:bg-[#EEF5FF] peer-checked:font-medium"> 60% </label>
+                        <input type="radio" value="european" v-model="manufacture" name="manufacture" id="European" class="hidden peer" />
+                        <label for="European" class="h-12 rounded-custom w-20 peer-checked:w-28 sm:w-32 sm:peer-checked:w-40 cursor-pointer lg:w-32 lg:peer-checked:w-40 border flex_center border-stone-400 bg-white peer-checked:border-[#599CFF] peer-checked:bg-[#EEF5FF] peer-checked:font-medium"> اروپایی </label>
                     </div>
                 </section>
             </section>
@@ -101,6 +94,8 @@
 
 <script>
 import { ref, computed } from 'vue';
+import { numberWithCommas } from '../../common';
+// import {  } from '';
 
 
 export default {
@@ -110,11 +105,11 @@ export default {
     },
     setup() {
         const selectedProduct = ref("");
-        const loanSteps = ref(1);
-        const loanMin = ref(10);
-        const loanMax = ref(100);
-        const loanInitialValue = ref(20);
-        const percentage = ref(50);
+        const loanSteps = ref(10000000);
+        const loanMin = ref(200000000);
+        const loanMax = ref(4000000000);
+        const loanInitialValue = ref(400000000);
+        const manufacture = ref("internal");
         const initialMonth = ref(24);
         // const monthlySteps = ref(1);
         // const monthlyMin = ref(1);
@@ -122,6 +117,8 @@ export default {
         // const monthlyInitialValue = ref(6);
         // const loanInitalPerMonth = ref(0);
         // const loanInitalTotal = ref(0);
+
+        // console.log(numberWithCommas(1523654));
 
         const generatePriceBackground = (value) => {
             let percentage = (value - loanMin.value) / (loanMax.value - loanMin.value) * 100;
@@ -145,8 +142,9 @@ export default {
             loanMin,
             loanMax,
             loanInitialValue,
-            percentage,
+            manufacture,
             initialMonth,
+            numberWithCommas,
             // monthlySteps,
             // monthlyMin,
             // monthlyMax,

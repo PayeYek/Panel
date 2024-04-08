@@ -2,6 +2,7 @@ import "./bootstrap";
 import "../css/app.css";
 import "@protonemedia/laravel-splade/dist/style.css";
 import "@protonemedia/laravel-splade/dist/jodit.css";
+// import "./common";
 
 import SwitchStyle from "@/components/SwitchStyle.vue";
 import Breakpoint from "@/components/Breakpoint.vue";
@@ -105,3 +106,7 @@ if(document.getElementById('scrollToTopBtn')){
         });
     })
 }
+
+// export function* numberWithCommas (price) {
+//     return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+// }
