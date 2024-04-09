@@ -140,6 +140,10 @@
                 {{-- contact to expert --}}
                 <x-home_landing.contact.type-five />
                 @break
+            @case(5)
+                {{-- contact to expert --}}
+                <x-home_landing.contact.type-six />
+                @break
             @case(6)
                 {{-- contact to expert --}}
                 <x-home_landing.contact.type-four />

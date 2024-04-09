@@ -1,17 +1,16 @@
 @php
-    $tabStyle = match($land->styles->land_id) {
+    $tabStyle = match($land->styles->product_list_type) {
         1 => 'pr-4 before:top-1/2 before:right-0 before:-translate-y-1/2 before:bg-normal before:h-12 before:w-1 before:rounded-l-custom before:absolute before:content-[""]',
         2 => 'before:size-3 before:bg-normal before:rounded-full before:absolute befopre:content-[""] before:top-2 before:right-0 pr-6 lg:pr-8',
-        4 => 'before:size-3 before:border-y-2 before:border-normal before:border-l-2 before:rounded-full before:absolute befopre:content-[""] before:top-2 before:right-0 pr-6 lg:pr-8',
-        6 => 'before:size-3 before:border-2 before:border-normal before:rounded-full before:absolute befopre:content-[""] before:top-2 before:right-0 pr-6 lg:pr-8',
-        7 => 'before:size-3 before:bg-normal before:absolute befopre:content-[""] before:top-2 before:right-0 pr-6 lg:pr-8',
+        3 => 'before:size-3 before:border-y-2 before:border-normal before:border-l-2 before:rounded-full before:absolute befopre:content-[""] before:top-2 before:right-0 pr-6 lg:pr-8',
+        4 => 'before:size-3 before:border-2 before:border-normal before:rounded-full before:absolute befopre:content-[""] before:top-2 before:right-0 pr-6 lg:pr-8',
+        5 => 'before:size-3 before:bg-normal before:absolute befopre:content-[""] before:top-2 before:right-0 pr-6 lg:pr-8',
         default => ''
     };
 
-    $technicalStyle = match($land->styles->land_id) {
-        1, 2 => '',
-        6 => 'border-r-4 border-normal',
-        7 => 'border-r-4 border-stone-400',
+    $technicalStyle = match($land->styles->product_list_type) {
+        4 => 'border-r-4 border-normal',
+        5 => 'border-r-4 border-stone-400',
         default => ''
     };
 
@@ -22,14 +21,13 @@
         default => ''
     };
 
-    $extraStyle = match($land->styles->land_id) {
-        1, 2  => '',
-        7  => 'border-r-4',
+    $extraStyle = match($land->styles->product_list_type) {
+        5  => 'border-r-4',
         default => ''
     };
 
-    $marginBottom = match($land->styles->land_id."") {
-        '7'  => 'mb-8 sm:mb-24 lg:mb-28',
+    $marginBottom = match($land->styles->product_list_type."") {
+        '5'  => 'mb-8 sm:mb-24 lg:mb-28',
         default => ''
     };
 @endphp
@@ -58,7 +56,7 @@
             </section>
 
             {{-- info --}}
-            <x-pdp_landing.information :landId="$land->styles->land_id" productName="{{ $product->name }}" :product="$product" :landSlug="$land->slug" />
+            <x-pdp_landing.information :infoType="$land->styles->product_list_type" :landId="$land->styles->land_id" productName="{{ $product->name }}" :product="$product" :landSlug="$land->slug" />
         </section>
 
         {{-- Further Details --}}

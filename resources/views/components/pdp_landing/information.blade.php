@@ -2,16 +2,17 @@
     'productName' => '',
     'product' => '',
     'landId' => '',
+    'infoType' => '',
     'landSlug' => '',
 ])
 
 @php
-    $boxStyle = match($landId) {
-        1, 2  => 'bg-[#F2F2F2]',
-        4  => 'relative before:absolute before:content-[""] before:bottom-0 before:inset-x-6 before:h-px before:bg-normal/30 last:before:bg-transparent',
-        6  => 'bg-[#F2F2F2] border-r-4 border-r-normal',
-        7  => 'border border-r-4 border-stone-400',
-        default => ''
+    $boxStyle = match($infoType) {
+        1  => 'bg-[#F2F2F2]',
+        3  => 'relative before:absolute before:content-[""] before:bottom-0 before:inset-x-6 before:h-px before:bg-normal/30 last:before:bg-transparent',
+        4  => 'bg-[#F2F2F2] border-r-4 border-r-normal',
+        5  => 'border border-r-4 border-stone-400',
+        default => 'bg-[#F2F2F2]'
     };
 @endphp
 {{-- @dd($landSlug) --}}

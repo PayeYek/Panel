@@ -28,7 +28,7 @@
     }
 
     $classType = match($land->styles->category_card_type."") {
-        '1' => 'lg:grid-cols-5 gap-4 sm:grid-cols-2',
+        '1' => 'lg:grid-cols-4 gap-4 sm:gap-0 sm:grid-cols-2',
         '2' => 'lg:grid-cols-4 gap-4 sm:grid-cols-2',
         '3' => 'sm:grid-cols-2 lg:grid-cols-3 gap-4',
         '4' => 'md:grid-cols-2 gap-4',
@@ -63,6 +63,15 @@
         @switch($land->styles->land_id)
             @case(2)
                 <x-home_landing.contact.type-one />
+            @break
+
+            @case(4)
+                <x-home_landing.contact.type-five />
+            @break
+
+            @case(5)
+                {{-- contact to expert --}}
+                <x-home_landing.contact.type-six />
             @break
 
             @case(6)
