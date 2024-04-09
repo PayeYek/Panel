@@ -22,7 +22,8 @@
                     <x-splade-select name="color" label="Color">
                         <option value="1"> آرین دیزل </option>
                         <option value="2"> سایپا دیزل </option>
-                        <option value="5"> پیلسان </option>
+                        <option value="4"> پیلسان </option>
+                        <option value="5"> بهمن دیزل </option>
                         <option value="6"> کاریزان </option>
                         <option value="7"> آریا دیزل </option>
                     </x-splade-select>
