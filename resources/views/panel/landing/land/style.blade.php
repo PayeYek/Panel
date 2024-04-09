@@ -89,6 +89,7 @@
                         <option value="3">{{ __('View type') }} 3</option>
                         <option value="4">{{ __('View type') }} 4</option>
                         <option value="5">{{ __('View type') }} 5</option>
+                        <option value="6">{{ __('View type') }} 6</option>
                     </x-splade-select>
 
                     <x-splade-select name="slider_anim" label="انیمیشن اسلایدر">

@@ -114,32 +114,32 @@
                             </div>
                         </li>
                     @endforeach
-                    @if ($data->count() > 2)
-                        <li class="flex-none w-full sm:w-[448px] md:w-[480px] lg:w-full">
-                            <div class="aspect-video rounded-custom overflow-hidden bg-center bg-cover bg-no-repeat hover:scale-[1.025] duration-300" style="background-image: url(https://paye1.com/storage/media/land/files/TxhDqKfxz3x5HukVh7GWz5Mv5lTpmt3lfo4xZecW.png)">
-                                <div class="size-full flex_center bg-gradient-to-t from-black/80 to-black/60">
-                                    <Link href="{{ route('landing.videos', ['page' => $landSlug]) }}" class="h-11 w-44 flex_center border-x-2 border-x-[#DBA14D] rounded-custom text-lg font-medium text-[#FFD598] bg-transparent hover:border-x-white hover:text-white"> آرشیو ویدیو ها </Link>
-                                </div>
-                            </div>
-                        </li>
-                    @endif
-                </ul>
-            @break
+            @if ($data->count() > 2)
+                <li class="flex-none w-full sm:w-[448px] md:w-[480px] lg:w-full">
+                    <div class="aspect-video rounded-custom overflow-hidden bg-center bg-cover bg-no-repeat hover:scale-[1.025] duration-300" style="background-image: url(https://paye1.com/storage/media/land/files/TxhDqKfxz3x5HukVh7GWz5Mv5lTpmt3lfo4xZecW.png)">
+                        <div class="size-full flex_center bg-gradient-to-t from-black/80 to-black/60">
+                            <Link href="{{ route('landing.videos', ['page' => $landSlug]) }}" class="h-11 w-44 flex_center border-x-2 border-x-[#DBA14D] rounded-custom text-lg font-medium text-[#FFD598] bg-transparent hover:border-x-white hover:text-white"> آرشیو ویدیو ها </Link>
+                        </div>
+                    </div>
+                </li>
+            @endif
+        </ul>
+        @break
+    @case(6)
+        <ul class="flex list-none lg:w-full {{ $data->count() == 1 ? 'justify-center' : ($data->count() == 2 ? 'gap-4 sm:flex-row sm:items-center flex-col lg:grid lg:grid-cols-2 overflow-auto lg:overflow-visible' : 'gap-4 sm:flex-row sm:items-center flex-col lg:grid lg:grid-cols-3 overflow-auto lg:overflow-visible') }}">
+            @foreach ($data->take(3) as $video)
+                <li class="flex-none flex flex-col {{ $data->count() == 1 ? 'w-full sm:w-[448px] md:w-[480px] lg:w-[558px] xl:w-[720px]' : 'w-full sm:w-[448px] md:w-[480px] lg:w-full' }}" data-videoLink="{{ $video->link }}">
+                    <div class="relative w-full pt-[62%] mb-4 cursor-pointer rounded-custom overflow-hidden videoThumbnails" onclick="showVideoByThumbnail(this)">
+                        <img src="{{ $video->image }}" alt="{{ $video->alt }}" class="absolute top-0 left-0 w-full h-full object-cover z-[1]" />
+                        <x-icons.playIcon class="size-14 sm:w-20 sm:h-20 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-[3]" />
+                        <div class="absolute text-white bottom-0 left-0 w-full z-[2] flex flex-col justify-end bg-gradient-to-t from-black/90 to-transparent h-full">
+                        </div>
+                    </div>
+                    <p class="w-full px-4 text-sm font-medium sm:text-lg line-clamp-1 select-none"> {{ $video->alt }} </p>
+                </li>
+                @endforeach
+            </ul>
+        @break
     @default
         
 @endswitch
-
-
-        {{-- <ul class="flex list-none lg:w-full {{ $data->count() == 1 ? 'justify-center' : 'gap-4 sm:flex-row sm:items-center flex-col lg:grid lg:grid-cols-2 overflow-auto lg:overflow-visible' }}">
-    @foreach ($data->take(2) as $video)
-        <li class="flex-none {{ $data->count() == 1 ? 'w-full sm:w-[448px] md:w-[480px] lg:w-[558px]' : 'w-full sm:w-[448px] md:w-[480px] lg:w-full' }}" data-videoLink="{{ $video->link }}">
-            <div class="relative w-full pt-[62%] cursor-pointer rounded-custom overflow-hidden videoThumbnails" onclick="showVideoByThumbnail(this)">
-                <img src="{{ $video->image }}" alt="{{ $video->alt }}" class="absolute top-0 left-0 w-full h-full object-cover z-[1]" />
-                <x-icons.playIcon class="size-14 sm:w-20 sm:h-20 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-[3]" />
-                <div class="absolute text-white bottom-5 left-0 w-full z-[2] flex items-center px-4 bg-gradient-to-r from-[rgba(46,48,146,0.5)] to-[rgba(46,48,146,1)] h-8">
-                    <p class="w-full text-sm font-medium sm:text-lg line-clamp-1"> {{ $video->alt }} </p>
-                </div>
-            </div>
-        </li>
-    @endforeach
-</ul> --}}
