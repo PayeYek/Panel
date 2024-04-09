@@ -36,19 +36,6 @@
 @endphp
 @if ($type.'' !== '5')
     <ul class="mb-4 {{ $gridCols }} {{ $containerStyle}} list-none sm:mb-0 w-full">
-        {{-- @foreach ($data as $article)
-            <x-home_landing.announcement.children.announcement 
-                :type="$type"
-                :evenOdd="$evenOdd"
-                :borderStyle="$borderStyle"
-                :title="$article->title"
-                :description="$article->description"
-                :image="$article->image"
-                :articleSlug="$article->slug"
-                :createdat="$article->created_at"
-                :landSlug="$landSlug" />
-        @endforeach --}}
-        {{-- :land="$land" --}}
         <HomeArticles landSlug="{{ $landSlug }}" data="{!! $data !!}" borderStyle="{{ $borderStyle }}" type="{{ $type }}" :evenOdd="$evenOdd" />
     </ul>
 

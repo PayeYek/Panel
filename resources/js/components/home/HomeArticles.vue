@@ -99,7 +99,7 @@
                     class="text-sm text-justify lg:text-base line-clamp-3 lg:line-clamp-2 lg:h-24 leading-7 sm:h-20 lg:leading-8 mb-4 font-normal text-dark-500">
                     {{ article.description }}
                 </p>
-                <div class="flex items-center justify-between">
+                <div class="flex items-center justify-end">
                     <!-- <a href="{{ route('landing.article.show',['page'=> $landSlug, 'article'=> $articleSlug]) }}" class="text-sm font-medium flex items-center gap-4 text-stone-700">
                         <span> ادامه </span>
                         <svg class="fill-current" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -215,6 +215,40 @@
                 <p class="text-xs sm:text-sm font-normal text-stone-700">
                     {{ renderDate(article.created_at) }}
                 </p>
+            </div>
+        </li>
+    </template>
+
+    <template v-if="type == 10">
+        <li v-for="(article, index) in ArticlesList" :key="index" class="flex flex-col sm:flex-row py-4 gap-4">
+            <!-- image -->
+            <div
+                class="overflow-hidden md:flex-none w-full relative pt-[61%] sm:pt-0 sm:w-72 md:w-80 lg:w-[23rem] sm:flex-none mb-3 sm:mb-0 rounded-custom">
+                <img :src="article.image" :alt="article.title" class="absolute top-0 left-0 object-cover w-full h-full sm:static" />
+            </div>
+            <!-- docs -->
+            <div class="flex flex-col sm:justify-center sm:flex-1">
+                <h3 class="mb-1 text-base font-medium text-stone-700 line-clamp-1"> {{ article.title }} </h3>
+                <h4 class="text-normal text-sm font-normal mb-4"> {{ renderDate(article.created_at) }} </h4>
+                <p
+                    class="text-sm text-justify lg:text-base line-clamp-3 lg:line-clamp-2 lg:h-24 leading-7 sm:h-20 lg:leading-8 mb-4 font-normal text-dark-500">
+                    {{ article.description }}
+                </p>
+                <div class="flex items-center justify-end">
+                    <!-- <a href="{{ route('landing.article.show',['page'=> $landSlug, 'article'=> $articleSlug]) }}" class="text-sm font-medium flex items-center gap-4 text-stone-700">
+                        <span> ادامه </span>
+                        <svg class="fill-current" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M8 16L9.41 14.59L3.83 9L16 9V7L3.83 7L9.41 1.41L8 0L0 8L8 16Z" fill="current"/>
+                        </svg>
+                    </a> -->
+                    <ArticleLink :href="'/l/' + landSlug + '/a/' + article.slug"
+                        class="text-sm font-medium flex_center gap-4 text-stone-700">
+                        <span> ادامه </span>
+                        <svg class="fill-current" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M8 16L9.41 14.59L3.83 9L16 9V7L3.83 7L9.41 1.41L8 0L0 8L8 16Z" fill="current"/>
+                        </svg>
+                    </ArticleLink>
+                </div>
             </div>
         </li>
     </template>
