@@ -22,7 +22,6 @@
 
     $containerStyle = match($type."") {
         '6'  => 'lg:default_container',
-        '9', '5'  => 'default_container',
         '8', '7'  => 'bg-stone-200 py-4 sm:py-10 md:py-14 lg:pt-16 lg:pb-20 xl:pb-24',
         default => 'default_container',
     };

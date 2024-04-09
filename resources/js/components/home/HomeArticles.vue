@@ -220,7 +220,7 @@
     </template>
 
     <template v-if="type == 10">
-        <li v-for="(article, index) in ArticlesList" :key="index" class="flex flex-col sm:flex-row py-4 gap-4">
+        <li v-for="(article, index) in ArticlesList" :key="index" class="flex flex-col sm:flex-row gap-4">
             <!-- image -->
             <div
                 class="overflow-hidden md:flex-none w-full relative pt-[61%] sm:pt-0 sm:w-72 md:w-80 lg:w-[23rem] sm:flex-none mb-3 sm:mb-0 rounded-custom">
