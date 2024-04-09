@@ -484,6 +484,9 @@
     .flex_between{
         @apply flex items-center justify-between;
     }
+    .flex_row{
+        @apply flex items-center;
+    }
 
     .default_container{
         @apply max-w-screen-xl px-4 xl:mx-auto;
@@ -937,7 +940,7 @@
     height: 12px;
     border-radius: 50%;
     background-color: #f3f3f4 !important;
-    border: #599CFF 4px solid !important;
+    border: #1A1B1D 4px solid !important;
     cursor: pointer;
     -webkit-transition: background .15s ease-in-out;
     transition: background .15s ease-in-out;
