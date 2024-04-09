@@ -199,12 +199,12 @@
                 {{-- left column --}}
                 <section class="flex flex-col gap-6 lg:w-72 lg:flex-none">
                     {{-- articles --}}
-                    <section class="relative pb-10 sm:pb-0 lg:pb-10">
+                    <section>
                         {{-- header --}}
                         <div class="flex items-center mb-4 sm:justify-between lg:px-4">
-                            <h3 class="text-lg font-medium text-gray-900 md:text-xl lg:text-lg"> آخرین اخبار و اطلاعیه ها
-                            </h3>
-                            <a href="#"
+                            <a href="{{ route('landing.article.list', ['page' => $land->slug]) }}" class="text-lg font-medium text-gray-900 md:text-xl lg:text-lg"> آخرین اخبار و اطلاعیه ها
+                            </a>
+                            {{-- <a href="#"
                                 class="absolute bottom-0 flex items-center gap-2 text-base font-normal sm:static lg:absolute right-4 lg:right-auto lg:left-2 text-normal">
                                 <span> مشاهده همه </span>
                                 <svg class="stroke-current" width="24" height="24" viewBox="0 0 24 24"
@@ -212,7 +212,7 @@
                                     <path d="M15 17L10 12L15 7" stroke="current" stroke-linecap="round"
                                         stroke-linejoin="round" />
                                 </svg>
-                            </a>
+                            </a> --}}
                         </div>
                         <ul class="grid grid-cols-1 gap-4 list-none md:grid-cols-3 lg:grid-cols-1">
                             @foreach ($land->articles->take(3) as $article)
@@ -257,10 +257,10 @@
                             <p> ارتباط با کارشناسان فروش </p>
                         </div>
                         <form action="#" method="#" class="flex flex-col items-center px-5 pt-6 pb-10">
-                            <p class="mb-6 text-base font-normal leading-7 text-white"> جهت ارتباط و اطلاع از شرایط
+                            <p class="mb-6 text-base font-normal leading-7 text-white text-center"> جهت ارتباط و اطلاع از شرایط
                                 فروش شماره خود را وارد کنید. </p>
                             <input name="phone" type="tel"
-                                class="bg-white mb-12 h-10 w-full max-w-72 border-0 focus:ring-0 rounded-custom outline-none w-full placeholder:text-[#888b93] text-sm font-normal px-3 text-gray-900"
+                                class="bg-white mb-12 h-10 max-w-72 border-0 focus:ring-0 rounded-custom outline-none w-full placeholder:text-[#888b93] text-sm font-normal px-3 text-gray-900"
                                 placeholder="09" />
                             <button type="submit"
                                 class="w-full text-base font-medium text-white border border-white rounded-custom flex_center max-w-72 h-11">

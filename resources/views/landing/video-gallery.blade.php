@@ -4,7 +4,7 @@
         {{-- breadcrumbs --}}
         <x-common_landing.breadcrumbs :data="$breadcrumbs" />
 
-        <Videos data="{{ $land->videos }}" />
+        <Videos :type="{{$land->styles->video_card_type}}" data="{{ $land->videos }}" />
 
     </main>
 
