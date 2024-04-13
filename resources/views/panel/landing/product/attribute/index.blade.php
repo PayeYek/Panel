@@ -20,7 +20,7 @@
                 <div class="flex gap-1 items-center mt-2 text-gray-600 dark:text-gray-500">
                     @if($item->parent_id)
                         <div class="flex gap-1 items-center text-amber-500 dark:text-amber-500">
-                        <x-iconsax-two-arrow-left class="h-5 w-5"/>
+                            <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="1.5" d="M9.57 5.93L3.5 12l6.07 6.07"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="1.5" d="M20.5 12H3.67" opacity=".4"></path></svg>
                         <span class="text-xs">{{$item->parent->name}}</span>
                     </div>
                     @endif
