@@ -37,7 +37,7 @@
         @cell('style', $item)
         <Link href="{{ route('panel.landing.land.style.edit', $item->id) }}"
               class="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-600 transition-all duration-300 cursor-pointer">
-        <x-iconsax-lin-magicpen class="h-5 w-5"/>
+        <path stroke-linecap="round" stroke-linejoin="round" d="M8.5 2.44L10 2l-.44 1.5L10 5l-1.5-.44L7 5l.44-1.5L7 2l1.5.44zM4.5 8.44L6 8l-.44 1.5L6 11l-1.5-.44L3 11l.44-1.5L3 8l1.5.44zM19.5 13.44L21 13l-.44 1.5L21 16l-1.5-.44L18 16l.44-1.5L18 13l1.5.44z"></path>
         </Link>
         @endcell
 
