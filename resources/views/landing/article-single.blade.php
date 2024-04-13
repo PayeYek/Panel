@@ -358,7 +358,7 @@
 
     {{-- type 5 --}}
     @if ($land->styles->a_view_type.'' === '5')
-        <main class="relative pt-4 default_container mb-8 sm:mb-24 lg:mb-28">
+        <main class="relative pt-4 default_container mb-8">
             {{-- breadcrumbs --}}
             <x-common_landing.breadcrumbs :data="$breadcrumbs" />
 
@@ -386,9 +386,9 @@
                     </section>
 
                     {{-- contact to expert --}}
-                    <section
+                    {{-- <section
                         class="flex flex-col bg-normal pb-12 pt-8 {{ $borderType }} rounded-custom mb-8 sm:mx-6 md:mx-10 lg:mx-12 lg:mb-0">
-                        {{-- title --}}
+                        title
                         <div class="w-full mb-4 text-xl font-black text-white flex_center">
                             <p> ارتباط با کارشناسان فروش </p>
                         </div>
@@ -402,7 +402,8 @@
                                 class="w-full text-base font-medium text-white border border-white rounded-custom flex_center max-w-72 h-11">
                                 ثبت درخواست </button>
                         </form>
-                    </section>
+                    </section> --}}
+                    
                 </section>
 
                 {{-- right column --}}
@@ -459,6 +460,27 @@
                 </section>
             </section>
         </main>
+        @switch($land->styles->contact_type)
+            @case(1)
+                <x-home_landing.contact.type-one />
+            @break
+
+            @case(2)
+                <x-home_landing.contact.type-five />
+            @break
+
+            @case(3)
+                <x-home_landing.contact.type-six />
+            @break
+
+            @case(4)
+                <x-home_landing.contact.type-four />
+            @break
+
+            @case(5)
+                <x-home_landing.contact.type-two />
+            @break
+        @endswitch
     @endif
 
     {{-- type 6 --}}
