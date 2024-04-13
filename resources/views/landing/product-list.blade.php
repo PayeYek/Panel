@@ -60,25 +60,24 @@
             borderStyle="{{ $borderStyle }}"
             :evenOdd="{{ $land->styles->category_striped }}" />
 
-        @switch($land->styles->land_id)
-            @case(2)
+        @switch($land->styles->contact_type)
+            @case(1)
                 <x-home_landing.contact.type-one />
             @break
 
-            @case(4)
+            @case(2)
                 <x-home_landing.contact.type-five />
             @break
 
-            @case(5)
-                {{-- contact to expert --}}
+            @case(3)
                 <x-home_landing.contact.type-six />
             @break
 
-            @case(6)
+            @case(4)
                 <x-home_landing.contact.type-four />
             @break
 
-            @case(7)
+            @case(5)
                 <x-home_landing.contact.type-two />
             @break
 

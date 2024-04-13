@@ -44,16 +44,16 @@
             evenOdd="{{ $land->styles->a_striped }}" />
 
         {{-- contact to expert --}}
-        @switch($land->styles->land_id)
-            @case(2)
+        @switch($land->styles->contact_type)
+            @case(1)
                 <x-home_landing.contact.type-one />
             @break
 
-            @case(6)
+            @case(4)
                 <x-home_landing.contact.type-four />
             @break
 
-            @case(7)
+            @case(5)
                 <x-home_landing.contact.type-two />
             @break
 
