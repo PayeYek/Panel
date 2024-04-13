@@ -66,7 +66,7 @@
                     </svg>
                 </Link>
             </div> --}}
-            <x-home_landing.headerType.type-two title="آخرین اخبار و اطلاعیه ها" link="{{ route('landing.article.list', ['page' => $landSlug]) }}" showall="آرشیو اخبار و مقالات" />
+            <x-home_landing.headerType.type-three title="آخرین اخبار و اطلاعیه ها" link="{{ route('landing.article.list', ['page' => $landSlug]) }}" showall="آرشیو اخبار و مقالات" />
             @break
         @case(4)
             {{-- <div class="flex_between mb-4">
@@ -79,7 +79,7 @@
                     </svg>
                 </Link>
             </div> --}}
-            <x-home_landing.headerType.type-two title="آخرین اخبار و اطلاعیه ها" link="{{ route('landing.article.list', ['page' => $landSlug]) }}" showall="آرشیو" />
+            <x-home_landing.headerType.type-four title="آخرین اخبار و اطلاعیه ها" link="{{ route('landing.article.list', ['page' => $landSlug]) }}" showall="آرشیو" />
             @break
         @case(5)
             {{-- <h3 class="mb-6 text-lg lg:text-2xl font-medium text-center text-stone-700"> اخبار و مقالات </h3> --}}
@@ -97,7 +97,7 @@
                     <span class="sm:hidden block text-stone-700"> اخبار و مقالات </span>
                 </Link>
             </div> --}}
-            <x-home_landing.headerType.type-two title="اخبار و مقالات" link="{{ route('landing.article.list', ['page' => $landSlug]) }}" showall="آرشیو اخبار و مقالات" />
+            <x-home_landing.headerType.type-six title="اخبار و مقالات" link="{{ route('landing.article.list', ['page' => $landSlug]) }}" showall="آرشیو اخبار و مقالات" />
             @break
         @default
     @endswitch

@@ -132,6 +132,9 @@
             <Link href="{{ route('landing.product.list', ['page' => $landSlug]) }}" class="text-base font-normal text-normal mr-auto mb-3 hidden lg:inline-block float-left px-2 cursor-pointer"> نمایش همه </Link> --}}
             <x-home_landing.headerType.type-one title="محصولات شرکت {{ $companyName }}" link="{{ route('landing.product.list', ['page' => $landSlug]) }}" showall="نمایش همه" />
             @break
+        @case(2)
+            <x-home_landing.headerType.type-two title="محصولات" link="{{ route('landing.product.list', ['page' => $landSlug]) }}" showall="نمایش همه" />
+            @break
         @case(3)
             {{-- <div class="relative mb-4">
                 <h3 class="text-lg lg:text-2xl font-medium text-center text-stone-700"> محصولات </h3>
@@ -143,7 +146,7 @@
                     </svg>
                 </Link>
             </div> --}}
-            <x-home_landing.headerType.type-two title="محصولات" link="{{ route('landing.product.list', ['page' => $landSlug]) }}" showall="آرشیو محصولات" />
+            <x-home_landing.headerType.type-three title="محصولات" link="{{ route('landing.product.list', ['page' => $landSlug]) }}" showall="آرشیو محصولات" />
             @break
         @case(4)
             {{-- <div class="flex_between">
@@ -156,11 +159,15 @@
                     </svg>
                 </Link>
             </div> --}}
-            <x-home_landing.headerType.type-two title="محصولات" link="{{ route('landing.article.list', ['page' => $landSlug]) }}" showall="آرشیو" />
+            <x-home_landing.headerType.type-four title="محصولات" link="{{ route('landing.product.list', ['page' => $landSlug]) }}" showall="آرشیو" />
             @break
         @case(5)
             {{-- <h3 class="mb-4 text-lg lg:text-2xl font-medium text-center text-stone-700"> محصولات </h3> --}}
             <x-home_landing.headerType.type-five title="محصولات" />
+            @break
+        @case(6)
+            {{-- <h3 class="mb-4 text-lg lg:text-2xl font-medium text-center text-stone-700"> محصولات </h3> --}}
+            <x-home_landing.headerType.type-six title="محصولات" link="{{ route('landing.product.list', ['page' => $landSlug]) }}" showall="آرشیو محصولات" />
             @break
         @default
     @endswitch

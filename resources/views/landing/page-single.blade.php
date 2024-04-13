@@ -99,7 +99,7 @@
                                 </svg>
                             </Link>
                         </div> --}}
-                        <x-home_landing.headerType.type-four title="ویدیو ها" link="{{ route('landing.videos', ['page' => $land->slug]) }}" showall="آرشیو" />
+                        <x-home_landing.headerType.type-four title="ویدیو ها" link="{{ route('landing.videos', ['page' => $land->slug]) }}" showall="آرشیو ویدیو ها" />
                         @break
                     @case(5)
                         <x-home_landing.headerType.type-five title="ویدیو ها" />
@@ -116,7 +116,7 @@
                                 <span class="sm:hidden block text-stone-700"> ویدیو ها </span>
                             </Link>
                         </div> --}}
-                        <x-home_landing.headerType.type-four title="ویدیو ها" link="{{ route('landing.videos', ['page' => $land->slug]) }}" showall="آرشیو ویدیو ها" />
+                        <x-home_landing.headerType.type-six title="ویدیو ها" link="{{ route('landing.videos', ['page' => $land->slug]) }}" showall="آرشیو ویدیو ها" />
                         @break
                     @default
                         
