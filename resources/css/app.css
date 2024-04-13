@@ -58,6 +58,13 @@
         --theme-shadow-normal: rgba(5, 5, 5, 0.5);
         --theme-shadow-focus: rgba(5, 5, 5, 0.8);
     }
+    .theme_mayan{
+        --theme-normal: 220,53,69;
+        --theme-focus: 231,20,40;
+        --theme-shadow-light: rgba(231, 20, 40, 0.3);
+        --theme-shadow-normal: rgba(231, 20, 40, 0.5);
+        --theme-shadow-focus: rgba(231, 20, 40, 0.8);
+    }
     .rounded_none{
         --theme-radius: 0px;
     }

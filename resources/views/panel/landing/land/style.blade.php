@@ -26,6 +26,7 @@
                         <option value="5"> بهمن دیزل </option>
                         <option value="6"> کاریزان </option>
                         <option value="7"> آریا دیزل </option>
+                        <option value="8"> مایان خودرو </option>
                     </x-splade-select>
 
                     <x-splade-select name="border_type" label="نمای اشیاء">
@@ -44,6 +45,7 @@
             <x-layout.panel.form.card2 title="خانه" desc="الگوی صفحه اصلی">
                 <x-layout.panel.form.division :col="2">
                     <x-splade-select name="quick_access_panel_type" label="Quick access panel type">
+                        <option value="0"> غیر فعال </option>
                         <option value="1">{{ __('View type') }} 1</option>
                         <option value="2">{{ __('View type') }} 2</option>
                         <option value="3">{{ __('View type') }} 3</option>
