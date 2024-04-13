@@ -12,6 +12,7 @@
         '4' => 'grid grid-cols-1 border border-dark-100 p-4 rounded-custom mx-4 lg:default_container',
         '5' => 'grid grid-cols-1 lg:divide-y lg:divide-y-stone-400 default_container ' . $gap,
         '6' => 'grid grid-cols-1 md:grid-cols-2 default_container gap-y-8 gap-x-4 lg:grid-cols-3 lg:gap-y-12',
+        '7' => 'grid grid-cols-1 gap-5 default_container',
         default => 'grid grid-cols-1 gap-4 default_container',
     };
 

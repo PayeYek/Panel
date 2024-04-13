@@ -21,12 +21,6 @@
         default => '',
     };
 
-    // $containerStyle = match ($landType) {
-    //     1, 2, 7 => '',
-    //     6 => 'default_container',
-    //     default => '',
-    // };
-
     $borderStyle = match ($borderType) {
         '0' => '',
         '1' => 'border border-stone-400',
