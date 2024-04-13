@@ -56,7 +56,7 @@
                         <div class="relative w-full pt-[62%] cursor-pointer rounded-custom overflow-hidden videoThumbnails" onclick="showVideoByThumbnail(this)">
                             <img src="{{ $video->image }}" alt="{{ $video->alt }}" class="absolute top-0 left-0 w-full h-full object-cover z-[1]" />
                             <x-icons.playIcon class="size-14 sm:w-20 sm:h-20 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-[3]" />
-                            <div class="absolute text-white bottom-5 left-0 w-full z-[2] flex items-center px-4 lg:px-6 bg-gradient-to-r from-[rgba(46,48,146,0.5)] to-[rgba(46,48,146,1)] h-8 sm:h-10 lg:h-14">
+                            <div class="absolute text-white bottom-5 left-0 w-full z-[2] flex items-center px-4 lg:px-6 bg-gradient-to-l from-normal to-normal/30 h-8 sm:h-10 lg:h-14">
                                 <p class="w-full text-sm font-medium sm:text-base lg:text-lg line-clamp-1 select-none"> {{ $video->alt }} </p>
                             </div>
                         </div>

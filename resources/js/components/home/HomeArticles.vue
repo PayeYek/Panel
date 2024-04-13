@@ -1,6 +1,6 @@
 <template>
     <template v-if="type == 1">
-        <li v-for="(article, index) in ArticlesList" :key="index" :class="'flex flex-col sm:flex-row rounded-custom bg-white overflow-hidden ' + borderStyle">
+        <li v-for="(article, index) in ArticlesList" :key="index" :class="'flex flex-col sm:flex-row rounded-custom bg-white overflow-hidden ' + borderStyle + (evenOdd == 1 ? ' evenOdd_cards ' : ' bg-white ')">
             <!-- image -->
             <div
                 class="overflow-hidden md:flex-none w-full relative pt-[61%] sm:pt-0 sm:w-72 md:w-80 lg:w-[23rem] sm:flex-none">
@@ -28,7 +28,7 @@
     </template>
 
     <template v-if="type == 2">
-        <li v-for="(article, index) in ArticlesList" :key="index" :class="'flex flex-col w-60 lg:w-full flex-none overflow-hidden rounded-custom bg-white ' + borderStyle">
+        <li v-for="(article, index) in ArticlesList" :key="index" :class="'flex flex-col w-60 lg:w-full flex-none overflow-hidden rounded-custom bg-white ' + borderStyle + (evenOdd == 1 ? ' evenOdd_cards ' : ' bg-white ')">
             <div class="relative w-full pt-[62%]">
                 <img :src="article.image" :alt="article.title"
                     class="absolute top-0 left-0 w-full h-full object-cover" />
@@ -156,7 +156,7 @@
 
     <template v-if="type == 7">
         <template v-for="(article, key, index) in ArticlesRowList" :key="index">
-            <li class="">
+            <li class="[&:nth-of-type(3)]:col-span-2">
                 <section :class="'sm:flex sm:flex-col sm:p-4 sm:bg-white border-0 sm:rounded-custom ' + borderStyle + ' sm:border-2'">
                     <p class="hidden sm:block text-base font-normal lg:text-xl mb-4"> {{ key === 'blog' ? 'بلاگ' : (key === 'news' ? 'اخبار و مقالات' : (key === 'sell' ? 'شرایط فروش' : '')) }} </p>
                     <section :class="'flex flex-col bg-white rounded-custom overflow-hidden p-4 sm:p-0 sm:border-0 ' + borderStyle + ' border-2'">
@@ -169,7 +169,7 @@
                                 <!-- info -->
                                 <div class="flex flex-col text-stone-700 gap-1 lg:gap-2">
                                     <p class="text-sm lg:text-base xl:text-lg font-medium lg:line-clamp-1"> {{ item.title }} </p>
-                                    <p class="text-xs lg:text-sm lg:leading-6 font-normal line-clamp-1 lg:line-clamp-2"> {{ item.description }} </p>
+                                    <p class="text-xs lg:text-sm lg:leading-6 font-normal line-clamp-1 lg:line-clamp-2 h-4 lg:h-12"> {{ item.description }} </p>
                                 </div>
                             </div>
                             <div class="hidden lg:flex items-center justify-end gap-4 text-normal text-base font-medium">
@@ -265,7 +265,7 @@ export default {
         data: [Array, Object],
         land: [Array, Object],
         type: [String, Number],
-        evenOdd: Boolean,
+        evenOdd: [String, Number],
     },
     setup(props){
         const ArticlesList = ref(JSON.parse(props.data));
@@ -276,13 +276,16 @@ export default {
             return new Intl.DateTimeFormat('fa-IR', { dateStyle: 'medium' }).format(new Date(string))
         }
 
+
+        // console.log(props.evenOdd);
+
         // console.log(ArticlesRowList.value);
         // ArticlesRowList.value.map(item => console.log(item))
         // for (const [key, value] of Object.entries(ArticlesRowList.value)) {
         //    console.log(key);
         // }
 
-        console.log(ArticlesList.value);
+        // console.log(ArticlesList.value);
         return {
             ArticlesList,
             renderDate,

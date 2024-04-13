@@ -52,6 +52,15 @@
                         <option value="6">{{ __('View type') }} 6</option>
                     </x-splade-select>
 
+                    <x-splade-select name="section_header_type" label="Section header type">
+                        <option value="1">{{ __('View type') }} 1</option>
+                        <option value="2">{{ __('View type') }} 2</option>
+                        <option value="3">{{ __('View type') }} 3</option>
+                        <option value="4">{{ __('View type') }} 4</option>
+                        <option value="5">{{ __('View type') }} 5</option>
+                        <option value="6">{{ __('View type') }} 6</option>
+                    </x-splade-select>
+
                     <x-splade-select name="product_card_type" label="Product card type">
                         <option value="1">{{ __('View type') }} 1</option>
                         <option value="2">{{ __('View type') }} 2</option>
@@ -67,7 +76,6 @@
                         <option value="12">{{ __('View type') }} 12</option>
                         <option value="13">{{ __('View type') }} 13</option>
                         <option value="14">{{ __('View type') }} 14</option>
-                        <option value="15">{{ __('View type') }} 15</option>
                     </x-splade-select>
 
                     <x-splade-select name="product_striped" label="نمای راه راه محصولات">
@@ -107,6 +115,14 @@
                     </x-splade-select>
 
                     <x-splade-select name="slider_type" label="قالب اسلایدر">
+                        <option value="1">{{ __('View type') }} 1</option>
+                        <option value="2">{{ __('View type') }} 2</option>
+                        <option value="3">{{ __('View type') }} 3</option>
+                        <option value="4">{{ __('View type') }} 4</option>
+                        <option value="5">{{ __('View type') }} 5</option>
+                    </x-splade-select>
+
+                    <x-splade-select name="contact_type" label="contact type">
                         <option value="1">{{ __('View type') }} 1</option>
                         <option value="2">{{ __('View type') }} 2</option>
                         <option value="3">{{ __('View type') }} 3</option>

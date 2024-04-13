@@ -133,7 +133,7 @@
 
     <template v-if="type == 7">
         <div v-for="(product, index) in productList.slice(0, 4)" :key="index"
-            :class="'px-8 lg:px-5 xl:px-8 py-5 sm:pb-12 w-full items-center flex flex-col sm:first:rounded-none sm:last:rounded-none shadow-[0px_0px_0px_1px_#d2d2d2] ' + (evenOdd ? 'evenOdd_cards ' : 'bg-white ')">
+            :class="'px-8 lg:px-5 xl:px-8 py-5 sm:pb-12 w-full items-center flex flex-col sm:first:rounded-none sm:last:rounded-none shadow-[0px_0px_0px_1px_#d2d2d2] ' + (evenOdd == 1 ? 'evenOdd_cards ' : 'bg-white ')">
             <div class="h-32 mb-2">
                 <img :src="product.image" :alt="product.name" class="object-contain h-full" />
             </div>
@@ -199,33 +199,6 @@
     </template>
 
     <template v-if="type == 10">
-        <div v-for="(product, index) in productList.slice(0, 3)" :key="index"
-            :class="`flex flex-col w-full sm:flex-row sm:items-center lg:pl-14 sm:gap-4 lg:gap-10 xl:gap-16 px-6 pb-6 pt-4 sm:py-6 after:absolute after:content-[''] after:top-0 after:left-0 after:w-full after:h-px after:border-t first:after:hidden after:border-dark-100 relative ` + (evenOdd == 1 ? 'evenOdd_cards ' : 'bg-white ')">
-            <div
-                class="h-[11.5rem] sm:h-32 md:h-36 lg:h-40 sm:mx-0 sm:w-32 md:w-36 lg:w-40 sm:flex-none mx-auto mb-2.5 sm:mb-0">
-                <img :src="product.image" :alt="product.name" class="object-contain h-full" />
-            </div>
-            <div class="mb-4 sm:mb-0 sm:flex-1">
-                <h3 class="mb-2 font-medium lg:mb-1 text-lg sm:line-clamp-1 text-stone-700"> {{ product.name
-                    }}
-                </h3>
-                <p
-                    class="text-sm leading-6 text-justify text-stone-700  font-medium line-clamp-2">
-                    {{ product.description }}
-                </p>
-            </div>
-            <div class="flex flex-col items-center gap-2 w-56 mx-auto sm:mx-0">
-                <LandBtn text="مشخصات" :to="'/l/' + landSlug + '/p/' + product.slug"
-                    classNames="sameCategoryBtnStyle categoryBtnEmpty rounded-custom" />
-                <LandBtn text="کاتالوگ" :to="'/l/' + landSlug + '/p/' + product.slug"
-                    classNames="sameCategoryBtnStyle categoryBtnEmpty rounded-custom" />
-                <LandBtn text="خرید اقساطی" :to="'/l/' + landSlug + '/p/' + product.slug"
-                    classNames="sameCategoryBtnStyle castegoryBtnfilled rounded-custom" />
-            </div>
-        </div>
-    </template>
-
-    <template v-if="type == 11">
         <div v-for="(product, index) in productList.slice(0, 4)" :key="index"
             :class="'rounded-custom px-8 w-full pt-5 pb-8 items-center flex flex-col product_card ' + borderStyle + (evenOdd == 1 ? ' evenOdd_cards ' : ' bg-white ')">
             <div class="h-56 aspect-square mb-3">
@@ -254,7 +227,7 @@
         </div>
     </template>
 
-    <template v-if="type == 12">
+    <template v-if="type == 11">
         <div v-for="(product, index) in productList.slice(0, 4)" :key="index"
             :class="'pt-2 px-8 w-72 sm:w-96 lg:w-full lg:max-w-[17rem] pb-5 lg:pt-3 items-center flex flex-col rounded-custom mx-auto lg:mx-0 ' + borderStyle + ' ' + (evenOdd == 1 ? 'evenOdd_cards' : 'bg-white')">
             <div class="mb-2 h-52">
@@ -273,7 +246,7 @@
         </div>
     </template>
 
-    <template v-if="type == 13">
+    <template v-if="type == 12">
         <div v-for="(product, index) in productList.slice(0, 2)" :key="index"
             :class="`flex flex-col w-full sm:flex-row sm:items-center lg:pl-10 sm:gap-4 lg:gap-10 xl:gap-16 px-6 pb-6 pt-4 sm:py-6 rounded-custom after:absolute after:content-[''] after:top-0 after:left-[5%] after:w-[90%] after:h-px after:border-t first:after:hidden after:border-dark-100 relative ` + (evenOdd == 1 ? 'evenOdd_cards ' : 'bg-white ') + borderStyle">
             <div
@@ -301,7 +274,7 @@
         </div>
     </template>
 
-    <template v-if="type == 14">
+    <template v-if="type == 13">
         <div v-for="(product, index) in productList.slice(0, 4)" :key="index"
             :class="'rounded-custom pt-2 px-8 w-full pb-5 items-center flex flex-col ' + borderStyle + (evenOdd == 1 ? ' evenOdd_cards' : ' bg-white')">
             <div class="mb-1 h-48">
@@ -319,7 +292,7 @@
         </div>
     </template>
 
-    <template v-if="type == 15">
+    <template v-if="type == 14">
         <div v-for="(product, index) in productList.slice(0, 4)" :key="index"
             :class="'pt-2 px-8 w-72 sm:w-96 lg:w-full lg:max-w-full pb-5 lg:pt-3 items-center flex flex-col rounded-custom mx-auto lg:mx-0 ' + borderStyle + ' ' + (evenOdd == 1 ? 'evenOdd_cards' : 'bg-white')">
             <div class="mb-2 h-52">
@@ -355,7 +328,7 @@ export default {
     setup(props){
         const productList = ref(JSON.parse(props.data));
 
-        console.log(props.evenOdd);
+        // console.log(props.evenOdd);
 
         return {
             productList
