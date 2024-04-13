@@ -12,13 +12,13 @@
             <x-layout.panel.form.header2 :title="$title" :desc="$desc"/>
 
             <div class="p-1 cursor-pointer" @click="data.isOpen = !data.isOpen">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" :class="'size-6 stroke-stone-700 transition-transform duration-500 ' + (data.isOpen ? '' : 'rotate-180')">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" :class="'size-6 stroke-stone-700 transition-transform duration-700 ' + (data.isOpen ? '' : 'rotate-180')">
                     <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
                 </svg>
             </div>
         </div>
 
-        <div :class="data.isOpen ? 'max-h-[28rem] py-4' : 'max-h-0'" {{ $attributes->merge(['class' => 'overflow-hidden px-4 transition-all duration-500 grid gap-5 group-[.is-modal]/modal:!grid-cols-1 grid-cols-1 lg:grid-cols-2']) }}>
+        <div :class="data.isOpen ? 'max-h-[32rem] py-4' : 'max-h-0'" {{ $attributes->merge(['class' => 'overflow-hidden px-4 transition-all duration-700 grid gap-5 group-[.is-modal]/modal:!grid-cols-1 grid-cols-1 lg:grid-cols-2']) }}>
             {{ $slot }}
         </div>
     </x-splade-data>
