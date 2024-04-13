@@ -201,7 +201,7 @@
                     {{-- articles --}}
                     <section>
                         {{-- header --}}
-                        <div class="flex items-center mb-4 sm:justify-between lg:px-4">
+                        <div class="flex items-center mb-4 lg:px-4">
                             <a href="{{ route('landing.article.list', ['page' => $land->slug]) }}" class="text-lg font-medium text-gray-900 md:text-xl lg:text-lg"> آخرین اخبار و اطلاعیه ها
                             </a>
                             {{-- <a href="#"
@@ -406,9 +406,9 @@
                 </section>
 
                 {{-- right column --}}
-                <section class="flex flex-col order-2 lg:w-72 lg:flex-none lg:order-1 lg:pt-12">
+                <section class="flex flex-col order-2 lg:w-72 lg:flex-none lg:order-1 lg:pt-2">
                     {{-- search --}}
-                    <form action="#" class="h-10 relative mb-3.5 max-w-96 w-full mr-auto lg:mr-0 lg:max-w-full">
+                    {{-- <form action="#" class="h-10 relative mb-3.5 max-w-96 w-full mr-auto lg:mr-0 lg:max-w-full">
                         <input type="text"
                             class="w-full h-full rounded-custom border border-gray-900 text-gray-900 focus:ring-0 outline-none pl-10 pr-2 placeholder:text-[#888b93] text-sm font-normal focus:border-gray-900"
                             placeholder="جستجوی عنوان" />
@@ -420,7 +420,20 @@
                                     stroke="#111827" stroke-width="2" stroke-linecap="round" />
                             </svg>
                         </button>
-                    </form>
+                    </form> --}}
+                    <div class="flex items-center mb-4 lg:px-4">
+                        <a href="{{ route('landing.article.list', ['page' => $land->slug]) }}" class="text-lg font-medium text-gray-900 md:text-xl lg:text-lg"> آخرین اخبار و اطلاعیه ها
+                        </a>
+                        {{-- <a href="#"
+                            class="absolute bottom-0 flex items-center gap-2 text-base font-normal sm:static lg:absolute right-4 lg:right-auto lg:left-2 text-normal">
+                            <span> مشاهده همه </span>
+                            <svg class="stroke-current" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M15 17L10 12L15 7" stroke="current" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                            </svg>
+                        </a> --}}
+                    </div>
                     {{-- more articles --}}
                     <section class="flex flex-col gap-4">
                         @foreach ($land->articles->take(3) as $article)
@@ -514,15 +527,26 @@
             </section>
 
             {{-- contact to expert --}}
-            @switch($land->styles->land_id)
-                @case(2)
+            @switch($land->styles->contact_type)
+                @case(1)
                     <x-home_landing.contact.type-one />
                 @break
 
-                @case(7)
-                    <x-home_landing.contact.type-two />
+                @case(2)
+                    <x-home_landing.contact.type-five />
                 @break
 
+                @case(3)
+                    <x-home_landing.contact.type-six />
+                @break
+
+                @case(4)
+                    <x-home_landing.contact.type-four />
+                @break
+
+                @case(5)
+                    <x-home_landing.contact.type-two />
+                @break
             @endswitch
         </main>
     @endif

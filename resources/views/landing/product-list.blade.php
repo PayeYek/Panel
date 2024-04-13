@@ -80,7 +80,6 @@
             @case(5)
                 <x-home_landing.contact.type-two />
             @break
-
         @endswitch
     </main>
 
