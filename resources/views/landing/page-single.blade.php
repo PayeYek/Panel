@@ -6,23 +6,23 @@
             <Slider :slides="{{ $land->slides }}" :sliderType="{{ $land->styles->slider_type }}" />
         @endif
 
-        @switch($land->styles->land_id)
+        @switch($land->styles->quick_access_panel_type)
             @case(1)
                 <x-home_landing.quick_access_panel.type_one landSlug="{{ $land->slug }}" />
                 @break
             @case(2)
                 <x-home_landing.quick_access_panel.type_two landSlug="{{ $land->slug }}" />
                 @break
-            @case(4)
+            @case(3)
                 <x-home_landing.quick_access_panel.type_four landSlug="{{ $land->slug }}" />
                 @break
-            @case(5)
+            @case(4)
                 <x-home_landing.quick_access_panel.type_five landSlug="{{ $land->slug }}" :data="$data" />
                     @break
-            @case(6)
+            @case(5)
                 <x-home_landing.quick_access_panel.type_six landSlug="{{ $land->slug }}" />
                 @break
-            @case(7)
+            @case(6)
                 <x-home_landing.quick_access_panel.type_seven landSlug="{{ $land->slug }}" />
                 @break
             
@@ -129,10 +129,11 @@
             @endif
 
         @switch($land->styles->land_id)
-            @case(1)
-                {{-- quick access --}}
+            {{-- @case(1)
+                quick access
                 <x-home_landing.quickaccess :landSlug="$land->slug" classnames="mb-8 sm:mb-24 lg:mb-28" />
-                @break
+                @break --}}
+            @case(1)
             @case(2)
                 <x-home_landing.contact.type-one />
                 @break
