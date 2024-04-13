@@ -88,6 +88,7 @@
         '10', '11' => 'grid grid-cols-1 gap-4 lg:grid-cols-4',
         '12' => 'grid grid-cols-1',
         '14' => 'grid grid-cols-1 gap-6 lg:grid-cols-4',
+        '15' => 'grid grid-cols-1 sm:grid-cols-2 gap-4 lg:max-w-[66rem] lg:mx-auto',
         default => 'grid grid-cols-1 lg:grid-cols-4 gap-4 sm:grid-cols-2'
     };
 
@@ -126,53 +127,27 @@
 <section class="mb-4 lg:mb-16 relative z-[1] default_container">
     @switch($headerType)
         @case(1)
-            {{-- <h3 class="mb-2 text-base sm:text-lg font-medium text-center text-stone-700"> محصولات شرکت {{ $companyName }} </h3>
-            <hr class="w-60 sm:w-96 border-normal mb-6 lg:mb-0 mx-auto" />
-            show all
-            <Link href="{{ route('landing.product.list', ['page' => $landSlug]) }}" class="text-base font-normal text-normal mr-auto mb-3 hidden lg:inline-block float-left px-2 cursor-pointer"> نمایش همه </Link> --}}
             <x-home_landing.headerType.type-one title="محصولات شرکت {{ $companyName }}" link="{{ route('landing.product.list', ['page' => $landSlug]) }}" showall="نمایش همه" />
             @break
         @case(2)
             <x-home_landing.headerType.type-two title="محصولات" link="{{ route('landing.product.list', ['page' => $landSlug]) }}" showall="نمایش همه" />
             @break
         @case(3)
-            {{-- <div class="relative mb-4">
-                <h3 class="text-lg lg:text-2xl font-medium text-center text-stone-700"> محصولات </h3>
-                show all
-                <Link href="{{ route('landing.product.list', ['page' => $landSlug]) }}" class="absolute left-0 top-1 text-base font-medium text-stone-700 hidden lg:inline-flex px-2 cursor-pointer flex-row gap-2">
-                    <span> آرشیو محصولات </span>
-                    <svg width="20" height="20" class="stroke-current" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M8.70833 15.8337L3.26562 10.0003M3.26562 10.0003L8.70833 4.16699M3.26562 10.0003L16.3281 10.0003" stroke="current" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                </Link>
-            </div> --}}
             <x-home_landing.headerType.type-three title="محصولات" link="{{ route('landing.product.list', ['page' => $landSlug]) }}" showall="آرشیو محصولات" />
             @break
         @case(4)
-            {{-- <div class="flex_between">
-                <h3 class="text-lg lg:text-2xl font-medium text-center text-stone-700"> محصولات </h3>
-                show all
-                <Link href="{{ route('landing.product.list', ['page' => $landSlug]) }}" class="absolute left-0 top-1 text-base font-medium text-stone-700 inline-flex px-2 cursor-pointer flex-row gap-2">
-                    <span> آرشیو </span>
-                    <svg width="20" height="20" class="stroke-current" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M8.70833 15.8337L3.26562 10.0003M3.26562 10.0003L8.70833 4.16699M3.26562 10.0003L16.3281 10.0003" stroke="current" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                </Link>
-            </div> --}}
             <x-home_landing.headerType.type-four title="محصولات" link="{{ route('landing.product.list', ['page' => $landSlug]) }}" showall="آرشیو" />
             @break
         @case(5)
-            {{-- <h3 class="mb-4 text-lg lg:text-2xl font-medium text-center text-stone-700"> محصولات </h3> --}}
             <x-home_landing.headerType.type-five title="محصولات" />
             @break
         @case(6)
-            {{-- <h3 class="mb-4 text-lg lg:text-2xl font-medium text-center text-stone-700"> محصولات </h3> --}}
             <x-home_landing.headerType.type-six title="محصولات" link="{{ route('landing.product.list', ['page' => $landSlug]) }}" showall="آرشیو محصولات" />
             @break
         @default
     @endswitch
 
-    {{-- <x-home_landing.products.children.products :type="$type" :evenOdd="$evenOdd" :data="$data" :landSlug="$landSlug" :borderType="$borderType" /> --}}
+
     <div class="w-full {{ $classType }}">
         <Products
             type="{{ $type }}"
