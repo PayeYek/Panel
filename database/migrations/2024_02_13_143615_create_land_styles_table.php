@@ -24,6 +24,9 @@ return new class extends Migration {
             $table->integer('video_card_type')->default(1);
             $table->integer('category_card_type')->default(1);
             $table->integer('category_striped')->default(0);
+            $table->integer('section_header_type')->default(1);
+            $table->integer('contact_type')->default(1);
+            $table->integer('quick_access_panel_type')->default(1);
             $table->integer('a_card_type')->default(1);
             $table->integer('a_view_type')->default(1);
             $table->integer('a_table_type')->default(1);
