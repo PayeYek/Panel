@@ -12,7 +12,9 @@
 <li>
     <x-splade-data :default="['submenu_opened'=> $active]">
         <x-layout.panel.menu.link :link="$link" :submenu="$slot->isNotEmpty()" :active="$active">
-            <x-layout.panel.menu.icon :icon="$icon" :title="$title"/>
+            <x-layout.panel.menu.icon
+{{--                :icon="$icon" --}}
+                :title="$title"/>
 
             <span class="flex-1 ltr:ml-3 rtl:mr-3 ltr:text-left rtl:text-right truncate rtl:font-bakh">{{ __($title) }}</span>
 
