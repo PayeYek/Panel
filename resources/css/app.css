@@ -86,6 +86,13 @@
         --theme-shadow-normal: rgba(27, 22, 62, 0.5);
         --theme-shadow-focus: rgba(27, 22, 62, 0.8);
     }
+    .theme_sosoush{
+        --theme-normal: 38,108,149;
+        --theme-focus: 13,59,86;
+        --theme-shadow-light: rgba(13, 59, 86, 0.3);
+        --theme-shadow-normal: rgba(13, 59, 86, 0.5);
+        --theme-shadow-focus: rgba(13, 59, 86, 0.8);
+    }
     .rounded_none{
         --theme-radius: 0px;
     }
