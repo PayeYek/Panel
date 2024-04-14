@@ -26,7 +26,8 @@
                         <option value="5"> بهمن دیزل </option>
                         <option value="6"> کاریزان </option>
                         <option value="7"> آریا دیزل </option>
-                        <option value="8"> مایان خودرو </option>
+                        <option value="10"> مایان خودرو </option>
+                        <option value="12"> تایتان خودرو </option>
                     </x-splade-select>
 
                     <x-splade-select name="border_type" label="نمای اشیاء">
@@ -55,6 +56,7 @@
                     </x-splade-select>
 
                     <x-splade-select name="section_header_type" label="Section header type">
+                        <option value="0"> غیرفعال </option>
                         <option value="1">{{ __('View type') }} 1</option>
                         <option value="2">{{ __('View type') }} 2</option>
                         <option value="3">{{ __('View type') }} 3</option>

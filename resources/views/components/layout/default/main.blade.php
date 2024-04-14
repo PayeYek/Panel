@@ -7,6 +7,7 @@
         6 => 'theme_carizan',
         7 => 'theme_arya',
         10 => 'theme_mayan',
+        12 => 'theme_titan',
         default => 'theme_arian',
     };
     

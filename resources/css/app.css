@@ -60,10 +60,17 @@
     }
     .theme_mayan{
         --theme-normal: 220,53,69;
-        --theme-focus: 231,20,40;
-        --theme-shadow-light: rgba(231, 20, 40, 0.3);
-        --theme-shadow-normal: rgba(231, 20, 40, 0.5);
-        --theme-shadow-focus: rgba(231, 20, 40, 0.8);
+        --theme-focus: 184,34,48;
+        --theme-shadow-light: rgba(184, 34, 48, 0.3);
+        --theme-shadow-normal: rgba(184, 34, 48, 0.5);
+        --theme-shadow-focus: rgba(184, 34, 48, 0.8);
+    }
+    .theme_titan{
+        --theme-normal: 36,31,71;
+        --theme-focus: 27,22,62;
+        --theme-shadow-light: rgba(27, 22, 62, 0.3);
+        --theme-shadow-normal: rgba(27, 22, 62, 0.5);
+        --theme-shadow-focus: rgba(27, 22, 62, 0.8);
     }
     .rounded_none{
         --theme-radius: 0px;
