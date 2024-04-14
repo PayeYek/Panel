@@ -42,13 +42,7 @@
                 <ArticleLink :href="'/l/' + landSlug + '/a/' + article.slug"
                     class="text-lg font-medium flex_center h-10 w-32 rounded-custom mx-auto lg:ml-0 text-white bg-normal hover:bg-focus focus:shadow-focus focus:shadow-shadowNormal">
                     <span> بیشتر </span>
-                    <!-- <svg class="fill-current" width="16" height="16" viewBox="0 0 16 16" fill="none"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <path d="M8 16L9.41 14.59L3.83 9L16 9V7L3.83 7L9.41 1.41L8 0L0 8L8 16Z"
-                            fill="current" />
-                    </svg> -->
                 </ArticleLink>
-                <!-- <x-home_landing.announcement.children.linkBtn text="بیشتر" href="{{ route('landing.article.show',['page'=> $landSlug, 'article'=> $articleSlug]) }}" class="mx-auto lg:ml-0 rounded-custom text-white bg-normal hover:bg-focus focus:shadow-focus focus:shadow-shadowNormal" /> -->
             </div>
         </li>
     </template>
@@ -252,6 +246,27 @@
             </div>
         </li>
     </template>
+
+    <template v-if="type == 11">
+        <li v-for="(article, index) in ArticlesList.slice(0, 4)" :key="index" :class="'flex flex-col w-60 lg:w-full flex-none overflow-hidden rounded-custom bg-white ' + borderStyle + (evenOdd == 1 ? ' evenOdd_cards ' : ' bg-white ')">
+            <div class="relative w-full pt-[62%]">
+                <img :src="article.image" :alt="article.title"
+                    class="absolute top-0 left-0 w-full h-full object-cover" />
+            </div>
+            <!-- info -->
+            <div class="px-4 pt-3 pb-4">
+                <h3 class="mb-2 text-sm font-medium text-stone-700 line-clamp-1"> {{ article.title }} </h3>
+                <p class="mb-3 text-xs font-normal leading-5 h-10 text-justify text-stone-700  line-clamp-2">
+                    {{ article.description }}
+                </p>
+                <ArticleLink :href="'/l/' + landSlug + '/a/' + article.slug"
+                    class="text-lg font-medium flex_center h-10 w-32 rounded-custom mx-auto lg:ml-0 text-white bg-normal hover:bg-focus focus:shadow-focus focus:shadow-shadowNormal">
+                    <span> بیشتر </span>
+                </ArticleLink>
+            </div>
+        </li>
+    </template>
+
 </template>
 
 <script>

@@ -7,49 +7,9 @@
     'companyName' => 'آرین دیزل',
     'landType' => 1,
     'headerType' => 1,
-    // 'showSectionTitle' => true,
 ])
 
 @php
-
-    // $borderStyle = '';
-    // switch ($type."") {
-    //     case '7':
-    //         $borderStyle = 'drop-shadow-base';
-    
-    //         break;
-    //     case '8':
-    //         $borderStyle = match($borderType) {
-    //             '1' => 'drop-shadow-base sm:drop-shadow-none',
-    //             default => 'border border-dark-100 sm:border-0'
-    //         };
-    
-    //         break;
-    //     case '9':
-    //         $borderStyle = match($borderType) {
-    //             '1' => 'drop-shadow-base',
-    //             default => 'border border-dark-100'
-    //         };
-    //         break;
-    //     case '10':
-    //         $borderStyle = match($borderType) {
-    //             '1' => 'drop-shadow-base',
-    //             default => 'border border-dark-100'
-    //         };
-    //         break;
-    //     case '11':
-    //         $borderStyle = match($borderType) {
-    //             '1' => 'drop-shadow-base',
-    //             default => 'border border-dark-100'
-    //         };
-    //     case '12':
-    //         $borderStyle = match($borderType) {
-    //             '0' => '',
-    //             '1' => 'drop-shadow-base',
-    //             default => 'border border-dark-100'
-    //         };
-    //         break;
-    // }
 
     $borderStyle = '';
     switch ($borderType."") {
@@ -89,37 +49,9 @@
         '12' => 'grid grid-cols-1',
         '14' => 'grid grid-cols-1 gap-6 lg:grid-cols-4',
         '15' => 'grid grid-cols-1 sm:grid-cols-2 gap-4 lg:max-w-[66rem] lg:mx-auto',
+        '16' => 'grid grid-cols-1 lg:grid-cols-3 gap-4',
         default => 'grid grid-cols-1 lg:grid-cols-4 gap-4 sm:grid-cols-2'
     };
-
-    // $childBorderStyle='';
-
-    // switch ($borderType) {
-    //     case '0':
-    //         $childBorderStyle = match($type."") {
-    //             '1', '2', '3', '4', '5', '6'  => '',
-    //             '7', '9', '10' => '',
-    //             '8' => '',
-    //             default => ''
-    //         };
-    //         break;
-    //     case '1':
-    //         $childBorderStyle = match($type."") {
-    //             '1', '2', '3', '4', '5', '6'  => 'drop-shadow-base',
-    //             '7', '9', '10' => '',
-    //             '8' => 'sm:drop-shadow-base',
-    //             default => 'drop-shadow-base'
-    //         };
-    //         break;
-    //     case '2':
-    //         $childBorderStyle = match($type."") {
-    //             '1', '2', '3', '4', '5', '6'  => 'border border-dark-100',
-    //             '7', '9', '10' => '',
-    //             '8' => 'sm:border sm:border-dark-100',
-    //             default => 'border border-dark-100'
-    //         };
-    //         break;
-    // }
 
     
 @endphp

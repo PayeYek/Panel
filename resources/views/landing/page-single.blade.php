@@ -118,6 +118,10 @@
                 {{-- contact to expert --}}
                 <x-home_landing.contact.type-seven />
                 @break
+            @case(7)
+                {{-- contact to expert --}}
+                <x-home_landing.contact.type-eight />
+                @break
             @default
                 
         @endswitch
