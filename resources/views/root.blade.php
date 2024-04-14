@@ -1,8 +1,6 @@
-
-
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}" dir="{{ \App\Support\Help::isRTL() ? 'rtl' : 'ltr' }}" class="scrollbar-thin">
-    <head>
+     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -10,7 +8,7 @@
             <x-layout.loader.style/>
         @endproduction
         <x-favicon/>
-        
+
         @spladeHead
         @vite('resources/js/app.js')
     </head>
@@ -19,7 +17,7 @@
         @production
             <x-layout.loader.html/>
         @endproduction
-      
+
         @splade
 
         @production
