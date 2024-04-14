@@ -164,6 +164,7 @@
                         <option value="12">{{  __('View type') }} 12</option>
                         <option value="13">{{  __('View type') }} 13</option>
                         <option value="14">{{  __('View type') }} 14</option>
+                        <option value="15">{{  __('View type') }} 15</option>
                     </x-splade-select>
 
                     <x-splade-select name="category_striped" label="نمای راه راه دسته بندی">

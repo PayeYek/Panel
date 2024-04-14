@@ -323,11 +323,11 @@
                 </h3>
                 <div class="grid w-full grid-cols-2 gap-2 mx-auto lg:mx-0 max-w-72">
                     <LandBtn text="مشخصات" :to="'/l/' + landSlug + '/p/' + product.slug"
-                        classNames="sameCategoryBtnStyle categoryBtnEmpty rounded-custom" />
+                        classNames="sameCategoryBtnStyle bg-white border text-normal border-normal hover:border-focus rounded-custom" />
                     <LandBtn text="کاتالوگ" :to="'/l/' + landSlug + '/p/' + product.slug"
-                        classNames="sameCategoryBtnStyle categoryBtnEmpty rounded-custom" />
+                        classNames="sameCategoryBtnStyle bg-white border text-normal border-normal hover:border-focus rounded-custom" />
                     <LandBtn text="فروش اقساطی" :to="'/l/' + landSlug + '/p/' + product.slug"
-                        classNames="col-span-full sameCategoryBtnStyle castegoryBtnfilled rounded-custom" />
+                        classNames="col-span-full sameCategoryBtnStyle text-white bg-normal hover:bg-focus rounded-custom" />
                 </div>
             </div>
         </div>
