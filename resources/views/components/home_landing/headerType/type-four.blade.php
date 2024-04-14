@@ -5,7 +5,7 @@
 ])
 
 
-<div class="flex_between mb-4">
+<div class="flex_between mb-4 relative">
     <h3 class="text-lg lg:text-2xl font-medium text-center text-stone-700"> {{ $title }} </h3>
     {{-- show all --}}
     <Link href="{{ $link }}" class="absolute left-0 top-1 text-base font-medium text-stone-700 inline-flex px-2 cursor-pointer flex-row gap-2">

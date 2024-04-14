@@ -92,10 +92,6 @@
         @endif
 
         @switch($land->styles->contact_type)
-            {{-- @case(1)
-                quick access
-                <x-home_landing.quickaccess :landSlug="$land->slug" classnames="mb-8 sm:mb-24 lg:mb-28" />
-                @break --}}
             @case(1)
                 <x-home_landing.contact.type-one />
                 @break
@@ -114,6 +110,10 @@
             @case(5)
                 {{-- contact to expert --}}
                 <x-home_landing.contact.type-two />
+                @break
+            @case(6)
+                {{-- contact to expert --}}
+                <x-home_landing.contact.type-seven />
                 @break
             @default
                 

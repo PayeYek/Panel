@@ -28,6 +28,7 @@
                         <option value="7"> آریا دیزل </option>
                         <option value="10"> مایان خودرو </option>
                         <option value="12"> تایتان خودرو </option>
+                        <option value="14"> رخش خودرو </option>
                     </x-splade-select>
 
                     <x-splade-select name="border_type" label="نمای اشیاء">
@@ -133,6 +134,7 @@
                         <option value="3">{{ __('View type') }} 3</option>
                         <option value="4">{{ __('View type') }} 4</option>
                         <option value="5">{{ __('View type') }} 5</option>
+                        <option value="6">{{ __('View type') }} 6</option>
                     </x-splade-select>
                 </x-layout.panel.form.division>
             </x-layout.panel.form.card2>
