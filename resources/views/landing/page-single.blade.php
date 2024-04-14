@@ -25,6 +25,9 @@
             @case(6)
                 <x-home_landing.quick_access_panel.type_six landSlug="{{ $land->slug }}" />
                 @break
+            @case(7)
+                <x-home_landing.quick_access_panel.type_seven landSlug="{{ $land->slug }}" />
+                @break
             
             @default
                 
