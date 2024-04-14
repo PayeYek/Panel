@@ -29,6 +29,7 @@
                         <option value="10"> مایان خودرو </option>
                         <option value="12"> تایتان خودرو </option>
                         <option value="14"> رخش خودرو </option>
+                        <option value="20"> ماموت خودرو </option>
                     </x-splade-select>
 
                     <x-splade-select name="border_type" label="نمای اشیاء">
