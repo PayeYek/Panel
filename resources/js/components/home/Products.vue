@@ -1,7 +1,7 @@
 <template>
     <template v-if="type == 1">
         <div v-for="(product, index) in productList.slice(0, 3)" :key="index"
-            :class="'w-60 py-5 first:pt-0 last:pb-0 items-center flex flex-col border-b border-b-stone-400 last:border-b-0 sm:border-b-0 sm:first:pt-5 sm:last:pb-5 sm:px-10 sm:flex-none sm:w-80 relative before:absolute before:content-[' + '] before:inset-y-10 before:left-0 before:w-px before:bg-[#ccc] last:before:bg-transparent before:hidden sm:before:block ' + borderStyle + (evenOdd == 1 ? ' evenOdd_cards' : ' bg-white')">
+            :class="'w-60 py-5 first:pt-0 last:pb-0 items-center flex flex-col border-b border-b-stone-400 last:border-b-0 sm:border-b-0 sm:first:pt-5 sm:last:pb-5 sm:px-10 sm:flex-none sm:w-80 relative before:absolute before:content-[' + '] before:inset-y-10 before:left-0 before:w-px before:bg-[#ccc] last:before:bg-transparent before:hidden sm:before:block ' + (evenOdd == 1 ? ' evenOdd_cards' : ' bg-white')">
             <div class="mb-2 h-48">
                 <img :src="product.image" :alt="product.name" class="object-contain h-full" />
             </div>

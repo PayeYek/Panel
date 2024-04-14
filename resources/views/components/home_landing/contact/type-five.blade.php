@@ -5,7 +5,7 @@
         {{-- form --}}
         <section class="flex flex-col gap-10 lg:gap-16 items-center">
             <form action="#" id="contact" class="max-w-64 w-full">
-                <input name="phone" type="tel" class="border border-[#cfd1d4] focus:border-[#cfd1d4] h-12 focus:ring-0 rounded-custom outline-none w-full placeholder:text-[#888b93] text-base bg-[#52514d] font-normal pr-6 pl-3 text-white" placeholder="شماره همراه" value="09" />
+                <input name="phone" type="tel" class="border border-[#cfd1d4] focus:border-[#cfd1d4] h-12 focus:ring-0 rounded-custom outline-none w-full placeholder:text-[#888b93] text-base bg-white/20 font-normal pr-6 pl-3 text-white" placeholder="شماره همراه" value="09" />
             </form>
             <button type="submit" form="contact" class="flex_center max-w-64 w-full h-11 text-[#FFD598] border-x-2 border-x-[#DBA14D] hover:border-x-white hover:text-white bg-transparent rounded-custom"> ارسال </button>
         </section>
@@ -23,8 +23,8 @@
                 </defs>
             </svg>
             {{-- icon --}}
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 stroke-stone-700 top-1/2 left-1/2 -translate-x-3.5 -translate-y-1/2 absolute group-hover:stroke-normal">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 6.75 12 3m0 0 3.75 3.75M12 3v18" />
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6 stroke-white/75 top-6 left-1/2 -translate-x-3.5 -translate-y-1/2 absolute group-hover:stroke-normal">
+                <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 15.75 7.5-7.5 7.5 7.5" />
             </svg>
         </button>
     </section>
