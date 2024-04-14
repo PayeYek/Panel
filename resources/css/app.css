@@ -72,6 +72,20 @@
         --theme-shadow-normal: rgba(27, 22, 62, 0.5);
         --theme-shadow-focus: rgba(27, 22, 62, 0.8);
     }
+    .theme_rakhsh{
+        --theme-normal: 26,27,29;
+        --theme-focus: 15,15,15;
+        --theme-shadow-light: rgba(15, 15, 15, 0.3);
+        --theme-shadow-normal: rgba(15, 15, 15, 0.5);
+        --theme-shadow-focus: rgba(15, 15, 15, 0.8);
+    }
+    .theme_mammut{
+        --theme-normal: 36,31,71;
+        --theme-focus: 27,22,62;
+        --theme-shadow-light: rgba(27, 22, 62, 0.3);
+        --theme-shadow-normal: rgba(27, 22, 62, 0.5);
+        --theme-shadow-focus: rgba(27, 22, 62, 0.8);
+    }
     .rounded_none{
         --theme-radius: 0px;
     }
@@ -764,11 +778,20 @@
 .slider_type_1.arrow-blur-bottom .swiper-button-prev, .slider_type_1.arrow-blur-bottom .swiper-button-next {
     @apply bottom-8 xl:bottom-14 xl:after:text-5xl after:text-3xl after:text-white/75 hover:after:text-white;
 }
+.slider_type_1.arrow-blur-center .swiper-button-prev, .slider_type_1.arrow-blur-center .swiper-button-next {
+    @apply top-1/2 -translate-y-1/2 xl:after:text-5xl after:text-3xl after:text-white/75 hover:after:text-white;
+}
 .slider_type_1.arrow-blur-bottom .swiper-button-next {
     @apply lg:left-20 xl:left-40 2xl:left-80;
 }
 .slider_type_1.arrow-blur-bottom .swiper-button-prev {
     @apply lg:right-20 xl:right-40 2xl:right-80;
+}
+.slider_type_1.arrow-blur-center .swiper-button-next {
+    @apply lg:left-8;
+}
+.slider_type_1.arrow-blur-center .swiper-button-prev {
+    @apply lg:right-8;
 }
 .slider_type_1.arrow-center .swiper-button-prev, .slider_type_1.arrow-center .swiper-button-next {
     @apply bottom-1/2 translate-y-1/2 bg-white/70 after:text-[#2F3136];
@@ -794,6 +817,10 @@
 
 .slider_type_1.arrow-blur-bottom {
     @apply relative before:absolute before:content-[''] before:left-0 before:w-full before:bottom-0 before:h-44 before:hidden lg:before:block before:z-[2] before:bg-gradient-to-t before:from-black before:to-transparent;
+}
+
+.slider_type_1.arrow-bottom .custom_gradient, .slider_type_1.arrow-center .custom_gradient, .slider_type_1.arrow-center-transparent .custom_gradient{
+    @apply hidden;
 }
 
 .desktop_pdp_slider .swiper-button-next, .desktop_pdp_slider .swiper-button-prev{

@@ -28,6 +28,8 @@
                         <option value="7"> آریا دیزل </option>
                         <option value="10"> مایان خودرو </option>
                         <option value="12"> تایتان خودرو </option>
+                        <option value="14"> رخش خودرو </option>
+                        <option value="20"> ماموت خودرو </option>
                     </x-splade-select>
 
                     <x-splade-select name="border_type" label="نمای اشیاء">
@@ -53,6 +55,7 @@
                         <option value="4">{{ __('View type') }} 4</option>
                         <option value="5">{{ __('View type') }} 5</option>
                         <option value="6">{{ __('View type') }} 6</option>
+                        <option value="7">{{ __('View type') }} 7</option>
                     </x-splade-select>
 
                     <x-splade-select name="section_header_type" label="Section header type">
@@ -81,6 +84,7 @@
                         <option value="13">{{ __('View type') }} 13</option>
                         <option value="14">{{ __('View type') }} 14</option>
                         <option value="15">{{ __('View type') }} 15</option>
+                        <option value="16">{{ __('View type') }} 16</option>
                     </x-splade-select>
 
                     <x-splade-select name="product_striped" label="نمای راه راه محصولات">
@@ -99,6 +103,7 @@
                         <option value="8">{{ __('View type') }} 8</option>
                         <option value="9">{{ __('View type') }} 9</option>
                         <option value="10">{{ __('View type') }} 10</option>
+                        <option value="11">{{ __('View type') }} 11</option>
                     </x-splade-select>
 
                     <x-splade-select name="article_striped" label="نمای راه راه مقالات">
@@ -133,6 +138,7 @@
                         <option value="3">{{ __('View type') }} 3</option>
                         <option value="4">{{ __('View type') }} 4</option>
                         <option value="5">{{ __('View type') }} 5</option>
+                        <option value="6">{{ __('View type') }} 6</option>
                     </x-splade-select>
                 </x-layout.panel.form.division>
             </x-layout.panel.form.card2>

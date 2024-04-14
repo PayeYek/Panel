@@ -14,15 +14,18 @@
                 <x-home_landing.quick_access_panel.type_two landSlug="{{ $land->slug }}" />
                 @break
             @case(3)
-                <x-home_landing.quick_access_panel.type_four landSlug="{{ $land->slug }}" />
+                <x-home_landing.quick_access_panel.type_three landSlug="{{ $land->slug }}" />
                 @break
             @case(4)
-                <x-home_landing.quick_access_panel.type_five landSlug="{{ $land->slug }}" :data="$data" />
+                <x-home_landing.quick_access_panel.type_four landSlug="{{ $land->slug }}" :data="$data" />
                     @break
             @case(5)
-                <x-home_landing.quick_access_panel.type_six landSlug="{{ $land->slug }}" />
+                <x-home_landing.quick_access_panel.type_five landSlug="{{ $land->slug }}" />
                 @break
             @case(6)
+                <x-home_landing.quick_access_panel.type_six landSlug="{{ $land->slug }}" />
+                @break
+            @case(7)
                 <x-home_landing.quick_access_panel.type_seven landSlug="{{ $land->slug }}" />
                 @break
             
@@ -92,10 +95,6 @@
         @endif
 
         @switch($land->styles->contact_type)
-            {{-- @case(1)
-                quick access
-                <x-home_landing.quickaccess :landSlug="$land->slug" classnames="mb-8 sm:mb-24 lg:mb-28" />
-                @break --}}
             @case(1)
                 <x-home_landing.contact.type-one />
                 @break
@@ -114,6 +113,14 @@
             @case(5)
                 {{-- contact to expert --}}
                 <x-home_landing.contact.type-two />
+                @break
+            @case(6)
+                {{-- contact to expert --}}
+                <x-home_landing.contact.type-seven />
+                @break
+            @case(7)
+                {{-- contact to expert --}}
+                <x-home_landing.contact.type-eight />
                 @break
             @default
                 

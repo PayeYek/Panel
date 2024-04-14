@@ -8,6 +8,8 @@
         7 => 'theme_arya',
         10 => 'theme_mayan',
         12 => 'theme_titan',
+        14 => 'theme_rakhsh',
+        20 => 'theme_mammut',
         default => 'theme_arian',
     };
     
