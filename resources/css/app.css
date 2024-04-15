@@ -114,6 +114,13 @@
         --theme-shadow-normal: rgba(29, 45, 60, 0.5);
         --theme-shadow-focus: rgba(29, 45, 60, 0.8);
     }
+    .theme_ikco{
+        --theme-normal: 1,87,158;
+        --theme-focus: 0,61,111;
+        --theme-shadow-light: rgba(0, 61, 111, 0.3);
+        --theme-shadow-normal: rgba(0, 61, 111, 0.5);
+        --theme-shadow-focus: rgba(0, 61, 111, 0.8);
+    }
 
 
     .rounded_none{

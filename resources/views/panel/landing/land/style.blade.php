@@ -27,6 +27,7 @@
                         <option value="5"> بهمن دیزل </option>
                         <option value="6"> کاریزان </option>
                         <option value="7"> آریا دیزل </option>
+                        <option value="8"> ایرانخودرو دیزل </option>
                         <option value="10"> مایان خودرو </option>
                         <option value="12"> تیتان خودرو </option>
                         <option value="14"> رخش خودرو </option>

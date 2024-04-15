@@ -7,6 +7,7 @@
         5 => 'theme_bahman',
         6 => 'theme_carizan',
         7 => 'theme_arya',
+        8 => 'theme_ikco',
         10 => 'theme_mayan',
         12 => 'theme_titan',
         14 => 'theme_rakhsh',
