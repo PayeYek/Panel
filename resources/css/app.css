@@ -93,6 +93,13 @@
         --theme-shadow-normal: rgba(13, 59, 86, 0.5);
         --theme-shadow-focus: rgba(13, 59, 86, 0.8);
     }
+    .theme_farda{
+        --theme-normal: 33,63,90;
+        --theme-focus: 29,45,60;
+        --theme-shadow-light: rgba(29, 45, 60, 0.3);
+        --theme-shadow-normal: rgba(29, 45, 60, 0.5);
+        --theme-shadow-focus: rgba(29, 45, 60, 0.8);
+    }
     .rounded_none{
         --theme-radius: 0px;
     }
