@@ -30,6 +30,7 @@
                         <option value="10"> مایان خودرو </option>
                         <option value="12"> تایتان خودرو </option>
                         <option value="14"> رخش خودرو </option>
+                        <option value="15"> کاسپین خودرو فرهنگ </option>
                         <option value="18"> فردا دیزل </option>
                         <option value="20"> ماموت خودرو </option>
                     </x-splade-select>
