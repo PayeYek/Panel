@@ -117,7 +117,7 @@ Route::middleware(['splade'])->group(function () {
 
             Route::get('{page}/sales', 'sales')->name('sales');
             Route::get('{page}/videos', 'videos')->name('videos');
-            
+
             Route::get('{page}/advertise', 'advertise')->name('advertise');
         });
 
@@ -127,7 +127,33 @@ Route::middleware(['splade'])->group(function () {
     })->name('index');
 
 
+    /* AUTHENTICATION PANEL */
+    Route::prefix('auth')->name('auth.')
+        ->controller(\App\Http\Controllers\Panel\AuthController::class)
+        ->group(function () {
+            Route::post('logout', 'logout')->name('logout');
 
+            Route::get('login', 'login')->name('login');
+            Route::post('login', 'enter')->name('enter');
+
+            Route::get('create', 'create')->name('create');
+            Route::post('create', 'store')->name('store');
+            Route::get('verify', 'verify')->name('verify');
+            Route::post('verify', 'accept')->name('accept');
+            Route::get('resend', 'resend')->name('resend');
+
+            Route::get('forget', 'forget')->name('forget');
+            Route::post('forget', 'code')->name('code');
+            Route::get('confirm', 'confirm')->name('confirm');
+            Route::post('confirm', 'recovery')->name('recovery');
+            Route::get('recode', 'recode')->name('recode');
+            Route::get('password', 'password')->name('password');
+            Route::post('password', 'change')->name('change');
+
+            Route::get('', function () {
+                return redirect()->route('auth.login');
+            });
+        });
 
 });
 

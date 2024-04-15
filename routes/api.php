@@ -32,3 +32,33 @@ Route::get('land/{landId}/products', function ($landId) {
     $land = \App\Models\Land::with('products')->find($landId);
     return $land->products()->latest()->get()->pluck('name', 'id');
 });
+
+Route::controller(\App\Http\Controllers\Landing\LandingApiController::class)
+    ->group(function () {
+
+        Route::name('page.')->group(function () {
+            Route::get('/pages', 'pages')->name('list');
+//            Route::get('{page}', 'page')->name('show');
+//            Route::get('{page}/about', 'about')->name('about');
+//            Route::get('{page}/catalogs', 'catalogs')->name('catalogs');
+//            Route::get('{page}/calculator', 'calculator')->name('calculator');
+
+        });
+
+//        Route::name('product.')->group(function () {
+//            Route::get('{page}/p', 'products')->name('list');
+//            Route::get('{page}/p/{product}', 'product')->name('show');
+//            Route::get('{page}/c/{category}', 'category')->name('category');
+//            Route::post('{page}/p/{product}/comment', 'comment')->name('comment');
+//        });
+//
+//        Route::name('article.')->group(function () {
+//            Route::get('{page}/a', 'articles')->name('list');
+//            Route::get('{page}/a/{article}', 'article')->name('show');
+//        });
+//
+//        Route::get('{page}/sales', 'sales')->name('sales');
+//        Route::get('{page}/videos', 'videos')->name('videos');
+//
+//        Route::get('{page}/advertise', 'advertise')->name('advertise');
+    });
