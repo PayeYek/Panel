@@ -2,6 +2,7 @@
     $brand = match ($land->styles->land_id) {
         1 => 'theme_arian',
         2 => 'theme_saipa',
+        3 => 'theme_soroush',
         4 => 'theme_pilsan',
         5 => 'theme_bahman',
         6 => 'theme_carizan',

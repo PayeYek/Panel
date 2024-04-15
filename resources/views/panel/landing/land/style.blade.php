@@ -22,6 +22,7 @@
                     <x-splade-select name="color" label="Color">
                         <option value="1"> آرین دیزل </option>
                         <option value="2"> سایپا دیزل </option>
+                        <option value="3"> سروش دیزل </option>
                         <option value="4"> پیلسان </option>
                         <option value="5"> بهمن دیزل </option>
                         <option value="6"> کاریزان </option>
@@ -56,6 +57,7 @@
                         <option value="5">{{ __('View type') }} 5</option>
                         <option value="6">{{ __('View type') }} 6</option>
                         <option value="7">{{ __('View type') }} 7</option>
+                        <option value="8">{{ __('View type') }} 8</option>
                     </x-splade-select>
 
                     <x-splade-select name="section_header_type" label="Section header type">
