@@ -100,6 +100,15 @@
         --theme-shadow-normal: rgba(29, 45, 60, 0.5);
         --theme-shadow-focus: rgba(29, 45, 60, 0.8);
     }
+    .theme_caspian{
+        --theme-normal: 62,118,235;
+        --theme-focus: 55,91,167;
+        --theme-shadow-light: rgba(55, 91, 167, 0.3);
+        --theme-shadow-normal: rgba(55, 91, 167, 0.5);
+        --theme-shadow-focus: rgba(55, 91, 167, 0.8);
+    }
+
+
     .rounded_none{
         --theme-radius: 0px;
     }
