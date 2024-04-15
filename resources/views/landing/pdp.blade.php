@@ -165,16 +165,47 @@
 
         {{-- add viewpoint --}}
         <x-pdp_landing.addViewpoint :land="$land" :product="$product" :tabStyle="$tabStyle" marginbottom="mb-20" />
-        @switch($land->styles->land_id)
-            {{-- @case(1)
-            @case(2)
-            @break --}}
+        {{-- @switch($land->styles->land_id)
             @case(6)
                 <x-home_landing.contact.type-four />
             @break
             @case(7)
                 <x-home_landing.contact.type-two />
             @break
+            @case(8)
+                <x-home_landing.quick_access_panel.type_eight landSlug="{{ $land->slug }}" />
+            @break
+        @endswitch --}}
+        @switch($land->styles->contact_type)
+            @case(1)
+                <x-home_landing.contact.type-one />
+                @break
+            @case(2)
+                {{-- contact to expert --}}
+                <x-home_landing.contact.type-five />
+                @break
+            @case(3)
+                {{-- contact to expert --}}
+                <x-home_landing.contact.type-six />
+                @break
+            @case(4)
+                {{-- contact to expert --}}
+                <x-home_landing.contact.type-four />
+                @break
+            @case(5)
+                {{-- contact to expert --}}
+                <x-home_landing.contact.type-two />
+                @break
+            @case(6)
+                {{-- contact to expert --}}
+                <x-home_landing.contact.type-seven />
+                @break
+            @case(7)
+                {{-- contact to expert --}}
+                <x-home_landing.contact.type-eight />
+                @break
+            @default
+                
         @endswitch
     </main>
 
