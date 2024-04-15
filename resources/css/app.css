@@ -121,6 +121,20 @@
         --theme-shadow-normal: rgba(0, 61, 111, 0.5);
         --theme-shadow-focus: rgba(0, 61, 111, 0.8);
     }
+    .theme_azhitech{
+        --theme-normal: 33,63,90;
+        --theme-focus: 14,32,48;
+        --theme-shadow-light: rgba(14, 32, 48, 0.3);
+        --theme-shadow-normal: rgba(14, 32, 48, 0.5);
+        --theme-shadow-focus: rgba(14, 32, 48, 0.8);
+    }
+    .theme_shayan{
+        --theme-normal: 25,53,120;
+        --theme-focus: 9,33,75;
+        --theme-shadow-light: rgba(9, 33, 75, 0.3);
+        --theme-shadow-normal: rgba(9, 33, 75, 0.5);
+        --theme-shadow-focus: rgba(9, 33, 75, 0.8);
+    }
 
 
     .rounded_none{

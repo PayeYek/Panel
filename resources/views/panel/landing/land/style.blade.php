@@ -29,10 +29,12 @@
                         <option value="7"> آریا دیزل </option>
                         <option value="8"> ایرانخودرو دیزل </option>
                         <option value="10"> مایان خودرو </option>
+                        <option value="11"> آذهایتکس خودرو </option>
                         <option value="12"> تیتان خودرو </option>
                         <option value="14"> رخش خودرو </option>
                         <option value="15"> کاسپین خودرو فرهنگ </option>
                         <option value="16"> ارس خودرو دیزل </option>
+                        <option value="17"> شایان دیزل </option>
                         <option value="18"> فردا دیزل </option>
                         <option value="20"> ماموت خودرو </option>
                     </x-splade-select>
