@@ -81,6 +81,14 @@
             @case(5)
                 <x-home_landing.contact.type-two />
             @break
+
+            @case(6)
+                <x-home_landing.contact.type-seven />
+            @break
+            
+            @case(7)
+                <x-home_landing.contact.type-eight />
+            @break
         @endswitch
     </main>
 
