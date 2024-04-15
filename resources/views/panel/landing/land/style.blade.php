@@ -28,7 +28,7 @@
                         <option value="6"> کاریزان </option>
                         <option value="7"> آریا دیزل </option>
                         <option value="10"> مایان خودرو </option>
-                        <option value="12"> تایتان خودرو </option>
+                        <option value="12"> تیتان خودرو </option>
                         <option value="14"> رخش خودرو </option>
                         <option value="15"> کاسپین خودرو فرهنگ </option>
                         <option value="18"> فردا دیزل </option>

@@ -11,6 +11,7 @@
         12 => 'theme_titan',
         14 => 'theme_rakhsh',
         15 => 'theme_caspian',
+        16 => 'theme_amico',
         18 => 'theme_farda',
         20 => 'theme_mammut',
         default => 'theme_arian',
