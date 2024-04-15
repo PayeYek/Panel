@@ -31,6 +31,7 @@
                         <option value="12"> تیتان خودرو </option>
                         <option value="14"> رخش خودرو </option>
                         <option value="15"> کاسپین خودرو فرهنگ </option>
+                        <option value="16"> ارس خودرو دیزل </option>
                         <option value="18"> فردا دیزل </option>
                         <option value="20"> ماموت خودرو </option>
                     </x-splade-select>
