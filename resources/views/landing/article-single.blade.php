@@ -71,9 +71,9 @@
         <main class="relative pt-4 default_container mb-8 sm:mb-24 lg:mb-28">
             {{-- breadcrumbs --}}
             <x-common_landing.breadcrumbs :data="$breadcrumbs" />
-            <section class="flex flex-col gap-8 lg:flex-row lg:items-start">
+            <section class="grid grid-cols-1 gap-8 lg:gap-4 lg:grid-cols-7 xl:grid-cols-4">
                 {{-- description --}}
-                <section class="order-1 w-full lg:flex-1 lg:order-2">
+                <section class="order-1 w-full lg:col-span-5 xl:gap-8 xl:col-span-3 lg:order-2">
                     <div class="flex items-start justify-between gap-4 mb-2.5 md:mb-4 text-normal">
                         <h1 class="text-xl font-medium leading-8 sm:text-2xl"> {{ $article->title }} </h1>
                         <p class="flex-none mt-1 text-sm font-normal"> {{ jdate($article->created_at)->format('%B، %Y') }} </p>
@@ -94,7 +94,7 @@
                 </section>
 
                 {{-- left column --}}
-                <section class="flex flex-col order-2 gap-6 lg:w-72 lg:flex-none lg:order-1">
+                <section class="flex flex-col order-2 gap-6 lg:order-1 lg:col-span-2 xl:col-span-1">
                     {{-- articles --}}
                     <section>
                         {{-- header --}}
@@ -114,7 +114,7 @@
                         <ul class="grid grid-cols-1 gap-4 list-none md:grid-cols-3 lg:grid-cols-1">
                             @foreach ($land->articles->take(3) as $article)
                                 <li class="flex flex-col bg-white w-full rounded-custom overflow-hidden {{ $borderType }}">
-                                    <div class="relative w-full pt-[62%] mb-2">
+                                    <div class="relative w-full pt-[56%] mb-2">
                                         <img src="{{ $article->image }}" alt="{{ $article->title }}"
                                             class="absolute top-0 left-0 w-full h-full" />
                                     </div>
@@ -147,7 +147,7 @@
 
                     {{-- contact to expert --}}
                     <section
-                        class="flex flex-col bg-white {{ $borderType }} rounded-custom overflow-hidden sm:mx-6 md:mx-10 lg:mx-0">
+                        class="flex flex-col bg-white {{ $borderType }} rounded-custom overflow-hidden sm:mx-6 md:mx-10 lg:mx-0 lg:sticky lg:top-40 lg:z-[1]">
                         {{-- title --}}
                         <div class="w-full h-20 text-xl font-black text-white bg-normal flex_center">
                             <p> ارتباط با کارشناسان فروش </p>
@@ -156,7 +156,7 @@
                             <p class="mb-6 text-base font-normal leading-7 text-normal"> جهت ارتباط و اطلاع از شرایط
                                 فروش شماره خود را وارد کنید. </p>
                             <input name="phone" type="tel"
-                                class="bg-dark-50 mb-12 h-10 w-full max-w-72 border-0 focus:ring-0 rounded-custom outline-none w-full placeholder:text-[#888b93] text-sm font-normal px-3 text-gray-900"
+                                class="bg-dark-50 mb-12 h-10 max-w-72 border-0 focus:ring-0 rounded-custom outline-none w-full placeholder:text-[#888b93] text-sm font-normal px-3 text-gray-900"
                                 placeholder="09" />
                             <button type="submit"
                                 class="w-full text-base font-medium text-white rounded-custom flex_center max-w-72 h-11 bg-normal hover:bg-focus focus:bg-focus focus:shadow-focus focus:shadow-shadowNormal">
