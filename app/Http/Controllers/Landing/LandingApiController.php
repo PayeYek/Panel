@@ -56,12 +56,7 @@ class LandingApiController extends Controller
 //        $newsArticles = $land->articles->where('type', 'news');
 //        $blogArticles = $land->articles->where('type', 'blog');
 
-        return [
-            'land' => $land,
-            //            'data'         => $data,
-            //            'newsArticles' => $newsArticles,
-            //            'blogArticles' => $blogArticles
-        ];
+        return $land;
     }
 
     public function about($page)
