@@ -9,71 +9,66 @@ use App\Models\LandArticle;
 use App\Models\LandCategory;
 use App\Models\LandComment;
 use App\Models\LandProduct;
+use Illuminate\Support\Facades\Response;
 use ProtoneMedia\Splade\Facades\SEO;
 
 class LandingApiController extends Controller
 {
     public function pages()
     {
-        $lands = Land::get();
-
+        $lands = Land::get(['title', 'slug', 'logo']);
         return $lands;
     }
 
     public function page($page)
     {
-        $land = $this->getLand($page);
+        $land = Land::where('slug', $page)
+            ->with([
+                'products',
+                'slides'   => function ($query) {
+                    $query->where('status', 1);
+                },
+                'videos',
+                'styles',
+                'articles' => function ($query) {
+                    $query->orderBy('created_at', 'desc');
+                }
+            ])
+            ->firstOrFail();
 
-        $companyName = $land->title;
+        $land->makeHidden(['id','body', 'logo_origin', 'created_at', 'updated_at', 'products.id']);
 
-        $keywords = <<<KEYWORDS
-                        {$companyName}, کامیون‌های دیزلی {$companyName}, تولیدکننده خودرو سنگین ایران, خودروهای سنگین {$companyName}, نوآوری‌های خودرویی {$companyName}, خدمات پس از فروش {$companyName}, مونتاژ خودرو سنگین در ایران, استانداردهای خودرویی {$companyName}, صادرات خودروهای سنگین {$companyName}, پیشرو در صنعت خودرو سنگین
-                       KEYWORDS;
-        SEO::title($land->title)
-            ->description("{$land->title}: پیشگام در صنعت خودروهای سنگین ایران. کاوش در محصولات و خدمات باکیفیت ما، از کامیون‌های دیزلی گرفته تا خدمات پس از فروش. بیاموزید چگونه {$land->title} با نوآوری‌ها و استانداردهای بالای خود در بازار خودروهای سنگین پیشتاز است.")
-            ->keywords($keywords);
+//        $cats = array();
+//        foreach ($land->products as $product) {
+//            $cats[] = $product->category_id;
+//        }
+//        $cats = array_unique($cats);
+//
+//        $data = array();
+//        foreach ($cats as $cat) {
+//            $item['category'] = LandCategory::find($cat);
+//            $item['products'] = LandProduct::where('land_id', $land->id)->where('category_id', $cat)->get();
+//            $data[] = $item;
+//        }
+//
+//        $data = collect($data);
+//
+//        $newsArticles = $land->articles->where('type', 'news');
+//        $blogArticles = $land->articles->where('type', 'blog');
 
-        $cats = array();
-        foreach ($land->products as $product) {
-            $cats[] = $product->category_id;
-        }
-        $cats = array_unique($cats);
-
-        $data = array();
-        foreach ($cats as $cat) {
-            $item['category'] = LandCategory::find($cat);
-            $item['products'] = LandProduct::where('land_id', $land->id)->where('category_id', $cat)->get();
-            $data[] = $item;
-        }
-
-        $data = collect($data);
-
-        $newsArticles = $land->articles->where('type', 'news');
-        $blogArticles = $land->articles->where('type', 'blog');
-
-        return view('landing.page-single', compact('land', 'data', 'newsArticles', 'blogArticles'));
+        return $land;
     }
 
     public function about($page)
     {
         $land = $this->getLand($page);
 
-        $companyName = $land->title;
-
-        $keywords = <<<KEYWORDS
-                        {$companyName}, کامیون‌های دیزلی {$companyName}, تولیدکننده خودرو سنگین ایران, خودروهای سنگین {$companyName}, نوآوری‌های خودرویی {$companyName}, خدمات پس از فروش {$companyName}, مونتاژ خودرو سنگین در ایران, استانداردهای خودرویی {$companyName}, صادرات خودروهای سنگین {$companyName}, پیشرو در صنعت خودرو سنگین
-                       KEYWORDS;
-        SEO::title($land->title)
-            ->description("{$land->title}: پیشگام در صنعت خودروهای سنگین ایران. کاوش در محصولات و خدمات باکیفیت ما، از کامیون‌های دیزلی گرفته تا خدمات پس از فروش. بیاموزید چگونه {$land->title} با نوآوری‌ها و استانداردهای بالای خود در بازار خودروهای سنگین پیشتاز است.")
-            ->keywords($keywords);
-
-
         /* BREADCRUMBS */
         $breadcrumbs = [];
         $breadcrumbs[] = ['title' => __('Home'), 'url' => route('landing.page.show', ['page' => $land->slug])];
-        $breadcrumbs[] = ['title' => __('About us'), 'url' => null ];
+        $breadcrumbs[] = ['title' => __('About us'), 'url' => null];
 
-        return view('landing.page-about', compact('land', 'breadcrumbs'));
+        return ['land' => $land, 'breadcrumbs' => $breadcrumbs];
     }
 
     public function catalogs($page)
@@ -83,9 +78,9 @@ class LandingApiController extends Controller
         /* BREADCRUMBS */
         $breadcrumbs = [];
         $breadcrumbs[] = ['title' => __('Home'), 'url' => route('landing.page.show', ['page' => $land->slug])];
-        $breadcrumbs[] = ['title' => 'کاتالوگ', 'url' => null ];
+        $breadcrumbs[] = ['title' => 'کاتالوگ', 'url' => null];
 
-        return view('landing.page-catalog-list', compact('land', 'breadcrumbs'));
+        return ['land' => $land, 'breadcrumbs' => $breadcrumbs];
     }
 
     public function products($page)
@@ -103,23 +98,19 @@ class LandingApiController extends Controller
             $item['category'] = LandCategory::find($cat);
             $item['products'] = LandProduct::with('brand')->where('land_id', $land->id)->where('category_id', $cat)->get()->map(function ($product) {
                 $product->brand;
-                return  $product;
+                return $product;
             });
-            $data->add(collect($item)) ;
+            $data->add(collect($item));
         }
 
         $data = collect($data);
 
-        SEO::title($land->title . ' | محصولات')
-            ->description("{$land->title}: پیشگام در صنعت خودروهای سنگین ایران. کاوش در محصولات و خدمات باکیفیت ما، از کامیون‌های دیزلی گرفته تا خدمات پس از فروش. بیاموزید چگونه {$land->title} با نوآوری‌ها و استانداردهای بالای خود در بازار خودروهای سنگین پیشتاز است.")
-            ->keywords([$land->title]);
-
         /* BREADCRUMBS */
         $breadcrumbs = [];
         $breadcrumbs[] = ['title' => __('Home'), 'url' => route('landing.page.show', ['page' => $land->slug])];
-        $breadcrumbs[] = ['title' => __('Products'), 'url' => null ];
+        $breadcrumbs[] = ['title' => __('Products'), 'url' => null];
 
-        return view('landing.product-list', compact('land', 'data', 'breadcrumbs'));
+        return ['land' => $land, 'breadcrumbs' => $breadcrumbs, 'data' => $data];
     }
 
     public function product($page, $product)
@@ -136,11 +127,6 @@ class LandingApiController extends Controller
             ->where('approved', true)
             ->get();
 
-        /* SEO */
-        SEO::title($land->title . ' | ' . $product->name)
-            ->description($product->description)
-            ->keywords([$land->title, $product->name]);
-
         /* BREADCRUMBS */
         $breadcrumbs = [];
         $breadcrumbs[] = ['title' => __('Home'), 'url' => route('landing.page.show', ['page' => $land->slug])];
@@ -154,16 +140,16 @@ class LandingApiController extends Controller
         ];
         $breadcrumbs[] = ['title' => $product->name, 'url' => null];
 
-        return view('landing.pdp', compact('land', 'product', 'comments', 'breadcrumbs'));
+        return ['land' => $land, 'breadcrumbs' => $breadcrumbs, 'comments' => $comments, 'product' => $product];
     }
 
     public function comment(CommentRequest $request, $land, $product)
     {
         LandComment::create($request->validated());
 
-        \Splade::toast('دیدگاه شما جهت بررسی ارسال شد')->autoDismiss(5)->success();
-
-        return back();
+        return Response::json([
+            'message' => 'دیدگاه شما جهت بررسی ارسال شد'
+        ], 200);
     }
 
     public function category($page, $category)
@@ -185,19 +171,15 @@ class LandingApiController extends Controller
         /* BREADCRUMBS */
         $breadcrumbs = [];
         $breadcrumbs[] = ['title' => __('Home'), 'url' => route('landing.page.show', ['page' => $land->slug])];
-        $breadcrumbs[] = ['title' => __('Categories'), 'url' => null ];
+        $breadcrumbs[] = ['title' => __('Categories'), 'url' => null];
 
-        return view('landing.categories', compact('land', 'data', 'breadcrumbs'));
-
+        return ['land' => $land, 'breadcrumbs' => $breadcrumbs, 'data' => $data];
     }
 
     public function videos($page)
     {
         $land = $this->getLand($page);
 
-        SEO::title($land->title . ' | ویدیوها')
-            ->description("اطلاع از آخرین اطلاعایه های فروش خودرو، بررسی تخصصی خودروها و آخرین اخبار درباره شرکت و محصولات")
-            ->keywords(['اطلاعیه فروش', 'بررسی تخصصی', 'آخرین خبر']);
         /* BREADCRUMBS */
         $breadcrumbs = [];
         $breadcrumbs[] = ['title' => __('Home'), 'url' => route('landing.page.show', ['page' => $land->slug])];
@@ -210,16 +192,12 @@ class LandingApiController extends Controller
     {
         $land = $this->getLand($page);
 
-        SEO::title($land->title . ' | اطلاعات')
-            ->description("اطلاع از آخرین اطلاعایه های فروش خودرو، بررسی تخصصی خودروها و آخرین اخبار درباره شرکت و محصولات")
-            ->keywords(['اطلاعیه فروش', 'بررسی تخصصی', 'آخرین خبر']);
-
         /* BREADCRUMBS */
         $breadcrumbs = [];
         $breadcrumbs[] = ['title' => __('Home'), 'url' => route('landing.page.show', ['page' => $land->slug])];
-        $breadcrumbs[] = ['title' => __('Articles'), 'url' => null ];
+        $breadcrumbs[] = ['title' => __('Articles'), 'url' => null];
 
-        return view('landing.article-list', compact('land', 'breadcrumbs'));
+        return ['land' => $land, 'breadcrumbs' => $breadcrumbs];
     }
 
     public function article($page, $article)
@@ -237,7 +215,7 @@ class LandingApiController extends Controller
         $breadcrumbs[] = ['title' => __('Home'), 'url' => route('landing.page.show', ['page' => $land->slug])];
         $breadcrumbs[] = ['title' => __('Articles'), 'url' => route('landing.article.list', ['page' => $land->slug])];
 
-        return view('landing.article-single', compact('land', 'article', 'breadcrumbs'));
+        return ['land' => $land, 'breadcrumbs' => $breadcrumbs, 'article' => $article];
     }
 
     public function sales($page)
@@ -247,23 +225,25 @@ class LandingApiController extends Controller
         /* BREADCRUMBS */
         $breadcrumbs = [];
         $breadcrumbs[] = ['title' => __('Home'), 'url' => route('landing.page.show', ['page' => $land->slug])];
-        $breadcrumbs[] = ['title' => __('Sales Agency'), 'url' => null ];
+        $breadcrumbs[] = ['title' => __('Sales Agency'), 'url' => null];
 
-        return view('landing.sales-representative', compact('land', 'breadcrumbs'));
+        return ['land' => $land, 'breadcrumbs' => $breadcrumbs];
     }
 
-    public function calculator($page){
+    public function calculator($page)
+    {
         $land = $this->getLand($page);
 
         /* BREADCRUMBS */
         $breadcrumbs = [];
         $breadcrumbs[] = ['title' => __('Home'), 'url' => route('landing.page.show', ['page' => $land->slug])];
-        $breadcrumbs[] = ['title' => __('Calculator'), 'url' => null ];
+        $breadcrumbs[] = ['title' => __('Calculator'), 'url' => null];
 
-        return view('landing.calculator', compact('land', 'breadcrumbs'));
+        return ['land' => $land, 'breadcrumbs' => $breadcrumbs];
     }
 
-    public function advertise($page){
+    public function advertise($page)
+    {
         $land = $this->getLand($page);
 
         /* BREADCRUMBS */
@@ -271,7 +251,7 @@ class LandingApiController extends Controller
         // $breadcrumbs[] = ['title' => __('Home'), 'url' => route('landing.page.show', ['page' => $land->slug])];
         // $breadcrumbs[] = ['title' => __('Progress'), 'url' => null ];
 
-        return view('landing.advertise', compact('land'));
+        return ['land' => $land];
     }
 
     public function getLand($page): Land
