@@ -174,9 +174,9 @@
             {{-- breadcrumbs --}}
             <x-common_landing.breadcrumbs :data="$breadcrumbs" />
 
-            <section class="flex flex-col gap-8 lg:flex-row lg:items-start">
+            <section class="grid grid-cols-1 gap-8 lg:gap-4 lg:grid-cols-7 xl:grid-cols-4">
                 {{-- description --}}
-                <section class="w-full lg:flex-1">
+                <section class="lg:col-span-5 xl:gap-8 xl:col-span-3">
                     <div class="flex items-start justify-between gap-4 mb-2.5 md:mb-4 text-normal">
                         <h1 class="text-xl font-medium leading-8 sm:text-2xl"> {{ $article->title }} </h1>
                         <p class="flex-none mt-1 text-sm font-normal"> {{ jdate($article->created_at)->format('%B، %Y') }} </p>
@@ -197,7 +197,7 @@
                 </section>
 
                 {{-- left column --}}
-                <section class="flex flex-col gap-6 lg:w-72 lg:flex-none">
+                <section class="flex flex-col gap-6 lg:col-span-2 xl:col-span-1">
                     {{-- articles --}}
                     <section>
                         {{-- header --}}
@@ -218,7 +218,7 @@
                             @foreach ($land->articles->take(3) as $article)
                                 <li
                                     class="flex flex-col bg-white w-full rounded-custom overflow-hidden {{ $borderType }}">
-                                    <div class="relative w-full pt-[62%] mb-2">
+                                    <div class="relative w-full pt-[56%] mb-2">
                                         <img src="{{ $article->image }}" alt="{{ $article->title }}"
                                             class="absolute top-0 left-0 w-full h-full" />
                                     </div>
@@ -251,7 +251,7 @@
 
                     {{-- contact to expert --}}
                     <section
-                        class="flex flex-col bg-normal {{ $borderType }} rounded-custom overflow-hidden sm:mx-6 md:mx-10 lg:mx-0">
+                        class="flex flex-col bg-normal {{ $borderType }} rounded-custom overflow-hidden sm:mx-6 md:mx-10 lg:mx-0 lg:sticky lg:top-40 lg:z-[1]">
                         {{-- title --}}
                         <div class="w-full h-20 text-xl font-black text-white flex_center">
                             <p> ارتباط با کارشناسان فروش </p>
@@ -278,9 +278,9 @@
             {{-- breadcrumbs --}}
             <x-common_landing.breadcrumbs :data="$breadcrumbs" />
 
-            <section class="flex flex-col gap-8 lg:flex-row lg:items-start">
+            <section class="grid grid-cols-1 gap-8 lg:gap-4 lg:grid-cols-7 xl:grid-cols-4">
                 {{-- description --}}
-                <section class="order-1 w-full lg:flex-1 lg:order-2">
+                <section class="order-1 lg:col-span-5 xl:gap-8 xl:col-span-3 lg:order-2">
                     <div class="flex items-start justify-between gap-4 mb-2.5 md:mb-4 text-normal">
                         <h1 class="text-xl font-medium leading-8 sm:text-2xl"> {{ $article->title }} </h1>
                         <p class="flex-none mt-1 text-sm font-normal">
@@ -302,7 +302,7 @@
                 </section>
 
                 {{-- right column --}}
-                <section class="flex flex-col order-2 gap-6 lg:gap-8 lg:w-72 lg:flex-none lg:order-1">
+                <section class="flex flex-col order-2 gap-6 lg:gap-8 lg:col-span-2 xl:col-span-1 lg:order-1">
                     {{-- articles --}}
                     <section class="relative">
                         {{-- header --}}
@@ -315,7 +315,7 @@
                                 <Link
                                     href="{{ route('landing.article.show', ['page' => $land->slug, 'article' => $article->slug]) }}"
                                     class="grid grid-cols-10 bg-white w-full rounded-custom overflow-hidden {{ $borderType }}">
-                                <div class="relative w-full pt-[62%] col-span-4">
+                                <div class="relative w-full pt-[56%] col-span-4">
                                     <img src="{{ $article->image }}" alt="{{ $article->title }}"
                                         class="absolute top-0 left-0 object-cover w-full h-full" />
                                 </div>
@@ -335,7 +335,7 @@
 
                     {{-- contact to expert --}}
                     <section
-                        class="flex flex-col bg-white {{ $borderType }} rounded-custom overflow-hidden mb-8 sm:mx-6 md:mx-10 lg:mx-0 lg:mb-0">
+                        class="flex flex-col bg-white {{ $borderType }} rounded-custom overflow-hidden mb-8 sm:mx-6 md:mx-10 lg:mx-0 lg:mb-0 lg:sticky lg:top-40 lg:z-[1]">
                         {{-- title --}}
                         <div class="w-full h-20 text-xl font-black text-white bg-normal lg:text-lg flex_center">
                             <p> ارتباط با کارشناسان فروش </p>
@@ -362,9 +362,9 @@
             {{-- breadcrumbs --}}
             <x-common_landing.breadcrumbs :data="$breadcrumbs" />
 
-            <section class="flex flex-col gap-8 lg:flex-row lg:items-start">
+            <section class="grid grid-cols-1 gap-8 lg:gap-4 lg:grid-cols-7 xl:grid-cols-4">
                 {{-- description --}}
-                <section class="order-1 w-full lg:flex-1 lg:order-2">
+                <section class="order-1 lg:col-span-5 xl:gap-8 xl:col-span-3 lg:order-2">
                     <div class="flex items-start justify-between gap-4 mb-2.5 md:mb-4 text-normal">
                         <h1 class="text-xl font-medium leading-8 sm:text-2xl"> {{ $article->title }} </h1>
                         <p class="flex-none mt-1 text-sm font-normal">
@@ -407,33 +407,10 @@
                 </section>
 
                 {{-- right column --}}
-                <section class="flex flex-col order-2 lg:w-72 lg:flex-none lg:order-1 lg:pt-2">
-                    {{-- search --}}
-                    {{-- <form action="#" class="h-10 relative mb-3.5 max-w-96 w-full mr-auto lg:mr-0 lg:max-w-full">
-                        <input type="text"
-                            class="w-full h-full rounded-custom border border-gray-900 text-gray-900 focus:ring-0 outline-none pl-10 pr-2 placeholder:text-[#888b93] text-sm font-normal focus:border-gray-900"
-                            placeholder="جستجوی عنوان" />
-                        <button type="submit" class="absolute cursor-pointer top-2 left-2">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path
-                                    d="M16.9284 17.0416L20.4016 20.4016M19.2816 11.4416C19.2816 15.7715 15.7715 19.2816 11.4416 19.2816C7.11165 19.2816 3.60156 15.7715 3.60156 11.4416C3.60156 7.11165 7.11165 3.60156 11.4416 3.60156C15.7715 3.60156 19.2816 7.11165 19.2816 11.4416Z"
-                                    stroke="#111827" stroke-width="2" stroke-linecap="round" />
-                            </svg>
-                        </button>
-                    </form> --}}
+                <section class="flex flex-col order-2 lg:col-span-2 xl:col-span-1 lg:order-1 lg:pt-2">
                     <div class="flex items-center mb-4 lg:px-4">
                         <a href="{{ route('landing.article.list', ['page' => $land->slug]) }}" class="text-lg font-medium text-gray-900 md:text-xl lg:text-lg"> آخرین اخبار و اطلاعیه ها
                         </a>
-                        {{-- <a href="#"
-                            class="absolute bottom-0 flex items-center gap-2 text-base font-normal sm:static lg:absolute right-4 lg:right-auto lg:left-2 text-normal">
-                            <span> مشاهده همه </span>
-                            <svg class="stroke-current" width="24" height="24" viewBox="0 0 24 24"
-                                fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M15 17L10 12L15 7" stroke="current" stroke-linecap="round"
-                                    stroke-linejoin="round" />
-                            </svg>
-                        </a> --}}
                     </div>
                     {{-- more articles --}}
                     <section class="flex flex-col gap-4">
@@ -441,7 +418,7 @@
                             <Link
                                 href="{{ route('landing.article.show', ['page' => $land->slug, 'article' => $article->slug]) }}"
                                 class="grid grid-cols-10 bg-white w-full rounded-custom overflow-hidden {{ $borderType }}">
-                            <div class="relative w-full pt-[62%] col-span-4 border-l border-l-dark-100">
+                            <div class="relative w-full pt-[56%] col-span-4 border-l border-l-dark-100">
                                 <img src="{{ $article->image }}" alt="{{ $article->title }}"
                                     class="absolute top-0 left-0 object-cover w-full h-full" />
                             </div>
@@ -552,23 +529,33 @@
             @switch($land->styles->contact_type)
                 @case(1)
                     <x-home_landing.contact.type-one />
-                @break
-
+                    @break
                 @case(2)
+                    {{-- contact to expert --}}
                     <x-home_landing.contact.type-five />
-                @break
-
+                    @break
                 @case(3)
+                    {{-- contact to expert --}}
                     <x-home_landing.contact.type-six />
-                @break
-
+                    @break
                 @case(4)
+                    {{-- contact to expert --}}
                     <x-home_landing.contact.type-four />
-                @break
-
+                    @break
                 @case(5)
+                    {{-- contact to expert --}}
                     <x-home_landing.contact.type-two />
-                @break
+                    @break
+                @case(6)
+                    {{-- contact to expert --}}
+                    <x-home_landing.contact.type-seven />
+                    @break
+                @case(7)
+                    {{-- contact to expert --}}
+                    <x-home_landing.contact.type-eight />
+                    @break
+                @default
+                    
             @endswitch
         </main>
     @endif
