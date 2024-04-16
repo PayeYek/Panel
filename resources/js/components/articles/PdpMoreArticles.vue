@@ -6,7 +6,7 @@
     :breakpoints="breakpoints"
     :navigation="true"
     :pagination="{ clickable: true }">
-    <swiper-slide v-for="(article, index) in articleArray" :key="index" :class="'swiper-slide flex flex-col flex-none overflow-hidden rounded-custom ' + borderType + (striped == 1 ? ' evenOdd_cards' : ' bg-white')">
+    <swiper-slide v-for="(article, index) in articleArray.slice(0,8)" :key="index" :class="'swiper-slide flex flex-col flex-none overflow-hidden rounded-custom ' + borderType + (striped == 1 ? ' evenOdd_cards' : ' bg-white')">
         <div class="relative w-full pt-[62%]">
             <img :src="article.image" :alt="article.title" class="absolute top-0 left-0 object-cover w-full h-full" />
         </div>
@@ -23,7 +23,6 @@
                 {{ article.description }}
             </p>
             <ArticleLink :href="'/l/' + landSlug + '/a/' + article.slug" classNames="mx-auto text-white bg-stone-700 text-lg font-medium flex_center h-10 w-32 rounded-custom"> بیشتر </ArticleLink>
-
         </div>
     </swiper-slide>
 </swiper>

@@ -1,6 +1,6 @@
 <template>
     <template v-if="type == 1">
-        <li v-for="(article, index) in ArticlesList" :key="index" :class="'flex flex-col sm:flex-row rounded-custom bg-white overflow-hidden ' + borderStyle + (evenOdd == 1 ? ' evenOdd_cards ' : ' bg-white ')">
+        <li v-for="(article, index) in ArticlesList.slice(0,4)" :key="index" :class="'flex flex-col sm:flex-row rounded-custom bg-white overflow-hidden ' + borderStyle + (evenOdd == 1 ? ' evenOdd_cards ' : ' bg-white ')">
             <!-- image -->
             <div
                 class="overflow-hidden md:flex-none w-full relative pt-[61%] sm:pt-0 sm:w-72 md:w-80 lg:w-[23rem] sm:flex-none">
@@ -16,19 +16,13 @@
                 <ArticleLink :href="'/l/' + landSlug + '/a/' + article.slug"
                     class="text-lg font-medium flex_center h-10 w-32 rounded-custom mr-auto text-white bg-normal hover:bg-focus focus:shadow-focus focus:shadow-shadowNormal">
                     <span> بیشتر </span>
-                    <!-- <svg class="fill-current" width="16" height="16" viewBox="0 0 16 16" fill="none"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <path d="M8 16L9.41 14.59L3.83 9L16 9V7L3.83 7L9.41 1.41L8 0L0 8L8 16Z"
-                            fill="current" />
-                    </svg> -->
                 </ArticleLink>
-                <!-- <x-home_landing.announcement.children.linkBtn text="بیشتر" href="{{ route('landing.article.show',['page'=> $landSlug, 'article'=> $articleSlug]) }}" class="mr-auto rounded-custom text-white bg-normal hover:bg-focus focus:shadow-focus focus:shadow-shadowNormal" /> -->
             </div>
         </li>
     </template>
 
     <template v-if="type == 2">
-        <li v-for="(article, index) in ArticlesList" :key="index" :class="'flex flex-col w-60 lg:w-full flex-none overflow-hidden rounded-custom bg-white ' + borderStyle + (evenOdd == 1 ? ' evenOdd_cards ' : ' bg-white ')">
+        <li v-for="(article, index) in ArticlesList.slice(0,4)" :key="index" :class="'flex flex-col w-60 lg:w-full flex-none overflow-hidden rounded-custom bg-white ' + borderStyle + (evenOdd == 1 ? ' evenOdd_cards ' : ' bg-white ')">
             <div class="relative w-full pt-[62%]">
                 <img :src="article.image" :alt="article.title"
                     class="absolute top-0 left-0 w-full h-full object-cover" />
@@ -48,7 +42,7 @@
     </template>
 
     <template v-if="type == 3">
-        <li v-for="(article, index) in ArticlesList" :key="index" class="flex flex-col sm:flex-row bg-white border-t first:border-t-0 py-4 first:pt-0 last:pb-0 border-dark-100">
+        <li v-for="(article, index) in ArticlesList.slice(0,4)" :key="index" class="flex flex-col sm:flex-row bg-white border-t first:border-t-0 py-4 first:pt-0 last:pb-0 border-dark-100">
             <!-- image -->
             <div
                 class="overflow-hidden md:flex-none w-full relative pt-[61%] sm:pt-0 sm:w-72 md:w-80 lg:w-[23rem] sm:flex-none mb-3 sm:mb-0 rounded-custom">
@@ -66,20 +60,14 @@
                     <ArticleLink :href="'/l/' + landSlug + '/a/' + article.slug"
                         class="text-lg font-medium flex_center h-10 w-32 rounded-custom text-white bg-normal hover:bg-focus focus:shadow-focus focus:shadow-shadowNormal">
                         <span> بیشتر </span>
-                        <!-- <svg class="fill-current" width="16" height="16" viewBox="0 0 16 16" fill="none"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <path d="M8 16L9.41 14.59L3.83 9L16 9V7L3.83 7L9.41 1.41L8 0L0 8L8 16Z"
-                                fill="current" />
-                        </svg> -->
                     </ArticleLink>
-                    <!-- <x-home_landing.announcement.children.linkBtn text="بیشتر" href="{{ route('landing.article.show',['page'=> $landSlug, 'article'=> $articleSlug]) }}" class="rounded-custom text-white bg-normal hover:bg-focus focus:shadow-focus focus:shadow-shadowNormal" /> -->
                 </div>
             </div>
         </li>
     </template>
 
     <template v-if="type == 4">
-        <li v-for="(article, index) in ArticlesList" :key="index" class="flex flex-col sm:flex-row bg-white border-t first:border-t-0 py-4 first:pt-0 last:pb-0 border-dark-100">
+        <li v-for="(article, index) in ArticlesList.slice(0,4)" :key="index" class="flex flex-col sm:flex-row bg-white border-t first:border-t-0 py-4 first:pt-0 last:pb-0 border-dark-100">
             <!-- image -->
             <div
                 class="overflow-hidden md:flex-none w-full relative pt-[61%] sm:pt-0 sm:w-72 md:w-80 lg:w-[23rem] sm:flex-none mb-3 sm:mb-0 rounded-t-custom">
@@ -94,12 +82,6 @@
                     {{ article.description }}
                 </p>
                 <div class="flex items-center justify-end">
-                    <!-- <a href="{{ route('landing.article.show',['page'=> $landSlug, 'article'=> $articleSlug]) }}" class="text-sm font-medium flex items-center gap-4 text-stone-700">
-                        <span> ادامه </span>
-                        <svg class="fill-current" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M8 16L9.41 14.59L3.83 9L16 9V7L3.83 7L9.41 1.41L8 0L0 8L8 16Z" fill="current"/>
-                        </svg>
-                    </a> -->
                     <ArticleLink :href="'/l/' + landSlug + '/a/' + article.slug"
                         class="text-sm font-medium flex_center gap-4 text-stone-700">
                         <span> ادامه </span>
@@ -113,7 +95,7 @@
     </template>
 
     <template v-if="type == 6">
-        <li v-for="(article, index) in ArticlesList" :key="index" :class="'flex flex-col sm:flex-row border border-stone-400 rounded-custom ' + (evenOdd == '1' ? 'evenOdd_cards' : 'bg-white')">
+        <li v-for="(article, index) in ArticlesList.slice(0,4)" :key="index" :class="'flex flex-col sm:flex-row border border-stone-400 rounded-custom ' + (evenOdd == '1' ? 'evenOdd_cards' : 'bg-white')">
             <!-- image -->
             <div
                 class="overflow-hidden md:flex-none w-full relative pt-[61%] sm:pt-0 sm:w-72 md:w-80 lg:w-[23rem] sm:flex-none mb-3 sm:mb-0 rounded-t-custom sm:rounded-r-custom sm:rounded-tl-none">
@@ -195,7 +177,7 @@
     </template>
 
     <template v-if="type == 9">
-        <li v-for="(article, index) in ArticlesList" :key="index" :class="'flex flex-col w-60 lg:w-full flex-none overflow-hidden rounded-custom bg-white ' + borderStyle">
+        <li v-for="(article, index) in ArticlesList.slice(0,3)" :key="index" :class="'flex flex-col w-60 lg:w-full flex-none overflow-hidden rounded-custom bg-white ' + borderStyle">
             <ArticleLink :href="'/l/' + landSlug + '/a/' + article.slug" class="relative w-full pt-[62%]">
                 <img :src="article.image" :alt="article.title"
                     class="absolute top-0 left-0 w-full h-full object-cover" />
@@ -214,7 +196,7 @@
     </template>
 
     <template v-if="type == 10">
-        <li v-for="(article, index) in ArticlesList" :key="index" class="flex flex-col sm:flex-row gap-4">
+        <li v-for="(article, index) in ArticlesList.slice(0,4)" :key="index" class="flex flex-col sm:flex-row gap-4">
             <!-- image -->
             <div
                 class="overflow-hidden md:flex-none w-full relative pt-[61%] sm:pt-0 sm:w-72 md:w-80 lg:w-[23rem] sm:flex-none mb-3 sm:mb-0 rounded-custom">
@@ -229,12 +211,6 @@
                     {{ article.description }}
                 </p>
                 <div class="flex items-center justify-end">
-                    <!-- <a href="{{ route('landing.article.show',['page'=> $landSlug, 'article'=> $articleSlug]) }}" class="text-sm font-medium flex items-center gap-4 text-stone-700">
-                        <span> ادامه </span>
-                        <svg class="fill-current" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M8 16L9.41 14.59L3.83 9L16 9V7L3.83 7L9.41 1.41L8 0L0 8L8 16Z" fill="current"/>
-                        </svg>
-                    </a> -->
                     <ArticleLink :href="'/l/' + landSlug + '/a/' + article.slug"
                         class="text-sm font-medium flex_center gap-4 text-stone-700">
                         <span> ادامه </span>
