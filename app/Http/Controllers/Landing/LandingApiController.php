@@ -16,53 +16,57 @@ class LandingApiController extends Controller
 {
     public function pages()
     {
-        $lands = Land::get(['title','slug','logo']);
+        $lands = Land::get(['title', 'slug', 'logo']);
         return $lands;
     }
 
     public function page($page)
     {
-        $land = $this->getLand($page);
+        $land = Land::where('slug', $page)
+            ->with([
+                'products',
+                'slides'   => function ($query) {
+                    $query->where('status', 1);
+                },
+                'videos',
+                'styles',
+                'articles' => function ($query) {
+                    $query->orderBy('created_at', 'desc');
+                }
+            ])
+            ->firstOrFail();
 
-        $cats = array();
-        foreach ($land->products as $product) {
-            $cats[] = $product->category_id;
-        }
-        $cats = array_unique($cats);
+        $land->makeHidden(['id','body', 'logo_origin', 'created_at', 'updated_at', 'products.id']);
 
-        $data = array();
-        foreach ($cats as $cat) {
-            $item['category'] = LandCategory::find($cat);
-            $item['products'] = LandProduct::where('land_id', $land->id)->where('category_id', $cat)->get();
-            $data[] = $item;
-        }
-
-        $data = collect($data);
-
-        $newsArticles = $land->articles->where('type', 'news');
-        $blogArticles = $land->articles->where('type', 'blog');
+//        $cats = array();
+//        foreach ($land->products as $product) {
+//            $cats[] = $product->category_id;
+//        }
+//        $cats = array_unique($cats);
+//
+//        $data = array();
+//        foreach ($cats as $cat) {
+//            $item['category'] = LandCategory::find($cat);
+//            $item['products'] = LandProduct::where('land_id', $land->id)->where('category_id', $cat)->get();
+//            $data[] = $item;
+//        }
+//
+//        $data = collect($data);
+//
+//        $newsArticles = $land->articles->where('type', 'news');
+//        $blogArticles = $land->articles->where('type', 'blog');
 
         return [
-            'land'         => $land,
-            'data'         => $data,
-            'newsArticles' => $newsArticles,
-            'blogArticles' => $blogArticles
+            'land' => $land,
+            //            'data'         => $data,
+            //            'newsArticles' => $newsArticles,
+            //            'blogArticles' => $blogArticles
         ];
     }
 
     public function about($page)
     {
         $land = $this->getLand($page);
-
-        $companyName = $land->title;
-
-        $keywords = <<<KEYWORDS
-                        {$companyName}, کامیون‌های دیزلی {$companyName}, تولیدکننده خودرو سنگین ایران, خودروهای سنگین {$companyName}, نوآوری‌های خودرویی {$companyName}, خدمات پس از فروش {$companyName}, مونتاژ خودرو سنگین در ایران, استانداردهای خودرویی {$companyName}, صادرات خودروهای سنگین {$companyName}, پیشرو در صنعت خودرو سنگین
-                       KEYWORDS;
-        SEO::title($land->title)
-            ->description("{$land->title}: پیشگام در صنعت خودروهای سنگین ایران. کاوش در محصولات و خدمات باکیفیت ما، از کامیون‌های دیزلی گرفته تا خدمات پس از فروش. بیاموزید چگونه {$land->title} با نوآوری‌ها و استانداردهای بالای خود در بازار خودروهای سنگین پیشتاز است.")
-            ->keywords($keywords);
-
 
         /* BREADCRUMBS */
         $breadcrumbs = [];
