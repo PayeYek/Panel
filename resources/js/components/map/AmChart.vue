@@ -273,6 +273,7 @@ export default {
         const allCities = ref(null);
         const stateSelectValue = ref(null);
 
+        
         onMounted(() => {
             allCities.value = document.querySelectorAll('.cities');
         })

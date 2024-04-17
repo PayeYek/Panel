@@ -23,7 +23,7 @@
 
     <template v-if="type == 2">
         <li v-for="(article, index) in ArticlesList.slice(0,4)" :key="index" :class="'flex flex-col w-60 lg:w-full flex-none overflow-hidden rounded-custom bg-white ' + borderStyle + (evenOdd == 1 ? ' evenOdd_cards ' : ' bg-white ')">
-            <div class="relative w-full pt-[62%]">
+            <div class="relative w-full pt-[56%]">
                 <img :src="article.image" :alt="article.title"
                     class="absolute top-0 left-0 w-full h-full object-cover" />
             </div>
@@ -178,7 +178,7 @@
 
     <template v-if="type == 9">
         <li v-for="(article, index) in ArticlesList.slice(0,3)" :key="index" :class="'flex flex-col w-60 lg:w-full flex-none overflow-hidden rounded-custom bg-white ' + borderStyle">
-            <ArticleLink :href="'/l/' + landSlug + '/a/' + article.slug" class="relative w-full pt-[62%]">
+            <ArticleLink :href="'/l/' + landSlug + '/a/' + article.slug" class="relative w-full pt-[56%]">
                 <img :src="article.image" :alt="article.title"
                     class="absolute top-0 left-0 w-full h-full object-cover" />
             </ArticleLink>
@@ -225,7 +225,7 @@
 
     <template v-if="type == 11">
         <li v-for="(article, index) in ArticlesList.slice(0, 4)" :key="index" :class="'flex flex-col w-60 lg:w-full flex-none overflow-hidden rounded-custom bg-white ' + borderStyle + (evenOdd == 1 ? ' evenOdd_cards ' : ' bg-white ')">
-            <div class="relative w-full pt-[62%]">
+            <div class="relative w-full pt-[56%]">
                 <img :src="article.image" :alt="article.title"
                     class="absolute top-0 left-0 w-full h-full object-cover" />
             </div>

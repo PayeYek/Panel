@@ -54,7 +54,7 @@ export default {
     setup(props) {
         const sliderStyle = ref("");
         const containerStyle = ref("");
-console.log(props.sliderType);
+        
         const onSwiper = (swiper) => {
             //console.log(swiper);
         };

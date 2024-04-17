@@ -37,6 +37,7 @@
         @endswitch
 
         {{-- favorites --}}
+        @if ($land->products->count() > 0)
         <x-home_landing.products
             :landSlug="$land->slug"
             :landType="$land->styles->land_id"
@@ -46,8 +47,9 @@
             :headerType="$land->styles->section_header_type"
             companyName="{{ $land->title }}"
             evenOdd="{{ $land->styles->product_striped }}" />
-
+        @endif
         {{-- articles --}}
+        @if ($land->articles->count() > 0)
         <x-home_landing.announcement
             :landSlug="$land->slug"
             :data="$land->articles"
@@ -57,7 +59,7 @@
             :borderType="$land->styles->border_type"
             :headerType="$land->styles->section_header_type"
             evenOdd="{{ $land->styles->article_striped }}" />
-
+        @endif
         {{-- videos --}}
         @if ($land->videos->count() > 0)
             <section class="mb-4 sm:mb-8 lg:mb-16 relative z-[3] default_container" id="video-player-container">
