@@ -23,7 +23,7 @@
     <section :class="'default_container ' + containerClasses">
         <template v-for="(video, index) in sortedVideoList" :key="index">
             <div class="flex flex-col w-full" v-if="type == 6">
-                <div class="relative w-full pt-[62%] mb-4 cursor-pointer rounded-custom overflow-hidden videoThumbnails" onclick="showVideoByThumbnail(this)">
+                <div class="relative w-full pt-[56%] mb-4 cursor-pointer rounded-custom overflow-hidden videoThumbnails" onclick="showVideoByThumbnail(this)">
                     <img :src="video.image" :alt="video.alt" class="absolute top-0 left-0 w-full h-full object-cover z-[1]" />
                     <svg class="size-14 sm:w-20 sm:h-20 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-[3]" viewBox="0 0 85 86" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <g opacity="0.5">
@@ -38,7 +38,7 @@
             </div>
 
             <div v-else class="w-full">
-                <div class="relative w-full pt-[62%] cursor-pointer rounded-custom overflow-hidden videoThumbnails" @click="showVideoByThumbnail(video.link)">
+                <div class="relative w-full pt-[56%] cursor-pointer rounded-custom overflow-hidden videoThumbnails" @click="showVideoByThumbnail(video.link)">
                     <img :src="video.image" :alt="video.alt" class="absolute top-0 left-0 w-full h-full object-cover z-[1]" />
                     <!-- play icon -->
                     <svg class="size-14 sm:w-20 sm:h-20 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-[3]" viewBox="0 0 85 86" fill="none" xmlns="http://www.w3.org/2000/svg">

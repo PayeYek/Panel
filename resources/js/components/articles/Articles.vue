@@ -51,7 +51,7 @@
 
                 <ArticleLink v-if="type == 2" :key="index" :href="'/l/' + landSlug + '/a/' + article.slug"
                     :class="'flex flex-col w-full flex-none overflow-hidden rounded-custom bg-white ' + borderStyle">
-                    <div class="relative w-full pt-[62%]">
+                    <div class="relative w-full pt-[56%]">
                         <img :src="article.image" :alt="article.title"
                             class="absolute top-0 left-0 object-cover w-full h-full" />
                     </div>
@@ -145,7 +145,7 @@
 
                 <ArticleLink v-if="type == 6" :key="index" :href="'/l/' + landSlug + '/a/' + article.slug"
                     :class="'flex flex-col w-full flex-none overflow-hidden rounded-custom bg-white ' + borderStyle">
-                    <div class="relative w-full pt-[62%]">
+                    <div class="relative w-full pt-[56%]">
                         <img :src="article.image" :alt="article.title"
                             class="absolute top-0 left-0 object-cover w-full h-full" />
                     </div>
