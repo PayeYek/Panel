@@ -42,6 +42,7 @@ Route::prefix('l')
             Route::get('/pages', 'pages')->name('list');
             Route::get('{page}', 'page')->name('show');
             Route::get('{page}/about', 'about')->name('about');
+            Route::get('{page}/footer', 'pageFooter')->name('footer');
             Route::get('{page}/catalogs', 'catalogs')->name('catalogs');
             Route::get('{page}/calculator', 'calculator')->name('calculator');
 

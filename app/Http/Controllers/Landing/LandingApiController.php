@@ -59,6 +59,41 @@ class LandingApiController extends Controller
         return $land;
     }
 
+    public function pageFooter($page)
+    {
+        $land = Land::where('slug', $page)
+            ->with([
+                'products',
+//                'slides'   => function ($query) {
+//                    $query->where('status', 1);
+//                },
+//                'videos',
+                'styles',
+//                'articles' => function ($query) {
+//                    $query->orderBy('created_at', 'desc');
+//                }
+            ])
+            ->firstOrFail();
+
+        $land->makeHidden(['id','body','products', 'logo_origin', 'created_at', 'updated_at', 'products.id']);
+
+        $cats = array();
+        foreach ($land->products as $product) {
+            $cats[] = $product->category_id;
+        }
+        $cats = array_unique($cats);
+
+        $data = array();
+        foreach ($cats as $cat) {
+            $item[] = LandCategory::find($cat)->makeHidden(['created_at', 'updated_at', 'description']);
+            $data['category'] = $item;
+        }
+
+        $data = collect($data);
+
+        return $data->merge($land);
+    }
+
     public function about($page)
     {
         $land = $this->getLand($page);

@@ -31,6 +31,7 @@ class LandStyle extends Model
         'slider_type',
         'slider_anim',
     ];
+    protected $hidden = ['created_at', 'updated_at'];
 
     public function land()
     {
