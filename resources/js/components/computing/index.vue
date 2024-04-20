@@ -207,9 +207,6 @@ export default {
         const counselingState = ref(false);
         const informationState = ref(false);
 
-        // console.log(wage.value);
-        
-
         const generatePriceBackground = (value) => {
             let percentage = (value - loanMin.value) / (loanMax.value - loanMin.value) * 100;
             return `linear-gradient(to left, #1A1B1D ${percentage}%, transparent ${percentage}%)`;
@@ -226,70 +223,6 @@ export default {
             }
         }
 
-        // if(paymentDuration.value == 12){
-        //     wage.value = 5.64;
-        // } else if(paymentDuration.value == 24){
-        //     wage.value = 9.735;
-        // } else if(paymentDuration.value == 36){
-        //     wage.value = 13.225;
-        // } else if(paymentDuration.value == 48){
-        //     wage.value = 16.19;
-        // } else if(paymentDuration.value == 60){
-        //     wage.value = 18.69;
-        // }
-
-        // const calculateFund = () => {
-        //     if(paymentDuration.value == 12){
-        //         wage.value = 5.64;
-        //     } else if(paymentDuration.value == 24){
-        //         wage.value = 9.735;
-        //     } else if(paymentDuration.value == 36){
-        //         wage.value = 13.225;
-        //     } else if(paymentDuration.value == 48){
-        //         wage.value = 16.19;
-        //     } else if(paymentDuration.value == 60){
-        //         wage.value = 18.69;
-        //     }
-        //     loanInitialValue.value = parseInt(loanInitialValue.value);
-        //     const fullNumber = (loanInitialValue.value - (loanInitialValue.value * wage.value) / 100);
-        //     fund.value = Math.floor(fullNumber / 1000) * 1000;
-        // }
-        
-        // const calculatePerMonth = () => {
-        //     if(paymentDuration.value == 12){
-        //         wage.value = 5.64;
-        //     } else if(paymentDuration.value == 24){
-        //         wage.value = 9.735;
-        //     } else if(paymentDuration.value == 36){
-        //         wage.value = 13.225;
-        //     } else if(paymentDuration.value == 48){
-        //         wage.value = 16.19;
-        //     } else if(paymentDuration.value == 60){
-        //         wage.value = 18.69;
-        //     }
-        //     loanInitialValue.value = parseInt(loanInitialValue.value);
-        //     const fullNumber = parseInt(loanInitialValue.value / (paymentDuration.value / 2));
-        //     loanPerMonth.value = Math.floor(fullNumber / 1000) * 1000;
-        // }
-
-        // const calculateRefund = () => {
-        //     if(paymentDuration.value == 12){
-        //         wage.value = 5.64;
-        //     } else if(paymentDuration.value == 24){
-        //         wage.value = 9.735;
-        //     } else if(paymentDuration.value == 36){
-        //         wage.value = 13.225;
-        //     } else if(paymentDuration.value == 48){
-        //         wage.value = 16.19;
-        //     } else if(paymentDuration.value == 60){
-        //         wage.value = 18.69;
-        //     }
-        //     loanInitialValue.value = parseInt(loanInitialValue.value);
-        //     const fullNumber = (loanInitialValue.value + (loanInitialValue.value * wage.value) / 100);
-        //     refund.value = Math.floor(fullNumber / 1000) * 1000;
-        // }
-
-        // const moreInfoStateToggler = () => {
         const trueCounselingState = () => {
             counselingState.value = true;
             modalState.value = true;
@@ -342,12 +275,6 @@ export default {
         watchEffect(() => {
             calculateValues();
         });
-
-        // watchEffect(() => {
-        //     calculateFund();
-        //     calculatePerMonth();
-        //     calculateRefund();
-        // })
 
         return {
             selectedProduct,
