@@ -109,41 +109,56 @@ class LandingApiController extends Controller
 
     public function products($page)
     {
-        $perPage = 3; // Number of products per page
+        $perPage = 12;
 
         $land = Land::where('slug', $page)->with(['products', 'styles', 'categories'])->firstOrFail();
         $categories = $land->categories->map(function ($category) {
             return $category->only(['id', 'title', 'slug']);
         })->all();
 
-        $productsPaginator = $land->products()->paginate($perPage);
+        if ($land->styles->product_list_type !== 1) {
+            $productsPaginator = $land->products()->paginate($perPage)->withQueryString();
 
-        $products = $productsPaginator->getCollection()->map(function ($product) {
-            return $product->only([
-                'id', 'category_id', 'slug', 'name', 'model', 'year', 'tonnage', 'usage', 'cabin',
-                'image', 'description', 'catalog', 'manual', 'colors', 'body'
-            ]);
-        });
+            $products = $productsPaginator->getCollection()->map(function ($product) {
+                return $product->only([
+                    'id', 'category_id', 'slug', 'name', 'model', 'year', 'tonnage', 'usage', 'cabin',
+                    'image', 'description', 'catalog', 'manual', 'colors', 'body'
+                ]);
+            });
 
-        $data = [
-            'styles' => $land->styles,
-            'categories' => $categories,
-            'products' => [
-                'current_page' => $productsPaginator->currentPage(),
-                'data' => $products,
-                'first_page_url' => $productsPaginator->url(1),
-                'from' => $productsPaginator->firstItem(),
-                'last_page' => $productsPaginator->lastPage(),
-                'last_page_url' => $productsPaginator->url($productsPaginator->lastPage()),
-                'links' => $productsPaginator->toArray()['links'],
-                'next_page_url' => $productsPaginator->nextPageUrl(),
-                'path' => $productsPaginator->path(),
-                'per_page' => $productsPaginator->perPage(),
-                'prev_page_url' => $productsPaginator->previousPageUrl(),
-                'to' => $productsPaginator->lastItem(),
-                'total' => $productsPaginator->total(),
-            ],
-        ];
+            $data = [
+                'styles' => $land->styles,
+                'categories' => $categories,
+                'products' => [
+                    'current_page' => $productsPaginator->currentPage(),
+                    'data' => $products,
+                    'first_page_url' => $productsPaginator->url(1),
+                    'from' => $productsPaginator->firstItem(),
+                    'last_page' => $productsPaginator->lastPage(),
+                    'last_page_url' => $productsPaginator->url($productsPaginator->lastPage()),
+                    'links' => $productsPaginator->toArray()['links'],
+                    'next_page_url' => $productsPaginator->nextPageUrl(),
+                    'path' => $productsPaginator->path(),
+                    'per_page' => $productsPaginator->perPage(),
+                    'prev_page_url' => $productsPaginator->previousPageUrl(),
+                    'to' => $productsPaginator->lastItem(),
+                    'total' => $productsPaginator->total(),
+                ],
+            ];
+        } else {
+            $products = $land->products->map(function ($product) {
+                return $product->only([
+                    'id', 'category_id', 'slug', 'name', 'model', 'year', 'tonnage', 'usage', 'cabin',
+                    'image', 'description', 'catalog', 'manual', 'colors', 'body'
+                ]);
+            });
+
+            $data = [
+                'styles' => $land->styles,
+                'categories' => $categories,
+                'products' => $products,
+            ];
+        }
         return $data;
     }
 
