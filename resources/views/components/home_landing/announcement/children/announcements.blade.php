@@ -31,9 +31,9 @@
 @endphp
 
 @if ($type.'' !== '5')
-    <ul class="mb-4 {{ $gridCols }} list-none sm:mb-0 w-full">
+    <div class="mb-4 {{ $gridCols }} sm:mb-0 w-full">
         <HomeArticles landSlug="{{ $landSlug }}" data="{!! $data !!}" borderStyle="{{ $borderStyle }}" type="{{ $type }}" evenOdd="{{ $evenOdd }}" />
-    </ul>
+    </div>
 
 @else
     <section class="w-full">
