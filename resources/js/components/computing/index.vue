@@ -50,35 +50,35 @@
                                     <input type="radio" value="12" v-model="paymentDuration" name="paymentDuration" id="12monthes" class="hidden peer" />
                                     <label for="12monthes" class="h-12 rounded-custom w-12 peer-checked:w-16 sm:w-24 sm:peer-checked:w-28 sm:gap-1 cursor-pointer lg:w-20 lg:peer-checked:w-32 ring-1 flex_center ring-stone-400 bg-white peer-checked:ring-[#1EA0FF] peer-checked:ring-2 peer-checked:bg-stone-200 peer-checked:font-medium peer-checked:text-xl duration-200">
                                         <span> 1 </span>
-                                        <span class="hidden sm:block"> ماهه </span>
+                                        <span class="hidden sm:block"> ساله </span>
                                     </label>
                                 </div>
                                 <div>
                                     <input type="radio" value="24" v-model="paymentDuration" name="paymentDuration" id="24monthes" class="hidden peer" />
                                     <label for="24monthes" class="h-12 rounded-custom w-12 peer-checked:w-16 sm:w-24 sm:peer-checked:w-28 sm:gap-1 cursor-pointer lg:w-20 lg:peer-checked:w-32 ring-1 flex_center ring-stone-400 bg-white peer-checked:ring-[#1EA0FF] peer-checked:ring-2 peer-checked:bg-stone-200 peer-checked:font-medium peer-checked:text-xl duration-200">
                                         <span> 2 </span>
-                                        <span class="hidden sm:block"> ماهه </span>
+                                        <span class="hidden sm:block"> ساله </span>
                                     </label>
                                 </div>
                                 <div>
                                     <input type="radio" value="36" v-model="paymentDuration" name="paymentDuration" id="36monthes" class="hidden peer" />
                                     <label for="36monthes" class="h-12 rounded-custom w-12 peer-checked:w-16 sm:w-24 sm:peer-checked:w-28 sm:gap-1 cursor-pointer lg:w-20 lg:peer-checked:w-32 ring-1 flex_center ring-stone-400 bg-white peer-checked:ring-[#1EA0FF] peer-checked:ring-2 peer-checked:bg-stone-200 peer-checked:font-medium peer-checked:text-xl duration-200">
                                         <span> 3 </span>
-                                        <span class="hidden sm:block"> ماهه </span>
+                                        <span class="hidden sm:block"> ساله </span>
                                     </label>
                                 </div>
                                 <div>
                                     <input type="radio" value="48" v-model="paymentDuration" name="paymentDuration" id="48monthes" class="hidden peer" />
                                     <label for="48monthes" class="h-12 rounded-custom w-12 peer-checked:w-16 sm:w-24 sm:peer-checked:w-28 sm:gap-1 cursor-pointer lg:w-20 lg:peer-checked:w-32 ring-1 flex_center ring-stone-400 bg-white peer-checked:ring-[#1EA0FF] peer-checked:ring-2 peer-checked:bg-stone-200 peer-checked:font-medium peer-checked:text-xl duration-200">
                                         <span> 4 </span>
-                                        <span class="hidden sm:block"> ماهه </span>
+                                        <span class="hidden sm:block"> ساله </span>
                                     </label>
                                 </div>
                                 <div>
                                     <input type="radio" value="60" v-model="paymentDuration" name="paymentDuration" id="60monthes" class="hidden peer" />
                                     <label for="60monthes" class="h-12 rounded-custom w-12 peer-checked:w-16 sm:w-24 sm:peer-checked:w-28 sm:gap-1 cursor-pointer lg:w-20 lg:peer-checked:w-32 ring-1 flex_center ring-stone-400 bg-white peer-checked:ring-[#1EA0FF] peer-checked:ring-2 peer-checked:bg-stone-200 peer-checked:font-medium peer-checked:text-xl duration-200">
                                         <span> 5 </span>
-                                        <span class="hidden sm:block"> ماهه </span>
+                                        <span class="hidden sm:block"> ساله </span>
                                     </label>
                                 </div>
                             </section>
