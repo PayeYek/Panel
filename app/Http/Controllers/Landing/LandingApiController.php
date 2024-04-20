@@ -9,6 +9,8 @@ use App\Models\LandArticle;
 use App\Models\LandCategory;
 use App\Models\LandComment;
 use App\Models\LandProduct;
+use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Response;
 use ProtoneMedia\Splade\Facades\SEO;
 
@@ -22,21 +24,13 @@ class LandingApiController extends Controller
 
     public function page($page)
     {
-        $land = Land::where('slug', $page)
-            ->with([
-                'products',
-                'slides'   => function ($query) {
-                    $query->where('status', 1);
-                },
-                'videos',
-                'styles',
-                'articles' => function ($query) {
-                    $query->orderBy('created_at', 'desc');
-                }
-            ])
-            ->firstOrFail();
+        $land = Land::where('slug', $page)->with(['products', 'slides' => function ($query) {
+            $query->where('status', 1);
+        }, 'videos', 'styles', 'articles' => function ($query) {
+            $query->orderBy('created_at', 'desc');
+        }])->firstOrFail();
 
-        $land->makeHidden(['id','body', 'logo_origin', 'created_at', 'updated_at', 'products.id']);
+        $land->makeHidden(['id', 'body', 'logo_origin', 'created_at', 'updated_at', 'products.id']);
 
 //        $cats = array();
 //        foreach ($land->products as $product) {
@@ -61,21 +55,16 @@ class LandingApiController extends Controller
 
     public function pageFooter($page)
     {
-        $land = Land::where('slug', $page)
-            ->with([
-                'products',
-//                'slides'   => function ($query) {
+        $land = Land::where('slug', $page)->with(['products', //                'slides'   => function ($query) {
 //                    $query->where('status', 1);
 //                },
 //                'videos',
-                'styles',
-//                'articles' => function ($query) {
+            'styles', //                'articles' => function ($query) {
 //                    $query->orderBy('created_at', 'desc');
 //                }
-            ])
-            ->firstOrFail();
+        ])->firstOrFail();
 
-        $land->makeHidden(['id','body','products', 'logo_origin', 'created_at', 'updated_at', 'products.id']);
+        $land->makeHidden(['id', 'body', 'products', 'logo_origin', 'created_at', 'updated_at', 'products.id']);
 
         $cats = array();
         foreach ($land->products as $product) {
@@ -120,32 +109,42 @@ class LandingApiController extends Controller
 
     public function products($page)
     {
-        $land = $this->getLand($page);
+        $perPage = 3; // Number of products per page
 
-        $cats = array();
-        foreach ($land->products as $product) {
-            $cats[] = $product->category_id;
-        }
-        $cats = array_unique($cats);
+        $land = Land::where('slug', $page)->with(['products', 'styles', 'categories'])->firstOrFail();
+        $categories = $land->categories->map(function ($category) {
+            return $category->only(['id', 'title', 'slug']);
+        })->all();
 
-        $data = collect();
-        foreach ($cats as $cat) {
-            $item['category'] = LandCategory::find($cat);
-            $item['products'] = LandProduct::with('brand')->where('land_id', $land->id)->where('category_id', $cat)->get()->map(function ($product) {
-                $product->brand;
-                return $product;
-            });
-            $data->add(collect($item));
-        }
+        $productsPaginator = $land->products()->paginate($perPage);
 
-        $data = collect($data);
+        $products = $productsPaginator->getCollection()->map(function ($product) {
+            return $product->only([
+                'id', 'category_id', 'slug', 'name', 'model', 'year', 'tonnage', 'usage', 'cabin',
+                'image', 'description', 'catalog', 'manual', 'colors', 'body'
+            ]);
+        });
 
-        /* BREADCRUMBS */
-        $breadcrumbs = [];
-        $breadcrumbs[] = ['title' => __('Home'), 'url' => route('landing.page.show', ['page' => $land->slug])];
-        $breadcrumbs[] = ['title' => __('Products'), 'url' => null];
-
-        return ['land' => $land, 'breadcrumbs' => $breadcrumbs, 'data' => $data];
+        $data = [
+            'styles' => $land->styles,
+            'categories' => $categories,
+            'products' => [
+                'current_page' => $productsPaginator->currentPage(),
+                'data' => $products,
+                'first_page_url' => $productsPaginator->url(1),
+                'from' => $productsPaginator->firstItem(),
+                'last_page' => $productsPaginator->lastPage(),
+                'last_page_url' => $productsPaginator->url($productsPaginator->lastPage()),
+                'links' => $productsPaginator->toArray()['links'],
+                'next_page_url' => $productsPaginator->nextPageUrl(),
+                'path' => $productsPaginator->path(),
+                'per_page' => $productsPaginator->perPage(),
+                'prev_page_url' => $productsPaginator->previousPageUrl(),
+                'to' => $productsPaginator->lastItem(),
+                'total' => $productsPaginator->total(),
+            ],
+        ];
+        return $data;
     }
 
     public function product($page, $product)
@@ -157,22 +156,13 @@ class LandingApiController extends Controller
         $product = LandProduct::with('category')->where('slug', $product)->firstOrFail();
 
         /* COMMENTS APPROVED */
-        $comments = LandComment::where('land_id', $land->id)
-            ->where('product_id', $product->id)
-            ->where('approved', true)
-            ->get();
+        $comments = LandComment::where('land_id', $land->id)->where('product_id', $product->id)->where('approved', true)->get();
 
         /* BREADCRUMBS */
         $breadcrumbs = [];
         $breadcrumbs[] = ['title' => __('Home'), 'url' => route('landing.page.show', ['page' => $land->slug])];
         $breadcrumbs[] = ['title' => __('Products'), 'url' => route('landing.product.list', ['page' => $land->slug])];
-        $breadcrumbs[] = [
-            'title' => $product->category->title,
-            'url'   => route('landing.product.list', [
-                'page'     => $land->slug,
-                'category' => $product->category->id
-            ])
-        ];
+        $breadcrumbs[] = ['title' => $product->category->title, 'url' => route('landing.product.list', ['page' => $land->slug, 'category' => $product->category->id])];
         $breadcrumbs[] = ['title' => $product->name, 'url' => null];
 
         return ['land' => $land, 'breadcrumbs' => $breadcrumbs, 'comments' => $comments, 'product' => $product];
@@ -182,9 +172,7 @@ class LandingApiController extends Controller
     {
         LandComment::create($request->validated());
 
-        return Response::json([
-            'message' => 'دیدگاه شما جهت بررسی ارسال شد'
-        ], 200);
+        return Response::json(['message' => 'دیدگاه شما جهت بررسی ارسال شد'], 200);
     }
 
     public function category($page, $category)
@@ -241,9 +229,7 @@ class LandingApiController extends Controller
 
         $article = LandArticle::where('slug', $article)->firstOrFail();
 
-        SEO::title($land->title . ' | ' . $article->title)
-            ->description($article->description)
-            ->keywords([$land->title, $article->title]);
+        SEO::title($land->title . ' | ' . $article->title)->description($article->description)->keywords([$land->title, $article->title]);
 
         /* BREADCRUMBS */
         $breadcrumbs = [];
@@ -281,28 +267,10 @@ class LandingApiController extends Controller
     {
         $land = $this->getLand($page);
 
-        /* BREADCRUMBS */
-        // $breadcrumbs = [];
+        /* BREADCRUMBS */ // $breadcrumbs = [];
         // $breadcrumbs[] = ['title' => __('Home'), 'url' => route('landing.page.show', ['page' => $land->slug])];
         // $breadcrumbs[] = ['title' => __('Progress'), 'url' => null ];
 
         return ['land' => $land];
-    }
-
-    public function getLand($page): Land
-    {
-        return Land::where('slug', $page)
-            ->with([
-                'products',
-                'slides'   => function ($query) {
-                    $query->where('status', 1);
-                },
-                'videos',
-                'styles',
-                'articles' => function ($query) {
-                    $query->orderBy('created_at', 'desc');
-                }
-            ])
-            ->firstOrFail();
     }
 }
