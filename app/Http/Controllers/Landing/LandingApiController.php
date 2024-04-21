@@ -9,8 +9,6 @@ use App\Models\LandArticle;
 use App\Models\LandCategory;
 use App\Models\LandComment;
 use App\Models\LandProduct;
-use Illuminate\Pagination\LengthAwarePaginator;
-use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Response;
 use ProtoneMedia\Splade\Facades\SEO;
 
@@ -112,6 +110,9 @@ class LandingApiController extends Controller
         $perPage = 12;
 
         $land = Land::where('slug', $page)->with(['products', 'styles', 'categories'])->firstOrFail();
+
+        $styles = $land->styles;
+
         $categories = $land->categories->map(function ($category) {
             return $category->only(['id', 'title', 'slug']);
         })->all();
@@ -159,6 +160,12 @@ class LandingApiController extends Controller
                 'products' => $products,
             ];
         }
+
+        $data['styles']['color'] = [
+            'name' => $styles->landColor->name,
+            'title' => $styles->landColor->title
+        ];
+
         return $data;
     }
 
