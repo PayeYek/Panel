@@ -87,8 +87,8 @@
                 </section>
         
                 <!-- total -->
-                <section class="lg:col-span-4">
-                    <section class="bg-stone-200 text-sm font-normal rounded-b-custom lg:rounded-t-custom px-4 py-6 lg:py-12 lg:px-10">
+                <section class="lg:col-span-4 bg-stone-200 rounded-b-custom lg:rounded-t-custom">
+                    <section class="text-sm font-normal px-4 py-6 lg:py-12 lg:px-10">
                         <div class="flex_between mb-4 lg:mb-6">
                             <p class="text-base lg:text-lg font-medium text-stone-700"> نتیجه محاسبه </p>
                             <p class="text-sm text-[#1EA0FF] border-b-2 border-b-transparent hover:border-b-[#1EA0FF] border-dashed font-medium cursor-pointer" @click="trueInformationState"> اطلاعات بیشتر </p>
@@ -177,6 +177,26 @@
         <section class="">
             <h3 class="text-lg lg:text-2xl font-medium text-stone-700 mb-4 lg:mb-8"> مدارک مورد نیاز دریافت تسهیلات </h3>
             <Facilities classNames="mb-10 lg:mb-20" />
+        </section>
+
+        <section class="grid grid-cols-1 lg:grid-cols-10 gap-5 drop-shadow-smooth bg-white rounded-custom">
+            <section class="lg:col-span-6 p-6 order-2"></section>
+            <section class="lg:col-span-4 bg-stone-200 order-1 rounded-b-custom lg:rounded-t-custom pt-8 px-6 pb-12">
+                <h4 class="text-sm pr-4 font-medium text-stone-700 mb-2 relative before:absolute before:content-[''] before:rounded-full before:bg-normal before:top-1.5 before:right-0 before:size-2"> تسهیلات خودروی تجاری </h4>
+                <p class="text-sm lg:text-base font-normal text-stone-700 mb-6"> برای درخواست تسهیلات خودروی تجاری مشخصات را وارد کنید. </p>
+                <div class="flex flex-col text-stone-700 gap-5">
+                    <select class="h-11 rounded-custom border border-[#CFD1D4] focus:ring-0 outline-none focus:border-[#CFD1D4] text-sm font-normal">
+                        <option value="0" selected disabled> مبلغ تسهیلات </option>
+                        <option value="">  </option>
+                    </select>
+                    <select class="h-11 rounded-custom border border-[#CFD1D4] focus:ring-0 outline-none focus:border-[#CFD1D4] text-sm font-normal">
+                        <option value="0" selected disabled> نوع خودرو </option>
+                        <option value="">  </option>
+                    </select>
+                    <input type="text" class="h-11 rounded-custom border border-[#CFD1D4] focus:ring-0 outline-none focus:border-[#CFD1D4] text-sm font-normal placeholder:text-[#acacac]" placeholder="نام خانوادگی" />
+                    <input type="tel" class="h-11 dir-rtl rounded-custom border border-[#CFD1D4] focus:ring-0 outline-none focus:border-[#CFD1D4] text-sm font-normal placeholder:text-[#acacac]" placeholder="شماره موبایل" />
+                </div>
+            </section>
         </section>
     </section>
 </template>
