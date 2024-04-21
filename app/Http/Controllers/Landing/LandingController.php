@@ -76,7 +76,7 @@ class LandingController extends Controller
         /* BREADCRUMBS */
         $breadcrumbs = [];
         $breadcrumbs[] = ['title' => __('Home'), 'url' => route('landing.page.show', ['page' => $land->slug])];
-        $breadcrumbs[] = ['title' => __('About us'), 'url' => null ];
+        $breadcrumbs[] = ['title' => __('About us'), 'url' => null];
 
         return view('landing.page-about', compact('land', 'breadcrumbs'));
     }
@@ -88,7 +88,7 @@ class LandingController extends Controller
         /* BREADCRUMBS */
         $breadcrumbs = [];
         $breadcrumbs[] = ['title' => __('Home'), 'url' => route('landing.page.show', ['page' => $land->slug])];
-        $breadcrumbs[] = ['title' => 'کاتالوگ', 'url' => null ];
+        $breadcrumbs[] = ['title' => 'کاتالوگ', 'url' => null];
 
         return view('landing.page-catalog-list', compact('land', 'breadcrumbs'));
     }
@@ -108,9 +108,9 @@ class LandingController extends Controller
             $item['category'] = LandCategory::find($cat);
             $item['products'] = LandProduct::with('brand')->where('land_id', $land->id)->where('category_id', $cat)->get()->map(function ($product) {
                 $product->brand;
-                return  $product;
+                return $product;
             });
-            $data->add(collect($item)) ;
+            $data->add(collect($item));
         }
 
         $data = collect($data);
@@ -122,7 +122,7 @@ class LandingController extends Controller
         /* BREADCRUMBS */
         $breadcrumbs = [];
         $breadcrumbs[] = ['title' => __('Home'), 'url' => route('landing.page.show', ['page' => $land->slug])];
-        $breadcrumbs[] = ['title' => __('Products'), 'url' => null ];
+        $breadcrumbs[] = ['title' => __('Products'), 'url' => null];
 
         return view('landing.product-list', compact('land', 'data', 'breadcrumbs'));
     }
@@ -200,7 +200,7 @@ class LandingController extends Controller
         /* BREADCRUMBS */
         $breadcrumbs = [];
         $breadcrumbs[] = ['title' => __('Home'), 'url' => route('landing.page.show', ['page' => $land->slug])];
-        $breadcrumbs[] = ['title' => __('Categories'), 'url' => null ];
+        $breadcrumbs[] = ['title' => __('Categories'), 'url' => null];
 
         return view('landing.categories', compact('land', 'data', 'breadcrumbs'));
 
@@ -232,7 +232,7 @@ class LandingController extends Controller
         /* BREADCRUMBS */
         $breadcrumbs = [];
         $breadcrumbs[] = ['title' => __('Home'), 'url' => route('landing.page.show', ['page' => $land->slug])];
-        $breadcrumbs[] = ['title' => __('Articles'), 'url' => null ];
+        $breadcrumbs[] = ['title' => __('Articles'), 'url' => null];
 
         return view('landing.article-list', compact('land', 'breadcrumbs'));
     }
@@ -262,12 +262,13 @@ class LandingController extends Controller
         /* BREADCRUMBS */
         $breadcrumbs = [];
         $breadcrumbs[] = ['title' => __('Home'), 'url' => route('landing.page.show', ['page' => $land->slug])];
-        $breadcrumbs[] = ['title' => __('Sales Agency'), 'url' => null ];
+        $breadcrumbs[] = ['title' => __('Sales Agency'), 'url' => null];
 
         return view('landing.sales-representative', compact('land', 'breadcrumbs'));
     }
 
-    public function calculator($page){
+    public function calculator($page)
+    {
         $land = $this->getLand($page);
 
         $cats = array();
@@ -285,12 +286,13 @@ class LandingController extends Controller
         /* BREADCRUMBS */
         $breadcrumbs = [];
         $breadcrumbs[] = ['title' => __('Home'), 'url' => route('landing.page.show', ['page' => $land->slug])];
-        $breadcrumbs[] = ['title' => __('Calculator'), 'url' => null ];
+        $breadcrumbs[] = ['title' => __('Calculator'), 'url' => null];
 
         return view('landing.calculator', compact('land', 'categories', 'breadcrumbs'));
     }
 
-    public function advertise($page){
+    public function advertise($page)
+    {
         $land = $this->getLand($page);
 
         /* BREADCRUMBS */
