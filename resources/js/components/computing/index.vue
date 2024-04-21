@@ -105,7 +105,7 @@
                 <section class="bg-stone-200 text-sm font-normal rounded-b-custom lg:rounded-t-custom px-4 py-6 lg:py-12 lg:px-10">
                     <div class="flex_between mb-4 lg:mb-6">
                         <p class="text-base lg:text-lg font-medium text-stone-700"> نتیجه محاسبه </p>
-                        <p class="text-sm text-[#1EA0FF] border-b-2 border-b-transparent hover:border-b-[#1EA0FF] border-dashed font-medium cursor-pointer" @click="moreInfoStateToggler"> اطلاعات بیشتر </p>
+                        <p class="text-sm text-[#1EA0FF] border-b-2 border-b-transparent hover:border-b-[#1EA0FF] border-dashed font-medium cursor-pointer" @click="trueInformationState"> اطلاعات بیشتر </p>
                     </div>
                     <ul class="list-none text-[#90A4AE] mb-6">
                         <li class="border-b border-b-white py-4 flex_between gap-4 text-sm font-normal">
@@ -130,21 +130,21 @@
                             </div>
                         </li>
                     </ul>
-                    <button class="text-lg font-medium mx-auto bg-normal cursor-pointer rounded-custom text-white flex_center h-12 px-10 lg:px-14 xl:px-20" type="button"> درخواست مشاوره </button>
+                    <button class="text-lg font-medium mx-auto bg-normal cursor-pointer rounded-custom text-white flex_center h-12 px-10 lg:px-14 xl:px-20" type="button" @click="trueCounselingState"> درخواست مشاوره </button>
                 </section>
             </section>
 
             <!-- modal layer -->
-            <div class="fixed inset-0 bg-[#ABABAB]/40 z-[5] backdrop-blur-2xl" v-show="moreInfoState" @click="moreInfoStateToggler"></div>
+            <div class="fixed inset-0 bg-[#ABABAB]/40 z-[5] backdrop-blur-2xl" v-show="modalState" @click="closeModalState"></div>
 
-            <!-- modal content -->
-            <section class="flex flex-col bg-white sm:rounded-custom fixed top-0 drop-shadow-base right-0 w-full h-full sm:h-auto sm:max-w-[36rem] md:max-w-[40rem] lg:max-w-[44rem] sm:top-1/2 sm:right-1/2 sm:translate-x-1/2 sm:-translate-y-1/2 z-[6] overflow-hidden" v-show="moreInfoState">
+            <!-- counseling modal content -->
+            <section class="flex flex-col bg-white sm:rounded-custom fixed top-0 drop-shadow-base right-0 w-full h-full sm:h-auto sm:max-w-[36rem] md:max-w-[40rem] lg:max-w-[44rem] sm:top-1/2 sm:right-1/2 sm:translate-x-1/2 sm:-translate-y-1/2 z-[6] overflow-hidden" v-show="counselingState">
                 <!-- title -->
                 <div
                     class="w-full py-10 text-xl font-bold text-stone-700 lg:text-2xl flex_center relative">
                     <p> ارتباط با کارشناسان فروش </p>
                     <!-- close btn -->
-                    <div @click="moreInfoStateToggler" class="size-7 rounded-full bg-stone-200 flex_center cursor-pointer absolute top-4 left-4">
+                    <div @click="closeCounselingState" class="size-7 rounded-full bg-stone-200 flex_center cursor-pointer absolute top-4 left-4">
                         <svg class="size-5 stroke-stone-700" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M12 12L6 6M12 12L18 18M12 12L18 6M12 12L6 18" stroke="current" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                         </svg>
@@ -160,6 +160,23 @@
                         class="w-full text-base font-medium text-white rounded-custom flex_center max-w-64 h-11 bg-normal hover:bg-focus focus:bg-focus focus:shadow-focus focus:shadow-shadowNormal">
                         ارسال </button>
                 </form>
+            </section>
+
+            <!-- information modal content -->
+            <section class="flex px-4 lg:px-8 py-10 text-sm font-medium text-stone-700 flex-col bg-white sm:rounded-custom fixed top-0 drop-shadow-base right-0 w-full h-full sm:h-auto sm:max-w-[36rem] md:max-w-[40rem] lg:max-w-[44rem] sm:top-1/2 sm:right-1/2 sm:translate-x-1/2 sm:-translate-y-1/2 z-[6] overflow-hidden" v-show="informationState">
+                <!-- close btn -->
+                <div @click="closeInformationState" class="absolute top-4 left-4 size-7 rounded-full bg-stone-200 flex_center cursor-pointer">
+                    <svg class="size-5 stroke-stone-700" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 12L6 6M12 12L18 18M12 12L18 6M12 12L6 18" stroke="current" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+                <!-- title -->
+                <p class="mb-4 pr-4 relative before:absolute before:top-1 before:right-0 before:size-2 before:rounded-full before:bg-normal"> اطلاعات بیشتر </p>
+                <ul class="pr-6 space-y-2 list-inside list-disc">
+                    <li class=""> مبلغ تسهیلات 30 تا 60 درصد ارزش وسیله نقلیه می باشد. </li>
+                    <li class=""> هزینه عملیات بدون ارزش افزوده محاسبه گردیده است. </li>
+                    <li class=""> سود اقساط شما معاول نرخ مصوب بانک مرکزی  یعنی  23 درصد. </li>
+                </ul>
             </section>
         </section>
     </section>
@@ -186,7 +203,9 @@ export default {
         const loanPerMonth = ref(0);
         const refund = ref(0);
         const wage = ref(9.735);
-        const moreInfoState = ref(false);
+        const modalState = ref(false);
+        const counselingState = ref(false);
+        const informationState = ref(false);
 
         // console.log(wage.value);
         
@@ -270,8 +289,31 @@ export default {
         //     refund.value = Math.floor(fullNumber / 1000) * 1000;
         // }
 
-        const moreInfoStateToggler = () => {
-            moreInfoState.value = !moreInfoState.value;
+        // const moreInfoStateToggler = () => {
+        const trueCounselingState = () => {
+            counselingState.value = true;
+            modalState.value = true;
+        }
+
+        const trueInformationState = () => {
+            informationState.value = true;
+            modalState.value = true;
+        }
+
+        const closeModalState = () => {
+            modalState.value = false;
+            counselingState.value = false;
+            informationState.value = false;
+        }
+
+        const closeCounselingState = () => {
+            counselingState.value = false;
+            modalState.value = false;
+        }
+
+        const closeInformationState = () => {
+            informationState.value = false;
+            modalState.value = false;
         }
 
         const calculateValues = () => {
@@ -320,8 +362,14 @@ export default {
             fund,
             loanPerMonth,
             refund,
-            moreInfoState,
-            moreInfoStateToggler,
+            modalState,
+            informationState,
+            counselingState,
+            trueCounselingState,
+            closeModalState,
+            closeCounselingState,
+            trueInformationState,
+            closeInformationState,
         }
     }
 }

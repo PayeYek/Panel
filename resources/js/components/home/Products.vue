@@ -2,10 +2,10 @@
     <template v-if="type == 1">
         <div v-for="(product, index) in productList.slice(0, 3)" :key="index"
             :class="'w-60 py-5 first:pt-0 last:pb-0 items-center flex flex-col border-b border-b-stone-400 last:border-b-0 sm:border-b-0 sm:first:pt-5 sm:last:pb-5 sm:px-10 sm:flex-none sm:w-80 relative before:absolute before:content-[' + '] before:inset-y-10 before:left-0 before:w-px before:bg-[#ccc] last:before:bg-transparent before:hidden sm:before:block ' + (evenOdd == 1 ? ' evenOdd_cards' : ' bg-white')">
-            <div class="mb-2 h-48">
+            <Link :href="'/l/' + landSlug + '/p/' + product.slug" class="mb-2 h-48">
                 <img :src="product.image" :alt="product.name" class="object-contain h-full" />
-            </div>
-            <h3 class="mb-5 font-medium text-base sm:text-lg lg:text-xl sm:line-clamp-1 text-stone-700"> {{ product.name }} </h3>
+            </Link>
+            <Link :href="'/l/' + landSlug + '/p/' + product.slug" class="mb-5 font-medium text-base sm:text-lg lg:text-xl sm:line-clamp-1 text-stone-700"> {{ product.name }} </Link>
             <p class="text-center text-sm font-normal leading-7 mb-3 h-14 line-clamp-2"> {{ product.description }} </p>
             <div class="grid grid-cols-5 gap-2 w-56 lg:w-52">
                 <LandBtn text="خرید اقساطی" :to="'/l/' + landSlug + '/p/' + product.slug"
@@ -21,10 +21,10 @@
     <template v-if="type == 2">
         <div v-for="(product, index) in productList.slice(0, 4)" :key="index"
             :class="'px-8 w-full pt-1 pb-8 items-center flex flex-col rounded-custom ' + borderStyle + ' ' + (evenOdd == 1 ? 'evenOdd_cards ' : 'bg-white ')">
-            <div class="h-32 mb-0.5">
+            <Link :href="'/l/' + landSlug + '/p/' + product.slug" class="h-32 mb-0.5">
                 <img :src="product.image" :alt="product.name" class="object-contain h-full" />
-            </div>
-            <h3 class="mb-0.5 font-medium lg:mb-1 text-lg sm:line-clamp-1 text-stone-700"> {{ product.name }} </h3>
+            </Link>
+            <Link :href="'/l/' + landSlug + '/p/' + product.slug" class="mb-0.5 font-medium lg:mb-1 text-lg sm:line-clamp-1 text-stone-700"> {{ product.name }} </Link>
             <div class="grid w-56 grid-cols-2 lg:w-52 gap-2">
                 <LandBtn text="مشخصات" :to="'/l/' + landSlug + '/p/' + product.slug"
                     classNames="sameCategoryBtnStyle categoryBtnEmpty rounded-custom" />
@@ -39,12 +39,12 @@
     <template v-if="type == 3">
         <div v-for="(product, index) in productList.slice(0, 3)" :key="index"
             :class="'pl-6 pr-8 w-full pt-5 pb-8 flex flex-col rounded-custom ' + borderStyle + ' ' + (evenOdd == 1 ? 'evenOdd_cards ' : 'bg-white ')">
-            <h3 class="mb-1.5 font-medium lg:mb-1 text-lg sm:line-clamp-1 text-stone-700"> {{ product.name }}
-            </h3>
+            <Link :href="'/l/' + landSlug + '/p/' + product.slug" class="mb-1.5 font-medium lg:mb-1 text-lg sm:line-clamp-1 text-stone-700"> {{ product.name }}
+            </Link>
             <div class="flex items-center justify-between gap-4">
-                <div class="flex-none h-32 lg:h-28 xl:h-32">
+                <Link :href="'/l/' + landSlug + '/p/' + product.slug" class="flex-none h-32 lg:h-28 xl:h-32">
                     <img :src="product.image" :alt="product.name" class="object-contain h-full" />
-                </div>
+                </Link>
                 <div class="flex flex-col w-40 gap-2 shrink">
                     <LandBtn text="مشخصات" :to="'/l/' + landSlug + '/p/' + product.slug"
                         classNames="sameCategoryBtnStyle categoryBtnEmpty rounded-custom" />
@@ -60,13 +60,13 @@
     <template v-if="type == 4">
         <div v-for="(product, index) in productList.slice(0, 3)" :key="index"
             :class="'px-6 gap-2 w-full pt-6 pb-10 flex items-center rounded-custom ' + borderStyle + ' ' + (evenOdd == 1 ? 'evenOdd_cards ' : 'bg-white ')">
-            <div class="flex-none min-w-28 h-28 sm:min-w-32 lg:max-w-32 sm:h-32">
+            <Link :href="'/l/' + landSlug + '/p/' + product.slug" class="flex-none min-w-28 h-28 sm:min-w-32 lg:max-w-32 sm:h-32">
                 <img :src="product.image" :alt="product.name" class="object-contain h-full" />
-            </div>
+            </Link>
             <div class="flex flex-col flex-1 gap-4">
-                <h3 class="mb-1.5 font-medium lg:mb-1 text-lg sm:line-clamp-1 text-stone-700"> {{ product.name
+                <Link :href="'/l/' + landSlug + '/p/' + product.slug" class="mb-1.5 font-medium lg:mb-1 text-lg sm:line-clamp-1 text-stone-700"> {{ product.name
                     }}
-                </h3>
+                </Link>
                 <div class="grid w-full grid-cols-2 gap-2 mr-auto max-w-72">
                     <LandBtn text="مشخصات" :to="'/l/' + landSlug + '/p/' + product.slug"
                         classNames="sameCategoryBtnStyle categoryBtnEmpty rounded-custom" />
@@ -82,18 +82,18 @@
     <template v-if="type == 5">
         <div v-for="(product, index) in productList.slice(0, 4)" :key="index"
             :class="`flex flex-col w-full sm:flex-row sm:items-center lg:pl-14 sm:gap-4 lg:gap-10 xl:gap-16 px-6 pb-6 pt-4 sm:py-6 after:absolute after:content-[''] after:top-0 after:left-[5%] after:w-[90%] after:h-px after:border-t first:after:hidden after:border-dark-100 relative ` + (evenOdd == 1 ? 'evenOdd_cards ' : 'bg-white ')">
-            <div
+            <Link :href="'/l/' + landSlug + '/p/' + product.slug"
                 class="h-[11.5rem] sm:h-32 md:h-36 lg:h-40 sm:mx-0 sm:w-32 md:w-36 lg:w-40 sm:flex-none mx-auto mb-2.5 sm:mb-0">
                 <img :src="product.image" :alt="product.name" class="object-contain h-full" />
-            </div>
+            </Link>
             <div class="mb-4 sm:mb-0 sm:flex-1">
-                <h3 class="mb-2 font-medium lg:mb-1 text-lg sm:line-clamp-1 text-stone-700"> {{ product.name
+                <Link :href="'/l/' + landSlug + '/p/' + product.slug" class="mb-2 font-medium lg:mb-1 text-lg sm:line-clamp-1 text-stone-700"> {{ product.name
                     }}
-                </h3>
-                <p
+                </Link>
+                <Link :href="'/l/' + landSlug + '/p/' + product.slug"
                     class="text-sm leading-6 text-justify text-stone-700  font-medium line-clamp-2">
                     {{ product.description }}
-                </p>
+                </Link>
             </div>
             <div class="flex flex-col items-center gap-2 w-56 mx-auto sm:mx-0">
                 <LandBtn text="مشخصات" :to="'/l/' + landSlug + '/p/' + product.slug"
@@ -109,16 +109,16 @@
     <template v-if="type == 6">
         <div v-for="(product, index) in productList.slice(0, 4)" :key="index"
             :class="`flex flex-col w-full sm:flex-row sm:items-center lg:pl-14 sm:gap-4 lg:gap-10 xl:gap-16 px-6 sm:pr-10 pb-6 pt-4 sm:py-6 after:absolute after:content-[''] after:top-0 after:left-[5%] after:w-[90%] after:h-px after:border-t first:after:hidden after:border-stone-400 sm:after:hidden relative before:bg-normal before:absolute before:content-[''] before:top-0 before:right-0 before:w-4 before:hidden sm:before:block before:h-full overflow-hidden sm:rounded-custom border-0 sm:border drop-shadow-none ` + borderStyle + ' ' + (evenOdd == 1 ? 'evenOdd_cards ' : 'bg-white ')">
-            <div
+            <Link :href="'/l/' + landSlug + '/p/' + product.slug"
                 class="h-[11.5rem] sm:h-32 md:h-36 lg:h-40 sm:mx-0 sm:w-32 md:w-36 lg:w-40 sm:flex-none mx-auto mb-2.5 sm:mb-0">
                 <img :src="product.image" :alt="product.name" class="object-contain h-full" />
-            </div>
+            </Link>
             <div class="mb-4 sm:mb-0 sm:flex-1">
-                <h3 class="mb-2 sm:gap-4 font-medium lg:mb-1 text-lg text-stone-700"> {{ product.name }} </h3>
-                <p
+                <Link :href="'/l/' + landSlug + '/p/' + product.slug" class="mb-2 sm:gap-4 font-medium lg:mb-1 text-lg text-stone-700"> {{ product.name }} </Link>
+                <Link :href="'/l/' + landSlug + '/p/' + product.slug"
                     class="text-sm leading-6 text-justify text-stone-700  font-medium line-clamp-2">
                     {{ product.description }}
-                </p>
+                </Link>
             </div>
             <div class="flex flex-col items-center gap-2 w-56 mx-auto sm:mx-0">
                 <LandBtn text="مشخصات" :to="'/l/' + landSlug + '/p/' + product.slug"
@@ -134,11 +134,11 @@
     <template v-if="type == 7">
         <div v-for="(product, index) in productList.slice(0, 4)" :key="index"
             :class="'px-8 lg:px-5 xl:px-8 py-5 sm:pb-12 w-full items-center flex flex-col sm:first:rounded-none sm:last:rounded-none shadow-[0px_0px_0px_1px_#d2d2d2] ' + (evenOdd == 1 ? 'evenOdd_cards ' : 'bg-white ')">
-            <div class="h-32 mb-2">
+            <Link :href="'/l/' + landSlug + '/p/' + product.slug" class="h-32 mb-2">
                 <img :src="product.image" :alt="product.name" class="object-contain h-full" />
-            </div>
-            <h3 class="mb-5 font-medium lg:mb-4 text-lg sm:line-clamp-1 text-stone-700"> {{ product.name }}
-            </h3>
+            </Link>
+            <Link :href="'/l/' + landSlug + '/p/' + product.slug" class="mb-5 font-medium lg:mb-4 text-lg sm:line-clamp-1 text-stone-700"> {{ product.name }}
+            </Link>
             <div class="flex flex-col gap-4 w-56 mx-auto sm:mx-0">
                 <LandBtn text="مشخصات" :to="'/l/' + landSlug + '/p/' + product.slug"
                     classNames="sameCategoryBtnStyle categoryBtnEmpty rounded-custom" />
@@ -153,12 +153,12 @@
     <template v-if="type == 8">
         <div v-for="(product, index) in productList.slice(0, 3)" :key="index"
             :class="'border-b last:border-b-0 lg:border-b-0 lg:border-l border-dark-100 pl-6 pr-8 w-full pt-5 pb-8 lg:last:border-l-0 flex flex-col ' + (evenOdd == 1 ? 'evenOdd_cards ' : 'bg-white ')">
-            <h3 class="mb-1.5 font-medium lg:mb-1 text-lg sm:line-clamp-1 text-stone-700"> {{ product.name }}
-            </h3>
+            <Link :href="'/l/' + landSlug + '/p/' + product.slug" class="mb-1.5 font-medium lg:mb-1 text-lg sm:line-clamp-1 text-stone-700"> {{ product.name }}
+            </Link>
             <div class="flex items-center justify-between gap-4">
-                <div class="h-32 lg:h-28 xl:h-32">
+                <Link :href="'/l/' + landSlug + '/p/' + product.slug" class="h-32 lg:h-28 xl:h-32">
                     <img :src="product.image" :alt="product.name" class="object-contain h-full" />
-                </div>
+                </Link>
                 <div class="flex flex-col w-56 gap-2 shrink">
                     <LandBtn text="مشخصات" :to="'/l/' + landSlug + '/p/' + product.slug"
                         classNames="sameCategoryBtnStyle categoryBtnEmpty rounded-custom" />
@@ -174,18 +174,18 @@
     <template v-if="type == 9">
         <div v-for="(product, index) in productList.slice(0, 3)" :key="index"
             :class="`flex flex-col w-full sm:flex-row sm:items-center lg:pl-14 sm:gap-4 lg:gap-10 xl:gap-16 px-6 pb-6 pt-4 sm:py-6 after:absolute after:content-[''] after:top-0 after:left-0 after:w-full after:h-px after:border-t first:after:hidden after:border-dark-100 relative ` + (evenOdd == 1 ? 'evenOdd_cards ' : 'bg-white ')">
-            <div
+            <Link :href="'/l/' + landSlug + '/p/' + product.slug"
                 class="h-[11.5rem] sm:h-32 md:h-36 lg:h-40 sm:mx-0 sm:w-32 md:w-36 lg:w-40 sm:flex-none mx-auto mb-2.5 sm:mb-0">
                 <img :src="product.image" :alt="product.name" class="object-contain h-full" />
-            </div>
+            </Link>
             <div class="mb-4 sm:mb-0 sm:flex-1">
-                <h3 class="mb-2 font-medium lg:mb-1 text-lg sm:line-clamp-1 text-stone-700"> {{ product.name
+                <Link :href="'/l/' + landSlug + '/p/' + product.slug" class="mb-2 font-medium lg:mb-1 text-lg sm:line-clamp-1 text-stone-700"> {{ product.name
                     }}
-                </h3>
-                <p
+                </Link>
+                <Link :href="'/l/' + landSlug + '/p/' + product.slug"
                     class="text-sm leading-6 text-justify text-stone-700  font-medium line-clamp-2">
                     {{ product.description }}
-                </p>
+                </Link>
             </div>
             <div class="flex flex-col items-center gap-2 w-56 mx-auto sm:mx-0">
                 <LandBtn text="مشخصات" :to="'/l/' + landSlug + '/p/' + product.slug"
@@ -201,11 +201,11 @@
     <template v-if="type == 10">
         <div v-for="(product, index) in productList.slice(0, 4)" :key="index"
             :class="'rounded-custom px-8 w-full pt-5 pb-8 items-center flex flex-col product_card ' + borderStyle + (evenOdd == 1 ? ' evenOdd_cards ' : ' bg-white ')">
-            <div class="h-56 aspect-square mb-3">
+            <Link :href="'/l/' + landSlug + '/p/' + product.slug" class="h-56 aspect-square mb-3">
                 <img :src="product.image" :alt="product.name" class="object-contain h-full" />
-            </div>
-            <h3 class="mb-3 font-medium text-lg line-clamp-1 text-stone-700 text-center lg:text-xl"> {{ product.name }} </h3>
-            <h3 class="mb-3 font-medium text-base line-clamp-1 text-stone-700 text-center"> مدل: {{ product.model }} </h3>
+            </Link>
+            <Link :href="'/l/' + landSlug + '/p/' + product.slug" class="mb-3 font-medium text-lg line-clamp-1 text-stone-700 text-center lg:text-xl"> {{ product.name }} </Link>
+            <Link :href="'/l/' + landSlug + '/p/' + product.slug" class="mb-3 font-medium text-base line-clamp-1 text-stone-700 text-center"> مدل: {{ product.model }} </Link>
             <div class="flex flex-col w-56 lg:w-full xl:w-56 gap-3">
                 <Link :href="'/l/' + landSlug + '/p/' + product.slug" class="w-full col-span-full h-11 flex_center rounded-custom before:rounded-custom text-white bg-normal hover:bg-focus focus:bg-focus focus:shadow-focus focus:shadow-shadowNormal text-lg font-medium"> فروش اقساطی </Link>
                 <div class="flex items-center gap-2">
@@ -230,11 +230,11 @@
     <template v-if="type == 11">
         <div v-for="(product, index) in productList.slice(0, 4)" :key="index"
             :class="'pt-2 px-8 w-72 sm:w-96 lg:w-full lg:max-w-[17rem] pb-5 lg:pt-3 items-center flex flex-col rounded-custom mx-auto lg:mx-0 ' + borderStyle + ' ' + (evenOdd == 1 ? 'evenOdd_cards' : 'bg-white')">
-            <div class="mb-2 h-52">
+            <Link :href="'/l/' + landSlug + '/p/' + product.slug" class="mb-2 h-52">
                 <img :src="product.image" :alt="product.name" class="object-contain h-full" />
-            </div>
-            <h3 class="mb-5 font-medium text-xl line-clamp-2 lg:line-clamp-1 text-stone-700 lg:h-[28px]"> {{ product.name }} </h3>
-            <h3 class="mb-6 font-normal text-sm line-clamp-1 text-stone-700 h-5"> مدل: {{ product.model }} </h3>
+            </Link>
+            <Link :href="'/l/' + landSlug + '/p/' + product.slug" class="mb-5 font-medium text-xl line-clamp-2 lg:line-clamp-1 text-stone-700 lg:h-[28px]"> {{ product.name }} </Link>
+            <Link :href="'/l/' + landSlug + '/p/' + product.slug" class="mb-6 font-normal text-sm line-clamp-1 text-stone-700 h-5"> مدل: {{ product.model }} </Link>
             <div class="grid grid-cols-2 gap-3 w-56 lg:w-full">
                 <LandBtn text="خرید اقساطی" :to="'/l/' + landSlug + '/p/' + product.slug"
                     classNames="sameCategoryBtnStyle castegoryBtnfilled rounded-custom col-span-2" />
@@ -249,19 +249,19 @@
     <template v-if="type == 12">
         <div v-for="(product, index) in productList.slice(0, 2)" :key="index"
             :class="`flex flex-col w-full sm:flex-row sm:items-center lg:pl-10 sm:gap-4 lg:gap-10 xl:gap-16 px-6 pb-6 pt-4 sm:py-6 rounded-custom after:absolute after:content-[''] after:top-0 after:left-[5%] after:w-[90%] after:h-px after:border-t first:after:hidden after:border-dark-100 relative ` + (evenOdd == 1 ? 'evenOdd_cards ' : 'bg-white ') + borderStyle">
-            <div
+            <Link :href="'/l/' + landSlug + '/p/' + product.slug"
                 class="h-[11.5rem] sm:h-32 md:h-36 lg:h-40 sm:mx-0 sm:w-32 md:w-40 lg:w-48 sm:flex-none mx-auto mb-2.5 sm:mb-0">
                 <img :src="product.image" :alt="product.name" class="object-contain h-full" />
-            </div>
+            </Link>
             <div class="mb-4 sm:mb-0 sm:flex-1">
-                <h3 class="mb-4 font-medium sm:mb-1 lg:mb-6 text-lg sm:text-xl sm:line-clamp-1 text-stone-700"> {{ product.name
+                <Link :href="'/l/' + landSlug + '/p/' + product.slug" class="mb-4 font-medium sm:mb-1 lg:mb-6 text-lg sm:text-xl sm:line-clamp-1 text-stone-700"> {{ product.name
                     }}
-                </h3>
-                <p
+                </Link>
+                <Link :href="'/l/' + landSlug + '/p/' + product.slug"
                     class="text-sm leading-7 sm:mb-2 lg:mb-4 text-justify sm:text-base sm:font-normal text-stone-700 font-medium line-clamp-2 lg:line-clamp-1">
                     {{ product.description }}
-                </p>
-                <p class="hidden sm:flex line-clamp-1 text-base font-normal text-stone-700"> مدل: {{ product.model }} </p>
+                </Link>
+                <Link :href="'/l/' + landSlug + '/p/' + product.slug" class="hidden sm:flex line-clamp-1 text-base font-normal text-stone-700"> مدل: {{ product.model }} </Link>
             </div>
             <div class="grid grid-cols-2 sm:grid-cols-1 gap-4 sm:gap-2 w-60 sm:w-48 mx-auto sm:mx-0">
                 <LandBtn text="مشخصات" :to="'/l/' + landSlug + '/p/' + product.slug"
@@ -277,10 +277,10 @@
     <template v-if="type == 13">
         <div v-for="(product, index) in productList.slice(0, 4)" :key="index"
             :class="'rounded-custom pt-2 px-8 w-full pb-5 items-center flex flex-col ' + borderStyle + (evenOdd == 1 ? ' evenOdd_cards' : ' bg-white')">
-            <div class="mb-1 h-48">
+            <Link :href="'/l/' + landSlug + '/p/' + product.slug" class="mb-1 h-48">
                 <img :src="product.image" :alt="product.name" class="object-contain h-full" />
-            </div>
-            <h3 class="mb-3 font-medium lg:mb-2 text-lg sm:line-clamp-1 text-stone-700"> {{ product.name }} </h3>
+            </Link>
+            <Link :href="'/l/' + landSlug + '/p/' + product.slug" class="mb-3 font-medium lg:mb-2 text-lg sm:line-clamp-1 text-stone-700"> {{ product.name }} </Link>
             <div class="grid grid-cols-2 gap-2 w-56 lg:w-full">
                 <LandBtn text="مشخصات" :to="'/l/' + landSlug + '/p/' + product.slug"
                     classNames="sameCategoryBtnStyle bg-transparent border border-normal hover:boder-focus text-normal hover:text-normal rounded-custom" />
@@ -295,11 +295,11 @@
     <template v-if="type == 14">
         <div v-for="(product, index) in productList.slice(0, 4)" :key="index"
             :class="'pt-2 px-8 w-72 sm:w-96 lg:w-full lg:max-w-full pb-5 lg:pt-3 items-center flex flex-col rounded-custom mx-auto lg:mx-0 ' + borderStyle + ' ' + (evenOdd == 1 ? 'evenOdd_cards' : 'bg-white')">
-            <div class="mb-2 h-52">
+            <Link :href="'/l/' + landSlug + '/p/' + product.slug" class="mb-2 h-52">
                 <img :src="product.image" :alt="product.name" class="object-contain h-full" />
-            </div>
-            <h3 class="mb-5 font-medium text-xl line-clamp-2 lg:line-clamp-1 text-stone-700 lg:h-[28px]"> {{ product.name }} </h3>
-            <h3 class="mb-6 font-normal text-sm line-clamp-2 text-stone-700 text-justify leading-6 lg:h-12"> {{ product.description }} </h3>
+            </Link>
+            <Link :href="'/l/' + landSlug + '/p/' + product.slug" class="mb-5 font-medium text-xl line-clamp-2 lg:line-clamp-1 text-stone-700 lg:h-[28px]"> {{ product.name }} </Link>
+            <Link :href="'/l/' + landSlug + '/p/' + product.slug" class="mb-6 font-normal text-sm line-clamp-2 text-stone-700 text-justify leading-6 lg:h-12"> {{ product.description }} </Link>
             <div class="grid grid-cols-2 gap-2 w-56 lg:w-full">
                 <LandBtn text="خرید اقساطی" :to="'/l/' + landSlug + '/p/' + product.slug"
                     classNames="sameCategoryBtnStyle castegoryBtnfilled rounded-custom col-span-2" />
@@ -314,13 +314,13 @@
     <template v-if="type == 15">
         <div v-for="(product, index) in productList.slice(0, 4)" :key="index"
             :class="'px-6 gap-2 lg:gap-5 w-full pt-6 pb-10 flex flex-col lg:flex-row lg:items-center rounded-custom ' + borderStyle + (evenOdd == 1 ? ' evenOdd_cards ' : ' bg-white ')">
-            <div class="aspect-square md:flex-none lg:w-40">
+            <Link :href="'/l/' + landSlug + '/p/' + product.slug" class="aspect-square md:flex-none lg:w-40">
                 <img :src="product.image" :alt="product.name" class="object-contain h-full" />
-            </div>
+            </Link>
             <div class="flex flex-col flex-1 gap-4">
-                <h3 class="mb-1.5 font-medium lg:mb-1 text-lg text-center lg:text-right sm:line-clamp-1 text-stone-700"> {{ product.name
+                <Link :href="'/l/' + landSlug + '/p/' + product.slug" class="mb-1.5 font-medium lg:mb-1 text-lg text-center lg:text-right sm:line-clamp-1 text-stone-700"> {{ product.name
                     }}
-                </h3>
+                </Link>
                 <div class="grid w-full grid-cols-2 gap-2 mx-auto lg:mx-0 max-w-72">
                     <LandBtn text="مشخصات" :to="'/l/' + landSlug + '/p/' + product.slug"
                         classNames="sameCategoryBtnStyle bg-white border text-normal border-normal hover:border-focus rounded-custom" />
@@ -336,11 +336,11 @@
     <template v-if="type == 16">
         <div v-for="(product, index) in productList.slice(0, 3)" :key="index"
             :class="'pt-2 px-8 w-72 sm:w-96 lg:w-full lg:max-w-full pb-5 lg:pt-3 items-center flex flex-col rounded-custom mx-auto lg:mx-0 ' + borderStyle + ' ' + (evenOdd == 1 ? 'evenOdd_cards' : 'bg-white')">
-            <div class="mb-2 h-52">
+            <Link :href="'/l/' + landSlug + '/p/' + product.slug" class="mb-2 h-52">
                 <img :src="product.image" :alt="product.name" class="object-contain h-full" />
-            </div>
-            <h3 class="mb-5 font-medium text-xl line-clamp-2 lg:line-clamp-1 text-stone-700 lg:h-[28px]"> {{ product.name }} </h3>
-            <h3 class="mb-6 font-normal text-sm line-clamp-2 text-stone-700 text-justify leading-6 lg:h-12"> {{ product.description }} </h3>
+            </Link>
+            <Link :href="'/l/' + landSlug + '/p/' + product.slug" class="mb-5 font-medium text-xl line-clamp-2 lg:line-clamp-1 text-stone-700 lg:h-[28px]"> {{ product.name }} </Link>
+            <Link :href="'/l/' + landSlug + '/p/' + product.slug" class="mb-6 font-normal text-sm line-clamp-2 text-stone-700 text-justify leading-6 lg:h-12"> {{ product.description }} </Link>
             <div class="grid grid-cols-2 gap-2 w-56">
                 <LandBtn text="خرید اقساطی" :to="'/l/' + landSlug + '/p/' + product.slug"
                     classNames="sameCategoryBtnStyle castegoryBtnfilled rounded-custom col-span-2" />
