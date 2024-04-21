@@ -21,8 +21,10 @@
                                     </svg>
                                     <span class="sr-only"> decrease </span>
                                 </button>
-                                <p class="text-stone-950 lg:text-3xl font-medium text-xl sm:text-2xl"> {{
-                                        numberWithCommas(loanInitialValue) }} </p>
+                                <p class="text-stone-950 lg:text-3xl font-medium text-xl sm:text-2xl">
+                                    {{ numberWithCommas(loanInitialValue) }}
+                                    <span class="hidden sm:inline-block"> تومان </span>
+                                </p>
                                 <!-- increase -->
                                 <button type="button"
                                     :class="'p-2 cursor-pointer text-[#1EA0FF] ' + (loanInitialValue < loanMax ? '' : 'opacity-40 pointer-events-none')"
@@ -273,7 +275,7 @@ export default {
 
         const generatePriceBackground = (value) => {
             let percentage = (value - loanMin.value) / (loanMax.value - loanMin.value) * 100;
-            return `linear-gradient(to left, #1A1B1D ${percentage}%, transparent ${percentage}%)`;
+            return `linear-gradient(to left, #1ea0ff ${percentage}%, transparent ${percentage}%)`;
         };
 
         const priceSliderBackground = computed(() => generatePriceBackground(loanInitialValue.value));
