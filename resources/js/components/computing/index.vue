@@ -151,40 +151,10 @@
 
             </section>
         </section>
-        
-        <!-- modal layer -->
-        <div class="fixed inset-0 bg-[#ABABAB]/40 z-[5] backdrop-blur-2xl" v-show="modalState"
-            @click="closeModalState"></div>
 
-        <!-- counseling modal content -->
-        <section
-            class="flex flex-col bg-white sm:rounded-custom fixed top-0 drop-shadow-base right-0 w-full h-full sm:h-auto sm:max-w-[36rem] md:max-w-[40rem] lg:max-w-[44rem] sm:top-1/2 sm:right-1/2 sm:translate-x-1/2 sm:-translate-y-1/2 z-[6] overflow-hidden"
-            v-show="counselingState">
-            <!-- title -->
-            <div class="w-full py-10 text-xl font-bold text-stone-700 lg:text-2xl flex_center relative">
-                <p> ارتباط با کارشناسان فروش </p>
-                <!-- close btn -->
-                <div @click="closeCounselingState"
-                    class="size-7 rounded-full bg-stone-200 flex_center cursor-pointer absolute top-4 left-4">
-                    <svg class="size-5 stroke-stone-700" viewBox="0 0 24 24" fill="none"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <path d="M12 12L6 6M12 12L18 18M12 12L18 6M12 12L6 18" stroke="current" stroke-width="2"
-                            stroke-linecap="round" stroke-linejoin="round" />
-                    </svg>
-                </div>
-            </div>
-            <form action="#" method="#" class="flex flex-col items-center px-5 pb-10">
-                <p class="mb-6 text-base font-normal leading-7 text-center text-stone-700"> جهت ارتباط و اطلاع
-                    از
-                    شرایط فروش شماره خود را وارد کنید. </p>
-                <input name="phone" type="tel"
-                    class="bg-white mb-5 max-w-64 h-11 border border-[#CFD1D4] focus:border-[#CFD1D4] focus:ring-0 rounded-custom outline-none w-full placeholder:text-[#acacac] text-base font-normal px-3 text-stone-700 tracking-widest"
-                    placeholder="09" />
-                <button type="submit"
-                    class="w-full text-base font-medium text-white rounded-custom flex_center max-w-64 h-11 bg-normal hover:bg-focus focus:bg-focus focus:shadow-focus focus:shadow-shadowNormal">
-                    ارسال </button>
-            </form>
-        </section>
+        <!-- modal layer -->
+        <div class="fixed inset-0 bg-[#ABABAB]/40 z-[5] backdrop-blur-2xl" v-show="modalState" @click="closeModalState">
+        </div>
 
         <!-- information modal content -->
         <section
@@ -193,8 +163,7 @@
             <!-- close btn -->
             <div @click="closeInformationState"
                 class="absolute top-4 left-4 size-7 rounded-full bg-stone-200 flex_center cursor-pointer">
-                <svg class="size-5 stroke-stone-700" viewBox="0 0 24 24" fill="none"
-                    xmlns="http://www.w3.org/2000/svg">
+                <svg class="size-5 stroke-stone-700" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M12 12L6 6M12 12L18 18M12 12L18 6M12 12L6 18" stroke="current" stroke-width="2"
                         stroke-linecap="round" stroke-linejoin="round" />
                 </svg>
@@ -204,9 +173,10 @@
                 class="mb-4 pr-4 relative before:absolute before:top-1 before:right-0 before:size-2 before:rounded-full before:bg-normal">
                 اطلاعات بیشتر </p>
             <ul class="pr-6 space-y-2 list-inside list-disc">
-                <li class=""> مبلغ تسهیلات 30 تا 60 درصد ارزش وسیله نقلیه می باشد. </li>
+                <li class="">  تعداد چک های قابل پرداخت 7 چک </li>
+                <li class="">  مبلغ بیمه بدنه به صورت جداگانه روی اقساط محاسبه و دریافت می شود. </li>
                 <li class=""> هزینه عملیات بدون ارزش افزوده محاسبه گردیده است. </li>
-                <li class=""> سود اقساط شما معاول نرخ مصوب بانک مرکزی یعنی 23 درصد. </li>
+                <li class=""> سود اقساط شما معادل نرخ مصوب بانک مرکزی یعنی 23 درصد است. </li>
             </ul>
         </section>
 
@@ -216,7 +186,7 @@
             <Facilities classNames="mb-10 lg:mb-20" />
         </section>
 
-        <section class="grid grid-cols-1 lg:grid-cols-10 gap-5 drop-shadow-smooth bg-white rounded-custom">
+        <section class="grid grid-cols-1 lg:grid-cols-10 gap-5 drop-shadow-smooth bg-white rounded-custom facility_form">
             <section class="lg:col-span-6 p-6 order-2 text-stone-700 pt-6 px-4 lg:order-1 lg:px-10 lg:pt-16">
                 <h4 class="text-lg font-semibold mb-2 lg:text-2xl lg:mb-6"> دریافت تسهیلات در کوتاه ترین زمان </h4>
                 <p class="text-sm font-normal leading-6 lg:leading-7 mb-8 lg:mb-0">
@@ -233,23 +203,28 @@
                 </div>
             </section>
             <!-- form -->
-            <section class="lg:col-span-4 bg-stone-200 order-1 rounded-b-custom lg:rounded-t-custom pt-8 px-4 pb-12 lg:px-10 lg:order-2">
+            <section
+                class="lg:col-span-4 bg-stone-200 order-1 rounded-b-custom lg:rounded-t-custom pt-8 px-4 pb-12 lg:px-10 lg:order-2">
                 <h4
                     class="text-sm pr-4 font-medium text-stone-700 mb-2 lg:mb-5 relative before:absolute before:content-[''] before:rounded-full before:bg-normal before:top-1.5 before:right-0 before:size-2">
                     تسهیلات خودروی تجاری </h4>
-                <p class="text-sm lg:text-base font-normal text-stone-700 mb-6 lg:mb-8"> برای درخواست تسهیلات خودروی تجاری
+                <p class="text-sm lg:text-base font-normal text-stone-700 mb-6 lg:mb-8"> برای درخواست تسهیلات خودروی
+                    تجاری
                     مشخصات را وارد کنید. </p>
                 <form action="">
                     <div class="flex flex-col text-stone-700 gap-5 mb-9">
                         <select name="facilities" v-model="loanInitialValue"
                             class="h-11 rounded-custom border border-[#CFD1D4] focus:ring-0 outline-none focus:border-[#CFD1D4] text-sm font-normal">
                             <option value="0" selected disabled> مبلغ تسهیلات </option>
-                            <option v-for="(price, index) in facilitiesPrices" :key="index" :value="price.key"> {{ numberWithCommas(price.value) }} </option>
+                            <option v-for="(option, index) in loanOptions" :key="index" :value="option.key">
+                                {{ formatValue(option.value) }} تومان
+                            </option>
                         </select>
                         <select name="vehicles"
                             class="h-11 rounded-custom border border-[#CFD1D4] focus:ring-0 outline-none focus:border-[#CFD1D4] text-sm font-normal">
                             <option value="0" selected disabled> نوع خودرو </option>
-                            <option v-for="(category, index) in categories" :value="category.id"> {{ category.title }} </option>
+                            <option v-for="(category, index) in categories" :value="category.id"> {{ category.title }}
+                            </option>
                         </select>
                         <input name="fullname" type="text"
                             class="h-11 rounded-custom border border-[#CFD1D4] focus:ring-0 outline-none focus:border-[#CFD1D4] text-sm font-normal placeholder:text-[#acacac]"
@@ -268,23 +243,18 @@
 </template>
 
 <script>
-import { ref, computed, watchEffect } from 'vue';
+import { ref, computed, watchEffect, onMounted } from 'vue';
 import { numberWithCommas } from '../../common';
 import Facilities from './children/Facilities.vue';
-import FormIconOne from './children/Icons/FormIconOne.vue';
-import FormIconTwo from './children/Icons/FormIconTwo.vue';
-
 
 export default {
     name: 'Calculator',
     props: {
         list: Array,
-        categories: [Array, Object]
+        categories: [Array, Object],
     },
     components: {
         Facilities,
-        FormIconOne,
-        FormIconTwo,
     },
     setup() {
         const selectedProduct = ref("");
@@ -298,127 +268,8 @@ export default {
         const refund = ref(0);
         const wage = ref(9.735);
         const modalState = ref(false);
-        const counselingState = ref(false);
         const informationState = ref(false);
-
-        const facilitiesPrices = [
-            {
-                key: 200000000,
-                value: 200000000,
-            },
-            {
-                key: 300000000,
-                value: 300000000,
-            },
-            {
-                key: 400000000,
-                value: 400000000,
-            },
-            {
-                key: 500000000,
-                value: 500000000,
-            },
-            {
-                key: 600000000,
-                value: 600000000,
-            },
-            {
-                key: 700000000,
-                value: 700000000,
-            },
-            {
-                key: 800000000,
-                value: 800000000,
-            },
-            {
-                key: 900000000,
-                value: 900000000,
-            },
-            {
-                key: 1000000000,
-                value: 1000000000,
-            },
-            {
-                key: 1100000000,
-                value: 1100000000,
-            },
-            {
-                key: 1200000000,
-                value: 1200000000,
-            },
-            {
-                key: 1300000000,
-                value: 1300000000,
-            },
-            {
-                key: 1400000000,
-                value: 1400000000,
-            },
-            {
-                key: 1500000000,
-                value: 1500000000,
-            },
-            {
-                key: 1600000000,
-                value: 1600000000,
-            },
-            {
-                key: 1700000000,
-                value: 1700000000,
-            },
-            {
-                key: 1800000000,
-                value: 1800000000,
-            },
-            {
-                key: 1900000000,
-                value: 1900000000,
-            },
-            {
-                key: 2000000000,
-                value: 2000000000,
-            },
-            {
-                key: 2100000000,
-                value: 2100000000,
-            },
-            {
-                key: 2200000000,
-                value: 2200000000,
-            },
-            {
-                key: 2300000000,
-                value: 2300000000,
-            },
-            {
-                key: 2400000000,
-                value: 2400000000,
-            },
-            {
-                key: 2500000000,
-                value: 2500000000,
-            },
-            {
-                key: 2600000000,
-                value: 2600000000,
-            },
-            {
-                key: 2700000000,
-                value: 2700000000,
-            },
-            {
-                key: 2800000000,
-                value: 2800000000,
-            },
-            {
-                key: 2900000000,
-                value: 2900000000,
-            },
-            {
-                key: 3000000000,
-                value: 3000000000,
-            },
-        ];
+        const loanOptions = ref([]);
 
         const generatePriceBackground = (value) => {
             let percentage = (value - loanMin.value) / (loanMax.value - loanMin.value) * 100;
@@ -437,8 +288,12 @@ export default {
         }
 
         const trueCounselingState = () => {
-            counselingState.value = true;
-            modalState.value = true;
+            const element = document.querySelector('.facility_form');
+            if (element) {
+                const elementRect = element.getBoundingClientRect();
+                const offset = elementRect.top - 180; // Adjusted by 100px
+                window.scrollTo({ top: window.pageYOffset + offset, behavior: 'smooth' });
+            }
         }
 
         const trueInformationState = () => {
@@ -448,7 +303,6 @@ export default {
 
         const closeModalState = () => {
             modalState.value = false;
-            counselingState.value = false;
             informationState.value = false;
         }
 
@@ -489,6 +343,28 @@ export default {
             calculateValues();
         });
 
+        const generateLoanOptions = () => {
+            const start = 200;
+            const end = 3000;
+            const increment = 100;
+
+            for (let value = start; value <= end; value += increment) {
+                const formattedKey = String(value * 1000000).padStart(9, '0'); // Add leading zeros
+                loanOptions.value.push({ key: Number(formattedKey), value: value });
+            }
+            console.log(loanOptions.value);
+        };
+
+        const formatValue = (value) => {
+            const formattedValue = value < 1000 ? value : (value / 1000);
+            const unit = value < 1000 ? 'میلیون' : 'میلیارد';
+            return `${formattedValue.toLocaleString('fa')} ${unit}`;
+        };
+
+        onMounted(() => {
+            generateLoanOptions();
+        });
+
         return {
             selectedProduct,
             loanSteps,
@@ -504,13 +380,13 @@ export default {
             refund,
             modalState,
             informationState,
-            counselingState,
             trueCounselingState,
             closeModalState,
             closeCounselingState,
             trueInformationState,
             closeInformationState,
-            facilitiesPrices,
+            loanOptions,
+            formatValue,
         }
     }
 }

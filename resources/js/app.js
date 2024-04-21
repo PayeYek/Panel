@@ -26,6 +26,8 @@ import Videos from "@/components/videos/Videos.vue";
 import Computing from "@/components/computing/index.vue";
 import Facilities from "@/components/computing/children/Facilities.vue";
 import Advertise from "@/components/advertise/Advertise.vue";
+import FormIconOne from "@/components/computing/children/Icons/FormIconOne.vue";
+import FormIconTwo from "@/components/computing/children/Icons/FormIconTwo.vue";
 // import Swiper from 'swiper';
 // import 'swiper/css/bundle';
 // let Swiper = require('swiper');
@@ -85,6 +87,8 @@ createApp({ render: renderSpladeApp({ el }) })
     .component('Computing', Computing)
     .component('Facilities', Facilities)
     .component('Advertise', Advertise)
+    .component('FormIconOne', FormIconOne)
+    .component('FormIconTwo', FormIconTwo)
     // .directive("click-outside", clickOutside)
     .mount(el);
 

@@ -31,7 +31,7 @@
         default => ''
     };
 @endphp
-{{-- @dd() --}}
+
 <x-layout.default.main :land="$land">
 {{-- @dd($product) --}}
     {{-- type 1 --}}

@@ -60,11 +60,82 @@
 
     {{-- guide btns --}}
     {{-- <x-splade-data default="{ toggleModal: false }"> --}}
+        <x-splade-data default="{ showModal: false }">
         <div class="flex_center flex-col gap-2 md:flex-row lg:gap-4">
             {{-- <buttton class="text-lg font-medium text-white cursor-pointer rounded-custom bg-stone-700 hover:bg-stone-800 flex_center h-11 w-52" @click="data.toggleModal = true"> مشاوره و خرید </buttton> --}}
-            <Link href="{{ route('landing.page.calculator', ['page' => $landSlug]) }}" class="text-lg font-medium text-white cursor-pointer rounded-custom bg-stone-700 hover:bg-stone-800 flex_center h-11 w-52"> مشاوره و خرید </Link>
-            <Link href="{{ $product->catalog }}" class="text-lg font-medium bg-white border cursor-pointer rounded-custom text-stone-700 border-stone-700 hover:text-stone-800 hover:border-stone-800 flex_center h-11 w-52"> دانلود کاتالوگ </Link>
-        </div>
+                <div @click="data.showModal = true" class="text-lg font-medium text-white cursor-pointer rounded-custom bg-stone-700 hover:bg-stone-800 flex_center h-11 w-52"> مشاوره و خرید </div>
+                <Link href="{{ $product->catalog }}" class="text-lg font-medium bg-white border cursor-pointer rounded-custom text-stone-700 border-stone-700 hover:text-stone-800 hover:border-stone-800 flex_center h-11 w-52"> دانلود کاتالوگ </Link>
+            </div>
+            {{-- modal layer --}}
+            <div class="fixed inset-0 bg-[#ABABAB]/40 z-[5] backdrop-blur-2xl" v-if="data.showModal" @click="data.showModal = false"></div>
+
+            {{-- modal content --}}
+            <section v-if="data.showModal" class="fixed overflow-auto top-0 right-0 w-full h-full sm:h-auto sm:max-w-[36rem] md:max-w-[40rem] lg:max-w-4xl xl:max-w-5xl sm:top-1/2 sm:right-1/2 sm:translate-x-1/2 sm:-translate-y-1/2 z-[6] sm:overflow-hidden">
+                <section class="grid grid-cols-1 sm:grid-cols-10 gap-5 drop-shadow-smooth bg-white rounded-custom sm:rounded-custom sm:overflow-hidden">
+                    <!-- form -->
+                    <section
+                        class="sm:col-span-4 bg-stone-200 rounded-b-custom lg:rounded-t-custom pt-8 px-4 pb-12 lg:px-10">
+                        <h4
+                            class="text-sm pr-4 font-medium text-stone-700 mb-2 lg:mb-5 relative before:absolute before:content-[''] before:rounded-full before:bg-normal before:top-1.5 before:right-0 before:size-2">
+                            تسهیلات خودروی تجاری </h4>
+                        <p class="text-sm lg:text-base font-normal text-stone-700 mb-6 lg:mb-8"> برای درخواست تسهیلات خودروی
+                            تجاری
+                            مشخصات را وارد کنید. </p>
+                        <form action="">
+                            <div class="flex flex-col text-stone-700 gap-5 mb-9">
+                                <select name="facilities"
+                                    class="h-11 rounded-custom border border-[#CFD1D4] focus:ring-0 outline-none focus:border-[#CFD1D4] text-sm font-normal">
+                                    <option value="0" selected disabled> مبلغ تسهیلات </option>
+                                    @php
+                                        $start = 200;
+                                        $end = 3000;
+                                        $increment = 100;
+                                    @endphp
+                                    @for ($value = $start; $value <= $end; $value += $increment)
+                                        @php
+                                            $formattedValue = $value < 1000 ? $value : ($value / 1000);
+                                            $unit = $value < 1000 ? 'میلیون' : 'میلیارد';
+                                        @endphp
+                                        <option value="{{ $value }}">
+                                            {{ number_format($formattedValue, $value < 1000 ? 0 : 1) }} 
+                                            {{ $unit }} تومان
+                                        </option>
+                                    @endfor
+                                </select>
+                                <select name="vehicles"
+                                    class="h-11 rounded-custom border border-[#CFD1D4] focus:ring-0 outline-none focus:border-[#CFD1D4] text-sm font-normal">
+                                    <option value="0" selected disabled> نوع خودرو </option>
+                                </select>
+                                <input name="fullname" type="text"
+                                    class="h-11 rounded-custom border border-[#CFD1D4] focus:ring-0 outline-none focus:border-[#CFD1D4] text-sm font-normal placeholder:text-[#acacac]"
+                                    placeholder="نام خانوادگی" />
+                                <input name="phone" type="tel"
+                                    class="h-11 dir-rtl rounded-custom border border-[#CFD1D4] focus:ring-0 outline-none focus:border-[#CFD1D4] text-sm font-normal placeholder:text-[#acacac]"
+                                    placeholder="شماره موبایل" />
+                            </div>
+                            <button type="submit"
+                                class="h-11 rounded-custom bg-normal text-lg font-medium text-white flex_center w-full max-w-[272px] mx-auto">
+                                ثبت درخواست </button>
+                        </form>
+                    </section>
+                    <section class="sm:col-span-6 p-6 text-stone-700 pt-6 px-4 lg:px-10 lg:pt-16">
+                        <h4 class="text-lg font-semibold mb-2 lg:text-2xl lg:mb-6"> دریافت تسهیلات در کوتاه ترین زمان </h4>
+                        <p class="text-sm font-normal leading-6 lg:leading-7 mb-8 lg:mb-0">
+                            با ثبت درخواست دریافت تسهیلات جهت خرید ماشین های سنگین، کارشناسان لیزینگ اتوبان با شما تماس خواهند
+                            گرفت و مراحل دریافت تسهیلات را متناسب با شرایط شما به صورت کامل به شما توضیح خواهند داد، پس از تکمیل
+                            اطلاعات اولیه پروسه دریافت تسهیلات آغاز خواهد شد.
+                            در صورت تکمیل مدارک از سمت شما پروسه دریافت تسهیلات به سرعت طی شده و در مدت زمان 2 هفته می توانید
+                            مبلغ تسهیلات مورد نظر را دریافت نمایید.
+                        </p>
+                        <!-- icons -->
+                        <div class="flex items-end gap-6">
+                            <FormIconOne classNames="w-full max-w-[480px] lg:max-w-80 xl:max-w-96" />
+                            <FormIconTwo classNames="hidden sm:block w-72 lg:w-44 xl:w-48" />
+                        </div>
+                    </section>
+                </section>
+            </section>
+        </x-splade-data>
         {{-- modal layer
         <div class="fixed inset-0 bg-black/60 z-[5]" v-show="data.toggleModal" @click="data.toggleModal = false"></div>
         modal content
