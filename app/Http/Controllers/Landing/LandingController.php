@@ -176,8 +176,8 @@ class LandingController extends Controller
         $land = $this->getLand($page);
 
         $category = LandCategory::where('slug', $category)->firstOrFail();
-//        $products = LandProduct::where('land_id', $land->id)->where('category_id', $category->id)->get();
-//        return view('landing.category-products', compact('land', 'products', 'category'));
+        //        $products = LandProduct::where('land_id', $land->id)->where('category_id', $category->id)->get();
+        //        return view('landing.category-products', compact('land', 'products', 'category'));
 
         $data = array();
 
@@ -260,12 +260,24 @@ class LandingController extends Controller
     public function calculator($page){
         $land = $this->getLand($page);
 
+        $cats = array();
+        foreach ($land->products as $product) {
+            $cats[] = $product->category_id;
+        }
+        $cats = array_unique($cats);
+
+        $categories = collect();
+
+        foreach ($cats as $cat) {
+            $categories->add(collect(LandCategory::find($cat))) ;
+        }
+
         /* BREADCRUMBS */
         $breadcrumbs = [];
         $breadcrumbs[] = ['title' => __('Home'), 'url' => route('landing.page.show', ['page' => $land->slug])];
         $breadcrumbs[] = ['title' => __('Calculator'), 'url' => null ];
 
-        return view('landing.calculator', compact('land', 'breadcrumbs'));
+        return view('landing.calculator', compact('land', 'categories', 'breadcrumbs'));
     }
 
     public function advertise($page){

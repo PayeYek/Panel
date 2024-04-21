@@ -4,7 +4,7 @@
         {{-- breadcrumbs --}}
         <x-common_landing.breadcrumbs :data="$breadcrumbs" />
 
-        <Computing :list="{{$land->products}}" />
+        <Computing :list="{{$land->products}}" :categories="{{ $categories }}" />
     </main>
 
 </x-layout.default.main>
