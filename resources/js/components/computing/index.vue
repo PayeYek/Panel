@@ -352,7 +352,6 @@ export default {
                 const formattedKey = String(value * 1000000).padStart(9, '0'); // Add leading zeros
                 loanOptions.value.push({ key: Number(formattedKey), value: value });
             }
-            console.log(loanOptions.value);
         };
 
         const formatValue = (value) => {

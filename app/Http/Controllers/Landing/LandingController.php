@@ -134,17 +134,27 @@ class LandingController extends Controller
 
         /* PRODUCT DATA */
         $product = LandProduct::with('category')->where('slug', $product)->firstOrFail();
-
         /* COMMENTS APPROVED */
         $comments = LandComment::where('land_id', $land->id)
             ->where('product_id', $product->id)
             ->where('approved', true)
             ->get();
-
         /* SEO */
         SEO::title($land->title . ' | ' . $product->name)
             ->description($product->description)
             ->keywords([$land->title, $product->name]);
+
+            $cats = array();
+            foreach ($land->products as $productItem) {
+                $cats[] = $productItem->category_id;
+            }
+            $cats = array_unique($cats);
+    
+            $categories = collect();
+    
+            foreach ($cats as $cat) {
+                $categories->add(collect(LandCategory::find($cat))) ;
+            }
 
         /* BREADCRUMBS */
         $breadcrumbs = [];
@@ -159,7 +169,7 @@ class LandingController extends Controller
         ];
         $breadcrumbs[] = ['title' => $product->name, 'url' => null];
 
-        return view('landing.pdp', compact('land', 'product', 'comments', 'breadcrumbs'));
+        return view('landing.pdp', compact('land', 'product', 'categories', 'comments', 'breadcrumbs'));
     }
 
     public function comment(CommentRequest $request, $land, $product)

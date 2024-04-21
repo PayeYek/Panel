@@ -32,6 +32,8 @@
     };
 @endphp
 
+{{-- @dd($product->toArray()) --}}
+
 <x-layout.default.main :land="$land">
 {{-- @dd($product) --}}
     {{-- type 1 --}}
