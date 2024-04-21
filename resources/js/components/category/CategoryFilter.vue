@@ -439,6 +439,8 @@ export default {
             })
         })
 
+        
+
         // Function to change filter state
         const changeFilter = (filter) => {
             if(firstTime.value)
@@ -524,6 +526,8 @@ export default {
                 }
             }
         });
+
+        // console.log(filteredList.value);
 
 
         return {

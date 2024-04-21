@@ -369,7 +369,7 @@ export default {
     setup(props){
         const productList = ref(JSON.parse(props.data));
 
-        // console.log(props.evenOdd);
+        // console.log(productList.value);
 
         return {
             productList

@@ -1028,11 +1028,11 @@
   .range__input::-webkit-slider-thumb {
     -webkit-appearance: none;
     appearance: none;
-    width: 12px;
-    height: 12px;
+    width: 24px !important;
+    height: 24px !important;
     border-radius: 50%;
     background-color: #f3f3f4 !important;
-    border: #1A1B1D 4px solid !important;
+    border: #1ea0ff 4px solid !important;
     cursor: pointer;
     -webkit-transition: background .15s ease-in-out;
     transition: background .15s ease-in-out;
