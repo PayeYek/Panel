@@ -21,13 +21,6 @@ class Land extends Model
         'body'
     ];
 
-    protected function slug(): Attribute
-    {
-        return new Attribute(
-            set: fn($value) => $value ? \Str::slug($value) : \Str::slug( $this->attributes['title'])
-        );
-    }
-
     public function getLogoAttribute()
     {
         $logo = $this->attributes['logo'];
@@ -38,6 +31,7 @@ class Land extends Model
 
         return Str::isUrl($logo) ? $logo : asset('storage/' . $logo);
     }
+
     public function getLogo()
     {
         return $this->attributes["logo"];
@@ -53,6 +47,7 @@ class Land extends Model
 
         return Str::isUrl($logo) ? $logo : asset('storage/' . $logo);
     }
+
     public function getLogoOrigin()
     {
         return $this->attributes["logo_origin"];
@@ -70,33 +65,37 @@ class Land extends Model
         );
     }
 
+    public function products()
+    {
+        return $this->hasMany(LandProduct::class, 'land_id');
+    }
+
     // public function categories()
     // {
     //     return $this->belongsToMany(LandCategory::class, 'land_products', 'land_id', 'category_id')->distinct();
     // }
 
     // ارتباط یک به چند با محصولات
-    public function products()
-    {
-        return $this->hasMany(LandProduct::class, 'land_id');
-    }
 
-    // ارتباط یک به چند با اسلایدها
     public function slides()
     {
         return $this->hasMany(LandSlide::class, 'land_id');
     }
 
-    // ارتباط یک به چند با مقالات
+    // ارتباط یک به چند با اسلایدها
+
     public function articles()
     {
         return $this->hasMany(LandArticle::class, 'land_id');
     }
 
+    // ارتباط یک به چند با مقالات
+
     public function agencies()
     {
         return $this->hasMany(LandAgency::class, 'land_id');
     }
+
     public function adverties()
     {
         return $this->hasMany(LandAgency::class, 'land_id');
@@ -110,5 +109,12 @@ class Land extends Model
     public function styles()
     {
         return $this->hasOne(LandStyle::class, 'land_id');
+    }
+
+    protected function slug(): Attribute
+    {
+        return new Attribute(
+            set: fn($value) => $value ? \Str::slug($value) : \Str::slug($this->attributes['title'])
+        );
     }
 }

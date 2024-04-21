@@ -9,6 +9,7 @@ use App\Models\LandArticle;
 use App\Models\LandCategory;
 use App\Models\LandComment;
 use App\Models\LandProduct;
+use App\Transformers\LandTransformer;
 use Illuminate\Support\Facades\Response;
 use ProtoneMedia\Splade\Facades\SEO;
 
@@ -166,7 +167,7 @@ class LandingApiController extends Controller
             'title' => $styles->landColor->title
         ];
 
-        return $data;
+        return responder()->success($data, LandTransformer::class)->respond();
     }
 
     public function product($page, $product)

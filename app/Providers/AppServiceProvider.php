@@ -19,6 +19,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+//        $this->app->make(TransformerResolver::class)->bind([
+//            Land::class => \App\Transformers\LandTransformer::class,
+//        ]);
     }
 }
