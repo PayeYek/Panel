@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class LandStyle extends Model
 {
@@ -36,6 +37,11 @@ class LandStyle extends Model
     public function land()
     {
         return $this->belongsTo(Land::class, 'land_id');
+    }
+
+    public function landColor(): HasOne
+    {
+        return $this->hasOne(LandColor::class, 'id');
     }
 
 }
