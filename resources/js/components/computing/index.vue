@@ -176,6 +176,7 @@
 
         <section class="">
             <h3 class="text-lg lg:text-2xl font-medium text-stone-700 mb-4 lg:mb-8"> مدارک مورد نیاز دریافت تسهیلات </h3>
+            <Facilities classNames="mb-10 lg:mb-20" />
         </section>
     </section>
 </template>
@@ -183,12 +184,16 @@
 <script>
 import { ref, computed, watchEffect } from 'vue';
 import { numberWithCommas } from '../../common';
+import Facilities from './children/Facilities.vue';
 
 
 export default {
     name: 'Calculator',
     props: {
         list: Array,
+    },
+    components: {
+        Facilities,
     },
     setup() {
         const selectedProduct = ref("");
