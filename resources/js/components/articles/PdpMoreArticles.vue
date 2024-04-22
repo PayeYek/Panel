@@ -62,7 +62,7 @@ export default {
             },
         }
         const articleArray = ref(JSON.parse(props.slides));
-        console.log(articleArray.value);
+        // console.log(articleArray.value);
         // convert date to fa local
         const renderDate = (string) => {
             return new Intl.DateTimeFormat('fa-IR', { dateStyle: 'medium' }).format(new Date(string))
