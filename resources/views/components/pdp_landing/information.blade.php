@@ -4,6 +4,7 @@
     'landId' => '',
     'infoType' => '',
     'landSlug' => '',
+    'categories' => '',
 ])
 
 @php
@@ -59,7 +60,7 @@
     </div>
 
     {{-- guide btns --}}
-    <PdpCounseling catalogLink="{{ $product->catalog == null ? '#' : $product->catalog }}" />
+    <PdpCounseling catalogLink="{{ $product->catalog == null ? '#' : $product->catalog }}" categories="{!! $categories !!}" />
     {{-- <x-splade-data default="{ toggleModal: false }"> --}}
         {{-- <x-splade-data default="{ showModal: false }">
             <div class="flex_center flex-col gap-2 md:flex-row lg:gap-4">

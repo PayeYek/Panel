@@ -32,7 +32,7 @@
     };
 @endphp
 
-{{-- @dd($product->toArray()) --}}
+{{-- @dd($categories->toArray()) --}}
 
 <x-layout.default.main :land="$land">
 {{-- @dd($product) --}}
@@ -58,7 +58,7 @@
             </section>
 
             {{-- info --}}
-            <x-pdp_landing.information :infoType="$land->styles->product_list_type" :landId="$land->styles->land_id" productName="{{ $product->name }}" :product="$product" :landSlug="$land->slug" />
+            <x-pdp_landing.information :infoType="$land->styles->product_list_type" :landId="$land->styles->land_id" productName="{{ $product->name }}" :product="$product" :landSlug="$land->slug" :categories="$categories" />
         </section>
 
         {{-- Further Details --}}

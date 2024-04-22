@@ -8,6 +8,6 @@
     <Link class="focus:bg-[#eaeaea] lg:hover:text-stone-900 lg:focus:bg-transparent font-medium lg:first:pr-0 lg:last:pl-0 lg:last:border-l-0" href="{{ route('landing.product.list', ['page' => $land->slug]) }}">{{__('Products')}}</Link>
     <Link class="focus:bg-[#eaeaea] lg:hover:text-stone-900 lg:focus:bg-transparent font-medium lg:first:pr-0 lg:last:pl-0 lg:last:border-l-0" href="{{ route('landing.sales', ['page' => $land->slug]) }}">{{__('Sales Agency')}}</Link>
     <Link class="focus:bg-[#eaeaea] lg:hover:text-stone-900 lg:focus:bg-transparent font-medium lg:first:pr-0 lg:last:pl-0 lg:last:border-l-0" href="{{ route('landing.article.list', ['page' => $land->slug, 'f' => 'sell']) }}">{{__('Notify')}}</Link>
-    <Link class="focus:bg-[#eaeaea] lg:hover:text-stone-900 lg:focus:bg-transparent font-medium lg:first:pr-0 lg:last:pl-0 lg:last:border-l-0" href="{{ route('landing.page.about', ['page'=>$land->slug]) }}">{{__('About us')}}</Link>
     <Link class="focus:bg-[#eaeaea] lg:hover:text-stone-900 lg:focus:bg-transparent font-medium lg:first:pr-0 lg:last:pl-0 lg:last:border-l-0" href="{{ route('landing.page.calculator', ['page'=>$land->slug]) }}"> {{__('Load Calculator')}} </Link>
+    <Link class="focus:bg-[#eaeaea] lg:hover:text-stone-900 lg:focus:bg-transparent font-medium lg:first:pr-0 lg:last:pl-0 lg:last:border-l-0" href="{{ route('landing.page.about', ['page'=>$land->slug]) }}">{{__('About us')}}</Link>
 </nav>

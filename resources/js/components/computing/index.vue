@@ -1,7 +1,7 @@
 <template>
     <section class="default_container mt-12">
         <section class="mb-10 lg:mb-20">
-            <h3 class="text-lg lg:text-2xl font-medium text-stone-700 mb-4 lg:mb-8"> محاسبه گر اقساط </h3>
+            <h3 class="text-lg lg:text-2xl font-medium text-stone-700 mb-4 lg:mb-8"> محاسبه گر اقساط تسهیلات </h3>
             <section class="grid grid-cols-1 lg:grid-cols-10 gap-5 drop-shadow-smooth bg-white rounded-custom">
                 <section class="lg:col-span-6 p-6">
                     <section class="flex flex-col max-w-[33rem] w-full mx-auto">
@@ -126,8 +126,8 @@
                             <li class="border-b border-b-white py-4 flex_between gap-4 text-sm font-normal">
                                 <p> مدت زمان بازپرداخت </p>
                                 <div class="flex_row gap-2 sm:gap-4">
-                                    <p class="text-stone-950"> {{ paymentDuration }} ماهه </p>
-                                    <p> تومان </p>
+                                    <p class="text-stone-950"> {{ paymentDuration }} </p>
+                                    <p> مـاهـه </p>
                                 </div>
                             </li>
                             <li class="border-b border-b-white py-4 flex_between gap-4 text-sm font-normal">
@@ -175,8 +175,8 @@
                 class="mb-4 pr-4 relative before:absolute before:top-1 before:right-0 before:size-2 before:rounded-full before:bg-normal">
                 اطلاعات بیشتر </p>
             <ul class="pr-6 space-y-2 list-inside list-disc">
-                <li class="">  تعداد چک های قابل پرداخت 7 چک </li>
-                <li class="">  مبلغ بیمه بدنه به صورت جداگانه روی اقساط محاسبه و دریافت می شود. </li>
+                <li class=""> تعداد چک های قابل پرداخت {{ Number(paymentDuration) +1 }} چک </li>
+                <li class=""> مبلغ بیمه بدنه به صورت جداگانه روی اقساط محاسبه و دریافت می شود. </li>
                 <li class=""> هزینه عملیات بدون ارزش افزوده محاسبه گردیده است. </li>
                 <li class=""> سود اقساط شما معادل نرخ مصوب بانک مرکزی یعنی 23 درصد است. </li>
             </ul>
@@ -215,25 +215,37 @@
                     مشخصات را وارد کنید. </p>
                 <form action="">
                     <div class="flex flex-col text-stone-700 gap-5 mb-9">
-                        <select name="facilities" v-model="loanInitialValue"
-                            class="h-11 rounded-custom border border-[#CFD1D4] focus:ring-0 outline-none focus:border-[#CFD1D4] text-sm font-normal">
-                            <option value="0" selected disabled> مبلغ تسهیلات </option>
-                            <option v-for="(option, index) in loanOptions" :key="index" :value="option.key">
-                                {{ formatValue(option.value) }} تومان
-                            </option>
-                        </select>
-                        <select name="vehicles"
-                            class="h-11 rounded-custom border border-[#CFD1D4] focus:ring-0 outline-none focus:border-[#CFD1D4] text-sm font-normal">
-                            <option value="0" selected disabled> نوع خودرو </option>
-                            <option v-for="(category, index) in categories" :value="category.id"> {{ category.title }}
-                            </option>
-                        </select>
-                        <input name="fullname" type="text"
-                            class="h-11 rounded-custom border border-[#CFD1D4] focus:ring-0 outline-none focus:border-[#CFD1D4] text-sm font-normal placeholder:text-[#acacac]"
-                            placeholder="نام خانوادگی" />
-                        <input name="phone" type="tel"
-                            class="h-11 dir-rtl rounded-custom border border-[#CFD1D4] focus:ring-0 outline-none focus:border-[#CFD1D4] text-sm font-normal placeholder:text-[#acacac]"
-                            placeholder="شماره موبایل" />
+                        <div class="flex flex-col">
+                            <label class="text-sm font-normal text-stone-700 pr-2"> تسهیلات </label>
+                            <select name="facilities" v-model="loanInitialValue"
+                                class="h-11 rounded-custom border border-[#CFD1D4] focus:ring-0 outline-none focus:border-[#CFD1D4] text-sm font-normal">
+                                <option value="0" selected disabled> انتخاب کنید </option>
+                                <option v-for="(option, index) in loanOptions" :key="index" :value="option.key">
+                                    {{ formatValue(option.value) }} تومان
+                                </option>
+                            </select>
+                        </div>
+                        <div class="flex flex-col">
+                            <label class="text-sm font-normal text-stone-700 pr-2"> نوع خودرو </label>
+                            <select name="vehicles"
+                                class="h-11 rounded-custom border border-[#CFD1D4] focus:ring-0 outline-none focus:border-[#CFD1D4] text-sm font-normal">
+                                <option value="0" selected disabled> انتخاب کنید </option>
+                                <option v-for="(category, index) in categories" :value="category.id"> {{ category.title }}
+                                </option>
+                            </select>
+                        </div>
+                        <div class="flex flex-col">
+                            <label class="text-sm font-normal text-stone-700 pr-2"> نام خانوادگی </label>
+                            <input name="fullname" type="text"
+                                class="h-11 rounded-custom border border-[#CFD1D4] focus:ring-0 outline-none focus:border-[#CFD1D4] text-sm font-normal placeholder:text-[#acacac]"
+                                placeholder="نام خانوادگی" />
+                        </div>
+                        <div class="flex flex-col">
+                            <label class="text-sm font-normal text-stone-700 pr-2"> شماره موبایل </label>
+                            <input name="phone" type="tel"
+                                class="h-11 dir-rtl rounded-custom border border-[#CFD1D4] focus:ring-0 outline-none focus:border-[#CFD1D4] text-sm font-normal placeholder:text-[#acacac]"
+                                placeholder="شماره موبایل" />
+                        </div>
                     </div>
                     <button type="submit"
                         class="h-11 rounded-custom bg-normal text-lg font-medium text-white flex_center w-full max-w-[272px] mx-auto">

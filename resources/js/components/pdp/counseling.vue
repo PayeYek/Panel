@@ -7,10 +7,10 @@
                 class="text-lg font-medium bg-white border cursor-pointer rounded-custom text-stone-700 border-stone-700 hover:text-stone-800 hover:border-stone-800 flex_center h-11 w-52">
             دانلود کاتالوگ </Link>
         </div>
-    
+
         <!-- modal layer -->
         <div class="fixed inset-0 bg-[#ABABAB]/40 z-[5] backdrop-blur-2xl" v-if="showModal" @click="closeModal"></div>
-    
+
         <!-- modal content -->
         <section v-if="showModal"
             class="fixed overflow-auto top-0 right-0 w-full h-full sm:h-auto sm:max-w-[36rem] md:max-w-[40rem] lg:max-w-4xl xl:max-w-5xl sm:top-1/2 sm:right-1/2 sm:translate-x-1/2 sm:-translate-y-1/2 z-[6] sm:overflow-hidden">
@@ -19,12 +19,13 @@
                 v-if="counselingStep == 0">
                 <div @click="closeModal"
                     class="absolute top-4 left-4 size-7 rounded-full bg-stone-400/50 flex_center cursor-pointer">
-                    <svg class="size-5 stroke-stone-700" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <svg class="size-5 stroke-stone-700" viewBox="0 0 24 24" fill="none"
+                        xmlns="http://www.w3.org/2000/svg">
                         <path d="M12 12L6 6M12 12L18 18M12 12L18 6M12 12L6 18" stroke="current" stroke-width="2"
                             stroke-linecap="round" stroke-linejoin="round" />
                     </svg>
                 </div>
-    
+
                 <section class="lg:col-span-6 p-6">
                     <section class="flex flex-col max-w-[33rem] w-full mx-auto">
                         <!-- vehicle price amount -->
@@ -53,29 +54,31 @@
                                     @click="loanOrder('plus')">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                         stroke-width="1.5" stroke="currentColor" class="size-6 stroke-current">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M12 4.5v15m7.5-7.5h-15" />
                                     </svg>
                                     <span class="sr-only"> increase </span>
                                 </button>
                             </div>
                             <div class="h-2 w-full bg-stone-200 rounded-full mb-4 relative">
                                 <input v-bind:style="{ background: priceSliderBackground }" type="range"
-                                    class="dir-rtl absolute top-0.5 inset-x-0.5 range__input rounded-full" :min="loanMin"
-                                    v-bind:max="loanMax" v-bind:value="loanInitialValue" v-model="loanInitialValue" v-bind:step="loanSteps" />
+                                    class="dir-rtl absolute top-0.5 inset-x-0.5 range__input rounded-full"
+                                    :min="loanMin" v-bind:max="loanMax" v-bind:value="loanInitialValue"
+                                    v-model="loanInitialValue" v-bind:step="loanSteps" />
                             </div>
                             <div class="text-sm font-normal flex items-center justify-between mb-4 text-stone-700">
                                 <p> 200 میلیون تومان </p>
                                 <p> 3 میلیارد تومان </p>
                             </div>
                         </section>
-    
+
                         <!-- payment duration -->
                         <section>
                             <p
                                 class="text-sm pr-4 font-medium text-stone-700 mb-4 relative before:absolute before:content-[''] before:rounded-full before:bg-normal before:top-1.5 before:right-0 before:size-2">
                                 مدت زمان بازپرداخت <span class="sm:hidden text-stone-700 text-sm font-normal"> (سال)
                                 </span> </p>
-    
+
                             <section class="flex_center gap-2 text-stone-700 text-base font-normal">
                                 <div>
                                     <input type="radio" value="12" v-model="paymentDuration" name="paymentDuration"
@@ -126,7 +129,7 @@
                         </section>
                     </section>
                 </section>
-    
+
                 <!-- total -->
                 <section class="lg:col-span-4 bg-stone-200 rounded-b-custom lg:rounded-t-custom">
                     <section class="text-sm font-normal px-4 py-6 lg:py-12 lg:px-10">
@@ -146,8 +149,8 @@
                             <li class="border-b border-b-white py-4 flex_between gap-4 text-sm font-normal">
                                 <p> مدت زمان بازپرداخت </p>
                                 <div class="flex_row gap-2 sm:gap-4">
-                                    <p class="text-stone-950"> {{ paymentDuration }} ماهه </p>
-                                    <p> تومان </p>
+                                    <p class="text-stone-950"> {{ paymentDuration }} </p>
+                                    <p> مـاهـه </p>
                                 </div>
                             </li>
                             <li class="border-b border-b-white py-4 flex_between gap-4 text-sm font-normal">
@@ -171,20 +174,22 @@
                     </section>
                 </section>
             </section>
-    
+
             <section
                 class="grid grid-cols-1 sm:grid-cols-10 gap-5 drop-shadow-smooth bg-white rounded-custom sm:rounded-custom sm:overflow-hidden relative"
                 v-if="counselingStep == 1">
                 <div @click="closeModal"
                     class="absolute top-4 left-4 size-7 rounded-full bg-stone-200 flex_center cursor-pointer">
-                    <svg class="size-5 stroke-stone-700" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <svg class="size-5 stroke-stone-700" viewBox="0 0 24 24" fill="none"
+                        xmlns="http://www.w3.org/2000/svg">
                         <path d="M12 12L6 6M12 12L18 18M12 12L18 6M12 12L6 18" stroke="current" stroke-width="2"
                             stroke-linecap="round" stroke-linejoin="round" />
                     </svg>
                 </div>
-    
+
                 <!-- form -->
-                <section class="sm:col-span-4 bg-stone-200 rounded-b-custom lg:rounded-t-custom pt-8 px-4 pb-12 lg:px-10">
+                <section
+                    class="sm:col-span-4 bg-stone-200 rounded-b-custom lg:rounded-t-custom pt-8 px-4 pb-12 lg:px-10">
                     <h4
                         class="text-sm pr-4 font-medium text-stone-700 mb-2 lg:mb-5 relative before:absolute before:content-[''] before:rounded-full before:bg-normal before:top-1.5 before:right-0 before:size-2">
                         تسهیلات خودروی تجاری </h4>
@@ -192,30 +197,46 @@
                         تجاری
                         مشخصات را وارد کنید. </p>
                     <form action="">
-                        <div class="flex flex-col text-stone-700 gap-5 mb-9">
-                            <select name="facilities" v-model="loanInitialValue"
-                                class="h-11 rounded-custom border border-[#CFD1D4] focus:ring-0 outline-none focus:border-[#CFD1D4] text-sm font-normal">
-                                <option value="0" selected disabled> مبلغ تسهیلات </option>
-                                <option v-for="(option, index) in loanOptions" v-bind:key="index" v-bind:value="option.key">
-                                    {{ formatValue(option.value) }} تومان
-                                </option>
-                            </select>
-                            <select name="vehicles"
-                                class="h-11 rounded-custom border border-[#CFD1D4] focus:ring-0 outline-none focus:border-[#CFD1D4] text-sm font-normal">
-                                <option value="0" selected disabled> نوع خودرو </option>
-                            </select>
-                            <input name="fullname" type="text"
-                                class="h-11 rounded-custom border border-[#CFD1D4] focus:ring-0 outline-none focus:border-[#CFD1D4] text-sm font-normal placeholder:text-[#acacac]"
-                                placeholder="نام خانوادگی" />
-                            <input name="phone" type="tel"
-                                class="h-11 dir-rtl rounded-custom border border-[#CFD1D4] focus:ring-0 outline-none focus:border-[#CFD1D4] text-sm font-normal placeholder:text-[#acacac]"
-                                placeholder="شماره موبایل" />
+                        <div class="flex flex-col text-stone-700 mb-9 gap-4">
+                            <div class="flex flex-col">
+                                <label class="text-sm font-normal text-stone-700 pr-2"> تسهیلات </label>
+                                <select name="facilities" v-model="loanInitialValue"
+                                    class="h-11 rounded-custom border border-[#CFD1D4] focus:ring-0 outline-none focus:border-[#CFD1D4] text-sm font-normal">
+                                    <option value="0" selected disabled> انتخاب کنید </option>
+                                    <option v-for="(option, index) in loanOptions" v-bind:key="index"
+                                        v-bind:value="option.key">
+                                        {{ formatValue(option.value) }} تومان
+                                    </option>
+                                </select>
+                            </div>
+                            <div class="flex flex-col">
+                                <label class="text-sm font-normal text-stone-700 pr-2"> نوع خودرو </label>
+                                <select name="vehicles"
+                                    class="h-11 rounded-custom border border-[#CFD1D4] focus:ring-0 outline-none focus:border-[#CFD1D4] text-sm font-normal">
+                                    <option value="0" selected disabled> انتخاب کنید </option>
+                                    <option :value="category.id" v-for="(category, index) in categoryList" :key="index">
+                                        {{ category.title }} </option>
+                                </select>
+                            </div>
+                            <div class="flex flex-col">
+                                <label class="text-sm font-normal text-stone-700 pr-2"> نام خانوادگی </label>
+                                <input name="fullname" type="text"
+                                    class="h-11 rounded-custom border border-[#CFD1D4] focus:ring-0 outline-none focus:border-[#CFD1D4] text-sm font-normal placeholder:text-[#acacac]"
+                                    placeholder="نام خانوادگی" />
+                            </div>
+                            <div class="flex flex-col">
+                                <label class="text-sm font-normal text-stone-700 pr-2"> شماره موبایل </label>
+                                <input name="phone" type="tel"
+                                    class="h-11 dir-rtl rounded-custom border border-[#CFD1D4] focus:ring-0 outline-none focus:border-[#CFD1D4] text-sm font-normal placeholder:text-[#acacac]"
+                                    placeholder="شماره موبایل" />
+                            </div>
                         </div>
                         <div class="flex_center sm:flex-col lg:flex-row gap-2">
                             <button type="submit"
-                            class="h-11 rounded-custom bg-normal text-lg font-medium text-white flex_center w-full sm:w-32 md:w-36 lg:w-full max-w-[272px]">
-                            ثبت درخواست </button>
-                            <div @click="changeCounselingStep(0)" class="text-base font-medium bg-white border cursor-pointer rounded-custom text-stone-700 border-stone-700 hover:text-stone-800 hover:border-stone-800 flex_center h-11 w-32 md:w-36 lg:w-32">
+                                class="h-11 rounded-custom bg-normal text-lg font-medium text-white flex_center w-full sm:w-32 md:w-36 lg:w-full max-w-[272px]">
+                                ثبت درخواست </button>
+                            <div @click="changeCounselingStep(0)"
+                                class="text-base font-medium bg-white border cursor-pointer rounded-custom text-stone-700 border-stone-700 hover:text-stone-800 hover:border-stone-800 flex_center h-11 w-32 md:w-36 lg:w-32">
                                 مرحله قبل
                             </div>
                         </div>
@@ -224,10 +245,13 @@
                 <section class="sm:col-span-6 p-6 text-stone-700 pt-6 px-4 lg:px-10 lg:pt-16">
                     <h4 class="text-lg font-semibold mb-2 lg:text-2xl lg:mb-6"> دریافت تسهیلات در کوتاه ترین زمان </h4>
                     <p class="text-sm font-normal leading-6 lg:leading-7 mb-8 lg:mb-0">
-                        با ثبت درخواست دریافت تسهیلات جهت خرید ماشین های سنگین، کارشناسان لیزینگ اتوبان با شما تماس خواهند
-                        گرفت و مراحل دریافت تسهیلات را متناسب با شرایط شما به صورت کامل به شما توضیح خواهند داد، پس از تکمیل
+                        با ثبت درخواست دریافت تسهیلات جهت خرید ماشین های سنگین، کارشناسان لیزینگ اتوبان با شما تماس
+                        خواهند
+                        گرفت و مراحل دریافت تسهیلات را متناسب با شرایط شما به صورت کامل به شما توضیح خواهند داد، پس از
+                        تکمیل
                         اطلاعات اولیه پروسه دریافت تسهیلات آغاز خواهد شد.
-                        در صورت تکمیل مدارک از سمت شما پروسه دریافت تسهیلات به سرعت طی شده و در مدت زمان 2 هفته می توانید
+                        در صورت تکمیل مدارک از سمت شما پروسه دریافت تسهیلات به سرعت طی شده و در مدت زمان 2 هفته می
+                        توانید
                         مبلغ تسهیلات مورد نظر را دریافت نمایید.
                     </p>
                     <!-- icons -->
@@ -238,11 +262,11 @@
                 </section>
             </section>
         </section>
-    
+
         <!-- modal layer -->
         <div class="fixed inset-0 bg-[#ABABAB]/40 z-[6] backdrop-blur-2xl" v-show="modalState" @click="closeModalState">
         </div>
-    
+
         <!-- information modal content -->
         <section
             class="flex px-4 lg:px-8 py-10 text-sm font-medium text-stone-700 flex-col bg-white sm:rounded-custom fixed top-0 drop-shadow-base right-0 w-full h-full sm:h-auto sm:max-w-[36rem] md:max-w-[40rem] lg:max-w-[44rem] sm:top-1/2 sm:right-1/2 sm:translate-x-1/2 sm:-translate-y-1/2 z-[7] overflow-hidden"
@@ -260,8 +284,8 @@
                 class="mb-4 pr-4 relative before:absolute before:top-1 before:right-0 before:size-2 before:rounded-full before:bg-normal">
                 اطلاعات بیشتر </p>
             <ul class="pr-6 space-y-2 list-inside list-disc">
-                <li>  تعداد چک های قابل پرداخت 7 چک </li>
-                <li>  مبلغ بیمه بدنه به صورت جداگانه روی اقساط محاسبه و دریافت می شود. </li>
+                <li> تعداد چک های قابل پرداخت {{ Number(paymentDuration) +1 }} چک </li>
+                <li> مبلغ بیمه بدنه به صورت جداگانه روی اقساط محاسبه و دریافت می شود. </li>
                 <li> هزینه عملیات بدون ارزش افزوده محاسبه گردیده است. </li>
                 <li> سود اقساط شما معادل نرخ مصوب بانک مرکزی یعنی 23 درصد است. </li>
             </ul>
@@ -277,8 +301,9 @@ export default {
     name: 'Counseling',
     props: {
         catalogLink: String,
+        categories: [Array, Object, String],
     },
-    setup() {
+    setup(props) {
         const loanSteps = ref(100000000);
         const loanMin = ref(200000000);
         const loanMax = ref(3000000000);
@@ -293,6 +318,7 @@ export default {
         const loanOptions = ref([]);
         const showModal = ref(false);
         const counselingStep = ref(0);
+        const categoryList = ref(JSON.parse(props.categories));
 
         const closeModal = () => {
             showModal.value = false;
@@ -410,6 +436,7 @@ export default {
             changeCounselingStep,
             loanOptions,
             formatValue,
+            categoryList,
         }
     }
 }
