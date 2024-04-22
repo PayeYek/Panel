@@ -150,7 +150,7 @@
                                 <p> مدت زمان بازپرداخت </p>
                                 <div class="flex_row gap-2 sm:gap-4">
                                     <p class="text-stone-950"> {{ paymentDuration }} </p>
-                                    <p> مـاهـه </p>
+                                    <p> مـــــاه </p>
                                 </div>
                             </li>
                             <li class="border-b border-b-white py-4 flex_between gap-4 text-sm font-normal">
@@ -198,7 +198,7 @@
                         مشخصات را وارد کنید. </p>
                     <form action="">
                         <div class="flex flex-col text-stone-700 mb-9 gap-4">
-                            <div class="flex flex-col">
+                            <div class="flex flex-col gap-1">
                                 <label class="text-sm font-normal text-stone-700 pr-2"> تسهیلات </label>
                                 <select name="facilities" v-model="loanInitialValue"
                                     class="h-11 rounded-custom border border-[#CFD1D4] focus:ring-0 outline-none focus:border-[#CFD1D4] text-sm font-normal">
@@ -209,7 +209,7 @@
                                     </option>
                                 </select>
                             </div>
-                            <div class="flex flex-col">
+                            <div class="flex flex-col gap-1">
                                 <label class="text-sm font-normal text-stone-700 pr-2"> نوع خودرو </label>
                                 <select name="vehicles"
                                     class="h-11 rounded-custom border border-[#CFD1D4] focus:ring-0 outline-none focus:border-[#CFD1D4] text-sm font-normal">
@@ -218,17 +218,17 @@
                                         {{ category.title }} </option>
                                 </select>
                             </div>
-                            <div class="flex flex-col">
+                            <div class="flex flex-col gap-1">
                                 <label class="text-sm font-normal text-stone-700 pr-2"> نام خانوادگی </label>
                                 <input name="fullname" type="text"
                                     class="h-11 rounded-custom border border-[#CFD1D4] focus:ring-0 outline-none focus:border-[#CFD1D4] text-sm font-normal placeholder:text-[#acacac]"
-                                    placeholder="نام خانوادگی" />
+                                    placeholder="نام خانوادگی خود را وارد کنید..." />
                             </div>
-                            <div class="flex flex-col">
+                            <div class="flex flex-col gap-1">
                                 <label class="text-sm font-normal text-stone-700 pr-2"> شماره موبایل </label>
                                 <input name="phone" type="tel"
                                     class="h-11 dir-rtl rounded-custom border border-[#CFD1D4] focus:ring-0 outline-none focus:border-[#CFD1D4] text-sm font-normal placeholder:text-[#acacac]"
-                                    placeholder="شماره موبایل" />
+                                    placeholder="شماره موبایل خود را وارد کنید..." />
                             </div>
                         </div>
                         <div class="flex_center sm:flex-col lg:flex-row gap-2">
@@ -242,18 +242,20 @@
                         </div>
                     </form>
                 </section>
-                <section class="sm:col-span-6 p-6 text-stone-700 pt-6 px-4 lg:px-10 lg:pt-16">
-                    <h4 class="text-lg font-semibold mb-2 lg:text-2xl lg:mb-6"> دریافت تسهیلات در کوتاه ترین زمان </h4>
-                    <p class="text-sm font-normal leading-6 lg:leading-7 mb-8 lg:mb-0">
-                        با ثبت درخواست دریافت تسهیلات جهت خرید ماشین های سنگین، کارشناسان لیزینگ اتوبان با شما تماس
-                        خواهند
-                        گرفت و مراحل دریافت تسهیلات را متناسب با شرایط شما به صورت کامل به شما توضیح خواهند داد، پس از
-                        تکمیل
-                        اطلاعات اولیه پروسه دریافت تسهیلات آغاز خواهد شد.
-                        در صورت تکمیل مدارک از سمت شما پروسه دریافت تسهیلات به سرعت طی شده و در مدت زمان 2 هفته می
-                        توانید
-                        مبلغ تسهیلات مورد نظر را دریافت نمایید.
-                    </p>
+                <section class="sm:col-span-6 p-6 text-stone-700 pt-6 px-4 lg:px-10 lg:pt-16 flex flex-col justify-between">
+                    <div class="flex flex-col gap-2 lg:gap-6">
+                        <h4 class="text-lg font-semibold lg:text-2xl"> دریافت تسهیلات در کوتاه ترین زمان </h4>
+                        <p class="text-sm font-normal leading-6 lg:leading-7 mb-8 lg:mb-0">
+                            با ثبت درخواست دریافت تسهیلات جهت خرید ماشین های سنگین، کارشناسان لیزینگ اتوبان با شما تماس
+                            خواهند
+                            گرفت و مراحل دریافت تسهیلات را متناسب با شرایط شما به صورت کامل به شما توضیح خواهند داد، پس از
+                            تکمیل
+                            اطلاعات اولیه پروسه دریافت تسهیلات آغاز خواهد شد.
+                            در صورت تکمیل مدارک از سمت شما پروسه دریافت تسهیلات به سرعت طی شده و در مدت زمان 2 هفته می
+                            توانید
+                            مبلغ تسهیلات مورد نظر را دریافت نمایید.
+                        </p>
+                    </div>
                     <!-- icons -->
                     <div class="flex items-end gap-6">
                         <FormIconOne classNames="w-full max-w-[480px] lg:max-w-80 xl:max-w-96" />
