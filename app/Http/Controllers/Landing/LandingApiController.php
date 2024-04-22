@@ -107,16 +107,31 @@ class LandingApiController extends Controller
     }
 
     public function products($page)
+
     {
         $perPage = 12;
 
-        $land = Land::where('slug', $page)->with(['products', 'styles', 'categories'])->firstOrFail();
+        $land = Land::where('slug', $page)->with(['products', 'styles'])->firstOrFail();
 
-        $styles = $land->styles;
+        $cats = array();
+        foreach ($land->products as $productItem) {
+            $cats[] = $productItem->category_id;
+        }
+        $cats = array_unique($cats);
 
-        $categories = $land->categories->map(function ($category) {
-            return $category->only(['id', 'title', 'slug']);
-        })->all();
+        $categories = collect();
+
+        foreach ($cats as $cat) {
+            $categories->add(collect(LandCategory::find($cat)));
+        }
+
+        $filteredCategory = collect($categories)->map(function ($item) {
+            return [
+                'id' => $item['id'],
+                'slug' => $item['slug'],
+                'title' => $item['title']
+            ];
+        });
 
         if ($land->styles->product_list_type !== 1) {
             $productsPaginator = $land->products()->paginate($perPage)->withQueryString();
@@ -129,7 +144,6 @@ class LandingApiController extends Controller
             });
 
             $data = [
-                'styles' => $land->styles,
                 'categories' => $categories,
                 'products' => [
                     'current_page' => $productsPaginator->currentPage(),
@@ -155,17 +169,16 @@ class LandingApiController extends Controller
                 ]);
             });
 
+            $breadcrumbs = [];
+            $breadcrumbs[] = ['title' => __('Home'), 'url' => route('api.landing.page.show', ['page' => $land->slug])];
+            $breadcrumbs[] = ['title' => __('Products'), 'url' => route('api.landing.product.list', ['page' => $land->slug])];
+
             $data = [
-                'styles' => $land->styles,
-                'categories' => $categories,
+                'categories' => $filteredCategory,
                 'products' => $products,
+                'breadcrumbs' => $breadcrumbs
             ];
         }
-
-        $data['styles']['color'] = [
-            'name' => $styles->landColor->name,
-            'title' => $styles->landColor->title
-        ];
 
         return responder()->success($data, LandTransformer::class)->respond();
     }
