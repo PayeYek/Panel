@@ -3,7 +3,7 @@
         <div class="flex_center flex-col gap-2 md:flex-row lg:gap-4">
             <div class="text-lg font-medium text-white cursor-pointer rounded-custom bg-stone-700 hover:bg-stone-800 flex_center h-11 w-52"
                 @click="OpenModal"> مشاوره و خرید </div>
-            <Link :href="catalogLink"
+            <Link v-bind:href="catalogLink"
                 class="text-lg font-medium bg-white border cursor-pointer rounded-custom text-stone-700 border-stone-700 hover:text-stone-800 hover:border-stone-800 flex_center h-11 w-52">
             دانلود کاتالوگ </Link>
         </div>
@@ -35,7 +35,7 @@
                             <div class="w-full h-12 mb-6 font-medium text-sm flex_between px-6">
                                 <!-- decrease -->
                                 <button type="button"
-                                    :class="'p-2 cursor-pointer text-[#1EA0FF] ' + (loanInitialValue > loanMin ? '' : 'opacity-40 pointer-events-none')"
+                                    v-bind:class="'p-2 cursor-pointer text-[#1EA0FF] ' + (loanInitialValue > loanMin ? '' : 'opacity-40 pointer-events-none')"
                                     @click="loanOrder('minus')">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                         stroke-width="1.5" stroke="currentColor" class="size-6 stroke-current">
@@ -49,7 +49,7 @@
                                 </p>
                                 <!-- increase -->
                                 <button type="button"
-                                    :class="'p-2 cursor-pointer text-[#1EA0FF] ' + (loanInitialValue < loanMax ? '' : 'opacity-40 pointer-events-none')"
+                                    v-bind:class="'p-2 cursor-pointer text-[#1EA0FF] ' + (loanInitialValue < loanMax ? '' : 'opacity-40 pointer-events-none')"
                                     @click="loanOrder('plus')">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                         stroke-width="1.5" stroke="currentColor" class="size-6 stroke-current">
@@ -59,9 +59,9 @@
                                 </button>
                             </div>
                             <div class="h-2 w-full bg-stone-200 rounded-full mb-4 relative">
-                                <input :style="{ background: priceSliderBackground }" type="range"
+                                <input v-bind:style="{ background: priceSliderBackground }" type="range"
                                     class="dir-rtl absolute top-0.5 inset-x-0.5 range__input rounded-full" :min="loanMin"
-                                    :max="loanMax" :value="loanInitialValue" v-model="loanInitialValue" :step="loanSteps" />
+                                    v-bind:max="loanMax" v-bind:value="loanInitialValue" v-model="loanInitialValue" v-bind:step="loanSteps" />
                             </div>
                             <div class="text-sm font-normal flex items-center justify-between mb-4 text-stone-700">
                                 <p> 200 میلیون تومان </p>
@@ -172,8 +172,6 @@
                 </section>
             </section>
     
-    
-    
             <section
                 class="grid grid-cols-1 sm:grid-cols-10 gap-5 drop-shadow-smooth bg-white rounded-custom sm:rounded-custom sm:overflow-hidden relative"
                 v-if="counselingStep == 1">
@@ -198,7 +196,7 @@
                             <select name="facilities" v-model="loanInitialValue"
                                 class="h-11 rounded-custom border border-[#CFD1D4] focus:ring-0 outline-none focus:border-[#CFD1D4] text-sm font-normal">
                                 <option value="0" selected disabled> مبلغ تسهیلات </option>
-                                <option v-for="(option, index) in loanOptions" :key="index" :value="option.key">
+                                <option v-for="(option, index) in loanOptions" v-bind:key="index" v-bind:value="option.key">
                                     {{ formatValue(option.value) }} تومان
                                 </option>
                             </select>
