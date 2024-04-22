@@ -31,7 +31,9 @@
         default => ''
     };
 @endphp
-{{-- @dd() --}}
+
+{{-- @dd($categories->toArray()) --}}
+
 <x-layout.default.main :land="$land">
 {{-- @dd($product) --}}
     {{-- type 1 --}}
@@ -56,7 +58,7 @@
             </section>
 
             {{-- info --}}
-            <x-pdp_landing.information :infoType="$land->styles->product_list_type" :landId="$land->styles->land_id" productName="{{ $product->name }}" :product="$product" :landSlug="$land->slug" />
+            <x-pdp_landing.information :infoType="$land->styles->product_list_type" :landId="$land->styles->land_id" productName="{{ $product->name }}" :product="$product" :landSlug="$land->slug" :categories="$categories" />
         </section>
 
         {{-- Further Details --}}
@@ -68,6 +70,14 @@
                 </div>
             </section>
         @endif
+
+        {{-- more articles --}}
+        {{-- <section class="default_container mb-20">
+            <div class="flex text-base font-medium flex-col gap-2">
+                <h4 class="text-stone-700"> لینک دسترسی به معرفی تخصصی محصول </h4>
+                <div class="flex items-center flex-wrap gap-4 text-link"></div>
+            </div>
+        </section> --}}
 
         {{-- Technical Specifications --}}
         @if ($product->attributes->count())

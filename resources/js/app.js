@@ -24,7 +24,11 @@ import AmChart from "@/components/map/AmChart.vue";
 import Branches from "@/components/map/Branches.vue";
 import Videos from "@/components/videos/Videos.vue";
 import Computing from "@/components/computing/index.vue";
+import Facilities from "@/components/computing/children/Facilities.vue";
 import Advertise from "@/components/advertise/Advertise.vue";
+import FormIconOne from "@/components/computing/children/Icons/FormIconOne.vue";
+import FormIconTwo from "@/components/computing/children/Icons/FormIconTwo.vue";
+import PdpCounseling from "@/components/pdp/counseling.vue";
 // import Swiper from 'swiper';
 // import 'swiper/css/bundle';
 // let Swiper = require('swiper');
@@ -82,7 +86,11 @@ createApp({ render: renderSpladeApp({ el }) })
     .component('Branches', Branches)
     .component('Videos', Videos)
     .component('Computing', Computing)
+    .component('Facilities', Facilities)
     .component('Advertise', Advertise)
+    .component('FormIconOne', FormIconOne)
+    .component('FormIconTwo', FormIconTwo)
+    .component('PdpCounseling', PdpCounseling)
     // .directive("click-outside", clickOutside)
     .mount(el);
 

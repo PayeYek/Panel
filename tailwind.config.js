@@ -106,7 +106,8 @@ export default {
             dropShadow: {
                 'red': '0 2px 8px rgba(185,28,28,0.3)',
                 'white': '0 2px 8px rgba(255,255,255,0.3)',
-                'base': '0 2px 10px rgba(0,0,0,0.15)'
+                'base': '0 2px 10px rgba(0,0,0,0.15)',
+                'smooth': '0 4px 16px rgba(0,0,0,0.15)',
             },
             boxShadow: {
                 'focus': '0 0 4px',

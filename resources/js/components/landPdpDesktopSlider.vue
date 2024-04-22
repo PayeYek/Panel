@@ -28,7 +28,7 @@
     <section
         class="hidden lg:flex_center w-2/3 max-w-[640px] lg:max-w-[796px] xl:max-w-[900px] 2xl:max-w-[1024px] mx-auto translate-x-1/2 -translate-y-1/2 fixed top-1/2 right-1/2 z-[5]"
         v-show="openModal">
-        <swiper :modules="modules" speed="750" :slides-per-view="1" :space-between="16" :navigation="true"
+        <swiper :modules="modules" :speed="750" :slides-per-view="1" :space-between="16" :navigation="true"
             class="w-full desktop_pdp_slider">
             <swiper-slide v-for="slide in oldGallery">
                 <div class="relative pt-[56%] w-full">
@@ -57,7 +57,7 @@ import { ref, onMounted } from 'vue';
 export default {
     name: 'DesktopSlider',
     props: {
-        slides: Object,
+        slides: [Object, String],
         mainImage: String,
         name: String,
     },

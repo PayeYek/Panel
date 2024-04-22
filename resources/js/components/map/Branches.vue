@@ -3,7 +3,7 @@
         <div class="flex_between gap-4">
             <p
                 class="pr-4 leading-8 relative text-normal text-base font-medium before:absolute before:content-[''] before:w-1 before:h-full before:top-0 before:right-0 before:rounded-l before:bg-normal">
-                نمایندگی 2111 تهران </p>
+                نمایندگی {{ BranchNumberStatus ? '2111' : '' }} تهران </p>
             <div class="cursor-pointer p-0.5" @click="toggleBranchVisiblity">
                 <svg :class="'stroke-normal size-6 duration-300 ' + (branchState ? 'rotate-180' : '')"
                     viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -99,9 +99,12 @@ export default {
             branchState.value = !branchState.value;
         }
 
+        const BranchNumberStatus = ref(window.location.href.includes("arian-diesel"))
+
         return {
             branchState,
             toggleBranchVisiblity,
+            BranchNumberStatus,
         }
     }
 }
