@@ -34,7 +34,7 @@ Route::get('land/{landId}/products', function ($landId) {
 });
 
 Route::prefix('l')
-    ->name('landing.')
+    ->name('api.landing.')
     ->controller(\App\Http\Controllers\Landing\LandingApiController::class)
     ->group(function () {
 
