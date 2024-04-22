@@ -61,7 +61,7 @@
     {{-- guide btns --}}
     {{-- <x-splade-data default="{ toggleModal: false }"> --}}
         <x-splade-data default="{ showModal: false }">
-        <div class="flex_center flex-col gap-2 md:flex-row lg:gap-4">
+            <div class="flex_center flex-col gap-2 md:flex-row lg:gap-4">
             {{-- <buttton class="text-lg font-medium text-white cursor-pointer rounded-custom bg-stone-700 hover:bg-stone-800 flex_center h-11 w-52" @click="data.toggleModal = true"> مشاوره و خرید </buttton> --}}
                 <div @click="data.showModal = true" class="text-lg font-medium text-white cursor-pointer rounded-custom bg-stone-700 hover:bg-stone-800 flex_center h-11 w-52"> مشاوره و خرید </div>
                 <Link href="{{ $product->catalog }}" class="text-lg font-medium bg-white border cursor-pointer rounded-custom text-stone-700 border-stone-700 hover:text-stone-800 hover:border-stone-800 flex_center h-11 w-52"> دانلود کاتالوگ </Link>
