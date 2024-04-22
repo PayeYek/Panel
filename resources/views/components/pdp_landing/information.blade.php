@@ -59,17 +59,17 @@
     </div>
 
     {{-- guide btns --}}
-    {{-- <pdpCounseling :catalogLink="{{ $product->catalog }}" /> --}}
+    <PdpCounseling :catalogLink="{{ $product->catalog }}" />
     {{-- <x-splade-data default="{ toggleModal: false }"> --}}
-        <x-splade-data default="{ showModal: false }">
+        {{-- <x-splade-data default="{ showModal: false }">
             <div class="flex_center flex-col gap-2 md:flex-row lg:gap-4">
                 <div @click="data.showModal = true" class="text-lg font-medium text-white cursor-pointer rounded-custom bg-stone-700 hover:bg-stone-800 flex_center h-11 w-52"> مشاوره و خرید </div>
                 <Link href="{{ $product->catalog }}" class="text-lg font-medium bg-white border cursor-pointer rounded-custom text-stone-700 border-stone-700 hover:text-stone-800 hover:border-stone-800 flex_center h-11 w-52"> دانلود کاتالوگ </Link>
             </div>
-            {{-- modal layer --}}
+            modal layer
             <div class="fixed inset-0 bg-[#ABABAB]/40 z-[5] backdrop-blur-2xl" v-if="data.showModal" @click="data.showModal = false"></div>
 
-            {{-- modal content --}}
+            modal content
             <section v-if="data.showModal" class="fixed overflow-auto top-0 right-0 w-full h-full sm:h-auto sm:max-w-[36rem] md:max-w-[40rem] lg:max-w-4xl xl:max-w-5xl sm:top-1/2 sm:right-1/2 sm:translate-x-1/2 sm:-translate-y-1/2 z-[6] sm:overflow-hidden">
                 <section class="grid grid-cols-1 sm:grid-cols-10 gap-5 drop-shadow-smooth bg-white rounded-custom sm:rounded-custom sm:overflow-hidden relative">
                     <div @click="data.showModal = false"
@@ -143,7 +143,7 @@
                     </section>
                 </section>
             </section>
-        </x-splade-data>
+        </x-splade-data> --}}
         {{-- modal layer
         <div class="fixed inset-0 bg-black/60 z-[5]" v-show="data.toggleModal" @click="data.toggleModal = false"></div>
         modal content
