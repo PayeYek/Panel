@@ -39,7 +39,9 @@ LandController extends Controller
         /* Get logo origin */
         //$data = $this->getLogoOrigin($data, $request);
 
-        Land::create($data);
+        $land = Land::create($data);
+
+        $land->styles()->create([]);
 
         \Splade::toast(__('Created'))->autoDismiss(5)->success();
 
