@@ -24,7 +24,7 @@ class FacilitiesRequest extends FormRequest
     {
         return [
             'phone' => 'required|string|digits:11',
-            'full_name' => 'required|string|max:64',
+            'full_name' => 'required|string|min:3|max:64',
             'land_id' => 'required|numeric|exists:lands,id',
             'category_id' => 'required|numeric|exists:land_categories,id',
             'amount' => 'required|string'
