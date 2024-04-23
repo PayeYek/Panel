@@ -8,6 +8,7 @@
         6 => 'theme_carizan',
         7 => 'theme_arya',
         8 => 'theme_ikco',
+        9 => 'theme_vira',
         10 => 'theme_mayan',
         11 => 'theme_azhitech',
         12 => 'theme_titan',

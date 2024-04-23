@@ -28,6 +28,7 @@
                         <option value="6"> کاریزان </option>
                         <option value="7"> آریا دیزل </option>
                         <option value="8"> ایرانخودرو دیزل </option>
+                        <option value="9"> ویرا دیزل </option>
                         <option value="10"> مایان خودرو </option>
                         <option value="11"> آذهایتکس خودرو </option>
                         <option value="12"> تیتان خودرو </option>

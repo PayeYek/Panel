@@ -135,6 +135,13 @@
         --theme-shadow-normal: rgba(9, 33, 75, 0.5);
         --theme-shadow-focus: rgba(9, 33, 75, 0.8);
     }
+    .theme_vira{
+        --theme-normal: 15,15,15;
+        --theme-focus: 0,0,0;
+        --theme-shadow-light: rgba(0, 0, 0, 0.3);
+        --theme-shadow-normal: rgba(0, 0, 0, 0.5);
+        --theme-shadow-focus: rgba(0, 0, 0, 0.8);
+    }
 
 
     .rounded_none{
