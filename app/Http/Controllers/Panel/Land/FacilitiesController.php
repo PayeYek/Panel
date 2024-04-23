@@ -66,7 +66,6 @@ class FacilitiesController extends Controller
 
     public function destroy(LandFacility $landFacility)
     {
-//        LandFacility::destroy($landFacility->id);
         $landFacility->delete();
 
         \Splade::toast(__('Deleted'))->autoDismiss(5)->danger();

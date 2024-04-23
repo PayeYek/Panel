@@ -45,6 +45,7 @@ Route::prefix('l')
             Route::get('{page}/footer', 'pageFooter')->name('footer');
             Route::get('{page}/catalogs', 'catalogs')->name('catalogs');
             Route::get('{page}/calculator', 'calculator')->name('calculator');
+            Route::post('{page}/facilities-request', 'facilitiesRequest')->name('facilitiesRequest');
 
         });
 

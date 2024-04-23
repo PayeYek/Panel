@@ -19,7 +19,7 @@ class LandFacility extends Model
         'phone',
         'full_name',
         'land_id',
-        'product_id',
+        'category_id',
         'land_products',
         'product_id',
         'land_products',
@@ -38,9 +38,9 @@ class LandFacility extends Model
     }
 
 
-    public function product(): BelongsTo
+    public function category(): BelongsTo
     {
-        return $this->belongsTo(LandProduct::class);
+        return $this->belongsTo(LandCategory::class);
     }
 
 }

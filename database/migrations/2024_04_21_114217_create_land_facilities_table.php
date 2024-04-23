@@ -16,8 +16,8 @@ return new class extends Migration {
             $table->string('phone');
             $table->foreignId('land_id')->nullable()
                 ->constrained();
-            $table->foreignId('product_id')->nullable()
-                ->constrained('land_products');
+            $table->foreignId('category_id')->nullable()
+                ->constrained('land_categories');
             $table->string('amount');
             $table->text('comment')->nullable();
             $table->tinyInteger('state')->nullable();

@@ -2,14 +2,21 @@
 
 namespace App\Http\Controllers\Landing;
 
+use App\Enum\LandFacilityStateEnum;
+use App\Exceptions\FacilityRequestDuplicatedException;
+use App\Exceptions\FacilityRequestRestrictedException;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\FacilitiesRequest;
 use App\Http\Requests\Panel\Landing\CommentRequest;
 use App\Models\Land;
 use App\Models\LandArticle;
 use App\Models\LandCategory;
 use App\Models\LandComment;
+use App\Models\LandFacility;
 use App\Models\LandProduct;
 use App\Transformers\LandTransformer;
+use Exception;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Response;
 use ProtoneMedia\Splade\Facades\SEO;
 
@@ -308,5 +315,48 @@ class LandingApiController extends Controller
         // $breadcrumbs[] = ['title' => __('Progress'), 'url' => null ];
 
         return ['land' => $land];
+    }
+
+    public function facilitiesRequest(FacilitiesRequest $facilitiesRequest): JsonResponse
+    {
+
+        try {
+            $this->assertUserCanRequestFacility($facilitiesRequest->validated('phone'));
+
+            LandFacility::create([
+                'full_name' => $facilitiesRequest->validated('full_name'),
+                'amount' => $facilitiesRequest->validated('amount'),
+                'phone' => $facilitiesRequest->validated('phone'),
+                'land_id' => $facilitiesRequest->validated('land_id'),
+                'category_id' => $facilitiesRequest->validated('category_id'),
+            ]);
+
+            return responder()->success(['message' => 'The Facility request sent successfully'])->respond();
+
+        } catch (FacilityRequestDuplicatedException) {
+            return responder()->error(-1, 'The request is duplicated')->respond(400);
+        } catch (FacilityRequestRestrictedException) {
+            return responder()->error(-2, 'The user is restricted')->respond(400);
+        } catch (Exception $e) {
+            return responder()->error(-3, 'Cannot store facilities request due to an unknown error')->respond(500);
+        }
+    }
+
+    /**
+     * @throws FacilityRequestDuplicatedException
+     * @throws FacilityRequestRestrictedException
+     */
+    public function assertUserCanRequestFacility($phone): void
+    {
+        $oldFacilityRequests = LandFacility::query()->where('phone', $phone)->get();
+
+        foreach ($oldFacilityRequests as $facilityRequest) {
+            if ($facilityRequest->state === LandFacilityStateEnum::PENDING) {
+                throw new FacilityRequestDuplicatedException;
+            }
+            if ($facilityRequest->state === LandFacilityStateEnum::RESTRICTED) {
+                throw new FacilityRequestRestrictedException;
+            }
+        }
     }
 }
