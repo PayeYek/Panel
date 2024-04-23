@@ -1,14 +1,14 @@
 <template>
     <section class="default_container mt-12">
         <section class="mb-10 lg:mb-20">
-            <h3 class="text-lg lg:text-2xl font-medium text-stone-700 mb-4 lg:mb-8"> محاسبه گر اقساط تسهیلات </h3>
+            <h3 class="text-lg lg:text-2xl font-medium cursor-default text-stone-700 mb-4 lg:mb-8"> محاسبه گر اقساط تسهیلات </h3>
             <section class="grid grid-cols-1 lg:grid-cols-10 gap-5 drop-shadow-smooth bg-white rounded-custom">
                 <section class="lg:col-span-6 p-6">
                     <section class="flex flex-col max-w-[33rem] w-full mx-auto">
                         <!-- vehicle price amount -->
                         <section class="mb-8 lg:mb-14">
                             <p
-                                class="text-sm pr-4 font-medium text-stone-700 mb-4 relative before:absolute before:content-[''] before:rounded-full before:bg-normal before:top-1.5 before:right-0 before:size-2">
+                                class="text-sm pr-4 font-medium text-stone-700 cursor-default mb-4 relative before:absolute before:content-[''] before:rounded-full before:bg-normal before:top-1.5 before:right-0 before:size-2">
                                 میزان وام درخواستی </p>
                             <div class="w-full h-12 mb-6 font-medium text-sm flex_between px-6">
                                 <!-- decrease -->
@@ -21,7 +21,7 @@
                                     </svg>
                                     <span class="sr-only"> decrease </span>
                                 </button>
-                                <p class="text-stone-950 lg:text-3xl font-medium text-xl sm:text-2xl">
+                                <p class="text-stone-950 lg:text-3xl font-medium text-xl sm:text-2xl cursor-default">
                                     {{ numberWithCommas(loanInitialValue) }}
                                     <span class="hidden sm:inline-block"> تومان </span>
                                 </p>
@@ -43,7 +43,7 @@
                                     :min="loanMin" :max="loanMax" :value="loanInitialValue" v-model="loanInitialValue"
                                     :step="loanSteps" />
                             </div>
-                            <div class="text-sm font-normal flex items-center justify-between mb-4 text-stone-700">
+                            <div class="text-sm font-normal flex items-center justify-between mb-4 text-stone-700 cursor-default">
                                 <p> 200 میلیون تومان </p>
                                 <p> 3 میلیارد تومان </p>
                             </div>
@@ -52,7 +52,7 @@
                         <!-- payment duration -->
                         <section>
                             <p
-                                class="text-sm pr-4 font-medium text-stone-700 mb-4 relative before:absolute before:content-[''] before:rounded-full before:bg-normal before:top-1.5 before:right-0 before:size-2">
+                                class="text-sm pr-4 font-medium text-stone-700 mb-4 relative cursor-default before:absolute before:content-[''] before:rounded-full before:bg-normal before:top-1.5 before:right-0 before:size-2">
                                 مدت زمان بازپرداخت <span class="sm:hidden text-stone-700 text-sm font-normal"> (سال)
                                 </span> </p>
 
@@ -111,11 +111,11 @@
                 <section class="lg:col-span-4 bg-stone-200 rounded-b-custom lg:rounded-t-custom">
                     <section class="text-sm font-normal px-4 py-6 lg:py-12 lg:px-10">
                         <div class="flex_between mb-4 lg:mb-6">
-                            <p class="text-base lg:text-lg font-medium text-stone-700"> نتیجه محاسبه </p>
+                            <p class="text-base lg:text-lg font-medium text-stone-700 cursor-default"> نتیجه محاسبه </p>
                             <p class="text-sm text-[#1EA0FF] border-b-2 border-b-transparent hover:border-b-[#1EA0FF] border-dashed font-medium cursor-pointer"
                                 @click="trueInformationState"> اطلاعات بیشتر </p>
                         </div>
-                        <ul class="list-none text-[#90A4AE] mb-6">
+                        <ul class="list-none text-[#90A4AE] mb-6 cursor-default">
                             <li class="border-b border-b-white py-4 flex_between gap-4 text-sm font-normal">
                                 <p> مبلغ هر قسط </p>
                                 <div class="flex_row gap-2 sm:gap-4">
@@ -150,7 +150,6 @@
                             type="button" @click="trueCounselingState"> درخواست مشاوره </button>
                     </section>
                 </section>
-
             </section>
         </section>
 
@@ -182,15 +181,15 @@
             </ul>
         </section>
 
-        <section class="">
-            <h3 class="text-lg lg:text-2xl font-medium text-stone-700 mb-4 lg:mb-8"> مدارک مورد نیاز دریافت تسهیلات
+        <section>
+            <h3 class="text-lg lg:text-2xl font-medium text-stone-700 mb-4 lg:mb-8 cursor-default"> مدارک مورد نیاز دریافت تسهیلات
             </h3>
             <Facilities classNames="mb-10 lg:mb-20" />
         </section>
 
         <section class="grid grid-cols-1 lg:grid-cols-10 gap-5 drop-shadow-smooth bg-white rounded-custom facility_form">
             <section class="lg:col-span-6 p-6 order-2 text-stone-700 pt-6 px-4 lg:order-1 lg:px-10 lg:pt-16 flex flex-col justify-between">
-                <div class="flex flex-col gap-2 lg:gap-6">
+                <div class="flex flex-col gap-2 lg:gap-6 cursor-default">
                     <h4 class="text-lg font-semibold lg:text-2xl"> دریافت تسهیلات در کوتاه ترین زمان </h4>
                     <p class="text-sm font-normal leading-6 lg:leading-7 mb-8 lg:mb-0">
                         با ثبت درخواست دریافت تسهیلات جهت خرید ماشین های سنگین، کارشناسان لیزینگ اتوبان با شما تماس خواهند
@@ -210,9 +209,9 @@
             <section
                 class="lg:col-span-4 bg-stone-200 order-1 rounded-b-custom lg:rounded-t-custom pt-8 px-4 pb-12 lg:px-10 lg:order-2">
                 <h4
-                    class="text-sm pr-4 font-medium text-stone-700 mb-2 lg:mb-5 relative before:absolute before:content-[''] before:rounded-full before:bg-normal before:top-1.5 before:right-0 before:size-2">
+                    class="text-sm pr-4 font-medium text-stone-700 mb-2 lg:mb-5 relative cursor-default before:absolute before:content-[''] before:rounded-full before:bg-normal before:top-1.5 before:right-0 before:size-2">
                     تسهیلات خودروی تجاری </h4>
-                <p class="text-sm lg:text-base font-normal text-stone-700 mb-6 lg:mb-8"> برای درخواست تسهیلات خودروی
+                <p class="text-sm lg:text-base font-normal text-stone-700 mb-6 lg:mb-8 cursor-default"> برای درخواست تسهیلات خودروی
                     تجاری
                     مشخصات را وارد کنید. </p>
                 <form action="">
@@ -237,10 +236,10 @@
                             </select>
                         </div>
                         <div class="flex flex-col gap-1">
-                            <label class="text-sm font-normal text-stone-700 pr-2"> نام خانوادگی </label>
+                            <label class="text-sm font-normal text-stone-700 pr-2"> نام و نام خانوادگی </label>
                             <input name="fullname" type="text"
                                 class="h-11 rounded-custom border border-[#CFD1D4] focus:ring-0 outline-none focus:border-[#CFD1D4] text-sm font-normal placeholder:text-[#acacac]"
-                                placeholder="نام خانوادگی خود را وارد کنید..." />
+                                placeholder="نام و نام خانوادگی خود را وارد کنید..." />
                         </div>
                         <div class="flex flex-col gap-1">
                             <label class="text-sm font-normal text-stone-700 pr-2"> شماره موبایل </label>

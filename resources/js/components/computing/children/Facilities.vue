@@ -1,6 +1,6 @@
 <template>
     <section :class="'flex items-start flex-wrap justify-center max-w-[832px] mx-auto lg:gap-8 xl:gap-x-24 xl:max-w-[988px] ' + classNames">
-        <div class="flex items-center flex-col text-stone-700 aspect-square group w-64 hover:bg-stone-200 transition-colors rounded px-8 pt-4" v-for="(facility, index) in facilities" :key="index">
+        <div class="flex items-center flex-col text-stone-700 aspect-square group w-64 hover:bg-stone-200 transition-colors rounded px-8 pt-4 cursor-default" v-for="(facility, index) in facilities" :key="index">
             <component :is="facility.Icon" classNames="mb-4" />
             <h3 class="text-lg font-semibold mb-3"> {{ facility.title }} </h3>
             <h5 class="text-xs font-medium mb-3"> {{ facility.documentNeeded }} </h5>

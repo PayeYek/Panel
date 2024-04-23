@@ -31,7 +31,7 @@
                         <!-- vehicle price amount -->
                         <section class="mb-8 lg:mb-14">
                             <p
-                                class="text-sm pr-4 font-medium text-stone-700 mb-4 relative before:absolute before:content-[''] before:rounded-full before:bg-normal before:top-1.5 before:right-0 before:size-2">
+                                class="text-sm cursor-default pr-4 font-medium text-stone-700 mb-4 relative before:absolute before:content-[''] before:rounded-full before:bg-normal before:top-1.5 before:right-0 before:size-2">
                                 میزان وام درخواستی </p>
                             <div class="w-full h-12 mb-6 font-medium text-sm flex_between px-6">
                                 <!-- decrease -->
@@ -44,7 +44,7 @@
                                     </svg>
                                     <span class="sr-only"> decrease </span>
                                 </button>
-                                <p class="text-stone-950 lg:text-3xl font-medium text-xl sm:text-2xl">
+                                <p class="text-stone-950 lg:text-3xl font-medium text-xl sm:text-2xl cursor-default">
                                     {{ numberWithCommas(loanInitialValue) }}
                                     <span class="hidden sm:inline-block"> تومان </span>
                                 </p>
@@ -66,7 +66,7 @@
                                     :min="loanMin" v-bind:max="loanMax" v-bind:value="loanInitialValue"
                                     v-model="loanInitialValue" v-bind:step="loanSteps" />
                             </div>
-                            <div class="text-sm font-normal flex items-center justify-between mb-4 text-stone-700">
+                            <div class="text-sm font-normal flex items-center justify-between mb-4 text-stone-700 cursor-default">
                                 <p> 200 میلیون تومان </p>
                                 <p> 3 میلیارد تومان </p>
                             </div>
@@ -75,7 +75,7 @@
                         <!-- payment duration -->
                         <section>
                             <p
-                                class="text-sm pr-4 font-medium text-stone-700 mb-4 relative before:absolute before:content-[''] before:rounded-full before:bg-normal before:top-1.5 before:right-0 before:size-2">
+                                class="text-sm pr-4 cursor-default font-medium text-stone-700 mb-4 relative before:absolute before:content-[''] before:rounded-full before:bg-normal before:top-1.5 before:right-0 before:size-2">
                                 مدت زمان بازپرداخت <span class="sm:hidden text-stone-700 text-sm font-normal"> (سال)
                                 </span> </p>
 
@@ -134,11 +134,11 @@
                 <section class="lg:col-span-4 bg-stone-200 rounded-b-custom lg:rounded-t-custom">
                     <section class="text-sm font-normal px-4 py-6 lg:py-12 lg:px-10">
                         <div class="flex_between mb-4 lg:mb-6">
-                            <p class="text-base lg:text-lg font-medium text-stone-700"> نتیجه محاسبه </p>
+                            <p class="text-base lg:text-lg font-medium text-stone-700 cursor-default"> نتیجه محاسبه </p>
                             <p class="text-sm text-[#1EA0FF] border-b-2 border-b-transparent hover:border-b-[#1EA0FF] border-dashed font-medium cursor-pointer"
                                 @click="trueInformationState"> اطلاعات بیشتر </p>
                         </div>
-                        <ul class="list-none text-[#90A4AE] mb-6">
+                        <ul class="list-none text-[#90A4AE] mb-6 cursor-default">
                             <li class="border-b border-b-white py-4 flex_between gap-4 text-sm font-normal">
                                 <p> مبلغ هر قسط </p>
                                 <div class="flex_row gap-2 sm:gap-4">
@@ -191,15 +191,15 @@
                 <section
                     class="sm:col-span-4 bg-stone-200 rounded-b-custom lg:rounded-t-custom pt-8 px-4 pb-12 lg:px-10">
                     <h4
-                        class="text-sm pr-4 font-medium text-stone-700 mb-2 lg:mb-5 relative before:absolute before:content-[''] before:rounded-full before:bg-normal before:top-1.5 before:right-0 before:size-2">
+                        class="text-sm pr-4 font-medium text-stone-700 mb-2 lg:mb-5 cursor-default relative before:absolute before:content-[''] before:rounded-full before:bg-normal before:top-1.5 before:right-0 before:size-2">
                         تسهیلات خودروی تجاری </h4>
-                    <p class="text-sm lg:text-base font-normal text-stone-700 mb-6 lg:mb-8"> برای درخواست تسهیلات خودروی
+                    <p class="text-sm lg:text-base font-normal text-stone-700 mb-6 lg:mb-8 cursor-default"> برای درخواست تسهیلات خودروی
                         تجاری
                         مشخصات را وارد کنید. </p>
                     <form action="">
                         <div class="flex flex-col text-stone-700 mb-9 gap-4">
                             <div class="flex flex-col gap-1">
-                                <label class="text-sm font-normal text-stone-700 pr-2"> تسهیلات </label>
+                                <label class="text-sm font-normal text-stone-700 pr-2 cursor-default"> تسهیلات </label>
                                 <select name="facilities" v-model="loanInitialValue"
                                     class="h-11 rounded-custom border border-[#CFD1D4] focus:ring-0 outline-none focus:border-[#CFD1D4] text-sm font-normal">
                                     <option value="0" selected disabled> انتخاب کنید </option>
@@ -210,7 +210,7 @@
                                 </select>
                             </div>
                             <div class="flex flex-col gap-1">
-                                <label class="text-sm font-normal text-stone-700 pr-2"> نوع خودرو </label>
+                                <label class="text-sm font-normal text-stone-700 pr-2 cursor-default"> نوع خودرو </label>
                                 <select name="vehicles"
                                     class="h-11 rounded-custom border border-[#CFD1D4] focus:ring-0 outline-none focus:border-[#CFD1D4] text-sm font-normal">
                                     <option value="0" selected disabled> انتخاب کنید </option>
@@ -219,13 +219,13 @@
                                 </select>
                             </div>
                             <div class="flex flex-col gap-1">
-                                <label class="text-sm font-normal text-stone-700 pr-2"> نام خانوادگی </label>
+                                <label class="text-sm font-normal text-stone-700 pr-2 cursor-default"> نام و نام خانوادگی </label>
                                 <input name="fullname" type="text"
                                     class="h-11 rounded-custom border border-[#CFD1D4] focus:ring-0 outline-none focus:border-[#CFD1D4] text-sm font-normal placeholder:text-[#acacac]"
-                                    placeholder="نام خانوادگی خود را وارد کنید..." />
+                                    placeholder="نام و نام خانوادگی خود را وارد کنید..." />
                             </div>
                             <div class="flex flex-col gap-1">
-                                <label class="text-sm font-normal text-stone-700 pr-2"> شماره موبایل </label>
+                                <label class="text-sm font-normal text-stone-700 pr-2 cursor-default"> شماره موبایل </label>
                                 <input name="phone" type="tel"
                                     class="h-11 dir-rtl rounded-custom border border-[#CFD1D4] focus:ring-0 outline-none focus:border-[#CFD1D4] text-sm font-normal placeholder:text-[#acacac]"
                                     placeholder="شماره موبایل خود را وارد کنید..." />
@@ -283,9 +283,9 @@
             </div>
             <!-- title -->
             <p
-                class="mb-4 pr-4 relative before:absolute before:top-1 before:right-0 before:size-2 before:rounded-full before:bg-normal">
+                class="mb-4 pr-4 relative before:absolute before:top-1 before:right-0 before:size-2 before:rounded-full before:bg-normal cursor-default">
                 اطلاعات بیشتر </p>
-            <ul class="pr-6 space-y-2 list-inside list-disc">
+            <ul class="pr-6 space-y-2 list-inside list-disc cursor-default">
                 <li> تعداد چک های قابل پرداخت {{ Number(paymentDuration) +1 }} چک </li>
                 <li> مبلغ بیمه بدنه به صورت جداگانه روی اقساط محاسبه و دریافت می شود. </li>
                 <li> هزینه عملیات بدون ارزش افزوده محاسبه گردیده است. </li>
