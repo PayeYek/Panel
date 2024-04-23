@@ -5,7 +5,7 @@
         {{-- @dd($categories->toArray()); --}}
         <x-common_landing.breadcrumbs :data="$breadcrumbs" />
 
-        <Computing :list="{{$land->products}}" :categories="{{ $categories }}" />
+        <Computing :list="{{$land->products}}" :categories="{{ $categories }}" landSlug="{{ $land->slug }}" landId="{{ $land->styles->land_id }}" />
     </main>
 
 </x-layout.default.main>

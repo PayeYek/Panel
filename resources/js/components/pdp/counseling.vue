@@ -196,43 +196,47 @@
                     <p class="text-sm lg:text-base font-normal text-stone-700 mb-6 lg:mb-8 cursor-default"> برای درخواست تسهیلات خودروی
                         تجاری
                         مشخصات را وارد کنید. </p>
-                    <form action="">
-                        <div class="flex flex-col text-stone-700 mb-9 gap-4">
-                            <div class="flex flex-col gap-1">
+                    <section>
+                        <div class="flex flex-col text-stone-700 mb-9 gap-5 sm:gap-6 xl:gap-5">
+                            <div class="flex flex-col gap-1 relative">
                                 <label class="text-sm font-normal text-stone-700 pr-2 cursor-default"> تسهیلات </label>
-                                <select name="facilities" v-model="loanInitialValue"
-                                    class="h-11 rounded-custom border border-[#CFD1D4] focus:ring-0 outline-none focus:border-[#CFD1D4] text-sm font-normal">
+                                <select name="facilities" v-model="loanInitialValue" required
+                                    class="h-11 rounded-custom border border-[#CFD1D4] focus:ring-0 outline-none focus:border-[#CFD1D4] text-sm font-normal validation-input">
                                     <option value="0" selected disabled> انتخاب کنید </option>
                                     <option v-for="(option, index) in loanOptions" v-bind:key="index"
                                         v-bind:value="option.key">
                                         {{ formatValue(option.value) }} تومان
                                     </option>
                                 </select>
+                                <p class="absolute text-red-500 text-xs top-full right-2 font-normal" v-if="facilityAlert"> میزان تسهیلات را وارد کنید. </p>
                             </div>
-                            <div class="flex flex-col gap-1">
+                            <div class="flex flex-col gap-1 relative">
                                 <label class="text-sm font-normal text-stone-700 pr-2 cursor-default"> نوع خودرو </label>
-                                <select name="vehicles"
-                                    class="h-11 rounded-custom border border-[#CFD1D4] focus:ring-0 outline-none focus:border-[#CFD1D4] text-sm font-normal">
+                                <select name="vehicles" required v-model="categoryType"
+                                    class="h-11 rounded-custom border border-[#CFD1D4] focus:ring-0 outline-none focus:border-[#CFD1D4] text-sm font-normal validation-input">
                                     <option value="0" selected disabled> انتخاب کنید </option>
                                     <option :value="category.id" v-for="(category, index) in categoryList" :key="index">
                                         {{ category.title }} </option>
                                 </select>
+                                <p class="absolute text-red-500 text-xs top-full right-2 font-normal" v-if="categoryAlert"> نوع خودرو را وارد کنید. </p>
                             </div>
-                            <div class="flex flex-col gap-1">
+                            <div class="flex flex-col gap-1 relative">
                                 <label class="text-sm font-normal text-stone-700 pr-2 cursor-default"> نام و نام خانوادگی </label>
-                                <input name="fullname" type="text"
-                                    class="h-11 rounded-custom border border-[#CFD1D4] focus:ring-0 outline-none focus:border-[#CFD1D4] text-sm font-normal placeholder:text-[#acacac]"
+                                <input name="fullname" type="text" v-model="fullname" required
+                                    class="validation-input h-11 rounded-custom border border-[#CFD1D4] focus:ring-0 outline-none focus:border-[#CFD1D4] text-sm font-normal placeholder:text-[#acacac]"
                                     placeholder="نام و نام خانوادگی خود را وارد کنید..." />
+                                <p class="absolute text-red-500 text-xs top-full right-2 font-normal" v-if="nameAlert"> نام و نام خانوادگی خود را وارد کنید. (بیشتر از 3 کاراکتر) </p>
                             </div>
-                            <div class="flex flex-col gap-1">
+                            <div class="flex flex-col gap-1 relative">
                                 <label class="text-sm font-normal text-stone-700 pr-2 cursor-default"> شماره موبایل </label>
-                                <input name="phone" type="tel"
-                                    class="h-11 dir-rtl rounded-custom border border-[#CFD1D4] focus:ring-0 outline-none focus:border-[#CFD1D4] text-sm font-normal placeholder:text-[#acacac]"
+                                <input name="phone" type="tel" v-model="phone" required
+                                    class="validation-input h-11 dir-rtl rounded-custom border border-[#CFD1D4] focus:ring-0 outline-none focus:border-[#CFD1D4] text-sm font-normal placeholder:text-[#acacac]"
                                     placeholder="شماره موبایل خود را وارد کنید..." />
+                                <p class="absolute text-red-500 text-xs top-full right-2 font-normal" v-if="phoneAlert"> شماره موبایل خود را به درستی وارد کنید. </p>
                             </div>
                         </div>
                         <div class="flex_center sm:flex-col lg:flex-row gap-2">
-                            <button type="submit"
+                            <button type="submit" @click="submitForm"
                                 class="h-11 rounded-custom bg-normal text-lg font-medium text-white flex_center w-full sm:w-32 md:w-36 lg:w-full max-w-[272px]">
                                 ثبت درخواست </button>
                             <div @click="changeCounselingStep(0)"
@@ -240,7 +244,7 @@
                                 مرحله قبل
                             </div>
                         </div>
-                    </form>
+                    </section>
                 </section>
                 <section class="sm:col-span-6 p-6 text-stone-700 pt-6 px-4 lg:px-10 lg:pt-16 flex flex-col justify-between">
                     <div class="flex flex-col gap-2 lg:gap-6">
@@ -304,6 +308,8 @@ export default {
     props: {
         catalogLink: String,
         categories: [Array, Object, String],
+        landSlug: String,
+        landId: [String, Number],
     },
     setup(props) {
         const loanSteps = ref(100000000);
@@ -322,6 +328,13 @@ export default {
         const showModal = ref(false);
         const counselingStep = ref(0);
         const categoryList = ref(JSON.parse(props.categories));
+        const categoryType = ref(0);
+        const fullname = ref("");
+        const phone = ref("");
+        const phoneAlert = ref(false);
+        const nameAlert = ref(false);
+        const categoryAlert = ref(false);
+        const facilityAlert = ref(false);
 
         const closeModal = () => {
             showModal.value = false;
@@ -377,7 +390,7 @@ export default {
             const refundFullNumber = loanInitialValue.value + (loanInitialValue.value * refundWageValue) / 100;
             refund.value = Math.floor(refundFullNumber / 1000) * 1000;
             
-            const perMonthFullNumber = parseInt((refund.value - ((loanInitialValue.value * wageValue) / 100)) / paymentDuration.value); // /2
+            const perMonthFullNumber = parseInt((refund.value - ((loanInitialValue.value * wageValue) / 100)) / paymentDuration.value);
             loanPerMonth.value = Math.floor(perMonthFullNumber / 1000) * 1000;
         };
 
@@ -425,6 +438,69 @@ export default {
             counselingStep.value = index;
         }
 
+        const submitForm = () => {
+            
+            const inputs = document.querySelectorAll('.validation-input');
+
+            inputs.forEach((element) => {
+                element.classList.add('invalid:!border-red-500');
+            });
+
+            for (const [field, value] of Object.entries({ amount: loanInitialValue, phone: phone, category_id: categoryType, full_name: fullname })) {
+                console.log(field, value.value);
+                if (field === 'phone') {
+                    if (value.value.toString().length != 11) {
+                        phoneAlert.value = true;
+                    } else {
+                        phoneAlert.value = false;
+                    }
+                } else if(field === 'full_name'){
+                    if (value.value.toString().length < 3 || value.value.toString().length > 63) {
+                        nameAlert.value = true;
+                    } else {
+                        nameAlert.value = false;
+                    }
+                } else if(field === 'category_id'){
+                    if (value.value == 0) {
+                        categoryAlert.value = true;
+                    } else {
+                        categoryAlert.value = false;
+                    }
+                } else if(field === 'amount'){
+                    if (value.value == 0) {
+                        facilityAlert.value = true;
+                    } else {
+                        facilityAlert.value = false;
+                    }
+                }
+            }
+
+            console.log(!phoneAlert.value && !nameAlert.value && !categoryAlert.value && !facilityAlert.value);
+
+            if (!phoneAlert.value && !nameAlert.value && !categoryAlert.value && !facilityAlert.value) {
+                const body = {
+                    amount: loanInitialValue.value.toString(),
+                    category_id: categoryType.value,
+                    full_name: fullname.value.toString(),
+                    phone: phone.value.toString(),
+                    land_id: Number(props.landId),
+                }
+                console.log(body);
+                axios.post(`https://paye1.com/api/l/${props.landSlug}/facilities-request`, body)
+                    .then(function (response) {
+                        // handle success
+                        console.log(response);
+                    })
+                    .catch(function (error) {
+                        // handle error
+                        console.log(error);
+                    })
+                    .finally(function () {
+                        // always executed
+                    });
+            }
+        }
+
         return {
             showModal,
             closeModal,
@@ -450,6 +526,14 @@ export default {
             loanOptions,
             formatValue,
             categoryList,
+            categoryType,
+            phoneAlert,
+            nameAlert,
+            categoryAlert,
+            facilityAlert,
+            submitForm,
+            fullname,
+            phone,
         }
     }
 }
