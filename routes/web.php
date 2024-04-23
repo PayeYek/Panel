@@ -64,6 +64,8 @@ Route::middleware(['splade'])->group(function () {
             Route::resource('agency', \App\Http\Controllers\Panel\Land\AgencyController::class)->except('show');
             // Land Articles
             Route::resource('article', \App\Http\Controllers\Panel\Land\ArticleController::class)->except('show');
+            // Land Facilities
+            Route::resource('facility', \App\Http\Controllers\Panel\Land\FacilitiesController::class)->except(['show', 'create', 'store']);
             // Land Slides
             Route::resource('slide', \App\Http\Controllers\Panel\Land\SlideController::class)->except('show');
             // Land Videos

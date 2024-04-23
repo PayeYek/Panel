@@ -553,5 +553,17 @@
     "Commodity type and pricing": "نوع کالا و قیمت",
     "Please specify the type of product and its price.": "لطفا نوع کالا و قیمت آن را تعیین کنید.",
     "Calculator": "محاسبه اقساط",
-    "Load Calculator": "تسهیلات"
+    "Load Calculator": "تسهیلات",
+    "Has it" : "دارد",
+    "Does not have" : "ندارد",
+    "Facility requests" : "درخواست تسهیلات",
+    "Pending" : "در انتظار",
+    "Reviewed" : "بررسی شده",
+    "Called" : "تماس گرفته شده",
+    "Unknown status" : "وضعیت نامشخص",
+    "Facilities": "تسهیلات",
+    "Amount": "مبلغ",
+    "State": "وضعیت",
+    "Land title": "نام شرکت"
+
 }

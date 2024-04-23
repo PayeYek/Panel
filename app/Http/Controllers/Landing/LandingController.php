@@ -59,6 +59,23 @@ class LandingController extends Controller
         return view('landing.page-single', compact('land', 'data', 'newsArticles', 'blogArticles'));
     }
 
+    public function getLand($page): Land
+    {
+        return Land::where('slug', $page)
+            ->with([
+                'products',
+                'slides' => function ($query) {
+                    $query->where('status', 1);
+                },
+                'videos',
+                'styles',
+                'articles' => function ($query) {
+                    $query->orderBy('created_at', 'desc');
+                }
+            ])
+            ->firstOrFail();
+    }
+
     public function about($page)
     {
         $land = $this->getLand($page);
@@ -162,8 +179,8 @@ class LandingController extends Controller
         $breadcrumbs[] = ['title' => __('Products'), 'url' => route('landing.product.list', ['page' => $land->slug])];
         $breadcrumbs[] = [
             'title' => $product->category->title,
-            'url'   => route('landing.product.list', [
-                'page'     => $land->slug,
+            'url' => route('landing.product.list', [
+                'page' => $land->slug,
                 'category' => $product->category->id
             ])
         ];
@@ -301,22 +318,5 @@ class LandingController extends Controller
         // $breadcrumbs[] = ['title' => __('Progress'), 'url' => null ];
 
         return view('landing.advertise', compact('land'));
-    }
-
-    public function getLand($page): Land
-    {
-        return Land::where('slug', $page)
-            ->with([
-                'products',
-                'slides'   => function ($query) {
-                    $query->where('status', 1);
-                },
-                'videos',
-                'styles',
-                'articles' => function ($query) {
-                    $query->orderBy('created_at', 'desc');
-                }
-            ])
-            ->firstOrFail();
     }
 }
