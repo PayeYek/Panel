@@ -171,9 +171,9 @@
             </div>
             <!-- title -->
             <p
-                class="mb-4 pr-4 relative before:absolute before:top-1 before:right-0 before:size-2 before:rounded-full before:bg-normal">
+                class="mb-4 pr-4 relative before:absolute before:top-1 before:right-0 before:size-2 before:rounded-full before:bg-normal cursor-default">
                 اطلاعات بیشتر </p>
-            <ul class="pr-6 space-y-2 list-inside list-disc">
+            <ul class="pr-6 space-y-2 list-inside list-disc cursor-default">
                 <li class=""> تعداد چک های قابل پرداخت {{ Number(paymentDuration) +1 }} چک </li>
                 <li class=""> مبلغ بیمه بدنه به صورت جداگانه روی اقساط محاسبه و دریافت می شود. </li>
                 <li class=""> هزینه عملیات بدون ارزش افزوده محاسبه گردیده است. </li>
@@ -282,6 +282,7 @@ export default {
         const loanPerMonth = ref(0);
         const refund = ref(0);
         const wage = ref(9.735);
+        const refunWage = ref(40.085);
         const modalState = ref(false);
         const informationState = ref(false);
         const loanOptions = ref([]);
@@ -321,11 +322,6 @@ export default {
             informationState.value = false;
         }
 
-        const closeCounselingState = () => {
-            counselingState.value = false;
-            modalState.value = false;
-        }
-
         const closeInformationState = () => {
             informationState.value = false;
             modalState.value = false;
@@ -341,17 +337,29 @@ export default {
                 60: 18.69
             };
 
-            const wageValue = wageMap[paymentDuration.value];
-            wage.value = wageValue;
+            const reFundMap = {
+                12: 21.345,
+                24: 40.085,
+                36: 59.295,
+                48: 79.015,
+                60: 99.27,
+            };
 
+            const wageValue = wageMap[paymentDuration.value];
+            const refundWageValue = reFundMap[paymentDuration.value];
+            wage.value = wageValue;
+            refunWage.value = refundWageValue;
+
+            
             const fullNumber = loanInitialValue.value - (loanInitialValue.value * wageValue) / 100;
             fund.value = Math.floor(fullNumber / 1000) * 1000;
 
-            const perMonthFullNumber = parseInt(loanInitialValue.value / (paymentDuration.value / 2));
+            const refundFullNumber = loanInitialValue.value + (loanInitialValue.value * refundWageValue) / 100;
+            refund.value = Math.floor(refundFullNumber / 1000) * 1000;
+
+            const perMonthFullNumber = parseInt((refund.value - ((loanInitialValue.value * wageValue) / 100)) / paymentDuration.value); // /2
             loanPerMonth.value = Math.floor(perMonthFullNumber / 1000) * 1000;
 
-            const refundFullNumber = loanInitialValue.value + (loanInitialValue.value * wageValue) / 100;
-            refund.value = Math.floor(refundFullNumber / 1000) * 1000;
         };
 
         watchEffect(() => {
@@ -396,7 +404,6 @@ export default {
             informationState,
             trueCounselingState,
             closeModalState,
-            closeCounselingState,
             trueInformationState,
             closeInformationState,
             loanOptions,
