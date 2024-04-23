@@ -6,7 +6,6 @@ namespace App\Http\Controllers\Panel\Land;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Panel\Landing\BrandRequest;
 use App\Models\LandBrand;
-use App\Models\LandCategory;
 use App\Tables\Landing\Brands;
 use Illuminate\Support\Facades\Storage;
 
