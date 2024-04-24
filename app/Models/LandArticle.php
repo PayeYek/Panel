@@ -13,6 +13,10 @@ class LandArticle extends Model
 
     protected $table = 'land_articles';
 
+    protected $casts = [
+        'publish' => 'boolean'
+    ];
+
     protected $fillable = [
         'land_id',
         'type',
@@ -20,13 +24,19 @@ class LandArticle extends Model
         'title',
         'description',
         'body',
-        'image'
+        'image',
+        'publish'
     ];
+
+    public function scopePublished($query)
+    {
+        return $query->where('publish', true);
+    }
 
     protected function slug(): Attribute
     {
         return new Attribute(
-            set: fn($value) => $value ? \Str::slug($value) : \Str::slug( $this->attributes['title'])
+            set: fn($value) => $value ? \Str::slug($value) : \Str::slug($this->attributes['title'])
         );
     }
 

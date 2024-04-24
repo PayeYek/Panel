@@ -572,5 +572,7 @@
     "pending": "در انتظار",
     "called": "تماس گرفته شده",
     "restricted": "مسدود شده",
-    "reviewed": "بررسی شده"
+    "reviewed": "بررسی شده",
+    "Is published": "منتشر شده",
+    "Dou you want to publish?": "انتشار داده شود؟"
 }

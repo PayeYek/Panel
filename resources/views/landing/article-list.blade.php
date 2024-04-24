@@ -4,7 +4,7 @@
         '1'  => 'gap-14 sm:gap-0',
         default => ''
     };
-    
+
     $gridCols = match($land->styles->a_card_type."") {
         '1' => 'grid grid-cols-1 gap-4 default_container',
         '2' => 'gap-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 default_container',
@@ -28,35 +28,36 @@
         default => ''
     };
 
-    
+
 @endphp
 
 <x-layout.default.main :land="$land">
     <main class="pt-4 {{ $marginBottom }}">
         {{-- breadcrumbs --}}
-        <x-common_landing.breadcrumbs :data="$breadcrumbs" />
+        <x-common_landing.breadcrumbs :data="$breadcrumbs"/>
 
-        <Articles
-            gridStyle="{{ $gridCols }}"
-            type="{{ $land->styles->a_card_type }}"
-            landSlug="{{ $land->slug }}"
-            data="{{ $land->articles }}"
-            borderStyle="{{ $borderStyle }}"
-            evenOdd="{{ $land->styles->a_striped }}" />
-
+        @if ($land->articles()->published()->count() > 0)
+            <Articles
+                gridStyle="{{ $gridCols }}"
+                type="{{ $land->styles->a_card_type }}"
+                landSlug="{{ $land->slug }}"
+                data="{{ $land->articles }}"
+                borderStyle="{{ $borderStyle }}"
+                evenOdd="{{ $land->styles->a_striped }}"/>
+        @endif
         {{-- contact to expert --}}
         @switch($land->styles->contact_type)
             @case(1)
-                <x-home_landing.contact.type-one />
-            @break
+                <x-home_landing.contact.type-one/>
+                @break
 
             @case(4)
-                <x-home_landing.contact.type-four />
-            @break
+                <x-home_landing.contact.type-four/>
+                @break
 
             @case(5)
-                <x-home_landing.contact.type-two />
-            @break
+                <x-home_landing.contact.type-two/>
+                @break
 
         @endswitch
     </main>
