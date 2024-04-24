@@ -1,3 +1,4 @@
+@php use App\Enum\LandFacilityStateEnum; @endphp
 <x-layout.admin>
 
     <x-splade-table
@@ -20,19 +21,24 @@
 
         @cell('state', $item)
         @if($item->state)
-            @if($item->state === \App\Enum\LandFacilityStateEnum::PENDING)
+            @if($item->state === LandFacilityStateEnum::PENDING)
                 <span
-                    class="inline-flex items-center gap-x-1.5 py-1.5 px-3 rounded-full text-xs font-medium bg-yellow-500 text-white">{{ __('Pending') }}
+                    class="inline-flex items-center gap-x-1.5 py-1.5 px-3 rounded-full text-xs font-medium bg-yellow-500 text-white">{{ __($item->state->value) }}
                 </span>
             @endif
-            @if($item->state === \App\Enum\LandFacilityStateEnum::REVIEWED)
+            @if($item->state === LandFacilityStateEnum::REVIEWED)
                 <span
-                    class="inline-flex items-center gap-x-1.5 py-1.5 px-3 rounded-full text-xs font-medium bg-blue-500 text-white">{{ __('Reviewed') }}
+                    class="inline-flex items-center gap-x-1.5 py-1.5 px-3 rounded-full text-xs font-medium bg-blue-500 text-white">{{ __($item->state->value) }}
                 </span>
             @endif
-            @if($item->state === \App\Enum\LandFacilityStateEnum::CALLED)
+            @if($item->state === LandFacilityStateEnum::CALLED)
                 <span
-                    class="inline-flex items-center gap-x-1.5 py-1.5 px-3 rounded-full text-xs font-medium bg-green-500 text-white">{{ __('Called') }}
+                    class="inline-flex items-center gap-x-1.5 py-1.5 px-3 rounded-full text-xs font-medium bg-green-500 text-white">{{ __($item->state->value) }}
+                </span>
+            @endif
+            @if($item->state === LandFacilityStateEnum::RESTRICTED)
+                <span
+                    class="inline-flex items-center gap-x-1.5 py-1.5 px-3 rounded-full text-xs font-medium bg-red-500 text-white">{{ __($item->state->value) }}
                 </span>
             @endif
         @else

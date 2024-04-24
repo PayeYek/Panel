@@ -17,7 +17,7 @@ return new class extends Migration {
 
         Schema::create('province_cities', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('province_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('province_id')->constrained()->onDelete('cascade');
             $table->string('name');
 
             $table->index('province_id');

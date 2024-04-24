@@ -1,5 +1,6 @@
 <?php
 
+use App\Enum\LandFacilityStateEnum;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -18,7 +19,7 @@ return new class extends Migration {
             $table->foreignId('category_id')->nullable()->constrained('land_categories')->onDelete('cascade');
             $table->string('amount');
             $table->text('comment')->nullable();
-            $table->tinyInteger('state')->nullable();
+            $table->string('state')->default(LandFacilityStateEnum::PENDING)->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

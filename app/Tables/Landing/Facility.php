@@ -35,7 +35,7 @@ class Facility extends AbstractTable
         });
 
         return QueryBuilder::for(LandFacility::class)
-            ->with('land')
+            ->with(['land', 'category'])
             ->defaultSort('-id')
             ->allowedSorts(['id', 'state'])
             ->allowedFilters(['state', 'full_name', 'phone', $globalSearch]);
@@ -85,8 +85,8 @@ class Facility extends AbstractTable
             exportAs: false,
         );
         $table->column(
-            key: 'product.name',
-            label: __('Product name'),
+            key: 'category.title',
+            label: __('Category title'),
             hidden: true,
 //            sortable: true,
 //            searchable: true,
