@@ -36,7 +36,7 @@ class LandProduct extends Model
     ];
 
     protected $casts = [
-        'colors'   => 'array',
+        'colors' => 'array',
         'pictures' => 'array',
     ];
 
@@ -45,7 +45,7 @@ class LandProduct extends Model
         return new ModelAttribute(
             set: fn($value) => $value ? \Str::slug($value) :
                 \Str::slug(
-                    ($this->category->slug ? ' '. $this->category->slug : '')
+                    ($this->category->slug ? ' ' . $this->category->slug : '')
                     . ($this->attributes['tonnage'] ? ' ' . $this->attributes['tonnage'] . 'ton' : '')
                     . ($this->attributes['model'] ? ' ' . $this->attributes['model'] : '')
                     . ($this->brand->title ? ' ' . $this->brand->title : '')
@@ -105,7 +105,7 @@ class LandProduct extends Model
 
     public function getPicturesAttribute()
     {
-        $pictures = $this->attributes["pictures"];
+        $pictures = $this->attributes['pictures'];
 
         if (is_null($pictures)) return [];
 

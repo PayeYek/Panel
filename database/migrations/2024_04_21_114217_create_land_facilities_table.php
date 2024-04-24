@@ -14,10 +14,8 @@ return new class extends Migration {
             $table->id();
             $table->string('full_name');
             $table->string('phone');
-            $table->foreignId('land_id')->nullable()
-                ->constrained();
-            $table->foreignId('category_id')->nullable()
-                ->constrained('land_categories');
+            $table->foreignId('land_id')->nullable()->constrained('lands')->onDelete('cascade');
+            $table->foreignId('category_id')->nullable()->constrained('land_categories')->onDelete('cascade');
             $table->string('amount');
             $table->text('comment')->nullable();
             $table->tinyInteger('state')->nullable();
