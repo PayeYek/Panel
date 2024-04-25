@@ -78,7 +78,7 @@ class Facility extends AbstractTable
         $table->column(
             key: 'land.title',
             label: __('Land title'),
-            hidden: true,
+//            hidden: true,
 //            sortable: true,
 //            searchable: true,
 //            highlight: true,
@@ -86,8 +86,8 @@ class Facility extends AbstractTable
         );
         $table->column(
             key: 'category.title',
-            label: __('Category title'),
-            hidden: true,
+            label: __('Request'),
+//            hidden: true,
 //            sortable: true,
 //            searchable: true,
             //highlight: true,
@@ -118,6 +118,19 @@ class Facility extends AbstractTable
 //            sortable: true,
 //            searchable: true,
             //highlight: true,
+            exportAs: false,
+        );
+
+        $table->column(
+            key: 'created_at',
+            label: __('Created At'),
+            //canBeHidden: true,
+            //hidden: true,
+            //sortable: true,
+            //searchable: true,
+            //highlight: true,
+            //classes: false,
+            //alignment: 'right'
             exportAs: false,
         );
 

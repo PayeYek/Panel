@@ -47,16 +47,4 @@ class FacilitiesController extends Controller
         return back();
     }
 
-
-//    public function getImage(mixed $data, BrandRequest $request): mixed
-//    {
-//        /*TODO : IMAGE URL IN STORAGE*/
-//        $data['image'] = null;
-//        if (!empty($request->file('image'))) {
-//            $data['image'] =
-//                $request->file('image')->store('media/land/brands', 'public');
-//        }
-//        return $data;
-//    }
-
 }

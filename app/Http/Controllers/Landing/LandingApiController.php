@@ -19,6 +19,7 @@ use Exception;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Response;
 use ProtoneMedia\Splade\Facades\SEO;
+use Str;
 
 class LandingApiController extends Controller
 {
@@ -150,6 +151,17 @@ class LandingApiController extends Controller
                 ]);
             });
 
+            $breadcrumbs = [];
+            $breadcrumbs[] = [
+                'title' => __('Home'),
+                'url' => Str::after(parse_url(route('api.landing.page.show', ['page' => $land->slug]), PHP_URL_PATH), '/api/l/')
+            ];
+
+            $breadcrumbs[] = [
+                'title' => __('Products'),
+                'url' => Str::after(parse_url(route('api.landing.product.list', ['page' => $land->slug]), PHP_URL_PATH), '/api/l/')
+            ];
+
             $data = [
                 'categories' => $categories,
                 'products' => [
@@ -167,6 +179,7 @@ class LandingApiController extends Controller
                     'to' => $productsPaginator->lastItem(),
                     'total' => $productsPaginator->total(),
                 ],
+                'breadcrumbs' => $breadcrumbs
             ];
         } else {
             $products = $land->products->map(function ($product) {
@@ -177,8 +190,15 @@ class LandingApiController extends Controller
             });
 
             $breadcrumbs = [];
-            $breadcrumbs[] = ['title' => __('Home'), 'url' => route('api.landing.page.show', ['page' => $land->slug])];
-            $breadcrumbs[] = ['title' => __('Products'), 'url' => route('api.landing.product.list', ['page' => $land->slug])];
+            $breadcrumbs[] = [
+                'title' => __('Home'),
+                'url' => Str::after(parse_url(route('api.landing.page.show', ['page' => $land->slug]), PHP_URL_PATH), '/api/l/')
+            ];
+
+            $breadcrumbs[] = [
+                'title' => __('Products'),
+                'url' => Str::after(parse_url(route('api.landing.product.list', ['page' => $land->slug]), PHP_URL_PATH), '/api/l/')
+            ];
 
             $data = [
                 'categories' => $filteredCategory,
