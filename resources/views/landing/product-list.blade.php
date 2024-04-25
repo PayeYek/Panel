@@ -38,11 +38,11 @@
         '8' => 'sm:grid-cols-2 lg:grid-cols-3 rounded-custom overflow-hidden ' . $borderStyle,
         '9' => 'md:grid-cols-1 rounded-custom overflow-hidden ' . $borderStyle,
         '10' => 'gap-12',
-        '11' => 'gap-4 lg:grid-cols-4',
+        '11' => 'gap-4 sm:grid-cols-2 lg:grid-cols-4',
         '12' => 'gap-4',
         '13' => 'gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4',
-        '14' => 'grid grid-cols-1 lg:grid-cols-4 gap-4 sm:grid-cols-2',
-        '15' => 'grid grid-cols-1 sm:grid-cols-2 gap-4 lg:max-w-[66rem] lg:mx-auto',
+        '14' => 'lg:grid-cols-4 gap-4 sm:grid-cols-2',
+        '15' => 'sm:grid-cols-2 gap-4 lg:max-w-[66rem] lg:mx-auto',
         default => 'lg:grid-cols-5 gap-4 sm:grid-cols-2',
     };
 @endphp
