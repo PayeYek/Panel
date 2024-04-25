@@ -1,7 +1,8 @@
 <template>
     <section class="default_container mt-12">
         <section class="mb-10 lg:mb-20">
-            <h3 class="text-lg lg:text-2xl font-medium cursor-default text-stone-700 mb-4 lg:mb-8"> محاسبه گر اقساط تسهیلات </h3>
+            <h3 class="text-lg lg:text-2xl font-medium cursor-default text-stone-700 mb-4 lg:mb-8"> محاسبه گر اقساط
+                تسهیلات </h3>
             <section class="grid grid-cols-1 lg:grid-cols-10 gap-5 drop-shadow-smooth bg-white rounded-custom">
                 <section class="lg:col-span-6 p-6">
                     <section class="flex flex-col max-w-[33rem] w-full mx-auto">
@@ -43,7 +44,8 @@
                                     :min="loanMin" :max="loanMax" :value="loanInitialValue" v-model="loanInitialValue"
                                     :step="loanSteps" />
                             </div>
-                            <div class="text-sm font-normal flex items-center justify-between mb-4 text-stone-700 cursor-default">
+                            <div
+                                class="text-sm font-normal flex items-center justify-between mb-4 text-stone-700 cursor-default">
                                 <p> 200 میلیون تومان </p>
                                 <p> 3 میلیارد تومان </p>
                             </div>
@@ -174,7 +176,7 @@
                 class="mb-4 pr-4 relative before:absolute before:top-1 before:right-0 before:size-2 before:rounded-full before:bg-normal cursor-default">
                 اطلاعات بیشتر </p>
             <ul class="pr-6 space-y-2 list-inside list-disc cursor-default">
-                <li class=""> تعداد چک های قابل پرداخت {{ Number(paymentDuration) +1 }} چک </li>
+                <li class=""> تعداد چک های قابل پرداخت {{ Number(paymentDuration) + 1 }} چک </li>
                 <li class=""> مبلغ بیمه بدنه به صورت جداگانه روی اقساط محاسبه و دریافت می شود. </li>
                 <li class=""> هزینه عملیات بدون ارزش افزوده محاسبه گردیده است. </li>
                 <li class=""> سود اقساط شما معادل نرخ مصوب بانک مرکزی یعنی 23 درصد است. </li>
@@ -182,20 +184,26 @@
         </section>
 
         <section>
-            <h3 class="text-lg lg:text-2xl font-medium text-stone-700 mb-4 lg:mb-8 cursor-default"> مدارک مورد نیاز دریافت تسهیلات
+            <h3 class="text-lg lg:text-2xl font-medium text-stone-700 mb-4 lg:mb-8 cursor-default"> مدارک مورد نیاز
+                دریافت تسهیلات
             </h3>
             <Facilities classNames="mb-10 lg:mb-20" />
         </section>
 
-        <section class="grid grid-cols-1 lg:grid-cols-10 gap-5 drop-shadow-smooth bg-white rounded-custom facility_form">
-            <section class="lg:col-span-6 p-6 order-2 text-stone-700 pt-6 px-4 lg:order-1 lg:px-10 lg:pt-16 flex flex-col justify-between">
+        <section
+            class="grid grid-cols-1 lg:grid-cols-10 gap-5 drop-shadow-smooth bg-white rounded-custom facility_form">
+            <section
+                class="lg:col-span-6 p-6 order-2 text-stone-700 pt-6 px-4 lg:order-1 lg:px-10 lg:pt-16 flex flex-col justify-between">
                 <div class="flex flex-col gap-2 lg:gap-6 cursor-default">
                     <h4 class="text-lg font-semibold lg:text-2xl"> دریافت تسهیلات در کوتاه ترین زمان </h4>
                     <p class="text-sm font-normal leading-6 lg:leading-7 mb-8 lg:mb-0">
-                        با ثبت درخواست دریافت تسهیلات جهت خرید ماشین های سنگین، کارشناسان لیزینگ اتوبان با شما تماس خواهند
-                        گرفت و مراحل دریافت تسهیلات را متناسب با شرایط شما به صورت کامل به شما توضیح خواهند داد، پس از تکمیل
+                        با ثبت درخواست دریافت تسهیلات جهت خرید ماشین های سنگین، کارشناسان لیزینگ اتوبان با شما تماس
+                        خواهند
+                        گرفت و مراحل دریافت تسهیلات را متناسب با شرایط شما به صورت کامل به شما توضیح خواهند داد، پس از
+                        تکمیل
                         اطلاعات اولیه پروسه دریافت تسهیلات آغاز خواهد شد.
-                        در صورت تکمیل مدارک از سمت شما پروسه دریافت تسهیلات به سرعت طی شده و در مدت زمان 2 هفته می توانید
+                        در صورت تکمیل مدارک از سمت شما پروسه دریافت تسهیلات به سرعت طی شده و در مدت زمان 2 هفته می
+                        توانید
                         مبلغ تسهیلات مورد نظر را دریافت نمایید.
                     </p>
                 </div>
@@ -211,47 +219,54 @@
                 <h4
                     class="text-sm pr-4 font-medium text-stone-700 mb-2 lg:mb-5 relative cursor-default before:absolute before:content-[''] before:rounded-full before:bg-normal before:top-1.5 before:right-0 before:size-2">
                     تسهیلات خودروی تجاری </h4>
-                <p class="text-sm lg:text-base font-normal text-stone-700 mb-6 lg:mb-8 cursor-default"> برای درخواست تسهیلات خودروی
+                <p class="text-sm lg:text-base font-normal text-stone-700 mb-6 lg:mb-8 cursor-default"> برای درخواست
+                    تسهیلات خودروی
                     تجاری
                     مشخصات را وارد کنید. </p>
-                <form action="">
-                    <div class="flex flex-col text-stone-700 gap-4 mb-9">
-                        <div class="flex flex-col gap-1">
+                <section>
+                    <div class="flex flex-col text-stone-700 gap-5 mb-9">
+                        <div class="flex flex-col gap-1 relative">
                             <label class="text-sm font-normal text-stone-700 pr-2"> تسهیلات </label>
-                            <select name="facilities" v-model="loanInitialValue"
-                                class="h-11 rounded-custom border border-[#CFD1D4] focus:ring-0 outline-none focus:border-[#CFD1D4] text-sm font-normal">
+                            <select name="facilities" v-model="loanInitialValue" required
+                                class="h-11 rounded-custom border border-[#CFD1D4] focus:ring-0 outline-none focus:border-[#CFD1D4] text-sm font-normal validation-input">
                                 <option value="0" selected disabled> انتخاب کنید </option>
                                 <option v-for="(option, index) in loanOptions" :key="index" :value="option.key">
                                     {{ formatValue(option.value) }} تومان
                                 </option>
                             </select>
+                            <p class="absolute text-red-500 text-xs -bottom-5 right-2 font-normal" v-if="facilityAlert"> میزان تسهیلات را وارد کنید. </p>
                         </div>
-                        <div class="flex flex-col gap-1">
+                        <div class="flex flex-col gap-1 relative">
                             <label class="text-sm font-normal text-stone-700 pr-2"> نوع خودرو </label>
-                            <select name="vehicles"
-                                class="h-11 rounded-custom border border-[#CFD1D4] focus:ring-0 outline-none focus:border-[#CFD1D4] text-sm font-normal">
+                            <select name="vehicles" v-model="categoryType" required
+                                class="h-11 rounded-custom border border-[#CFD1D4] focus:ring-0 outline-none focus:border-[#CFD1D4] text-sm font-normal validation-input">
                                 <option value="0" selected disabled> انتخاب کنید </option>
-                                <option v-for="(category, index) in categories" :value="category.id"> {{ category.title }}
+                                <option v-for="(category, index) in categories" :value="category.id" :key="index"> {{ category.title
+                                    }}
                                 </option>
                             </select>
+                            <p class="absolute text-red-500 text-xs -bottom-5 right-2 font-normal" v-if="categoryAlert"> نوع خودرو را وارد کنید. </p>
                         </div>
-                        <div class="flex flex-col gap-1">
+                        <div class="flex flex-col gap-1 relative">
                             <label class="text-sm font-normal text-stone-700 pr-2"> نام و نام خانوادگی </label>
-                            <input name="fullname" type="text"
-                                class="h-11 rounded-custom border border-[#CFD1D4] focus:ring-0 outline-none focus:border-[#CFD1D4] text-sm font-normal placeholder:text-[#acacac]"
+                            <input name="fullname" type="text" v-model="fullname" required
+                                class="validation-input h-11 rounded-custom border border-[#CFD1D4] focus:ring-0 outline-none focus:border-[#CFD1D4] text-sm font-normal placeholder:text-[#acacac]"
                                 placeholder="نام و نام خانوادگی خود را وارد کنید..." />
+                                <p class="absolute text-red-500 text-xs -bottom-5 right-2 font-normal" v-if="nameAlert"> نام و نام خانوادگی خود را وارد کنید. (بیشتر از 3 کاراکتر) </p>
                         </div>
-                        <div class="flex flex-col gap-1">
+                        <div class="flex flex-col gap-1 relative">
                             <label class="text-sm font-normal text-stone-700 pr-2"> شماره موبایل </label>
-                            <input name="phone" type="tel"
-                                class="h-11 dir-rtl rounded-custom border border-[#CFD1D4] focus:ring-0 outline-none focus:border-[#CFD1D4] text-sm font-normal placeholder:text-[#acacac]"
+                            <input name="phone" type="tel" v-model="phone" required
+                                class="validation-input h-11 dir-rtl rounded-custom border border-[#CFD1D4] focus:ring-0 outline-none focus:border-[#CFD1D4] text-sm font-normal placeholder:text-[#acacac]"
                                 placeholder="شماره موبایل خود را وارد کنید..." />
+                            <p class="absolute text-red-500 text-xs -bottom-5 right-2 font-normal" v-if="phoneAlert"> شماره موبایل خود را به درستی وارد کنید. </p>
                         </div>
                     </div>
-                    <button type="submit"
-                        class="h-11 rounded-custom bg-normal text-lg font-medium text-white flex_center w-full max-w-[272px] mx-auto">
+                    <button type="button"
+                        class="h-11 rounded-custom bg-normal text-lg font-medium text-white flex_center w-full max-w-[272px] mx-auto"
+                        @click="submitForm">
                         ثبت درخواست </button>
-                </form>
+                </section>
             </section>
         </section>
     </section>
@@ -261,17 +276,20 @@
 import { ref, computed, watchEffect, onMounted } from 'vue';
 import { numberWithCommas } from '../../common';
 import Facilities from './children/Facilities.vue';
+import axios from 'axios';
 
 export default {
     name: 'Calculator',
     props: {
         list: Array,
         categories: [Array, Object],
+        landSlug: String,
+        landId: [String, Number],
     },
     components: {
         Facilities,
     },
-    setup() {
+    setup(props) {
         const selectedProduct = ref("");
         const loanSteps = ref(100000000);
         const loanMin = ref(200000000);
@@ -286,6 +304,13 @@ export default {
         const modalState = ref(false);
         const informationState = ref(false);
         const loanOptions = ref([]);
+        const categoryType = ref(0);
+        const fullname = ref("");
+        const phone = ref("");
+        const phoneAlert = ref(false);
+        const nameAlert = ref(false);
+        const categoryAlert = ref(false);
+        const facilityAlert = ref(false);
 
         const generatePriceBackground = (value) => {
             let percentage = (value - loanMin.value) / (loanMax.value - loanMin.value) * 100;
@@ -350,7 +375,7 @@ export default {
             wage.value = wageValue;
             refunWage.value = refundWageValue;
 
-            
+
             const fullNumber = loanInitialValue.value - (loanInitialValue.value * wageValue) / 100;
             fund.value = Math.floor(fullNumber / 1000) * 1000;
 
@@ -387,6 +412,67 @@ export default {
             generateLoanOptions();
         });
 
+        const submitForm = () => {
+            const inputs = document.querySelectorAll('.validation-input');
+
+            inputs.forEach((element) => {
+                element.classList.add('invalid:!border-red-500');
+            });
+
+            for (const [field, value] of Object.entries({ amount: loanInitialValue, phone: phone, category_id: categoryType, full_name: fullname })) {
+                if (field === 'phone') {
+                    if (value.value.toString().length != 11) {
+                        phoneAlert.value = true;
+                    } else {
+                        phoneAlert.value = false;
+                    }
+                } else if(field === 'full_name'){
+                    if (value.value.toString().length < 3 || value.value.toString().length > 63) {
+                        nameAlert.value = true;
+                    } else {
+                        nameAlert.value = false;
+                    }
+                } else if(field === 'category_id'){
+                    if (value.value == 0) {
+                        categoryAlert.value = true;
+                    } else {
+                        categoryAlert.value = false;
+                    }
+                } else if(field === 'amount'){
+                    if (value.value == 0) {
+                        facilityAlert.value = true;
+                    } else {
+                        facilityAlert.value = false;
+                    }
+                }
+            }
+
+            if (!phoneAlert.value && !nameAlert.value && !categoryAlert.value && !facilityAlert.value) {
+                const body = {
+                    amount: loanInitialValue.value.toString(),
+                    category_id: categoryType.value,
+                    full_name: fullname.value.toString(),
+                    phone: phone.value.toString(),
+                    land_id: Number(props.landId),
+                }
+                axios.post(`https://paye1.com/api/l/${props.landSlug}/facilities-request`, body)
+                    .then(function (response) {
+                        // handle success
+                        console.log(response);
+                    })
+                    .catch(function (error) {
+                        // handle error
+                        console.log(error);
+                    })
+                    .finally(function () {
+                        // always executed
+                    });
+            }
+
+
+            
+        }
+
         return {
             selectedProduct,
             loanSteps,
@@ -408,6 +494,14 @@ export default {
             closeInformationState,
             loanOptions,
             formatValue,
+            submitForm,
+            categoryType,
+            fullname,
+            phone,
+            phoneAlert,
+            nameAlert,
+            categoryAlert,
+            facilityAlert,
         }
     }
 }
