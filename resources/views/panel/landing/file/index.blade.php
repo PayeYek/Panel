@@ -12,7 +12,7 @@
             href="{{ route('panel.landing.file.edit', $item) }}"
             class="flex flex-col pe-10">
         <div class="flex gap-2">
-            @if(in_array(strtolower($item->type), ['png', 'jpg', 'jpeg', 'gif']))
+            @if(in_array(strtolower($item->type), ['png', 'jpg', 'jpeg', 'gif', 'webp']))
                 <img class="aspect-2 h-14 rounded shrink-0" src="{{$item->path}}"
                      alt="{{$item->name}}">
             @endif
