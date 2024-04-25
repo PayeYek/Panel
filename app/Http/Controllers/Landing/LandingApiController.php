@@ -14,6 +14,7 @@ use App\Models\LandCategory;
 use App\Models\LandComment;
 use App\Models\LandFacility;
 use App\Models\LandProduct;
+use App\Transformers\LandPageTransformer;
 use App\Transformers\LandTransformer;
 use Exception;
 use Illuminate\Http\JsonResponse;
@@ -38,6 +39,26 @@ class LandingApiController extends Controller
 
         $land->makeHidden(['id', 'body', 'logo_origin', 'created_at', 'updated_at', 'products.id']);
 
+        $cats = array();
+        foreach ($land->products as $productItem) {
+            $cats[] = $productItem->category_id;
+        }
+        $cats = array_unique($cats);
+
+        $categories = collect();
+
+        foreach ($cats as $cat) {
+            $categories->add(collect(LandCategory::find($cat)));
+        }
+
+        $filteredCategory = collect($categories)->map(function ($item) {
+            return [
+                'id' => $item['id'],
+                'slug' => $item['slug'],
+                'title' => $item['title']
+            ];
+        });
+
 //        $cats = array();
 //        foreach ($land->products as $product) {
 //            $cats[] = $product->category_id;
@@ -55,8 +76,16 @@ class LandingApiController extends Controller
 //
 //        $newsArticles = $land->articles->where('type', 'news');
 //        $blogArticles = $land->articles->where('type', 'blog');
+        $data = [
+            'products' => $land->products,
+            'slides' => $land->slides,
+            'videos' => $land->videos,
+            'styles' => $land->styles,
+            'articles' => $land->articles,
+            'categories' => $filteredCategory
+        ];
 
-        return $land;
+        return responder()->success($data, LandPageTransformer::class)->respond();
     }
 
     public function pageFooter($page)
