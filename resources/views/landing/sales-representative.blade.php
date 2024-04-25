@@ -39,7 +39,7 @@
             <AmChart borderStyle="{{ $borderStyle }}" />
         </section>
         {{-- send message --}}
-        @switch($land->styles->land_id)
+        {{-- @switch($land->styles->land_id)
             @case(1)
             @case(2)
                 <x-home_landing.contact.type-three />
@@ -49,7 +49,7 @@
                 <x-home_landing.contact.type-two />
             @break
 
-        @endswitch
+        @endswitch --}}
     </main>
 </x-layout.default.main>
 

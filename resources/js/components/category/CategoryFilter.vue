@@ -48,7 +48,7 @@
                     </div>
 
                     <div v-if="productType == 2" :key="index"
-                        :class="'px-8 w-full pt-1 pb-8 items-center flex flex-col rounded-custom ' + borderStyle + ' ' + (evenOdd ? 'evenOdd_cards ' : 'bg-white ')">
+                        :class="'px-8 w-full pt-1 pb-8 items-center flex flex-col rounded-custom ' + borderStyle + ' ' + (evenOdd == 1 ? 'evenOdd_cards ' : 'bg-white ')">
                         <Link :href="'/l/' + landSlug + '/p/' + product.slug" class="h-32 mb-0.5">
                             <img :src="product.image" :alt="product.name" class="object-contain h-full" />
                         </Link>
@@ -65,7 +65,7 @@
                     </div>
 
                     <div v-if="productType == 3" :key="index"
-                        :class="'pl-6 pr-8 w-full pt-5 pb-8 flex flex-col rounded-custom ' + borderStyle + ' ' + (evenOdd ? 'evenOdd_cards ' : 'bg-white ')">
+                        :class="'pl-6 pr-8 w-full pt-5 pb-8 flex flex-col rounded-custom ' + borderStyle + ' ' + (evenOdd == 1 ? 'evenOdd_cards ' : 'bg-white ')">
                         <Link :href="'/l/' + landSlug + '/p/' + product.slug" class="mb-1.5 font-medium lg:mb-1 text-lg sm:line-clamp-1 text-stone-700"> {{ product.name }}
                         </Link>
                         <div class="flex items-center justify-between gap-4">
@@ -84,7 +84,7 @@
                     </div>
 
                     <div v-if="productType == 4" :key="index"
-                        :class="'px-6 gap-2 w-full pt-6 pb-10 flex items-center rounded-custom ' + borderStyle + ' ' + (evenOdd ? 'evenOdd_cards ' : 'bg-white ')">
+                        :class="'px-6 gap-2 w-full pt-6 pb-10 flex items-center rounded-custom ' + borderStyle + ' ' + (evenOdd == 1 ? 'evenOdd_cards ' : 'bg-white ')">
                         <Link :href="'/l/' + landSlug + '/p/' + product.slug" class="flex-none min-w-28 h-28 sm:min-w-32 sm:h-32">
                             <img :src="product.image" :alt="product.name" class="object-contain h-full" />
                         </Link>
@@ -104,7 +104,7 @@
                     </div>
 
                     <div v-if="productType == 5" :key="index"
-                        :class="`flex flex-col w-full sm:flex-row sm:items-center lg:pl-14 sm:gap-4 lg:gap-10 xl:gap-16 px-6 pb-6 pt-4 sm:py-6 after:absolute after:content-[''] after:top-0 after:left-[5%] after:w-[90%] after:h-px after:border-t first:after:hidden after:border-dark-100 relative ` + (evenOdd ? 'evenOdd_cards ' : 'bg-white ')">
+                        :class="`flex flex-col w-full sm:flex-row sm:items-center lg:pl-14 sm:gap-4 lg:gap-10 xl:gap-16 px-6 pb-6 pt-4 sm:py-6 after:absolute after:content-[''] after:top-0 after:left-[5%] after:w-[90%] after:h-px after:border-t first:after:hidden after:border-dark-100 relative ` + (evenOdd == 1 ? 'evenOdd_cards ' : 'bg-white ')">
                         <Link :href="'/l/' + landSlug + '/p/' + product.slug"
                             class="h-[11.5rem] sm:h-32 md:h-36 lg:h-40 sm:mx-0 sm:w-32 md:w-36 lg:w-40 sm:flex-none mx-auto mb-2.5 sm:mb-0">
                             <img :src="product.image" :alt="product.name" class="object-contain h-full" />
@@ -114,7 +114,7 @@
                                 }}
                             </Link>
                             <Link :href="'/l/' + landSlug + '/p/' + product.slug"
-                                class="text-sm leading-6 text-justify text-[#818284] dark:text-white font-medium line-clamp-2">
+                                class="text-sm leading-6 text-justify text-[#818284] font-medium line-clamp-2">
                                 {{ product.description }}
                             </Link>
                         </div>
@@ -129,7 +129,7 @@
                     </div>
 
                     <div v-if="productType == 6" :key="index"
-                        :class="`flex flex-col w-full sm:flex-row sm:items-center lg:pl-14 sm:gap-4 lg:gap-10 xl:gap-16 px-6 sm:pr-10 pb-6 pt-4 sm:py-6 after:absolute after:content-[''] after:top-0 after:left-[5%] after:w-[90%] after:h-px after:border-t first:after:hidden after:border-dark-100 sm:after:hidden relative before:bg-normal before:absolute before:content-[''] before:top-0 before:right-0 before:w-4 before:hidden sm:before:block before:h-full overflow-hidden sm:rounded-custom border-0 sm:border drop-shadow-none ` + borderStyle + ' ' + (evenOdd ? 'evenOdd_cards ' : 'bg-white ')">
+                        :class="`flex flex-col w-full sm:flex-row sm:items-center lg:pl-14 sm:gap-4 lg:gap-10 xl:gap-16 px-6 sm:pr-10 pb-6 pt-4 sm:py-6 after:absolute after:content-[''] after:top-0 after:left-[5%] after:w-[90%] after:h-px after:border-t first:after:hidden after:border-dark-100 sm:after:hidden relative before:bg-normal before:absolute before:content-[''] before:top-0 before:right-0 before:w-4 before:hidden sm:before:block before:h-full overflow-hidden sm:rounded-custom border-0 sm:border drop-shadow-none ` + borderStyle + ' ' + (evenOdd == 1 ? 'evenOdd_cards ' : 'bg-white ')">
                         <Link :href="'/l/' + landSlug + '/p/' + product.slug"
                             class="h-[11.5rem] sm:h-32 md:h-36 lg:h-40 sm:mx-0 sm:w-32 md:w-36 lg:w-40 sm:flex-none mx-auto mb-2.5 sm:mb-0">
                             <img :src="product.image" :alt="product.name" class="object-contain h-full" />
@@ -137,7 +137,7 @@
                         <div class="mb-4 sm:mb-0 sm:flex-1">
                             <Link :href="'/l/' + landSlug + '/p/' + product.slug" class="mb-2 sm:gap-4 font-medium lg:mb-1 text-lg text-stone-700"> {{ product.name }} </Link>
                             <Link :href="'/l/' + landSlug + '/p/' + product.slug"
-                                class="text-sm leading-6 text-justify text-[#818284] dark:text-white font-medium line-clamp-2">
+                                class="text-sm leading-6 text-justify text-[#818284] font-medium line-clamp-2">
                                 {{ product.description }}
                             </Link>
                         </div>
@@ -152,7 +152,7 @@
                     </div>
 
                     <div v-if="productType == 7" :key="index"
-                        :class="'px-8 lg:px-5 xl:px-8 py-5 sm:pb-12 w-full items-center flex flex-col sm:first:rounded-none sm:last:rounded-none shadow-[0px_0px_0px_1px_#d2d2d2] ' + (evenOdd ? 'evenOdd_cards ' : 'bg-white ')">
+                        :class="'px-8 lg:px-5 xl:px-8 py-5 sm:pb-12 w-full items-center flex flex-col sm:first:rounded-none sm:last:rounded-none shadow-[0px_0px_0px_1px_#d2d2d2] ' + (evenOdd == 1 ? 'evenOdd_cards ' : 'bg-white ')">
                         <Link :href="'/l/' + landSlug + '/p/' + product.slug" class="h-32 mb-2">
                             <img :src="product.image" :alt="product.name" class="object-contain h-full" />
                         </Link>
@@ -169,7 +169,7 @@
                     </div>
 
                     <div v-if="productType == 8" :key="index"
-                        :class="'border-b last:border-b-0 border-dark-100 pl-6 pr-8 w-full pt-5 pb-8 sm:border-l sm:[&:nth-child(2n)]:border-l-0 lg:[&:nth-child(2n)]:border-l lg:[&:nth-child(3n)]:border-l-0 flex flex-col ' + (evenOdd ? 'evenOdd_cards ' : 'bg-white ')">
+                        :class="'border-b last:border-b-0 border-dark-100 pl-6 pr-8 w-full pt-5 pb-8 sm:border-l sm:[&:nth-child(2n)]:border-l-0 lg:[&:nth-child(2n)]:border-l lg:[&:nth-child(3n)]:border-l-0 flex flex-col ' + (evenOdd == 1 ? 'evenOdd_cards ' : 'bg-white ')">
                         <Link :href="'/l/' + landSlug + '/p/' + product.slug" class="mb-1.5 font-medium lg:mb-1 text-lg sm:line-clamp-1 text-stone-700"> {{ product.name }}
                         </Link>
                         <div class="flex items-center justify-between gap-4">
@@ -188,7 +188,7 @@
                     </div>
 
                     <div v-if="productType == 9" :key="index"
-                        :class="`flex flex-col w-full sm:flex-row sm:items-center lg:pl-14 sm:gap-4 lg:gap-10 xl:gap-16 px-6 pb-6 pt-4 sm:py-6 after:absolute after:content-[''] after:top-0 after:left-0 after:w-full after:h-px after:border-t first:after:hidden after:border-dark-100 relative ` + (evenOdd ? 'evenOdd_cards ' : 'bg-white ')">
+                        :class="`flex flex-col w-full sm:flex-row sm:items-center lg:pl-14 sm:gap-4 lg:gap-10 xl:gap-16 px-6 pb-6 pt-4 sm:py-6 after:absolute after:content-[''] after:top-0 after:left-0 after:w-full after:h-px after:border-t first:after:hidden after:border-dark-100 relative ` + (evenOdd == 1 ? 'evenOdd_cards ' : 'bg-white ')">
                         <Link :href="'/l/' + landSlug + '/p/' + product.slug"
                             class="h-[11.5rem] sm:h-32 md:h-36 lg:h-40 sm:mx-0 sm:w-32 md:w-36 lg:w-40 sm:flex-none mx-auto mb-2.5 sm:mb-0">
                             <img :src="product.image" :alt="product.name" class="object-contain h-full" />
@@ -198,7 +198,7 @@
                                 }}
                             </Link>
                             <Link :href="'/l/' + landSlug + '/p/' + product.slug"
-                                class="text-sm leading-6 text-justify text-[#818284] dark:text-white font-medium line-clamp-2">
+                                class="text-sm leading-6 text-justify text-[#818284] font-medium line-clamp-2">
                                 {{ product.description }}
                             </Link>
                         </div>
@@ -213,12 +213,12 @@
                     </div>
 
                     <div v-if="productType == 11" :key="index"
-                        :class="'rounded-custom px-8 w-full pt-5 pb-8 items-center flex flex-col product_card ' + borderStyle + ' ' + (evenOdd ? 'evenOdd_cards ' : 'bg-white ')">
-                        <Link :href="'/l/' + landSlug + '/p/' + product.slug" class="h-56 aspect-square mb-3">
+                        :class="'rounded-custom px-8 w-full pt-5 lg:pt-2 pb-8 items-center flex flex-col product_card ' + borderStyle + (evenOdd == 1 ? ' evenOdd_cards ' : ' bg-white ')">
+                        <Link :href="'/l/' + landSlug + '/p/' + product.slug" class="h-56 lg:h-48 lg:mb-1 aspect-square mb-3">
                             <img :src="product.image" :alt="product.name" class="object-contain h-full" />
                         </Link>
-                        <Link :href="'/l/' + landSlug + '/p/' + product.slug" class="mb-3 font-medium text-lg line-clamp-1 text-stone-700 text-center lg:text-xl"> {{ product.name }} </Link>
-                        <Link :href="'/l/' + landSlug + '/p/' + product.slug" class="mb-3 font-medium text-base line-clamp-1 text-stone-700 text-center"> مدل: {{ product.model }} </Link>
+                        <Link :href="'/l/' + landSlug + '/p/' + product.slug" class="mb-3 font-medium text-lg line-clamp-1 text-stone-700 text-center lg:line-clamp-2 lg:mb-1 lg:h-14"> {{ product.name }} </Link>
+                        <Link :href="'/l/' + landSlug + '/p/' + product.slug" class="mb-3 font-medium text-base line-clamp-1 text-stone-700 text-center lg:text-base"> مدل: {{ product.model }} </Link>
                         <div class="flex flex-col w-56 lg:w-full xl:w-56 gap-3">
                             <Link :href="'/l/' + landSlug + '/p/' + product.slug" class="w-full col-span-full h-11 flex_center rounded-custom before:rounded-custom text-white bg-normal hover:bg-focus focus:bg-focus focus:shadow-focus focus:shadow-shadowNormal text-lg font-medium"> فروش اقساطی </Link>
                             <div class="flex items-center gap-2">
@@ -266,12 +266,12 @@
                     </div>
 
                     <div v-if="productType == 13" :key="index"
-                        :class="'rounded-custom pt-2 px-8 w-full pb-5 items-center flex flex-col ' + borderStyle + (evenOdd == 1 ? ' evenOdd_cards' : ' bg-white')">
+                        :class="'rounded-custom pt-2 px-8 md:px-4 lg:px-8 w-full pb-5 items-center flex flex-col ' + borderStyle + (evenOdd == 1 ? ' evenOdd_cards' : ' bg-white')">
                         <Link :href="'/l/' + landSlug + '/p/' + product.slug" class="mb-1 h-48">
                             <img :src="product.image" :alt="product.name" class="object-contain h-full" />
                         </Link>
-                        <Link :href="'/l/' + landSlug + '/p/' + product.slug" class="mb-3 font-medium lg:mb-2 text-lg sm:line-clamp-1 text-stone-700"> {{ product.name }} </Link>
-                        <div class="grid grid-cols-2 gap-2 w-56 lg:w-full">
+                        <Link :href="'/l/' + landSlug + '/p/' + product.slug" class="mb-3 font-medium lg:mb-2 text-lg lg:text-base sm:line-clamp-1 text-stone-700"> {{ product.name }} </Link>
+                        <div class="grid grid-cols-2 gap-2 w-56 md:w-full">
                             <LandBtn text="مشخصات" :to="'/l/' + landSlug + '/p/' + product.slug"
                                 classNames="sameCategoryBtnStyle bg-transparent border border-normal hover:boder-focus text-normal hover:text-normal rounded-custom" />
                             <LandBtn text="کاتالوگ" :to="'/l/' + landSlug + '/p/' + product.slug"
@@ -282,12 +282,12 @@
                     </div>
 
                     <div v-if="productType == 14" :key="index"
-                        :class="'pt-2 px-8 w-72 sm:w-96 lg:w-full lg:max-w-full pb-5 lg:pt-3 items-center flex flex-col rounded-custom mx-auto lg:mx-0 ' + borderStyle + ' ' + (evenOdd == 1 ? 'evenOdd_cards' : 'bg-white')">
-                        <Link :href="'/l/' + landSlug + '/p/' + product.slug" class="mb-2 h-52">
+                        :class="'pt-2 px-8 w-72 sm:w-full pb-5 lg:pt-3 items-center flex flex-col rounded-custom mx-auto lg:mx-0 ' + borderStyle + ' ' + (evenOdd == 1 ? 'evenOdd_cards' : 'bg-white')">
+                        <Link :href="'/l/' + landSlug + '/p/' + product.slug" class="mb-2 h-44 aspect-square">
                             <img :src="product.image" :alt="product.name" class="object-contain h-full" />
                         </Link>
-                        <Link :href="'/l/' + landSlug + '/p/' + product.slug" class="mb-5 font-medium text-xl line-clamp-2 lg:line-clamp-1 text-stone-700 lg:h-[28px]"> {{ product.name }} </Link>
-                        <Link :href="'/l/' + landSlug + '/p/' + product.slug" class="mb-6 font-normal text-sm line-clamp-2 text-stone-700 text-justify leading-6 lg:h-12"> {{ product.description }} </Link>
+                        <Link :href="'/l/' + landSlug + '/p/' + product.slug" class="mb-2 font-medium text-right text-lg sm:h-14 line-clamp-2 lg:line-clamp-1 text-stone-700 lg:h-[28px]"> {{ product.name }} </Link>
+                        <Link :href="'/l/' + landSlug + '/p/' + product.slug" class="mb-4 font-normal text-sm line-clamp-2 text-stone-700 text-justify leading-6 lg:h-12"> {{ product.description }} </Link>
                         <div class="grid grid-cols-2 gap-2 w-56 lg:w-full">
                             <LandBtn text="خرید اقساطی" :to="'/l/' + landSlug + '/p/' + product.slug"
                                 classNames="sameCategoryBtnStyle castegoryBtnfilled rounded-custom col-span-2" />
