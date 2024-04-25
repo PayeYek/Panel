@@ -56,10 +56,18 @@ class Articles extends AbstractTable
         //highlight: true,
         //exportAs: false,
         );
-
         $table->column(
             key: 'article',
             label: __('Article'),
+        //hidden: true,
+        //sortable: true,
+        //searchable: true,
+        //highlight: true,
+        //exportAs: false,
+        );
+        $table->column(
+            key: 'publish',
+            label: __('Is published'),
         //hidden: true,
         //sortable: true,
         //searchable: true,

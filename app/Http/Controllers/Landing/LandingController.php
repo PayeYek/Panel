@@ -10,6 +10,7 @@ use App\Models\LandCategory;
 use App\Models\LandComment;
 use App\Models\LandProduct;
 use ProtoneMedia\Splade\Facades\SEO;
+use Splade;
 
 class LandingController extends Controller
 {
@@ -161,17 +162,17 @@ class LandingController extends Controller
             ->description($product->description)
             ->keywords([$land->title, $product->name]);
 
-            $cats = array();
-            foreach ($land->products as $productItem) {
-                $cats[] = $productItem->category_id;
-            }
-            $cats = array_unique($cats);
-    
-            $categories = collect();
-    
-            foreach ($cats as $cat) {
-                $categories->add(collect(LandCategory::find($cat))) ;
-            }
+        $cats = array();
+        foreach ($land->products as $productItem) {
+            $cats[] = $productItem->category_id;
+        }
+        $cats = array_unique($cats);
+
+        $categories = collect();
+
+        foreach ($cats as $cat) {
+            $categories->add(collect(LandCategory::find($cat)));
+        }
 
         /* BREADCRUMBS */
         $breadcrumbs = [];
@@ -193,7 +194,7 @@ class LandingController extends Controller
     {
         LandComment::create($request->validated());
 
-        \Splade::toast('دیدگاه شما جهت بررسی ارسال شد')->autoDismiss(5)->success();
+        Splade::toast('دیدگاه شما جهت بررسی ارسال شد')->autoDismiss(5)->success();
 
         return back();
     }
@@ -258,7 +259,9 @@ class LandingController extends Controller
     {
         $land = $this->getLand($page);
 
-        $article = LandArticle::where('slug', $article)->firstOrFail();
+        $article = LandArticle::where('slug', $article)
+            ->published()
+            ->firstOrFail();
 
         SEO::title($land->title . ' | ' . $article->title)
             ->description($article->description)
@@ -297,7 +300,7 @@ class LandingController extends Controller
         $categories = collect();
 
         foreach ($cats as $cat) {
-            $categories->add(collect(LandCategory::find($cat))) ;
+            $categories->add(collect(LandCategory::find($cat)));
         }
 
         /* BREADCRUMBS */

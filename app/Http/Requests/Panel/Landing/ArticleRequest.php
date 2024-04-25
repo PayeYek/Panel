@@ -2,7 +2,6 @@
 
 namespace App\Http\Requests\Panel\Landing;
 
-use App\Rules\ValidEmailDomain;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
@@ -25,6 +24,7 @@ class ArticleRequest extends FormRequest
                 'description' => 'nullable|string',
                 'body' => 'required',
                 'image' => 'required|image|mimes:jpg,jpeg,png,webp|max:2048|dimensions:min_width=1200,min_height=675',
+                'publish' => 'required|boolean',
                 'slug' => 'nullable|string|unique:land_articles,slug',
             ];
         }
@@ -37,6 +37,7 @@ class ArticleRequest extends FormRequest
                 'description' => 'nullable|string',
                 'body' => 'required',
                 'image' => $this->getValidationRuleImage(),
+                'publish' => 'required|boolean',
                 'slug' => [
                     'required', 'string',
                     Rule::unique("land_articles")->ignore($this->article->id)],

@@ -8,7 +8,7 @@
                 <x-layout.panel.form.division :col="2">
                     <x-splade-select name="land_id" label="Landing" :options="$lands" placeholder="Select an item"
                                      choices/>
-                    <x-splade-select name="type" label="Type" >
+                    <x-splade-select name="type" label="Type">
                         <option value="" disabled>{{__('Select an item')}}</option>
                         <option value="blog">{{__('Blog')}}</option>
                         <option value="news">{{__('News')}}</option>
@@ -22,6 +22,7 @@
                     />
                     <x-splade-input name="title" label="Title" required/>
                     <x-splade-input ltr name="slug" label="Slug" help="Exclusive name in English"/>
+                    <x-splade-checkbox class="text-sm" name="publish" label="{{ __('Dou you want to publish?') }}"/>
                     <x-splade-textarea name="description" label="Description" help="For SEO"/>
                     <x-splade-wysiwyg name="body" label="Article content" required/>
 

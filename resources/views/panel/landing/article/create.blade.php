@@ -22,6 +22,7 @@
                     />
                     <x-splade-input name="title" label="Title" required/>
                     <x-splade-input ltr name="slug" label="Slug" help="Exclusive name in English"/>
+                    <x-splade-checkbox class="text-sm" name="publish" label="{{ __('Dou you want to publish?') }}"/>
                     <x-splade-textarea name="description" label="Description" help="For SEO"/>
                     <x-splade-wysiwyg name="body" label="Article content" required/>
 

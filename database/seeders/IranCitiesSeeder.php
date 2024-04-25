@@ -2,8 +2,6 @@
 
 namespace Database\Seeders;
 
-use App\Models\Province;
-use App\Models\ProvinceCity;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
@@ -22,6 +20,7 @@ class IranCitiesSeeder extends Seeder
 
         #1
         if (Schema::hasTable('province_cities')) {
+            Schema::disableForeignKeyConstraints();
             Schema::drop('province_cities');
         }
 
