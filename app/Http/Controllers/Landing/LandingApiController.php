@@ -82,7 +82,7 @@ class LandingApiController extends Controller
             'products' => $land->products,
             'slides' => $land->slides,
             'videos' => $land->videos,
-            'styles' => $land->styles,
+//            'styles' => $land->styles,
             'articles' => $land->articles,
             'categories' => $filteredCategory
         ];
