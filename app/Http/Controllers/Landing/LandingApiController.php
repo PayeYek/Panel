@@ -15,6 +15,7 @@ use App\Models\LandComment;
 use App\Models\LandFacility;
 use App\Models\LandProduct;
 use App\Transformers\LandPageTransformer;
+use App\Transformers\LandProductTransformer;
 use App\Transformers\LandTransformer;
 use Exception;
 use Illuminate\Http\JsonResponse;
@@ -222,22 +223,22 @@ class LandingApiController extends Controller
     public function product($page, $product)
     {
         /* LANDING DATA */
-        $land = $this->getLand($page);
+//        $land = $this->getLand($page);
 
         /* PRODUCT DATA */
         $product = LandProduct::with('category')->where('slug', $product)->firstOrFail();
 
         /* COMMENTS APPROVED */
-        $comments = LandComment::where('land_id', $land->id)->where('product_id', $product->id)->where('approved', true)->get();
+//        $comments = LandComment::where('land_id', $land->id)->where('product_id', $product->id)->where('approved', true)->get();
 
         /* BREADCRUMBS */
-        $breadcrumbs = [];
-        $breadcrumbs[] = ['title' => __('Home'), 'url' => route('landing.page.show', ['page' => $land->slug])];
-        $breadcrumbs[] = ['title' => __('Products'), 'url' => route('landing.product.list', ['page' => $land->slug])];
-        $breadcrumbs[] = ['title' => $product->category->title, 'url' => route('landing.product.list', ['page' => $land->slug, 'category' => $product->category->id])];
-        $breadcrumbs[] = ['title' => $product->name, 'url' => null];
+//        $breadcrumbs = [];
+//        $breadcrumbs[] = ['title' => __('Home'), 'url' => route('landing.page.show', ['page' => $land->slug])];
+//        $breadcrumbs[] = ['title' => __('Products'), 'url' => route('landing.product.list', ['page' => $land->slug])];
+//        $breadcrumbs[] = ['title' => $product->category->title, 'url' => route('landing.product.list', ['page' => $land->slug, 'category' => $product->category->id])];
+//        $breadcrumbs[] = ['title' => $product->name, 'url' => null];
 
-        return ['land' => $land, 'breadcrumbs' => $breadcrumbs, 'comments' => $comments, 'product' => $product];
+        return responder()->success($product, LandProductTransformer::class)->respond();
     }
 
     public function comment(CommentRequest $request, $land, $product)
@@ -387,5 +388,21 @@ class LandingApiController extends Controller
                 throw new FacilityRequestRestrictedException;
             }
         }
+    }
+    public function getLand($page): Land
+    {
+        return Land::where('slug', $page)
+            ->with([
+                'products',
+                'slides' => function ($query) {
+                    $query->where('status', 1);
+                },
+                'videos',
+                'styles',
+                'articles' => function ($query) {
+                    $query->orderBy('created_at', 'desc');
+                }
+            ])
+            ->firstOrFail();
     }
 }
