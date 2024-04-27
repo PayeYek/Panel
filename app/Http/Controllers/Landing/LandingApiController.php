@@ -3,18 +3,21 @@
 namespace App\Http\Controllers\Landing;
 
 use App\Enum\LandFacilityStateEnum;
+use App\Exceptions\CannotSubscribeException;
 use App\Exceptions\FacilityRequestDuplicatedException;
 use App\Exceptions\FacilityRequestRestrictedException;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Panel\Landing\ArticleSearchRequest;
 use App\Http\Requests\Panel\Landing\CommentRequest;
 use App\Http\Requests\Panel\Landing\FacilitiesRequest;
+use App\Http\Requests\Panel\Landing\SubscribeRequest;
 use App\Models\Land;
 use App\Models\LandArticle;
 use App\Models\LandCategory;
 use App\Models\LandComment;
 use App\Models\LandFacility;
 use App\Models\LandProduct;
+use App\Models\LandSubscribe;
 use App\Transformers\LandArticleSearchTransformer;
 use App\Transformers\LandArticleSingleTransformer;
 use App\Transformers\LandArticlesTransformer;
@@ -434,6 +437,28 @@ class LandingApiController extends Controller
         return ['land' => $land, 'breadcrumbs' => $breadcrumbs];
     }
 
+    public function subscribe(SubscribeRequest $subscribeRequest)
+    {
+        $landId = $subscribeRequest->validated('land_id');
+        $phone = $subscribeRequest->validated('phone');
+
+        try {
+            $this->assertUserCanSubscribe($phone, $landId);
+
+
+            LandSubscribe::create([
+                'land_id' => $landId,
+                'phone' => $phone
+            ]);
+
+            return responder()->success(['message' => 'Subscribed successfully'])->respond();
+        } catch (CannotSubscribeException) {
+            return responder()->error(-1, 'Subscription duplicated')->respond(400);
+        } catch (Exception $e) {
+            return responder()->error(-2, 'Cannot store subscribe request due to an unknown error')->respond(500);
+        }
+    }
+
     public function calculator($page)
     {
         $land = $this->getLand($page);
@@ -499,6 +524,17 @@ class LandingApiController extends Controller
             if ($facilityRequest->state === LandFacilityStateEnum::RESTRICTED) {
                 throw new FacilityRequestRestrictedException;
             }
+        }
+    }
+
+    public function assertUserCanSubscribe($phone, $landId): void
+    {
+        $subscribes = LandSubscribe::query()
+            ->where('phone', $phone)
+            ->where('land_id', $landId)
+            ->exists();
+        if ($subscribes) {
+            throw new CannotSubscribeException;
         }
     }
 
