@@ -14,13 +14,12 @@ use App\Models\LandCategory;
 use App\Models\LandComment;
 use App\Models\LandFacility;
 use App\Models\LandProduct;
+use App\Transformers\LandArticleSingleTransformer;
 use App\Transformers\LandArticlesTransformer;
 use App\Transformers\LandPageTransformer;
 use App\Transformers\LandProductTransformer;
 use App\Transformers\LandTransformer;
 use Exception;
-use Illuminate\Http\JsonResponse;
-use ProtoneMedia\Splade\Facades\SEO;
 use Str;
 
 class LandingApiController extends Controller
@@ -111,7 +110,7 @@ class LandingApiController extends Controller
 
         /* BREADCRUMBS */
         $breadcrumbs = [];
-        $breadcrumbs[] = ['title' => __('Home'), 'url' => route('landing.page.show', ['page' => $land->slug])];
+//        $breadcrumbs[] = ['title' => __('Home'), 'url' => route('landing.page.show', ['page' => $land->slug])];
         $breadcrumbs[] = ['title' => __('About us'), 'url' => null];
 
         return ['land' => $land, 'breadcrumbs' => $breadcrumbs];
@@ -123,7 +122,7 @@ class LandingApiController extends Controller
 
         /* BREADCRUMBS */
         $breadcrumbs = [];
-        $breadcrumbs[] = ['title' => __('Home'), 'url' => route('landing.page.show', ['page' => $land->slug])];
+//        $breadcrumbs[] = ['title' => __('Home'), 'url' => route('landing.page.show', ['page' => $land->slug])];
         $breadcrumbs[] = ['title' => 'کاتالوگ', 'url' => null];
 
         return ['land' => $land, 'breadcrumbs' => $breadcrumbs];
@@ -281,7 +280,7 @@ class LandingApiController extends Controller
 
         /* BREADCRUMBS */
         $breadcrumbs = [];
-        $breadcrumbs[] = ['title' => __('Home'), 'url' => route('landing.page.show', ['page' => $land->slug])];
+//        $breadcrumbs[] = ['title' => __('Home'), 'url' => route('landing.page.show', ['page' => $land->slug])];
         $breadcrumbs[] = ['title' => __('Categories'), 'url' => null];
 
         return ['land' => $land, 'breadcrumbs' => $breadcrumbs, 'data' => $data];
@@ -293,7 +292,7 @@ class LandingApiController extends Controller
 
         /* BREADCRUMBS */
         $breadcrumbs = [];
-        $breadcrumbs[] = ['title' => __('Home'), 'url' => route('landing.page.show', ['page' => $land->slug])];
+//        $breadcrumbs[] = ['title' => __('Home'), 'url' => route('landing.page.show', ['page' => $land->slug])];
         $breadcrumbs[] = ['title' => __('Videos'), 'url' => null];
 
         return view('landing.video-gallery', compact('land', 'breadcrumbs'));
@@ -312,6 +311,7 @@ class LandingApiController extends Controller
                 $query->where('type', $f);
             })
             ->orderBy('created_at', 'desc')
+            ->select('title', 'type', 'description', 'image', 'created_at')
             ->paginate($pageSize);
 
         $articles = $articlePaginator->items();
@@ -371,17 +371,36 @@ class LandingApiController extends Controller
     public function article($page, $article)
     {
         $land = $this->getLand($page);
+        $article = LandArticle::where('slug', $article)
+            ->firstOrFail();
 
-        $article = LandArticle::where('slug', $article)->firstOrFail();
+        $relatedArticles = LandArticle::where('land_id', $article->land_id)
+            ->where('type', $article->type)
+            ->latest()
+            ->take(5)
+            ->get(['title', 'slug', 'type', 'description', 'image', 'created_at']);
 
-        SEO::title($land->title . ' | ' . $article->title)->description($article->description)->keywords([$land->title, $article->title]);
+        $outRelated = $relatedArticles->map->only(['title', 'slug', 'type', 'description', 'image', 'created_at']);
+
+//        SEO::title($land->title . ' | ' . $article->title)->description($article->description)->keywords([$land->title, $article->title]);
 
         /* BREADCRUMBS */
         $breadcrumbs = [];
-        $breadcrumbs[] = ['title' => __('Home'), 'url' => route('landing.page.show', ['page' => $land->slug])];
-        $breadcrumbs[] = ['title' => __('Articles'), 'url' => route('landing.article.list', ['page' => $land->slug])];
+        $breadcrumbs[] = [
+            'title' => __('Articles'),
+            'url' => Str::after(parse_url(route('api.landing.article.list', ['page' => $land->slug]), PHP_URL_PATH), '/api/l/')
+        ];
+        $breadcrumbs[] = [
+            'title' => $article->title,
+            'url' => null
+        ];
 
-        return ['land' => $land, 'breadcrumbs' => $breadcrumbs, 'article' => $article];
+        $data = [
+            'article' => $article->only(['title', 'image', 'body', 'created_at']),
+            'related_articles' => $outRelated,
+            'breadcrumbs' => $breadcrumbs
+        ];
+        return responder()->success($data, LandArticleSingleTransformer::class)->respond();
     }
 
     public function sales($page)
@@ -390,7 +409,7 @@ class LandingApiController extends Controller
 
         /* BREADCRUMBS */
         $breadcrumbs = [];
-        $breadcrumbs[] = ['title' => __('Home'), 'url' => route('landing.page.show', ['page' => $land->slug])];
+//        $breadcrumbs[] = ['title' => __('Home'), 'url' => route('landing.page.show', ['page' => $land->slug])];
         $breadcrumbs[] = ['title' => __('Sales Agency'), 'url' => null];
 
         return ['land' => $land, 'breadcrumbs' => $breadcrumbs];
@@ -402,7 +421,7 @@ class LandingApiController extends Controller
 
         /* BREADCRUMBS */
         $breadcrumbs = [];
-        $breadcrumbs[] = ['title' => __('Home'), 'url' => route('landing.page.show', ['page' => $land->slug])];
+//        $breadcrumbs[] = ['title' => __('Home'), 'url' => route('landing.page.show', ['page' => $land->slug])];
         $breadcrumbs[] = ['title' => __('Calculator'), 'url' => null];
 
         return ['land' => $land, 'breadcrumbs' => $breadcrumbs];
@@ -419,11 +438,10 @@ class LandingApiController extends Controller
         return ['land' => $land];
     }
 
-    public function facilitiesRequest(FacilitiesRequest $facilitiesRequest): JsonResponse
+    public function facilitiesRequest(FacilitiesRequest $facilitiesRequest)
     {
-
         try {
-            $this->assertUserCanRequestFacility($facilitiesRequest->validated('phone'));
+            $this->assertUserCanRequestFacility($facilitiesRequest->validated('phone'), $facilitiesRequest->validated('land_id'));
 
             LandFacility::create([
                 'full_name' => $facilitiesRequest->validated('full_name'),
@@ -448,9 +466,12 @@ class LandingApiController extends Controller
      * @throws FacilityRequestDuplicatedException
      * @throws FacilityRequestRestrictedException
      */
-    public function assertUserCanRequestFacility($phone): void
+    public function assertUserCanRequestFacility($phone, $landId): void
     {
-        $oldFacilityRequests = LandFacility::query()->where('phone', $phone)->get();
+        $oldFacilityRequests = LandFacility::query()
+            ->where('phone', $phone)
+            ->where('land_id', $landId)
+            ->get();
 
         foreach ($oldFacilityRequests as $facilityRequest) {
             if ($facilityRequest->state === LandFacilityStateEnum::PENDING) {
