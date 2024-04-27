@@ -182,10 +182,6 @@ class LandingApiController extends Controller
             });
 
             $breadcrumbs = [];
-            $breadcrumbs[] = [
-                'title' => __('Home'),
-                'url' => Str::after(parse_url(route('api.landing.page.show', ['page' => $land->slug]), PHP_URL_PATH), '/api/l/')
-            ];
 
             $breadcrumbs[] = [
                 'title' => __('Products'),
@@ -220,10 +216,6 @@ class LandingApiController extends Controller
             });
 
             $breadcrumbs = [];
-            $breadcrumbs[] = [
-                'title' => __('Home'),
-                'url' => Str::after(parse_url(route('api.landing.page.show', ['page' => $land->slug]), PHP_URL_PATH), '/api/l/')
-            ];
 
             $breadcrumbs[] = [
                 'title' => __('Products'),
@@ -243,7 +235,7 @@ class LandingApiController extends Controller
     public function product($page, $product)
     {
         /* LANDING DATA */
-//        $land = $this->getLand($page);
+        $land = $this->getLand($page);
 
         /* PRODUCT DATA */
         $product = LandProduct::with('category')->where('slug', $product)->firstOrFail();
@@ -252,13 +244,27 @@ class LandingApiController extends Controller
 //        $comments = LandComment::where('land_id', $land->id)->where('product_id', $product->id)->where('approved', true)->get();
 
         /* BREADCRUMBS */
-//        $breadcrumbs = [];
-//        $breadcrumbs[] = ['title' => __('Home'), 'url' => route('landing.page.show', ['page' => $land->slug])];
-//        $breadcrumbs[] = ['title' => __('Products'), 'url' => route('landing.product.list', ['page' => $land->slug])];
-//        $breadcrumbs[] = ['title' => $product->category->title, 'url' => route('landing.product.list', ['page' => $land->slug, 'category' => $product->category->id])];
-//        $breadcrumbs[] = ['title' => $product->name, 'url' => null];
+        $breadcrumbs = [];
 
-        return responder()->success($product, LandProductTransformer::class)->respond();
+        $breadcrumbs[] = [
+            'title' => __('Products'),
+            'url' => Str::after(parse_url(route('api.landing.product.list', ['page' => $land->slug]), PHP_URL_PATH), '/api/l/')
+        ];
+        $breadcrumbs[] = [
+            'title' => $product->category->title,
+            'url' => Str::after(parse_url(route('api.landing.product.show', ['page' => $land->slug, 'product' => $product->slug]), PHP_URL_PATH), '/api/l/')
+        ];
+        $breadcrumbs[] = [
+            'title' => $product->name,
+            'url' => null
+        ];
+
+        $data = [
+            'product' => $product,
+            'breadcrumbs' => $breadcrumbs
+        ];
+
+        return responder()->success($data, LandProductTransformer::class)->respond();
     }
 
     public function comment(CommentRequest $request, $land, $product)
@@ -409,6 +415,7 @@ class LandingApiController extends Controller
             }
         }
     }
+
     public function getLand($page): Land
     {
         return Land::where('slug', $page)
