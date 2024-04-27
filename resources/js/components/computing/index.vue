@@ -269,6 +269,9 @@
                 </section>
             </section>
         </section>
+
+        <!-- submit response message -->
+        <section :class="'fixed top-4 sm:top-8 right-4 shadow-xl border-r-4 flex items-center rounded-xl p-4 h-20 w-full max-w-[90%] sm:max-w-[28rem] md:max-w-[32rem] sm:right-6 text-stone-700 text-sm sm:text-base sm:font-medium leading-6 sm:leading-7 z-[5] ' + (responseState === 'success' ? 'border-r-green-500 bg-[#E8FBED]' : 'border-r-red-600 bg-[#FFDEDE]')" v-if="responseShow"> {{ responseMessage }} </section>
     </section>
 </template>
 
@@ -303,6 +306,8 @@ export default {
         const refunWage = ref(40.085);
         const modalState = ref(false);
         const informationState = ref(false);
+        const responseShow = ref(false);
+        const responseState = ref("success");
         const loanOptions = ref([]);
         const categoryType = ref(0);
         const fullname = ref("");
@@ -311,6 +316,8 @@ export default {
         const nameAlert = ref(false);
         const categoryAlert = ref(false);
         const facilityAlert = ref(false);
+        const responseMessage = ref("");
+        const timer = ref(3000);
 
         const generatePriceBackground = (value) => {
             let percentage = (value - loanMin.value) / (loanMax.value - loanMin.value) * 100;
@@ -412,6 +419,16 @@ export default {
             generateLoanOptions();
         });
 
+        function myTimer(interval) {
+            if(timer.value == 0) {
+                responseShow.value = false;
+                responseMessage.value = "";
+                clearInterval(interval);
+                return false;
+            }
+            timer.value -= 100;
+        }
+
         const submitForm = () => {
             const inputs = document.querySelectorAll('.validation-input');
 
@@ -455,14 +472,36 @@ export default {
                     phone: phone.value.toString(),
                     land_id: Number(props.landId),
                 }
-                axios.post(`https://paye1.com/api/l/${props.landSlug}/facilities-request`, body)
+
+                console.log(body)
+                axios.post(`https://paye1.com/api/l/arian-diesel/facilities-request`, body)
                     .then(function (response) {
                         // handle success
-                        console.log(response);
+                        console.log("success", response);
+                        if(response.data.status == 200){
+                            responseShow.value = true;
+                            responseMessage.value = "اطلاعات شما ثبت شد. منتظر تماس کارشناسان ما باشید.";
+                            responseState.value = "success";
+                            timer.value = 3000;
+                            const myInterval = setInterval(() => myTimer(myInterval), 100);
+                        }
                     })
                     .catch(function (error) {
                         // handle error
-                        console.log(error);
+                        console.log("catch", error.response);
+                        if(error.response.data.status == 400){
+                            responseShow.value = true;
+                            responseMessage.value = "اطلاعات شما قبلا ثبت شده است. منتظر تماس کارشناسان ما باشید.";
+                            responseState.value = "error";
+                            timer.value = 3000;
+                            const myInterval = setInterval(() => myTimer(myInterval), 100);
+                        } else if(error.response.data.status == 500){
+                            responseShow.value = true;
+                            responseMessage.value = "خطایی سمت سرور رخ داده است. لطفا بعدا امتحان کنید.";
+                            responseState.value = "error";
+                            timer.value = 3000;
+                            const myInterval = setInterval(() => myTimer(myInterval), 100);
+                        }
                     })
                     .finally(function () {
                         // always executed
@@ -470,7 +509,7 @@ export default {
             }
 
 
-            
+
         }
 
         return {
@@ -502,6 +541,9 @@ export default {
             nameAlert,
             categoryAlert,
             facilityAlert,
+            responseState,
+            responseMessage,
+            responseShow,
         }
     }
 }

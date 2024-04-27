@@ -296,12 +296,16 @@
                 <li> سود اقساط شما معادل نرخ مصوب بانک مرکزی یعنی 23 درصد است. </li>
             </ul>
         </section>
+
+        <!-- submit response message -->
+        <section :class="'fixed top-4 sm:top-8 right-4 shadow-xl border-r-4 flex items-center rounded-xl p-4 h-20 w-full max-w-[90%] sm:max-w-[28rem] md:max-w-[32rem] sm:right-6 text-stone-700 text-sm sm:text-base sm:font-medium leading-6 sm:leading-7 z-[5] ' + (responseState === 'success' ? 'border-r-green-500 bg-[#E8FBED]' : 'border-r-red-600 bg-[#FFDEDE]')" v-if="responseShow"> {{ responseMessage }} </section>
     </section>
 </template>
 
 <script>
 import { ref, computed, watchEffect, onMounted } from 'vue';
 import { numberWithCommas } from '../../common';
+import axios from "axios";
 
 export default {
     name: 'Counseling',
@@ -335,6 +339,10 @@ export default {
         const nameAlert = ref(false);
         const categoryAlert = ref(false);
         const facilityAlert = ref(false);
+        const responseShow = ref(false);
+        const responseState = ref("success");
+        const responseMessage = ref("");
+        const timer = ref(3000);
 
         const closeModal = () => {
             showModal.value = false;
@@ -359,6 +367,17 @@ export default {
             } else if (loanInitialValue.value > loanMin.value && payload === 'minus') {
                 loanInitialValue.value -= loanSteps.value;
             }
+        }
+
+        function myTimer(interval) {
+            if(timer.value == 0) {
+                responseShow.value = false;
+                responseMessage.value = "";
+                closeModal();
+                clearInterval(interval);
+                return false;
+            }
+            timer.value -= 100;
         }
 
         const calculateValues = () => {
@@ -389,7 +408,7 @@ export default {
 
             const refundFullNumber = loanInitialValue.value + (loanInitialValue.value * refundWageValue) / 100;
             refund.value = Math.floor(refundFullNumber / 1000) * 1000;
-            
+
             const perMonthFullNumber = parseInt((refund.value - ((loanInitialValue.value * wageValue) / 100)) / paymentDuration.value);
             loanPerMonth.value = Math.floor(perMonthFullNumber / 1000) * 1000;
         };
@@ -439,7 +458,7 @@ export default {
         }
 
         const submitForm = () => {
-            
+
             const inputs = document.querySelectorAll('.validation-input');
 
             inputs.forEach((element) => {
@@ -447,7 +466,7 @@ export default {
             });
 
             for (const [field, value] of Object.entries({ amount: loanInitialValue, phone: phone, category_id: categoryType, full_name: fullname })) {
-                console.log(field, value.value);
+                // console.log(field, value.value);
                 if (field === 'phone') {
                     if (value.value.toString().length != 11) {
                         phoneAlert.value = true;
@@ -475,8 +494,6 @@ export default {
                 }
             }
 
-            console.log(!phoneAlert.value && !nameAlert.value && !categoryAlert.value && !facilityAlert.value);
-
             if (!phoneAlert.value && !nameAlert.value && !categoryAlert.value && !facilityAlert.value) {
                 const body = {
                     amount: loanInitialValue.value.toString(),
@@ -485,15 +502,32 @@ export default {
                     phone: phone.value.toString(),
                     land_id: Number(props.landId),
                 }
-                console.log(body);
-                axios.post(`https://paye1.com/api/l/${props.landSlug}/facilities-request`, body)
+                axios.post(`https://paye1.com/api/l/arian-diesel/facilities-request`, body)
                     .then(function (response) {
                         // handle success
-                        console.log(response);
+                        if(response.data.status == 200){
+                            responseShow.value = true;
+                            responseMessage.value = "اطلاعات شما ثبت شد. منتظر تماس کارشناسان ما باشید.";
+                            responseState.value = "success";
+                            timer.value = 3000;
+                            const myInterval = setInterval(() => myTimer(myInterval), 100);
+                        }
                     })
                     .catch(function (error) {
                         // handle error
-                        console.log(error);
+                        if(error.response.data.status == 400){
+                            responseShow.value = true;
+                            responseMessage.value = "اطلاعات شما قبلا ثبت شده است. منتظر تماس کارشناسان ما باشید.";
+                            responseState.value = "error";
+                            timer.value = 3000;
+                            const myInterval = setInterval(() => myTimer(myInterval), 100);
+                        } else if(error.response.data.status == 500){
+                            responseShow.value = true;
+                            responseMessage.value = "خطایی سمت سرور رخ داده است. لطفا بعدا امتحان کنید.";
+                            responseState.value = "error";
+                            timer.value = 3000;
+                            const myInterval = setInterval(() => myTimer(myInterval), 100);
+                        }
                     })
                     .finally(function () {
                         // always executed
@@ -534,6 +568,9 @@ export default {
             submitForm,
             fullname,
             phone,
+            responseShow,
+            responseState,
+            responseMessage,
         }
     }
 }
