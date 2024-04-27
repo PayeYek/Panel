@@ -142,6 +142,27 @@
         --theme-shadow-normal: rgba(0, 0, 0, 0.5);
         --theme-shadow-focus: rgba(0, 0, 0, 0.8);
     }
+    .theme_datis{
+        --theme-normal: 40,49,117;
+        --theme-focus: 11,18,70;
+        --theme-shadow-light: rgba(11, 18, 70, 0.3);
+        --theme-shadow-normal: rgba(11, 18, 70, 0.5);
+        --theme-shadow-focus: rgba(11, 18, 70, 0.8);
+    }
+    .theme_tirazhe{
+        --theme-normal: 15,117,184;
+        --theme-focus: 18,78,121;
+        --theme-shadow-light: rgba(18, 78, 121, 0.3);
+        --theme-shadow-normal: rgba(18, 78, 121, 0.5);
+        --theme-shadow-focus: rgba(18, 78, 121, 0.8);
+    }
+    .theme_kaveh{
+        --theme-normal: 1,48,127;
+        --theme-focus: 0,25,68;
+        --theme-shadow-light: rgba(0, 25, 68, 0.3);
+        --theme-shadow-normal: rgba(0, 25, 68, 0.5);
+        --theme-shadow-focus: rgba(0, 25, 68, 0.8);
+    }
 
 
     .rounded_none{

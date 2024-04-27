@@ -32,12 +32,15 @@
                         <option value="10"> مایان خودرو </option>
                         <option value="11"> آذهایتکس خودرو </option>
                         <option value="12"> تیتان خودرو </option>
+                        <option value="13"> داتیس فرا دیزل آریا </option>
                         <option value="14"> رخش خودرو </option>
                         <option value="15"> کاسپین خودرو فرهنگ </option>
                         <option value="16"> ارس خودرو دیزل </option>
                         <option value="17"> شایان دیزل </option>
                         <option value="18"> فردا دیزل </option>
                         <option value="20"> ماموت خودرو </option>
+                        <option value="23"> تیراژه دیزل </option>
+                        <option value="24"> کاوه دیزل </option>
                     </x-splade-select>
 
                     <x-splade-select name="border_type" label="نمای اشیاء">
