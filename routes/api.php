@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\Landing\LandingApiController;
+use App\Models\Land;
+use App\Models\Province;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -20,24 +23,23 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 
 Route::get('provinces', function () {
-    return \App\Models\Province::get();
+    return Province::get();
 });
 
 Route::get('provinces/{provinceId}/cities', function ($provinceId) {
-    $province = \App\Models\Province::with('cities')->find($provinceId);
+    $province = Province::with('cities')->find($provinceId);
     return $province->cities;
 });
 
 Route::get('land/{landId}/products', function ($landId) {
-    $land = \App\Models\Land::with('products')->find($landId);
+    $land = Land::with('products')->find($landId);
     return $land->products()->latest()->get()->pluck('name', 'id');
 });
 
 Route::prefix('l')
     ->name('api.landing.')
-    ->controller(\App\Http\Controllers\Landing\LandingApiController::class)
+    ->controller(LandingApiController::class)
     ->group(function () {
-
         Route::name('page.')->group(function () {
             Route::get('/pages', 'pages')->name('list');
             Route::get('{page}', 'page')->name('show');
@@ -45,8 +47,7 @@ Route::prefix('l')
             Route::get('{page}/footer', 'pageFooter')->name('footer');
             Route::get('{page}/catalogs', 'catalogs')->name('catalogs');
             Route::get('{page}/calculator', 'calculator')->name('calculator');
-            Route::post('{page}/facilities-request', 'facilitiesRequest')->name('facilitiesRequest');
-
+            Route::post('/facilities-request', 'facilitiesRequest')->name('facilitiesRequest');
         });
 
         Route::name('product.')->group(function () {
@@ -57,6 +58,7 @@ Route::prefix('l')
         });
 
         Route::name('article.')->group(function () {
+            Route::get('a/search', 'searchArticles')->name('search');
             Route::get('{page}/a', 'articles')->name('list');
             Route::get('{page}/a/{article}', 'article')->name('show');
         });

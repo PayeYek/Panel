@@ -6,6 +6,7 @@ use App\Enum\LandFacilityStateEnum;
 use App\Exceptions\FacilityRequestDuplicatedException;
 use App\Exceptions\FacilityRequestRestrictedException;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Panel\Landing\ArticleSearchRequest;
 use App\Http\Requests\Panel\Landing\CommentRequest;
 use App\Http\Requests\Panel\Landing\FacilitiesRequest;
 use App\Models\Land;
@@ -14,6 +15,7 @@ use App\Models\LandCategory;
 use App\Models\LandComment;
 use App\Models\LandFacility;
 use App\Models\LandProduct;
+use App\Transformers\LandArticleSearchTransformer;
 use App\Transformers\LandArticleSingleTransformer;
 use App\Transformers\LandArticlesTransformer;
 use App\Transformers\LandPageTransformer;
@@ -296,6 +298,23 @@ class LandingApiController extends Controller
         $breadcrumbs[] = ['title' => __('Videos'), 'url' => null];
 
         return view('landing.video-gallery', compact('land', 'breadcrumbs'));
+    }
+
+    public function searchArticles(ArticleSearchRequest $request)
+    {
+        $landId = $request->validated('land_id');
+        $keyword = $request->validated('keyword');
+
+        $searchResults = LandArticle::where('land_id', $landId)
+            ->where(function ($query) use ($keyword) {
+                $query->where('title', 'LIKE', '%' . $keyword . '%')
+                    ->orWhere('description', 'LIKE', '%' . $keyword . '%');
+            })
+            ->orderBy('created_at', 'desc')
+            ->paginate(10);
+
+        return responder()->success($searchResults, LandArticleSearchTransformer::class)->respond();
+
     }
 
     public function articles($page)
