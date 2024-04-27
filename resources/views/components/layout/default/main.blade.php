@@ -12,12 +12,18 @@
         10 => 'theme_mayan',
         11 => 'theme_azhitech',
         12 => 'theme_titan',
+        13 => 'theme_datis',
         14 => 'theme_rakhsh',
         15 => 'theme_caspian',
         16 => 'theme_amico',
         17 => 'theme_shayan',
         18 => 'theme_farda',
+        19 => 'theme_kamel',
         20 => 'theme_mammut',
+        21 => 'theme_max',
+        22 => 'theme_shiran',
+        23 => 'theme_tirazhe',
+        24 => 'theme_kaveh',
         default => 'theme_arian',
     };
     

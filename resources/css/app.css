@@ -163,6 +163,27 @@
         --theme-shadow-normal: rgba(0, 25, 68, 0.5);
         --theme-shadow-focus: rgba(0, 25, 68, 0.8);
     }
+    .theme_shiran{
+        --theme-normal: 26,27,29;
+        --theme-focus: 15,15,15;
+        --theme-shadow-light: rgba(15, 15, 15, 0.3);
+        --theme-shadow-normal: rgba(15, 15, 15, 0.5);
+        --theme-shadow-focus: rgba(15, 15, 15, 0.8);
+    }
+    .theme_kamel{
+        --theme-normal: 26,27,29;
+        --theme-focus: 0,0,0;
+        --theme-shadow-light: rgba(0, 0, 0, 0.3);
+        --theme-shadow-normal: rgba(0, 0, 0, 0.5);
+        --theme-shadow-focus: rgba(0, 0, 0, 0.8);
+    }
+    .theme_max{
+        --theme-normal: 24,34,79;
+        --theme-focus: 17,25,57;
+        --theme-shadow-light: rgba(17, 25, 57, 0.3);
+        --theme-shadow-normal: rgba(17, 25, 57, 0.5);
+        --theme-shadow-focus: rgba(17, 25, 57, 0.8);
+    }
 
 
     .rounded_none{

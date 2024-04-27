@@ -38,7 +38,10 @@
                         <option value="16"> ارس خودرو دیزل </option>
                         <option value="17"> شایان دیزل </option>
                         <option value="18"> فردا دیزل </option>
+                        <option value="19"> کامل دیزل </option>
                         <option value="20"> ماموت خودرو </option>
+                        <option value="21"> مکس موتور </option>
+                        <option value="22"> شیران دیزل </option>
                         <option value="23"> تیراژه دیزل </option>
                         <option value="24"> کاوه دیزل </option>
                     </x-splade-select>
