@@ -2,7 +2,6 @@
 
 namespace App\Transformers;
 
-use App\Models\LandProduct;
 use Flugg\Responder\Transformers\Transformer;
 
 class LandProductTransformer extends Transformer
@@ -24,25 +23,23 @@ class LandProductTransformer extends Transformer
     /**
      * Transform the model.
      *
-     * @param LandProduct $landProduct
+     * @param array $data
      * @return array
      */
-    public function transform(LandProduct $landProduct): array
+    public function transform(array $data): array
     {
         return [
-            'title' => $landProduct->name,
-            'primary_image' => $landProduct->image,
-            'slider_image' => $landProduct->pictures,
-            'attributes' => $landProduct->attributes,
-            'catalog' => $landProduct->catalog,
-            'manual' => $landProduct->manual,
-            'styles' => $landProduct->land->styles,
-            'description' => $landProduct->description,
-//            'specification' => $landProduct->attributes->each(function ($item) {
-//                return [$item->value => $item->value];
-//            }),
-            'specification' => null,
-            'videos' => $landProduct->videos,
+            'title' => $data['product']->name,
+            'primary_image' => $data['product']->image,
+            'slider_image' => $data['product']->pictures,
+            'attributes' => $data['product']->attributes,
+            'catalog' => $data['product']->catalog,
+            'manual' => $data['product']->manual,
+            'styles' => $data['product']->land->styles,
+            'description' => $data['product']->description,
+            'specification' => (new LandProductSpecificationTransformer())->transform($data['product']),
+            'videos' => $data['product']->videos,
+            'breadcrumbs' => $data['breadcrumbs']
         ];
     }
 }
