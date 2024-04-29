@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Panel\Land;
+namespace App\Http\Controllers\Web\Panel\Land;
 
 
 use App\Http\Controllers\Controller;
@@ -8,6 +8,7 @@ use App\Http\Requests\Panel\Landing\BrandRequest;
 use App\Models\LandBrand;
 use App\Tables\Landing\Brands;
 use Illuminate\Support\Facades\Storage;
+use Splade;
 
 class BrandController extends Controller
 {
@@ -35,7 +36,7 @@ class BrandController extends Controller
 
         LandBrand::create($data);
 
-        \Splade::toast(__('Created'))->autoDismiss(5)->success();
+        Splade::toast(__('Created'))->autoDismiss(5)->success();
 
         return redirect()->route('panel.landing.product.brand.index');
     }
@@ -60,7 +61,7 @@ class BrandController extends Controller
 
         $brand->update($data);
 
-        \Splade::toast(__('Updated'))->autoDismiss(5)->info();
+        Splade::toast(__('Updated'))->autoDismiss(5)->info();
 
         return redirect()->route('panel.landing.product.brand.index');
     }
@@ -74,7 +75,7 @@ class BrandController extends Controller
 
         $brand->delete();
 
-        \Splade::toast(__('Deleted'))->autoDismiss(5)->danger();
+        Splade::toast(__('Deleted'))->autoDismiss(5)->danger();
 
         return back();
     }

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Panel\Land;
+namespace App\Http\Controllers\Web\Panel\Land;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Panel\Landing\ProductAttributeRequest;
@@ -12,8 +12,8 @@ use App\Models\LandCategory;
 use App\Models\LandColor;
 use App\Models\LandProduct;
 use App\Tables\Landing\Products;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
+use Splade;
 
 class ProductController extends Controller
 {
@@ -66,7 +66,7 @@ class ProductController extends Controller
 
         LandProduct::create($data);
 
-        \Splade::toast(__('Created'))->autoDismiss(5)->success();
+        Splade::toast(__('Created'))->autoDismiss(5)->success();
 
         return redirect()->route('panel.landing.product.product.index');
     }
@@ -91,8 +91,6 @@ class ProductController extends Controller
 //        DB::statement($sql);
 //
 //        dd($product);
-
-
 
 
 //        dd($request->image , $product->image);
@@ -137,7 +135,7 @@ class ProductController extends Controller
 
         $product->update($data);
 
-        \Splade::toast(__('Updated'))->autoDismiss(5)->info();
+        Splade::toast(__('Updated'))->autoDismiss(5)->info();
 
         return redirect()->route('panel.landing.product.product.index');
     }
@@ -159,7 +157,7 @@ class ProductController extends Controller
 
         $product->delete();
 
-        \Splade::toast(__('Deleted'))->autoDismiss(5)->danger();
+        Splade::toast(__('Deleted'))->autoDismiss(5)->danger();
 
         return back();
     }
@@ -181,9 +179,9 @@ class ProductController extends Controller
                             $val = $attr->pivot->value;
 
                 $list[$parentKey]['items'][] = [
-                    'id'       => $child->id,
-                    'name'     => $child->name,
-                    'value'    => is_null($val) ? null : $val->value,
+                    'id' => $child->id,
+                    'name' => $child->name,
+                    'value' => is_null($val) ? null : $val->value,
                     'value_id' => is_null($val) ? null : $val->id
                 ];
             }
@@ -214,7 +212,7 @@ class ProductController extends Controller
             }
         }
 
-        \Splade::toast(__('Updated'))->autoDismiss(5)->info();
+        Splade::toast(__('Updated'))->autoDismiss(5)->info();
 
         return redirect()->route('panel.landing.product.product.index');
     }

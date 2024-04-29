@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Panel;
+namespace App\Http\Controllers\Web\Panel;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Panel\UserRequest;
 use App\Models\User;
 use App\Tables\Users;
+use Splade;
 
 class UserController extends Controller
 {
@@ -28,7 +29,7 @@ class UserController extends Controller
     {
         User::create($request->validated());
 
-        \Splade::toast(__('Created'))->autoDismiss(5);
+        Splade::toast(__('Created'))->autoDismiss(5);
 
         return redirect()->route('panel.user.index');
     }
@@ -50,7 +51,7 @@ class UserController extends Controller
     {
         $user->update($request->validated());
 
-        \Splade::toast(__('Updated'))->autoDismiss(5);
+        Splade::toast(__('Updated'))->autoDismiss(5);
 
         return redirect()->route('panel.user.index');
     }
@@ -60,7 +61,7 @@ class UserController extends Controller
     {
         $user->delete();
 
-        \Splade::toast(__('Deleted'))->autoDismiss(5)->danger();
+        Splade::toast(__('Deleted'))->autoDismiss(5)->danger();
 
         return back();
     }

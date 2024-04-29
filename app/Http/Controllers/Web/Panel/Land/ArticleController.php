@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Panel\Land;
+namespace App\Http\Controllers\Web\Panel\Land;
 
 
 use App\Http\Controllers\Controller;
@@ -9,8 +9,7 @@ use App\Models\Land;
 use App\Models\LandArticle;
 use App\Tables\Landing\Articles;
 use Illuminate\Support\Facades\Storage;
-use Intervention\Image\Image;
-use Spatie\LaravelImageOptimizer\Facades\ImageOptimizer;
+use Splade;
 
 class ArticleController extends Controller
 {
@@ -25,7 +24,7 @@ class ArticleController extends Controller
 
     public function create()
     {
-        $lands = Land::latest()->pluck('title','id');
+        $lands = Land::latest()->pluck('title', 'id');
 
         return view('panel.landing.article.create', compact('lands'));
     }
@@ -40,7 +39,7 @@ class ArticleController extends Controller
 
         LandArticle::create($data);
 
-        \Splade::toast(__('Created'))->autoDismiss(5)->success();
+        Splade::toast(__('Created'))->autoDismiss(5)->success();
 
         return redirect()->route('panel.landing.article.index');
     }
@@ -48,7 +47,7 @@ class ArticleController extends Controller
 
     public function edit(LandArticle $article)
     {
-        $lands = Land::latest()->pluck('title','id');
+        $lands = Land::latest()->pluck('title', 'id');
 
         return view('panel.landing.article.edit', compact('article', 'lands'));
     }
@@ -67,7 +66,7 @@ class ArticleController extends Controller
 
         $article->update($data);
 
-        \Splade::toast(__('Updated'))->autoDismiss(5)->info();
+        Splade::toast(__('Updated'))->autoDismiss(5)->info();
 
         return redirect()->route('panel.landing.article.index');
     }
@@ -80,7 +79,7 @@ class ArticleController extends Controller
 
         $article->delete();
 
-        \Splade::toast(__('Deleted'))->autoDismiss(5)->danger();
+        Splade::toast(__('Deleted'))->autoDismiss(5)->danger();
 
         return back();
     }

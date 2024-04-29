@@ -13,6 +13,7 @@
                     <x-splade-input ltr name="slug" label="Slug" help="Exclusive name in English"/>
                     <x-splade-select name="country" label="Country" choices="{ searchEnabled: true }">
                         <option value="" disabled>{{__('Select an item')}}</option>
+                        <option value="Finland">{{__('Finland')}}</option>
                         <option value="SouthKorea">{{__('South Korea')}}</option>
                         <option value="Russia">{{__('Russia')}}</option>
                         <option value="France">{{__('France')}}</option>

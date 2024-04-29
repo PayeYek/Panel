@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Landing;
+namespace App\Http\Controllers\Web\Landing;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Panel\Landing\CommentRequest;

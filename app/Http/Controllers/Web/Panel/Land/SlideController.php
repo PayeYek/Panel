@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Panel\Land;
+namespace App\Http\Controllers\Web\Panel\Land;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Panel\Landing\SlideRequest;
@@ -8,8 +8,7 @@ use App\Models\Land;
 use App\Models\LandSlide;
 use App\Tables\Landing\Slides;
 use Illuminate\Support\Facades\Storage;
-use Intervention\Image\Image;
-use Spatie\LaravelImageOptimizer\Facades\ImageOptimizer;
+use Splade;
 
 class SlideController extends Controller
 {
@@ -24,7 +23,7 @@ class SlideController extends Controller
 
     public function create()
     {
-        $lands = Land::latest()->pluck('title','id');
+        $lands = Land::latest()->pluck('title', 'id');
 
         return view('panel.landing.slide.create', compact('lands'));
     }
@@ -39,7 +38,7 @@ class SlideController extends Controller
 
         LandSlide::create($data);
 
-        \Splade::toast(__('Created'))->autoDismiss(5)->success();
+        Splade::toast(__('Created'))->autoDismiss(5)->success();
 
         return redirect()->route('panel.landing.slide.index');
     }
@@ -47,7 +46,7 @@ class SlideController extends Controller
 
     public function edit(LandSlide $slide)
     {
-        $lands = Land::latest()->pluck('title','id');
+        $lands = Land::latest()->pluck('title', 'id');
 
         return view('panel.landing.slide.edit', compact('slide', 'lands'));
     }
@@ -67,7 +66,7 @@ class SlideController extends Controller
 
         $slide->update($data);
 
-        \Splade::toast(__('Updated'))->autoDismiss(5)->info();
+        Splade::toast(__('Updated'))->autoDismiss(5)->info();
 
         return redirect()->route('panel.landing.slide.index');
     }
@@ -80,7 +79,7 @@ class SlideController extends Controller
 
         $slide->delete();
 
-        \Splade::toast(__('Deleted'))->autoDismiss(5)->danger();
+        Splade::toast(__('Deleted'))->autoDismiss(5)->danger();
 
         return back();
     }

@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Panel\Land;
+namespace App\Http\Controllers\Web\Panel\Land;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Panel\Landing\ColorRequest;
 use App\Models\LandColor;
 use App\Tables\Landing\Colors;
+use Splade;
 
 class ColorController extends Controller
 {
@@ -26,7 +27,7 @@ class ColorController extends Controller
     {
         LandColor::create($request->validated());
 
-        \Splade::toast(__('Created'))->autoDismiss(5);
+        Splade::toast(__('Created'))->autoDismiss(5);
 
         return redirect()->route('panel.landing.color.index');
     }
@@ -45,7 +46,7 @@ class ColorController extends Controller
     {
         $color->update($request->validated());
 
-        \Splade::toast(__('Updated'))->autoDismiss(5);
+        Splade::toast(__('Updated'))->autoDismiss(5);
 
         return redirect()->route('panel.landing.color.index');
     }
@@ -54,7 +55,7 @@ class ColorController extends Controller
     {
         $color->delete();
 
-        \Splade::toast(__('Deleted'))->autoDismiss(5)->danger();
+        Splade::toast(__('Deleted'))->autoDismiss(5)->danger();
 
         return back();
     }

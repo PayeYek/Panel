@@ -2,9 +2,10 @@
 
 namespace App\Transformers;
 
+use App\Models\LandArticle;
 use Flugg\Responder\Transformers\Transformer;
 
-class LandTransformer extends Transformer
+class LandArticleSearchTransformer extends Transformer
 {
     /**
      * List of available relations.
@@ -23,16 +24,17 @@ class LandTransformer extends Transformer
     /**
      * Transform the model.
      *
-     * @param array $data
+     * @param LandArticle $landArticle
      * @return array
      */
-    public function transform(array $data): array
+    public function transform(LandArticle $landArticle): array
     {
         return [
-            'categories' => $data['categories'],
-            'products' => $data['products'],
-            'breadcrumbs' => $data['breadcrumbs'],
-            'seo' => $data['seo']
+            'title' => $landArticle->title,
+            'type' => $landArticle->type,
+            'slug' => $landArticle->slug,
+            'description' => $landArticle->description,
+            'created_at' => $landArticle->created_at
         ];
     }
 }

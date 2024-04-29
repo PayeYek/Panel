@@ -37,9 +37,10 @@ class LandProductTransformer extends Transformer
             'manual' => $data['product']->manual,
             'styles' => $data['product']->land->styles,
             'description' => $data['product']->description,
-            'specification' => (new LandProductSpecificationTransformer())->transform($data['product']),
+            'specification' => (new LandProductSpecificationTransformer())->transform($data['product']), //Todo add doTransform helper
             'videos' => $data['product']->videos,
-            'breadcrumbs' => $data['breadcrumbs']
+            'breadcrumbs' => $data['breadcrumbs'],
+            'seo' => $data['seo'] //Todo add Transformer for seo
         ];
     }
 }

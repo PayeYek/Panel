@@ -4,7 +4,7 @@ namespace App\Transformers;
 
 use Flugg\Responder\Transformers\Transformer;
 
-class LandTransformer extends Transformer
+class LandAboutUsTransformer extends Transformer
 {
     /**
      * List of available relations.
@@ -29,8 +29,7 @@ class LandTransformer extends Transformer
     public function transform(array $data): array
     {
         return [
-            'categories' => $data['categories'],
-            'products' => $data['products'],
+            'land' => $data['land'],
             'breadcrumbs' => $data['breadcrumbs'],
             'seo' => $data['seo']
         ];

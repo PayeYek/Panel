@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Panel\Land;
+namespace App\Http\Controllers\Web\Panel\Land;
 
 
 use App\Enum\LandFacilityStateEnum;

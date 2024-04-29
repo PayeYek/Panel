@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Panel;
+namespace App\Http\Controllers\Web\Panel;
 
 use App\Http\Controllers\Controller;
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Panel\Land;
+namespace App\Http\Controllers\Web\Panel\Land;
 
 
 use App\Http\Controllers\Controller;
@@ -8,6 +8,7 @@ use App\Http\Requests\Panel\Landing\CategoryRequest;
 use App\Models\LandAttribute;
 use App\Models\LandCategory;
 use App\Tables\Landing\Categories;
+use Splade;
 
 class CategoryController extends Controller
 {
@@ -34,7 +35,7 @@ class CategoryController extends Controller
 
         $category->attributes()->sync($request->attributes);
 
-        \Splade::toast(__('Created'))->autoDismiss(5)->success();
+        Splade::toast(__('Created'))->autoDismiss(5)->success();
 
         return redirect()->route('panel.landing.product.category.index');
     }
@@ -56,7 +57,7 @@ class CategoryController extends Controller
 
         $category->attributes()->sync($request['attributes']);
 
-        \Splade::toast(__('Updated'))->autoDismiss(5)->info();
+        Splade::toast(__('Updated'))->autoDismiss(5)->info();
 
         return redirect()->route('panel.landing.product.category.index');
     }
@@ -66,7 +67,7 @@ class CategoryController extends Controller
     {
         $category->delete();
 
-        \Splade::toast(__('Deleted'))->autoDismiss(5)->danger();
+        Splade::toast(__('Deleted'))->autoDismiss(5)->danger();
 
         return back();
     }

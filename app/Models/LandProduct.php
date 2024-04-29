@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Trait\HasSeo;
 use Illuminate\Database\Eloquent\Casts\Attribute as ModelAttribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -10,6 +11,7 @@ use Illuminate\Support\Str;
 class LandProduct extends Model
 {
     use HasFactory;
+    use HasSeo;
 
     protected $table = 'land_products';
     protected $fillable = [
