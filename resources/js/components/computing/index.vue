@@ -108,21 +108,22 @@
                         </section>
 
                         <!-- custom profit-->
-                        <section class="flex flex-col mb-8 lg:mb-12 gap-4">
+                        <section class="flex flex-col gap-4">
                             <!--  inital profit-->
                             <label for="initial-profit" class="flex items-center gap-3 cursor-pointer">
                                 <input type="radio" name="profit" id="initial-profit" value="initial" class="hidden peer" v-model="profitState" @change="checkProfit" />
                                 <div class="size-4 rounded-full border border-[#90A4AE] relative peer-checked:border-[#1EA0FF] peer-checked:bg-[#1EA0FF] before:absolute before:w-2 before:h-1 before:border-l before:border-b before:border-white before:top-1 before:left-[3px] before:-rotate-45 before:hidden peer-checked:before:block"></div>
                                 <span class="cursor-pointer text-sm font-medium text-stone-700"> سود پیشفرض </span>
                             </label>
-                            <section class="flex flex-col sm:flex-row gap-4 sm:gap-8 relative flex-1">
-                                <label for="custom-profit" class="flex items-center gap-3 cursor-pointer sm:flex-none">
+                            <label for="custom-profit" class="flex flex-col sm:flex-row gap-4 sm:gap-8 relative">
+                                <div class="flex items-center gap-3 cursor-pointer sm:flex-none">
                                     <input type="radio" name="profit" id="custom-profit" value="custom" class="hidden peer" v-model="profitState" @change="checkProfit" />
                                     <div class="size-4 rounded-full border border-[#90A4AE] relative peer-checked:border-[#1EA0FF] peer-checked:bg-[#1EA0FF] before:absolute before:w-2 before:h-1 before:border-l before:border-b before:border-white before:top-1 before:left-[3px] before:-rotate-45 before:hidden peer-checked:before:block"></div>
                                     <span class="cursor-pointer text-sm font-medium text-stone-700"> سود مورد نظر شما (درصد) </span>
-                                </label>
+                                </div>
 
-                                <section :class="'rounded-custom mx-auto sm:mx-0 border h-11 flex items-center border-stone-400 ' + (profitState === 'initial' ? 'pointer-events-none opacity-50' : 'opacity-100')">
+
+                                <section :class="'flex-1 rounded-custom mx-auto sm:mx-0 border h-11 flex items-center border-stone-400 ' + (profitState === 'initial' ? 'pointer-events-none opacity-50' : 'opacity-100')">
                                     <!-- decrease-->
                                     <button type="button" @click="decreasePercent" :class="'flex_center aspect-square h-full border-l border-stone-400 ' + (profitState === 'initial' ? '' : '')">
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
@@ -141,13 +142,13 @@
                                     </button>
                                 </section>
                                 <p class="text-red-500 text-sm font-normal absolute -bottom-8 right-0"> {{ profitAlert }} </p>
-                            </section>
+                            </label>
                         </section>
 
                         <!-- submit form-->
-                        <section class="flex justify-center">
-                            <button type="button" class="h-11 w-full max-w-64 rounded-custom border border-normal text-normal text-base font-medium flex_medium" @click="calculateValues"> ثبت اطلاعات </button>
-                        </section>
+<!--                        <section class="flex justify-center">-->
+<!--                            <button type="button" class="h-11 w-full max-w-64 rounded-custom border border-normal text-normal text-base font-medium flex_medium" @click="calculateValues"> محاسبه </button>-->
+<!--                        </section>-->
                     </section>
                 </section>
 
@@ -320,7 +321,7 @@
 </template>
 
 <script>
-import { ref, computed, onMounted } from 'vue';
+import { ref, computed, onMounted, watchEffect } from 'vue';
 import { numberWithCommas } from '../../common';
 import Facilities from './children/Facilities.vue';
 import axios from 'axios';
@@ -511,9 +512,9 @@ export default {
             }
         }
 
-        // watchEffect(() => {
-        //     calculateValues();
-        // });
+        watchEffect(() => {
+            calculateValues();
+        });
 
         const generateLoanOptions = () => {
             const start = 200;
@@ -664,7 +665,7 @@ export default {
             profitState,
             customProfit,
             paymentDurationView,
-            calculateValues,
+            // calculateValues,
             activeToolsButtons,
             checkProfit,
             profitAlert,
