@@ -241,6 +241,10 @@
     input[type=number] {
     -moz-appearance: textfield;
     }
+
+    input{
+        @apply border-0 focus:border-0 outline-none;
+    }
 }
 @tailwind components;
 @tailwind utilities;
@@ -1086,11 +1090,11 @@
     -webkit-transition: background .15s ease-in-out;
     transition: background .15s ease-in-out;
   }
-  
+
   .range__input::-webkit-slider-thumb:hover {
     background-color: #d2d2d2 !important;
   }
-  
+
   .range__input::-moz-range-thumb {
     width: 12px;
     height: 12px;
@@ -1101,23 +1105,23 @@
     -webkit-transition: background .15s ease-in-out;
     transition: background .15s ease-in-out;
   }
-  
+
   .range__input::-moz-range-thumb:hover {
     background: #f9ca24;
   }
-  
+
   /* remove border */
   input::-moz-focus-inner, input::-moz-focus-outer {
     border: 0;
   }
-  
+
   .range__slider {
     width: 45%;
   }
-  
+
   .range__value {
     width: 35%;
-    margin-left: 45px;    
+    margin-left: 45px;
     text-align: center;
     border-left: #e6e4e4 1px solid;
   }
