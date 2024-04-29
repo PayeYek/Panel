@@ -636,7 +636,7 @@ export default {
                 }
 
                 // console.log(body)
-                axios.post(`https://paye1.com/api/l/arian-diesel/facilities-request`, body)
+                axios.post(`https://paye1.com/api/l/facilities-request`, body)
                     .then(function (response) {
                         // handle success
                         // console.log("success", response);

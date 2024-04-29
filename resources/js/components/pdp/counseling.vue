@@ -675,7 +675,7 @@ export default {
                     phone: phone.value.toString(),
                     land_id: Number(props.landId),
                 }
-                axios.post(`https://paye1.com/api/l/arian-diesel/facilities-request`, body)
+                axios.post(`https://paye1.com/api/l/facilities-request`, body)
                     .then(function (response) {
                         // handle success
                         if (response.data.status == 200) {
