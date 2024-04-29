@@ -18,6 +18,7 @@ use App\Models\LandComment;
 use App\Models\LandFacility;
 use App\Models\LandProduct;
 use App\Models\LandSubscribe;
+use App\Support\SeoHelper;
 use App\Transformers\LandAboutUsTransformer;
 use App\Transformers\LandArticleSearchTransformer;
 use App\Transformers\LandArticleSingleTransformer;
@@ -27,14 +28,12 @@ use App\Transformers\LandProductTransformer;
 use App\Transformers\LandTransformer;
 use Exception;
 use Str;
-use function App\Helpers\seoGenerator;
 
 class LandingApiController extends Controller
 {
     public function pages()
     {
-        $lands = Land::get(['title', 'slug', 'logo']);
-        return $lands;
+        return Land::get(['title', 'slug', 'logo']);
     }
 
     public function page($page)
@@ -67,7 +66,7 @@ class LandingApiController extends Controller
             ];
         });
 
-        $seo = seoGenerator($land);
+        $seo = SeoHelper::seoGenerator($land);
 
 //        $newsArticles = $land->articles->where('type', 'news');
 //        $blogArticles = $land->articles->where('type', 'blog');
@@ -125,7 +124,7 @@ class LandingApiController extends Controller
             'url' => null
         ];
 
-        $seo = seoGenerator($land, 'aboutUs');
+        $seo = SeoHelper::seoGenerator($land, 'aboutUs');
 
         $data = [
             'land' => $land,
@@ -175,7 +174,7 @@ class LandingApiController extends Controller
             ];
         });
 
-        $seo = seoGenerator($land, 'products');
+        $seo = SeoHelper::seoGenerator($land, 'products');
 
         if ($land->styles->product_list_type !== 1) {
             $productsPaginator = $land->products()->paginate($perPage)->withQueryString();
@@ -267,7 +266,7 @@ class LandingApiController extends Controller
             'url' => null
         ];
 
-        $seo = seoGenerator($product);
+        $seo = SeoHelper::seoGenerator($product);
 
         $data = [
             'product' => $product,
@@ -388,7 +387,7 @@ class LandingApiController extends Controller
             'url' => Str::after(parse_url(route('api.landing.article.list', ['page' => $land->slug]), PHP_URL_PATH), '/api/l/')
         ];
 
-        $seo = seoGenerator($land, 'articles');
+        $seo = SeoHelper::seoGenerator($land, 'articles');
 
         $data = [
             'articles' => [
@@ -441,7 +440,7 @@ class LandingApiController extends Controller
             'title' => $article->title,
             'url' => null
         ];
-        $seo = seoGenerator($article);
+        $seo = SeoHelper::seoGenerator($article);
 
         $data = [
             'article' => $article->only(['title', 'image', 'body', 'created_at']),
