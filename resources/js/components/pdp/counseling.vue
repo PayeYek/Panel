@@ -26,10 +26,10 @@
                     </svg>
                 </div>
 
-                <section class="lg:col-span-6 p-6">
+                <section class="lg:col-span-6 p-6 lg:pb-12">
                     <section class="flex flex-col max-w-[33rem] w-full mx-auto">
                         <!-- vehicle price amount -->
-                        <section class="mb-8 lg:mb-14">
+                        <section class="mb-8 lg:mb-12">
                             <p
                                 class="text-sm cursor-default pr-4 font-medium text-stone-700 mb-4 relative before:absolute before:content-[''] before:rounded-full before:bg-normal before:top-1.5 before:right-0 before:size-2">
                                 میزان وام درخواستی </p>
@@ -73,7 +73,7 @@
                         </section>
 
                         <!-- payment duration -->
-                        <section>
+                        <section class="mb-8 lg:mb-12">
                             <p
                                 class="text-sm pr-4 cursor-default font-medium text-stone-700 mb-4 relative before:absolute before:content-[''] before:rounded-full before:bg-normal before:top-1.5 before:right-0 before:size-2">
                                 مدت زمان بازپرداخت <span class="sm:hidden text-stone-700 text-sm font-normal"> (سال)
@@ -127,18 +127,61 @@
                                 </div>
                             </section>
                         </section>
+
+                        <!-- custom profit-->
+                        <section class="flex flex-col mb-8 lg:mb-12 gap-4">
+                            <!--  inital profit-->
+                            <label for="initial-profit" class="flex items-center gap-3 cursor-pointer">
+                                <input type="radio" name="profit" id="initial-profit" value="initial" class="hidden peer" v-model="profitState" @change="checkProfit" />
+                                <div class="size-4 rounded-full border border-[#90A4AE] relative peer-checked:border-[#1EA0FF] peer-checked:bg-[#1EA0FF] before:absolute before:w-2 before:h-1 before:border-l before:border-b before:border-white before:top-1 before:left-[3px] before:-rotate-45 before:hidden peer-checked:before:block"></div>
+                                <span class="cursor-pointer text-sm font-medium text-stone-700"> سود پیشفرض </span>
+                            </label>
+                            <section class="flex flex-col sm:flex-row gap-4 sm:gap-8 relative flex-1">
+                                <label for="custom-profit" class="flex items-center gap-3 cursor-pointer sm:flex-none">
+                                    <input type="radio" name="profit" id="custom-profit" value="custom" class="hidden peer" v-model="profitState" @change="checkProfit" />
+                                    <div class="size-4 rounded-full border border-[#90A4AE] relative peer-checked:border-[#1EA0FF] peer-checked:bg-[#1EA0FF] before:absolute before:w-2 before:h-1 before:border-l before:border-b before:border-white before:top-1 before:left-[3px] before:-rotate-45 before:hidden peer-checked:before:block"></div>
+                                    <span class="cursor-pointer text-sm font-medium text-stone-700"> سود مورد نظر شما (درصد) </span>
+                                </label>
+
+                                <section :class="'rounded-custom mx-auto sm:mx-0 border h-11 flex items-center border-stone-400 ' + (profitState === 'initial' ? 'pointer-events-none opacity-50' : 'opacity-100')">
+                                    <!-- decrease-->
+                                    <button type="button" @click="decreasePercent" :class="'flex_center aspect-square h-full border-l border-stone-400 ' + (profitState === 'initial' ? '' : '')">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                             stroke-width="1.5" stroke="currentColor" class="size-6 stroke-[#1EA0FF]">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14" />
+                                        </svg>
+                                    </button>
+                                    <input type="number" v-model="customProfit" class="w-full text-center max-w-80 px-3 border-0 placeholder:text-stone-400 focus:ring-0 text-sm font-normal" placeholder="سود مورد نظر خود را وارد کنید" :disabled="profitState === 'initial'" />
+                                    <!-- increase-->
+                                    <button type="button" @click="increasePercent" :class="'flex_center aspect-square h-full border-r border-stone-400 ' + (profitState === 'initial' ? '' : '')">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                             stroke-width="1.5" stroke="currentColor" class="size-6 stroke-[#1EA0FF]">
+                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                  d="M12 4.5v15m7.5-7.5h-15" />
+                                        </svg>
+                                    </button>
+                                </section>
+                                <p class="text-red-500 text-sm font-normal absolute -bottom-8 right-0"> {{ profitAlert }} </p>
+                            </section>
+                        </section>
+
+                        <!-- submit form-->
+                        <section class="flex justify-center">
+                            <button type="button" class="h-11 w-full max-w-64 rounded-custom border border-normal text-normal text-base font-medium flex_medium" @click="calculateValues"> ثبت اطلاعات </button>
+                        </section>
                     </section>
                 </section>
 
                 <!-- total -->
                 <section class="lg:col-span-4 bg-stone-200 rounded-b-custom lg:rounded-t-custom">
-                    <section class="text-sm font-normal px-4 py-6 lg:py-12 lg:px-10">
-                        <div class="flex_between mb-4 lg:mb-6">
-                            <p class="text-base lg:text-lg font-medium text-stone-700 cursor-default"> نتیجه محاسبه </p>
-                            <p class="text-sm text-[#1EA0FF] border-b-2 border-b-transparent hover:border-b-[#1EA0FF] border-dashed font-medium cursor-pointer"
-                                @click="trueInformationState"> اطلاعات بیشتر </p>
-                        </div>
-                        <ul class="list-none text-[#90A4AE] mb-6 cursor-default">
+                    <section class="text-sm font-normal px-4 py-6 lg:py-12 lg:px-10 lg:flex lg:flex-col lg:h-full lg:justify-between">
+                        <section>
+                            <div class="flex_between mb-4 lg:mb-6">
+                                <p class="text-base lg:text-lg font-medium text-stone-700 cursor-default"> نتیجه محاسبه </p>
+                                <p :class="'text-sm text-[#1EA0FF] border-b-2 border-b-transparent hover:border-b-[#1EA0FF] border-dashed font-medium cursor-pointer ' + (activeToolsButtons ? 'block' : 'hidden')"
+                                   @click="trueInformationState"> اطلاعات بیشتر </p>
+                            </div>
+                            <ul class="list-none text-[#90A4AE] mb-6 cursor-default">
                             <li class="border-b border-b-white py-4 flex_between gap-4 text-sm font-normal">
                                 <p> مبلغ هر قسط </p>
                                 <div class="flex_row gap-2 sm:gap-4">
@@ -149,7 +192,7 @@
                             <li class="border-b border-b-white py-4 flex_between gap-4 text-sm font-normal">
                                 <p> مدت زمان بازپرداخت </p>
                                 <div class="flex_row gap-2 sm:gap-4">
-                                    <p class="text-stone-950"> {{ paymentDuration }} </p>
+                                    <p class="text-stone-950"> {{ paymentDurationView }} </p>
                                     <p> مـــــاه </p>
                                 </div>
                             </li>
@@ -160,7 +203,7 @@
                                     <p class=""> تومان </p>
                                 </div>
                             </li>
-                            <li class="border-b border-b-white py-4 flex_between gap-4 text-sm font-normal">
+                            <li class="border-b border-b-white py-4 flex_between gap-4 text-sm font-normal" v-if="profitState === 'initial'">
                                 <p> خالص تسهیلات دریافتی </p>
                                 <div class="flex_row gap-2 sm:gap-4">
                                     <p class="text-stone-950"> {{ numberWithCommas(fund) }} </p>
@@ -168,6 +211,7 @@
                                 </div>
                             </li>
                         </ul>
+                        </section>
                         <button
                             class="text-lg font-medium mx-auto bg-normal cursor-pointer rounded-custom text-white flex_center h-12 px-10 lg:px-14 xl:px-20"
                             type="button" @click="changeCounselingStep(1)"> درخواست مشاوره </button>
@@ -321,11 +365,12 @@ export default {
         const loanMax = ref(3000000000);
         const loanInitialValue = ref(400000000);
         const paymentDuration = ref(24);
+        const paymentDurationView = ref(0);
         const fund = ref(0);
         const loanPerMonth = ref(0);
         const refund = ref(0);
-        const wage = ref(9.735);
-        const refunWage = ref(40.085);
+        // const wage = ref(9.735);
+        // const refunWage = ref(40.085);
         const modalState = ref(false);
         const informationState = ref(false);
         const loanOptions = ref([]);
@@ -343,6 +388,11 @@ export default {
         const responseState = ref("success");
         const responseMessage = ref("");
         const timer = ref(3000);
+        const profitState = ref("initial");
+        const customProfit = ref("");
+        const activeToolsButtons = ref(false);
+        const calculationInterest = ref(0);
+        const profitAlert = ref("");
 
         const closeModal = () => {
             showModal.value = false;
@@ -381,7 +431,54 @@ export default {
         }
 
         const calculateValues = () => {
-            loanInitialValue.value = parseInt(loanInitialValue.value);
+            // loanInitialValue.value = parseInt(loanInitialValue.value);
+            // const wageMap = {
+            //     12: 5.64,
+            //     24: 9.735,
+            //     36: 13.225,
+            //     48: 16.19,
+            //     60: 18.69
+            // };
+            //
+            // const reFundMap = {
+            //     12: 21.345,
+            //     24: 40.085,
+            //     36: 59.295,
+            //     48: 79.015,
+            //     60: 99.27,
+            // };
+            //
+            // const wageValue = wageMap[paymentDuration.value];
+            // const refundWageValue = reFundMap[paymentDuration.value];
+            // wage.value = wageValue;
+            // refunWage.value = refundWageValue;
+            //
+            // const fullNumber = loanInitialValue.value - (loanInitialValue.value * wageValue) / 100;
+            // fund.value = Math.floor(fullNumber / 1000) * 1000;
+            //
+            // const refundFullNumber = loanInitialValue.value + (loanInitialValue.value * refundWageValue) / 100;
+            // refund.value = Math.floor(refundFullNumber / 1000) * 1000;
+            //
+            // const perMonthFullNumber = parseInt((refund.value - ((loanInitialValue.value * wageValue) / 100)) / paymentDuration.value);
+            // loanPerMonth.value = Math.floor(perMonthFullNumber / 1000) * 1000;
+
+            if(profitState.value === 'initial'){
+                calculationInterest.value = 40;
+                profitAlert.value = "";
+            } else if(profitState.value === 'custom' && customProfit.value < 1){
+                profitAlert.value = "سود مورد نظر شما باید بیشتر از 1 درصد باشد.";
+                return false;
+            } else if(profitState.value === 'custom' && customProfit.value > 100) {
+                profitAlert.value = "سود مورد نظر شما باید کمتر از 100 درصد باشد.";
+                return false;
+            } else {
+                calculationInterest.value = customProfit.value;
+                profitAlert.value = "";
+            }
+            const interest = (Number(loanInitialValue.value) * Number(calculationInterest.value) * (Number(paymentDuration.value)+1)) / 2400;
+            loanPerMonth.value = Math.floor(((Number(loanInitialValue.value) + interest) / paymentDuration.value) / 1000) * 1000;
+            paymentDurationView.value = paymentDuration.value;
+            refund.value = Number(paymentDuration.value) * Number(loanPerMonth.value);
             const wageMap = {
                 12: 5.64,
                 24: 9.735,
@@ -389,33 +486,49 @@ export default {
                 48: 16.19,
                 60: 18.69
             };
-
-            const reFundMap = {
-                12: 21.345,
-                24: 40.085,
-                36: 59.295,
-                48: 79.015,
-                60: 99.27,
-            };
-
             const wageValue = wageMap[paymentDuration.value];
-            const refundWageValue = reFundMap[paymentDuration.value];
-            wage.value = wageValue;
-            refunWage.value = refundWageValue;
-
-            const fullNumber = loanInitialValue.value - (loanInitialValue.value * wageValue) / 100;
+            const fullNumber = Number(loanInitialValue.value) - (Number(loanInitialValue.value) * wageValue) / 100;
             fund.value = Math.floor(fullNumber / 1000) * 1000;
+            // fund.value = 0;
 
-            const refundFullNumber = loanInitialValue.value + (loanInitialValue.value * refundWageValue) / 100;
-            refund.value = Math.floor(refundFullNumber / 1000) * 1000;
-
-            const perMonthFullNumber = parseInt((refund.value - ((loanInitialValue.value * wageValue) / 100)) / paymentDuration.value);
-            loanPerMonth.value = Math.floor(perMonthFullNumber / 1000) * 1000;
+            activeToolsButtons.value = true;
         };
 
-        watchEffect(() => {
-            calculateValues();
-        });
+        // watchEffect(() => {
+        //     calculateValues();
+        // });
+
+        const resetTotalAmounts = () => {
+            loanPerMonth.value = 0;
+            paymentDurationView.value = 0;
+            refund.value = 0;
+            fund.value = 0;
+        }
+
+        const checkProfit = () => {
+            if (profitState.value === 'initial'){
+                customProfit.value = "";
+            }
+            resetTotalAmounts();
+        }
+
+        const decreasePercent = () => {
+            if(customProfit.value <= 1){
+                customProfit.value = 1;
+            } else {
+                customProfit.value = customProfit.value - 1;
+                calculationInterest.value = customProfit.value - 1;
+            }
+        }
+
+        const increasePercent = () => {
+            if(customProfit.value >= 100){
+                customProfit.value = 100;
+            } else {
+                customProfit.value = Number(customProfit.value) + 1;
+                calculationInterest.value = Number(customProfit.value) + 1;
+            }
+        }
 
         const generateLoanOptions = () => {
             const start = 200;
@@ -568,9 +681,18 @@ export default {
             submitForm,
             fullname,
             phone,
-            responseShow,
             responseState,
             responseMessage,
+            responseShow,
+            profitState,
+            customProfit,
+            paymentDurationView,
+            calculateValues,
+            activeToolsButtons,
+            checkProfit,
+            profitAlert,
+            decreasePercent,
+            increasePercent,
         }
     }
 }
