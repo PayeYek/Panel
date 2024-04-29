@@ -180,6 +180,7 @@
                                             </svg>
                                         </button>
                                     </section>
+
                                     <p class="text-red-500 text-sm font-normal absolute -bottom-8 right-0">
                                         {{ profitAlert }} </p>
                                 </label>
@@ -546,10 +547,12 @@ export default {
         }
 
         const checkProfit = () => {
+            resetTotalAmounts();
             if (profitState.value === 'initial') {
                 customProfit.value = "";
+            } else {
+                customProfit.value = 26;
             }
-            resetTotalAmounts();
         }
 
         const decreasePercent = () => {
@@ -608,6 +611,18 @@ export default {
 
         const changeCounselingStep = index => {
             counselingStep.value = index;
+        }
+
+        const resetFormInputs = () => {
+            const inputs = document.querySelectorAll('.validation-input');
+
+            inputs.forEach((element) => {
+                element.classList.remove('invalid:!border-red-500');
+            });
+
+            categoryType.value = 0;
+            fullname.value = "";
+            phone.value = "";
         }
 
         const submitForm = () => {
@@ -669,6 +684,7 @@ export default {
                             responseState.value = "success";
                             timer.value = 3000;
                             const myInterval = setInterval(() => myTimer(myInterval), 100);
+                            resetFormInputs();
                         }
                     })
                     .catch(function (error) {

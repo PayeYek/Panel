@@ -14,11 +14,11 @@
                             <div class="w-full h-12 mb-6 font-medium text-sm flex_between px-6">
                                 <!-- decrease -->
                                 <button type="button"
-                                    :class="'p-2 cursor-pointer text-[#1EA0FF] ' + (loanInitialValue > loanMin ? '' : 'opacity-40 pointer-events-none')"
-                                    @click="loanOrder('minus')">
+                                        :class="'p-2 cursor-pointer text-[#1EA0FF] ' + (loanInitialValue > loanMin ? '' : 'opacity-40 pointer-events-none')"
+                                        @click="loanOrder('minus')">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                        stroke-width="1.5" stroke="currentColor" class="size-6 stroke-current">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14" />
+                                         stroke-width="1.5" stroke="currentColor" class="size-6 stroke-current">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14"/>
                                     </svg>
                                     <span class="sr-only"> decrease </span>
                                 </button>
@@ -28,21 +28,22 @@
                                 </p>
                                 <!-- increase -->
                                 <button type="button"
-                                    :class="'p-2 cursor-pointer text-[#1EA0FF] ' + (loanInitialValue < loanMax ? '' : 'opacity-40 pointer-events-none')"
-                                    @click="loanOrder('plus')">
+                                        :class="'p-2 cursor-pointer text-[#1EA0FF] ' + (loanInitialValue < loanMax ? '' : 'opacity-40 pointer-events-none')"
+                                        @click="loanOrder('plus')">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                        stroke-width="1.5" stroke="currentColor" class="size-6 stroke-current">
+                                         stroke-width="1.5" stroke="currentColor" class="size-6 stroke-current">
                                         <path stroke-linecap="round" stroke-linejoin="round"
-                                            d="M12 4.5v15m7.5-7.5h-15" />
+                                              d="M12 4.5v15m7.5-7.5h-15"/>
                                     </svg>
                                     <span class="sr-only"> increase </span>
                                 </button>
                             </div>
                             <div class="h-2 w-full bg-stone-200 rounded-full mb-4 relative">
                                 <input :style="{ background: priceSliderBackground }" type="range"
-                                    class="dir-rtl absolute top-0.5 inset-x-0.5 range__input rounded-full"
-                                    :min="loanMin" :max="loanMax" :value="loanInitialValue" v-model="loanInitialValue"
-                                    :step="loanSteps" />
+                                       class="dir-rtl absolute top-0.5 inset-x-0.5 range__input rounded-full"
+                                       :min="loanMin" :max="loanMax" :value="loanInitialValue"
+                                       v-model="loanInitialValue"
+                                       :step="loanSteps"/>
                             </div>
                             <div
                                 class="text-sm font-normal flex items-center justify-between mb-4 text-stone-700 cursor-default">
@@ -56,50 +57,50 @@
                             <p
                                 class="text-sm pr-4 font-medium text-stone-700 mb-4 relative cursor-default before:absolute before:content-[''] before:rounded-full before:bg-normal before:top-1.5 before:right-0 before:size-2">
                                 مدت زمان بازپرداخت <span class="sm:hidden text-stone-700 text-sm font-normal"> (سال)
-                                </span> </p>
+                                </span></p>
 
                             <section class="flex_center gap-2 text-stone-700 text-base font-normal">
                                 <div>
                                     <input type="radio" value="12" v-model="paymentDuration" name="paymentDuration"
-                                        id="12monthes" class="hidden peer" />
+                                           id="12monthes" class="hidden peer"/>
                                     <label for="12monthes"
-                                        class="h-12 rounded-custom w-12 peer-checked:w-16 sm:w-24 sm:peer-checked:w-28 sm:gap-1 cursor-pointer lg:w-20 lg:peer-checked:w-32 ring-1 flex_center ring-stone-400 bg-white peer-checked:ring-[#1EA0FF] peer-checked:ring-2 peer-checked:bg-stone-200 peer-checked:font-medium peer-checked:text-xl duration-200">
+                                           class="h-12 rounded-custom w-12 peer-checked:w-16 sm:w-24 sm:peer-checked:w-28 sm:gap-1 cursor-pointer lg:w-20 lg:peer-checked:w-32 ring-1 flex_center ring-stone-400 bg-white peer-checked:ring-[#1EA0FF] peer-checked:ring-2 peer-checked:bg-stone-200 peer-checked:font-medium peer-checked:text-xl duration-200">
                                         <span> 1 </span>
                                         <span class="hidden sm:block"> ساله </span>
                                     </label>
                                 </div>
                                 <div>
                                     <input type="radio" value="24" v-model="paymentDuration" name="paymentDuration"
-                                        id="24monthes" class="hidden peer" />
+                                           id="24monthes" class="hidden peer"/>
                                     <label for="24monthes"
-                                        class="h-12 rounded-custom w-12 peer-checked:w-16 sm:w-24 sm:peer-checked:w-28 sm:gap-1 cursor-pointer lg:w-20 lg:peer-checked:w-32 ring-1 flex_center ring-stone-400 bg-white peer-checked:ring-[#1EA0FF] peer-checked:ring-2 peer-checked:bg-stone-200 peer-checked:font-medium peer-checked:text-xl duration-200">
+                                           class="h-12 rounded-custom w-12 peer-checked:w-16 sm:w-24 sm:peer-checked:w-28 sm:gap-1 cursor-pointer lg:w-20 lg:peer-checked:w-32 ring-1 flex_center ring-stone-400 bg-white peer-checked:ring-[#1EA0FF] peer-checked:ring-2 peer-checked:bg-stone-200 peer-checked:font-medium peer-checked:text-xl duration-200">
                                         <span> 2 </span>
                                         <span class="hidden sm:block"> ساله </span>
                                     </label>
                                 </div>
                                 <div>
                                     <input type="radio" value="36" v-model="paymentDuration" name="paymentDuration"
-                                        id="36monthes" class="hidden peer" />
+                                           id="36monthes" class="hidden peer"/>
                                     <label for="36monthes"
-                                        class="h-12 rounded-custom w-12 peer-checked:w-16 sm:w-24 sm:peer-checked:w-28 sm:gap-1 cursor-pointer lg:w-20 lg:peer-checked:w-32 ring-1 flex_center ring-stone-400 bg-white peer-checked:ring-[#1EA0FF] peer-checked:ring-2 peer-checked:bg-stone-200 peer-checked:font-medium peer-checked:text-xl duration-200">
+                                           class="h-12 rounded-custom w-12 peer-checked:w-16 sm:w-24 sm:peer-checked:w-28 sm:gap-1 cursor-pointer lg:w-20 lg:peer-checked:w-32 ring-1 flex_center ring-stone-400 bg-white peer-checked:ring-[#1EA0FF] peer-checked:ring-2 peer-checked:bg-stone-200 peer-checked:font-medium peer-checked:text-xl duration-200">
                                         <span> 3 </span>
                                         <span class="hidden sm:block"> ساله </span>
                                     </label>
                                 </div>
                                 <div>
                                     <input type="radio" value="48" v-model="paymentDuration" name="paymentDuration"
-                                        id="48monthes" class="hidden peer" />
+                                           id="48monthes" class="hidden peer"/>
                                     <label for="48monthes"
-                                        class="h-12 rounded-custom w-12 peer-checked:w-16 sm:w-24 sm:peer-checked:w-28 sm:gap-1 cursor-pointer lg:w-20 lg:peer-checked:w-32 ring-1 flex_center ring-stone-400 bg-white peer-checked:ring-[#1EA0FF] peer-checked:ring-2 peer-checked:bg-stone-200 peer-checked:font-medium peer-checked:text-xl duration-200">
+                                           class="h-12 rounded-custom w-12 peer-checked:w-16 sm:w-24 sm:peer-checked:w-28 sm:gap-1 cursor-pointer lg:w-20 lg:peer-checked:w-32 ring-1 flex_center ring-stone-400 bg-white peer-checked:ring-[#1EA0FF] peer-checked:ring-2 peer-checked:bg-stone-200 peer-checked:font-medium peer-checked:text-xl duration-200">
                                         <span> 4 </span>
                                         <span class="hidden sm:block"> ساله </span>
                                     </label>
                                 </div>
                                 <div>
                                     <input type="radio" value="60" v-model="paymentDuration" name="paymentDuration"
-                                        id="60monthes" class="hidden peer" />
+                                           id="60monthes" class="hidden peer"/>
                                     <label for="60monthes"
-                                        class="h-12 rounded-custom w-12 peer-checked:w-16 sm:w-24 sm:peer-checked:w-28 sm:gap-1 cursor-pointer lg:w-20 lg:peer-checked:w-32 ring-1 flex_center ring-stone-400 bg-white peer-checked:ring-[#1EA0FF] peer-checked:ring-2 peer-checked:bg-stone-200 peer-checked:font-medium peer-checked:text-xl duration-200">
+                                           class="h-12 rounded-custom w-12 peer-checked:w-16 sm:w-24 sm:peer-checked:w-28 sm:gap-1 cursor-pointer lg:w-20 lg:peer-checked:w-32 ring-1 flex_center ring-stone-400 bg-white peer-checked:ring-[#1EA0FF] peer-checked:ring-2 peer-checked:bg-stone-200 peer-checked:font-medium peer-checked:text-xl duration-200">
                                         <span> 5 </span>
                                         <span class="hidden sm:block"> ساله </span>
                                     </label>
@@ -111,55 +112,69 @@
                         <section class="flex flex-col gap-4">
                             <!--  inital profit-->
                             <label for="initial-profit" class="flex items-center gap-3 cursor-pointer">
-                                <input type="radio" name="profit" id="initial-profit" value="initial" class="hidden peer" v-model="profitState" @change="checkProfit" />
-                                <div class="size-4 rounded-full border border-[#90A4AE] relative peer-checked:border-[#1EA0FF] peer-checked:bg-[#1EA0FF] before:absolute before:w-2 before:h-1 before:border-l before:border-b before:border-white before:top-1 before:left-[3px] before:-rotate-45 before:hidden peer-checked:before:block"></div>
+                                <input type="radio" name="profit" id="initial-profit" value="initial"
+                                       class="hidden peer" v-model="profitState" @change="checkProfit"/>
+                                <div
+                                    class="size-4 rounded-full border border-[#90A4AE] relative peer-checked:border-[#1EA0FF] peer-checked:bg-[#1EA0FF] before:absolute before:w-2 before:h-1 before:border-l before:border-b before:border-white before:top-1 before:left-[3px] before:-rotate-45 before:hidden peer-checked:before:block"></div>
                                 <span class="cursor-pointer text-sm font-medium text-stone-700"> سود پیشفرض </span>
                             </label>
+                            <!--  custom profit-->
                             <label for="custom-profit" class="flex flex-col sm:flex-row gap-4 sm:gap-8 relative">
                                 <div class="flex items-center gap-3 cursor-pointer sm:flex-none">
-                                    <input type="radio" name="profit" id="custom-profit" value="custom" class="hidden peer" v-model="profitState" @change="checkProfit" />
-                                    <div class="size-4 rounded-full border border-[#90A4AE] relative peer-checked:border-[#1EA0FF] peer-checked:bg-[#1EA0FF] before:absolute before:w-2 before:h-1 before:border-l before:border-b before:border-white before:top-1 before:left-[3px] before:-rotate-45 before:hidden peer-checked:before:block"></div>
+                                    <input type="radio" name="profit" id="custom-profit" value="custom"
+                                           class="hidden peer" v-model="profitState" @change="checkProfit"/>
+                                    <div
+                                        class="size-4 rounded-full border border-[#90A4AE] relative peer-checked:border-[#1EA0FF] peer-checked:bg-[#1EA0FF] before:absolute before:w-2 before:h-1 before:border-l before:border-b before:border-white before:top-1 before:left-[3px] before:-rotate-45 before:hidden peer-checked:before:block"></div>
                                     <span class="cursor-pointer text-sm font-medium text-stone-700"> سود مورد نظر شما (درصد) </span>
                                 </div>
 
 
-                                <section :class="'flex-1 rounded-custom mx-auto sm:mx-0 border h-11 flex items-center border-stone-400 ' + (profitState === 'initial' ? 'pointer-events-none opacity-50' : 'opacity-100')">
+                                <section
+                                    :class="'flex-1 rounded-custom mx-auto sm:mx-0 border h-11 flex items-center border-stone-400 ' + (profitState === 'initial' ? 'pointer-events-none opacity-50' : 'opacity-100')">
                                     <!-- decrease-->
-                                    <button type="button" @click="decreasePercent" :class="'flex_center aspect-square h-full border-l border-stone-400 ' + (profitState === 'initial' ? '' : '')">
+                                    <button type="button" @click="decreasePercent"
+                                            :class="'flex_center aspect-square h-full border-l border-stone-400 ' + (profitState === 'initial' ? '' : '')">
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                              stroke-width="1.5" stroke="currentColor" class="size-6 stroke-[#1EA0FF]">
-                                            <path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14" />
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14"/>
                                         </svg>
                                     </button>
-                                    <input type="number" v-model="customProfit" class="w-full text-center max-w-80 px-3 border-0 placeholder:text-stone-400 focus:ring-0 text-sm font-normal" placeholder="سود مورد نظر خود را وارد کنید" :disabled="profitState === 'initial'" />
+                                    <input type="number" v-model="customProfit"
+                                           class="w-full text-center max-w-80 px-3 border-0 placeholder:text-stone-400 focus:ring-0 text-sm font-normal"
+                                           placeholder="سود مورد نظر خود را وارد کنید"
+                                           :disabled="profitState === 'initial'"/>
                                     <!-- increase-->
-                                    <button type="button" @click="increasePercent" :class="'flex_center aspect-square h-full border-r border-stone-400 ' + (profitState === 'initial' ? '' : '')">
+                                    <button type="button" @click="increasePercent"
+                                            :class="'flex_center aspect-square h-full border-r border-stone-400 ' + (profitState === 'initial' ? '' : '')">
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                              stroke-width="1.5" stroke="currentColor" class="size-6 stroke-[#1EA0FF]">
                                             <path stroke-linecap="round" stroke-linejoin="round"
-                                                  d="M12 4.5v15m7.5-7.5h-15" />
+                                                  d="M12 4.5v15m7.5-7.5h-15"/>
                                         </svg>
                                     </button>
                                 </section>
-                                <p class="text-red-500 text-sm font-normal absolute -bottom-8 right-0"> {{ profitAlert }} </p>
+                                <p class="text-red-500 text-sm font-normal absolute -bottom-8 right-0"> {{ profitAlert
+                                    }} </p>
                             </label>
                         </section>
 
                         <!-- submit form-->
-<!--                        <section class="flex justify-center">-->
-<!--                            <button type="button" class="h-11 w-full max-w-64 rounded-custom border border-normal text-normal text-base font-medium flex_medium" @click="calculateValues"> محاسبه </button>-->
-<!--                        </section>-->
+                        <!--                        <section class="flex justify-center">-->
+                        <!--                            <button type="button" class="h-11 w-full max-w-64 rounded-custom border border-normal text-normal text-base font-medium flex_medium" @click="calculateValues"> محاسبه </button>-->
+                        <!--                        </section>-->
                     </section>
                 </section>
 
                 <!-- total -->
                 <section class="lg:col-span-4 bg-stone-200 rounded-b-custom lg:rounded-t-custom">
-                    <section class="text-sm font-normal px-4 py-6 lg:py-12 lg:px-10 lg:flex lg:flex-col lg:h-full lg:justify-between">
+                    <section
+                        class="text-sm font-normal px-4 py-6 lg:py-12 lg:px-10 lg:flex lg:flex-col lg:h-full lg:justify-between">
                         <section>
                             <div class="flex_between mb-4 lg:mb-6">
-                                <p class="text-base lg:text-lg font-medium text-stone-700 cursor-default"> نتیجه محاسبه </p>
+                                <p class="text-base lg:text-lg font-medium text-stone-700 cursor-default"> نتیجه
+                                    محاسبه </p>
                                 <p :class="'text-sm text-[#1EA0FF] border-b-2 border-b-transparent hover:border-b-[#1EA0FF] border-dashed font-medium cursor-pointer ' + (activeToolsButtons ? 'block' : 'hidden')"
-                                    @click="trueInformationState"> اطلاعات بیشتر </p>
+                                   @click="trueInformationState"> اطلاعات بیشتر </p>
                             </div>
                             <ul class="list-none text-[#90A4AE] mb-6 cursor-default">
                                 <li class="border-b border-b-white py-4 flex_between gap-4 text-sm font-normal">
@@ -183,7 +198,8 @@
                                         <p class=""> تومان </p>
                                     </div>
                                 </li>
-                                <li class="border-b border-b-white py-4 flex_between gap-4 text-sm font-normal" v-if="profitState === 'initial'">
+                                <li class="border-b border-b-white py-4 flex_between gap-4 text-sm font-normal"
+                                    v-if="profitState === 'initial'">
                                     <p> خالص تسهیلات دریافتی </p>
                                     <div class="flex_row gap-2 sm:gap-4">
                                         <p class="text-stone-950"> {{ numberWithCommas(fund) }} </p>
@@ -193,8 +209,9 @@
                             </ul>
                         </section>
                         <button :disabled="!activeToolsButtons"
-                            :class="'text-lg font-medium mx-auto rounded-custom text-white flex_center h-12 px-10 lg:px-14 xl:px-20 ' + (activeToolsButtons ? 'bg-normal cursor-pointer' : 'bg-stone-400 pointer-events-none')"
-                            type="button" @click="trueCounselingState"> درخواست مشاوره </button>
+                                :class="'text-lg font-medium mx-auto rounded-custom text-white flex_center h-12 px-10 lg:px-14 xl:px-20 ' + (activeToolsButtons ? 'bg-normal cursor-pointer' : 'bg-stone-400 pointer-events-none')"
+                                type="button" @click="trueCounselingState"> درخواست مشاوره
+                        </button>
                     </section>
                 </section>
             </section>
@@ -210,10 +227,10 @@
             v-show="informationState">
             <!-- close btn -->
             <div @click="closeInformationState"
-                class="absolute top-4 left-4 size-7 rounded-full bg-stone-200 flex_center cursor-pointer">
+                 class="absolute top-4 left-4 size-7 rounded-full bg-stone-200 flex_center cursor-pointer">
                 <svg class="size-5 stroke-stone-700" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M12 12L6 6M12 12L18 18M12 12L18 6M12 12L6 18" stroke="current" stroke-width="2"
-                        stroke-linecap="round" stroke-linejoin="round" />
+                          stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
             </div>
             <!-- title -->
@@ -221,10 +238,10 @@
                 class="mb-4 pr-4 relative before:absolute before:top-1 before:right-0 before:size-2 before:rounded-full before:bg-normal cursor-default">
                 اطلاعات بیشتر </p>
             <ul class="pr-6 space-y-2 list-inside list-disc cursor-default">
-                <li class=""> تعداد چک های قابل پرداخت {{ Number(paymentDuration) + 1 }} چک </li>
-                <li class=""> مبلغ بیمه بدنه به صورت جداگانه روی اقساط محاسبه و دریافت می شود. </li>
-                <li class=""> هزینه عملیات بدون ارزش افزوده محاسبه گردیده است. </li>
-                <li class=""> سود اقساط شما معادل نرخ مصوب بانک مرکزی یعنی 23 درصد است. </li>
+                <li class=""> تعداد چک های قابل پرداخت {{ Number(paymentDuration) + 1 }} چک</li>
+                <li class=""> مبلغ بیمه بدنه به صورت جداگانه روی اقساط محاسبه و دریافت می شود.</li>
+                <li class=""> هزینه عملیات بدون ارزش افزوده محاسبه گردیده است.</li>
+                <li class=""> سود اقساط شما معادل نرخ مصوب بانک مرکزی یعنی 23 درصد است.</li>
             </ul>
         </section>
 
@@ -232,7 +249,7 @@
             <h3 class="text-lg lg:text-2xl font-medium text-stone-700 mb-4 lg:mb-8 cursor-default"> مدارک مورد نیاز
                 دریافت تسهیلات
             </h3>
-            <Facilities classNames="mb-10 lg:mb-20" />
+            <Facilities classNames="mb-10 lg:mb-20"/>
         </section>
 
         <section
@@ -254,8 +271,8 @@
                 </div>
                 <!-- icons -->
                 <div class="flex items-end gap-6">
-                    <FormIconOne classNames="w-full max-w-[480px] lg:max-w-80 xl:max-w-96" />
-                    <FormIconTwo classNames="hidden sm:block w-72 lg:w-44 xl:w-48" />
+                    <FormIconOne classNames="w-full max-w-[480px] lg:max-w-80 xl:max-w-96"/>
+                    <FormIconTwo classNames="hidden sm:block w-72 lg:w-44 xl:w-48"/>
                 </div>
             </section>
             <!-- form -->
@@ -273,56 +290,64 @@
                         <div class="flex flex-col gap-1 relative">
                             <label class="text-sm font-normal text-stone-700 pr-2"> تسهیلات </label>
                             <select name="facilities" v-model="loanInitialValue" required
-                                class="h-11 rounded-custom border border-[#CFD1D4] focus:ring-0 outline-none focus:border-[#CFD1D4] text-sm font-normal validation-input">
-                                <option value="0" selected disabled> انتخاب کنید </option>
+                                    class="h-11 rounded-custom border border-[#CFD1D4] focus:ring-0 outline-none focus:border-[#CFD1D4] text-sm font-normal validation-input">
+                                <option value="0" selected disabled> انتخاب کنید</option>
                                 <option v-for="(option, index) in loanOptions" :key="index" :value="option.key">
                                     {{ formatValue(option.value) }} تومان
                                 </option>
                             </select>
-                            <p class="absolute text-red-500 text-xs -bottom-5 right-2 font-normal" v-if="facilityAlert"> میزان تسهیلات را وارد کنید. </p>
+                            <p class="absolute text-red-500 text-xs -bottom-5 right-2 font-normal" v-if="facilityAlert">
+                                میزان تسهیلات را وارد کنید. </p>
                         </div>
                         <div class="flex flex-col gap-1 relative">
                             <label class="text-sm font-normal text-stone-700 pr-2"> نوع خودرو </label>
                             <select name="vehicles" v-model="categoryType" required
-                                class="h-11 rounded-custom border border-[#CFD1D4] focus:ring-0 outline-none focus:border-[#CFD1D4] text-sm font-normal validation-input">
-                                <option value="0" selected disabled> انتخاب کنید </option>
-                                <option v-for="(category, index) in categories" :value="category.id" :key="index"> {{ category.title
-                                    }}
+                                    class="h-11 rounded-custom border border-[#CFD1D4] focus:ring-0 outline-none focus:border-[#CFD1D4] text-sm font-normal validation-input">
+                                <option value="0" selected disabled> انتخاب کنید</option>
+                                <option v-for="(category, index) in categories" :value="category.id" :key="index">
+                                    {{ category.title }}
                                 </option>
                             </select>
-                            <p class="absolute text-red-500 text-xs -bottom-5 right-2 font-normal" v-if="categoryAlert"> نوع خودرو را وارد کنید. </p>
+                            <p class="absolute text-red-500 text-xs -bottom-5 right-2 font-normal" v-if="categoryAlert">
+                                نوع خودرو را وارد کنید. </p>
                         </div>
                         <div class="flex flex-col gap-1 relative">
                             <label class="text-sm font-normal text-stone-700 pr-2"> نام و نام خانوادگی </label>
                             <input name="fullname" type="text" v-model="fullname" required
-                                class="validation-input h-11 rounded-custom border border-[#CFD1D4] focus:ring-0 outline-none focus:border-[#CFD1D4] text-sm font-normal placeholder:text-[#acacac]"
-                                placeholder="نام و نام خانوادگی خود را وارد کنید..." />
-                                <p class="absolute text-red-500 text-xs -bottom-5 right-2 font-normal" v-if="nameAlert"> نام و نام خانوادگی خود را وارد کنید. (بیشتر از 3 کاراکتر) </p>
+                                   class="validation-input h-11 rounded-custom border border-[#CFD1D4] focus:ring-0 outline-none focus:border-[#CFD1D4] text-sm font-normal placeholder:text-[#acacac]"
+                                   placeholder="نام و نام خانوادگی خود را وارد کنید..."/>
+                            <p class="absolute text-red-500 text-xs -bottom-5 right-2 font-normal" v-if="nameAlert"> نام
+                                و نام خانوادگی خود را وارد کنید. (بیشتر از 3 کاراکتر) </p>
                         </div>
                         <div class="flex flex-col gap-1 relative">
                             <label class="text-sm font-normal text-stone-700 pr-2"> شماره موبایل </label>
                             <input name="phone" type="tel" v-model="phone" required
-                                class="validation-input h-11 dir-rtl rounded-custom border border-[#CFD1D4] focus:ring-0 outline-none focus:border-[#CFD1D4] text-sm font-normal placeholder:text-[#acacac]"
-                                placeholder="شماره موبایل خود را وارد کنید..." />
-                            <p class="absolute text-red-500 text-xs -bottom-5 right-2 font-normal" v-if="phoneAlert"> شماره موبایل خود را به درستی وارد کنید. </p>
+                                   class="validation-input h-11 dir-rtl rounded-custom border border-[#CFD1D4] focus:ring-0 outline-none focus:border-[#CFD1D4] text-sm font-normal placeholder:text-[#acacac]"
+                                   placeholder="شماره موبایل خود را وارد کنید..."/>
+                            <p class="absolute text-red-500 text-xs -bottom-5 right-2 font-normal" v-if="phoneAlert">
+                                شماره موبایل خود را به درستی وارد کنید. </p>
                         </div>
                     </div>
                     <button type="button"
-                        class="h-11 rounded-custom bg-normal text-lg font-medium text-white flex_center w-full max-w-[272px] mx-auto"
-                        @click="submitForm">
-                        ثبت درخواست </button>
+                            class="h-11 rounded-custom bg-normal text-lg font-medium text-white flex_center w-full max-w-[272px] mx-auto"
+                            @click="submitForm">
+                        ثبت درخواست
+                    </button>
                 </section>
             </section>
         </section>
 
         <!-- submit response message -->
-        <section :class="'fixed top-4 sm:top-8 right-4 shadow-xl border-r-4 flex items-center rounded-xl p-4 h-20 w-full max-w-[90%] sm:max-w-[28rem] md:max-w-[32rem] sm:right-6 text-stone-700 text-sm sm:text-base sm:font-medium leading-6 sm:leading-7 z-[5] ' + (responseState === 'success' ? 'border-r-green-500 bg-[#E8FBED]' : 'border-r-red-600 bg-[#FFDEDE]')" v-if="responseShow"> {{ responseMessage }} </section>
+        <section
+            :class="'fixed top-4 sm:top-8 right-4 shadow-xl border-r-4 flex items-center rounded-xl p-4 h-20 w-full max-w-[90%] sm:max-w-[28rem] md:max-w-[32rem] sm:right-6 text-stone-700 text-sm sm:text-base sm:font-medium leading-6 sm:leading-7 z-[5] ' + (responseState === 'success' ? 'border-r-green-500 bg-[#E8FBED]' : 'border-r-red-600 bg-[#FFDEDE]')"
+            v-if="responseShow"> {{ responseMessage }}
+        </section>
     </section>
 </template>
 
 <script>
-import { ref, computed, onMounted, watchEffect } from 'vue';
-import { numberWithCommas } from '../../common';
+import {ref, computed, onMounted, watchEffect} from 'vue';
+import {numberWithCommas} from '../../common';
 import Facilities from './children/Facilities.vue';
 import axios from 'axios';
 
@@ -391,7 +416,7 @@ export default {
             if (element) {
                 const elementRect = element.getBoundingClientRect();
                 const offset = elementRect.top - 180; // Adjusted by 100px
-                window.scrollTo({ top: window.pageYOffset + offset, behavior: 'smooth' });
+                window.scrollTo({top: window.pageYOffset + offset, behavior: 'smooth'});
             }
         }
 
@@ -448,20 +473,20 @@ export default {
             // } else {
             //     console.log(profitState.value)
             // }
-            if(profitState.value === 'initial'){
+            if (profitState.value === 'initial') {
                 calculationInterest.value = 40;
                 profitAlert.value = "";
-            } else if(profitState.value === 'custom' && customProfit.value < 1){
+            } else if (profitState.value === 'custom' && customProfit.value < 1) {
                 profitAlert.value = "سود مورد نظر شما باید بیشتر از 1 درصد باشد.";
                 return false;
-            } else if(profitState.value === 'custom' && customProfit.value > 100) {
+            } else if (profitState.value === 'custom' && customProfit.value > 100) {
                 profitAlert.value = "سود مورد نظر شما باید کمتر از 100 درصد باشد.";
                 return false;
             } else {
                 calculationInterest.value = customProfit.value;
                 profitAlert.value = "";
             }
-            const interest = (Number(loanInitialValue.value) * Number(calculationInterest.value) * (Number(paymentDuration.value)+1)) / 2400;
+            const interest = (Number(loanInitialValue.value) * Number(calculationInterest.value) * (Number(paymentDuration.value) + 1)) / 2400;
             loanPerMonth.value = Math.floor(((Number(loanInitialValue.value) + interest) / paymentDuration.value) / 1000) * 1000;
             paymentDurationView.value = paymentDuration.value;
             refund.value = Number(paymentDuration.value) * Number(loanPerMonth.value);
@@ -488,14 +513,16 @@ export default {
         }
 
         const checkProfit = () => {
-            if (profitState.value === 'initial'){
-                customProfit.value = "";
-            }
             resetTotalAmounts();
+            if (profitState.value === 'initial') {
+                customProfit.value = "";
+            } else {
+                customProfit.value = 26;
+            }
         }
 
         const decreasePercent = () => {
-            if(customProfit.value <= 1){
+            if (customProfit.value <= 1) {
                 customProfit.value = 1;
             } else {
                 customProfit.value = customProfit.value - 1;
@@ -504,7 +531,7 @@ export default {
         }
 
         const increasePercent = () => {
-            if(customProfit.value >= 100){
+            if (customProfit.value >= 100) {
                 customProfit.value = 100;
             } else {
                 customProfit.value = Number(customProfit.value) + 1;
@@ -523,7 +550,7 @@ export default {
 
             for (let value = start; value <= end; value += increment) {
                 const formattedKey = String(value * 1000000).padStart(9, '0'); // Add leading zeros
-                loanOptions.value.push({ key: Number(formattedKey), value: value });
+                loanOptions.value.push({key: Number(formattedKey), value: value});
             }
         };
 
@@ -538,13 +565,25 @@ export default {
         });
 
         function myTimer(interval) {
-            if(timer.value == 0) {
+            if (timer.value == 0) {
                 responseShow.value = false;
                 responseMessage.value = "";
                 clearInterval(interval);
                 return false;
             }
             timer.value -= 100;
+        }
+
+        const resetFormInputs = () => {
+            const inputs = document.querySelectorAll('.validation-input');
+
+            inputs.forEach((element) => {
+                element.classList.remove('invalid:!border-red-500');
+            });
+
+            categoryType.value = 0;
+            fullname.value = "";
+            phone.value = "";
         }
 
         const submitForm = () => {
@@ -554,26 +593,31 @@ export default {
                 element.classList.add('invalid:!border-red-500');
             });
 
-            for (const [field, value] of Object.entries({ amount: loanInitialValue, phone: phone, category_id: categoryType, full_name: fullname })) {
+            for (const [field, value] of Object.entries({
+                amount: loanInitialValue,
+                phone: phone,
+                category_id: categoryType,
+                full_name: fullname
+            })) {
                 if (field === 'phone') {
                     if (value.value.toString().length != 11) {
                         phoneAlert.value = true;
                     } else {
                         phoneAlert.value = false;
                     }
-                } else if(field === 'full_name'){
+                } else if (field === 'full_name') {
                     if (value.value.toString().length < 3 || value.value.toString().length > 63) {
                         nameAlert.value = true;
                     } else {
                         nameAlert.value = false;
                     }
-                } else if(field === 'category_id'){
+                } else if (field === 'category_id') {
                     if (value.value == 0) {
                         categoryAlert.value = true;
                     } else {
                         categoryAlert.value = false;
                     }
-                } else if(field === 'amount'){
+                } else if (field === 'amount') {
                     if (value.value == 0) {
                         facilityAlert.value = true;
                     } else {
@@ -591,29 +635,30 @@ export default {
                     land_id: Number(props.landId),
                 }
 
-                console.log(body)
+                // console.log(body)
                 axios.post(`https://paye1.com/api/l/arian-diesel/facilities-request`, body)
                     .then(function (response) {
                         // handle success
-                        console.log("success", response);
-                        if(response.data.status == 200){
+                        // console.log("success", response);
+                        if (response.data.status == 200) {
                             responseShow.value = true;
                             responseMessage.value = "اطلاعات شما ثبت شد. منتظر تماس کارشناسان ما باشید.";
                             responseState.value = "success";
                             timer.value = 3000;
                             const myInterval = setInterval(() => myTimer(myInterval), 100);
+                            resetFormInputs();
                         }
                     })
                     .catch(function (error) {
                         // handle error
                         console.log("catch", error.response);
-                        if(error.response.data.status == 400){
+                        if (error.response.data.status == 400) {
                             responseShow.value = true;
                             responseMessage.value = "اطلاعات شما قبلا ثبت شده است. منتظر تماس کارشناسان ما باشید.";
                             responseState.value = "error";
                             timer.value = 3000;
                             const myInterval = setInterval(() => myTimer(myInterval), 100);
-                        } else if(error.response.data.status == 500){
+                        } else if (error.response.data.status == 500) {
                             responseShow.value = true;
                             responseMessage.value = "خطایی سمت سرور رخ داده است. لطفا بعدا امتحان کنید.";
                             responseState.value = "error";
@@ -625,9 +670,6 @@ export default {
                         // always executed
                     });
             }
-
-
-
         }
 
         return {
