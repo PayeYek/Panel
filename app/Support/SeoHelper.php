@@ -1,14 +1,16 @@
 <?php
 
-namespace App\Helpers;
+namespace App\Support;
+
 
 use App\Models\Land;
 use App\Models\LandArticle;
 use App\Models\LandProduct;
 use Illuminate\Database\Eloquent\Model;
 
-if (!function_exists('generateSeo')) {
-    function seoGenerator(?Model $model = null, ?string $static = null): array
+class SeoHelper
+{
+    public static function seoGenerator(?Model $model = null, ?string $static = null): array
     {
         if ($model === null || $static === null) {
             return [
