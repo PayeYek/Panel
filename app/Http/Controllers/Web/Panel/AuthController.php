@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\Panel;
+namespace App\Http\Controllers\Web\Panel;
 
 use App\Facades\Sms\Sms;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\Panel\Inertia;
 use App\Models\ActiveCode;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -82,9 +83,9 @@ class AuthController extends Controller
     {
         $uid = $request->userId;
         $data = $request->validate([
-            "name"     => "required|string|max:255",
-            "family"   => "required|string|max:255",
-            "phone"    => [
+            "name" => "required|string|max:255",
+            "family" => "required|string|max:255",
+            "phone" => [
                 "required", "string", "size:11", "regex:/(09)[0-9]{9}/",
                 $uid ? Rule::unique("users")->ignore($uid) : "unique:users",
             ],
@@ -183,7 +184,7 @@ class AuthController extends Controller
     {
         $request->validate([
             "phone" => "required|size:11|exists:users,phone|regex:/(09)[0-9]{9}/",
-            "code"  => "required|string|size:4|exists:active_codes|regex:/[0-9]/",
+            "code" => "required|string|size:4|exists:active_codes|regex:/[0-9]/",
         ]);
 
         /* Check the status */

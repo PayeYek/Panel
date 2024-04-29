@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\Landing\LandingApiController;
+use App\Http\Controllers\Api\Landing\LandingApiController;
 use App\Models\Land;
 use App\Models\Province;
 use Illuminate\Http\Request;

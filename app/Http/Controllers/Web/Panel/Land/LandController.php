@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Panel\Land;
+namespace App\Http\Controllers\Web\Panel\Land;
 
 
 use App\Http\Controllers\Controller;
@@ -10,6 +10,7 @@ use App\Models\Land;
 use App\Models\LandStyle;
 use App\Tables\Landing\Lands;
 use Illuminate\Support\Facades\Storage;
+use Splade;
 
 class
 LandController extends Controller
@@ -43,7 +44,7 @@ LandController extends Controller
 
         $land->styles()->create([]);
 
-        \Splade::toast(__('Created'))->autoDismiss(5)->success();
+        Splade::toast(__('Created'))->autoDismiss(5)->success();
 
         return redirect()->route('panel.landing.land.index');
     }
@@ -75,7 +76,7 @@ LandController extends Controller
 
         $land->update($data);
 
-        \Splade::toast(__('Updated'))->autoDismiss(5)->info();
+        Splade::toast(__('Updated'))->autoDismiss(5)->info();
 
         return redirect()->route('panel.landing.land.index');
     }
@@ -91,7 +92,7 @@ LandController extends Controller
 
         $land->delete();
 
-        \Splade::toast(__('Deleted'))->autoDismiss(5)->danger();
+        Splade::toast(__('Deleted'))->autoDismiss(5)->danger();
 
         return back();
     }
@@ -108,7 +109,7 @@ LandController extends Controller
     {
         LandStyle::where('land_id', $land->id)->update($request->validated());
 
-        \Splade::toast(__('Updated'))->autoDismiss(5)->info();
+        Splade::toast(__('Updated'))->autoDismiss(5)->info();
 
         return redirect()->route('panel.landing.land.index');
     }

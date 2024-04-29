@@ -31,13 +31,13 @@ class LandProductSpecificationTransformer extends Transformer
     public function transform(LandProduct $data): array
     {
         return [
-            $this->t($data),
+            $this->getSpecs($data),
         ];
     }
 
-    public function t(LandProduct $product)
+    public function getSpecs(LandProduct $product): array
     {
-
+        $out = [];
         foreach ($product->attributes->sortBy('parent_id')->groupBy('parent_id') as $key => $attrs) {
             $attributeName = LandAttribute::whereId($key)->first()->name;
             $attributes = [];

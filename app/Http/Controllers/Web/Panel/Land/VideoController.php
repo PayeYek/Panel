@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Panel\Land;
+namespace App\Http\Controllers\Web\Panel\Land;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Panel\Landing\VideoRequest;
@@ -9,6 +9,7 @@ use App\Models\LandProduct;
 use App\Models\LandVideo;
 use App\Tables\Landing\Videos;
 use Illuminate\Support\Facades\Storage;
+use Splade;
 
 class VideoController extends Controller
 {
@@ -39,7 +40,7 @@ class VideoController extends Controller
 
         LandVideo::create($data);
 
-        \Splade::toast(__('Created'))->autoDismiss(5)->success();
+        Splade::toast(__('Created'))->autoDismiss(5)->success();
 
         return redirect()->route('panel.landing.video.index');
     }
@@ -67,7 +68,7 @@ class VideoController extends Controller
 
         $video->update($data);
 
-        \Splade::toast(__('Updated'))->autoDismiss(5)->info();
+        Splade::toast(__('Updated'))->autoDismiss(5)->info();
 
         return redirect()->route('panel.landing.video.index');
     }
@@ -80,7 +81,7 @@ class VideoController extends Controller
 
         $video->delete();
 
-        \Splade::toast(__('Deleted'))->autoDismiss(5)->danger();
+        Splade::toast(__('Deleted'))->autoDismiss(5)->danger();
 
         return back();
     }

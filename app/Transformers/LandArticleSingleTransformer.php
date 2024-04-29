@@ -31,7 +31,8 @@ class LandArticleSingleTransformer extends Transformer
         return [
             'article' => $data['article'],
             'related_articles' => $data['related_articles'],
-            'breadcrumbs' => $data['breadcrumbs']
+            'breadcrumbs' => $data['breadcrumbs'],
+            'seo' => $data['seo']
         ];
     }
 }

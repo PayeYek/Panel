@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Http\Controllers\Panel;
+namespace App\Http\Controllers\Web\Panel;
 
 use App\Http\Controllers\Controller;
+use Splade;
 
 class ProfileController extends Controller
 {
@@ -10,7 +11,7 @@ class ProfileController extends Controller
     {
         auth()->loginUsingId(1);
 
-        \Splade::toast(auth()->user()->fullname . __(', welcome.'))->autoDismiss(5);
+        Splade::toast(auth()->user()->fullname . __(', welcome.'))->autoDismiss(5);
 
         return redirect()->route('panel.dashboard');
     }
@@ -19,7 +20,7 @@ class ProfileController extends Controller
     {
         auth()->logout();
 
-        \Splade::toast(__('You are logout of your account.'))->danger()->autoDismiss(5);
+        Splade::toast(__('You are logout of your account.'))->danger()->autoDismiss(5);
 
         return redirect()->route('panel.dashboard');
 

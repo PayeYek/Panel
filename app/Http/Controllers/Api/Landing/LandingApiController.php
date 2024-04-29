@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Landing;
+namespace App\Http\Controllers\Api\Landing;
 
 use App\Enum\LandFacilityStateEnum;
 use App\Exceptions\CannotSubscribeException;
@@ -18,6 +18,7 @@ use App\Models\LandComment;
 use App\Models\LandFacility;
 use App\Models\LandProduct;
 use App\Models\LandSubscribe;
+use App\Transformers\LandAboutUsTransformer;
 use App\Transformers\LandArticleSearchTransformer;
 use App\Transformers\LandArticleSingleTransformer;
 use App\Transformers\LandArticlesTransformer;
@@ -26,6 +27,7 @@ use App\Transformers\LandProductTransformer;
 use App\Transformers\LandTransformer;
 use Exception;
 use Str;
+use function App\Helpers\seoGenerator;
 
 class LandingApiController extends Controller
 {
@@ -65,15 +67,19 @@ class LandingApiController extends Controller
             ];
         });
 
+        $seo = seoGenerator($land);
+
 //        $newsArticles = $land->articles->where('type', 'news');
 //        $blogArticles = $land->articles->where('type', 'blog');
+
         $data = [
             'products' => $land->products,
             'slides' => $land->slides,
             'videos' => $land->videos,
 //            'styles' => $land->styles,
             'articles' => $land->articles,
-            'categories' => $filteredCategory
+            'categories' => $filteredCategory,
+            'seo' => $seo
         ];
 
         return responder()->success($data, LandPageTransformer::class)->respond();
@@ -114,11 +120,20 @@ class LandingApiController extends Controller
         $land = $this->getLand($page);
 
         /* BREADCRUMBS */
-        $breadcrumbs = [];
-//        $breadcrumbs[] = ['title' => __('Home'), 'url' => route('landing.page.show', ['page' => $land->slug])];
-        $breadcrumbs[] = ['title' => __('About us'), 'url' => null];
+        $breadcrumbs[] = [
+            'title' => __('About us'),
+            'url' => null
+        ];
 
-        return ['land' => $land, 'breadcrumbs' => $breadcrumbs];
+        $seo = seoGenerator($land, 'aboutUs');
+
+        $data = [
+            'land' => $land,
+            'breadcrumbs' => $breadcrumbs,
+            'seo' => $seo
+        ];
+
+        return responder()->success($data, LandAboutUsTransformer::class)->respond();
     }
 
     public function catalogs($page)
@@ -160,6 +175,8 @@ class LandingApiController extends Controller
             ];
         });
 
+        $seo = seoGenerator($land, 'products');
+
         if ($land->styles->product_list_type !== 1) {
             $productsPaginator = $land->products()->paginate($perPage)->withQueryString();
 
@@ -194,7 +211,8 @@ class LandingApiController extends Controller
                     'to' => $productsPaginator->lastItem(),
                     'total' => $productsPaginator->total(),
                 ],
-                'breadcrumbs' => $breadcrumbs
+                'breadcrumbs' => $breadcrumbs,
+                'seo' => $seo
             ];
         } else {
             $products = $land->products->map(function ($product) {
@@ -214,7 +232,8 @@ class LandingApiController extends Controller
             $data = [
                 'categories' => $filteredCategory,
                 'products' => $products,
-                'breadcrumbs' => $breadcrumbs
+                'breadcrumbs' => $breadcrumbs,
+                'seo' => $seo
             ];
         }
 
@@ -248,9 +267,12 @@ class LandingApiController extends Controller
             'url' => null
         ];
 
+        $seo = seoGenerator($product);
+
         $data = [
             'product' => $product,
-            'breadcrumbs' => $breadcrumbs
+            'breadcrumbs' => $breadcrumbs,
+            'seo' => $seo
         ];
 
         return responder()->success($data, LandProductTransformer::class)->respond();
@@ -308,6 +330,7 @@ class LandingApiController extends Controller
         $landId = $request->validated('land_id');
         $keyword = $request->validated('keyword');
 
+        // Search in Articles by title,description
         $searchResults = LandArticle::where('land_id', $landId)
             ->where(function ($query) use ($keyword) {
                 $query->where('title', 'LIKE', '%' . $keyword . '%')
@@ -317,23 +340,22 @@ class LandingApiController extends Controller
             ->paginate(10);
 
         return responder()->success($searchResults, LandArticleSearchTransformer::class)->respond();
-
     }
 
     public function articles($page)
     {
         // Extract the query parameter
-        $f = request('f');
+        $filter = request('f');
         $pageSize = 10;
 
         $land = Land::where('slug', $page)->firstOrFail();
 
         $articlePaginator = $land->articles()
-            ->when($f, function ($query) use ($f) {
-                $query->where('type', $f);
+            ->when($filter, function ($query) use ($filter) {
+                $query->where('type', $filter);
             })
             ->orderBy('created_at', 'desc')
-            ->select('title', 'type', 'description', 'image', 'created_at')
+            ->select('title', 'slug', 'type', 'description', 'image', 'created_at')
             ->paginate($pageSize);
 
         $articles = $articlePaginator->items();
@@ -366,6 +388,8 @@ class LandingApiController extends Controller
             'url' => Str::after(parse_url(route('api.landing.article.list', ['page' => $land->slug]), PHP_URL_PATH), '/api/l/')
         ];
 
+        $seo = seoGenerator($land, 'articles');
+
         $data = [
             'articles' => [
                 'current_page' => $articlePaginator->currentPage(),
@@ -384,7 +408,8 @@ class LandingApiController extends Controller
 
             ],
             'categories' => $filteredCategory,
-            'breadcrumbs' => $breadcrumbs
+            'breadcrumbs' => $breadcrumbs,
+            'seo' => $seo
         ];
 
         return responder()->success($data, LandArticlesTransformer::class)->respond();
@@ -416,11 +441,13 @@ class LandingApiController extends Controller
             'title' => $article->title,
             'url' => null
         ];
+        $seo = seoGenerator($article);
 
         $data = [
             'article' => $article->only(['title', 'image', 'body', 'created_at']),
             'related_articles' => $outRelated,
-            'breadcrumbs' => $breadcrumbs
+            'breadcrumbs' => $breadcrumbs,
+            'seo' => $seo
         ];
         return responder()->success($data, LandArticleSingleTransformer::class)->respond();
     }

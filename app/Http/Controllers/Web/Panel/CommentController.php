@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Panel;
+namespace App\Http\Controllers\Web\Panel;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Panel\Landing\CommentRequest;
-use App\Models\LandProduct;
 use App\Models\Comment;
 use App\Tables\Comments;
+use Splade;
 
 class CommentController extends Controller
 {
@@ -50,7 +50,7 @@ class CommentController extends Controller
     {
         $comment->update($request->validated());
 
-        \Splade::toast(__('Updated'))->autoDismiss(5);
+        Splade::toast(__('Updated'))->autoDismiss(5);
 
         return redirect()->route('panel.comment.index');
     }
@@ -59,7 +59,7 @@ class CommentController extends Controller
     {
         $comment->delete();
 
-        \Splade::toast(__('Deleted'))->autoDismiss(5)->danger();
+        Splade::toast(__('Deleted'))->autoDismiss(5)->danger();
 
         return back();
     }
@@ -68,7 +68,7 @@ class CommentController extends Controller
     {
         $comment->update(['approved' => true]);
 
-        \Splade::toast(__('Published'))->autoDismiss(5)->info();
+        Splade::toast(__('Published'))->autoDismiss(5)->info();
 
         return back();
     }
@@ -77,7 +77,7 @@ class CommentController extends Controller
     {
         $comment->update(['approved' => false]);
 
-        \Splade::toast(__('Hided'))->autoDismiss(5)->warning();
+        Splade::toast(__('Hided'))->autoDismiss(5)->warning();
 
         return back();
     }
