@@ -230,6 +230,14 @@
         @apply rounded-custom aspect-video;
     }
 
+    .custom_article_styles .h_iframe-aparat_embed_frame{
+        @apply relative;
+    }
+
+    .custom_article_styles .h_iframe-aparat_embed_frame iframe{
+        @apply absolute top-0 right-0 w-full h-full;
+    }
+
     /* Chrome, Safari, Edge, Opera */
     input::-webkit-outer-spin-button,
     input::-webkit-inner-spin-button {
