@@ -121,16 +121,6 @@
             <x-layout.panel.menu title="Users" icon="iconsax-bol-user" route="panel.user.index"/>
         </ul>
 
-        <ul class="pt-5 mt-5 space-y-2 border-t border-gray-200 dark:border-gray-700">
-            {{--            <x-layout.panel.menu title="Profile"/>--}}
-            @auth()
-                <x-layout.panel.menu title="Exit" icon="iconsax-bol-logout" route="panel.profile.logout"/>
-            @else
-                <x-layout.panel.menu title="Enter" icon="iconsax-bol-login-1" route="panel.profile.login"/>
-
-            @endauth
-        </ul>
-
     </div>
 </aside>
 {{--Sidebar - Mobile Shadow--}}

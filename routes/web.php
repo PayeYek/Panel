@@ -22,18 +22,6 @@ use App\Http\Controllers\Web\Panel\UserController;
 use App\Models\Land;
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
-
 Route::middleware(['splade'])->group(function () {
 
     // Registers routes to support the interactive components...
@@ -48,6 +36,24 @@ Route::middleware(['splade'])->group(function () {
     // Registers routes to support async File Uploads with Filepond...
     Route::spladeUploads();
 
+    /**
+    |--------------------------------------------------------------------------
+    | HOME
+    |--------------------------------------------------------------------------
+    */
+    Route::name('home.')
+        ->group(function () {
+
+            /* DASHBOARD */
+            Route::get('/home', fn() => view('home.index'))->name('index');
+
+        });
+
+    /**
+    |--------------------------------------------------------------------------
+    | CONTROL PANEL
+    |--------------------------------------------------------------------------
+    */
     Route::prefix('panel')->name('panel.')->group(function () {
 
         /* DASHBOARD */
@@ -111,6 +117,11 @@ Route::middleware(['splade'])->group(function () {
 
     });
 
+    /**
+    |--------------------------------------------------------------------------
+    | LANDING
+    |--------------------------------------------------------------------------
+    */
     Route::prefix('l')
         ->name('landing.')
         ->controller(LandingController::class)
@@ -179,12 +190,12 @@ Route::middleware(['splade'])->group(function () {
 
 });
 
+Route::get('/login', function () {
+    return redirect(route('auth.login'));
+})->name('login');
+
 /* LOCALIZATION */
 Route::get('/lang/{locale}', [Controller::class, 'languageUi']);
 
-
-// Route::get('/advertise', function (){
-//     return view('test.adverise');
-// });
 
 
