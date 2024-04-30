@@ -2,11 +2,9 @@
 
 namespace Database\Seeders;
 
-use App\Models\LandBrand;
 use App\Models\LandColor;
 use App\Support\Help;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Str;
 
 class LandColorSeeder extends Seeder
 {
@@ -16,8 +14,6 @@ class LandColorSeeder extends Seeder
     public function run(): void
     {
         $colors = Help::colors();
-
-//        $colors = array_slice($colors, 2, null, true);
 
         $transformed_array = array_map(function ($key, $value) {
             return array('name' => $key, 'title' => $value);
