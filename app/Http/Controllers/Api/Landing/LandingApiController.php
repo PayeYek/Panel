@@ -413,6 +413,7 @@ class LandingApiController extends Controller
 
         $relatedArticles = LandArticle::where('land_id', $article->land_id)
             ->where('type', $article->type)
+            ->whereNot('id', $article->id)
             ->latest()
             ->take(5)
             ->get(['title', 'slug', 'type', 'description', 'image', 'created_at']);
