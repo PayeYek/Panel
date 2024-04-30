@@ -66,7 +66,7 @@ class LandingApiController extends Controller
             ];
         });
 
-        $seo = SeoHelper::seoGenerator($land);
+        $seo = SeoHelper::seoGenerator($land, 'page');
 
 //        $newsArticles = $land->articles->where('type', 'news');
 //        $blogArticles = $land->articles->where('type', 'blog');
@@ -196,19 +196,15 @@ class LandingApiController extends Controller
             $data = [
                 'categories' => $categories,
                 'products' => [
-                    'current_page' => $productsPaginator->currentPage(),
+                    'pagination' => (object)[
+                        'count' => $productsPaginator->count(),
+                        'total' => $productsPaginator->total(),
+                        'perPage' => $productsPaginator->perPage(),
+                        'currentPage' => $productsPaginator->currentPage(),
+                        'totalPages' => $productsPaginator->lastPage(),
+                        'links' => $productsPaginator->links(),
+                    ],
                     'data' => $products,
-                    'first_page_url' => $productsPaginator->url(1),
-                    'from' => $productsPaginator->firstItem(),
-                    'last_page' => $productsPaginator->lastPage(),
-                    'last_page_url' => $productsPaginator->url($productsPaginator->lastPage()),
-                    'links' => $productsPaginator->toArray()['links'],
-                    'next_page_url' => $productsPaginator->nextPageUrl(),
-                    'path' => $productsPaginator->path(),
-                    'per_page' => $productsPaginator->perPage(),
-                    'prev_page_url' => $productsPaginator->previousPageUrl(),
-                    'to' => $productsPaginator->lastItem(),
-                    'total' => $productsPaginator->total(),
                 ],
                 'breadcrumbs' => $breadcrumbs,
                 'seo' => $seo
@@ -391,20 +387,15 @@ class LandingApiController extends Controller
 
         $data = [
             'articles' => [
-                'current_page' => $articlePaginator->currentPage(),
+                'pagination' => (object)[
+                    'count' => $articlePaginator->count(),
+                    'total' => $articlePaginator->total(),
+                    'perPage' => $articlePaginator->perPage(),
+                    'currentPage' => $articlePaginator->currentPage(),
+                    'totalPages' => $articlePaginator->lastPage(),
+                    'links' => $articlePaginator->links(),
+                ],
                 'data' => $articles,
-                'first_page_url' => $articlePaginator->url(1),
-                'from' => $articlePaginator->firstItem(),
-                'last_page' => $articlePaginator->lastPage(),
-                'last_page_url' => $articlePaginator->url($articlePaginator->lastPage()),
-                'links' => $articlePaginator->toArray()['links'],
-                'next_page_url' => $articlePaginator->nextPageUrl(),
-                'path' => $articlePaginator->path(),
-                'per_page' => $articlePaginator->perPage(),
-                'prev_page_url' => $articlePaginator->previousPageUrl(),
-                'to' => $articlePaginator->lastItem(),
-                'total' => $articlePaginator->total(),
-
             ],
             'categories' => $filteredCategory,
             'breadcrumbs' => $breadcrumbs,
