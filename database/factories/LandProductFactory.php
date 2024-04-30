@@ -17,6 +17,8 @@ class LandProductFactory extends Factory
         $land_ids = Land::pluck('id')->toArray();
         $category_ids = LandCategory::pluck('id')->toArray();
         $brand_ids = LandBrand::pluck('id')->toArray();
+        $imagePath = 'media/land/products/512.png';
+
         return [
             'land_id' => $this->faker->randomElement($land_ids),
             'category_id' => $this->faker->randomElement($category_ids),
@@ -29,7 +31,7 @@ class LandProductFactory extends Factory
             'axle' => null,
             'usage' => null,
             'cabin' => null,
-            'image' => $this->faker->imageUrl(512, 512, word: 'Product'),
+            'image' => $imagePath,
             'description' => $this->faker->paragraph,
             'body' => $this->faker->paragraph,
             'catalog' => null,
