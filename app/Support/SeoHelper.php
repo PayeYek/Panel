@@ -63,6 +63,24 @@ class SeoHelper
             ];
         }
 
+        if ($model instanceof Land && $static === 'page') {
+            return [
+                'title' => $model->title ?? null,
+                'description' => "{$model->title}: پیشگام در صنعت خودروهای سنگین ایران. کاوش در محصولات و خدمات باکیفیت ما، از کامیون‌های دیزلی گرفته تا خدمات پس از فروش. بیاموزید چگونه {$model->title} با نوآوری‌ها و استانداردهای بالای خود در بازار خودروهای سنگین پیشتاز است.",
+                'image' => $model->logo ?? null,
+                'image_alt' => $model->title ?? null,
+                'og_title' => $model->title ?? null,
+                'og_description' => $model->description ?? null,
+                'og_image' => $model->logo ?? null,
+                'og_type' => 'website',
+                'twitter_card' => 'summary',
+                'twitter_card_image' => $model->logo ?? null,
+                'canonical' => $model->slug,
+                'robot' => 'index'
+            ];
+        }
+
+
         if ($model instanceof Land && $static === 'aboutUs') {
             return [
                 'title' => $model->title ?? null,

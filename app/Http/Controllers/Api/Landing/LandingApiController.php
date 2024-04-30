@@ -66,7 +66,7 @@ class LandingApiController extends Controller
             ];
         });
 
-        $seo = SeoHelper::seoGenerator($land);
+        $seo = SeoHelper::seoGenerator($land, 'page');
 
 //        $newsArticles = $land->articles->where('type', 'news');
 //        $blogArticles = $land->articles->where('type', 'blog');
