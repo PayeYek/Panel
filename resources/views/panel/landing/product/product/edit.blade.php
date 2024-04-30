@@ -26,6 +26,8 @@
                     <option value="1">{{__('Single axle')}}</option>
                     <option value="2">{{__('Pair axle')}}</option>
                     <option value="3">{{__('Triple axle')}}</option>
+                    <option value="3">{{__('Four axle')}}</option>
+                    <option value="3">{{__('Five axle')}}</option>
                 </x-splade-select>
 
                 <x-splade-select name="usage" label="Type of Use">
