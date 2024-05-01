@@ -230,6 +230,10 @@
         @apply rounded-custom aspect-video;
     }
 
+    .custom_article_styles img.aspect-a4{
+        @apply rounded-custom aspect-[13/16] max-w-[40rem] mx-auto;
+    }
+
     .custom_article_styles .h_iframe-aparat_embed_frame{
         @apply relative;
     }
