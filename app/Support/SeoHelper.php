@@ -76,7 +76,7 @@ class SeoHelper
                 'twitter_card' => 'summary',
                 'twitter_card_image' => $model->logo ?? null,
                 'canonical' => $model->slug,
-                'robot' => 'index'
+                'robot' => 'index, follow'
             ];
         }
 
