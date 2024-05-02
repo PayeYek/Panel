@@ -4,8 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      *
@@ -14,20 +13,23 @@ return new class extends Migration
     public function up()
     {
         Schema::create('users', function (Blueprint $table) {
-            $table->id();
-            $table->string('name')->nullable();
-            $table->string('family')->nullable();
-            $table->string('email')->unique()->nullable();
-            $table->string('phone')->unique()->nullable();
-            $table->string('username')->unique()->nullable();
-            $table->string('password')->nullable();
-            $table->integer('gender')->nullable();
-            $table->date('birthdate')->nullable();
-            $table->text('national_code')->nullable();
-            $table->rememberToken();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->timestamp('phone_verified_at')->nullable();
-            $table->timestamps();
+//            $table->id();
+//            $table->string('first_name', 64)->nullable();
+//            $table->string('last_name', 64)->nullable();
+//            $table->tinyInteger('gender')->nullable();
+//            $table->string('email')->nullable();
+//            $table->string('phone', 10);
+//            $table->date('birthdate')->nullable();
+//            $table->tinyInteger('type')->nullable();
+//            $table->string('ssn', 10)->nullable();
+//            $table->timestamp('email_verified_at')->nullable();
+//            $table->tinyInteger('certified')->nullable();
+//            $table->tinyInteger('state')->nullable();
+//
+//            $table->rememberToken();
+//            $table->timestamps();
+//
+//            $table->unique(['phone', 'ssn']);
         });
     }
 
