@@ -133,7 +133,7 @@
                                     :class="'flex-1 rounded-custom mx-auto sm:mx-0 border h-11 flex items-center border-stone-400 ' + (profitState === 'initial' ? 'pointer-events-none opacity-50' : 'opacity-100')">
                                     <!-- decrease-->
                                     <button type="button" @click="decreasePercent"
-                                            :class="'flex_center aspect-square h-full border-l border-stone-400 ' + (profitState === 'initial' ? '' : '')">
+                                            :class="'flex_center size-11 flex-none border-l border-stone-400 ' + (profitState === 'initial' ? '' : '')">
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                              stroke-width="1.5" stroke="currentColor" class="size-6 stroke-[#1EA0FF]">
                                             <path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14"/>
@@ -145,7 +145,7 @@
                                            :disabled="profitState === 'initial'"/>
                                     <!-- increase-->
                                     <button type="button" @click="increasePercent"
-                                            :class="'flex_center aspect-square h-full border-r border-stone-400 ' + (profitState === 'initial' ? '' : '')">
+                                            :class="'flex_center size-11 flex-none border-r border-stone-400 ' + (profitState === 'initial' ? '' : '')">
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                              stroke-width="1.5" stroke="currentColor" class="size-6 stroke-[#1EA0FF]">
                                             <path stroke-linecap="round" stroke-linejoin="round"
