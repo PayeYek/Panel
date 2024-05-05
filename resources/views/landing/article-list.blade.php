@@ -41,7 +41,7 @@
                 gridStyle="{{ $gridCols }}"
                 type="{{ $land->styles->a_card_type }}"
                 landSlug="{{ $land->slug }}"
-                data="{{ $land->articles }}"
+                data="{{ $land->articles()->where('publish',true)->get() }}"
                 borderStyle="{{ $borderStyle }}"
                 evenOdd="{{ $land->styles->a_striped }}"/>
         @else

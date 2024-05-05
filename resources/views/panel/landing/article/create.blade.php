@@ -1,6 +1,6 @@
 <x-layout.admin>
     <x-splade-modal>
-        <x-splade-form :action="route('panel.landing.article.store')">
+        <x-splade-form  :default="['publish'=>false]" :action="route('panel.landing.article.store')">
             <x-layout.panel.form.card title="New Article">
 
                 <x-layout.panel.form.alerts/>

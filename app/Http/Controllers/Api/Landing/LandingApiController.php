@@ -76,7 +76,7 @@ class LandingApiController extends Controller
             'slides' => $land->slides,
             'videos' => $land->videos,
 //            'styles' => $land->styles,
-            'articles' => $land->articles,
+            'articles' => $land->articles()->published()->get(),
             'categories' => $filteredCategory,
             'seo' => $seo
         ];
@@ -176,61 +176,38 @@ class LandingApiController extends Controller
 
         $seo = SeoHelper::seoGenerator($land, 'products');
 
-        if ($land->styles->product_list_type !== 1) {
-            $productsPaginator = $land->products()->paginate($perPage)->withQueryString();
+        $productsPaginator = $land->products()->paginate($perPage)->withQueryString();
 
-            $products = $productsPaginator->getCollection()->map(function ($product) {
-                return $product->only([
-                    'id', 'category_id', 'slug', 'name', 'model', 'year', 'tonnage', 'usage', 'cabin',
-                    'image', 'description', 'catalog', 'manual', 'colors', 'body'
-                ]);
-            });
+        $products = $productsPaginator->getCollection()->map(function ($product) {
+            return $product->only([
+                'id', 'category_id', 'slug', 'name', 'model', 'year', 'tonnage', 'usage', 'cabin',
+                'image', 'description', 'catalog', 'manual', 'colors', 'body'
+            ]);
+        });
 
-            $breadcrumbs = [];
+        $breadcrumbs = [];
 
-            $breadcrumbs[] = [
-                'title' => __('Products'),
-                'url' => Str::after(parse_url(route('api.landing.product.list', ['page' => $land->slug]), PHP_URL_PATH), '/api/l/')
-            ];
+        $breadcrumbs[] = [
+            'title' => __('Products'),
+            'url' => Str::after(parse_url(route('api.landing.product.list', ['page' => $land->slug]), PHP_URL_PATH), '/api/l/')
+        ];
 
-            $data = [
-                'categories' => $categories,
-                'products' => [
-                    'pagination' => (object)[
-                        'count' => $productsPaginator->count(),
-                        'total' => $productsPaginator->total(),
-                        'perPage' => $productsPaginator->perPage(),
-                        'currentPage' => $productsPaginator->currentPage(),
-                        'totalPages' => $productsPaginator->lastPage(),
-                        'links' => $productsPaginator->links(),
-                    ],
-                    'data' => $products,
+        $data = [
+            'categories' => $filteredCategory,
+            'products' => [
+                'pagination' => (object)[
+                    'count' => $productsPaginator->count(),
+                    'total' => $productsPaginator->total(),
+                    'perPage' => $productsPaginator->perPage(),
+                    'currentPage' => $productsPaginator->currentPage(),
+                    'totalPages' => $productsPaginator->lastPage(),
+                    'links' => $productsPaginator->links(),
                 ],
-                'breadcrumbs' => $breadcrumbs,
-                'seo' => $seo
-            ];
-        } else {
-            $products = $land->products->map(function ($product) {
-                return $product->only([
-                    'id', 'category_id', 'slug', 'name', 'model', 'year', 'tonnage', 'usage', 'cabin',
-                    'image', 'description', 'catalog', 'manual', 'colors', 'body'
-                ]);
-            });
-
-            $breadcrumbs = [];
-
-            $breadcrumbs[] = [
-                'title' => __('Products'),
-                'url' => Str::after(parse_url(route('api.landing.product.list', ['page' => $land->slug]), PHP_URL_PATH), '/api/l/')
-            ];
-
-            $data = [
-                'categories' => $filteredCategory,
-                'products' => $products,
-                'breadcrumbs' => $breadcrumbs,
-                'seo' => $seo
-            ];
-        }
+                'data' => $products,
+            ],
+            'breadcrumbs' => $breadcrumbs,
+            'seo' => $seo
+        ];
 
         return responder()->success($data, LandTransformer::class)->respond();
     }
@@ -349,6 +326,7 @@ class LandingApiController extends Controller
             ->when($filter, function ($query) use ($filter) {
                 $query->where('type', $filter);
             })
+            ->published()
             ->orderBy('created_at', 'desc')
             ->select('title', 'slug', 'type', 'description', 'image', 'created_at')
             ->paginate($pageSize);
@@ -409,11 +387,13 @@ class LandingApiController extends Controller
     {
         $land = $this->getLand($page);
         $article = LandArticle::where('slug', $article)
+            ->published()
             ->firstOrFail();
 
         $relatedArticles = LandArticle::where('land_id', $article->land_id)
             ->where('type', $article->type)
             ->whereNot('id', $article->id)
+            ->published()
             ->latest()
             ->take(5)
             ->get(['title', 'slug', 'type', 'description', 'image', 'created_at']);
