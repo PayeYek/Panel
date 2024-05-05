@@ -218,7 +218,7 @@ class LandingApiController extends Controller
         $land = $this->getLand($page);
 
         /* PRODUCT DATA */
-        $product = LandProduct::with('category')->where('slug', $product)->firstOrFail();
+        $product = $land->products()->with('category')->where('slug', $product)->firstOrFail();
 
         /* COMMENTS APPROVED */
 //        $comments = LandComment::where('land_id', $land->id)->where('product_id', $product->id)->where('approved', true)->get();
@@ -230,10 +230,7 @@ class LandingApiController extends Controller
             'title' => __('Products'),
             'url' => Str::after(parse_url(route('api.landing.product.list', ['page' => $land->slug]), PHP_URL_PATH), '/api/l/')
         ];
-        $breadcrumbs[] = [
-            'title' => $product->category->title,
-            'url' => Str::after(parse_url(route('api.landing.product.show', ['page' => $land->slug, 'product' => $product->slug]), PHP_URL_PATH), '/api/l/')
-        ];
+
         $breadcrumbs[] = [
             'title' => $product->name,
             'url' => null
@@ -395,7 +392,7 @@ class LandingApiController extends Controller
             ->whereNot('id', $article->id)
             ->published()
             ->latest()
-            ->take(5)
+            ->take(4)
             ->get(['title', 'slug', 'type', 'description', 'image', 'created_at']);
 
         $outRelated = $relatedArticles->map->only(['title', 'slug', 'type', 'description', 'image', 'created_at']);
