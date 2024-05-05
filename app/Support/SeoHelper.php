@@ -12,7 +12,7 @@ class SeoHelper
 {
     public static function seoGenerator(?Model $model = null, ?string $static = null): array
     {
-        if ($model === null || $static === null) {
+        if ($model === null && $static === null) {
             return [
                 'title' => null,
                 'description' => null,
