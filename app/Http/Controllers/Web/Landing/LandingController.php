@@ -71,6 +71,7 @@ class LandingController extends Controller
                 'videos',
                 'styles',
                 'articles' => function ($query) {
+                    $query->published();
                     $query->orderBy('created_at', 'desc');
                 }
             ])
