@@ -18,7 +18,7 @@
                         <option value="8">8 PX</option>
                         <option value="12">12 PX</option>
                     </x-splade-select>
-        
+
                     <x-splade-select name="color" label="Color">
                         <option value="1"> آرین دیزل </option>
                         <option value="2"> سایپا دیزل </option>
@@ -190,6 +190,7 @@
                         <option value="13">{{  __('View type') }} 13</option>
                         <option value="14">{{  __('View type') }} 14</option>
                         <option value="15">{{  __('View type') }} 15</option>
+                        <option value="16">{{  __('View type') }} 16</option>
                     </x-splade-select>
 
                     <x-splade-select name="category_striped" label="نمای راه راه دسته بندی">

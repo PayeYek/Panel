@@ -22,8 +22,8 @@
 
             <div class="w-full relative pt-[56%] mb-2 md:mb-4 lg:mb-8 rounded-custom overflow-hidden">
                 <img src="{{ $article->image }}" alt="{{ $article->title }}" class="absolute top-0 left-0 w-full h-full" />
-                <div class="absolute z-[1] bottom-0 left-0 w-full h-1/3 bg-gradient-to-t from-black to-transparent">
-                </div>
+{{--                <div class="absolute z-[1] bottom-0 left-0 w-full h-1/3 bg-gradient-to-t from-black to-transparent">--}}
+{{--                </div>--}}
             </div>
 
             {{-- details --}}
@@ -65,7 +65,7 @@
             </section>
         </main>
     @endif
-            
+
     {{-- type 2 --}}
     @if ($land->styles->a_view_type.'' === '2')
         <main class="relative pt-4 default_container mb-8 sm:mb-24 lg:mb-28">
@@ -82,9 +82,9 @@
                     <div class="w-full relative pt-[56%] mb-2 md:mb-4 lg:mb-8 rounded-custom overflow-hidden">
                         <img src="{{ $article->image }}"
                             alt="{{ $article->title }}" class="absolute top-0 left-0 w-full h-full" />
-                        <div
-                            class="absolute z-[1] bottom-0 left-0 w-full h-1/3 bg-gradient-to-t from-black to-transparent">
-                        </div>
+{{--                        <div--}}
+{{--                            class="absolute z-[1] bottom-0 left-0 w-full h-1/3 bg-gradient-to-t from-black to-transparent">--}}
+{{--                        </div>--}}
                     </div>
 
                     {{-- details --}}
@@ -185,9 +185,9 @@
                     <div class="w-full relative pt-[56%] mb-2 md:mb-4 lg:mb-8 rounded-custom overflow-hidden">
                         <img src="{{ $article->image }}" alt="{{ $article->title }}"
                             class="absolute top-0 left-0 w-full h-full" />
-                        <div
-                            class="absolute z-[1] bottom-0 left-0 w-full h-1/3 bg-gradient-to-t from-black to-transparent">
-                        </div>
+{{--                        <div--}}
+{{--                            class="absolute z-[1] bottom-0 left-0 w-full h-1/3 bg-gradient-to-t from-black to-transparent">--}}
+{{--                        </div>--}}
                     </div>
 
                     {{-- details --}}
@@ -290,9 +290,9 @@
                     <div class="w-full relative pt-[56%] mb-2 md:mb-4 lg:mb-8 rounded-custom overflow-hidden">
                         <img src="{{ $article->image }}" alt="{{ $article->title }}"
                             class="absolute top-0 left-0 w-full h-full" />
-                        <div
-                            class="absolute z-[1] bottom-0 left-0 w-full h-1/3 bg-gradient-to-t from-black to-transparent">
-                        </div>
+{{--                        <div--}}
+{{--                            class="absolute z-[1] bottom-0 left-0 w-full h-1/3 bg-gradient-to-t from-black to-transparent">--}}
+{{--                        </div>--}}
                     </div>
 
                     {{-- details --}}
@@ -374,9 +374,9 @@
                     <div class="w-full relative pt-[56%] mb-2 md:mb-4 lg:mb-8 rounded-custom overflow-hidden">
                         <img src="{{ $article->image }}" alt="{{ $article->title }}"
                             class="absolute top-0 left-0 w-full h-full" />
-                        <div
-                            class="absolute z-[1] bottom-0 left-0 w-full h-1/3 bg-gradient-to-t from-black to-transparent">
-                        </div>
+{{--                        <div--}}
+{{--                            class="absolute z-[1] bottom-0 left-0 w-full h-1/3 bg-gradient-to-t from-black to-transparent">--}}
+{{--                        </div>--}}
                     </div>
 
                     {{-- details --}}
@@ -403,7 +403,7 @@
                                 ثبت درخواست </button>
                         </form>
                     </section> --}}
-                    
+
                 </section>
 
                 {{-- right column --}}
@@ -555,7 +555,7 @@
                     <x-home_landing.contact.type-eight />
                     @break
                 @default
-                    
+
             @endswitch
         </main>
     @endif
