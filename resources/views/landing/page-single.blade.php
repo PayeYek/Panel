@@ -48,6 +48,7 @@
                 companyName="{{ $land->title }}"
                 evenOdd="{{ $land->styles->product_striped }}"/>
         @endif
+
         {{-- articles --}}
         @if ($land->articles()->published()->count() > 0)
             <x-home_landing.announcement
@@ -60,6 +61,7 @@
                 :headerType="$land->styles->section_header_type"
                 evenOdd="{{ $land->styles->article_striped }}"/>
         @endif
+        
         {{-- videos --}}
         @if ($land->videos->count() > 0)
             <section class="mb-4 sm:mb-8 lg:mb-16 relative z-[3] default_container" id="video-player-container">

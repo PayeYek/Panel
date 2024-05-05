@@ -30,7 +30,19 @@ class User extends Authenticatable
 
     protected $hidden = ['password', 'remember_token'];
 
-    /** My Attribute */
+
+    protected function casts(): array
+    {
+        return [
+            'phone_verified_at' => 'datetime',
+            'email_verified_at' => 'datetime',
+            'password'          => 'hashed',
+        ];
+    }
+
+    /**-------------------------***
+     * New Attribute
+     * --------------------------*/
     protected function fullname(): Attribute
     {
         return new Attribute(
@@ -38,7 +50,10 @@ class User extends Authenticatable
         );
     }
 
-    /** Custom Attribute */
+    /**-------------------------***
+     * Custom Attribute
+     * --------------------------*/
+
     protected function password(): Attribute
     {
         return new Attribute(
@@ -46,7 +61,14 @@ class User extends Authenticatable
         );
     }
 
-    /** Relationships */
+    /**-------------------------***
+     * Relationships
+     * --------------------------*/
+    public function activeCode()
+    {
+        return $this->hasMany(ActiveCode::class);
+    }
+
     public function comments()
     {
         return $this->hasMany(Comment::class);

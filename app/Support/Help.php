@@ -11,6 +11,11 @@ class Help
         return App::getLocale() === 'fa' || App::getLocale() === 'ar';
     }
 
+    public static function getDir()
+    {
+        return self::isRTL() ? 'rtl' : 'ltr';
+    }
+
     public static function price($value)
     {
         return number_format($value, 0);//,",",","
