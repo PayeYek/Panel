@@ -23,6 +23,7 @@ use App\Transformers\LandAboutUsTransformer;
 use App\Transformers\LandArticleSearchTransformer;
 use App\Transformers\LandArticleSingleTransformer;
 use App\Transformers\LandArticlesTransformer;
+use App\Transformers\LandFacilityTransformer;
 use App\Transformers\LandPageTransformer;
 use App\Transformers\LandProductInformationTransformer;
 use App\Transformers\LandProductSpecificationTransformer;
@@ -219,7 +220,7 @@ class LandingApiController extends Controller
     {
         $product = LandProduct::query()->where('slug', $product)->firstOrFail();
         if (!$product) {
-            return responder()->error(-1,'The product not found')->respond();
+            return responder()->error(-1, 'The product not found')->respond();
         }
 
         return responder()->success($product, LandProductSpecificationTransformer::class)->respond();
@@ -229,7 +230,7 @@ class LandingApiController extends Controller
     {
         $product = LandProduct::query()->where('slug', $product)->firstOrFail();
         if (!$product) {
-            return responder()->error(-1,'The product not found')->respond();
+            return responder()->error(-1, 'The product not found')->respond();
         }
 
         return responder()->success($product, LandProductInformationTransformer::class)->respond();
@@ -239,7 +240,7 @@ class LandingApiController extends Controller
     {
         $product = LandProduct::query()->where('slug', $product)->firstOrFail();
         if (!$product) {
-            return responder()->error(-1,'The product not found')->respond();
+            return responder()->error(-1, 'The product not found')->respond();
         }
 
         return responder()->success($product, LandProductVideoTransformer::class)->respond();
@@ -518,6 +519,51 @@ class LandingApiController extends Controller
         // $breadcrumbs[] = ['title' => __('Progress'), 'url' => null ];
 
         return ['land' => $land];
+    }
+
+    public function facility($page)
+    {
+        $land = Land::query()->where('slug', $page)->firstOrFail();
+        if (!$land) {
+            return responder()->error(-1, 'The Land not found')->respond();
+        }
+
+        $cats = array();
+        foreach ($land->products as $productItem) {
+            $cats[] = $productItem->category_id;
+        }
+        $cats = array_unique($cats);
+
+        $categories = collect();
+
+        foreach ($cats as $cat) {
+            $categories->add(collect(LandCategory::find($cat)));
+        }
+
+        /* BREADCRUMBS */
+        $breadcrumbs[] = [
+            'title' => __('Products'),
+            'url' => null
+        ];
+
+        $filteredCategory = collect($categories)->map(function ($item) {
+            return [
+                'id' => $item['id'],
+                'slug' => $item['slug'],
+                'title' => $item['title']
+            ];
+        });
+
+        $seo = SeoHelper::seoGenerator($land, 'page');
+
+
+        $data = [
+            'categories' => $filteredCategory,
+            'seo' => $seo,
+            'breadcrumbs' => $breadcrumbs,
+        ];
+
+        return responder()->success($data, LandFacilityTransformer::class)->respond();
     }
 
     public function facilitiesRequest(FacilitiesRequest $facilitiesRequest)
