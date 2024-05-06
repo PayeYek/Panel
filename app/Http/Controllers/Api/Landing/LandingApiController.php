@@ -542,7 +542,7 @@ class LandingApiController extends Controller
 
         /* BREADCRUMBS */
         $breadcrumbs[] = [
-            'title' => __('Products'),
+            'title' => __('Facilities'),
             'url' => null
         ];
 
