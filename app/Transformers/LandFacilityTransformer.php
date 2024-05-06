@@ -29,6 +29,7 @@ class LandFacilityTransformer extends Transformer
     public function transform(array $data): array
     {
         return [
+            'land_id' => $data['land_id'],
             'categories' => $data['categories'],
             'seo' => $data['seo'],
             'breadcrumbs' => $data['breadcrumbs'],

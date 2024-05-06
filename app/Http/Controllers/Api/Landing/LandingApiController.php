@@ -559,6 +559,7 @@ class LandingApiController extends Controller
 
         $data = [
             'categories' => $filteredCategory,
+            'land_id' => $land->id,
             'seo' => $seo,
             'breadcrumbs' => $breadcrumbs,
         ];
