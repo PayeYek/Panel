@@ -31,7 +31,7 @@ class LandProductSpecificationTransformer extends Transformer
     public function transform(LandProduct $data): array
     {
         return [
-            $this->getSpecs($data),
+            'specification' => $this->getSpecs($data),
         ];
     }
 

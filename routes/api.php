@@ -56,6 +56,9 @@ Route::prefix('l')
             Route::get('{page}/p/{product}', 'product')->name('show');
             Route::get('{page}/c/{category}', 'category')->name('category');
             Route::post('{page}/p/{product}/comment', 'comment')->name('comment');
+            Route::get('p/{product}/specification', 'productSpecification')->name('specification');
+            Route::get('p/{product}/information', 'productInformation')->name('information');
+            Route::get('p/{product}/videos', 'productVideos')->name('videos');
         });
 
         Route::name('article.')->group(function () {

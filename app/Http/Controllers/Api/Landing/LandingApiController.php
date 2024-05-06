@@ -24,7 +24,10 @@ use App\Transformers\LandArticleSearchTransformer;
 use App\Transformers\LandArticleSingleTransformer;
 use App\Transformers\LandArticlesTransformer;
 use App\Transformers\LandPageTransformer;
+use App\Transformers\LandProductInformationTransformer;
+use App\Transformers\LandProductSpecificationTransformer;
 use App\Transformers\LandProductTransformer;
+use App\Transformers\LandProductVideoTransformer;
 use App\Transformers\LandTransformer;
 use Exception;
 use Str;
@@ -127,7 +130,7 @@ class LandingApiController extends Controller
         $seo = SeoHelper::seoGenerator($land, 'aboutUs');
 
         $data = [
-            'land' => $land,
+            'about_us' => $land->body,
             'breadcrumbs' => $breadcrumbs,
             'seo' => $seo
         ];
@@ -212,10 +215,50 @@ class LandingApiController extends Controller
         return responder()->success($data, LandTransformer::class)->respond();
     }
 
+    public function productSpecification($product)
+    {
+        $product = LandProduct::query()->where('slug', $product)->firstOrFail();
+        if (!$product) {
+            return responder()->error(-1,'The product not found')->respond();
+        }
+
+        return responder()->success($product, LandProductSpecificationTransformer::class)->respond();
+    }
+
+    public function productInformation($product)
+    {
+        $product = LandProduct::query()->where('slug', $product)->firstOrFail();
+        if (!$product) {
+            return responder()->error(-1,'The product not found')->respond();
+        }
+
+        return responder()->success($product, LandProductInformationTransformer::class)->respond();
+    }
+
+    public function productVideos($product)
+    {
+        $product = LandProduct::query()->where('slug', $product)->firstOrFail();
+        if (!$product) {
+            return responder()->error(-1,'The product not found')->respond();
+        }
+
+        return responder()->success($product, LandProductVideoTransformer::class)->respond();
+    }
+
     public function product($page, $product)
     {
         /* LANDING DATA */
-        $land = $this->getLand($page);
+        $land = Land::where('slug', $page)
+            ->with([
+                'products',
+                'slides' => function ($query) {
+                    $query->where('status', 1);
+                },
+                'articles' => function ($query) {
+                    $query->orderBy('created_at', 'desc');
+                }
+            ])
+            ->firstOrFail();
 
         /* PRODUCT DATA */
         $product = $land->products()->with('category')->where('slug', $product)->firstOrFail();

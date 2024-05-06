@@ -215,7 +215,7 @@
                 <x-home_landing.contact.type-eight />
                 @break
             @default
-                
+
         @endswitch
     </main>
 
