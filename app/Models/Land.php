@@ -96,7 +96,7 @@ class Land extends Model
         return $this->hasMany(LandAgency::class, 'land_id');
     }
 
-    public function adverties()
+    public function advertise()
     {
         return $this->hasMany(LandAgency::class, 'land_id');
     }

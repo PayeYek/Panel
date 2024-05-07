@@ -5,6 +5,7 @@ use App\Http\Controllers\Web\Landing\LandingController;
 use App\Http\Controllers\Web\Panel\AuthController;
 use App\Http\Controllers\Web\Panel\CommentController;
 use App\Http\Controllers\Web\Panel\DashboardController;
+use App\Http\Controllers\Web\Panel\Land\AdvertisementController;
 use App\Http\Controllers\Web\Panel\Land\AgencyController;
 use App\Http\Controllers\Web\Panel\Land\ArticleController;
 use App\Http\Controllers\Web\Panel\Land\AttributeController;
@@ -37,10 +38,10 @@ Route::middleware(['splade'])->group(function () {
     Route::spladeUploads();
 
     /**
-    |--------------------------------------------------------------------------
-    | HOME
-    |--------------------------------------------------------------------------
-    */
+     * |--------------------------------------------------------------------------
+     * | HOME
+     * |--------------------------------------------------------------------------
+     */
     Route::name('home.')
         ->group(function () {
 
@@ -50,78 +51,82 @@ Route::middleware(['splade'])->group(function () {
         });
 
     /**
-    |--------------------------------------------------------------------------
-    | CONTROL PANEL
-    |--------------------------------------------------------------------------
-    */
-    Route::prefix('panel')->name('panel.')->group(function () {
+     * |--------------------------------------------------------------------------
+     * | CONTROL PANEL
+     * |--------------------------------------------------------------------------
+     */
+    Route::middleware(['auth'])->group(function () {
+        Route::prefix('panel')->name('panel.')->group(function () {
 
-        /* DASHBOARD */
-        Route::get('/', fn() => redirect()->route('panel.landing.land.index'))->name('home');
-        Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
-
-        /* Landing */
-        Route::prefix('landing')->name('landing.')->group(function () {
-            // Lands - Showcase pages (vitrine)
-            Route::resource('land', LandController::class)->except('show');
-            Route::prefix('land')->name('land.')->controller(LandController::class)->group(function () {
-                Route::get('{land}/style', 'styleEdit')->name('style.edit');
-                Route::put('{land}/style', 'styleUpdate')->name('style.update');
-            });
-            // Land Product
-            Route::prefix('product')->name('product.')->group(function () {
-                // Land Products
-                Route::resource('product', ProductController::class)->except('show');
-                Route::prefix('product')->name('product.')->controller(ProductController::class)->group(function () {
-                    Route::get('{product}/attribute', 'attributeEdit')->name('attribute.edit');
-                    Route::put('{product}/attribute', 'attributeUpdate')->name('attribute.update');
+            /* DASHBOARD */
+            Route::get('/', fn() => redirect()->route('panel.landing.land.index'))->name('home');
+            Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
+            /* Landing */
+            Route::prefix('landing')->name('landing.')->group(function () {
+                // Lands - Showcase pages (vitrine)
+                Route::resource('land', LandController::class)->except('show');
+                Route::prefix('land')->name('land.')->controller(LandController::class)->group(function () {
+                    Route::get('{land}/style', 'styleEdit')->name('style.edit');
+                    Route::put('{land}/style', 'styleUpdate')->name('style.update');
                 });
-                // Land Categories
-                Route::resource('category', CategoryController::class)->except('show');
-                // Land Attributes
-                Route::resource('attribute', AttributeController::class)->except('show');
-                // Land Brands
-                Route::resource('brand', BrandController::class)->except('show');
-                // Land Colors
-                Route::resource('color', ColorController::class)->except('show');
+                // Land Product
+                Route::prefix('product')->name('product.')->group(function () {
+                    // Land Products
+                    Route::resource('product', ProductController::class)->except('show');
+                    Route::prefix('product')->name('product.')->controller(ProductController::class)->group(function () {
+                        Route::get('{product}/attribute', 'attributeEdit')->name('attribute.edit');
+                        Route::put('{product}/attribute', 'attributeUpdate')->name('attribute.update');
+                    });
+                    // Land Categories
+                    Route::resource('category', CategoryController::class)->except('show');
+                    // Land Attributes
+                    Route::resource('attribute', AttributeController::class)->except('show');
+                    // Land Brands
+                    Route::resource('brand', BrandController::class)->except('show');
+                    // Land Colors
+                    Route::resource('color', ColorController::class)->except('show');
+                });
+
+                // Land Agencies
+                Route::resource('agency', AgencyController::class)->except('show');
+                // Land Articles
+                Route::resource('article', ArticleController::class)->except('show');
+                // Land Facilities
+                Route::resource('facility', FacilitiesController::class)->except(['show', 'create', 'store']);
+                // Land Slides
+                Route::resource('slide', SlideController::class)->except('show');
+                // Land Videos
+                Route::resource('video', VideoController::class)->except('show');
+                // Land Files
+                Route::resource('file', FileController::class)->except('show');
+                // Advertisement
+                Route::resource('advertisement', AdvertisementController::class)->except('show');
+
             });
 
-            // Land Agencies
-            Route::resource('agency', AgencyController::class)->except('show');
-            // Land Articles
-            Route::resource('article', ArticleController::class)->except('show');
-            // Land Facilities
-            Route::resource('facility', FacilitiesController::class)->except(['show', 'create', 'store']);
-            // Land Slides
-            Route::resource('slide', SlideController::class)->except('show');
-            // Land Videos
-            Route::resource('video', VideoController::class)->except('show');
-            // Land Files
-            Route::resource('file', FileController::class)->except('show');
+            // COMMENTS
+            Route::resource('comment', CommentController::class)->except('show');
+            Route::prefix('comment')->name('comment.')->controller(CommentController::class)->group(function () {
+                Route::post('{comment}/publish', 'publish')->name('publish');
+                Route::post('{comment}/hidden', 'hidden')->name('hidden');
+            });
+
+            /* USERS */
+            Route::resource('user', UserController::class)->except('show');
+
+            /* PROFILE */
+            Route::get("login", [ProfileController::class, 'login'])->name('profile.login');
+            Route::get("logout", [ProfileController::class, 'logout'])->name('profile.logout');
 
         });
-
-        // COMMENTS
-        Route::resource('comment', CommentController::class)->except('show');
-        Route::prefix('comment')->name('comment.')->controller(CommentController::class)->group(function () {
-            Route::post('{comment}/publish', 'publish')->name('publish');
-            Route::post('{comment}/hidden', 'hidden')->name('hidden');
-        });
-
-        /* USERS */
-        Route::resource('user', UserController::class)->except('show');
-
-        /* PROFILE */
-        Route::get("login", [ProfileController::class, 'login'])->name('profile.login');
-        Route::get("logout", [ProfileController::class, 'logout'])->name('profile.logout');
-
     });
 
+
     /**
-    |--------------------------------------------------------------------------
-    | LANDING
-    |--------------------------------------------------------------------------
-    */
+     * |--------------------------------------------------------------------------
+     * | LANDING
+     * |--------------------------------------------------------------------------
+     */
     Route::prefix('l')
         ->name('landing.')
         ->controller(LandingController::class)

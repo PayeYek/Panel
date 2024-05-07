@@ -36,6 +36,8 @@
                     <x-layout.panel.menu title="Products" route="panel.landing.product.product.index"
                                          icon="iconsax-lin-box"/>
                 </x-layout.panel.menu>
+                <x-layout.panel.menu title="Advertisement" route="panel.landing.advertisement.index" icon="iconsax-lin-book"/>
+
             </x-layout.panel.menu>
             {{--LANDING -- END --}}
 

@@ -18,7 +18,7 @@ return new class extends Migration {
             $table->string('last_name', 64)->nullable();
             $table->tinyInteger('gender')->nullable();
             $table->string('email')->nullable();
-            $table->string('phone', 10);
+            $table->string('mobile', 10);
             $table->date('birthdate')->nullable();
             $table->tinyInteger('type')->nullable();
             $table->string('ssn', 10)->nullable();
@@ -29,7 +29,7 @@ return new class extends Migration {
             $table->rememberToken();
             $table->timestamps();
 
-            $table->unique(['phone', 'ssn']);
+            $table->unique(['mobile', 'ssn']);
         });
     }
 

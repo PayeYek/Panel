@@ -5,6 +5,7 @@ namespace App\Models;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
@@ -15,17 +16,17 @@ class User extends Authenticatable
     use HasRoles, HasApiTokens, HasFactory, Notifiable;
 
     protected $fillable = [
-        'name',
-        'family',
-        'email',
-        'phone',
-        'username',
-        'password',
+        'first_name',
+        'last_name',
         'gender',
-        'birthday',
-        'national_code',
+        'email',
+        'mobile',
+        'birthdate',
+        'type',
+        'ssn',
         'email_verified_at',
-        'phone_verified_at',
+        'certified',
+        'state',
     ];
 
     protected $hidden = ['password', 'remember_token'];
@@ -36,7 +37,7 @@ class User extends Authenticatable
         return [
             'phone_verified_at' => 'datetime',
             'email_verified_at' => 'datetime',
-            'password'          => 'hashed',
+            'password' => 'hashed',
         ];
     }
 
@@ -64,13 +65,18 @@ class User extends Authenticatable
     /**-------------------------***
      * Relationships
      * --------------------------*/
-    public function activeCode()
+    public function activeCode(): HasMany
     {
         return $this->hasMany(ActiveCode::class);
     }
 
-    public function comments()
+    public function comments(): HasMany
     {
         return $this->hasMany(Comment::class);
+    }
+
+    public function advertises(): HasMany
+    {
+        return $this->hasMany(Advertise::class);
     }
 }

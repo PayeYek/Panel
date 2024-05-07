@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Controllers\Panel\Inertia;
 use App\Models\ActiveCode;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
@@ -23,7 +24,7 @@ class AuthController extends Controller
 
         $request->session()->regenerateToken();
 
-        return redirect('/');
+        return redirect(route('auth.login'));
     }
 
     public function login()
@@ -36,41 +37,43 @@ class AuthController extends Controller
     {
 
         $data = $request->validate([
-            "username" => "required",
-            "password" => "required|min:8",
+            "mobile" => "required",
         ]);
+        //todo implement request validation with regex of valid mobile numbers
 
-
-        $user = User::whereUsername($data['username'])
-            ->orWhere("phone", $data['username'])
-            ->orWhere("email", $data['username'])
+        $user = User::query()->where('mobile', $data['mobile'])
+            ->where('type', 0) //todo implement user type enum
             ->first();
 
-        if (!$user) {
-            throw ValidationException::withMessages([
-                'username' => trans('auth.failed'),
-            ]);
-        }
+        $userId = $user->id;
 
-        $field = "username";
-        if (is_numeric($data['username'])) {
-            $field = "phone";
-        } elseif (filter_var($data['username'], FILTER_VALIDATE_EMAIL)) {
-            $field = "email";
-        }
+        $code = rand(1111, 9999);
+        ActiveCode::updateOrCreate([
+            'user_id' => $userId,
+        ], [
+            'code' => $code,
+            'expired_at' => Carbon::now()->addMinutes(2)
+        ]);
+        return view('panel.auth.verify', compact('userId'));
 
-        if (
-            auth()->attempt(
-                [$field => $data['username'], "password" => $data['password']],
-                true
-            )
-        ) {
-            return redirect()->route('store.home');
-        } else {
-            throw ValidationException::withMessages([
-                'password' => trans('auth.password'),
-            ]);
-        }
+//        $field = "username";
+//        if (is_numeric($data['username'])) {
+//            $field = "phone";
+//        } elseif (filter_var($data['username'], FILTER_VALIDATE_EMAIL)) {
+//            $field = "email";
+//        }
+//
+//        if (
+//            auth()->attempt(
+//                [$field => $data['username'], "password" => $data['password']],
+//                true
+//            )
+//        ) {;
+//        } else {
+//            throw ValidationException::withMessages([
+//                'mobile' => trans('auth.password'),
+//            ]);
+//        }
 
     }
 
@@ -100,7 +103,6 @@ class AuthController extends Controller
             $user->name = $data['name'];
             $user->family = $data['family'];
             $user->phone = $data['phone'];
-            $user->password = $data['password'];
             $user->save();
 
         } else {
@@ -131,10 +133,9 @@ class AuthController extends Controller
         $request->validate([
             "code" => "required|string|size:4|exists:active_codes|regex:/[0-9]/",
         ]);
-
+        $userId = $request->input('user_id');
         /* Get User */
-        $user = auth()->user();
-
+        $user = User::query()->find($userId); //todo check the credentials before login
         /* Check the status */
         $lastRecord = $user->activeCode()->orderby('id', 'desc')->orderby('created_at', 'desc')->first();
         if ($lastRecord && $lastRecord['expired_at'] < now())
@@ -150,8 +151,9 @@ class AuthController extends Controller
 
         /* Codes Removed */
         $user->activeCode()->delete();
+        Auth::login($user);
 
-        return redirect()->route('store.home');
+        return redirect()->route('panel.home');
     }
 
     public function resend()
@@ -223,7 +225,6 @@ class AuthController extends Controller
         ]);
 
         $user = auth()->user();
-        $user->password = $request->password;
         $user->save();
 
         return redirect()->route('store.home');
