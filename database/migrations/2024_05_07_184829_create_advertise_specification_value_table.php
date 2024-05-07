@@ -14,7 +14,7 @@ return new class extends Migration {
             $table->id();
             $table->foreignId('advertise_id')->constrained('advertises')->onDelete('cascade');
             $table->foreignId('specification_id')->constrained('specifications');
-            $table->foreignId('specification_value_id')->constrained('specification_values');
+            $table->foreignId('value_id')->constrained('specification_values');
             //Todo define primary key
             $table->timestamps();
         });
