@@ -23,7 +23,7 @@
             <div class="relative flex flex-1">
                 <input
                     {{ $attributes->except(['v-if', 'v-show', 'v-for', 'class'])->class([
-                'min-h-[2.5rem] px-3 block bg-gray-50 dark:bg-gray-700 w-full border-transparent focus:border-transparent focus:outline-none focus:ring-0 dark:placeholder-gray-400 disabled:opacity-50 disabled:bg-gray-50 disabled:cursor-not-allowed',
+                'min-h-[2.5rem] px-3 block bg-gray-50 dark:bg-gray-700 dark:placeholder-gray-400 dark:text-white w-full border-transparent focus:border-transparent focus:outline-none focus:ring-0 dark:placeholder-gray-400 disabled:opacity-50 disabled:bg-gray-50 disabled:cursor-not-allowed',
                 'rounded-[7px]' => !$append && !$prepend,
                 'min-w-0 flex-1 rounded-none' => $append || $prepend,
                 'rounded-s-[7px]' => $append && !$prepend,

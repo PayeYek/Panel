@@ -417,6 +417,7 @@
     "Enter ": "رمز عبور اشتباه است!",
     "Nothing found!": "چیزی پیدا نشد!",
     "Code sent to you; Please check your phone.": "شماره برای شما ارسال شد؛ لطفا گوشی خود را بررسی کنید.",
+    "There is no user account with this number!": "هیچ حساب کاربری با این شماره وجود ندارد!",
     "First Name": "نام",
     "Last Name": "نام خانوادگی",
     "Password": "رمز عبور",

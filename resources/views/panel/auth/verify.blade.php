@@ -5,7 +5,7 @@
             <x-splade-modal>
                 <div
                     class="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
-                    <x-splade-form :action="route('auth.accept')" :default="['remember' => false, 'user_id' => $userId]">
+                    <x-splade-form :action="route('auth.accept')" :default="['user_id' => $userId]">
 
                         <x-layout.panel.form.card title="Authentication" class="mt-5">
 
@@ -17,7 +17,7 @@
                             <x-layout.panel.form.division>
 
                                 <x-splade-input name="code" label="Received Code" type="password"
-                                                placeholder="x x x x x"
+                                                placeholder="x x x x"
                                                 required ltr/>
 
                                 <div class="flex items-center gap-2">

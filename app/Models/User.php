@@ -35,7 +35,6 @@ class User extends Authenticatable
     protected function casts(): array
     {
         return [
-            'phone_verified_at' => 'datetime',
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
@@ -47,7 +46,7 @@ class User extends Authenticatable
     protected function fullname(): Attribute
     {
         return new Attribute(
-            get: fn() => "{$this->name} {$this->family}"
+            get: fn() => "{$this->first_name} {$this->last_name}"
         );
     }
 

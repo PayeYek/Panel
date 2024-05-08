@@ -30,7 +30,6 @@ class AuthController extends Controller
 
     public function login()
     {
-//        Sms::code('09356402287');
         return view('panel.auth.login');
     }
 
@@ -38,16 +37,19 @@ class AuthController extends Controller
     {
 
         $data = $request->validate([
-            "mobile" => "required",
+            "mobile"   => ["required", "string", "size:10", "regex:/(9)[0-9]{9}/"],
         ]);
+
         $mobile = $data['mobile'];
-        //todo implement request validation with regex of valid mobile numbers
 
         $user = User::query()->where('mobile', $mobile)
             ->where('type', 0) //todo implement user type enum
             ->first();
+
         if (!$user) {
-            return 'cannot login'; //Todo implement error
+            throw ValidationException::withMessages([
+                'mobile' => __('There is no user account with this number!'),
+            ]);
         }
 
         $userId = $user->id;
@@ -59,31 +61,11 @@ class AuthController extends Controller
         ActiveCode::updateOrCreate([
             'mobile' => $mobile,
         ], [
-            'code' => $code,
-            'expired_at' => Carbon::now()->addMinutes(2)
+            'code'       => $code,
+            'expired_at' => Carbon::now()->addMinutes(5)
         ]);
 
         return view('panel.auth.verify', compact('userId'));
-
-//        $field = "username";
-//        if (is_numeric($data['username'])) {
-//            $field = "phone";
-//        } elseif (filter_var($data['username'], FILTER_VALIDATE_EMAIL)) {
-//            $field = "email";
-//        }
-//
-//        if (
-//            auth()->attempt(
-//                [$field => $data['username'], "password" => $data['password']],
-//                true
-//            )
-//        ) {;
-//        } else {
-//            throw ValidationException::withMessages([
-//                'mobile' => trans('auth.password'),
-//            ]);
-//        }
-
     }
 
     public function create()
@@ -95,10 +77,13 @@ class AuthController extends Controller
     {
         $uid = $request->userId;
         $data = $request->validate([
-            "name" => "required|string|max:255",
-            "family" => "required|string|max:255",
-            "phone" => [
-                "required", "string", "size:11", "regex:/(09)[0-9]{9}/",
+            "name"     => "required|string|max:255",
+            "family"   => "required|string|max:255",
+            "phone"    => [
+                "required",
+                "string",
+                "size:11",
+                "regex:/(09)[0-9]{9}/",
                 $uid ? Rule::unique("users")->ignore($uid) : "unique:users",
             ],
             //"phone"    => "required|size:11|unique:users|regex:/(09)[0-9]{9}/",
@@ -127,7 +112,7 @@ class AuthController extends Controller
         return redirect()->route('auth.verify');
     }
 
-    public function verify()
+/*    public function verify()
     {
 
         return view('panel.auth.verify');
@@ -135,12 +120,12 @@ class AuthController extends Controller
         $user = Auth::user();
 
         return Inertia::render('Panel/Auth/SignUp/verify', compact('user'));
-    }
+    }*/
 
     public function accept(Request $request)
     {
         $request->validate([
-            "code" => "required|string|size:4|exists:active_codes|regex:/[0-9]/",
+            "code" => "required|numeric|size:4|exists:active_codes",
         ]);
 
         $userId = $request->input('user_id');
@@ -202,7 +187,7 @@ class AuthController extends Controller
     {
         $request->validate([
             "phone" => "required|size:11|exists:users,phone|regex:/(09)[0-9]{9}/",
-            "code" => "required|string|size:4|exists:active_codes|regex:/[0-9]/",
+            "code"  => "required|string|size:4|exists:active_codes|regex:/[0-9]/",
         ]);
 
         /* Check the status */

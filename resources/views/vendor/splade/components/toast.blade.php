@@ -41,7 +41,7 @@
 
                         @if($title && $message)
                             <div @class([
-                                'mt-2 text-sm',
+                                'text-sm',
                                 'text-green-700' => $isSuccess,
                                 'text-orange-700' => $isWarning,
                                 'text-red-700' => $isDanger,
