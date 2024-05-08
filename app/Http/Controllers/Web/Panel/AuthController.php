@@ -39,17 +39,21 @@ class AuthController extends Controller
         $data = $request->validate([
             "mobile" => "required",
         ]);
+        $mobile = $data['mobile'];
         //todo implement request validation with regex of valid mobile numbers
 
-        $user = User::query()->where('mobile', $data['mobile'])
+        $user = User::query()->where('mobile', $mobile)
             ->where('type', 0) //todo implement user type enum
             ->first();
+        if (!$user) {
+            return 'cannot login'; //Todo implement error
+        }
 
         $userId = $user->id;
 
         $code = rand(1111, 9999);
         ActiveCode::updateOrCreate([
-            'user_id' => $userId,
+            'mobile' => $mobile,
         ], [
             'code' => $code,
             'expired_at' => Carbon::now()->addMinutes(2)
@@ -133,11 +137,18 @@ class AuthController extends Controller
         $request->validate([
             "code" => "required|string|size:4|exists:active_codes|regex:/[0-9]/",
         ]);
+
         $userId = $request->input('user_id');
         /* Get User */
         $user = User::query()->find($userId); //todo check the credentials before login
+        if (!$user) {
+            return 'error'; //Todo handle error
+        }
+
+        $mobile = $user->mobile;
+
         /* Check the status */
-        $lastRecord = $user->activeCode()->orderby('id', 'desc')->orderby('created_at', 'desc')->first();
+        $lastRecord = ActiveCode::query()->where('mobile', $mobile)->orderby('id', 'desc')->orderby('created_at', 'desc')->first();
         if ($lastRecord && $lastRecord['expired_at'] < now())
             throw ValidationException::withMessages([
                 'code' => trans('Code is expire.'),
@@ -150,7 +161,7 @@ class AuthController extends Controller
 
 
         /* Codes Removed */
-        $user->activeCode()->delete();
+        $lastRecord->delete(); //Todo check working correctly?
         Auth::login($user);
 
         return redirect()->route('panel.home');
