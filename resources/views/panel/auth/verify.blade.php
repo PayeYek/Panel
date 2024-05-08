@@ -20,18 +20,7 @@
                                                 placeholder="x x x x"
                                                 required ltr/>
 
-                                <div class="flex items-center gap-2">
-                                    <x-splade-link :href="route('auth.forget')"
-                                                   class="text-sm font-medium text-primary-600 hover:underline dark:text-primary-500 underline-offset-8 decoration-2">{{ __('Edit mobile number') }}</x-splade-link>
-                                </div>
-
                                 <x-splade-submit label="Confirm" class="w-full"/>
-
-                                <span class="text-sm text-gray-500 dark:text-gray-400">
-                                    {{ __('Did you not receive an SMS?') }}
-                                    <x-splade-link
-                                        class="text-sm font-medium text-primary-600 hover:underline dark:text-primary-500 underline-offset-8 decoration-2">{{ __('Resend') }}</x-splade-link>
-                                </span>
                             </x-layout.panel.form.division>
                         </x-layout.panel.form.card>
                     </x-splade-form>
