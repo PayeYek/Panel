@@ -2,10 +2,10 @@
 
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Web\Landing\LandingController;
+use App\Http\Controllers\Web\Panel\AdvertisementController;
 use App\Http\Controllers\Web\Panel\AuthController;
 use App\Http\Controllers\Web\Panel\CommentController;
 use App\Http\Controllers\Web\Panel\DashboardController;
-use App\Http\Controllers\Web\Panel\Land\AdvertisementController;
 use App\Http\Controllers\Web\Panel\Land\AgencyController;
 use App\Http\Controllers\Web\Panel\Land\ArticleController;
 use App\Http\Controllers\Web\Panel\Land\AttributeController;

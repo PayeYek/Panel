@@ -43,7 +43,7 @@ class User extends Authenticatable
     /**-------------------------***
      * New Attribute
      * --------------------------*/
-    protected function fullname(): Attribute
+    protected function fullName(): Attribute
     {
         return new Attribute(
             get: fn() => "{$this->first_name} {$this->last_name}"
