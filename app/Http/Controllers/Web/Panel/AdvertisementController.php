@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Web\Panel\Land;
+namespace App\Http\Controllers\Web\Panel;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Panel\Landing\ColorRequest;
 use App\Models\LandColor;
+use App\Tables\Advertisements;
 use Splade;
 
 class AdvertisementController extends Controller
@@ -13,6 +14,7 @@ class AdvertisementController extends Controller
     public function index()
     {
         return view('panel.advertisement.index', [
+            'items' => Advertisements::class
         ]);
     }
 

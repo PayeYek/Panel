@@ -16,7 +16,7 @@
                     </svg>
                 </div>
 
-                <span class="text-lg font-bold text-gray-800 dark:text-white">{{ auth()->user()->fullname }}</span>
+                <span class="text-lg font-bold text-gray-800 dark:text-white">{{ auth()->user()->fullName }}</span>
                 <span class="text-base">عنوان شغلی</span>
 
             </div>

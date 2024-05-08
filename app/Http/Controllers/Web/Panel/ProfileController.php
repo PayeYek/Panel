@@ -11,7 +11,7 @@ class ProfileController extends Controller
     {
         auth()->loginUsingId(1);
 
-        Splade::toast(auth()->user()->fullname . __(', welcome.'))->autoDismiss(5);
+        Splade::toast(auth()->user()->fullName . __(', welcome.'))->autoDismiss(5);
 
         return redirect()->route('panel.dashboard');
     }
