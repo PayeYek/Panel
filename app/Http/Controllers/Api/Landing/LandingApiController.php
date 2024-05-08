@@ -30,6 +30,7 @@ use App\Transformers\LandProductSpecificationTransformer;
 use App\Transformers\LandProductTransformer;
 use App\Transformers\LandProductVideoTransformer;
 use App\Transformers\LandTransformer;
+use App\Transformers\SaleTermsTransformer;
 use Exception;
 use Str;
 
@@ -244,6 +245,43 @@ class LandingApiController extends Controller
         }
 
         return responder()->success($product, LandProductVideoTransformer::class)->respond();
+    }
+
+    public function saleTerms($page)
+    {
+        $land = Land::query()->where('slug', $page)->first();
+        if (!$land) {
+            return responder()->error(-1, 'The company not found')->respond();
+        }
+
+        $saleTerms = LandArticle::query()->where('land_id', $land->id)
+            ->where('type', 'sell') //Todo make enum for article type
+            ->published()
+            ->orderBy('created_at', 'desc')
+            ->get();
+
+        $titles = [];
+        foreach ($saleTerms as $term) {
+            $titles[] = $term->title;
+        }
+
+        $termsResponse = [];
+        foreach ($saleTerms as $term) {
+            $termsResponse[] = [
+                'title' => $term->title,
+                'body' => $term->body,
+                'created_at' => $term->created_at,
+                'updated_at' => $term->updated_at
+            ];
+        }
+
+        $data = [
+            'titles' => $titles,
+            'primaryImage' => $saleTerms->first()->image,
+            'saleTerms' => $termsResponse
+        ];
+
+        return responder()->success($data, SaleTermsTransformer::class)->respond();
     }
 
     public function product($page, $product)
