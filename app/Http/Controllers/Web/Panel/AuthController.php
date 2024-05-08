@@ -58,6 +58,7 @@ class AuthController extends Controller
             'code' => $code,
             'expired_at' => Carbon::now()->addMinutes(2)
         ]);
+
         return view('panel.auth.verify', compact('userId'));
 
 //        $field = "username";
