@@ -6,7 +6,7 @@
                     pagination-scroll="preserve"
     >
         @cell('user', $item)
-        <span>{{$item->name . ' ' . $item->family}}</span>
+        <span class="text-black dark:text-white">{{$item->fullName}}</span>
         @endcell
 
         @cell('gender', $item)
@@ -33,12 +33,6 @@
         @cell('birthdate', $item)
         <span
             dir="ltr">{{ \App\Support\Help::isRTL() ? jdate($item->birthdate) : $item->birthdate }}</span>
-        @endcell
-
-        {{--PHONE_VERIFIED_AT--}}
-        @cell('phone_verified_at', $item)
-        <span
-            dir="ltr">{{ \App\Support\Help::isRTL() ? jdate($item->phone_verified_at) : $item->phone_verified_at }}</span>
         @endcell
 
         {{--EMAIL_VERIFIED_AT--}}

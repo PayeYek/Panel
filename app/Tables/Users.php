@@ -30,11 +30,9 @@ class Users extends AbstractTable
             $query->where(function ($query) use ($value) {
                 Collection::wrap($value)->each(function ($value) use ($query) {
                     $query
-                        ->orWhere('name', 'LIKE', "%{$value}%")
-                        ->orWhere('family', 'LIKE', "%{$value}%")
-                        ->orWhere('username', 'LIKE', "%{$value}%")
-                        ->orWhere('phone', 'LIKE', "%{$value}%")
-                        ->orWhere('email', 'LIKE', "%{$value}%");
+                        ->orWhere('first_name', 'LIKE', "%{$value}%")
+                        ->orWhere('last_name', 'LIKE', "%{$value}%")
+                        ->orWhere('mobile', 'LIKE', "%{$value}%");
                 });
             });
         });
@@ -42,23 +40,22 @@ class Users extends AbstractTable
         return QueryBuilder::for(User::class)
 //            ->withCount('orders')
             ->defaultSort('-id')
-            ->allowedSorts(['id', 'name', 'family', 'username', 'phone', 'email', 'created_at', 'updated_at'])
-            ->allowedFilters(['name', 'family', 'phone', 'gender', $globalSearch]);
+            ->allowedSorts(['id', 'first_name', 'last_name', 'mobile', 'created_at', 'updated_at'])
+            ->allowedFilters(['first_name', 'last_name', 'mobile', 'gender', $globalSearch]);
     }
 
     public function configure(SpladeTable $table)
     {
 
         $table
-            ->withGlobalSearch(columns: ['id', 'name', 'family', 'username', 'mobile', 'email'])
+            ->withGlobalSearch(columns: ['id', 'first_name', 'last_name', 'mobile'])
             ->column('id', label: __('Id'), sortable: true)
             ->column('user', label: __('Full name'))
-            ->column('name', label: __('Name'), sortable: true, hidden: true, searchable: true)
-            ->column('family', label: __('Family'), sortable: true, hidden: true, searchable: true)
-            ->column('username', label: __('Username'), hidden: true, searchable: true)
+            ->column('first_name', label: __('Name'), sortable: true, hidden: true, searchable: true)
+            ->column('last_name', label: __('Family'), sortable: true, hidden: true, searchable: true)
             ->column('gender', label: __('Gender'), sortable: true, hidden: true)
-            ->column('phone', label: __('Mobile'), sortable: true, searchable: true)
-            ->column('level', label: __('Role'), sortable: true)
+            ->column('mobile', label: __('Mobile'), sortable: true, searchable: true)
+            ->column('type', label: __('Role'), sortable: true)
             ->column('created_at', label: __('Create date'), hidden: true, sortable: true)
             ->column('updated_at', label: __('Update date'), hidden: true, sortable: true)
             ->column('action', label: __('Actions'), exportAs: false)
