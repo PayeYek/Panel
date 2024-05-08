@@ -16,17 +16,17 @@ return new class extends Migration {
             $table->id();
             $table->string('first_name', 64)->nullable();
             $table->string('last_name', 64)->nullable();
-            $table->tinyInteger('gender')->nullable()->default(2); //Todo implement genderEnum
+            $table->tinyInteger('gender')->nullable();
             $table->string('email')->nullable();
             $table->string('mobile', 10);
             $table->date('birthdate')->nullable();
             $table->tinyInteger('type')->nullable()->default(0); //Todo implement userTypeEnum
             $table->string('ssn', 10)->nullable();
-            $table->timestamp('email_verified_at')->nullable();
             $table->tinyInteger('certified')->nullable()->default(0); //Todo implement Enum
             $table->tinyInteger('state')->nullable()->default(0); //Todo implement Enum\
 
             $table->rememberToken();
+            $table->timestamp('email_verified_at')->nullable();
             $table->timestamps();
 
             $table->unique(['mobile', 'ssn']);
