@@ -16,6 +16,7 @@ return new class extends Migration
             $table->foreignId('land_id')->constrained()->onDelete('cascade');
             $table->text('image');
             $table->text('alt')->nullable();
+            $table->longText('infos')->nullable();
             $table->text('link')->nullable();
             $table->bigInteger('view')->default(0);
             $table->boolean('status')->default(true);
