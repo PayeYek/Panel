@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Controllers\Panel\Inertia;
 use App\Models\ActiveCode;
 use App\Models\User;
+use App\Support\SmsHelper;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -52,6 +53,9 @@ class AuthController extends Controller
         $userId = $user->id;
 
         $code = rand(1111, 9999);
+
+        SmsHelper::sendCode($mobile, $code);
+
         ActiveCode::updateOrCreate([
             'mobile' => $mobile,
         ], [
