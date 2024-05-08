@@ -13,6 +13,11 @@ return new class extends Migration
     {
         Schema::create('specification_values', function (Blueprint $table) {
             $table->id();
+            $table->string('title');
+            $table->string('slug');
+            $table->foreignId('specification_id')->constrained('specifications');
+
+            $table->softDeletes();
             $table->timestamps();
         });
     }
