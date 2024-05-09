@@ -291,40 +291,26 @@ class LandingApiController extends Controller
     {
         /* LANDING DATA */
         $land = Land::where('slug', $page)
-            ->with([
-                'products',
-                'slides' => function ($query) {
-                    $query->where('status', 1);
-                },
-                'articles' => function ($query) {
-                    $query->orderBy('created_at', 'desc');
-                }
-            ])
+            ->with(['products.category', 'slides', 'articles'])
             ->firstOrFail();
 
-        /* PRODUCT DATA */
         $product = $land->products()->with('category')->where('slug', $product)->firstOrFail();
 
-        /* COMMENTS APPROVED */
-//        $comments = LandComment::where('land_id', $land->id)->where('product_id', $product->id)->where('approved', true)->get();
+        $comments = LandComment::where('land_id', $land->id)
+            ->where('product_id', $product->id)
+            ->where('approved', true)
+            ->get();
 
-        /* BREADCRUMBS */
-        $breadcrumbs = [];
-
-        $breadcrumbs[] = [
-            'title' => __('Products'),
-            'url' => Str::after(parse_url(route('api.landing.product.list', ['page' => $land->slug]), PHP_URL_PATH), '/api/l/')
-        ];
-
-        $breadcrumbs[] = [
-            'title' => $product->name,
-            'url' => null
+        $breadcrumbs = [
+            ['title' => __('Products'), 'url' => url()->route('api.landing.product.list', ['page' => $land->slug])],
+            ['title' => $product->name, 'url' => null]
         ];
 
         $seo = SeoHelper::seoGenerator($product);
 
         $data = [
             'product' => $product,
+            'comments' => $comments,
             'breadcrumbs' => $breadcrumbs,
             'seo' => $seo
         ];

@@ -36,7 +36,7 @@ class LandProductTransformer extends Transformer
             'catalog' => $data['product']->catalog,
             'manual' => $data['product']->manual,
             'description' => $data['product']->description,
-            'breadcrumbs' => $data['breadcrumbs'],
+            'comments' => (new LandCommentTransformer)->transform($data['comments']),
             'seo' => $data['seo'] //Todo add Transformer for seo
         ];
     }
