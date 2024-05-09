@@ -31,10 +31,8 @@ class LandArticleSearchTransformer extends Transformer
     {
         return [
             'title' => $landArticle->title,
-            'type' => $landArticle->type,
             'slug' => $landArticle->slug,
-            'description' => $landArticle->description,
-            'created_at' => $landArticle->created_at
+            'image' => $landArticle->image,
         ];
     }
 }

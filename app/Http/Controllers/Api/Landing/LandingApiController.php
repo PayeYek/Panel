@@ -387,8 +387,7 @@ class LandingApiController extends Controller
                 $query->where('title', 'LIKE', '%' . $keyword . '%')
                     ->orWhere('description', 'LIKE', '%' . $keyword . '%');
             })
-            ->orderBy('created_at', 'desc')
-            ->paginate(10);
+            ->orderBy('created_at', 'desc');
 
         return responder()->success($searchResults, LandArticleSearchTransformer::class)->respond();
     }
