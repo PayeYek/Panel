@@ -271,6 +271,14 @@ class LandingApiController extends Controller
             ];
         });
 
+        $titles = $saleTerms->map(function ($term) {
+            return [
+                'title' => $term->title,
+                'created_at' => $term->created_at
+            ];
+        });
+
+
         $breadcrumbs = [
             ['title' => __('Terms of sale'), 'url' => null]
         ];
@@ -279,7 +287,7 @@ class LandingApiController extends Controller
 
         $data = [
             'landName' => $land->title,
-            'titles' => $saleTerms->pluck('title')->all(),
+            'titles' => $titles->all(),
             'primaryImage' => $saleTerms->first()?->image,
             'saleTerms' => $termsResponse,
             'breadcrumbs' => $breadcrumbs,
