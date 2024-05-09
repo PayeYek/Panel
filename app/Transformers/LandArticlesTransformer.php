@@ -29,7 +29,7 @@ class LandArticlesTransformer extends Transformer
     public function transform(array $data): array
     {
         return [
-            'categories' => $data['categories'],
+            'article_types' => $data['article_types'],
             'articles' => $data['articles'],
             'breadcrumbs' => $data['breadcrumbs'],
             'seo' => $data['seo']

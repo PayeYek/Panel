@@ -429,7 +429,7 @@ class LandingApiController extends Controller
     public function articles($page)
     {
         // Extract the query parameter
-        $filter = request('f');
+        $filter = request('f'); //Todo filter just work on news and blogs, not sell
         $search = request('s');
         $pageSize = 10;
 
@@ -446,32 +446,20 @@ class LandingApiController extends Controller
                         ->orWhere('slug', 'LIKE', '%' . $search . '%');
                 });
             })
+            ->where('type', '!=', 'sell') // Exclude articles with type 'sell'
             ->published()
             ->orderBy('created_at', 'desc')
             ->select('title', 'slug', 'type', 'description', 'image', 'created_at')
             ->paginate($pageSize);
 
-        $articles = $articlePaginator->items();
+        $articles = collect($articlePaginator->items());
 
-        $cats = array();
-        foreach ($land->products as $productItem) {
-            $cats[] = $productItem->category_id;
-        }
-        $cats = array_unique($cats);
-
-        $categories = collect();
-
-        foreach ($cats as $cat) {
-            $categories->add(collect(LandCategory::find($cat)));
-        }
-
-        $filteredCategory = collect($categories)->map(function ($item) {
+        $uniqueTypes = $articles->pluck('type')->unique()->values()->map(function ($type) {
             return [
-                'id' => $item['id'],
-                'slug' => $item['slug'],
-                'title' => $item['title']
+                'type_fa' => __($type),
+                'type_en' => $type
             ];
-        });
+        })->all();
 
         $breadcrumbs = [];
 
@@ -484,6 +472,7 @@ class LandingApiController extends Controller
         $seo = SeoHelper::seoGenerator($land, 'articles');
 
         $data = [
+            'article_types' => $uniqueTypes,
             'articles' => [
                 'pagination' => (object)[
                     'count' => $articlePaginator->count(),
@@ -495,7 +484,6 @@ class LandingApiController extends Controller
                 ],
                 'data' => $articles,
             ],
-            'categories' => $filteredCategory,
             'breadcrumbs' => $breadcrumbs,
             'seo' => $seo
         ];
