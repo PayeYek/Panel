@@ -249,38 +249,41 @@ class LandingApiController extends Controller
 
     public function saleTerms($page)
     {
-        $land = Land::query()->where('slug', $page)->first();
+        $land = Land::where('slug', $page)->first();
+
         if (!$land) {
             return responder()->error(-1, 'The company not found')->respond();
         }
 
-        $saleTerms = LandArticle::query()->where('land_id', $land->id)
-            ->where('type', 'sell') //Todo make enum for article type
+        $saleTerms = $land->articles()
+            ->where('type', 'sell')
             ->published()
-            ->orderBy('created_at', 'desc')
+            ->orderByDesc('created_at')
             ->get();
 
-        $titles = [];
-        foreach ($saleTerms as $term) {
-            $titles[] = $term->title;
-        }
-
-        $termsResponse = [];
-        foreach ($saleTerms as $term) {
-            $termsResponse[] = [
+        $termsResponse = $saleTerms->map(function ($term) {
+            return [
                 'title' => $term->title,
                 'body' => $term->body,
                 'created_at' => $term->created_at,
                 'updated_at' => $term->updated_at
             ];
-        }
+        });
 
-        $data = [
-            'titles' => $titles,
-            'primaryImage' => $saleTerms->first()->image,
-            'saleTerms' => $termsResponse
+        $breadcrumbs = [
+            ['title' => __('Terms of sale'), 'url' => null]
         ];
 
+        $seo = SeoHelper::seoGenerator($land, 'saleTerms');
+
+        $data = [
+            'landName' => $land->title,
+            'titles' => $saleTerms->pluck('title')->all(),
+            'primaryImage' => $saleTerms->first()?->image,
+            'saleTerms' => $termsResponse,
+            'breadcrumbs' => $breadcrumbs,
+            'seo' => $seo
+        ];
         return responder()->success($data, SaleTermsTransformer::class)->respond();
     }
 

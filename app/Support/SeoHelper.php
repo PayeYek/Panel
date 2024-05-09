@@ -132,6 +132,23 @@ class SeoHelper
             ];
         }
 
+        if ($model instanceof Land && $static === 'saleTerms') {
+            return [
+                'title' => ($model->title ?? null) . ' | شرایط فروش',
+                'description' => "اطلاع از آخرین اطلاعایه های فروش خودرو، بررسی تخصصی خودروها و آخرین اخبار درباره شرکت و محصولات",
+                'image' => $model->logo ?? null,
+                'image_alt' => $model->title ?? null,
+                'og_title' => $model->title ?? null,
+                'og_description' => $model->description ?? null,
+                'og_image' => $model->logo ?? null,
+                'og_type' => 'article',
+                'twitter_card' => 'summary',
+                'twitter_card_image' => $model->logo ?? null,
+                'canonical' => $model->slug,
+                'robot' => 'index'
+            ];
+        }
+
         return [
             'title' => null,
             'description' => null,

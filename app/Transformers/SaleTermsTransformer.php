@@ -29,9 +29,12 @@ class SaleTermsTransformer extends Transformer
     public function transform(array $data): array
     {
         return [
+            'land_name' => $data['landName'],
             'titles' => $data['titles'],
             'primary_image' => $data['primaryImage'],
             'sale_terms' => $data['saleTerms'],
+            'breadcrumbs' => $data['breadcrumbs'],
+            'seo' => $data['seo'],
         ];
     }
 }
