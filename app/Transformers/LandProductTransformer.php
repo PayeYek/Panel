@@ -29,6 +29,7 @@ class LandProductTransformer extends Transformer
     public function transform(array $data): array
     {
         return [
+            'id' => $data['product']->id,
             'title' => $data['product']->name,
             'primary_image' => $data['product']->image,
             'slider_image' => $data['product']->pictures,
