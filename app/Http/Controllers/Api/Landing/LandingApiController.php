@@ -396,6 +396,7 @@ class LandingApiController extends Controller
     {
         // Extract the query parameter
         $filter = request('f');
+        $search = request('s');
         $pageSize = 10;
 
         $land = Land::where('slug', $page)->firstOrFail();
@@ -403,6 +404,12 @@ class LandingApiController extends Controller
         $articlePaginator = $land->articles()
             ->when($filter, function ($query) use ($filter) {
                 $query->where('type', $filter);
+            })
+            ->when($search, function ($query) use ($search) {
+                $query->where(function ($query) use ($search) {
+                    $query->where('title', 'LIKE', '%' . $search . '%')
+                        ->orWhere('description', 'LIKE', '%' . $search . '%');
+                });
             })
             ->published()
             ->orderBy('created_at', 'desc')
