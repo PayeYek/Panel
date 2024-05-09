@@ -54,9 +54,9 @@ class AuthController extends Controller
 
         $code = rand(1111, 9999);
 
-        if (env('APP_ENV' !== 'local')) {
+//        if (env('APP_ENV' !== 'local')) {
             SmsHelper::sendCode($mobile, $code); //Todo implement sms service in standard approach
-        }
+//        }
 
         ActiveCode::updateOrCreate([
             'mobile' => $mobile,
