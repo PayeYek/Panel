@@ -4,11 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Str;
 
 class LandVideo extends Model
 {
-    use HasFactory;
 
     protected $table = 'land_videos';
     protected $fillable = [
@@ -39,12 +39,12 @@ class LandVideo extends Model
         return $this->attributes["image"];
     }
 
-    public function land()
+    public function land(): BelongsTo
     {
         return $this->belongsTo(Land::class, 'land_id');
     }
 
-    public function product()
+    public function product(): BelongsTo
     {
         return $this->belongsTo(LandProduct::class, 'product_id');
     }

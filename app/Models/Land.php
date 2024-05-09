@@ -5,6 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasManyThrough;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Support\Str;
 
 class Land extends Model
@@ -53,7 +56,7 @@ class Land extends Model
         return $this->attributes["logo_origin"];
     }
 
-    public function categories()
+    public function categories(): HasManyThrough
     {
         return $this->hasManyThrough(
             LandCategory::class,
@@ -65,7 +68,7 @@ class Land extends Model
         );
     }
 
-    public function products()
+    public function products(): HasMany
     {
         return $this->hasMany(LandProduct::class, 'land_id');
     }
@@ -77,36 +80,36 @@ class Land extends Model
 
     // ارتباط یک به چند با محصولات
 
-    public function slides()
+    public function slides(): HasMany
     {
         return $this->hasMany(LandSlide::class, 'land_id');
     }
 
     // ارتباط یک به چند با اسلایدها
 
-    public function articles()
+    public function articles(): HasMany
     {
         return $this->hasMany(LandArticle::class, 'land_id');
     }
 
     // ارتباط یک به چند با مقالات
 
-    public function agencies()
+    public function agencies(): HasMany
     {
         return $this->hasMany(LandAgency::class, 'land_id');
     }
 
-    public function advertise()
+    public function advertise(): HasMany
     {
         return $this->hasMany(LandAgency::class, 'land_id');
     }
 
-    public function videos()
+    public function videos(): HasMany
     {
         return $this->hasMany(LandVideo::class, 'land_id');
     }
 
-    public function styles()
+    public function styles(): HasOne
     {
         return $this->hasOne(LandStyle::class, 'land_id');
     }

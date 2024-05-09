@@ -31,6 +31,7 @@ use App\Transformers\LandProductSpecificationTransformer;
 use App\Transformers\LandProductTransformer;
 use App\Transformers\LandProductVideoTransformer;
 use App\Transformers\LandTransformer;
+use App\Transformers\LandVideoTransformer;
 use App\Transformers\SaleTermsTransformer;
 use Exception;
 use Str;
@@ -388,7 +389,7 @@ class LandingApiController extends Controller
 //        $breadcrumbs[] = ['title' => __('Home'), 'url' => route('landing.page.show', ['page' => $land->slug])];
         $breadcrumbs[] = ['title' => __('Videos'), 'url' => null];
 
-        return view('landing.video-gallery', compact('land', 'breadcrumbs'));
+        return responder()->success($land->videos, LandVideoTransformer::class)->respond();
     }
 
     public function searchArticles(ArticleSearchRequest $request)
