@@ -56,7 +56,6 @@ Route::prefix('l')
             Route::get('{page}/p', 'products')->name('list');
             Route::get('{page}/p/{product}', 'product')->name('show');
             Route::get('{page}/c/{category}', 'category')->name('category');
-            Route::post('{page}/p/{product}/comment', 'comment')->name('comment');
             Route::get('p/{product}/specification', 'productSpecification')->name('specification');
             Route::get('p/{product}/information', 'productInformation')->name('information');
             Route::get('p/{product}/videos', 'productVideos')->name('videos');
@@ -68,7 +67,13 @@ Route::prefix('l')
             Route::get('{page}/a/{article}', 'article')->name('show');
         });
 
-        Route::get('{page}/sale-terms', 'saleTerms')->name('sale-terms');
+        //Todo change urls and add page/ before any routes get pages dynamically
+        Route::name('comment.')->group(function () {
+            Route::get('comment/get-comment', 'getComments')->name('getComments');
+            Route::post('comment/submit-comment', 'submitComment')->name('submitComment');
+        });
+
+        Route::get('{page}/sale-terms', 'saleTerms')->name('saleTerms');
 
         Route::get('{page}/sales', 'sales')->name('sales');
         Route::get('{page}/videos', 'videos')->name('videos');

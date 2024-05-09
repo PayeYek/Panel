@@ -2,8 +2,8 @@
 
 namespace App\Transformers;
 
+use App\Models\LandComment;
 use Flugg\Responder\Transformers\Transformer;
-use Illuminate\Database\Eloquent\Collection;
 
 class LandCommentTransformer extends Transformer
 {
@@ -24,18 +24,14 @@ class LandCommentTransformer extends Transformer
     /**
      * Transform the model.
      *
-     * @param Collection $landComment
+     * @param LandComment $landComment
      * @return array
      */
-    public function transform(Collection $landComment): array
+    public function transform(LandComment $landComment): array
     {
-        $transformedData = $landComment->map(function ($item) {
-            return [
-                'name' => $item->name,
-                'comment' => $item->comment
-            ];
-        });
-
-        return $transformedData->toArray();
+        return [
+            'name' => $landComment->name,
+            'comment' => $landComment->comment
+        ];
     }
 }

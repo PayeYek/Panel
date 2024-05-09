@@ -19,6 +19,11 @@ class LandComment extends Model
         'email'
     ];
 
+    public function scopeApproved($query)
+    {
+        return $query->where('approved', true);
+    }
+
     public function land(): BelongsTo
     {
         return $this->belongsTo(Land::class, 'land_id');

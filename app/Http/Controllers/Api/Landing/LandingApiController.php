@@ -23,6 +23,7 @@ use App\Transformers\LandAboutUsTransformer;
 use App\Transformers\LandArticleSearchTransformer;
 use App\Transformers\LandArticleSingleTransformer;
 use App\Transformers\LandArticlesTransformer;
+use App\Transformers\LandCommentTransformer;
 use App\Transformers\LandFacilityTransformer;
 use App\Transformers\LandPageTransformer;
 use App\Transformers\LandProductInformationTransformer;
@@ -296,11 +297,6 @@ class LandingApiController extends Controller
 
         $product = $land->products()->with('category')->where('slug', $product)->firstOrFail();
 
-        $comments = LandComment::where('land_id', $land->id)
-            ->where('product_id', $product->id)
-            ->where('approved', true)
-            ->get();
-
         $breadcrumbs = [
             ['title' => __('Products'), 'url' => url()->route('api.landing.product.list', ['page' => $land->slug])],
             ['title' => $product->name, 'url' => null]
@@ -310,7 +306,6 @@ class LandingApiController extends Controller
 
         $data = [
             'product' => $product,
-            'comments' => $comments,
             'breadcrumbs' => $breadcrumbs,
             'seo' => $seo
         ];
@@ -318,7 +313,7 @@ class LandingApiController extends Controller
         return responder()->success($data, LandProductTransformer::class)->respond();
     }
 
-    public function comment(CommentRequest $request)
+    public function submitComment(CommentRequest $request)
     {
         try {
             LandComment::create($request->validated());
@@ -326,8 +321,31 @@ class LandingApiController extends Controller
         } catch (Exception $e) {
             return responder()->error(-1, 'Cannot store comment due to an unknown error')->respond(500);
         }
-
     }
+
+    public function getComments()
+    {
+        $productSlug = request('product_slug');
+        $landId = request('land_id');
+
+        $product = LandProduct::where('slug', $productSlug)->first();
+        if (!$product) {
+            return responder()->error(-1, 'The product not found')->respond();
+        }
+
+        $land = Land::find($landId);
+        if (!$land) {
+            return responder()->error(-2, 'The land not found')->respond();
+        }
+
+        $comments = LandComment::where('land_id', $landId)
+            ->where('product_id', $product->id)
+            ->approved()
+            ->get();
+
+        return responder()->success($comments, LandCommentTransformer::class)->respond();
+    }
+
 
     public function category($page, $category)
     {
