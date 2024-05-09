@@ -35,6 +35,7 @@ class LandProductTransformer extends Transformer
             'slider_image' => $data['product']->pictures,
             'catalog' => $data['product']->catalog,
             'manual' => $data['product']->manual,
+            'body' => $data['product']->body,
             'description' => $data['product']->description,
             'seo' => $data['seo'] //Todo add Transformer for seo
         ];
