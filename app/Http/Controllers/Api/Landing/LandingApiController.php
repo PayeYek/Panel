@@ -334,8 +334,9 @@ class LandingApiController extends Controller
 
     public function getComments()
     {
-        $productSlug = request('product_slug');
-        $landId = request('land_id');
+        $productSlug = request('productSlug');
+        $landId = request('landId');
+        $perPage = request('perPage');
 
         $product = LandProduct::where('slug', $productSlug)->first();
         if (!$product) {
@@ -347,10 +348,17 @@ class LandingApiController extends Controller
             return responder()->error(-2, 'The land not found')->respond();
         }
 
-        $comments = LandComment::where('land_id', $landId)
-            ->where('product_id', $product->id)
-            ->approved()
-            ->get();
+        if ($perPage && is_numeric($perPage)) {
+            $comments = LandComment::where('land_id', $landId)
+                ->where('product_id', $product->id)
+                ->approved()
+                ->paginate($perPage);
+        } else {
+            $comments = LandComment::where('land_id', $landId)
+                ->where('product_id', $product->id)
+                ->approved()
+                ->get();
+        }
 
         return responder()->success($comments, LandCommentTransformer::class)->respond();
     }
@@ -383,13 +391,22 @@ class LandingApiController extends Controller
     public function videos($page)
     {
         $land = $this->getLand($page);
+        $sort = request('sort');
+        $keyword = request('keyword');
 
-        /* BREADCRUMBS */
-        $breadcrumbs = [];
-//        $breadcrumbs[] = ['title' => __('Home'), 'url' => route('landing.page.show', ['page' => $land->slug])];
-        $breadcrumbs[] = ['title' => __('Videos'), 'url' => null];
+        $videosQuery = $land->videos();
 
-        return responder()->success($land->videos, LandVideoTransformer::class)->respond();
+        if ($keyword) {
+            $videosQuery->where('alt', 'LIKE', '%' . $keyword . '%');
+        }
+
+        if ($sort === 'desc' || $sort === 'asc') {
+            $videos = $videosQuery->orderBy('created_at', $sort)->get();
+        } else {
+            $videos = $videosQuery->get();
+        }
+
+        return responder()->success($videos, LandVideoTransformer::class)->respond();
     }
 
     public function searchArticles(ArticleSearchRequest $request)
@@ -401,7 +418,8 @@ class LandingApiController extends Controller
         $searchResults = LandArticle::where('land_id', $landId)
             ->where(function ($query) use ($keyword) {
                 $query->where('title', 'LIKE', '%' . $keyword . '%')
-                    ->orWhere('description', 'LIKE', '%' . $keyword . '%');
+                    ->orWhere('description', 'LIKE', '%' . $keyword . '%')
+                    ->orWhere('slug', 'LIKE', '%' . $keyword . '%');
             })
             ->orderBy('created_at', 'desc');
 
@@ -424,7 +442,8 @@ class LandingApiController extends Controller
             ->when($search, function ($query) use ($search) {
                 $query->where(function ($query) use ($search) {
                     $query->where('title', 'LIKE', '%' . $search . '%')
-                        ->orWhere('description', 'LIKE', '%' . $search . '%');
+                        ->orWhere('description', 'LIKE', '%' . $search . '%')
+                        ->orWhere('slug', 'LIKE', '%' . $search . '%');
                 });
             })
             ->published()
