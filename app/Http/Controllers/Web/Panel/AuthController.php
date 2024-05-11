@@ -35,7 +35,7 @@ class AuthController extends Controller
     {
 
         $data = $request->validate([
-            "mobile" => ["required", "string", "regex:/(9)[0-9]{9}/", new MobileStartsWithOutZero],
+            "mobile" => ["bail", "required", "string", "regex:/(9)[0-9]{9}/", new MobileStartsWithOutZero],
         ]);
 
         $mobile = $data['mobile'];

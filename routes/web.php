@@ -61,6 +61,14 @@ Route::middleware(['splade'])->group(function () {
             /* DASHBOARD */
             Route::get('/', fn() => redirect()->route('panel.landing.land.index'))->name('home');
             Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
+            /* Landing */
+            Route::prefix('advertise')->name('advertise.')->group(function () {
+
+                // Advertisement
+                Route::resource('advertisement', AdvertisementController::class)->except('show');
+            });
+
             /* Landing */
             Route::prefix('landing')->name('landing.')->group(function () {
                 // Lands - Showcase pages (vitrine)
@@ -99,9 +107,6 @@ Route::middleware(['splade'])->group(function () {
                 Route::resource('video', VideoController::class)->except('show');
                 // Land Files
                 Route::resource('file', FileController::class)->except('show');
-                // Advertisement
-                Route::resource('advertisement', AdvertisementController::class)->except('show');
-
             });
 
             // COMMENTS

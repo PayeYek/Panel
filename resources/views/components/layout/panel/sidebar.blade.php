@@ -14,6 +14,12 @@
         </ul>
         <ul class="pt-5 mt-5 space-y-2 border-t border-gray-200 dark:border-gray-700">
 
+
+            {{--AD SERVICES--}}
+            <x-layout.panel.menu title="Ad Service" route="panel.advertise.*" icon="iconsax-bol-note-2">
+                <x-layout.panel.menu title="Advertisement" route="panel.advertise.advertisement.index" icon="iconsax-lin-book"/>
+            </x-layout.panel.menu>
+
             {{--LANDING--}}
             <x-layout.panel.menu title="Landing page" route="panel.landing.*" icon="iconsax-bol-note-2">
                 <x-layout.panel.menu title="Pages" route="panel.landing.land.index" icon="iconsax-lin-note-2"/>
@@ -36,7 +42,6 @@
                     <x-layout.panel.menu title="Products" route="panel.landing.product.product.index"
                                          icon="iconsax-lin-box"/>
                 </x-layout.panel.menu>
-                <x-layout.panel.menu title="Advertisement" route="panel.landing.advertisement.index" icon="iconsax-lin-book"/>
 
             </x-layout.panel.menu>
             {{--LANDING -- END --}}
