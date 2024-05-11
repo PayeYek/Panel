@@ -25,6 +25,7 @@
                 <x-layout.panel.menu title="Pages" route="panel.landing.land.index" icon="iconsax-lin-note-2"/>
                 <x-layout.panel.menu title="Slides" route="panel.landing.slide.index"
                                      icon="iconsax-lin-slider-horizontal"/>
+                <x-layout.panel.menu title="Comments" route="panel.landing.comment.index" icon="iconsax-lin-shop"/>
                 <x-layout.panel.menu title="Agencies" route="panel.landing.agency.index" icon="iconsax-lin-shop"/>
                 <x-layout.panel.menu title="Articles" route="panel.landing.article.index" icon="iconsax-lin-book"/>
                 <x-layout.panel.menu title="Facilities" route="panel.landing.facility.index" icon="iconsax-lin-book"/>

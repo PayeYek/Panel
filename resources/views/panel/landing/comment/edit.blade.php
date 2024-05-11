@@ -8,17 +8,10 @@
                 <x-layout.panel.form.division col="1">
                     {{--PRODUCTS--}}
                     {{--<x-splade-select name="commentable_id" label="Product" :options="$products" choices/>--}}
-                    <x-splade-input name="commentable_id" disabled class="hidden" />
-                    <x-splade-input name="commentable_type" disabled class="hidden" />
-                    {{--STARS--}}
-                    {{--<x-splade-select name="star" label="Score" required  choices="{ searchEnabled: false }">
-                        <option value="5">{{ 5 . ' ' . __('Star')}}</option>
-                        <option value="4">{{ 4 . ' ' . __('Star')}}</option>
-                        <option value="3">{{ 3 . ' ' . __('Star')}}</option>
-                        <option value="2">{{ 2 . ' ' . __('Star')}}</option>
-                        <option value="1">{{ 1 . ' ' . __('Star')}}</option>
-                    </x-splade-select>--}}
-                    <x-splade-input name="star" disabled class="hidden" />
+                    <x-splade-input name="land_id" disabled class="hidden" />
+                    <x-splade-input name="product_id" disabled class="hidden" />
+                    <x-splade-input name="name" disabled class="hidden" />
+
 
 
                     {{--COMMENT--}}

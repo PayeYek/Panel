@@ -5,6 +5,7 @@ use App\Http\Controllers\Web\Landing\LandingController;
 use App\Http\Controllers\Web\Panel\AdvertisementController;
 use App\Http\Controllers\Web\Panel\AuthController;
 use App\Http\Controllers\Web\Panel\CommentController;
+use App\Http\Controllers\Web\Panel\Land\CommentController as LandComment;
 use App\Http\Controllers\Web\Panel\DashboardController;
 use App\Http\Controllers\Web\Panel\Land\AgencyController;
 use App\Http\Controllers\Web\Panel\Land\ArticleController;
@@ -107,6 +108,13 @@ Route::middleware(['splade'])->group(function () {
                 Route::resource('video', VideoController::class)->except('show');
                 // Land Files
                 Route::resource('file', FileController::class)->except('show');
+                // Land Comment
+                Route::resource('comment', LandComment::class)->except('show');
+                Route::prefix('comment')->name('comment.')->controller(LandComment::class)->group(function () {
+                    Route::post('{comment}/publish', 'publish')->name('publish');
+                    Route::post('{comment}/hidden', 'hidden')->name('hidden');
+                });
+
             });
 
             // COMMENTS

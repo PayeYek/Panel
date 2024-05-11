@@ -2,7 +2,7 @@
     <x-splade-modal>
         <x-splade-form :action="route('panel.landing.comment.store')"
                        :default="[
-                                    'commentable_type' => \App\Models\Product::class,
+                                    'commentable_type' => \App\Models\LandProduct::class,
                                     'star' => 5,
                                     'approved' => 1,
                                  ]"

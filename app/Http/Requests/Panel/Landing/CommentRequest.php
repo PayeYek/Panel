@@ -20,7 +20,6 @@ class CommentRequest extends FormRequest
             'product_id' => 'required|numeric', //todo check exists in database
             'comment' => 'required|string|min:10|max:200',
             'name' => 'required|string',
-//            'phone' => 'nullable|size:11|regex:/^(09)[0-9]{9}$/',
             'phone' => 'nullable|string|size:11',
             'email' => 'nullable|email'
         ];

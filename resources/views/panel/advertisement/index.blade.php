@@ -3,8 +3,10 @@
 
     <x-splade-table
         :for="$items"
-        :title="__('Advertisement')"
+        title="Advertisement"
         pagination-scroll="preserve"
+        striped
+        :primaryLink="route('panel.advertise.advertisement.create')"
     >
 
         @cell('state', $item)
