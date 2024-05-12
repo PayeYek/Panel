@@ -318,7 +318,9 @@ class LandingApiController extends Controller
             'seo' => $seo
         ];
 
-        return responder()->success($data, LandProductTransformer::class)->respond();
+        return responder()->success($data, LandProductTransformer::class)
+            ->meta(['breadcrumbs' => $breadcrumbs, 'seo' => $seo])
+            ->respond();
     }
 
     public function submitComment(CommentRequest $request)
