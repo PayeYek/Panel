@@ -10,6 +10,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Panel\Landing\ArticleSearchRequest;
 use App\Http\Requests\Panel\Landing\CommentRequest;
 use App\Http\Requests\Panel\Landing\FacilitiesRequest;
+use App\Http\Requests\Panel\Landing\ProductSearchRequest;
 use App\Http\Requests\Panel\Landing\SubscribeRequest;
 use App\Models\Land;
 use App\Models\LandArticle;
@@ -27,6 +28,7 @@ use App\Transformers\LandCommentTransformer;
 use App\Transformers\LandFacilityTransformer;
 use App\Transformers\LandPageTransformer;
 use App\Transformers\LandProductInformationTransformer;
+use App\Transformers\LandProductSearchTransformer;
 use App\Transformers\LandProductSpecificationTransformer;
 use App\Transformers\LandProductTransformer;
 use App\Transformers\LandProductVideoTransformer;
@@ -157,13 +159,15 @@ class LandingApiController extends Controller
     public function products($page)
     {
         $perPage = 12;
-        $keyword = request('keyword');
+        $categoryFilter = request('category');
 
         $land = Land::where('slug', $page)->with(['products', 'styles'])->firstOrFail();
-
-        $productsQuery = $land->products()
-            ->where('name', 'like', "%{$keyword}%")
-            ->orWhere('slug', 'like', "%{$keyword}%");
+        $productsQuery = $land->products();
+        if ($categoryFilter) {
+            $productsQuery = $productsQuery
+                ->where('land_id', $land->id)
+                ->where('category_id', $categoryFilter);
+        }
 
         $cats = $land->products->pluck('category_id')->unique();
 
@@ -216,6 +220,21 @@ class LandingApiController extends Controller
                 'seo' => $seo
             ])
             ->respond();
+    }
+
+    public function searchProducts(ProductSearchRequest $request)
+    {
+        $landId = $request->validated('land_id');
+        $keyword = $request->validated('keyword');
+
+        $searchResults = LandProduct::where('land_id', $landId)
+            ->where(function ($query) use ($keyword) {
+                $query->where('name', 'LIKE', '%' . $keyword . '%')
+                    ->orWhere('model', 'LIKE', '%' . $keyword . '%');
+            })
+            ->orderBy('created_at', 'desc');
+
+        return responder()->success($searchResults, LandProductSearchTransformer::class)->respond();
     }
 
     public function productSpecification($product)
