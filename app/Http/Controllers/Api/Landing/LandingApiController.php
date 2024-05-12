@@ -393,6 +393,7 @@ class LandingApiController extends Controller
         $land = $this->getLand($page);
         $sort = request('sort');
         $keyword = request('keyword');
+        $perPage = request('perPage') ?? 10;
 
         $videosQuery = $land->videos();
 
@@ -401,12 +402,39 @@ class LandingApiController extends Controller
         }
 
         if ($sort === 'desc' || $sort === 'asc') {
-            $videos = $videosQuery->orderBy('created_at', $sort)->get();
+            $videos = $videosQuery->orderBy('created_at', $sort)->paginate($perPage);
         } else {
-            $videos = $videosQuery->get();
+            $videos = $videosQuery->paginate($perPage);
         }
 
-        return responder()->success($videos, LandVideoTransformer::class)->respond();
+        $videosResponse = $videos->getCollection()->map(function ($product) {
+            return $product->only([
+                'image', 'alt', 'link', 'view', 'created_at'
+            ]);
+        });
+
+        $seo = SeoHelper::seoGenerator($land, 'videos');
+        
+        $breadcrumbs = [
+            ['title' => __('Videos'), 'url' => null]
+        ];
+
+        $data = [
+            'videos' => $videosResponse,
+            'pagination' => (object)[
+                'count' => $videos->count(),
+                'total' => $videos->total(),
+                'perPage' => $videos->perPage(),
+                'currentPage' => $videos->currentPage(),
+                'totalPages' => $videos->lastPage(),
+                'links' => $videos->links(),
+            ]
+        ];
+
+        return responder()
+            ->success($data, LandVideoTransformer::class)
+            ->meta(['breadcrumbs' => $breadcrumbs, 'seo' => $seo])
+            ->respond();
     }
 
     public function searchArticles(ArticleSearchRequest $request)

@@ -2,7 +2,6 @@
 
 namespace App\Transformers;
 
-use App\Models\LandVideo;
 use Flugg\Responder\Transformers\Transformer;
 
 class LandVideoTransformer extends Transformer
@@ -24,18 +23,11 @@ class LandVideoTransformer extends Transformer
     /**
      * Transform the model.
      *
-     * @param LandVideo $landVideo
+     * @param array $landVideo
      * @return array
      */
-    public function transform(LandVideo $landVideo): array
+    public function transform(array $landVideo): array
     {
-        return [
-            'image' => $landVideo->image,
-            'alt' => $landVideo->alt,
-            'link' => $landVideo->link,
-            'view' => $landVideo->view,
-            'created_at' => $landVideo->created_at,
-            'published_at' => $landVideo->published_at
-        ];
+        return $landVideo;
     }
 }
