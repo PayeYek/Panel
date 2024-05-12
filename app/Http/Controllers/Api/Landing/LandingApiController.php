@@ -208,11 +208,14 @@ class LandingApiController extends Controller
                 ],
                 'data' => $products,
             ],
-            'breadcrumbs' => $breadcrumbs,
-            'seo' => $seo
         ];
 
-        return responder()->success($data, LandTransformer::class)->respond();
+        return responder()->success($data, LandTransformer::class)
+            ->meta([
+                'breadcrumbs' => $breadcrumbs,
+                'seo' => $seo
+            ])
+            ->respond();
     }
 
     public function productSpecification($product)
@@ -389,6 +392,7 @@ class LandingApiController extends Controller
         $land = $this->getLand($page);
         $sort = request('sort');
         $keyword = request('keyword');
+        $productId = request('productId');
         $perPage = request('perPage') ?? 10;
 
         $videosQuery = $land->videos();
@@ -397,14 +401,19 @@ class LandingApiController extends Controller
             $videosQuery->where('alt', 'LIKE', '%' . $keyword . '%');
         }
 
+        // Apply product_id filter if productId is provided
+        if ($productId) {
+            $videosQuery->where('product_id', $productId);
+        }
+
         if ($sort === 'desc' || $sort === 'asc') {
             $videos = $videosQuery->orderBy('created_at', $sort)->paginate($perPage);
         } else {
             $videos = $videosQuery->paginate($perPage);
         }
 
-        $videosResponse = $videos->getCollection()->map(function ($product) {
-            return $product->only([
+        $videosResponse = $videos->getCollection()->map(function ($video) {
+            return $video->only([
                 'image', 'alt', 'link', 'view', 'created_at'
             ]);
         });

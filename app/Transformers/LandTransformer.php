@@ -30,9 +30,7 @@ class LandTransformer extends Transformer
     {
         return [
             'categories' => $data['categories'],
-            'products' => $data['products'],
-            'breadcrumbs' => $data['breadcrumbs'],
-            'seo' => $data['seo']
+            'products' => $data['products']
         ];
     }
 }
