@@ -447,7 +447,6 @@ class LandingApiController extends Controller
         $landId = $request->validated('land_id');
         $keyword = $request->validated('keyword');
 
-        // Search in Articles by title,description
         $searchResults = LandArticle::where('land_id', $landId)
             ->where(function ($query) use ($keyword) {
                 $query->where('title', 'LIKE', '%' . $keyword . '%')
@@ -487,7 +486,7 @@ class LandingApiController extends Controller
 
         $articles = collect($articlePaginator->items());
 
-        $uniqueTypes = $articles->pluck('type')->unique()->values()->map(function ($type) {
+        $uniqueTypes = $land->articles()->pluck('type')->unique()->values()->map(function ($type) {
             return [
                 'type_fa' => __($type),
                 'type_en' => $type
