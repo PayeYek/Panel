@@ -155,35 +155,31 @@ class LandingApiController extends Controller
     }
 
     public function products($page)
-
     {
         $perPage = 12;
+        $keyword = request('keyword');
 
         $land = Land::where('slug', $page)->with(['products', 'styles'])->firstOrFail();
 
-        $cats = array();
-        foreach ($land->products as $productItem) {
-            $cats[] = $productItem->category_id;
-        }
-        $cats = array_unique($cats);
+        $productsQuery = $land->products()
+            ->where('name', 'like', "%{$keyword}%")
+            ->orWhere('slug', 'like', "%{$keyword}%");
 
-        $categories = collect();
+        $cats = $land->products->pluck('category_id')->unique();
 
-        foreach ($cats as $cat) {
-            $categories->add(collect(LandCategory::find($cat)));
-        }
+        $categories = LandCategory::whereIn('id', $cats)->get(['id', 'slug', 'title']);
 
-        $filteredCategory = collect($categories)->map(function ($item) {
+        $filteredCategory = $categories->map(function ($category) {
             return [
-                'id' => $item['id'],
-                'slug' => $item['slug'],
-                'title' => $item['title']
+                'id' => $category->id,
+                'slug' => $category->slug,
+                'title' => $category->title
             ];
         });
 
         $seo = SeoHelper::seoGenerator($land, 'products');
 
-        $productsPaginator = $land->products()->paginate($perPage)->withQueryString();
+        $productsPaginator = $productsQuery->paginate($perPage)->withQueryString();
 
         $products = $productsPaginator->getCollection()->map(function ($product) {
             return $product->only([
@@ -192,11 +188,11 @@ class LandingApiController extends Controller
             ]);
         });
 
-        $breadcrumbs = [];
-
-        $breadcrumbs[] = [
-            'title' => __('Products'),
-            'url' => Str::after(parse_url(route('api.landing.product.list', ['page' => $land->slug]), PHP_URL_PATH), '/api/l/')
+        $breadcrumbs = [
+            [
+                'title' => __('Products'),
+                'url' => Str::after(parse_url(route('api.landing.product.list', ['page' => $land->slug]), PHP_URL_PATH), '/api/l/')
+            ]
         ];
 
         $data = [
@@ -414,7 +410,7 @@ class LandingApiController extends Controller
         });
 
         $seo = SeoHelper::seoGenerator($land, 'videos');
-        
+
         $breadcrumbs = [
             ['title' => __('Videos'), 'url' => null]
         ];
