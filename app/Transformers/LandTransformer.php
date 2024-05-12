@@ -29,7 +29,6 @@ class LandTransformer extends Transformer
     public function transform(array $data): array
     {
         return [
-            'categories' => $data['categories'],
             'products' => $data['products']
         ];
     }

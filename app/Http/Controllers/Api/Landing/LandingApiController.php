@@ -169,17 +169,7 @@ class LandingApiController extends Controller
                 ->where('category_id', $categoryFilter);
         }
 
-        $cats = $land->products->pluck('category_id')->unique();
 
-        $categories = LandCategory::whereIn('id', $cats)->get(['id', 'slug', 'title']);
-
-        $filteredCategory = $categories->map(function ($category) {
-            return [
-                'id' => $category->id,
-                'slug' => $category->slug,
-                'title' => $category->title
-            ];
-        });
 
         $seo = SeoHelper::seoGenerator($land, 'products');
 
@@ -200,7 +190,6 @@ class LandingApiController extends Controller
         ];
 
         $data = [
-            'categories' => $filteredCategory,
             'products' => [
                 'pagination' => (object)[
                     'count' => $productsPaginator->count(),
