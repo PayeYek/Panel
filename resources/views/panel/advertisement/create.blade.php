@@ -2,7 +2,7 @@
     <x-splade-modal>
         <x-splade-form :action="route('panel.advertise.advertisement.store')">
 
-            <x-layout.panel.form.card title="New Ad">
+{{--            <x-layout.panel.form.card title="New Ad">--}}
 {{--                <x-splade-input label="Title" name="title"/>--}}
 {{--                <div class="flex gap-4">--}}
 {{--                    <x-splade-select label="Color selection" name="name" :options="\App\Support\Help::colors()" required placeholder="Select an item" class="flex-1"/>--}}
@@ -38,9 +38,10 @@
 {{--                    ></span>--}}
 {{--                </div>--}}
 
-                <x-splade-submit label="Create"/>
-
-            </x-layout.panel.form.card>
+{{--                <x-splade-submit label="Create"/>--}}
+                <PanelAdvertise />
+{{----}}
+{{--            </x-layout.panel.form.card>--}}
         </x-splade-form>
     </x-splade-modal>
 

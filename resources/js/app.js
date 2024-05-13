@@ -29,6 +29,7 @@ import Advertise from "@/components/advertise/Advertise.vue";
 import FormIconOne from "@/components/computing/children/Icons/FormIconOne.vue";
 import FormIconTwo from "@/components/computing/children/Icons/FormIconTwo.vue";
 import PdpCounseling from "@/components/pdp/counseling.vue";
+import PanelAdvertise from "@/components/panelAdvertise/index.vue";
 // import Swiper from 'swiper';
 // import 'swiper/css/bundle';
 // let Swiper = require('swiper');
@@ -91,6 +92,7 @@ createApp({ render: renderSpladeApp({ el }) })
     .component('FormIconOne', FormIconOne)
     .component('FormIconTwo', FormIconTwo)
     .component('PdpCounseling', PdpCounseling)
+    .component('PanelAdvertise', PanelAdvertise)
     // .directive("click-outside", clickOutside)
     .mount(el);
 
