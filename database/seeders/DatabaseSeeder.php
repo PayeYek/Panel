@@ -31,7 +31,10 @@ class DatabaseSeeder extends Seeder
             LandStyleSeeder::class,
             CategorySeeder::class,
             SpecificationSeeder::class,
-            ColorSeeder::class
+            ColorSeeder::class,
+            UsageSeeder::class,
+            UsageSpecificationSeeder::class,
+            SpecificationValueSeeder::class
         ]);
     }
 }

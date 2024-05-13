@@ -5,15 +5,16 @@ namespace App\Http\Controllers\Api\Advertise;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Specification;
+use App\Models\Usage;
 use App\Transformers\UsageTransformer;
 
 class AdvertiseController extends Controller
 {
+
 //Todo implement get specifications api
-    public function getUsages(Category $category)
+    public function getUsages()
     {
-        $usages = $category->usages;
-        return responder()->success($usages, UsageTransformer::class)->respond();
+        return responder()->success(Usage::all(), UsageTransformer::class)->respond();
     }
 
     public function getCategories()

@@ -28,4 +28,9 @@ class Specification extends Model
             ->withPivot('value')
             ->withTimestamps();
     }
+
+    public function usages(): BelongsToMany
+    {
+        return $this->belongsToMany(Usage::class, 'usage_specifications');
+    }
 }

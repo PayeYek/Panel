@@ -34,6 +34,7 @@ return new class extends Migration {
             $table->boolean('sponsored')->nullable()->default(null);//Todo define business
             $table->boolean('rise')->nullable()->default(null);//Todo define business
             $table->boolean('express')->nullable()->default(null);//Todo define business
+            $table->json('meta')->nullable();//Todo define business
 
             $table->tinyInteger('state')->default(0); //Todo make state enum
 

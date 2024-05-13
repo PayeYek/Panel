@@ -22,8 +22,7 @@ class CategorySeeder extends Seeder
             ['title' => 'کمپرسی', 'parent_id' => 2],
             ['title' => 'کمرشکن', 'parent_id' => 2],
 
-            ['title' => 'کشنده و تریلر', 'parent_id' => 1], // parent
-            ['title' => 'کشنده ', 'parent_id' => 8],
+            ['title' => 'تریلر', 'parent_id' => 1], // parent
             ['title' => 'تریلر کفی', 'parent_id' => 8],
             ['title' => 'تریلر تیغه', 'parent_id' => 8],
             ['title' => 'تریلر چادری', 'parent_id' => 8],
@@ -36,11 +35,10 @@ class CategorySeeder extends Seeder
             ['title' => 'تریلر باری', 'parent_id' => 8],
             ['title' => 'تریلر حمل خودرو', 'parent_id' => 8],
             ['title' => 'تریلر مشبک', 'parent_id' => 8],
-            ['title' => 'تریلر جاروی خیابان', 'parent_id' => 8],
-            ['title' => 'تریلر حمل زباله', 'parent_id' => 8],
-            ['title' => 'تریلر جدول شوی', 'parent_id' => 8],
-            ['title' => 'تانکر ', 'parent_id' => 8],
+            ['title' => 'تانکر', 'parent_id' => 8],
             ['title' => ' بالابر', 'parent_id' => 8],
+            ['title' => 'تیغه تانکر', 'parent_id' => 8],
+            ['title' => 'تانکر قیر', 'parent_id' => 8],
 
             ['title' => 'اتوبوس و مینی بوس', 'parent_id' => 1], //parent
             ['title' => 'اتوبوس شهری', 'parent_id' => 27],
