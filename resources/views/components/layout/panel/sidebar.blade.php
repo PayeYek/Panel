@@ -17,7 +17,7 @@
 
             {{--AD SERVICES--}}
             <x-layout.panel.menu title="Ad Service" route="panel.advertise.*" icon="iconsax-bol-note-2">
-                <x-layout.panel.menu title="Advertisement" route="panel.advertise.advertisement.index" icon="iconsax-lin-book"/>
+                <x-layout.panel.menu title="Advertise" route="panel.advertise.index" icon="iconsax-lin-book"/>
             </x-layout.panel.menu>
 
             {{--LANDING--}}

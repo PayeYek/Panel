@@ -12,8 +12,7 @@ class Tag extends Model
 
     protected $table = 'tags';
     protected $fillable = [
-        'title',
-        'slug'
+        'title'
     ];
 
     public function category(): BelongsTo

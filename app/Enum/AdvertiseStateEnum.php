@@ -2,7 +2,7 @@
 
 namespace App\Enum;
 
-enum AdvertisementStateEnum: int
+enum AdvertiseStateEnum: int
 {
     case PENDING = 0;
     case APPROVED = 1;

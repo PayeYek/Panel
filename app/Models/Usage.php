@@ -3,8 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Usage extends Model
@@ -13,12 +12,11 @@ class Usage extends Model
 
     protected $table = 'usages';
     protected $fillable = [
-        'title',
-        'slug'
+        'title'
     ];
 
-    public function category(): BelongsTo
+    public function advertises(): HasMany
     {
-        return $this->belongsTo(Category::class);
+        return $this->hasMany(Advertise::class);
     }
 }

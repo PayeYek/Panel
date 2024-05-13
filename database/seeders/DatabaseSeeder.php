@@ -17,6 +17,7 @@ class DatabaseSeeder extends Seeder
 
         /* Landing */
         $this->call([
+            AdminUserSeeder::class,
             LandCategorySeeder::class,
             LandColorSeeder::class,
             LandBrandSeeder::class,
@@ -28,6 +29,9 @@ class DatabaseSeeder extends Seeder
             LandAdvertiseSeeder::class,
             LandAttributeSeeder::class,
             LandStyleSeeder::class,
+            CategorySeeder::class,
+            SpecificationSeeder::class,
+            ColorSeeder::class
         ]);
     }
 }
