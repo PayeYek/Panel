@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enum\LandSubscribeStateEnum;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -15,5 +16,9 @@ class LandSubscribe extends Model
         'land_id',
         'comment',
         'state'
+    ];
+
+    protected $casts = [
+        'state' => LandSubscribeStateEnum::class
     ];
 }

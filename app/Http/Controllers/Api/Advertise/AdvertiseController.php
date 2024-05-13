@@ -3,9 +3,10 @@
 namespace App\Http\Controllers\Api\Advertise;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Api\Advertise\AdvertiseRequest;
 use App\Models\Category;
-use App\Models\Specification;
 use App\Models\Usage;
+use App\Transformers\SpecificationTransformer;
 use App\Transformers\UsageTransformer;
 
 class AdvertiseController extends Controller
@@ -26,12 +27,13 @@ class AdvertiseController extends Controller
         return responder()->success($categories)->respond(); // Transforms from model
     }
 
-    public function getSpecificationsByUsage($usageId)
+    public function getSpecificationsByUsage(Usage $usage)
     {
-        $specifications = Specification::where('usage_id', $usageId)
-            ->with('values')
-            ->get();
+        return responder()->success($usage->specifications(), SpecificationTransformer::class)->respond();
+    }
 
-        return response()->json(['specifications' => $specifications]);
+    public function submitAdvertise(AdvertiseRequest $advertiseRequest)
+    {
+
     }
 }

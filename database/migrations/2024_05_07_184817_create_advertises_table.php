@@ -34,7 +34,7 @@ return new class extends Migration {
             $table->boolean('sponsored')->nullable()->default(null);//Todo define business
             $table->boolean('rise')->nullable()->default(null);//Todo define business
             $table->boolean('express')->nullable()->default(null);//Todo define business
-            $table->json('meta')->nullable();//Todo define business
+            $table->json('meta')->nullable();
 
             $table->tinyInteger('state')->default(0); //Todo make state enum
 
@@ -42,9 +42,6 @@ return new class extends Migration {
             $table->foreignId('category_id')->constrained();
             $table->foreignId('city_id')->constrained('province_cities');
             $table->foreignId('usage_id')->constrained();
-
-            $table->unsignedBigInteger('total_views')->default(0);
-            $table->unsignedBigInteger('today_views')->default(0);
 
             $table->timestamp('published_at')->nullable();
 

@@ -43,7 +43,7 @@ Route::prefix('ad')
     ->group(function () {
         Route::get('categories', 'getCategories')->name('getCategories');
         Route::get('usages', 'getUsages')->name('getUsages');
-//        Route::get('specifications/{usage}', 'getSpecificationsByUsage')->name('getSpecifications');
+        Route::get('specifications/{usage}', 'getSpecificationsByUsage')->name('getSpecifications');
     });
 
 Route::prefix('l')
