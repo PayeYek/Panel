@@ -31,7 +31,7 @@
                     </div>
                 </label>
 
-                <CategoryByVehicle v-if="selectedCategory == 1" />
+                <CategoryByVehicle v-if="selectedFlow == 1" />
             </section>
 
         </div>
@@ -41,7 +41,7 @@
 <script>
 import CategoryByVehicle from "@/components/panelAdvertise/children/category/children/children/CategoryByVehicle/index.vue";
 import { useAdvertise } from '@/store/panel/advertise/index.js';
-import { ref, watch } from 'vue';
+import { ref, watch, computed } from 'vue';
 
 export default {
     name: 'Category Step',
@@ -56,6 +56,7 @@ export default {
         const mainResponse = ref(advertiseStore.category);
         const mainCategories = ref([]);
         const selectedCategory = ref(0);
+        const selectedFlow = ref(computed(() => advertiseStore.flow));
         mainResponse.value.map(step => {
             const obj = {
                 id: step.id,
@@ -76,6 +77,7 @@ export default {
 
         return {
             mainCategories,
+            selectedFlow,
             selectedCategory,
         }
     }

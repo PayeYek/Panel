@@ -46,8 +46,18 @@ export default {
             if(n != 0){
                 subCategories.value.map(item => {
                     if(item.id == n){
-                        console.log(item)
                         childCategories.value = item.children;
+                        selectedChildcategory.value = 0;
+                    }
+                })
+            }
+        })
+
+        watch(() => selectedChildcategory.value, (n, o) => {
+            if(n != 0){
+                childCategories.value.map(item => {
+                    if(item.id == n){
+                        advertiseStore.saveSelectedCategory(item);
                     }
                 })
             }
