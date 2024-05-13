@@ -13,7 +13,7 @@
         </div>
     </label>
 
-    <label :class="'block group/select ' + (childCategories.length > 1 ? '' : 'pointer-events-none opacity-40 cursor-default')" for="select-sub-subcategory">
+    <label class="block group/select" v-if="childCategories.length > 1" for="select-sub-subcategory">
         <span class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"> نوع خودرو </span>
         <div
             class="relative rounded-lg border border-gray-300 dark:border-gray-600 shadow-sm group-focus-within/select:ring-1 group-focus-within/select:ring-primary-500 group-focus-within/select:border-primary-500 transition duration-200">
@@ -39,13 +39,14 @@ export default {
         const advertiseStore = useAdvertise();
         const selectedSubcategory = ref(0);
         const selectedChildcategory = ref(0);
-        const subCategories = ref(advertiseStore.categoryChildren);
+        const subCategories = ref(advertiseStore.categoryChildren.children);
         const childCategories = ref([]);
 
         watch(() => selectedSubcategory.value, (n, o) => {
             if(n != 0){
                 subCategories.value.map(item => {
                     if(item.id == n){
+                        console.log(item)
                         childCategories.value = item.children;
                     }
                 })

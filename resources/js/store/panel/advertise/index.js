@@ -4,7 +4,7 @@ export const useAdvertise = defineStore('advertise', {
     state: () => {
         return {
             category: null,
-            categoryChildren: [],
+            categoryChildren: {},
         }
     },
     actions: {

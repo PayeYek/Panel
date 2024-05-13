@@ -68,7 +68,7 @@ export default {
             if(n != 0){
                 mainResponse.value.map(item => {
                     if(item.id == n){
-                        advertiseStore.saveCategoryChildren(item.children);
+                        advertiseStore.saveCategoryChildren(item);
                     }
                 })
             }
