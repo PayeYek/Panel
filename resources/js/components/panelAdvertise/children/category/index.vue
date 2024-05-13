@@ -24,6 +24,7 @@
             <section>
                 <!-- select category-->
                 <SelectCategory
+                    :data="data"
                     :categoryLevel="categoryLevel"
                     @update:bindCategoryStepOne="updatecategoryStepOne"
                     :bindCategoryStepOne="bindCategoryStepOne"
@@ -56,6 +57,7 @@ export default {
         categoryStepTitles: Array,
         categoryDropdown: Boolean,
         toggleCategoryDropdown: Function,
+        data: Array,
     }
 }
 </script>

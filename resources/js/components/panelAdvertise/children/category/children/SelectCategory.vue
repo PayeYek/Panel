@@ -9,9 +9,7 @@
                     <select :value="bindCategoryStepOne" @input="$emit('update:bindCategoryStepOne', $event.target.value)" id="select-category"
                             class="rounded-[7px] min-h-[2.5rem] px-3 block bg-gray-50 dark:bg-gray-700 w-full border-transparent focus:border-transparent focus:outline-none focus:ring-0 dark:placeholder-gray-400 disabled:opacity-50 disabled:bg-gray-50 disabled:cursor-not-allowed">
                         <option value="0" selected disabled>انتخاب کنید</option>
-                        <option value="1"> خودرو</option>
-                        <option value="2"> قطعات</option>
-                        <option value="3"> خدمات</option>
+                        <option v-for="(option, index) in data" :key="index" :value="option.id"> {{ option.title }} </option>
                     </select>
                 </div>
             </div>
@@ -26,9 +24,12 @@
                     <select :value="bindCategoryStepTwo" @input="$emit('update:bindCategoryStepTwo', $event.target.value)" id="select-subcategory"
                             class="rounded-[7px] min-h-[2.5rem] px-3 block bg-gray-50 dark:bg-gray-700 w-full border-transparent focus:border-transparent focus:outline-none focus:ring-0 dark:placeholder-gray-400 disabled:opacity-50 disabled:bg-gray-50 disabled:cursor-not-allowed">
                         <option value="0" selected disabled>انتخاب کنید</option>
-                        <option value="1"> اتوبوس</option>
-                        <option value="2"> مینی بوس</option>
-                        <option value="3"> کامیون</option>
+<!--                        <template v-for="(cat, index) in data">-->
+                            <option v-for="(subCat, index) in data[bindCategoryStepOne]" :value="subCat.id"> {{ subCat.title }} </option>
+<!--                        </template>-->
+<!--                        <option value="1"> اتوبوس</option>-->
+<!--                        <option value="2"> مینی بوس</option>-->
+<!--                        <option value="3"> کامیون</option>-->
                     </select>
                 </div>
             </div>
@@ -61,6 +62,7 @@ export default {
         bindCategoryStepOne: [String, Number],
         bindCategoryStepTwo: [String, Number],
         bindCategoryStepThree: [String, Number],
+        data: Array,
     }
 }
 </script>

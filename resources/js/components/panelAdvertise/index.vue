@@ -2,6 +2,7 @@
     <section
         class="-m-4 md:m-0 shadow-md sm:rounded-lg bg-white dark:bg-gray-800 relative scrollbar-thin scrollbar-thumb-gray-200 scrollbar-track-white dark:scrollbar-thumb-gray-700 dark:scrollbar-track-gray-800 overflow-y-auto">
         <CategoryStep
+            :data="data"
             classNames="mb-10"
             :toggleCategoryDropdown="toggleCategoryDropdown"
             :categoryDropdown="categoryDropdown"
@@ -130,6 +131,8 @@ export default {
             if(n != 0){
                 categoryLevel.value = 1;
                 resetStetps(categoryStepTwo, categoryStepThree);
+                const st2 = data.map(item => item.id == n);
+                console.log(st2);
             }
         })
 
