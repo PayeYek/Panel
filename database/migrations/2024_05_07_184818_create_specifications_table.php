@@ -13,8 +13,8 @@ return new class extends Migration {
         Schema::create('specifications', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->string('slug');
-            $table->foreignId('category_id')->constrained('categories');
+            $table->tinyInteger('type'); //Todo implement type enum
+            $table->boolean('required')->default(false); //Todo implement type enum
 
             $table->softDeletes();
             $table->timestamps();

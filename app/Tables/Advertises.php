@@ -10,7 +10,7 @@ use ProtoneMedia\Splade\SpladeTable;
 use Spatie\QueryBuilder\AllowedFilter;
 use Spatie\QueryBuilder\QueryBuilder;
 
-class Advertisements extends AbstractTable
+class Advertises extends AbstractTable
 {
     public function __construct()
     {
@@ -35,7 +35,7 @@ class Advertisements extends AbstractTable
         });
 
         return QueryBuilder::for(Advertise::class)
-            ->with(['user','category'])
+            ->with(['user', 'category'])
             ->defaultSort('-id')
             ->allowedSorts(['id', 'title', 'created_at', 'state'])
             ->allowedFilters(['title', $globalSearch]);
@@ -59,9 +59,9 @@ class Advertisements extends AbstractTable
         $table->column(
             key: 'title',
             label: __('Title'),
-        //hidden: true,
-        //sortable: true,
-        searchable: true,
+            //hidden: true,
+            //sortable: true,
+            searchable: true,
         //highlight: true,
         //exportAs: false,
         );

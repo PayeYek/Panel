@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Enum\AdvertisementStateEnum;
+use App\Enum\AdvertiseStateEnum;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -21,10 +21,20 @@ class Advertise extends Model
         'price',
         'latitude',
         'longitude',
+        'state',
+        'sponsored',
+        'express',
+        'rise',
+        'certified',
+        'user_id',
+        'usage_id',
+        'city_id',
+        'category_id',
     ];
 
     protected $casts = [
-        'state' => AdvertisementStateEnum::class,
+        'state' => AdvertiseStateEnum::class,
+        'slider_images' => 'json',
     ];
 
     public function user(): BelongsTo
@@ -44,11 +54,8 @@ class Advertise extends Model
 
     public function specifications(): BelongsToMany
     {
-        return $this->belongsToMany(Specification::class, 'advertise_specification_value'); //Todo maybe need keys definition
-    }
-
-    public function specificationValues(): BelongsToMany
-    {
-        return $this->belongsToMany(SpecificationValue::class, 'advertise_specification_value'); //Todo maybe need keys definition
+        return $this->belongsToMany(Specification::class, 'advertise_specification_values')
+            ->withPivot('value')
+            ->withTimestamps();
     }
 }

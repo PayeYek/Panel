@@ -14,22 +14,38 @@ return new class extends Migration {
             $table->id();
             $table->string('title');
             $table->text('description');
-            $table->string('primary_image');
-            $table->json('slider_images');
-            $table->float('price');
+            $table->string('primary_image')->nullable();
+            $table->longText('slider_images')->nullable();
+
+            $table->boolean('agreement_price')->default(false);
+            $table->string('price')->nullable();
+            $table->boolean('by_installment')->default(false);
+            $table->string('prepayment')->nullable();
+            $table->string('installment')->nullable();
+            $table->unsignedInteger('installment_count')->nullable();
+
+            $table->boolean('exchange')->default(false);
+            $table->boolean('has_chat')->default(true);
+
             $table->double('latitude', 10, 8)->nullable()->default(null);
             $table->double('longitude', 11, 8)->nullable()->default(null);
 
-            $table->boolean('certified')->nullable()->default(null);
-            $table->boolean('sponsored')->nullable()->default(null);
-            $table->boolean('express')->nullable()->default(null);
+            $table->boolean('certified')->nullable()->default(null); //Todo define business
+            $table->boolean('sponsored')->nullable()->default(null);//Todo define business
+            $table->boolean('rise')->nullable()->default(null);//Todo define business
+            $table->boolean('express')->nullable()->default(null);//Todo define business
 
-            $table->float('rate')->nullable()->default(null);
-            $table->tinyInteger('state')->default(0);
+            $table->tinyInteger('state')->default(0); //Todo make state enum
 
-            $table->foreignId('user_id')->constrained('users');
-            $table->foreignId('category_id')->constrained('categories');
+            $table->foreignId('user_id')->constrained();
+            $table->foreignId('category_id')->constrained();
             $table->foreignId('city_id')->constrained('province_cities');
+            $table->foreignId('usage_id')->constrained();
+
+            $table->unsignedBigInteger('total_views')->default(0);
+            $table->unsignedBigInteger('today_views')->default(0);
+
+            $table->timestamp('published_at')->nullable();
 
             $table->softDeletes();
             $table->timestamps();

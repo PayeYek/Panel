@@ -10,11 +10,11 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('advertise_specification_value', function (Blueprint $table) {
+        Schema::create('advertise_specification_values', function (Blueprint $table) {
             $table->id();
             $table->foreignId('advertise_id')->constrained('advertises')->onDelete('cascade');
-            $table->foreignId('specification_id')->constrained('specifications');
-            $table->foreignId('value_id')->constrained('specification_values');
+            $table->foreignId('specification_id')->constrained('specifications')->onDelete('cascade');
+            $table->string('value');
             //Todo define primary key
             $table->timestamps();
         });
@@ -25,6 +25,6 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('advertise_specification_value');
+        Schema::dropIfExists('advertise_specification_values');
     }
 };

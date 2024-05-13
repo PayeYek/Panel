@@ -14,21 +14,18 @@ class Specification extends Model
     protected $table = 'specifications';
     protected $fillable = [
         'title',
-        'slug',
+        'type'
     ];
 
-    public function category(): HasMany
+    public function values(): HasMany
     {
-        return $this->hasMany(LandComment::class, 'parent_id', 'id');
+        return $this->hasMany(SpecificationValue::class);
     }
 
-    public function advertise(): BelongsToMany
+    public function advertises(): BelongsToMany
     {
-        return $this->belongsToMany(Advertise::class, 'advertise_specification_value'); //Todo maybe need keys definition
-    }
-
-    public function specificationValues(): BelongsToMany
-    {
-        return $this->belongsToMany(SpecificationValue::class, 'advertise_specification_value'); //Todo maybe need keys definition
+        return $this->belongsToMany(Advertise::class, 'advertise_specification_values')
+            ->withPivot('value')
+            ->withTimestamps();
     }
 }

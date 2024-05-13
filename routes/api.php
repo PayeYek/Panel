@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\Advertise\AdvertiseController;
 use App\Http\Controllers\Api\Landing\LandingApiController;
 use App\Models\Land;
 use App\Models\Province;
@@ -35,6 +36,14 @@ Route::get('land/{landId}/products', function ($landId) {
     $land = Land::with('products')->find($landId);
     return $land->products()->latest()->get()->pluck('name', 'id');
 });
+
+Route::prefix('ad')
+    ->name('api.ad.')
+    ->controller(AdvertiseController::class)
+    ->group(function () {
+        Route::get('categories', 'getCategories')->name('getCategories');
+        Route::get('usages/{category}', 'getUsages')->name('getUsages');
+    });
 
 Route::prefix('l')
     ->name('api.landing.')
@@ -79,5 +88,5 @@ Route::prefix('l')
         Route::get('{page}/sales', 'sales')->name('sales');
         Route::get('{page}/videos', 'videos')->name('videos');
 
-        Route::get('{page}/advertise', 'advertise')->name('advertise');
+//        Route::get('{page}/advertise', 'advertise')->name('advertise');
     });

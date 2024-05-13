@@ -10,12 +10,10 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('specification_values', function (Blueprint $table) {
+        Schema::create('colors', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
             $table->string('title');
-            $table->foreignId('specification_id')->constrained('specifications');
-
-            $table->softDeletes();
             $table->timestamps();
         });
     }
@@ -25,6 +23,6 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('specification_values');
+        Schema::dropIfExists('colors');
     }
 };

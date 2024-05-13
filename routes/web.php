@@ -2,10 +2,9 @@
 
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Web\Landing\LandingController;
-use App\Http\Controllers\Web\Panel\AdvertisementController;
+use App\Http\Controllers\Web\Panel\AdvertiseController;
 use App\Http\Controllers\Web\Panel\AuthController;
 use App\Http\Controllers\Web\Panel\CommentController;
-use App\Http\Controllers\Web\Panel\Land\CommentController as LandComment;
 use App\Http\Controllers\Web\Panel\DashboardController;
 use App\Http\Controllers\Web\Panel\Land\AgencyController;
 use App\Http\Controllers\Web\Panel\Land\ArticleController;
@@ -13,6 +12,7 @@ use App\Http\Controllers\Web\Panel\Land\AttributeController;
 use App\Http\Controllers\Web\Panel\Land\BrandController;
 use App\Http\Controllers\Web\Panel\Land\CategoryController;
 use App\Http\Controllers\Web\Panel\Land\ColorController;
+use App\Http\Controllers\Web\Panel\Land\CommentController as LandComment;
 use App\Http\Controllers\Web\Panel\Land\FacilitiesController;
 use App\Http\Controllers\Web\Panel\Land\FileController;
 use App\Http\Controllers\Web\Panel\Land\LandController;
@@ -64,11 +64,9 @@ Route::middleware(['splade'])->group(function () {
             Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
             /* Landing */
-            Route::prefix('advertise')->name('advertise.')->group(function () {
 
-                // Advertisement
-                Route::resource('advertisement', AdvertisementController::class)->except('show');
-            });
+            // Advertise
+            Route::resource('advertise', AdvertiseController::class)->except(['show', 'destroy', 'store', 'update']);
 
             /* Landing */
             Route::prefix('landing')->name('landing.')->group(function () {
