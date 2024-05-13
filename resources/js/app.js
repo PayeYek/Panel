@@ -30,6 +30,7 @@ import FormIconOne from "@/components/computing/children/Icons/FormIconOne.vue";
 import FormIconTwo from "@/components/computing/children/Icons/FormIconTwo.vue";
 import PdpCounseling from "@/components/pdp/counseling.vue";
 import PanelAdvertise from "@/components/panelAdvertise/index.vue";
+import { createPinia } from 'pinia';  // Import Pinia
 // import Swiper from 'swiper';
 // import 'swiper/css/bundle';
 // let Swiper = require('swiper');
@@ -55,8 +56,13 @@ const el = document.getElementById("app");
 //     },
 // };
 
-createApp({ render: renderSpladeApp({ el }) })
-    .use(SpladePlugin,
+const app = createApp({ render: renderSpladeApp({ el }) });
+
+const pinia = createPinia();
+
+app.use(pinia);
+
+app.use(SpladePlugin,
         {
             "max_keep_alive": 10,
             "transform_anchors": false,
@@ -95,6 +101,10 @@ createApp({ render: renderSpladeApp({ el }) })
     .component('PanelAdvertise', PanelAdvertise)
     // .directive("click-outside", clickOutside)
     .mount(el);
+
+
+
+// app.mount("#app");
 
 window.onload = function () {
     if (document.querySelector('.loader-hide-scrollbar')) {

@@ -2,7 +2,6 @@
     <section
         class="-m-4 md:m-0 shadow-md sm:rounded-lg bg-white dark:bg-gray-800 relative scrollbar-thin scrollbar-thumb-gray-200 scrollbar-track-white dark:scrollbar-thumb-gray-700 dark:scrollbar-track-gray-800 overflow-y-auto">
         <CategoryStep
-            :data="data"
             classNames="mb-10"
             :toggleCategoryDropdown="toggleCategoryDropdown"
             :categoryDropdown="categoryDropdown"
@@ -34,76 +33,76 @@ const categoryStepTitles = [
     },
 ]
 
-const data = [
-    {
-        id: 1,
-        title: "خودرو",
-        children: [
-            {
-                id: 1,
-                title: "اتوبوس و مینی بوس",
-                children: [
-                    {
-                        id: 1,
-                        title: "اتوبوس شهری",
-                    },
-                    {
-                        id: 1,
-                        title: "مینی بوس",
-                    },
-                ]
-            },
-            {
-                id: 2,
-                title: "کامیون و کشنده",
-                children: [
-                    {
-                        id: 1,
-                        title: "کامیون",
-                    },
-                    {
-                        id: 1,
-                        title: "کشنده",
-                    },
-                ]
-            },
-        ],
-    },
-    {
-        id: 2,
-        title: "قطعات",
-        children: [
-            {
-                id: 1,
-                title: "گیربکس",
-                children: [
-                    {
-                        id: 1,
-                        title: "شفت",
-                    },
-                    {
-                        id: 2,
-                        title: "دیشلی",
-                    },
-                ]
-            },
-            {
-                id: 2,
-                title: "موتور",
-                children: [
-                    {
-                        id: 1,
-                        title: "پیستون",
-                    },
-                    {
-                        id: 2,
-                        title: "شاتون",
-                    },
-                ]
-            },
-        ],
-    }
-]
+// const data = [
+//     {
+//         id: 1,
+//         title: "خودرو",
+//         children: [
+//             {
+//                 id: 1,
+//                 title: "اتوبوس و مینی بوس",
+//                 children: [
+//                     {
+//                         id: 1,
+//                         title: "اتوبوس شهری",
+//                     },
+//                     {
+//                         id: 1,
+//                         title: "مینی بوس",
+//                     },
+//                 ]
+//             },
+//             {
+//                 id: 2,
+//                 title: "کامیون و کشنده",
+//                 children: [
+//                     {
+//                         id: 1,
+//                         title: "کامیون",
+//                     },
+//                     {
+//                         id: 1,
+//                         title: "کشنده",
+//                     },
+//                 ]
+//             },
+//         ],
+//     },
+//     {
+//         id: 2,
+//         title: "قطعات",
+//         children: [
+//             {
+//                 id: 1,
+//                 title: "گیربکس",
+//                 children: [
+//                     {
+//                         id: 1,
+//                         title: "شفت",
+//                     },
+//                     {
+//                         id: 2,
+//                         title: "دیشلی",
+//                     },
+//                 ]
+//             },
+//             {
+//                 id: 2,
+//                 title: "موتور",
+//                 children: [
+//                     {
+//                         id: 1,
+//                         title: "پیستون",
+//                     },
+//                     {
+//                         id: 2,
+//                         title: "شاتون",
+//                     },
+//                 ]
+//             },
+//         ],
+//     }
+// ]
 
 export default {
     name: 'Panel Add Advertise',
@@ -170,7 +169,6 @@ export default {
             updatecategoryStepThree,
             categoryDropdown,
             toggleCategoryDropdown,
-            data,
         }
     }
 }

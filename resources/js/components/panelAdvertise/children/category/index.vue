@@ -24,7 +24,6 @@
             <section>
                 <!-- select category-->
                 <SelectCategory
-                    :data="data"
                     :categoryLevel="categoryLevel"
                     @update:bindCategoryStepOne="updatecategoryStepOne"
                     :bindCategoryStepOne="bindCategoryStepOne"
@@ -40,6 +39,9 @@
 
 <script>
 import SelectCategory from "@/components/panelAdvertise/children/category/children/SelectCategory.vue";
+import { useAdvertise } from '@/store/panel/advertise/index.js';
+import { ref } from 'vue';
+
 export default {
     name: 'Category Step',
     components: {
@@ -57,7 +59,15 @@ export default {
         categoryStepTitles: Array,
         categoryDropdown: Boolean,
         toggleCategoryDropdown: Function,
-        data: Array,
+    },
+    setup(){
+        const advertiseStore = useAdvertise();
+        const mainResponse = ref(advertiseStore.category.response);
+        const levels = ref([]);
+        mainResponse.value.map(step => {
+            levels.value.push(step.title)
+        })
+        console.log(levels.value);
     }
 }
 </script>
