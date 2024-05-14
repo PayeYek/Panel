@@ -6,7 +6,8 @@ export const useAdvertise = defineStore('advertise', {
             category: null,
             flow: null,
             categoryChildren: {},
-            selectedCategory: {},
+            selectedCategory: null,
+            usageList: [],
         }
     },
     actions: {
@@ -22,6 +23,9 @@ export const useAdvertise = defineStore('advertise', {
         },
         saveSelectedCategory(obj){
             this.selectedCategory = obj;
+        },
+        saveUsage(obj){
+            this.usageList = obj;
         }
     },
 });
