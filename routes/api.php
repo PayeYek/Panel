@@ -44,6 +44,7 @@ Route::prefix('ad')
         Route::get('categories', 'getCategories')->name('getCategories');
         Route::get('usages', 'getUsages')->name('getUsages');
         Route::get('specifications/{usage}', 'getSpecificationsByUsage')->name('getSpecifications');
+        Route::post('submit', 'submitAdvertise')->name('submitAdvertise');
     });
 
 Route::prefix('l')
