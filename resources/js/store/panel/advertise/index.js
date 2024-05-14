@@ -39,13 +39,22 @@ export const useAdvertise = defineStore('advertise', {
         emptySpecificationValues(){
             this.selectedSpecificationValues.length = 0;
         },
-        initializeSpecificationValues(id, value, required){
+        initializeSpecificationValues(value, required, title, id){
             const obj = {
                 required: required,
                 id: value,
+                title: title,
+                parentId: id,
             };
 
-            this.selectedSpecificationValues[id] = obj;
+            this.selectedSpecificationValues.push(obj);
+        },
+        initializeSpecificationValue(item){
+            this.specifications.map(spec => {
+                if(spec.id == item.parentId){
+                console.log(item)
+                }
+            })
         },
         checkAllSpecFilled(){
             this.selectedSpecificationValues.map(item => {
