@@ -8,6 +8,7 @@ export const useAdvertise = defineStore('advertise', {
             categoryChildren: {},
             selectedCategory: null,
             usageList: [],
+            selectedUsage: null,
         }
     },
     actions: {
@@ -24,8 +25,11 @@ export const useAdvertise = defineStore('advertise', {
         saveSelectedCategory(obj){
             this.selectedCategory = obj;
         },
-        saveUsage(obj){
+        saveUsages(obj){
             this.usageList = obj;
+        },
+        saveUsage(obj){
+            this.selectedUsage = obj;
         }
     },
 });

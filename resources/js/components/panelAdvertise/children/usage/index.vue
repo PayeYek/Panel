@@ -24,7 +24,7 @@
 </template>
 
 <script>
-import { ref, onMounted, onBeforeUnmount, nextTick, computed } from 'vue';
+import { ref, onMounted, onBeforeUnmount, nextTick, computed, watch } from 'vue';
 import axios from "axios";
 import Choices from 'choices.js';
 import {useAdvertise} from "@/store/panel/advertise/index.js";
@@ -51,7 +51,7 @@ export default {
                 .then(function (response) {
                     // handle success
                     if(response.data.status == 200){
-                        advertiseStore.saveUsage(response.data.data);
+                        advertiseStore.saveUsages(response.data.data);
                         nextTick(() => {
                             const selectElement = document.getElementById('select-usage');
                             choicesInstance.value = new Choices(selectElement, {
@@ -70,6 +70,30 @@ export default {
                 .finally(function () {
                     // always executed
                 });
+        })
+
+        watch(() => selectedUsage.value, n => {
+            usageList.value.map(usage => {
+                if(usage.id == n){
+                    console.log(usage);
+                    advertiseStore.saveUsage(usage);
+                    axios.get(`/api/ad/specifications/${n}`)
+                        .then(function (response) {
+                            // handle success
+                            if(response.data.status == 200){
+                                console.log(response.data)
+                            }
+                        })
+                        .catch(function (error) {
+                            // handle error
+                            console.log(error);
+
+                        })
+                        .finally(function () {
+                            // always executed
+                        });
+                }
+            })
         })
 
 

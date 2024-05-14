@@ -4,6 +4,8 @@
         <Category classNames="mb-10" v-if="categoryLoaded" />
         <!-- usage-->
         <Usage v-if="selectedFlow == 1" :classNames="categoryLastStep == null ? 'pointer-events-none opacity-40 cursor-default' : ''" />
+        <!-- specification-->
+        <Specifications v-if="selectedFlow == 1" :classNames="usageFilled == null ? 'pointer-events-none opacity-40 cursor-default' : ''" />
     </section>
 </template>
 
@@ -13,16 +15,18 @@ import Category from "@/components/panelAdvertise/children/category/index.vue";
 import axios from "axios";
 import { useAdvertise } from '@/store/panel/advertise/index.js';
 import Usage from '@/components/panelAdvertise/children/usage/index.vue';
+import Specifications from "@/components/panelAdvertise/children/specifications/index.vue";
 
 
 export default {
     name: 'Panel Add Advertise',
-    components: {Category, Usage},
+    components: {Category, Usage, Specifications},
     setup(){
         const advertiseStore = useAdvertise();
         const categoryLoaded = ref(false);
         const selectedFlow = ref(computed(() => advertiseStore.flow));
         const categoryLastStep = computed(() => advertiseStore.selectedCategory);
+        const usageFilled = computed(() => advertiseStore.selectedUsage);
 
         axios.get(`/api/ad/categories`)
             .then(function (response) {
@@ -45,6 +49,7 @@ export default {
             categoryLoaded,
             selectedFlow,
             categoryLastStep,
+            usageFilled,
         }
     }
 }
