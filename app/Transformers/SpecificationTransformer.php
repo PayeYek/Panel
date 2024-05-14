@@ -32,7 +32,8 @@ class SpecificationTransformer extends Transformer
         return [
             'id' => $specification->id,
             'title' => $specification->title,
-            'type' => $specification->type
+            'type' => $specification->type,
+            'required' => $specification->required
         ];
     }
 }
