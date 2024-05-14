@@ -1,5 +1,5 @@
 <template>
-    <section :class="classNames">
+    <section :class="classNames" v-if="specifications">
         <h5 class="text-xl sm:text-2xl font-medium p-4 tracking-tight text-gray-900 dark:text-white rtl:font-bakh">
             مشخصات فنی را انتخاب کنید
         </h5>
