@@ -10,7 +10,7 @@ export const useAdvertise = defineStore('advertise', {
             usageList: [],
             selectedUsage: null,
             specifications: null,
-            selectedSpecificationValues: [],
+            selectedSpecificationValues: {},
         }
     },
     actions: {
@@ -37,17 +37,17 @@ export const useAdvertise = defineStore('advertise', {
             this.specifications = list;
         },
         emptySpecificationValues(){
-            this.selectedSpecificationValues.length = 0;
+            this.selectedSpecificationValues = {};
         },
-        initializeSpecificationValues(value, required, title, id){
+        initializeSpecificationValues(value, required, title, id) {
             const obj = {
                 required: required,
                 id: value,
                 title: title,
-                parentId: id,
+                // parentId: id,
             };
 
-            this.selectedSpecificationValues.push(obj);
+            this.selectedSpecificationValues[id] = obj;
         },
         initializeSpecificationValue(item){
             this.specifications.map(spec => {

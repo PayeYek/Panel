@@ -14,7 +14,7 @@
                         <div
                             class="relative rounded-lg border border-gray-300 dark:border-gray-600 shadow-sm group-focus-within/select:ring-1 group-focus-within/select:ring-primary-500 group-focus-within/select:border-primary-500 transition duration-200">
                             <div>
-                                <select :id="`select-${spec.id}`" v-model="selectedSpecificationValues[index].id"
+                                <select :id="`select-${spec.id}`" v-model="selectedSpecificationValues[spec.id].id"
                                         class="rounded-[7px] min-h-[2.5rem] px-3 block bg-gray-50 dark:bg-gray-700 w-full border-transparent focus:border-transparent focus:outline-none focus:ring-0 dark:placeholder-gray-400 disabled:opacity-50 disabled:bg-gray-50 disabled:cursor-not-allowed">
                                     <option value="0" selected disabled>انتخاب کنید</option>
                                     <option v-for="(option, index) in spec.values" :key="index" :value="option.id">
@@ -103,6 +103,7 @@ export default {
 
         watch(() => selectedSpecificationValues.value, (n, o) => {
             console.log(n)
+            // console.log(o)
             // n.map(item => {
                 // console.log(item)
                 // advertiseStore.initializeSpecificationValue(item);
@@ -111,9 +112,10 @@ export default {
                 // advertiseStore.initializeSpecificationValues(item.id, false, item.title);
             // })
         //     console.log(newValue)
-        //     Object.keys(newValue).forEach(key => {
-        //         advertiseStore.initializeSpecificationValues(key, newValue[key], false);
-        //     });
+            Object.keys(n).forEach(key => {
+                // console.log(key, n[key])
+                // advertiseStore.initializeSpecificationValues(key, newValue[key], false);
+            });
         }, { deep: true });
 
 
