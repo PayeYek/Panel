@@ -3,6 +3,8 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Enum\GenderTypeEnum;
+use App\Enum\UserTypeEnum;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -29,16 +31,15 @@ class User extends Authenticatable
         'state',
     ];
 
+    protected $casts = [
+        'gender' => GenderTypeEnum::class,
+        'type' => UserTypeEnum::class,
+        'email_verified_at' => 'datetime',
+        'password' => 'hashed',
+    ];
+
     protected $hidden = ['password', 'remember_token'];
 
-
-    protected function casts(): array
-    {
-        return [
-            'email_verified_at' => 'datetime',
-            'password' => 'hashed',
-        ];
-    }
 
     /**-------------------------***
      * New Attribute
