@@ -18,7 +18,14 @@ class Advertise extends Model
         'description',
         'primary_image',
         'slider_images',
+        'agreement_price',
         'price',
+        'by_installment',
+        'prepayment',
+        'installment',
+        'installment_count',
+        'exchange',
+        'has_chat',
         'latitude',
         'longitude',
         'state',
@@ -34,7 +41,7 @@ class Advertise extends Model
 
     protected $casts = [
         'state' => AdvertiseStateEnum::class,
-        'slider_images' => 'json',
+        'slider_images' => 'array',
     ];
 
     public function user(): BelongsTo

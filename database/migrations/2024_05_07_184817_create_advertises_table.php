@@ -15,7 +15,7 @@ return new class extends Migration {
             $table->string('title');
             $table->text('description');
             $table->string('primary_image')->nullable();
-            $table->longText('slider_images')->nullable();
+            $table->json('slider_images')->nullable();
 
             $table->boolean('agreement_price')->default(false);
             $table->string('price')->nullable();
