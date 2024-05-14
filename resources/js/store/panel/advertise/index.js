@@ -57,12 +57,16 @@ export const useAdvertise = defineStore('advertise', {
             })
         },
         checkAllSpecFilled(){
+            let status = false;
             Object.keys(this.selectedSpecificationValues).forEach(key => {
-                console.log(key, this.selectedSpecificationValues[key])
+                if(this.selectedSpecificationValues[key].required == 0){
+                    status = true;
+                } else if(this.selectedSpecificationValues[key].id == 0 || this.selectedSpecificationValues[key].id === '') {
+                    status = false
+                    return false;
+                }
             })
-            // this.selectedSpecificationValues.map(item => {
-            //     console.log(item)
-            // })
+            return status;
         }
     },
 });
