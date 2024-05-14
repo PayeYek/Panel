@@ -14,8 +14,7 @@
                         <div
                             class="relative rounded-lg border border-gray-300 dark:border-gray-600 shadow-sm group-focus-within/select:ring-1 group-focus-within/select:ring-primary-500 group-focus-within/select:border-primary-500 transition duration-200">
                             <div>
-<!--                                <p>{{computedDynamicInputs[spec.id]}}</p>-->
-                                <select :id="`select-${spec.id}`" v-model="selectedValues[spec.id]"
+                                <select :id="`select-${spec.id}`" v-model="selectedSpecificationValues[spec.id]"
                                         class="rounded-[7px] min-h-[2.5rem] px-3 block bg-gray-50 dark:bg-gray-700 w-full border-transparent focus:border-transparent focus:outline-none focus:ring-0 dark:placeholder-gray-400 disabled:opacity-50 disabled:bg-gray-50 disabled:cursor-not-allowed">
                                     <option value="0" selected disabled>انتخاب کنید</option>
                                     <option v-for="(option, index) in spec.values" :key="index" :value="option.id">
@@ -35,7 +34,7 @@
                         <div
                             class="flex rounded-lg border border-gray-300 dark:border-gray-600 shadow-sm group-focus-within/input:ring-1 group-focus-within/input:ring-primary-500 group-focus-within/input:border-primary-500 transition duration-200">
                             <div class="relative flex flex-1">
-                                <input type="text" :id="`input-${spec.id}`" v-model="specRefs[index]"
+                                <input type="text" :id="`input-${spec.id}`" v-model="selectedSpecificationValues[spec.id]"
                                        class="min-h-[2.5rem] px-3 block bg-gray-50 dark:bg-gray-700 dark:text-white w-full border-transparent focus:border-transparent focus:outline-none focus:ring-0 dark:placeholder-gray-400 disabled:opacity-50 disabled:bg-gray-50 disabled:cursor-not-allowed rounded-[7px]"/>
                             </div>
                         </div>
@@ -50,7 +49,7 @@
                         <div
                             class="relative rounded-lg border border-gray-300 dark:border-gray-600 shadow-sm group-focus-within/select:ring-1 group-focus-within/select:ring-primary-500 group-focus-within/select:border-primary-500 transition duration-200">
                             <div>
-                                <select :id="`boolean-${spec.id}`" v-model="specRefs[index]"
+                                <select :id="`boolean-${spec.id}`" v-model="selectedSpecificationValues[spec.id]"
                                         class="rounded-[7px] min-h-[2.5rem] px-3 block bg-gray-50 dark:bg-gray-700 w-full border-transparent focus:border-transparent focus:outline-none focus:ring-0 dark:placeholder-gray-400 disabled:opacity-50 disabled:bg-gray-50 disabled:cursor-not-allowed">
                                     <option value="0" selected disabled>انتخاب کنید</option>
                                     <option :value="true">
@@ -83,24 +82,22 @@ export default {
         const advertiseStore = useAdvertise();
         const specifications = computed(() => advertiseStore.specifications);
         const specRefs = ref({});
-        const selectedValues = ref({});
-        console.log(specifications.value)
+        const selectedSpecificationValues = ref(computed(() => advertiseStore.selectedSpecificationValues));
 
         watch(() => specifications.value, n => {
-            selectedValues.value = {};
+            advertiseStore.emptySpecificationValues();
             n.forEach(spec => {
-                selectedValues.value[spec.id] = 0; // Initialize or reset the selected value
+                if(spec.type === 'select' || spec.type === 'boolean'){
+                    advertiseStore.initializeSpecificationValues(spec.id, 0)
+                } else if(spec.type === 'input_text'){
+                    advertiseStore.initializeSpecificationValues(spec.id, "")
+                }
             });
         })
 
-        watch(() => selectedValues.value, (newValue) => {
-            // Here, newValue is the whole object, we need to find which property changed
+        watch(() => selectedSpecificationValues.value, (newValue) => {
             Object.keys(newValue).forEach(key => {
-                // console.log(newValue[key], oldValue[key])
-                // if (newValue[key] !== oldValue[key]) {
-                    console.log(`Value for ${key} changed to ${newValue[key]}`);
-                    // Add your specific logic here
-                // }
+                advertiseStore.initializeSpecificationValues(key, newValue[key]);
             });
         }, { deep: true });
 
@@ -108,7 +105,7 @@ export default {
         return {
             specifications,
             specRefs,
-            selectedValues,
+            selectedSpecificationValues,
         }
     }
 }

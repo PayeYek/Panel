@@ -10,6 +10,7 @@ export const useAdvertise = defineStore('advertise', {
             usageList: [],
             selectedUsage: null,
             specifications: null,
+            selectedSpecificationValues: {},
         }
     },
     actions: {
@@ -34,6 +35,12 @@ export const useAdvertise = defineStore('advertise', {
         },
         saveSpecifications(list){
             this.specifications = list;
+        },
+        emptySpecificationValues(){
+            this.selectedSpecificationValues = {};
+        },
+        initializeSpecificationValues(id, value){
+            this.selectedSpecificationValues[id] = value;
         }
     },
 });
