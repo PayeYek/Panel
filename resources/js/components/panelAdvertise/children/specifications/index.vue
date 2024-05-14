@@ -102,7 +102,8 @@ export default {
         });
 
         watch(() => selectedSpecificationValues.value, (n, o) => {
-            console.log(n)
+            // console.log(n)
+            advertiseStore.checkAllSpecFilled()
             // console.log(o)
             // n.map(item => {
                 // console.log(item)
@@ -112,10 +113,10 @@ export default {
                 // advertiseStore.initializeSpecificationValues(item.id, false, item.title);
             // })
         //     console.log(newValue)
-            Object.keys(n).forEach(key => {
+        //     Object.keys(n).forEach(key => {
                 // console.log(key, n[key])
                 // advertiseStore.initializeSpecificationValues(key, newValue[key], false);
-            });
+            // });
         }, { deep: true });
 
 

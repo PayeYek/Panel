@@ -57,9 +57,12 @@ export const useAdvertise = defineStore('advertise', {
             })
         },
         checkAllSpecFilled(){
-            this.selectedSpecificationValues.map(item => {
-                console.log(item)
+            Object.keys(this.selectedSpecificationValues).forEach(key => {
+                console.log(key, this.selectedSpecificationValues[key])
             })
+            // this.selectedSpecificationValues.map(item => {
+            //     console.log(item)
+            // })
         }
     },
 });
