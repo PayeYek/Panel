@@ -3,6 +3,7 @@ import { defineStore } from 'pinia';
 export const useAdvertise = defineStore('advertise', {
     state: () => {
         return {
+            step: 0,
             category: null,
             flow: null,
             categoryChildren: {},
@@ -17,6 +18,11 @@ export const useAdvertise = defineStore('advertise', {
             city: "",
             primaryImage: null,
             sliderImages: null,
+            titleErrorMessage: "",
+            priceErrorMessage: "",
+            imageErrorMessage: "",
+            imagesErrorMessage: "",
+            descriptionErrorMessage: "",
         }
     },
     actions: {
@@ -45,12 +51,12 @@ export const useAdvertise = defineStore('advertise', {
         emptySpecificationValues(){
             this.selectedSpecificationValues = {};
         },
-        initializeSpecificationValues(value, required, title, id) {
+        initializeSpecificationValues(value, required, title, id, type) {
             const obj = {
                 required: required,
                 id: value,
                 title: title,
-                // parentId: id,
+                type: type,
             };
 
             this.selectedSpecificationValues[id] = obj;
@@ -92,5 +98,11 @@ export const useAdvertise = defineStore('advertise', {
         saveSliderImages(files){
             this.sliderImages = files;
         },
+        changeStep(step){
+            this.step = step;
+        },
+        handleTitleError(message){
+            this.titleErrorMessage = message;
+        }
     },
 });

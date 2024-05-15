@@ -72,6 +72,7 @@
 <script>
 import {computed, ref, watchEffect, watch} from 'vue';
 import {useAdvertise} from "@/store/panel/advertise/index.js";
+import {textInputLimitation} from "@/components/helper/common.js";
 
 export default {
     name: 'Specifications',
@@ -80,6 +81,7 @@ export default {
     },
     setup() {
         const advertiseStore = useAdvertise();
+        const titleLimit = ref(textInputLimitation);
         const specifications = computed(() => advertiseStore.specifications);
         const specRefs = ref({});
         const selectedSpecificationValues = ref(computed(() => advertiseStore.selectedSpecificationValues));
@@ -87,11 +89,13 @@ export default {
         watch(() => specifications.value, n => {
             advertiseStore.emptySpecificationValues();
             n.forEach(spec => {
+                console.log(spec)
                 if(spec.type === 'select' || spec.type === 'boolean'){
-                    advertiseStore.initializeSpecificationValues(0, spec.required, spec.title, spec.id);
+                    advertiseStore.initializeSpecificationValues(0, spec.required, spec.title, spec.id, spec.type);
                 } else if(spec.type === 'input_text'){
-                    advertiseStore.initializeSpecificationValues("", spec.required, spec.title, spec.id);
+                    advertiseStore.initializeSpecificationValues("", spec.required, spec.title, spec.id, spec.type);
                 }
+                titleError.value[spec.id] = "";
             });
         });
 
