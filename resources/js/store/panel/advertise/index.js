@@ -15,6 +15,8 @@ export const useAdvertise = defineStore('advertise', {
             title: "",
             price: "",
             city: "",
+            primaryImage: null,
+            sliderImages: null,
         }
     },
     actions: {
@@ -83,6 +85,12 @@ export const useAdvertise = defineStore('advertise', {
         },
         saveCity(id){
             this.city = id;
+        },
+        savePrimaryImage(file){
+            this.primaryImage = file;
+        },
+        saveSliderImages(files){
+            this.sliderImages = files;
         },
     },
 });

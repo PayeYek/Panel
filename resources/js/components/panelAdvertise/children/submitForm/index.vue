@@ -20,20 +20,30 @@ export default {
         const description = ref(computed(() => advertiseStore.description));
         const title = ref(computed(() => advertiseStore.title));
         const price = ref(computed(() => advertiseStore.price));
+        const primaryImage = ref(computed(() => advertiseStore.primaryImage));
+        const sliderImages = ref(computed(() => advertiseStore.sliderImages));
         const usage = ref(computed(() => advertiseStore.selectedUsage));
         const specifications = ref(computed(() => advertiseStore.selectedSpecificationValues));
 
         const handlePreviewData = () => {
+            let specList = {};
+            for (const [key, value] of Object.entries(specifications.value)) {
+                // console.log(`${key}: ${value.id}`);
+                specList[key] = value.id;
+            }
+
+            console.log(specList);
+
             const farmdata = {
                 usage_id: usage.value.id,
                 title: title.value,
                 description: description.value,
-                primary_image: "",
-                slider_images: "",
+                primary_image: primaryImage.value,
+                slider_images: sliderImages.value,
                 price: price.value,
                 city_id: 1,
                 category_id: categoryId.value.id,
-                specifications: specifications.value,
+                specifications: specList,
             }
 
             console.log(farmdata)

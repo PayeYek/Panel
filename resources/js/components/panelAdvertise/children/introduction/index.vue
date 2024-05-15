@@ -101,6 +101,7 @@ export default {
                     fileMimeType: fileMimeType.value,
                 };
                 console.log(data)
+                advertiseStore.savePrimaryImage(data);
                 // try {
                 //     const endpoint = "https://example.com/upload";
                 //     const response = await axios.post(endpoint, data);
@@ -133,6 +134,7 @@ export default {
                     multipleImages.value.push(data);
                 };
             }
+            advertiseStore.saveSliderImages(multipleImages.value);
             console.log(multipleImages.value);
             //Upload to server
         }
