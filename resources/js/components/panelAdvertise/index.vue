@@ -8,6 +8,10 @@
         <Specifications v-if="selectedFlow == 1" :classNames="usageFilled == null ? 'pointer-events-none opacity-40 cursor-default' : 'mb-10'" />
         <!-- specification-->
         <Introduction v-if="selectedFlow == 1" :classNames="usageFilled == null ? 'pointer-events-none opacity-40 cursor-default' : 'mb-10'" />
+        <!-- submit-->
+        <div>
+            <button @click="handlePreviewData" type="button" :class="'rounded-lg shadow-sm font-medium py-2 px-4 focus:outline-none focus:ring-4 focus:ring-primary-500 transition duration-200 bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 text-white focus:ring-primary-200 dark:focus:ring-primary-800 ' + (usageFilled == null ? 'pointer-events-none opacity-40 cursor-default' : 'mb-10')"> ثبت </button>
+        </div>
     </section>
 </template>
 
@@ -48,11 +52,29 @@ export default {
                 // always executed
             });
 
+        const handlePreviewData = () => {
+            const farmdata = {
+                usage_id: "",
+                title: "",
+                description: "",
+                primary_image: "",
+                slider_images: "",
+                price: "",
+                city_id: "",
+                user_id: "",
+                category_id: "",
+                specifications: [],
+            }
+
+            console.log(farmdata)
+        }
+
         return {
             categoryLoaded,
             selectedFlow,
             categoryLastStep,
             usageFilled,
+            handlePreviewData,
         }
     }
 }
