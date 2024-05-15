@@ -66,7 +66,7 @@ Route::middleware(['splade'])->group(function () {
             /* Landing */
 
             // Advertise
-            Route::resource('advertise', AdvertiseController::class)->except(['show', 'destroy', 'store', 'update']);
+            Route::resource('advertise', AdvertiseController::class)->except(['show', 'store', 'update']);
 
             /* Landing */
             Route::prefix('landing')->name('landing.')->group(function () {
