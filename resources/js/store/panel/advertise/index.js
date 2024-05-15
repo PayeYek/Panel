@@ -11,6 +11,10 @@ export const useAdvertise = defineStore('advertise', {
             selectedUsage: null,
             specifications: null,
             selectedSpecificationValues: {},
+            description: "",
+            title: "",
+            price: "",
+            city: "",
         }
     },
     actions: {
@@ -67,6 +71,18 @@ export const useAdvertise = defineStore('advertise', {
                 }
             })
             return status;
-        }
+        },
+        saveDescription(string){
+            this.description = string;
+        },
+        saveTitle(string){
+            this.title = string;
+        },
+        savePrice(num){
+            this.price = num;
+        },
+        saveCity(id){
+            this.city = id;
+        },
     },
 });

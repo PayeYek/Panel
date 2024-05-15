@@ -10,7 +10,7 @@
                 <div
                     class="flex rounded-lg border border-gray-300 dark:border-gray-600 shadow-sm group-focus-within/input:ring-1 group-focus-within/input:ring-primary-500 group-focus-within/input:border-primary-500 transition duration-200">
                     <div class="relative flex flex-1">
-                        <input type="text" id="advertise-title"
+                        <input type="text" id="advertise-title" v-model="title"
                                class="min-h-[2.5rem] px-3 block bg-gray-50 dark:bg-gray-700 dark:text-white w-full border-transparent focus:border-transparent focus:outline-none focus:ring-0 dark:placeholder-gray-400 disabled:opacity-50 disabled:bg-gray-50 disabled:cursor-not-allowed rounded-[7px]"/>
                     </div>
                 </div>
@@ -21,11 +21,13 @@
                 <div
                     class="flex rounded-lg border border-gray-300 dark:border-gray-600 shadow-sm group-focus-within/input:ring-1 group-focus-within/input:ring-primary-500 group-focus-within/input:border-primary-500 transition duration-200">
                     <div class="relative flex flex-1">
-                        <input type="number" id="advertise-price"
+                        <input type="number" id="advertise-price" v-model="price"
                                class="min-h-[2.5rem] px-3 block bg-gray-50 dark:bg-gray-700 dark:text-white w-full border-transparent focus:border-transparent focus:outline-none focus:ring-0 dark:placeholder-gray-400 disabled:opacity-50 disabled:bg-gray-50 disabled:cursor-not-allowed rounded-[7px]"/>
                     </div>
                 </div>
             </label>
+
+            <Statecity />
 
             <label class="block group/input" for="advertise-main-image">
                 <span class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"> عکس خودرو </span>
@@ -61,14 +63,22 @@
 </template>
 
 <script>
-import {ref, onMounted, computed} from 'vue';
+import {ref, onMounted, computed, watch} from 'vue';
+import {useAdvertise} from "@/store/panel/advertise/index.js";
+import Statecity from "@/components/panelAdvertise/children/introduction/statecity/index.vue";
 
 export default {
     name: 'Introduction',
     props: {
         classNames: String,
     },
+    components: {
+        Statecity,
+    },
     setup(){
+        const advertiseStore = useAdvertise();
+        const title = ref(null);
+        const price = ref(null);
         const description = ref(null);
         const files = ref(null);
         const multipleFiles = ref(null);
@@ -77,6 +87,7 @@ export default {
         const fileMimeType = computed(() => files.value?.type);
         const formData = ref(new FormData());
         const multipleImages = ref([]);
+
         const handleFileUpload = (event) => {
             files.value = event.target.files[0];
             const reader = new FileReader();
@@ -126,10 +137,24 @@ export default {
             //Upload to server
         }
 
+        watch(description, n => {
+            advertiseStore.saveDescription(n);
+        })
+
+        watch(title, n => {
+            advertiseStore.saveTitle(n);
+        })
+
+        watch(price, n => {
+            advertiseStore.savePrice(n);
+        })
+
         return {
             handleFileUpload,
             description,
             handleMultipleFileUpload,
+            title,
+            price,
         }
     }
 }
