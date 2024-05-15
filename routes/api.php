@@ -43,6 +43,8 @@ Route::prefix('ad')
     ->group(function () {
         Route::get('categories', 'getCategories')->name('getCategories');
         Route::get('usages', 'getUsages')->name('getUsages');
+        Route::get('provinces', 'getProvinces')->name('getProvinces');
+        Route::get('cities/{province}', 'getCitiesByProvince')->name('getCities');
         Route::get('specifications/{usage}', 'getSpecificationsByUsage')->name('getSpecifications');
         Route::post('submit', 'submitAdvertise')->name('submitAdvertise');
     });
