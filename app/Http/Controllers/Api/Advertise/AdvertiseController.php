@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\Advertise\AdvertiseRequest;
 use App\Models\Advertise;
 use App\Models\Category;
+use App\Models\Province;
 use App\Models\Usage;
 use App\Transformers\SpecificationTransformer;
 use App\Transformers\UsageTransformer;
@@ -28,6 +29,16 @@ class AdvertiseController extends Controller
             ->get();
 
         return responder()->success($categories)->respond(); // Transforms from model
+    }
+
+    public function getProvinces()
+    {
+        return responder()->success(Province::all()->toArray())->respond();
+    }
+
+    public function getCitiesByProvince(Province $province)
+    {
+        return responder()->success($province->cities)->respond();
     }
 
     public function getSpecificationsByUsage(Usage $usage)
