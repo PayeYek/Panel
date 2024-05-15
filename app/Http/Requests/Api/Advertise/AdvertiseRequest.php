@@ -30,7 +30,6 @@ class AdvertiseRequest extends FormRequest
             'slider_images.*' =>  $this->PrimaryImageRule(),
             'price' => 'required|numeric',
             'city_id' => 'required|exists:province_cities,id',
-            'user_id' => 'required|exists:users,id',
             'category_id' => 'required|exists:categories,id',
             'specifications' => 'array',
         ];
