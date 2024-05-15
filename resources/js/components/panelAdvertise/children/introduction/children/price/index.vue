@@ -6,7 +6,7 @@
                 <span class="block text-sm font-medium text-gray-900 dark:text-white opacity-80"> {{ numberWithCommas(price) }} تومان </span>
             </div>
             <div
-                class="flex rounded-lg border border-gray-300 dark:border-gray-600 shadow-sm group-focus-within/input:ring-1 group-focus-within/input:ring-primary-500 group-focus-within/input:border-primary-500 transition duration-200">
+                :class="'flex rounded-lg border border-gray-300 dark:border-gray-600 shadow-sm group-focus-within/input:ring-1 group-focus-within/input:ring-primary-500 group-focus-within/input:border-primary-500 transition duration-200 ' + (titleError === '' ? '' : 'border-red-500 dark:border-red-500')">
                 <div class="relative flex flex-1">
                     <input type="number" id="advertise-price" v-model="price"
                            class="min-h-[2.5rem] pr-3 pl-12 block bg-gray-50 dark:bg-gray-700 dark:text-white w-full border-transparent focus:border-transparent focus:outline-none focus:ring-0 dark:placeholder-gray-400 disabled:opacity-50 disabled:bg-gray-50 disabled:cursor-not-allowed rounded-[7px]"/>

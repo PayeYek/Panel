@@ -10,6 +10,7 @@
 <script>
 import {useAdvertise} from "@/store/panel/advertise/index.js";
 import {ref, computed} from 'vue';
+import {maxTextareaLimitation, textInputLimitation} from "@/components/helper/common.js";
 
 export default {
     name: 'Preview Button',
@@ -19,15 +20,40 @@ export default {
     setup(){
         const advertiseStore = useAdvertise();
         const title = ref(computed(() => advertiseStore.title));
+        const price = ref(computed(() => advertiseStore.price));
+        const city = ref(computed(() => advertiseStore.city));
         const description = ref(computed(() => advertiseStore.description));
         const product = ref(computed(() => advertiseStore.selectedCategory));
         const usage = ref(computed(() => advertiseStore.selectedUsage));
         const specifications = ref(computed(() => advertiseStore.selectedSpecificationValues));
 
         const moveTo = step => {
-            console.log(title.value);
+            console.log(city.value === "");
             if(title.value === ""){
                 advertiseStore.handleTitleError("عنوان خالیست.");
+            } else if(title.value.toString().length > textInputLimitation){
+                advertiseStore.handleTitleError("عنوان بیشتر از حد مجاز است.");
+            } else if(title.value.toString().length <= textInputLimitation){
+                advertiseStore.handleTitleError("");
+            }
+            if(price.value === ""){
+                advertiseStore.handlePriceError("قیمت خالیست.");
+            } else if(price.value.toString().length > textInputLimitation){
+                advertiseStore.handlePriceError("قیمت بیشتر از حد مجاز است.");
+            } else if(price.value.toString().length <= textInputLimitation){
+                advertiseStore.handlePriceError("");
+            }
+            if(city.value == 0 || city.value === ""){
+                advertiseStore.handleCityError("شهر را انتخاب کنید.");
+            } else {
+                advertiseStore.handleCityError("");
+            }
+            if(description.value.toString().length <= 20){
+                advertiseStore.handleDescriptionError("توضیحات کمتر از 10 کاراکتر است.");
+            } else if(description.value.toString().length >= maxTextareaLimitation){
+                advertiseStore.handleDescriptionError("توضیحات بیشتر از 1000 کاراکتر است.");
+            } else{
+                advertiseStore.handleDescriptionError("");
             }
             // advertiseStore.changeStep(step);
         }

@@ -20,6 +20,7 @@ export const useAdvertise = defineStore('advertise', {
             sliderImages: null,
             titleErrorMessage: "",
             priceErrorMessage: "",
+            cityErrorMessage: "",
             imageErrorMessage: "",
             imagesErrorMessage: "",
             descriptionErrorMessage: "",
@@ -103,6 +104,15 @@ export const useAdvertise = defineStore('advertise', {
         },
         handleTitleError(message){
             this.titleErrorMessage = message;
-        }
+        },
+        handlePriceError(message){
+            this.priceErrorMessage = message;
+        },
+        handleCityError(message){
+            this.cityErrorMessage = message;
+        },
+        handleDescriptionError(message){
+            this.descriptionErrorMessage = message;
+        },
     },
 });
