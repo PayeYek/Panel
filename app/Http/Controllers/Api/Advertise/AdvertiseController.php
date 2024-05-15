@@ -10,6 +10,7 @@ use App\Models\Province;
 use App\Models\Usage;
 use App\Transformers\SpecificationTransformer;
 use App\Transformers\UsageTransformer;
+use Auth;
 use Illuminate\Support\Facades\Log;
 use Mockery\Exception;
 
@@ -49,6 +50,8 @@ class AdvertiseController extends Controller
     public function submitAdvertise(AdvertiseRequest $advertiseRequest)
     {
         $data = [];
+
+        $user = Auth::user();
         if ($advertiseRequest->hasFile('primary_image')) {
             $data['primary_image'] = $advertiseRequest->file('primary_image')->store('media/advertise/primary', 'public');
         }
@@ -68,7 +71,7 @@ class AdvertiseController extends Controller
 
         $advertiseData = [
             'category_id' => $advertiseRequest->validated('category_id'),
-            'user_id' => $advertiseRequest->validated('user_id'),
+            'user_id' => 1, //Todo implement auth
             'usage_id' => $advertiseRequest->validated('usage_id'),
             'city_id' => $advertiseRequest->validated('city_id'),
             'title' => $advertiseRequest->validated('title'),
