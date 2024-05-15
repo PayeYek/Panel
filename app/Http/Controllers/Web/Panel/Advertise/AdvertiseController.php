@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\Web\Panel;
+namespace App\Http\Controllers\Web\Panel\Advertise;
 
 use App\Http\Controllers\Controller;
-use App\Tables\Advertises;
+use App\Models\Advertise;
+use App\Tables\Advertise\Advertises;
 use Splade;
 
 class AdvertiseController extends Controller
@@ -189,12 +190,13 @@ class AdvertiseController extends Controller
         ]);
     }
 
-    public function edit(Advertises $advertise)
+    public function edit(Advertise $advertise)
     {
-        return view('panel.advertise.edit', compact('advertise'));
+        $id = $advertise->id;
+        return view('panel.advertise.edit', compact('id'));
     }
 
-    public function destroy(Advertises $advertise)
+    public function destroy(Advertise $advertise)
     {
         $advertise->delete();
 
