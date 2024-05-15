@@ -86,6 +86,10 @@ export const useAdvertise = defineStore('advertise', {
             const importantInformation = {
                 category: this.selectedCategory,
                 usage: this.selectedUsage,
+                title: this.title,
+                price: this.price,
+                description: this.description,
+                city: this.city,
             }
             // Object.keys(this.selectedSpecificationValues).forEach(key => {
             //     if(this.selectedSpecificationValues[key].required == 0){
