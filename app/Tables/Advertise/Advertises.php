@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Tables;
+namespace App\Tables\Advertise;
 
 use App\Models\Advertise;
 use Illuminate\Http\Request;
@@ -12,12 +12,7 @@ use Spatie\QueryBuilder\QueryBuilder;
 
 class Advertises extends AbstractTable
 {
-    public function __construct()
-    {
-
-    }
-
-    public function authorize(Request $request)
+    public function authorize(Request $request): true
     {
         return true;
     }
@@ -41,7 +36,7 @@ class Advertises extends AbstractTable
             ->allowedFilters(['title', $globalSearch]);
     }
 
-    public function configure(SpladeTable $table)
+    public function configure(SpladeTable $table): void
     {
 //        $table->withGlobalSearch(columns: ['id', 'title', 'slug', 'body']);
 

@@ -2,7 +2,12 @@
 
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Web\Landing\LandingController;
-use App\Http\Controllers\Web\Panel\AdvertiseController;
+use App\Http\Controllers\Web\Panel\Advertise\AdvertiseController;
+use App\Http\Controllers\Web\Panel\Advertise\BrandController as AdBrandController;
+use App\Http\Controllers\Web\Panel\Advertise\CategoryController as AdCategoryController;
+use App\Http\Controllers\Web\Panel\Advertise\ColorController as AdColorController;
+use App\Http\Controllers\Web\Panel\Advertise\SpecificationController;
+use App\Http\Controllers\Web\Panel\Advertise\UsageController;
 use App\Http\Controllers\Web\Panel\AuthController;
 use App\Http\Controllers\Web\Panel\CommentController;
 use App\Http\Controllers\Web\Panel\DashboardController;
@@ -66,7 +71,14 @@ Route::middleware(['splade'])->group(function () {
             /* Landing */
 
             // Advertise
-            Route::resource('advertise', AdvertiseController::class)->except(['show', 'store', 'update']);
+            Route::prefix('ad')->name('ad.')->group(function () {
+                Route::resource('advertise', AdvertiseController::class)->except(['show', 'store', 'update']);
+                Route::resource('category', AdCategoryController::class)->except(['show']);
+                Route::resource('usage', UsageController::class)->except(['show']);
+                Route::resource('color', AdColorController::class)->except(['show']);
+                Route::resource('specification', SpecificationController::class)->except(['show']);
+                Route::resource('brand-model', AdBrandController::class)->except(['show']);
+            });
 
             /* Landing */
             Route::prefix('landing')->name('landing.')->group(function () {

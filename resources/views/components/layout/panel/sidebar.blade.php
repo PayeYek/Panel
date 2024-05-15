@@ -16,8 +16,14 @@
 
 
             {{--AD SERVICES--}}
-            <x-layout.panel.menu title="Ad Service" route="panel.advertise.*" icon="iconsax-bol-note-2">
-                <x-layout.panel.menu title="Advertise" route="panel.advertise.index" icon="iconsax-lin-book"/>
+            <x-layout.panel.menu title="Ad Service" route="panel.ad.*" icon="iconsax-bol-note-2">
+                <x-layout.panel.menu title="Advertise" route="panel.ad.advertise.index" icon="iconsax-lin-book"/>
+                <x-layout.panel.menu title="Usages" route="panel.ad.usage.index" icon="iconsax-lin-book"/>
+                <x-layout.panel.menu title="Categories" route="panel.ad.category.index" icon="iconsax-lin-book"/>
+                <x-layout.panel.menu title="Colors" route="panel.ad.color.index" icon="iconsax-lin-book"/>
+{{--                <x-layout.panel.menu title="Specifications" route="panel.ad.specification.index"--}}
+{{--                                     icon="iconsax-lin-book"/>--}}
+{{--                <x-layout.panel.menu title="Brands-Models" route="panel.ad.brand-model.index" icon="iconsax-lin-book"/>--}}
             </x-layout.panel.menu>
 
             {{--LANDING--}}
