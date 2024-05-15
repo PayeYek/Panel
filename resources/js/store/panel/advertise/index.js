@@ -81,6 +81,22 @@ export const useAdvertise = defineStore('advertise', {
             })
             return status;
         },
+        checkAllInfoFilled(){
+            let status = false;
+            const importantInformation = {
+                category: this.selectedCategory,
+                usage: this.selectedUsage,
+            }
+            // Object.keys(this.selectedSpecificationValues).forEach(key => {
+            //     if(this.selectedSpecificationValues[key].required == 0){
+            //         status = true;
+            //     } else if(this.selectedSpecificationValues[key].id == 0 || this.selectedSpecificationValues[key].id === '') {
+            //         status = false
+            //         return false;
+            //     }
+            // })
+            return status;
+        },
         saveDescription(string){
             this.description = string;
         },

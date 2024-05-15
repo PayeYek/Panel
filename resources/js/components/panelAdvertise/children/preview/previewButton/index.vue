@@ -55,6 +55,7 @@ export default {
             } else{
                 advertiseStore.handleDescriptionError("");
             }
+            console.log(advertiseStore.checkAllSpecFilled())
             // advertiseStore.changeStep(step);
         }
 
