@@ -89,28 +89,28 @@ export default {
         const multipleImages = ref([]);
 
         const handleFileUpload = (event) => {
-            files.value = event.target.files[0];
-            const reader = new FileReader();
-            reader.readAsDataURL(files.value);
-            reader.onload = async () => {
-                const encodedFile = reader.result.split(",")[1];
-                const data = {
-                    file: encodedFile,
-                    fileName: fileName.value,
-                    fileExtension: fileExtension.value,
-                    fileMimeType: fileMimeType.value,
-                };
-                console.log(data)
-                advertiseStore.savePrimaryImage(data);
-                // try {
-                //     const endpoint = "https://example.com/upload";
-                //     const response = await axios.post(endpoint, data);
-                //     console.log(response.data);
-                // } catch (error) {
-                //     console.error(error);
-                // }
-            };
-            //Upload to server
+            let formdata = new FormData()
+            // files.value = event.target.files[0];
+            console.log(event.target.files[0])
+            formdata.append('file', event.target.files[0]);
+            console.log(formdata)
+
+            // const reader = new FileReader();
+            // reader.readAsDataURL(files.value);
+            // reader.onload = async () => {
+            //     const encodedFile = reader.result.split(",")[1];
+            //     formdata.append('file', encodedFile);
+            //     console.log(formdata)
+            //     const data = {
+            //         file: encodedFile,
+            //         fileName: fileName.value,
+            //         fileExtension: fileExtension.value,
+            //         fileMimeType: fileMimeType.value,
+            //     };
+            //
+            //
+                advertiseStore.savePrimaryImage(formdata);
+            // };
         }
 
         const handleMultipleFileUpload = (event) => {

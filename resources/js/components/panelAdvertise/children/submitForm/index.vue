@@ -48,7 +48,11 @@ export default {
 
             console.log(farmdata)
 
-            axios.post(`/api/ad/submit`, farmdata)
+            axios.post(`/api/ad/submit`, farmdata, {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
+            })
                 .then(function (response) {
                     // handle success
                     console.log(response)
