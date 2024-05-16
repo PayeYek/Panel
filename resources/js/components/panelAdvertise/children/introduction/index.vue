@@ -23,7 +23,7 @@
 <script>
 import {ref, onMounted, computed, watch} from 'vue';
 import {useAdvertise} from "@/store/panel/advertise/index.js";
-import Statecity from "@/components/panelAdvertise/children/introduction/statecity/index.vue";
+import Statecity from "@/components/panelAdvertise/children/introduction/children/statecity/index.vue";
 import Title from "@/components/panelAdvertise/children/introduction/children/title/index.vue";
 import Price from "@/components/panelAdvertise/children/introduction/children/price/index.vue";
 import PrimaryImage from "@/components/panelAdvertise/children/introduction/children/primaryImage/index.vue";

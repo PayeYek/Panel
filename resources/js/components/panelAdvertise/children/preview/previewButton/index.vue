@@ -10,7 +10,7 @@
 <script>
 import {useAdvertise} from "@/store/panel/advertise/index.js";
 import {ref, computed} from 'vue';
-import {maxTextareaLimitation, textInputLimitation} from "@/components/helper/common.js";
+import {maxTextareaLimitation, minTextareaLimitation, textInputLimitation} from "@/components/helper/common.js";
 
 export default {
     name: 'Preview Button',
@@ -43,15 +43,17 @@ export default {
             } else if(price.value.toString().length <= textInputLimitation){
                 advertiseStore.handlePriceError("");
             }
+            console.log("city.value => ", city.value)
             if(city.value == 0 || city.value === ""){
                 advertiseStore.handleCityError("شهر را انتخاب کنید.");
             } else {
                 advertiseStore.handleCityError("");
             }
-            if(description.value.toString().length <= 20){
-                advertiseStore.handleDescriptionError("توضیحات کمتر از 10 کاراکتر است.");
+            console.log("description.value => ", description.value);
+            if(description.value.toString().length <= minTextareaLimitation){
+                advertiseStore.handleDescriptionError(`توضیحات کمتر از ${minTextareaLimitation} کاراکتر می باشد.`);
             } else if(description.value.toString().length >= maxTextareaLimitation){
-                advertiseStore.handleDescriptionError("توضیحات بیشتر از 1000 کاراکتر است.");
+                advertiseStore.handleDescriptionError(`توضیحات بیشتر از ${maxTextareaLimitation} کاراکتر می باشد.`);
             } else{
                 advertiseStore.handleDescriptionError("");
             }

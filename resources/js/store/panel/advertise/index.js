@@ -91,6 +91,10 @@ export const useAdvertise = defineStore('advertise', {
                 description: this.description,
                 city: this.city,
             }
+
+            for (const [key, value] of Object.entries(importantInformation)) {
+                console.log(value);
+            }
             // Object.keys(this.selectedSpecificationValues).forEach(key => {
             //     if(this.selectedSpecificationValues[key].required == 0){
             //         status = true;

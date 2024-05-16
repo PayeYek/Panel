@@ -87,8 +87,12 @@ export default {
                 .finally(function () {
                     // always executed
                 });
-            // advertiseStore.saveCity(id);
         });
+
+        watch(cityId, n => {
+            advertiseStore.saveCity(n);
+
+        })
 
         return {
             stateId,
