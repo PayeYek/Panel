@@ -1,7 +1,7 @@
 <template>
     <section
         class="-m-4 md:m-0 px-4 pb-4 shadow-md sm:rounded-lg bg-white dark:bg-gray-800 relative scrollbar-thin scrollbar-thumb-gray-200 scrollbar-track-white dark:scrollbar-thumb-gray-700 dark:scrollbar-track-gray-800 overflow-y-auto">
-        <div v-if="step == 0">
+        <div v-show="step == 0">
             <Category classNames="mb-10" v-if="categoryLoaded" />
             <!-- usage-->
             <Usage v-if="selectedFlow == 1" :classNames="categoryLastStep == null ? 'pointer-events-none opacity-40 cursor-default' : 'mb-10'" />

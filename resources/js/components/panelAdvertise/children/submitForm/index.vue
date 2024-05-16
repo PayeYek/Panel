@@ -1,5 +1,9 @@
 <template>
-    <div>
+    <div class="flex items-center gap-4">
+        <button @click="moveTo(0)" type="button"
+                :class="'rounded-lg shadow-sm font-medium py-2 px-4 focus:outline-none focus:ring-4 focus:ring-primary-500 transition duration-200 bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 text-white focus:ring-primary-200 dark:focus:ring-primary-800 ' + classNames">
+            بازگشت
+        </button>
         <button @click="handlePreviewData" type="button"
                 :class="'rounded-lg shadow-sm font-medium py-2 px-4 focus:outline-none focus:ring-4 focus:ring-primary-500 transition duration-200 bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700 text-white focus:ring-primary-200 dark:focus:ring-primary-800 ' + classNames">
             ثبت
@@ -74,8 +78,13 @@ export default {
             //     });
         }
 
+        const moveTo = step => {
+            advertiseStore.changeStep(step);
+        }
+
         return {
             handlePreviewData,
+            moveTo,
         }
     }
 }

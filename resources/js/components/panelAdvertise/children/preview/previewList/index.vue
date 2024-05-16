@@ -15,7 +15,7 @@
             </div>
             <!-- usage-->
             <div>
-                <span class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">  نوع خودرو </span>
+                <span class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">  نوع کاربری </span>
                 <div
                     class="flex min-h-[2.5rem] px-3 items-center bg-gray-50 dark:bg-gray-700 dark:text-white w-full rounded-lg flex-1 border border-gray-300 dark:border-gray-600 shadow-sm transition duration-200">
                     {{ usage.title }}

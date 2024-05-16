@@ -23,12 +23,11 @@ export default {
         const price = ref(computed(() => advertiseStore.price));
         const city = ref(computed(() => advertiseStore.city));
         const description = ref(computed(() => advertiseStore.description));
-        const product = ref(computed(() => advertiseStore.selectedCategory));
-        const usage = ref(computed(() => advertiseStore.selectedUsage));
-        const specifications = ref(computed(() => advertiseStore.selectedSpecificationValues));
+        // const product = ref(computed(() => advertiseStore.selectedCategory));
+        // const usage = ref(computed(() => advertiseStore.selectedUsage));
+        // const specifications = ref(computed(() => advertiseStore.selectedSpecificationValues));
 
         const moveTo = step => {
-            console.log(city.value === "");
             if(title.value === ""){
                 advertiseStore.handleTitleError("عنوان خالیست.");
             } else if(title.value.toString().length > textInputLimitation){
@@ -43,13 +42,11 @@ export default {
             } else if(price.value.toString().length <= textInputLimitation){
                 advertiseStore.handlePriceError("");
             }
-            console.log("city.value => ", city.value)
             if(city.value == 0 || city.value === ""){
                 advertiseStore.handleCityError("شهر را انتخاب کنید.");
             } else {
                 advertiseStore.handleCityError("");
             }
-            console.log("description.value => ", description.value);
             if(description.value.toString().length <= minTextareaLimitation){
                 advertiseStore.handleDescriptionError(`توضیحات کمتر از ${minTextareaLimitation} کاراکتر می باشد.`);
             } else if(description.value.toString().length >= maxTextareaLimitation){
@@ -57,8 +54,10 @@ export default {
             } else{
                 advertiseStore.handleDescriptionError("");
             }
-            console.log(advertiseStore.checkAllSpecFilled())
-            // advertiseStore.changeStep(step);
+            console.log("advertiseStore.checkAllInfoFilled() => ", advertiseStore.checkAllInfoFilled())
+            if(advertiseStore.checkAllInfoFilled() && advertiseStore.checkAllSpecFilled()){
+                advertiseStore.changeStep(step);
+            }
         }
 
         return {

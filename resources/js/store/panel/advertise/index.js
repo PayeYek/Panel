@@ -84,8 +84,8 @@ export const useAdvertise = defineStore('advertise', {
         checkAllInfoFilled(){
             let status = false;
             const importantInformation = {
-                category: this.selectedCategory,
-                usage: this.selectedUsage,
+                category: this.selectedCategory.id,
+                usage: this.selectedUsage.id,
                 title: this.title,
                 price: this.price,
                 description: this.description,
@@ -93,16 +93,13 @@ export const useAdvertise = defineStore('advertise', {
             }
 
             for (const [key, value] of Object.entries(importantInformation)) {
-                console.log(value);
+                if(value !== ""){
+                    status = true;
+                } else {
+                    status = false;
+                    return status;
+                }
             }
-            // Object.keys(this.selectedSpecificationValues).forEach(key => {
-            //     if(this.selectedSpecificationValues[key].required == 0){
-            //         status = true;
-            //     } else if(this.selectedSpecificationValues[key].id == 0 || this.selectedSpecificationValues[key].id === '') {
-            //         status = false
-            //         return false;
-            //     }
-            // })
             return status;
         },
         saveDescription(string){

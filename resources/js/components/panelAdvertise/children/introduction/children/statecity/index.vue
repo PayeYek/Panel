@@ -70,12 +70,10 @@ export default {
             });
 
         watch(stateId, n => {
-            console.log(n);
             axios.get(`/api/ad/cities/${n}`)
                 .then(function (response) {
                     // handle success
                     if(response.data.status == 200){
-                        console.log(response.data);
                         cities.value = response.data.data;
                     }
                 })
@@ -91,7 +89,6 @@ export default {
 
         watch(cityId, n => {
             advertiseStore.saveCity(n);
-
         })
 
         return {
