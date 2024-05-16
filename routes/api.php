@@ -48,6 +48,10 @@ Route::prefix('ad')
         Route::get('specifications/{usage}', 'getSpecificationsByUsage')->name('getSpecifications');
         Route::post('submit', 'submit')->name('submitAdvertise');
         Route::put('update/{advertise}', 'update')->name('updateAdvertise');
+        Route::post('{advertise}/approve', 'approve')->name('approveAdvertise');
+        Route::post('{advertise}/reject', 'reject')->name('rejectAdvertise');
+        Route::get('/{advertise}', 'show')->name('showAdvertise');
+        Route::delete('/{advertise}', 'destroy')->name('destroyAdvertise');
     });
 
 Route::prefix('l')
