@@ -42,12 +42,11 @@
                 <span class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">  شهر </span>
                 <div
                     class="flex min-h-[2.5rem] px-3 items-center bg-gray-50 dark:bg-gray-700 dark:text-white w-full rounded-lg flex-1 border border-gray-300 dark:border-gray-600 shadow-sm transition duration-200">
-                    {{ city }}
+                    {{ city.name }}
                 </div>
             </div>
             <!-- specification-->
             <template v-for="(spec, index) in filledSpecifications" :key="index">
-                <!-- city-->
                 <div>
                     <span class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">  {{ spec.title }} </span>
                     <div
@@ -97,7 +96,8 @@ export default {
         const filledSpecifications = ref([]);
 
         for (const [key, value] of Object.entries(specifications.value)) {
-            if(value.type === 'select' && value.id != 0 || value.type === 'boolean' && value.id != 0){
+            // console.log(value)
+            if(value.type === 'select' && value.id != 0){
                 for (const [index, content] of Object.entries(spec.value)) {
                     if(key == content.id){
                         content.values.map(item => {
@@ -111,6 +111,14 @@ export default {
                         })
                     }
                 }
+            } else if(value.type === 'boolean' && typeof value.id === 'boolean'){
+                // console.log(value)
+                const obj = {
+                    title: value.title,
+                    value: value.id == true ? 'دارد' : 'ندارد',
+                }
+                filledSpecifications.value.push(obj);
+                // filledSpecifications.value.push(value);
             }
         }
 

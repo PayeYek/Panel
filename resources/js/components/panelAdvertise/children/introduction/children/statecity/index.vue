@@ -88,7 +88,12 @@ export default {
         });
 
         watch(cityId, n => {
-            advertiseStore.saveCity(n);
+            cities.value.map(city => {
+                if(city.id == n){
+                    // console.log(city);
+                    advertiseStore.saveCity(city);
+                }
+            })
         })
 
         return {

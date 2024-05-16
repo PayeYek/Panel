@@ -89,7 +89,7 @@ export const useAdvertise = defineStore('advertise', {
                 title: this.title,
                 price: this.price,
                 description: this.description,
-                city: this.city,
+                city: this.city.id,
             }
 
             for (const [key, value] of Object.entries(importantInformation)) {
