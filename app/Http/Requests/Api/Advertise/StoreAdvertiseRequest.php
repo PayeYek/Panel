@@ -4,12 +4,12 @@ namespace App\Http\Requests\Api\Advertise;
 
 use App\Models\Specification;
 use App\Models\Usage;
-use App\Rules\ValidSpecification;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 use Illuminate\Validation\Rules\File;
+use Illuminate\Validation\Rules\ImageFile;
 
-class AdvertiseRequest extends FormRequest
+class StoreAdvertiseRequest extends FormRequest
 {
     public function authorize(): bool
     {
@@ -27,7 +27,7 @@ class AdvertiseRequest extends FormRequest
             'description' => 'required|string',
             'primary_image' => $this->PrimaryImageRule(),
             'slider_images' => 'array|min:1',
-            'slider_images.*' =>  $this->PrimaryImageRule(),
+            'slider_images.*' => $this->PrimaryImageRule(),
             'price' => 'required|numeric',
             'city_id' => 'required|exists:province_cities,id',
             'category_id' => 'required|exists:categories,id',
@@ -40,15 +40,7 @@ class AdvertiseRequest extends FormRequest
         return $rules;
     }
 
-    private function PrimaryImageRule()
-    {
-        return File::image()
-            ->min(10)
-            ->max(12 * 1024)
-            ->dimensions([Rule::dimensions()->maxWidth(3600)->maxHeight(3600)]);
-    }
-
-    private function SliderImageRule()
+    private function PrimaryImageRule(): ImageFile
     {
         return File::image()
             ->min(10)
@@ -56,7 +48,15 @@ class AdvertiseRequest extends FormRequest
             ->dimensions(Rule::dimensions()->maxWidth(3600)->maxHeight(3600));
     }
 
-    private function validateSpecificationKeys(&$rules)
+    private function SliderImageRule(): ImageFile
+    {
+        return File::image()
+            ->min(10)
+            ->max(12 * 1024)
+            ->dimensions(Rule::dimensions()->maxWidth(3600)->maxHeight(3600));
+    }
+
+    private function validateSpecificationKeys(&$rules): void
     {
         $specificationKeys = array_keys($this->input('specifications', []));
         if (!empty($specificationKeys)) {
@@ -68,7 +68,7 @@ class AdvertiseRequest extends FormRequest
         }
     }
 
-    private function addDynamicSpecificationRules(&$rules, $specifications)
+    private function addDynamicSpecificationRules(&$rules, $specifications): void
     {
         foreach ($specifications as $spec) {
             $rule = $spec['required'] ? 'required|' : '';
