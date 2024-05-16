@@ -18,6 +18,7 @@ export const useAdvertise = defineStore('advertise', {
             price: "",
             city: "",
             primaryImage: null,
+            primaryImageSrc: null,
             sliderImages: null,
             titleErrorMessage: "",
             priceErrorMessage: "",
@@ -111,12 +112,6 @@ export const useAdvertise = defineStore('advertise', {
                     status = false;
                     return status;
                 }
-                // if(value !== ""){
-                //
-                // } else {
-                //     status = false;
-                //     return status;
-                // }
             }
             return status;
         },
@@ -134,6 +129,9 @@ export const useAdvertise = defineStore('advertise', {
         },
         savePrimaryImage(file){
             this.primaryImage = file;
+        },
+        savePrimaryImageSrc(src){
+            this.primaryImageSrc = src;
         },
         saveSliderImages(files){
             this.sliderImages = files;

@@ -23,9 +23,6 @@ export default {
         const price = ref(computed(() => advertiseStore.price));
         const city = ref(computed(() => advertiseStore.city));
         const description = ref(computed(() => advertiseStore.description));
-        // const product = ref(computed(() => advertiseStore.selectedCategory));
-        // const usage = ref(computed(() => advertiseStore.selectedUsage));
-        // const specifications = ref(computed(() => advertiseStore.selectedSpecificationValues));
 
         const moveTo = step => {
             if(title.value === ""){
@@ -47,7 +44,6 @@ export default {
             } else {
                 advertiseStore.handleCityError("");
             }
-            // console.log(description.value.toString().length, minTextareaLimitation)
             if(description.value.toString().length <= minTextareaLimitation){
                 advertiseStore.handleDescriptionError(`توضیحات کمتر از ${minTextareaLimitation} کاراکتر می باشد.`);
             } else if(description.value.toString().length >= maxTextareaLimitation){
@@ -55,7 +51,6 @@ export default {
             } else{
                 advertiseStore.handleDescriptionError("");
             }
-            // console.log("advertiseStore.checkAllInfoFilled() => ", advertiseStore.checkAllInfoFilled())
             if(advertiseStore.checkAllInfoFilled() && advertiseStore.checkAllSpecFilled()){
                 advertiseStore.changeStep(step);
             }

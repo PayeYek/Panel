@@ -97,7 +97,7 @@ export default {
         });
 
         watch(() => selectedSpecificationValues.value, (n, o) => {
-            console.log(n)
+            // console.log(n)
         }, { deep: true });
 
 

@@ -5,6 +5,14 @@
         </h5>
 
         <section class="grid gap-5 grid-cols-1 lg:grid-cols-2 mb-10 cursor-default">
+            <!-- primary Image-->
+            <div>
+                <span class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">  عکس اصلی </span>
+                <div class="h-32 relative group">
+                    <img :src="primaryImageSrc" :alt="title" class="h-full rounded-md object-cover" />
+                    <img :src="primaryImageSrc" :alt="title" class="absolute top-36 rounded-md right-0 opacity-0 h-60 group-hover:opacity-100 scale-90 group-hover:scale-100" />
+                </div>
+            </div>
             <!-- product title-->
             <div>
                 <span class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">  عنوان </span>
@@ -63,6 +71,7 @@
                     {{ description }}
                 </div>
             </div>
+
         </section>
         <SubmitForm />
     </section>
@@ -93,6 +102,7 @@ export default {
         const usage = ref(computed(() => advertiseStore.selectedUsage));
         const specifications = ref(computed(() => advertiseStore.selectedSpecificationValues));
         const spec = ref(computed(() => advertiseStore.specifications));
+        const primaryImageSrc = ref(computed(() => advertiseStore.primaryImageSrc));
         const filledSpecifications = ref([]);
 
         for (const [key, value] of Object.entries(specifications.value)) {
@@ -134,6 +144,7 @@ export default {
             description,
             city,
             filledSpecifications,
+            primaryImageSrc,
         }
     }
 }
