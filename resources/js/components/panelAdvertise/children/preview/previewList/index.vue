@@ -96,7 +96,6 @@ export default {
         const filledSpecifications = ref([]);
 
         for (const [key, value] of Object.entries(specifications.value)) {
-            // console.log(value)
             if(value.type === 'select' && value.id != 0){
                 for (const [index, content] of Object.entries(spec.value)) {
                     if(key == content.id){
@@ -112,13 +111,17 @@ export default {
                     }
                 }
             } else if(value.type === 'boolean' && typeof value.id === 'boolean'){
-                // console.log(value)
                 const obj = {
                     title: value.title,
                     value: value.id == true ? 'دارد' : 'ندارد',
                 }
                 filledSpecifications.value.push(obj);
-                // filledSpecifications.value.push(value);
+            } else if(value.type === 'input_text' && value.id !== ''){
+                const obj = {
+                    title: value.title,
+                    value: value.id,
+                }
+                filledSpecifications.value.push(obj);
             }
         }
 

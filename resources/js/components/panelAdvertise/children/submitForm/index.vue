@@ -27,6 +27,7 @@ export default {
         const description = ref(computed(() => advertiseStore.description));
         const title = ref(computed(() => advertiseStore.title));
         const price = ref(computed(() => advertiseStore.price));
+        const city = ref(computed(() => advertiseStore.city));
         const primaryImage = ref(computed(() => advertiseStore.primaryImage));
         const sliderImages = ref(computed(() => advertiseStore.sliderImages));
         const usage = ref(computed(() => advertiseStore.selectedUsage));
@@ -35,8 +36,13 @@ export default {
         const handlePreviewData = () => {
             let specList = {};
             for (const [key, value] of Object.entries(specifications.value)) {
-                // console.log(`${key}: ${value.id}`);
-                specList[key] = value.id;
+                if(value.type === 'select' && value.id != 0){
+                    specList[key] = value.id;
+                } else if(value.type === 'boolean' && typeof value.id === 'boolean'){
+                    specList[key] = value.id;
+                } else if(value.type === 'input_text' && value.id !== ''){
+                    specList[key] = value.id;
+                }
             }
 
             console.log(specList);
@@ -48,34 +54,34 @@ export default {
                 primary_image: primaryImage.value,
                 slider_images: sliderImages.value,
                 price: price.value,
-                city_id: 1,
+                city_id: city.value.id,
                 category_id: categoryId.value.id,
                 specifications: specList,
             }
 
             console.log(farmdata)
 
-            // axios.post(`/api/ad/submit`, farmdata, {
-            //     headers: {
-            //         'Content-Type': 'multipart/form-data'
-            //     }
-            // })
-            //     .then(function (response) {
-            //         // handle success
-            //         console.log(response)
-            //         // if(response.data.status == 200){
-            //         // advertiseStore.saveCategoryMain(response.data.data);
-            //         // categoryLoaded.value = true;
-            //         // }
-            //     })
-            //     .catch(function (error) {
-            //         // handle error
-            //         console.log(error);
-            //
-            //     })
-            //     .finally(function () {
-            //         // always executed
-            //     });
+            axios.post(`/api/ad/submit`, farmdata, {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
+            })
+                .then(function (response) {
+                    // handle success
+                    console.log(response)
+                    // if(response.data.status == 200){
+                    // advertiseStore.saveCategoryMain(response.data.data);
+                    // categoryLoaded.value = true;
+                    // }
+                })
+                .catch(function (error) {
+                    // handle error
+                    console.log(error);
+
+                })
+                .finally(function () {
+                    // always executed
+                });
         }
 
         const moveTo = step => {

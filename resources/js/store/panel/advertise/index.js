@@ -1,4 +1,5 @@
 import { defineStore } from 'pinia';
+import {minTextareaLimitation, textInputLimitation} from "@/components/helper/common.js";
 
 export const useAdvertise = defineStore('advertise', {
     state: () => {
@@ -93,12 +94,29 @@ export const useAdvertise = defineStore('advertise', {
             }
 
             for (const [key, value] of Object.entries(importantInformation)) {
-                if(value !== ""){
+                console.log(key, value)
+                if(key === 'description' && value.toString().length >= minTextareaLimitation){
+                    status = true;
+                } else if(key === 'title' && (value.toString().length <= textInputLimitation || value.toString().length !== '')){
+                    status = true;
+                } else if(key === 'city' && typeof value !== 'undefined'){
+                    status = true;
+                } else if(key === 'category' && value != 0){
+                    status = true;
+                } else if(key === 'usage' && value != 0){
+                    status = true;
+                } else if(key === 'price' && value != 0){
                     status = true;
                 } else {
                     status = false;
                     return status;
                 }
+                // if(value !== ""){
+                //
+                // } else {
+                //     status = false;
+                //     return status;
+                // }
             }
             return status;
         },

@@ -47,6 +47,7 @@ export default {
             } else {
                 advertiseStore.handleCityError("");
             }
+            // console.log(description.value.toString().length, minTextareaLimitation)
             if(description.value.toString().length <= minTextareaLimitation){
                 advertiseStore.handleDescriptionError(`توضیحات کمتر از ${minTextareaLimitation} کاراکتر می باشد.`);
             } else if(description.value.toString().length >= maxTextareaLimitation){
@@ -54,7 +55,7 @@ export default {
             } else{
                 advertiseStore.handleDescriptionError("");
             }
-            console.log("advertiseStore.checkAllInfoFilled() => ", advertiseStore.checkAllInfoFilled())
+            // console.log("advertiseStore.checkAllInfoFilled() => ", advertiseStore.checkAllInfoFilled())
             if(advertiseStore.checkAllInfoFilled() && advertiseStore.checkAllSpecFilled()){
                 advertiseStore.changeStep(step);
             }
