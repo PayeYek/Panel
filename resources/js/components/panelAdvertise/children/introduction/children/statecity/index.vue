@@ -56,7 +56,7 @@ export default {
             .then(function (response) {
                 // handle success
                 if(response.data.status == 200){
-                    console.log(response.data);
+                    // console.log(response.data);
                     states.value = response.data.data;
                 }
             })

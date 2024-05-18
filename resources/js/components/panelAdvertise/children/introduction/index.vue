@@ -9,6 +9,8 @@
 
             <Price />
 
+            <Brandmodel />
+
             <Statecity />
 
             <PrimaryImage />
@@ -21,7 +23,6 @@
 </template>
 
 <script>
-import {ref, onMounted, computed, watch} from 'vue';
 import {useAdvertise} from "@/store/panel/advertise/index.js";
 import Statecity from "@/components/panelAdvertise/children/introduction/children/statecity/index.vue";
 import Title from "@/components/panelAdvertise/children/introduction/children/title/index.vue";
@@ -29,6 +30,7 @@ import Price from "@/components/panelAdvertise/children/introduction/children/pr
 import PrimaryImage from "@/components/panelAdvertise/children/introduction/children/primaryImage/index.vue";
 import Images from "@/components/panelAdvertise/children/introduction/children/images/index.vue";
 import Description from "@/components/panelAdvertise/children/introduction/children/description/index.vue";
+import Brandmodel from "@/components/panelAdvertise/children/introduction/children/brandmodel/index.vue";
 
 export default {
     name: 'Introduction',
@@ -42,25 +44,9 @@ export default {
         PrimaryImage,
         Images,
         Description,
+        Brandmodel,
     },
     setup(){
-        const advertiseStore = useAdvertise();
-        const description = ref(null);
-        // const fileName = computed(() => files.value?.name);
-        // const fileExtension = computed(() => fileName.value?.substr(fileName.value?.lastIndexOf(".") + 1));
-        // const fileMimeType = computed(() => files.value?.type);
-        // const formData = ref(new FormData());
-        // const multipleImages = ref([]);
-
-
-
-        watch(description, n => {
-            advertiseStore.saveDescription(n);
-        })
-
-        return {
-            description,
-        }
     }
 }
 </script>
