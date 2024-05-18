@@ -7,9 +7,14 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\Advertise\StoreAdvertiseRequest;
 use App\Http\Requests\Api\Advertise\UpdateAdvertiseRequest;
 use App\Models\Advertise;
+use App\Models\Brand;
 use App\Models\Category;
+use App\Models\ProductModel;
 use App\Models\Province;
 use App\Models\Usage;
+use App\Transformers\AdvertiseTransformer;
+use App\Transformers\BrandForAdTransformer;
+use App\Transformers\ProductModelForAdTransformer;
 use App\Transformers\SpecificationTransformer;
 use App\Transformers\UsageTransformer;
 use Auth;
@@ -20,8 +25,11 @@ use ProtoneMedia\Splade\Facades\Splade;
 
 class AdvertiseController extends Controller
 {
-
-//Todo implement get specifications api
+    public function getList()
+    {
+        $ad = Advertise::where('state',AdvertiseStateEnum::APPROVED)->get();
+        return responder()->success($ad, AdvertiseTransformer::class)->respond();
+    }
     public function getUsages()
     {
         return responder()->success(Usage::all(), UsageTransformer::class)->respond();
@@ -44,6 +52,17 @@ class AdvertiseController extends Controller
     public function getCitiesByProvince(Province $province)
     {
         return responder()->success($province->cities)->respond();
+    }
+
+    public function getBrands()
+    {
+        return responder()->success(Brand::all(), BrandForAdTransformer::class)->respond();
+    }
+
+    public function getModelByBrand(Brand $brand)
+    {
+        $models = ProductModel::where(['brand_id' => $brand->id])->get();
+        return responder()->success($models, ProductModelForAdTransformer::class)->respond();
     }
 
     public function getSpecificationsByUsage(Usage $usage)
