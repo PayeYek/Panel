@@ -10,15 +10,39 @@
     >
 
         @cell('state', $item)
+
         @if($item->state === AdvertiseStateEnum::PENDING)
+            <Link
+                confirm="{{__('Change state')}}"
+                confirm-text="{{__('Change advertise state')}}"
+                confirm-button="{{__('Approve the advertise')}}"
+                cancel-button="{{__('No')}}"
+                method="POST"
+                href="{{ route('api.ad.approveAdvertise', $item->id) }}"
+                class="flex flex-col pe-10">
+
             <span
                 class="inline-flex items-center gap-x-1.5 py-1.5 px-3 rounded-full text-xs font-medium bg-yellow-500 text-white">{{ __('Pending') }}
-                </span>
+            </span>
+            </Link>
         @elseif($item->state === AdvertiseStateEnum::APPROVED)
+            <Link
+                confirm="{{__('Change state')}}"
+                confirm-text="{{__('Change advertise state')}}"
+                confirm-button="{{__('Reject the advertise')}}"
+                cancel-button="{{__('No')}}"
+                method="POST"
+                href="{{ route('api.ad.rejectAdvertise', $item->id) }}"
+                class="flex flex-col pe-10">
+
             <span
                 class="inline-flex items-center gap-x-1.5 py-1.5 px-3 rounded-full text-xs font-medium bg-green-500 text-white">{{ __('Approved') }}
                 </span>
-
+             </Link>
+        @elseif($item->state === AdvertiseStateEnum::REJECTED)
+            <span
+                class="inline-flex items-center gap-x-1.5 py-1.5 px-3 rounded-full text-xs font-medium bg-red-500 text-white">{{ __('Rejected') }}
+                </span>
         @elseif($item->state === AdvertiseStateEnum::EXPIRED)
             <span
                 class="inline-flex items-center gap-x-1.5 py-1.5 px-3 rounded-full text-xs font-medium bg-red-500 text-white">{{ __('Expired') }}

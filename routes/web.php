@@ -51,8 +51,10 @@ Route::middleware(['splade'])->group(function () {
     Route::name('home.')
         ->group(function () {
 
-            /* DASHBOARD */
+            /* HOME */
             Route::get('/home', fn() => view('home.index'))->name('index');
+            /*ADVERTISE*/
+            Route::get('/ad', fn() => view('home.ad'))->name('ad');
 
         });
 

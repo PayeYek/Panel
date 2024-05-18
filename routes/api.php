@@ -46,7 +46,12 @@ Route::prefix('ad')
         Route::get('provinces', 'getProvinces')->name('getProvinces');
         Route::get('cities/{province}', 'getCitiesByProvince')->name('getCities');
         Route::get('specifications/{usage}', 'getSpecificationsByUsage')->name('getSpecifications');
-        Route::post('submit', 'submitAdvertise')->name('submitAdvertise');
+        Route::post('submit', 'submit')->name('submitAdvertise');
+        Route::put('update/{advertise}', 'update')->name('updateAdvertise');
+        Route::post('{advertise}/approve', 'approve')->name('approveAdvertise');
+        Route::post('{advertise}/reject', 'reject')->name('rejectAdvertise');
+        Route::get('/{advertise}', 'show')->name('showAdvertise');
+        Route::delete('/{advertise}', 'destroy')->name('destroyAdvertise');
     });
 
 Route::prefix('l')

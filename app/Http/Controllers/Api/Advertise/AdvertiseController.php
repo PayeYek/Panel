@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\Api\Advertise;
 
+use App\Enum\AdvertiseStateEnum;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Api\Advertise\AdvertiseRequest;
+use App\Http\Requests\Api\Advertise\StoreAdvertiseRequest;
+use App\Http\Requests\Api\Advertise\UpdateAdvertiseRequest;
 use App\Models\Advertise;
 use App\Models\Category;
 use App\Models\Province;
@@ -12,7 +14,9 @@ use App\Transformers\SpecificationTransformer;
 use App\Transformers\UsageTransformer;
 use Auth;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Storage;
 use Mockery\Exception;
+use ProtoneMedia\Splade\Facades\Splade;
 
 class AdvertiseController extends Controller
 {
@@ -47,7 +51,7 @@ class AdvertiseController extends Controller
         return responder()->success($usage->specifications(), SpecificationTransformer::class)->respond();
     }
 
-    public function submitAdvertise(AdvertiseRequest $advertiseRequest)
+    public function submit(StoreAdvertiseRequest $advertiseRequest)
     {
         $data = [];
 
@@ -95,5 +99,106 @@ class AdvertiseController extends Controller
         }
 
         return responder()->success(['message' => 'Advertise created successfully'])->respond();
+    }
+
+    public function update(UpdateAdvertiseRequest $updateAdvertiseRequest, Advertise $advertise)
+    {
+        $data = [];
+
+        if ($updateAdvertiseRequest->hasFile('primary_image')) {
+            if ($advertise->primary_image) {
+                Storage::disk('public')->delete($advertise->primary_image);
+            }
+            $data['primary_image'] = $updateAdvertiseRequest->file('primary_image')->store('media/advertise/primary', 'public');
+        }
+
+        try {
+            if ($updateAdvertiseRequest->hasFile('slider_images')) {
+                if ($advertise->slider_images) {
+                    foreach ($advertise->slider_images as $sliderImage) {
+                        Storage::disk('public')->delete($sliderImage);
+                    }
+                }
+                $sliderImages = $updateAdvertiseRequest->file('slider_images');
+                foreach ($sliderImages as $file) {
+                    $path = $file->store('media/advertise/slider', 'public');
+                    $data['slider_images'][] = $path;
+                }
+            }
+        } catch (Exception $exception) {
+        }
+
+        $advertiseData = [
+            'category_id' => $updateAdvertiseRequest->validated('category_id'),
+            'usage_id' => $updateAdvertiseRequest->validated('usage_id'),
+            'city_id' => $updateAdvertiseRequest->validated('city_id'),
+            'title' => $updateAdvertiseRequest->validated('title'),
+            'description' => $updateAdvertiseRequest->validated('description'),
+            'price' => $updateAdvertiseRequest->validated('price'),
+            'specifications' => $updateAdvertiseRequest->validated('specifications'),
+            'primary_image' => $data['primary_image'] ?? $advertise->primary_image,
+            'slider_images' => $data['slider_images'] ?? $advertise->slider_images,
+        ];
+
+        Log::info("advertise data is: " . json_encode($advertiseData));
+
+        $advertise->update($advertiseData);
+
+        try {
+            $advertise->specifications()->detach();
+            foreach ($updateAdvertiseRequest->input('specifications', []) as $specificationId => $value) {
+                $advertise->specifications()->attach($specificationId, ['value' => $value]);
+            }
+        } catch (Exception $e) {
+            Log::info('error message:' . $e);
+            return responder()->error(-1, 'Cannot update Advertise due to an unknown error')->respond();
+        }
+
+        return responder()->success(['message' => 'Advertise updated successfully'])->respond();
+    }
+
+    public function approve(Advertise $advertise)
+    {
+        $advertise->state = AdvertiseStateEnum::APPROVED;
+        $advertise->save();
+        Splade::toast(__('Advertise approved successfully'))->autoDismiss(5)->info();
+
+        return back();
+//        return responder()->success(['message' => 'Advertise approved successfully'])->respond();
+    }
+
+    public function reject(Advertise $advertise)
+    {
+        $advertise->state = AdvertiseStateEnum::REJECTED;
+        $advertise->save();
+        Splade::toast(__('Advertise rejected successfully'))->autoDismiss(5)->info();
+
+        return back();
+
+//        return responder()->success(['message' => 'Advertise rejected successfully'])->respond();
+    }
+
+    public function destroy(Advertise $advertise)
+    {
+        if ($advertise->primary_image) {
+            Storage::disk('public')->delete($advertise->primary_image);
+        }
+
+        if ($advertise->slider_images) {
+            foreach ($advertise->slider_images as $sliderImage) {
+                Storage::disk('public')->delete($sliderImage);
+            }
+        }
+
+        $advertise->specifications()->detach();
+
+        $advertise->delete();
+
+        return responder()->success(['message' => 'Advertise deleted successfully'])->respond();
+    }
+
+    public function show(Advertise $advertise)
+    {
+        return responder()->success($advertise)->respond();
     }
 }

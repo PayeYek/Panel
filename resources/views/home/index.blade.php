@@ -1,8 +1,8 @@
 <x-layout.base>
     <x-splade-data store="navigation" default="{ opened: false }"/>
     <nav
-        class="bg-white border-b border-gray-200 px-4 py-2.5 dark:bg-gray-800 dark:border-gray-700">
-        <div class="flex flex-wrap justify-between items-center">
+        class="sticky top-0 start-0 end-0 bg-white border-b border-gray-200 px-4 py-2.5 dark:bg-gray-800 dark:border-gray-700">
+        <div class="max-w-screen-xl mx-auto flex flex-wrap justify-between items-center">
             <div class="flex justify-start items-center">
                 <button @click.prevent="navigation.opened = !navigation.opened"
                         class="p-2 ltr:mr-2 rtl:ml-2 rtl:rotate-180 text-gray-600 rounded-lg cursor-pointer md:hidden hover:text-gray-900 hover:bg-gray-100 focus:bg-gray-100 dark:focus:bg-gray-700 focus:ring-2 focus:ring-gray-100 dark:focus:ring-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
@@ -37,21 +37,23 @@
                     <span class="sr-only">Toggle sidebar</span>
                 </button>
 
-                <x-layout.panel.logo/>
-
+                <x-layout.panel.logo-text/>
 
             </div>
-            <div class="flex items-center lg:order-2">
+            <div class="flex items-center lg:order-2 gap-1">
                 <x-switch-language/>
                 <SwitchStyle/>
                 <Breakpoint/>
-                <button type="button" class="ms-1 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">{{__('Register ad')}}</button>
+
+                <button type="button" class="hidden sm:flex py-2 px-4 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">قیمت روز خودرو</button>
+{{--                <button type="button" class="py-2 px-4 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">نمایه کاربر</button>--}}
+                <button type="button" class="text-white bg-blue-700 hover:bg-blue-600 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 transition-all duration-200">{{__('Register ad')}}</button>
             </div>
         </div>
     </nav>
 
-    <section class="bg-gray-50 dark:bg-gray-900 h-[calc(100%_-_3.5rem)]">
-        <div class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6">
+    <section class="bg-gray-50 dark:bg-gray-900 h-[calc(100%_-_65px)] overflow-auto scrollbar-thin scrollbar-thumb-gray-200 scrollbar-track-white dark:scrollbar-thumb-gray-800 dark:scrollbar-track-gray-900">
+        <div class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-2 xl:px-0">
 
             <div class="grid gap-4 lg:grid-cols-2">
 
@@ -231,12 +233,12 @@
                     </article>--}}
 
                     {{--V4--}}
-                    <article
+                    <Link href="{{ route('home.ad') }}"
                         class="overflow-auto flex md:flex-row bg-white rounded-lg border border-gray-200 hover:shadow-md dark:bg-gray-800 dark:border-gray-700 transition-all duration-500">
                         <img class="shrink-0 object-cover size-56 md:size-56 lg:size-60"
                              src="https://postimage01.divarcdn.com/static/photo/afra/post/v9ef_bRHlO1kD-WC08FS3Q/f5a96689-1d90-4668-8f61-f9ce389a2f89.jpg"
                              alt="">
-                        <div class="w-full p-6 cursor-default flex flex-col justify-around space-y-5">
+                        <div class="w-full p-6 flex flex-col justify-around space-y-5">
                             <div class="flex justify-between items-center text-gray-500 gap-1">
                                 <div class="flex items-center space-x-1 rtl:space-x-reverse">
                                 <span
@@ -294,7 +296,7 @@
                                     class="text-xs md:text-sm inline-flex items-center font-medium text-primary-600 dark:text-primary-500">۴,۸۰۰,۰۰۰ تومان</span>
                             </div>
                         </div>
-                    </article>
+                    </Link>
 
                 @endfor
             </div>
