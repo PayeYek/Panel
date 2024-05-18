@@ -27,13 +27,13 @@ return new class extends Migration {
             $table->boolean('exchange')->default(false);
             $table->boolean('has_chat')->default(true);
 
-            $table->double('latitude', 10, 8)->nullable()->default(null);
-            $table->double('longitude', 11, 8)->nullable()->default(null);
+            $table->double('latitude', 10, 8)->nullable();
+            $table->double('longitude', 11, 8)->nullable();
 
-            $table->boolean('certified')->nullable()->default(null); //Todo define business
-            $table->boolean('sponsored')->nullable()->default(null);//Todo define business
-            $table->boolean('rise')->nullable()->default(null);//Todo define business
-            $table->boolean('express')->nullable()->default(null);//Todo define business
+            $table->boolean('certified')->nullable(); //Todo define business
+            $table->boolean('sponsored')->nullable();//Todo define business
+            $table->boolean('rise')->nullable();//Todo define business
+            $table->boolean('express')->nullable();//Todo define business
             $table->json('meta')->nullable();
 
             $table->tinyInteger('state')->default(0); //Todo make state enum

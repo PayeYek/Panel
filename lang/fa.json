@@ -538,7 +538,7 @@
     "Published": "منتشر شده",
     "Decline": "رو به اتمام",
     "Finished": "ناموجود",
-    "Parent": "پدر",
+    "Parent": "والد",
     "Script code": "اسکریپت کد ویدیو",
     "Exit": "خروج",
     "Logout": "خروج از حساب",
@@ -592,5 +592,10 @@
     "Edit Advertise": "ویرایش آگهی",
     "Primary image": "عکس اصلی",
     "Slider image": "اسلایدر",
-    "Ad Service": "خدمات آگهی"
+    "Ad Service": "خدمات آگهی",
+    "Rejected": "رد شده",
+    "Usages" : "انواع کاربری",
+    "New Usage": "نوع کاربری جدید",
+    "Edit USage" : "ویرایش نوع کاربری",
+    "Usage list": "فهرست انواع کاربری"
 }
