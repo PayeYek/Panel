@@ -30,6 +30,7 @@ export const useAdvertise = defineStore('advertise', {
             imageErrorMessage: "",
             imagesErrorMessage: "",
             descriptionErrorMessage: "",
+            brandErrorMessage: "",
         }
     },
     actions: {
@@ -96,10 +97,11 @@ export const useAdvertise = defineStore('advertise', {
                 price: this.price,
                 description: this.description,
                 city: this.city.id,
+                brand: this.brand.id,
+                model: this.model.id,
             }
-
             for (const [key, value] of Object.entries(importantInformation)) {
-                // console.log(key, key === 'title' && value.toString().length <= textInputLimitation && value.toString().length != 0)
+                // console.log(key, value)
                 if(key === 'description' && value.toString().length >= minTextareaLimitation){
                     status = true;
                 } else if(key === 'title' && value.toString().length <= textInputLimitation && value.toString().length != 0){
@@ -111,6 +113,11 @@ export const useAdvertise = defineStore('advertise', {
                 } else if(key === 'usage' && value != 0){
                     status = true;
                 } else if(key === 'price' && value != 0){
+                    status = true;
+                } else if(key === 'brand' && typeof value !== 'undefined'){
+                    status = true;
+                } else if(key === 'model' && typeof value !== 'undefined'){
+                    // console.log(value);
                     status = true;
                 } else {
                     status = false;
@@ -163,6 +170,12 @@ export const useAdvertise = defineStore('advertise', {
         },
         handleDescriptionError(message){
             this.descriptionErrorMessage = message;
+        },
+        handleBrandError(message){
+            this.brandErrorMessage = message;
+        },
+        handleModelError(message){
+            this.modelErrorMessage = message;
         },
     },
 });

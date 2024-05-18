@@ -32,6 +32,8 @@ export default {
         const sliderImages = ref(computed(() => advertiseStore.sliderImages));
         const usage = ref(computed(() => advertiseStore.selectedUsage));
         const specifications = ref(computed(() => advertiseStore.selectedSpecificationValues));
+        const brand = ref(computed(() => advertiseStore.brand));
+        const model = ref(computed(() => advertiseStore.model));
 
         const handlePreviewData = () => {
             let specList = {};
@@ -45,7 +47,7 @@ export default {
                 }
             }
 
-            console.log(specList);
+            // console.log(specList);
 
             const farmdata = {
                 usage_id: usage.value.id,
@@ -57,6 +59,8 @@ export default {
                 city_id: city.value.id,
                 category_id: categoryId.value.id,
                 specifications: specList,
+                brand_id: brand.value.id,
+                model_id: model.value.id,
             }
 
             console.log(farmdata)
@@ -69,10 +73,11 @@ export default {
                 .then(function (response) {
                     // handle success
                     console.log(response)
-                    // if(response.data.status == 200){
+                    if(response.data.status == 200){
+                        window.location.reload();
                     // advertiseStore.saveCategoryMain(response.data.data);
                     // categoryLoaded.value = true;
-                    // }
+                    }
                 })
                 .catch(function (error) {
                     // handle error

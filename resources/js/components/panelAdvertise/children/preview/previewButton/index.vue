@@ -23,10 +23,11 @@ export default {
         const price = ref(computed(() => advertiseStore.price));
         const city = ref(computed(() => advertiseStore.city));
         const description = ref(computed(() => advertiseStore.description));
-        const model = ref(computed(() => advertiseStore.model.name));
+        const brand = ref(computed(() => advertiseStore.brand.id));
+        const model = ref(computed(() => advertiseStore.model.id));
 
         const moveTo = step => {
-            console.log(model.value);
+            console.log(brand.value);
             if(title.value === ""){
                 advertiseStore.handleTitleError("عنوان خالیست.");
             } else if(title.value.toString().length > textInputLimitation){
@@ -52,6 +53,17 @@ export default {
                 advertiseStore.handleDescriptionError(`توضیحات بیشتر از ${maxTextareaLimitation} کاراکتر می باشد.`);
             } else{
                 advertiseStore.handleDescriptionError("");
+            }
+            // console.log("brand.value => ", brand.value)
+            if(brand.value == 0 || typeof brand.value === 'undefined'){
+                advertiseStore.handleBrandError("برند را انتخاب کنید.");
+            } else {
+                advertiseStore.handleBrandError("");
+            }
+            if(model.value == 0 || typeof model.value === 'undefined'){
+                advertiseStore.handleModelError("مدل برند را انتخاب کنید.");
+            } else {
+                advertiseStore.handleModelError("");
             }
             if(advertiseStore.checkAllInfoFilled() && advertiseStore.checkAllSpecFilled()){
                 advertiseStore.changeStep(step);

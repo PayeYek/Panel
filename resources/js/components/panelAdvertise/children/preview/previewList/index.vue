@@ -38,6 +38,22 @@
                     {{ numberWithCommas(price) }} تومان
                 </div>
             </div>
+            <!-- brand-->
+            <div>
+                <span class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">  برند </span>
+                <div
+                    class="flex min-h-[2.5rem] px-3 items-center bg-gray-50 dark:bg-gray-700 dark:text-white w-full rounded-lg flex-1 border border-gray-300 dark:border-gray-600 shadow-sm transition duration-200">
+                    {{ brand.name }}
+                </div>
+            </div>
+            <!-- model-->
+            <div>
+                <span class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"> مدل </span>
+                <div
+                    class="flex min-h-[2.5rem] px-3 items-center bg-gray-50 dark:bg-gray-700 dark:text-white w-full rounded-lg flex-1 border border-gray-300 dark:border-gray-600 shadow-sm transition duration-200">
+                    {{ model.name }} - {{ model.model }}
+                </div>
+            </div>
             <!-- city-->
             <div>
                 <span class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">  شهر </span>
@@ -124,11 +140,14 @@ export default {
         const primaryImageSrc = ref(computed(() => advertiseStore.primaryImageSrc));
         const sliderImages = ref(computed(() => advertiseStore.sliderImagesSrc));
         const filledSpecifications = ref([]);
+        const brand = ref(computed(() => advertiseStore.brand));
+        const model = ref(computed(() => advertiseStore.model));
+        console.log(model.value)
 
         for (const [key, value] of Object.entries(specifications.value)) {
-            if(value.type === 'boolean'){
-                console.log(value)
-            }
+            // if(value.type === 'boolean'){
+            //     console.log(value)
+            // }
             if(value.type === 'select' && value.id != 0){
                 for (const [index, content] of Object.entries(spec.value)) {
                     if(key == content.id){
@@ -172,6 +191,8 @@ export default {
             filledSpecifications,
             primaryImageSrc,
             sliderImages,
+            brand,
+            model,
         }
     }
 }
