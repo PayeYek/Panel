@@ -43,7 +43,7 @@ export default {
         const childCategories = ref([]);
 
         watch(() => selectedSubcategory.value, (n, o) => {
-            advertiseStore.resetData(1);
+            // advertiseStore.resetData(1);
             if(n != 0){
                 subCategories.value.map(item => {
                     if(item.id == n){

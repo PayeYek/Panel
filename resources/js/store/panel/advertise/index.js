@@ -10,6 +10,9 @@ export const useAdvertise = defineStore('advertise', {
             categoryChildren: {},
             selectedCategory: null,
             usageList: [],
+            defaultSelectedUsage: 0,
+            defaultBrandId: 0,
+            defaultModelId: 0,
             selectedUsage: null,
             specifications: null,
             selectedSpecificationValues: {},
@@ -182,7 +185,13 @@ export const useAdvertise = defineStore('advertise', {
                 case (1):
                     this.selectedUsage = null;
                     this.selectedCategory = null;
-                    this.usageList.length = 0;
+                    this.defaultSelectedUsage += 1;
+                    this.specifications = null;
+                    this.selectedSpecificationValues = {};
+                    this.title = "";
+                    this.price = "";
+                    this.defaultBrandId += 1;
+                    this.defaultModelId += 1;
             }
         }
     },

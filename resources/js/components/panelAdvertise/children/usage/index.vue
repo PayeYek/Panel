@@ -73,15 +73,16 @@ export default {
         })
 
         watch(() => selectedUsage.value, n => {
+            // console.log(n)
             usageList.value.map(usage => {
                 if(usage.id == n){
-                    console.log(usage);
+                    // console.log(usage);
                     advertiseStore.saveUsage(usage);
                     axios.get(`/api/ad/specifications/${n}`)
                         .then(function (response) {
                             // handle success
                             if(response.data.status == 200){
-                                console.log(response.data.data)
+                                // console.log(response.data.data)
                                 advertiseStore.saveSpecifications(response.data.data);
                             }
                         })
@@ -96,6 +97,12 @@ export default {
                 }
             })
         })
+
+        watch(computed(() => advertiseStore.defaultSelectedUsage), (n) => {
+            if (n) {
+                selectedUsage.value = 0;
+            }
+        });
 
 
         return {

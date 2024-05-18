@@ -85,14 +85,17 @@ export default {
 
         watch(() => specifications.value, n => {
             advertiseStore.emptySpecificationValues();
-            n.forEach(spec => {
-                // console.log(spec)
-                if(spec.type === 'select' || spec.type === 'boolean'){
-                    advertiseStore.initializeSpecificationValues(0, spec.required, spec.title, spec.id, spec.type);
-                } else if(spec.type === 'input_text'){
-                    advertiseStore.initializeSpecificationValues("", spec.required, spec.title, spec.id, spec.type);
-                }
-            });
+            // console.log(n)
+            if(n){
+                n.forEach(spec => {
+                    // console.log(spec)
+                    if(spec.type === 'select' || spec.type === 'boolean'){
+                        advertiseStore.initializeSpecificationValues(0, spec.required, spec.title, spec.id, spec.type);
+                    } else if(spec.type === 'input_text'){
+                        advertiseStore.initializeSpecificationValues("", spec.required, spec.title, spec.id, spec.type);
+                    }
+                });
+            }
         });
 
         watch(() => selectedSpecificationValues.value, (n, o) => {

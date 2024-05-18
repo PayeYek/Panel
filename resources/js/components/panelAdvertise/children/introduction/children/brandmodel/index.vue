@@ -177,6 +177,17 @@ export default {
             })
         })
 
+        watch(computed(() => advertiseStore.defaultBrandId), n => {
+            if (n) {
+                brandId.value = 0;
+            }
+        })
+        watch(computed(() => advertiseStore.defaultModelId), n => {
+            if (n) {
+                modelId.value = 0;
+            }
+        })
+
 
         return {
             brandId,
