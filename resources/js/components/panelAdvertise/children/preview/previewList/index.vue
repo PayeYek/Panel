@@ -5,14 +5,7 @@
         </h5>
 
         <section class="grid gap-5 grid-cols-1 lg:grid-cols-2 mb-10 cursor-default">
-            <!-- primary Image-->
-            <div>
-                <span class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">  عکس اصلی </span>
-                <div class="h-32 relative group">
-                    <img :src="primaryImageSrc" :alt="title" class="h-full rounded-md object-cover" />
-                    <img :src="primaryImageSrc" :alt="title" class="absolute top-36 rounded-md right-0 opacity-0 h-60 group-hover:opacity-100 scale-90 group-hover:scale-100" />
-                </div>
-            </div>
+
             <!-- product title-->
             <div>
                 <span class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">  عنوان </span>
@@ -71,6 +64,32 @@
                     {{ description }}
                 </div>
             </div>
+            <!-- primary Image-->
+            <div v-if="primaryImageSrc">
+                <span class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">  عکس اصلی </span>
+                <div class="h-32 lg:h-28 relative">
+                    <img :src="primaryImageSrc" :alt="title" class="h-full rounded-md object-cover peer" />
+                    <img :src="primaryImageSrc" :alt="title" class="absolute bottom-36 lg:bottom-32 rounded-md right-0 opacity-0 min-w-fit hidden md:block h-60 peer-hover:opacity-100 scale-90 peer-hover:scale-100 invisible peer-hover:visible" />
+                </div>
+            </div>
+            <!-- thumbnails -->
+            <template v-if="sliderImages.length">
+                <div>
+                    <span class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">  عکس های بیشتر </span>
+                    <div v-if="sliderImages.length <= 4" class="flex items-center">
+                        <div v-for="(image, index) in sliderImages" :key="index" class="size-32 lg:size-24 xl:size-28 relative -mr-14 first:mr-0 hover:ml-12">
+                            <img :src="image" class="h-full object-cover origin-center rounded-full peer" />
+                            <img :src="image" :alt="title" class="absolute bottom-36 lg:bottom-32 rounded-md left-0 opacity-0 min-w-fit hidden md:block h-60 peer-hover:opacity-100 scale-90 peer-hover:scale-100 invisible peer-hover:visible" />
+                        </div>
+                    </div>
+                    <div v-else class="grid grid-cols-3 xl:grid-cols-4 gap-2">
+                        <div v-for="(image, index) in sliderImages" :key="index" class="aspect-square relative">
+                            <img :src="image" class="size-full object-cover origin-center rounded-md peer" />
+                            <img :src="image" :alt="title" class="absolute bottom-36 lg:bottom-32 rounded-md left-0 opacity-0 min-w-fit hidden md:block h-60 peer-hover:opacity-100 scale-90 peer-hover:scale-100 invisible peer-hover:visible" />
+                        </div>
+                    </div>
+                </div>
+            </template>
 
         </section>
         <SubmitForm />
@@ -103,9 +122,13 @@ export default {
         const specifications = ref(computed(() => advertiseStore.selectedSpecificationValues));
         const spec = ref(computed(() => advertiseStore.specifications));
         const primaryImageSrc = ref(computed(() => advertiseStore.primaryImageSrc));
+        const sliderImages = ref(computed(() => advertiseStore.sliderImagesSrc));
         const filledSpecifications = ref([]);
 
         for (const [key, value] of Object.entries(specifications.value)) {
+            if(value.type === 'boolean'){
+                console.log(value)
+            }
             if(value.type === 'select' && value.id != 0){
                 for (const [index, content] of Object.entries(spec.value)) {
                     if(key == content.id){
@@ -120,10 +143,11 @@ export default {
                         })
                     }
                 }
-            } else if(value.type === 'boolean' && typeof value.id === 'boolean'){
+            } else if(value.type === 'boolean' && (value.id == 0 || value.id == 1)){
+                // console.log(value);
                 const obj = {
                     title: value.title,
-                    value: value.id == true ? 'دارد' : 'ندارد',
+                    value: value.id == 1 ? 'دارد' : 'ندارد',
                 }
                 filledSpecifications.value.push(obj);
             } else if(value.type === 'input_text' && value.id !== ''){
@@ -135,6 +159,8 @@ export default {
             }
         }
 
+        // console.log(sliderImages.value);
+
         return {
             product,
             usage,
@@ -145,6 +171,7 @@ export default {
             city,
             filledSpecifications,
             primaryImageSrc,
+            sliderImages,
         }
     }
 }

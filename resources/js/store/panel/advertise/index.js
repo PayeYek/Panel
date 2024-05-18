@@ -20,6 +20,7 @@ export const useAdvertise = defineStore('advertise', {
             primaryImage: null,
             primaryImageSrc: null,
             sliderImages: null,
+            sliderImagesSrc: [],
             titleErrorMessage: "",
             priceErrorMessage: "",
             cityErrorMessage: "",
@@ -95,10 +96,10 @@ export const useAdvertise = defineStore('advertise', {
             }
 
             for (const [key, value] of Object.entries(importantInformation)) {
-                console.log(key, value)
+                // console.log(key, key === 'title' && value.toString().length <= textInputLimitation && value.toString().length != 0)
                 if(key === 'description' && value.toString().length >= minTextareaLimitation){
                     status = true;
-                } else if(key === 'title' && (value.toString().length <= textInputLimitation || value.toString().length !== '')){
+                } else if(key === 'title' && value.toString().length <= textInputLimitation && value.toString().length != 0){
                     status = true;
                 } else if(key === 'city' && typeof value !== 'undefined'){
                     status = true;
@@ -135,6 +136,9 @@ export const useAdvertise = defineStore('advertise', {
         },
         saveSliderImages(files){
             this.sliderImages = files;
+        },
+        saveSliderImagesSrc(src){
+            this.sliderImagesSrc.push(src);
         },
         changeStep(step){
             this.step = step;
