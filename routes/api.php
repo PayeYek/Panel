@@ -1,7 +1,6 @@
 <?php
 
 use App\Http\Controllers\Api\Advertise\AdvertiseController;
-use App\Http\Controllers\Api\Advertise\BrandController;
 use App\Http\Controllers\Api\Landing\LandingApiController;
 use App\Models\Land;
 use App\Models\Province;
@@ -42,6 +41,7 @@ Route::prefix('ad')
     ->name('api.ad.')
     ->group(function () {
         Route::controller(AdvertiseController::class)->group(function () {
+            Route::get('/list', 'getList')->name('getList');
             Route::get('categories', 'getCategories')->name('getCategories');
             Route::get('usages', 'getUsages')->name('getUsages');
             Route::get('provinces', 'getProvinces')->name('getProvinces');
@@ -53,15 +53,9 @@ Route::prefix('ad')
             Route::post('{advertise}/reject', 'reject')->name('rejectAdvertise');
             Route::get('/{advertise}', 'show')->name('showAdvertise');
             Route::delete('/{advertise}', 'destroy')->name('destroyAdvertise');
+            Route::get('brand/list', 'getBrands')->name('brandList');
+            Route::get('brand/{brand}/models', 'getModelByBrand')->name('brandModels');
         });
-
-        Route::prefix('brand')
-            ->name('brand.')
-            ->controller(BrandController::class)
-            ->group(function () {
-                Route::get('/list', 'getBrands')->name('list');
-                Route::get('/{brand}/models', 'getModelByBrand')->name('models');
-            });
     });
 
 Route::prefix('l')

@@ -25,10 +25,20 @@ class AdvertiseTransformer extends Transformer
      * Transform the model.
      *
      * @param Advertise $advertise
-     * @return Advertise
+     * @return array
      */
-    public function transform(Advertise $advertise): Advertise
+    public function transform(Advertise $advertise): array
     {
-        return $advertise;
+        return [
+            'id' => $advertise->id,
+            'title' => $advertise->title,
+            'description' => $advertise->description,
+            'price' => $advertise->price,
+            'primary_image' => $advertise->primary_image,
+            'slider_images' => $advertise->slider_images,
+            'category_id' => $advertise->category_id,
+            'city_id' => $advertise->city_id,
+            'usage_id' => $advertise->usage_id,
+        ];
     }
 }
