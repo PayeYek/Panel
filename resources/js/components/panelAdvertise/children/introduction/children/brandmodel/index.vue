@@ -64,7 +64,7 @@ export default {
         const brands = ref([]);
         const models = ref([]);
 
-        axios.get(`/api/ad/provinces`)
+        axios.get(`/api/brand`)
             .then(function (response) {
                 // handle success
                 if (response.data.status == 200) {
