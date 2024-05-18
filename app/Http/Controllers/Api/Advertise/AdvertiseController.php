@@ -27,9 +27,10 @@ class AdvertiseController extends Controller
 {
     public function getList()
     {
-        $ad = Advertise::where('state',AdvertiseStateEnum::APPROVED)->get();
+        $ad = Advertise::where('state', AdvertiseStateEnum::APPROVED)->get();
         return responder()->success($ad, AdvertiseTransformer::class)->respond();
     }
+
     public function getUsages()
     {
         return responder()->success(Usage::all(), UsageTransformer::class)->respond();
@@ -56,7 +57,8 @@ class AdvertiseController extends Controller
 
     public function getBrands()
     {
-        return responder()->success(Brand::all(), BrandForAdTransformer::class)->respond();
+        $brands = Brand::whereIn('id', ProductModel::select('brand_id'))->get();
+        return responder()->success($brands, BrandForAdTransformer::class)->respond();
     }
 
     public function getModelByBrand(Brand $brand)
