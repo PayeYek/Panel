@@ -17,11 +17,13 @@ class DatabaseSeeder extends Seeder
 
         /* Landing */
         $this->call([
+            CountrySeeder::class,
             AdminUserSeeder::class,
             LandCategorySeeder::class,
             LandColorSeeder::class,
             LandBrandSeeder::class,
             LandSeeder::class,
+            CompanySeeder::class,
             LandProductSeeder::class,
             LandSlideSeeder::class,
             LandArticleSeeder::class,
@@ -34,7 +36,9 @@ class DatabaseSeeder extends Seeder
             ColorSeeder::class,
             UsageSeeder::class,
             UsageSpecificationSeeder::class,
-            SpecificationValueSeeder::class
+            SpecificationValueSeeder::class,
+            BrandSeeder::class,
+            ProductModelSeeder::class
         ]);
     }
 }

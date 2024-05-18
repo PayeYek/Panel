@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\Advertise\AdvertiseController;
+use App\Http\Controllers\Api\Advertise\BrandController;
 use App\Http\Controllers\Api\Landing\LandingApiController;
 use App\Models\Land;
 use App\Models\Province;
@@ -39,19 +40,28 @@ Route::get('land/{landId}/products', function ($landId) {
 
 Route::prefix('ad')
     ->name('api.ad.')
-    ->controller(AdvertiseController::class)
     ->group(function () {
-        Route::get('categories', 'getCategories')->name('getCategories');
-        Route::get('usages', 'getUsages')->name('getUsages');
-        Route::get('provinces', 'getProvinces')->name('getProvinces');
-        Route::get('cities/{province}', 'getCitiesByProvince')->name('getCities');
-        Route::get('specifications/{usage}', 'getSpecificationsByUsage')->name('getSpecifications');
-        Route::post('submit', 'submit')->name('submitAdvertise');
-        Route::put('update/{advertise}', 'update')->name('updateAdvertise');
-        Route::post('{advertise}/approve', 'approve')->name('approveAdvertise');
-        Route::post('{advertise}/reject', 'reject')->name('rejectAdvertise');
-        Route::get('/{advertise}', 'show')->name('showAdvertise');
-        Route::delete('/{advertise}', 'destroy')->name('destroyAdvertise');
+        Route::controller(AdvertiseController::class)->group(function () {
+            Route::get('categories', 'getCategories')->name('getCategories');
+            Route::get('usages', 'getUsages')->name('getUsages');
+            Route::get('provinces', 'getProvinces')->name('getProvinces');
+            Route::get('cities/{province}', 'getCitiesByProvince')->name('getCities');
+            Route::get('specifications/{usage}', 'getSpecificationsByUsage')->name('getSpecifications');
+            Route::post('submit', 'submit')->name('submitAdvertise');
+            Route::put('update/{advertise}', 'update')->name('updateAdvertise');
+            Route::post('{advertise}/approve', 'approve')->name('approveAdvertise');
+            Route::post('{advertise}/reject', 'reject')->name('rejectAdvertise');
+            Route::get('/{advertise}', 'show')->name('showAdvertise');
+            Route::delete('/{advertise}', 'destroy')->name('destroyAdvertise');
+        });
+
+        Route::prefix('brand')
+            ->name('brand.')
+            ->controller(BrandController::class)
+            ->group(function () {
+                Route::get('/list', 'getBrands')->name('list');
+                Route::get('/{brand}/models', 'getModelByBrand')->name('models');
+            });
     });
 
 Route::prefix('l')
