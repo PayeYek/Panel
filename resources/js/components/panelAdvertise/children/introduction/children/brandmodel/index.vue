@@ -54,7 +54,6 @@ import {computed, nextTick, ref, watch} from "vue";
 import {useAdvertise} from "@/store/panel/advertise/index.js";
 import axios from "axios";
 import Choices from 'choices.js';
-import {onMounted} from "@vue/runtime-dom";
 
 export default {
     name: 'Brand And Model',
@@ -65,6 +64,8 @@ export default {
         const modelId = ref(0);
         const brands = ref([]);
         const models = ref([]);
+        const brandInitialized = ref(false);
+        const modelInitialized = ref(false);
         const choicesInstanceBrand = ref(null);
         const choicesInstanceModel = ref(null);
 
@@ -75,22 +76,19 @@ export default {
                 if (response.data.status == 200) {
                     brands.value = response.data.data;
 
-                    // brands.value.map(brand => {
-                    //     if(brand.id == n){
-                    //         // console.log(brand);
-                    //         // console.log(model);
-                    //         advertiseStore.saveBrand(brand);
-                    //     }
-                    // })
+                    // prevent re-initializing choices js
+                    if (!brandInitialized.value) {
+                        nextTick(() => {
+                            const selectElement = document.getElementById('select-brand');
+                            choicesInstanceBrand.value = new Choices(selectElement, {
+                                searchEnabled: true,
+                                itemSelectText: '',
+                                shouldSort: false
+                            });
+                        });
 
-                    // nextTick(() => {
-                    //     const selectElement = document.getElementById('select-brand');
-                    //     choicesInstanceBrand.value = new Choices(selectElement, {
-                    //         searchEnabled: true,
-                    //         itemSelectText: '',
-                    //         shouldSort: false
-                    //     });
-                    // });
+                        brandInitialized.value = true;
+                    }
                 }
             })
             .catch(function (error) {
@@ -103,31 +101,32 @@ export default {
             });
 
         watch(brandId, n => {
-                    models.value = [];
-            // console.log(models.value)
+            models.value = [];
+            modelId.value = 0;
+            advertiseStore.saveBrand({});
+            brands.value.map(brand => {
+                if(brand.id == n){
+                    advertiseStore.saveBrand(brand);
+                }
+            })
             axios.get(`/api/ad/brand/${n}/models`)
                 .then(function (response) {
                     // handle success
                     if (response.data.status == 200) {
                         models.value = response.data.data;
-                    console.log(response.data)
 
-                        brands.value.map(brand => {
-                            if(brand.id == n){
-                                // console.log(brand);
-                                // console.log(model);
-                                advertiseStore.saveBrand(brand);
-                            }
-                        })
-
-                        // nextTick(() => {
-                        //     const selectElement = document.getElementById('select-model');
-                        //     choicesInstanceModel.value = new Choices(selectElement, {
-                        //         searchEnabled: true,
-                        //         itemSelectText: '',
-                        //         shouldSort: false
-                        //     });
-                        // });
+                        // prevent re-initializing choices js
+                        if (!modelInitialized.value) {
+                            nextTick(() => {
+                                const selectElement = document.getElementById('select-model');
+                                choicesInstanceModel.value = new Choices(selectElement, {
+                                    searchEnabled: true,
+                                    itemSelectText: '',
+                                    shouldSort: false
+                                });
+                            });
+                            modelInitialized.value = true;
+                        }
                     }
                 })
                 .catch(function (error) {
@@ -140,45 +139,14 @@ export default {
                 });
         });
 
-        // watch(brandId, n => {
-        //     brands.value.map(brand => {
-        //         if(brand.id == n){
-        //             // console.log(brand);
-        //             // console.log(model);
-        //             advertiseStore.saveBrand(brand);
-        //         }
-        //     })
-        // })
-
         watch(modelId, n => {
             models.value.map(model => {
-                if(model.id == n){
+                if (model.id == n) {
                     // console.log(model);
                     advertiseStore.saveModel(model);
                 }
             })
         })
-
-        // onMounted(() => {
-            // nextTick(() => {
-        setTimeout(() => {
-
-                const selectElement1 = document.getElementById('select-model');
-                choicesInstanceModel.value = new Choices(selectElement1, {
-                    searchEnabled: true,
-                    itemSelectText: '',
-                    shouldSort: false
-                });
-
-                const selectElement2 = document.getElementById('select-brand');
-                choicesInstanceBrand.value = new Choices(selectElement2, {
-                    searchEnabled: true,
-                    itemSelectText: '',
-                    shouldSort: false
-                });
-        }, 300)
-            // });
-        // })
 
 
         return {
