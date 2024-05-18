@@ -7,7 +7,7 @@
         <section class="grid gap-5 grid-cols-1 lg:grid-cols-2">
             <!-- select usage-->
             <label class="block group/select" for="select-usage">
-                <span class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"> دسته بندی </span>
+                <span class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"> کاربری </span>
                 <div
                     class="relative rounded-lg border border-gray-300 dark:border-gray-600 shadow-sm group-focus-within/select:ring-1 group-focus-within/select:ring-primary-500 group-focus-within/select:border-primary-500 transition duration-200">
                     <div>

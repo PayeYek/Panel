@@ -131,6 +131,12 @@ export const useAdvertise = defineStore('advertise', {
         saveCity(id){
             this.city = id;
         },
+        saveModel(obj){
+            this.model = obj;
+        },
+        saveBrand(obj){
+            this.brand = obj;
+        },
         savePrimaryImage(file){
             this.primaryImage = file;
         },

@@ -17,19 +17,19 @@
         </div>
     </label>
 
-    <!-- city-->
-    <div :class="brands.length ? '' : 'pointer-events-none opacity-40 cursor-default'">
+    <!-- model-->
+    <div :class="models.length ? '' : 'pointer-events-none opacity-40 cursor-default'">
         <label class="block group/select" for="select-model">
             <span class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"> مدل </span>
             <div
                 :class="'relative rounded-lg border border-gray-300 dark:border-gray-600 shadow-sm group-focus-within/select:ring-1 group-focus-within/select:ring-primary-500 group-focus-within/select:border-primary-500 transition duration-200 ' + (titleError === '' ? '' : 'border-red-500 dark:border-red-500')">
                 <div>
-                    <select id="select-model" v-model="brandId"
+                    <select id="select-model" v-model="modelId"
                             class="rounded-[7px] min-h-[2.5rem] px-3 block bg-gray-50 dark:bg-gray-700 w-full border-transparent focus:border-transparent focus:outline-none focus:ring-0 dark:placeholder-gray-400 disabled:opacity-50 disabled:bg-gray-50 disabled:cursor-not-allowed">
                         <option value="0" selected disabled>انتخاب کنید</option>
                         <option v-for="(option, index) in models" :key="index" :value="option.id"> {{
                                 option.name
-                            }}
+                            }} - {{ option.model }}
                         </option>
                     </select>
                 </div>
@@ -50,9 +50,11 @@
 </template>
 
 <script>
-import {computed, ref, watch} from "vue";
+import {computed, nextTick, ref, watch} from "vue";
 import {useAdvertise} from "@/store/panel/advertise/index.js";
 import axios from "axios";
+import Choices from 'choices.js';
+import {onMounted} from "@vue/runtime-dom";
 
 export default {
     name: 'Brand And Model',
@@ -63,13 +65,32 @@ export default {
         const modelId = ref(0);
         const brands = ref([]);
         const models = ref([]);
+        const choicesInstanceBrand = ref(null);
+        const choicesInstanceModel = ref(null);
 
-        axios.get(`/api/brand`)
+        axios.get(`/api/ad/brand/list`)
             .then(function (response) {
+                brands.value.length = 0;
                 // handle success
                 if (response.data.status == 200) {
-                    console.log(response.data);
                     brands.value = response.data.data;
+
+                    // brands.value.map(brand => {
+                    //     if(brand.id == n){
+                    //         // console.log(brand);
+                    //         // console.log(model);
+                    //         advertiseStore.saveBrand(brand);
+                    //     }
+                    // })
+
+                    // nextTick(() => {
+                    //     const selectElement = document.getElementById('select-brand');
+                    //     choicesInstanceBrand.value = new Choices(selectElement, {
+                    //         searchEnabled: true,
+                    //         itemSelectText: '',
+                    //         shouldSort: false
+                    //     });
+                    // });
                 }
             })
             .catch(function (error) {
@@ -82,11 +103,31 @@ export default {
             });
 
         watch(brandId, n => {
-            axios.get(`/api/ad/cities/${n}`)
+                    models.value = [];
+            // console.log(models.value)
+            axios.get(`/api/ad/brand/${n}/models`)
                 .then(function (response) {
                     // handle success
                     if (response.data.status == 200) {
                         models.value = response.data.data;
+                    console.log(response.data)
+
+                        brands.value.map(brand => {
+                            if(brand.id == n){
+                                // console.log(brand);
+                                // console.log(model);
+                                advertiseStore.saveBrand(brand);
+                            }
+                        })
+
+                        // nextTick(() => {
+                        //     const selectElement = document.getElementById('select-model');
+                        //     choicesInstanceModel.value = new Choices(selectElement, {
+                        //         searchEnabled: true,
+                        //         itemSelectText: '',
+                        //         shouldSort: false
+                        //     });
+                        // });
                     }
                 })
                 .catch(function (error) {
@@ -99,14 +140,45 @@ export default {
                 });
         });
 
+        // watch(brandId, n => {
+        //     brands.value.map(brand => {
+        //         if(brand.id == n){
+        //             // console.log(brand);
+        //             // console.log(model);
+        //             advertiseStore.saveBrand(brand);
+        //         }
+        //     })
+        // })
+
         watch(modelId, n => {
             models.value.map(model => {
                 if(model.id == n){
-                    console.log(model);
-                    // advertiseStore.saveCity(city);
+                    // console.log(model);
+                    advertiseStore.saveModel(model);
                 }
             })
         })
+
+        // onMounted(() => {
+            // nextTick(() => {
+        setTimeout(() => {
+
+                const selectElement1 = document.getElementById('select-model');
+                choicesInstanceModel.value = new Choices(selectElement1, {
+                    searchEnabled: true,
+                    itemSelectText: '',
+                    shouldSort: false
+                });
+
+                const selectElement2 = document.getElementById('select-brand');
+                choicesInstanceBrand.value = new Choices(selectElement2, {
+                    searchEnabled: true,
+                    itemSelectText: '',
+                    shouldSort: false
+                });
+        }, 300)
+            // });
+        // })
 
 
         return {

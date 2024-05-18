@@ -23,8 +23,10 @@ export default {
         const price = ref(computed(() => advertiseStore.price));
         const city = ref(computed(() => advertiseStore.city));
         const description = ref(computed(() => advertiseStore.description));
+        const model = ref(computed(() => advertiseStore.model.name));
 
         const moveTo = step => {
+            console.log(model.value);
             if(title.value === ""){
                 advertiseStore.handleTitleError("عنوان خالیست.");
             } else if(title.value.toString().length > textInputLimitation){
