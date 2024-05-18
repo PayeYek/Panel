@@ -38,7 +38,7 @@ export default {
         const advertiseStore = useAdvertise();
         const selectedUsage = ref(0);
         const usageList = ref(computed(() => advertiseStore.usageList));
-        const choicesInstance = ref(null);
+        // const choicesInstance = ref(null);
 
         // onBeforeUnmount(() => {
         //     if (choicesInstance.value) {
@@ -52,14 +52,14 @@ export default {
                     // handle success
                     if(response.data.status == 200){
                         advertiseStore.saveUsages(response.data.data);
-                        nextTick(() => {
-                            const selectElement = document.getElementById('select-usage');
-                            choicesInstance.value = new Choices(selectElement, {
-                                searchEnabled: true,
-                                itemSelectText: '',
-                                shouldSort: false
-                            });
-                        });
+                        // nextTick(() => {
+                        //     const selectElement = document.getElementById('select-usage');
+                        //     choicesInstance.value = new Choices(selectElement, {
+                        //         searchEnabled: true,
+                        //         itemSelectText: '',
+                        //         shouldSort: false
+                        //     });
+                        // });
                     }
                 })
                 .catch(function (error) {

@@ -69,13 +69,13 @@ export const useAdvertise = defineStore('advertise', {
 
             this.selectedSpecificationValues[id] = obj;
         },
-        initializeSpecificationValue(item){
-            this.specifications.map(spec => {
-                if(spec.id == item.parentId){
-                console.log(item)
-                }
-            })
-        },
+        // initializeSpecificationValue(item){
+        //     this.specifications.map(spec => {
+        //         if(spec.id == item.parentId){
+        //         console.log(item)
+        //         }
+        //     })
+        // },
         checkAllSpecFilled(){
             let status = false;
             Object.keys(this.selectedSpecificationValues).forEach(key => {
@@ -177,5 +177,13 @@ export const useAdvertise = defineStore('advertise', {
         handleModelError(message){
             this.modelErrorMessage = message;
         },
+        resetData(step){
+            switch (step){
+                case (1):
+                    this.selectedUsage = null;
+                    this.selectedCategory = null;
+                    this.usageList.length = 0;
+            }
+        }
     },
 });
