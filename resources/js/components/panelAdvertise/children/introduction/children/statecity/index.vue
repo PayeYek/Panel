@@ -37,10 +37,10 @@
 </template>
 
 <script>
-import {computed, ref, watch} from 'vue';
+import {computed, nextTick, ref, watch} from 'vue';
 import {useAdvertise} from "@/store/panel/advertise/index.js";
 import axios from "axios";
-
+import Choices from 'choices.js';
 
 export default {
     name: 'State VS City',
@@ -51,13 +51,31 @@ export default {
         const cityId = ref(0);
         const states = ref([]);
         const cities = ref([]);
+        const stateInitialized = ref(false);
+        const choicesInstanceState = ref(null);
 
         axios.get(`/api/ad/provinces`)
             .then(function (response) {
                 // handle success
                 if(response.data.status == 200){
-                    console.log(response.data);
+                    // console.log(response.data);
                     states.value = response.data.data;
+
+                    if (!stateInitialized.value) {
+                        nextTick(() => {
+                            const selectState = document.getElementById('select-state');
+                            if (choicesInstanceState.value != null) {
+                                choicesInstanceState.value = null;
+                            }
+                            choicesInstanceState.value = new Choices(selectState, {
+                                searchEnabled: true,
+                                itemSelectText: '',
+                                shouldSort: false
+                            });
+                        });
+
+                        stateInitialized.value = true;
+                    }
                 }
             })
             .catch(function (error) {
@@ -70,12 +88,10 @@ export default {
             });
 
         watch(stateId, n => {
-            console.log(n);
             axios.get(`/api/ad/cities/${n}`)
                 .then(function (response) {
                     // handle success
                     if(response.data.status == 200){
-                        console.log(response.data);
                         cities.value = response.data.data;
                     }
                 })
@@ -87,8 +103,16 @@ export default {
                 .finally(function () {
                     // always executed
                 });
-            // advertiseStore.saveCity(id);
         });
+
+        watch(cityId, n => {
+            cities.value.map(city => {
+                if(city.id == n){
+                    // console.log(city);
+                    advertiseStore.saveCity(city);
+                }
+            })
+        })
 
         return {
             stateId,

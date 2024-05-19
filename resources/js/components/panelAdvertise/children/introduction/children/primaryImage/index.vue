@@ -29,6 +29,12 @@ export default {
 
         const handleFileUpload = (event) => {
             advertiseStore.savePrimaryImage(event.target.files[0]);
+            const reader = new FileReader();
+            reader.readAsDataURL(event.target.files[0]);
+
+            reader.onload = () => {
+                advertiseStore.savePrimaryImageSrc(reader.result);
+            };
         }
         return {
             handleFileUpload,

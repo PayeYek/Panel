@@ -6,6 +6,7 @@ use App\Models\LandComment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 use ProtoneMedia\Splade\AbstractTable;
+use ProtoneMedia\Splade\Facades\Toast;
 use ProtoneMedia\Splade\SpladeTable;
 use Spatie\QueryBuilder\AllowedFilter;
 use Spatie\QueryBuilder\QueryBuilder;
@@ -74,7 +75,20 @@ class Comments extends AbstractTable
             ->column('created_at', label: __('Create date'), hidden: true, sortable: true)
             ->column('updated_at', label: __('Update date'), hidden: true, sortable: true)
 //            ->column('action', label: __('Actions'), exportAs: false)
+                        ->export()
+            ->bulkAction(
+                label: 'Delete Selected User',
+                each: fn(LandComment $landComment) => $landComment->delete(),
+                after: fn() => Toast::danger(__('The selected options are deleted.'))->autoDismiss(5),
+                confirm: 'Touch projects',
+                confirmText: 'Are you sure you want to touch the projects?',
+                confirmButton: 'Yes, touch all selected rows!',
+                cancelButton: 'No, do not touch!',
+            )
             ->paginate();
+
+
+
 
         $table->selectFilter('approved', [
             '0' => __('Unconfirmed'),

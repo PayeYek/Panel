@@ -51,12 +51,11 @@
                             <div>
                                 <select :id="`boolean-${spec.id}`" v-model="selectedSpecificationValues[spec.id].id" :required="spec.required != 0"
                                         class="rounded-[7px] min-h-[2.5rem] px-3 block bg-gray-50 dark:bg-gray-700 w-full border-transparent focus:border-transparent focus:outline-none focus:ring-0 dark:placeholder-gray-400 disabled:opacity-50 disabled:bg-gray-50 disabled:cursor-not-allowed">
-                                    <option value="0" selected disabled>انتخاب کنید</option>
-                                    <option :value="true">
-                                        بله
+                                    <option value="0" selected>
+                                        ندارد
                                     </option>
-                                    <option :value="false">
-                                        خیر
+                                    <option value="1">
+                                        دارد
                                     </option>
                                 </select>
                             </div>
@@ -86,18 +85,21 @@ export default {
 
         watch(() => specifications.value, n => {
             advertiseStore.emptySpecificationValues();
-            n.forEach(spec => {
-                console.log(spec)
-                if(spec.type === 'select' || spec.type === 'boolean'){
-                    advertiseStore.initializeSpecificationValues(0, spec.required, spec.title, spec.id, spec.type);
-                } else if(spec.type === 'input_text'){
-                    advertiseStore.initializeSpecificationValues("", spec.required, spec.title, spec.id, spec.type);
-                }
-            });
+            // console.log(n)
+            if(n){
+                n.forEach(spec => {
+                    // console.log(spec)
+                    if(spec.type === 'select' || spec.type === 'boolean'){
+                        advertiseStore.initializeSpecificationValues(0, spec.required, spec.title, spec.id, spec.type);
+                    } else if(spec.type === 'input_text'){
+                        advertiseStore.initializeSpecificationValues("", spec.required, spec.title, spec.id, spec.type);
+                    }
+                });
+            }
         });
 
         watch(() => selectedSpecificationValues.value, (n, o) => {
-            console.log(advertiseStore.checkAllSpecFilled())
+            // console.log(n)
         }, { deep: true });
 
 

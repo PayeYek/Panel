@@ -7,7 +7,7 @@
         <section class="grid gap-5 grid-cols-1 lg:grid-cols-2">
             <!-- select usage-->
             <label class="block group/select" for="select-usage">
-                <span class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"> دسته بندی </span>
+                <span class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"> کاربری </span>
                 <div
                     class="relative rounded-lg border border-gray-300 dark:border-gray-600 shadow-sm group-focus-within/select:ring-1 group-focus-within/select:ring-primary-500 group-focus-within/select:border-primary-500 transition duration-200">
                     <div>
@@ -73,15 +73,16 @@ export default {
         })
 
         watch(() => selectedUsage.value, n => {
+            // console.log(n)
             usageList.value.map(usage => {
                 if(usage.id == n){
-                    console.log(usage);
+                    // console.log(usage);
                     advertiseStore.saveUsage(usage);
                     axios.get(`/api/ad/specifications/${n}`)
                         .then(function (response) {
                             // handle success
                             if(response.data.status == 200){
-                                console.log(response.data.data)
+                                // console.log(response.data.data)
                                 advertiseStore.saveSpecifications(response.data.data);
                             }
                         })
@@ -96,6 +97,12 @@ export default {
                 }
             })
         })
+
+        watch(computed(() => advertiseStore.defaultSelectedUsage), (n) => {
+            if (n) {
+                selectedUsage.value = 0;
+            }
+        });
 
 
         return {

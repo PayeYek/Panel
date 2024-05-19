@@ -29,6 +29,33 @@ export default {
 
         const handleMultipleFileUpload = (event) => {
             advertiseStore.saveSliderImages(event.target.files);
+            const imagesLength = event.target.files.length;
+            for (let i = 0; i < imagesLength; i++) {
+                const reader = new FileReader();
+                reader.readAsDataURL(event.target.files[i]);
+
+                reader.onload = () => {
+                    advertiseStore.saveSliderImagesSrc(reader.result)
+                    // console.log(reader.result);
+                };
+            }
+            // imagesLength.map(image => {
+            //     const reader = new FileReader();
+            //     reader.readAsDataURL(image);
+            //
+            //     reader.onload = () => {
+            //         console.log(reader.result);
+            //     };
+            // })
+            // event.target.files.map(item => {
+            //     console.log(event.target.files)
+            // })
+            // const reader = new FileReader();
+            // reader.readAsDataURL(event.target.files);
+            //
+            // reader.onload = () => {
+            //     console.log(reader.result);
+            // };
         }
 
         return {

@@ -30,6 +30,7 @@ import FormIconOne from "@/components/computing/children/Icons/FormIconOne.vue";
 import FormIconTwo from "@/components/computing/children/Icons/FormIconTwo.vue";
 import PdpCounseling from "@/components/pdp/counseling.vue";
 import PanelAdvertise from "@/components/panelAdvertise/index.vue";
+import PanelAdvertiseEdit from "@/components/panelAdvertiseEdit/index.vue";
 import { createPinia } from 'pinia';  // Import Pinia
 // import Swiper from 'swiper';
 // import 'swiper/css/bundle';
@@ -99,6 +100,7 @@ app.use(SpladePlugin,
     .component('FormIconTwo', FormIconTwo)
     .component('PdpCounseling', PdpCounseling)
     .component('PanelAdvertise', PanelAdvertise)
+    .component('PanelAdvertiseEdit', PanelAdvertiseEdit)
     // .directive("click-outside", clickOutside)
     .mount(el);
 

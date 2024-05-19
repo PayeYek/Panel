@@ -10,7 +10,7 @@
 <script>
 import {useAdvertise} from "@/store/panel/advertise/index.js";
 import {ref, computed} from 'vue';
-import {maxTextareaLimitation, textInputLimitation} from "@/components/helper/common.js";
+import {maxTextareaLimitation, minTextareaLimitation, textInputLimitation} from "@/components/helper/common.js";
 
 export default {
     name: 'Preview Button',
@@ -23,12 +23,11 @@ export default {
         const price = ref(computed(() => advertiseStore.price));
         const city = ref(computed(() => advertiseStore.city));
         const description = ref(computed(() => advertiseStore.description));
-        const product = ref(computed(() => advertiseStore.selectedCategory));
-        const usage = ref(computed(() => advertiseStore.selectedUsage));
-        const specifications = ref(computed(() => advertiseStore.selectedSpecificationValues));
+        const brand = ref(computed(() => advertiseStore.brand.id));
+        const model = ref(computed(() => advertiseStore.model.id));
 
         const moveTo = step => {
-            console.log(city.value === "");
+            console.log(brand.value);
             if(title.value === ""){
                 advertiseStore.handleTitleError("عنوان خالیست.");
             } else if(title.value.toString().length > textInputLimitation){
@@ -48,15 +47,27 @@ export default {
             } else {
                 advertiseStore.handleCityError("");
             }
-            if(description.value.toString().length <= 20){
-                advertiseStore.handleDescriptionError("توضیحات کمتر از 10 کاراکتر است.");
+            if(description.value.toString().length <= minTextareaLimitation){
+                advertiseStore.handleDescriptionError(`توضیحات کمتر از ${minTextareaLimitation} کاراکتر می باشد.`);
             } else if(description.value.toString().length >= maxTextareaLimitation){
-                advertiseStore.handleDescriptionError("توضیحات بیشتر از 1000 کاراکتر است.");
+                advertiseStore.handleDescriptionError(`توضیحات بیشتر از ${maxTextareaLimitation} کاراکتر می باشد.`);
             } else{
                 advertiseStore.handleDescriptionError("");
             }
-            console.log(advertiseStore.checkAllSpecFilled())
-            // advertiseStore.changeStep(step);
+            // console.log("brand.value => ", brand.value)
+            if(brand.value == 0 || typeof brand.value === 'undefined'){
+                advertiseStore.handleBrandError("برند را انتخاب کنید.");
+            } else {
+                advertiseStore.handleBrandError("");
+            }
+            if(model.value == 0 || typeof model.value === 'undefined'){
+                advertiseStore.handleModelError("مدل برند را انتخاب کنید.");
+            } else {
+                advertiseStore.handleModelError("");
+            }
+            if(advertiseStore.checkAllInfoFilled() && advertiseStore.checkAllSpecFilled()){
+                advertiseStore.changeStep(step);
+            }
         }
 
         return {
