@@ -18,15 +18,15 @@ return new class extends Migration {
             $table->string('primary_image')->nullable();
             $table->json('slider_images')->nullable();
 
-            $table->boolean('agreement_price')->default(false);
+            $table->boolean('agreement_price')->nullable()->default(false);
             $table->string('price')->nullable();
-            $table->boolean('by_installment')->default(false);
+            $table->boolean('by_installment')->nullable()->default(false);
             $table->string('prepayment')->nullable();
             $table->string('installment')->nullable();
             $table->unsignedInteger('installment_count')->nullable();
 
-            $table->boolean('exchange')->default(false);
-            $table->boolean('has_chat')->default(true);
+            $table->boolean('exchange')->nullable()->default(false);
+            $table->boolean('has_chat')->nullable()->default(true);
 
             $table->double('latitude', 10, 8)->nullable();
             $table->double('longitude', 11, 8)->nullable();

@@ -22,10 +22,10 @@ return new class extends Migration
             $table->json('slider_images')->nullable();
             $table->string('year')->nullable();
 
-            $table->foreignId('brand_id')->constrained('brands');
-            $table->foreignId('category_id')->nullable()->constrained('brands');
-            $table->foreignId('company_id')->constrained('companies');
-            $table->foreignId('usage_id')->nullable()->constrained('usages');
+            $table->foreignId('brand_id')->constrained();
+            $table->foreignId('category_id')->nullable()->constrained();
+            $table->foreignId('company_id')->constrained();
+            $table->foreignId('usage_id')->nullable()->constrained();
 
             $table->softDeletes();
             $table->timestamps();
