@@ -62,17 +62,17 @@ export default {
                     states.value = response.data.data;
 
                     if (!stateInitialized.value) {
-                        nextTick(() => {
-                            const selectState = document.getElementById('select-state');
-                            if (choicesInstanceState.value != null) {
-                                choicesInstanceState.value = null;
-                            }
-                            choicesInstanceState.value = new Choices(selectState, {
-                                searchEnabled: true,
-                                itemSelectText: '',
-                                shouldSort: false
-                            });
-                        });
+                        // nextTick(() => {
+                        //     const selectState = document.getElementById('select-state');
+                        //     if (choicesInstanceState.value != null) {
+                        //         choicesInstanceState.value = null;
+                        //     }
+                        //     choicesInstanceState.value = new Choices(selectState, {
+                        //         searchEnabled: true,
+                        //         itemSelectText: '',
+                        //         shouldSort: false
+                        //     });
+                        // });
 
                         stateInitialized.value = true;
                     }
