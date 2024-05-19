@@ -37,10 +37,10 @@
 </template>
 
 <script>
-import {computed, ref, watch} from 'vue';
+import {computed, nextTick, ref, watch} from 'vue';
 import {useAdvertise} from "@/store/panel/advertise/index.js";
 import axios from "axios";
-
+import Choices from 'choices.js';
 
 export default {
     name: 'State VS City',
@@ -51,6 +51,8 @@ export default {
         const cityId = ref(0);
         const states = ref([]);
         const cities = ref([]);
+        const stateInitialized = ref(false);
+        const choicesInstanceState = ref(null);
 
         axios.get(`/api/ad/provinces`)
             .then(function (response) {
@@ -58,6 +60,22 @@ export default {
                 if(response.data.status == 200){
                     // console.log(response.data);
                     states.value = response.data.data;
+
+                    if (!stateInitialized.value) {
+                        nextTick(() => {
+                            const selectState = document.getElementById('select-state');
+                            if (choicesInstanceState.value != null) {
+                                choicesInstanceState.value = null;
+                            }
+                            choicesInstanceState.value = new Choices(selectState, {
+                                searchEnabled: true,
+                                itemSelectText: '',
+                                shouldSort: false
+                            });
+                        });
+
+                        stateInitialized.value = true;
+                    }
                 }
             })
             .catch(function (error) {
