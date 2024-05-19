@@ -65,6 +65,11 @@ class Advertise extends Model
         return $this->belongsTo(Category::class);
     }
 
+    public function usage(): BelongsTo
+    {
+        return $this->belongsTo(Usage::class);
+    }
+
     public function city(): BelongsTo
     {
         return $this->belongsTo(ProvinceCity::class, 'city_id', 'id');

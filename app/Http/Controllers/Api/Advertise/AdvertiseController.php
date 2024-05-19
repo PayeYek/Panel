@@ -13,6 +13,7 @@ use App\Models\ProductModel;
 use App\Models\Province;
 use App\Models\Usage;
 use App\Transformers\AdvertiseForCardsTransformer;
+use App\Transformers\AdvertiseForSingleTransformer;
 use App\Transformers\BrandForAdTransformer;
 use App\Transformers\ProductModelForAdTransformer;
 use App\Transformers\SpecificationTransformer;
@@ -72,7 +73,10 @@ class AdvertiseController extends Controller
     {
         return responder()->success($usage->specifications(), SpecificationTransformer::class)->respond();
     }
-
+    public function show(Advertise $advertise)
+    {
+        return responder()->success($advertise, AdvertiseForSingleTransformer::class)->respond();
+    }
     public function submit(StoreAdvertiseRequest $advertiseRequest)
     {
         $data = [];
@@ -219,10 +223,5 @@ class AdvertiseController extends Controller
         $advertise->delete();
 
         return responder()->success(['message' => 'Advertise deleted successfully'])->respond();
-    }
-
-    public function show(Advertise $advertise)
-    {
-        return responder()->success($advertise)->respond();
     }
 }
