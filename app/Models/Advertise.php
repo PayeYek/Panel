@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Enum\AdvertiseStateEnum;
+use App\Support\CodeGeneratorHelper;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -37,12 +38,22 @@ class Advertise extends Model
         'usage_id',
         'city_id',
         'category_id',
+        'tracking_code',
     ];
 
     protected $casts = [
         'state' => AdvertiseStateEnum::class,
         'slider_images' => 'array',
     ];
+
+    protected static function boot(): void
+    {
+        parent::boot();
+
+        static::creating(function ($model) {
+            $model->tracking_code = CodeGeneratorHelper::generateUniqueTrackingCode('advertises', 'tracking_code');
+        });
+    }
 
     public function user(): BelongsTo
     {
