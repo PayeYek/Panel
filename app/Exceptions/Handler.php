@@ -2,7 +2,10 @@
 
 namespace App\Exceptions;
 
+use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Validation\ValidationException;
+use Symfony\Component\HttpKernel\Exception\UnprocessableEntityHttpException;
 use Throwable;
 
 class Handler extends ExceptionHandler
@@ -29,4 +32,14 @@ class Handler extends ExceptionHandler
             //
         });
     }
+//    public function render($request, Exception|Throwable $e)
+//    {
+//        // 404 Errors
+//        // Either the route does not exist or a model is not found when performing an Eloquent query
+//        if($e instanceof ValidationException) {
+//            return responder()->error(message: $e->errorBag)->respond(422);
+//        }
+//
+//        return parent::render($request, $e);
+//    }
 }

@@ -15,7 +15,8 @@ class Specification extends Model
     protected $table = 'specifications';
     protected $fillable = [
         'title',
-        'type'
+        'type',
+        'required'
     ];
 
     protected $casts = [

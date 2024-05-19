@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Web\Panel\Advertise;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Api\Advertise\UsageRequest;
+use App\Http\Requests\Panel\Advertise\UsageRequest;
 use App\Models\Usage;
 use App\Tables\Advertise\Usages;
 use ProtoneMedia\Splade\Facades\Splade;
