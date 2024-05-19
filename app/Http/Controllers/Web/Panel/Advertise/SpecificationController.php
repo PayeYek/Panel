@@ -2,62 +2,62 @@
 
 namespace App\Http\Controllers\Web\Panel\Advertise;
 
+use App\Enum\SpecificationTypeEnum;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Panel\Landing\ColorRequest;
-use App\Models\LandColor;
-use App\Tables\Landing\Colors;
+use App\Http\Requests\Panel\Advertise\SpecificationRequest;
+use App\Models\Specification;
+use App\Tables\Advertise\Specifications;
 use Splade;
 
 class SpecificationController extends Controller
 {
-
     public function index()
     {
-        return view('panel.landing.product.color.index', [
-            'colors' => Colors::class
+        return view('panel.advertise.specification.index', [
+            'specs' => Specifications::class
         ]);
     }
 
     public function create()
     {
-        return view('panel.landing.product.color.create');
+        $types = [];
+        foreach (SpecificationTypeEnum::cases() as $case) {
+            $types[$case->toString()] = $case->value;
+        }
+        return view('panel.advertise.specification.create', ['types' => $types]);
     }
 
-    public function store(ColorRequest $request)
+    public function store(SpecificationRequest $request)
     {
-        LandColor::create($request->validated());
-
+        Specification::create($request->validated());
         Splade::toast(__('Created'))->autoDismiss(5);
 
-        return redirect()->route('panel.landing.color.index');
+        return redirect()->route('panel.ad.specification.index');
     }
 
-    public function show(LandColor $color)
+    public function edit(Specification $specification)
     {
-        //
+        $types = [];
+        foreach (SpecificationTypeEnum::cases() as $case) {
+            $types[$case->toString()] = $case->value;
+        }
+        return view('panel.advertise.specification.edit', ['specification' => $specification, 'types' => $types]);
     }
 
-    public function edit(LandColor $color)
+    public function update(SpecificationRequest $request, Specification $specification)
     {
-        return view('panel.landing.product.color.edit', compact('color'));
-    }
-
-    public function update(ColorRequest $request, LandColor $color)
-    {
-        $color->update($request->validated());
-
+        $specification->update($request->validated());
         Splade::toast(__('Updated'))->autoDismiss(5);
 
-        return redirect()->route('panel.landing.color.index');
+        return redirect()->route('panel.ad.specification.index');
     }
 
-    public function destroy(LandColor $color)
+    public function destroy(Specification $specification)
     {
-        $color->delete();
+        $specification->delete();
 
         Splade::toast(__('Deleted'))->autoDismiss(5)->danger();
 
         return back();
     }
-
 }

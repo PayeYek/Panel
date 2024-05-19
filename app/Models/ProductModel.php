@@ -18,6 +18,6 @@ class ProductModel extends Model
 
     public function brand(): BelongsTo
     {
-        return $this->belongsTo(LandBrand::class, 'brand_id', 'id'); //Todo implement Brand model and separate from LandBrands
+        return $this->belongsTo(Brand::class, 'brand_id', 'id');
     }
 }

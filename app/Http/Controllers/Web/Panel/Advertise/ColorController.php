@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Web\Panel\Advertise;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Api\Advertise\ColorRequest;
+use App\Http\Requests\Panel\Advertise\ColorRequest;
 use App\Models\Color;
 use App\Tables\Advertise\Colors;
 use Splade;

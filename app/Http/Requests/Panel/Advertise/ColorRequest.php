@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\Api\Advertise;
+namespace App\Http\Requests\Panel\Advertise;
 
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -11,7 +11,6 @@ class ColorRequest extends FormRequest
     {
         return true;
     }
-
 
     public function rules(): array
     {
