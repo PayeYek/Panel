@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\LandProduct;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\File;
 
 class LandProductSeeder extends Seeder
 {

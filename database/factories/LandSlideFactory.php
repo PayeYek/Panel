@@ -5,6 +5,7 @@ namespace Database\Factories;
 use App\Models\Land;
 use App\Models\LandSlide;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Facades\File;
 
 class LandSlideFactory extends Factory
 {
@@ -12,8 +13,19 @@ class LandSlideFactory extends Factory
 
     public function definition(): array
     {
+
+        /* More image */
+        $sourcePath = public_path('assets/images/empty/picture.png');
+        $destinationPath = storage_path('app/public/media/land/slides/picture.png');
+        if (File::exists($sourcePath)) {
+            if (!File::exists($destinationPath)) {
+                File::ensureDirectoryExists(storage_path('app/public/media/land/slides'));
+                File::copy($sourcePath, $destinationPath);
+            }
+        }
+
         $land_ids = Land::pluck('id')->toArray();
-        $imagePath = 'media/land/slides/1600.png';
+        $imagePath = 'media/land/slides/picture.png';
 
         return [
             'land_id' => $this->faker->randomElement($land_ids),
