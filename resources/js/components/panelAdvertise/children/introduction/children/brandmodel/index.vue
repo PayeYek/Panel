@@ -92,17 +92,17 @@ export default {
 
                     // prevent re-initializing choices js
                     if (!brandInitialized.value) {
-                        nextTick(() => {
-                            const selectElement = document.getElementById('select-brand');
-                            if (choicesInstanceBrand.value != null) {
-                                choicesInstanceBrand.value = null;
-                            }
-                            choicesInstanceBrand.value = new Choices(selectElement, {
-                                searchEnabled: true,
-                                itemSelectText: '',
-                                shouldSort: false
-                            });
-                        });
+                        // nextTick(() => {
+                        //     const selectElement = document.getElementById('select-brand');
+                        //     if (choicesInstanceBrand.value != null) {
+                        //         choicesInstanceBrand.value = null;
+                        //     }
+                        //     choicesInstanceBrand.value = new Choices(selectElement, {
+                        //         searchEnabled: true,
+                        //         itemSelectText: '',
+                        //         shouldSort: false
+                        //     });
+                        // });
 
                         brandInitialized.value = true;
                     }
