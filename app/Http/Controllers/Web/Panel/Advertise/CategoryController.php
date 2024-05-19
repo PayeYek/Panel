@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Web\Panel\Advertise;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Api\Advertise\CategoryRequest;
+use App\Http\Requests\Panel\Advertise\CategoryRequest;
 use App\Models\Category;
 use App\Tables\Advertise\Categories;
 use Splade;

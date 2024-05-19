@@ -5,7 +5,7 @@ namespace App\Transformers;
 use App\Models\Advertise;
 use Flugg\Responder\Transformers\Transformer;
 
-class AdvertiseTransformer extends Transformer
+class AdvertiseForCardsTransformer extends Transformer
 {
     /**
      * List of available relations.
@@ -31,14 +31,14 @@ class AdvertiseTransformer extends Transformer
     {
         return [
             'id' => $advertise->id,
+            'tracking_code' => $advertise->tracking_code,
+            'city' => $advertise->city->name,
             'title' => $advertise->title,
-            'description' => $advertise->description,
             'price' => $advertise->price,
             'primary_image' => $advertise->primary_image,
-            'slider_images' => $advertise->slider_images,
-            'category_id' => $advertise->category_id,
-            'city_id' => $advertise->city_id,
-            'usage_id' => $advertise->usage_id,
+            'brand' => 'بنز',
+            'model' => 'S500',
+            'published_at' => $advertise->published_at,
         ];
     }
 }

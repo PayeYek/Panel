@@ -12,6 +12,7 @@ return new class extends Migration {
     {
         Schema::create('advertises', function (Blueprint $table) {
             $table->id();
+            $table->string('tracking_code');
             $table->string('title');
             $table->text('description');
             $table->string('primary_image')->nullable();

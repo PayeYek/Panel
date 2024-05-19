@@ -12,12 +12,13 @@ use App\Models\Category;
 use App\Models\ProductModel;
 use App\Models\Province;
 use App\Models\Usage;
-use App\Transformers\AdvertiseTransformer;
+use App\Transformers\AdvertiseForCardsTransformer;
 use App\Transformers\BrandForAdTransformer;
 use App\Transformers\ProductModelForAdTransformer;
 use App\Transformers\SpecificationTransformer;
 use App\Transformers\UsageTransformer;
 use Auth;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use Mockery\Exception;
@@ -28,7 +29,7 @@ class AdvertiseController extends Controller
     public function getList()
     {
         $ad = Advertise::where('state', AdvertiseStateEnum::APPROVED)->get();
-        return responder()->success($ad, AdvertiseTransformer::class)->respond();
+        return responder()->success($ad, AdvertiseForCardsTransformer::class)->respond();
     }
 
     public function getUsages()
@@ -181,7 +182,9 @@ class AdvertiseController extends Controller
     public function approve(Advertise $advertise)
     {
         $advertise->state = AdvertiseStateEnum::APPROVED;
+        $advertise->published_at = Carbon::now();
         $advertise->save();
+
         Splade::toast(__('Advertise approved successfully'))->autoDismiss(5)->info();
 
         return back();
