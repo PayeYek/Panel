@@ -12,8 +12,8 @@ return new class extends Migration {
     {
         Schema::create('advertise_specification_values', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('advertise_id')->constrained('advertises')->onDelete('cascade');
-            $table->foreignId('specification_id')->constrained('specifications')->onDelete('cascade');
+            $table->foreignId('advertise_id')->constrained()->onDelete('cascade');
+            $table->foreignId('specification_id')->constrained()->onDelete('cascade');
             $table->string('value');
             //Todo define primary key
             $table->timestamps();

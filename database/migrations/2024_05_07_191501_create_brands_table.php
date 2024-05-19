@@ -15,7 +15,7 @@ return new class extends Migration {
             $table->string('name');
             $table->text('logo')->nullable();
             $table->text('description')->nullable();
-            $table->foreignId('country_id')->constrained('countries');
+            $table->foreignId('country_id')->constrained();
 
             $table->softDeletes();
             $table->timestamps();

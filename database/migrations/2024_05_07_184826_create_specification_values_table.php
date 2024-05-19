@@ -13,7 +13,7 @@ return new class extends Migration {
         Schema::create('specification_values', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->foreignId('specification_id')->constrained('specifications');
+            $table->foreignId('specification_id')->constrained();
 
             $table->softDeletes();
             $table->timestamps();
