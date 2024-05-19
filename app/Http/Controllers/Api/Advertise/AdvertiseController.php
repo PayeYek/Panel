@@ -101,6 +101,7 @@ class AdvertiseController extends Controller
 
         $advertiseData = [
             'category_id' => $advertiseRequest->validated('category_id'),
+            'agreement_price' => $advertiseRequest->validated('agreement_price') ?? false,
             'user_id' => 1, //Todo implement auth
             'usage_id' => $advertiseRequest->validated('usage_id'),
             'city_id' => $advertiseRequest->validated('city_id'),
