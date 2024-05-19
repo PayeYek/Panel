@@ -74,7 +74,7 @@ Route::middleware(['splade'])->group(function () {
 
             // Advertise
             Route::prefix('ad')->name('ad.')->group(function () {
-                Route::resource('advertise', AdvertiseController::class)->except(['show', 'store', 'update']);
+                Route::resource('advertise', AdvertiseController::class)->except(['show', 'update']);
                 Route::resource('category', AdCategoryController::class)->except(['show']);
                 Route::resource('usage', UsageController::class)->except(['show']);
                 Route::resource('color', AdColorController::class)->except(['show']);
