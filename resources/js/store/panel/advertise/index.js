@@ -72,6 +72,9 @@ export const useAdvertise = defineStore('advertise', {
 
             this.selectedSpecificationValues[id] = obj;
         },
+        emptySliderImagesSrc(){
+            this.sliderImagesSrc.length = 0;
+        },
         // initializeSpecificationValue(item){
         //     this.specifications.map(spec => {
         //         if(spec.id == item.parentId){
