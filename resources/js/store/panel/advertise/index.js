@@ -83,15 +83,16 @@ export const useAdvertise = defineStore('advertise', {
         //     })
         // },
         checkAllSpecFilled(){
-            let status = false;
-            Object.keys(this.selectedSpecificationValues).forEach(key => {
-                if(this.selectedSpecificationValues[key].required == 0){
-                    status = true;
-                } else if(this.selectedSpecificationValues[key].id == 0 || this.selectedSpecificationValues[key].id === '') {
-                    status = false
-                    return false;
+            let status = true;
+            for (const key of Object.keys(this.selectedSpecificationValues)) {
+                console.log(key, this.selectedSpecificationValues[key].id != null, this.selectedSpecificationValues[key].id !== '');
+                if (this.selectedSpecificationValues[key].required == 0) {
+                    continue; // Skip to the next iteration if not required.
+                } else if (this.selectedSpecificationValues[key].id == null || this.selectedSpecificationValues[key].id === '') {
+                    status = false;
+                    break; // Exit loop if condition is not met.
                 }
-            })
+            }
             return status;
         },
         checkAllInfoFilled(){

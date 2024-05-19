@@ -9,7 +9,7 @@
                 <template v-if="spec.type === 'select'">
                     <label class="block group/select" :for="`select-${spec.id}`">
                         <span class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                            {{ spec.title }}
+                            {{ spec.title }} <span v-if="spec.required == 1" class="text-red-500">*</span>
                         </span>
                         <div
                             class="relative rounded-lg border border-gray-300 dark:border-gray-600 shadow-sm group-focus-within/select:ring-1 group-focus-within/select:ring-primary-500 group-focus-within/select:border-primary-500 transition duration-200">
@@ -30,7 +30,7 @@
                     <label class="block group/input" :for="`input-${spec.id}`">
                         <span class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"> {{
                                 spec.title
-                            }} </span>
+                            }} <span v-if="spec.required == 1" class="text-red-500">*</span> </span>
                         <div
                             class="flex rounded-lg border border-gray-300 dark:border-gray-600 shadow-sm group-focus-within/input:ring-1 group-focus-within/input:ring-primary-500 group-focus-within/input:border-primary-500 transition duration-200">
                             <div class="relative flex flex-1">
@@ -45,7 +45,7 @@
                     <label class="block group/select" :for="`boolean-${spec.id}`">
                         <span class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"> {{
                                 spec.title
-                            }} </span>
+                            }} <span v-if="spec.required == 1" class="text-red-500">*</span> </span>
                         <div
                             class="relative rounded-lg border border-gray-300 dark:border-gray-600 shadow-sm group-focus-within/select:ring-1 group-focus-within/select:ring-primary-500 group-focus-within/select:border-primary-500 transition duration-200">
                             <div>

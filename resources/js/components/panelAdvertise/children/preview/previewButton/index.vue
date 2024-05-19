@@ -27,7 +27,8 @@ export default {
         const model = ref(computed(() => advertiseStore.model.id));
 
         const moveTo = step => {
-            console.log(brand.value);
+            // console.log(brand.value);
+            // console.log(advertiseStore.checkAllInfoFilled(), advertiseStore.checkAllSpecFilled())
             if(title.value === ""){
                 advertiseStore.handleTitleError("عنوان خالیست.");
             } else if(title.value.toString().length > textInputLimitation){
@@ -65,6 +66,7 @@ export default {
             } else {
                 advertiseStore.handleModelError("");
             }
+
             if(advertiseStore.checkAllInfoFilled() && advertiseStore.checkAllSpecFilled()){
                 advertiseStore.changeStep(step);
             }
