@@ -57,7 +57,6 @@ Route::prefix('ad')
             Route::get('brand/{brand}/models', 'getModelByBrand')->name('brandModels');
         });
     });
-Route::post('testme',[\App\Http\Controllers\Web\Panel\Advertise\SpecificationController::class, 'store'])->name('profile.login');
 
 Route::prefix('l')
     ->name('api.landing.')

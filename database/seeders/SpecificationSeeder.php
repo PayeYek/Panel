@@ -26,8 +26,7 @@ class SpecificationSeeder extends Seeder
             ['id' => 9, 'required' => true, 'title' => 'سال ساخت', 'type' => SpecificationTypeEnum::INPUT_TEXT],
             ['id' => 10, 'required' => true, 'title' => 'وضعیت لاستیک', 'type' => SpecificationTypeEnum::INPUT_TEXT],
 
-            ['id' => 11, 'required' => true, 'title' => 'منطقه آزاد', 'type' => SpecificationTypeEnum::BOOLEAN],
-            ['id' => 12, 'required' => true, 'title' => 'نوع کابین', 'type' => SpecificationTypeEnum::BOOLEAN],
+            ['id' => 11, 'required' => true, 'title' => 'منطقه آزاد', 'type' => SpecificationTypeEnum::SELECT],
         ];
 
         DB::table('specifications')->insert($data);

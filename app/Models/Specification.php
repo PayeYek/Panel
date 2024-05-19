@@ -23,16 +23,16 @@ class Specification extends Model
         'type' => SpecificationTypeEnumCast::class,
     ];
 
-    public function values(): HasMany
-    {
-        return $this->hasMany(SpecificationValue::class);
-    }
-
     public function advertises(): BelongsToMany
     {
         return $this->belongsToMany(Advertise::class, 'advertise_specification_values')
             ->withPivot('value')
             ->withTimestamps();
+    }
+
+    public function values(): HasMany
+    {
+        return $this->hasMany(SpecificationValue::class);
     }
 
     public function usages(): BelongsToMany

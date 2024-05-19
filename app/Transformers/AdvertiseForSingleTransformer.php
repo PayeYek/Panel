@@ -44,6 +44,7 @@ class AdvertiseForSingleTransformer extends Transformer
             'slider_images' => $advertise->slider_images,
             'agreement_price' => $advertise->agreement_price,
             'price' => $advertise->price,
+            'specifications' => (new SpecificationForSingleAdvertiseTransformer)->transform($advertise->specifications)
         ];
     }
 }

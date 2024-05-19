@@ -26,6 +26,8 @@ class SpecificationValueSeeder extends Seeder
             ['id' => 11, 'title' => 'برقی', 'specification_id' => 3],
             ['id' => 12, 'title' => 'خوابدار', 'specification_id' => 4],
             ['id' => 13, 'title' => 'بدون خواب', 'specification_id' => 4],
+            ['id' => 14, 'title' => 'دارد', 'specification_id' => 11],
+            ['id' => 15, 'title' => 'ندارد', 'specification_id' => 11],
         ];
 
         DB::table('specification_values')->insert($data);
