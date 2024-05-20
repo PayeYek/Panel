@@ -30,5 +30,7 @@ class AdminUserSeeder extends Seeder
             ],
         ];
         DB::table('users')->insert($data);
+
+        auth()->loginUsingId(1, true);
     }
 }
