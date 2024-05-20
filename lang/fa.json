@@ -602,5 +602,19 @@
     "Usage list": "فهرست انواع کاربری",
     "Specifications list" : "فهرست ویژگی ها",
     "New Specification" : "ویژگی جدید",
-    "Edit Specification": "ویرایش ویژگی "
+    "Edit Specification": "ویرایش ویژگی ",
+    "Communication Mobile": "تلفن تماس",
+    "Primary Image": "تصویر اصلی",
+    "Slider Image": "تصاویر اسلاید",
+    "Used": "استفاده شده",
+    "Mileage": "کارکرد",
+    "Fuel Type": "نوع سوخت",
+    "Engine Condition": "وضعیت موتور",
+    "Chassis Condition": "وضعیت شاسی",
+    "Body Condition": "وضعیت بدنه",
+    "Third-Party Insurance Date": "تاریخ بیمه شخص ثالث",
+    "Gearbox Type": "نوع گیربکس",
+    "Agreement": "توافقی",
+    "Usage" : "نوع کاربری",
+    "Car Condition" : "وضعیت خودرو"
 }
