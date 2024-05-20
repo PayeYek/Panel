@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
 
 class LandSeeder extends Seeder
 {
@@ -12,7 +13,16 @@ class LandSeeder extends Seeder
      */
     public function run(): void
     {
-        $logoPath = 'media/land/logos/test-logo.svg';
+        $sourcePath = public_path('assets/images/empty/logo.svg');
+        $destinationPath = storage_path('app/public/media/land/logos/logo.svg');
+        if (File::exists($sourcePath)) {
+            if (!File::exists($destinationPath)) {
+                File::ensureDirectoryExists(storage_path('app/public/media/land/logos'));
+                File::copy($sourcePath, $destinationPath);
+            }
+        }
+
+        $logoPath = 'media/land/logos/logo.svg';
         $lands = [
             [
                 'title' => 'آرین دیزل',

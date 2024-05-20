@@ -6,6 +6,7 @@ use App\Enum\AdvertiseStateEnum;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\Advertise\StoreAdvertiseRequest;
 use App\Http\Requests\Api\Advertise\UpdateAdvertiseRequest;
+use App\Models\Ads;
 use App\Models\Advertise;
 use App\Models\Brand;
 use App\Models\Category;
@@ -101,6 +102,7 @@ class AdvertiseController extends Controller
 
         $advertiseData = [
             'category_id' => $advertiseRequest->validated('category_id'),
+            'agreement_price' => $advertiseRequest->validated('agreement_price') ?? false,
             'user_id' => 1, //Todo implement auth
             'usage_id' => $advertiseRequest->validated('usage_id'),
             'city_id' => $advertiseRequest->validated('city_id'),
@@ -183,10 +185,22 @@ class AdvertiseController extends Controller
         return responder()->success(['message' => 'Advertise updated successfully'])->respond();
     }
 
-    public function approve(Advertise $advertise)
+//    public function approve(Advertise $advertise)
+//    {
+//        $advertise->state = AdvertiseStateEnum::APPROVED;
+//        $advertise->published_at = Carbon::now();
+//        $advertise->save();
+//
+//        Splade::toast(__('Advertise approved successfully'))->autoDismiss(5)->info();
+//
+//        return back();
+////        return responder()->success(['message' => 'Advertise approved successfully'])->respond();
+//    }
+//
+    public function approve(Ads $advertise)
     {
-        $advertise->state = AdvertiseStateEnum::APPROVED;
-        $advertise->published_at = Carbon::now();
+        $advertise->state = true;
+        $advertise->published_date = Carbon::now();
         $advertise->save();
 
         Splade::toast(__('Advertise approved successfully'))->autoDismiss(5)->info();
@@ -195,9 +209,9 @@ class AdvertiseController extends Controller
 //        return responder()->success(['message' => 'Advertise approved successfully'])->respond();
     }
 
-    public function reject(Advertise $advertise)
+    public function reject(Ads $advertise)
     {
-        $advertise->state = AdvertiseStateEnum::REJECTED;
+        $advertise->state = false;
         $advertise->save();
         Splade::toast(__('Advertise rejected successfully'))->autoDismiss(5)->info();
 
@@ -205,6 +219,17 @@ class AdvertiseController extends Controller
 
 //        return responder()->success(['message' => 'Advertise rejected successfully'])->respond();
     }
+//
+//    public function reject(Advertise $advertise)
+//    {
+//        $advertise->state = AdvertiseStateEnum::REJECTED;
+//        $advertise->save();
+//        Splade::toast(__('Advertise rejected successfully'))->autoDismiss(5)->info();
+//
+//        return back();
+//
+////        return responder()->success(['message' => 'Advertise rejected successfully'])->respond();
+//    }
 
     public function destroy(Advertise $advertise)
     {

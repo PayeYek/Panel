@@ -32,6 +32,7 @@ class AdvertiseForCardsTransformer extends Transformer
         return [
             'id' => $advertise->id,
             'tracking_code' => $advertise->tracking_code,
+            'agreement_price' => $advertise->agreement_price,
             'city' => $advertise->city->name,
             'title' => $advertise->title,
             'price' => $advertise->price,

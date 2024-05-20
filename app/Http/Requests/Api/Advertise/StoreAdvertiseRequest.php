@@ -23,6 +23,7 @@ class StoreAdvertiseRequest extends FormRequest
 
         $rules = [
             'usage_id' => 'required|exists:usages,id',
+            'agreement_price' => 'nullable|boolean',
             'title' => 'required|string|max:255',
             'description' => 'required|string',
             'primary_image' => $this->PrimaryImageRule(),

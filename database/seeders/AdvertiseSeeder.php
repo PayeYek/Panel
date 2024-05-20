@@ -2,17 +2,16 @@
 
 namespace Database\Seeders;
 
-use App\Models\LandProduct;
+use App\Models\Ads;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\File;
 
-class LandProductSeeder extends Seeder
+class AdvertiseSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        LandProduct::factory()->count(100)->create();
+        Ads::factory()->count(100)->create();
     }
 }

@@ -22,7 +22,7 @@ class UsageSpecificationSeeder extends Seeder
 //        });
 
         $usages->each(function ($usage) use ($specifications) {
-            $randomSpecifications = $specifications->random(rand(1, 10))->pluck('id');
+            $randomSpecifications = $specifications->random(rand(1, 7))->pluck('id');
             $usage->specifications()->attach($randomSpecifications);
         });
     }

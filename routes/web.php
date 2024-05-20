@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Web\Landing\LandingController;
+use App\Http\Controllers\Web\Panel\AdController;
 use App\Http\Controllers\Web\Panel\Advertise\AdvertiseController;
 use App\Http\Controllers\Web\Panel\Advertise\BrandController as AdBrandController;
 use App\Http\Controllers\Web\Panel\Advertise\CategoryController as AdCategoryController;
@@ -71,10 +72,10 @@ Route::middleware(['splade'])->group(function () {
             Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
             /* Landing */
-
             // Advertise
             Route::prefix('ad')->name('ad.')->group(function () {
-                Route::resource('advertise', AdvertiseController::class)->except(['show', 'store', 'update']);
+                Route::resource('advertise', AdController::class);
+//                Route::resource('advertise', AdvertiseController::class)->except(['show', 'update']);
                 Route::resource('category', AdCategoryController::class)->except(['show']);
                 Route::resource('usage', UsageController::class)->except(['show']);
                 Route::resource('color', AdColorController::class)->except(['show']);

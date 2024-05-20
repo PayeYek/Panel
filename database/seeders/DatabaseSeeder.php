@@ -18,19 +18,19 @@ class DatabaseSeeder extends Seeder
         /* Landing */
         $this->call([
             CountrySeeder::class,
-//            AdminUserSeeder::class,
-//            LandCategorySeeder::class,
-//            LandColorSeeder::class,
-//            LandBrandSeeder::class,
-//            LandSeeder::class,
+            AdminUserSeeder::class,
+            LandCategorySeeder::class,
+            LandColorSeeder::class,
+            LandBrandSeeder::class,
+            LandSeeder::class,
             CompanySeeder::class,
-//            LandProductSeeder::class,
-//            LandSlideSeeder::class,
-//            LandArticleSeeder::class,
-//            LandAgencySeeder::class,
-//            LandAdvertiseSeeder::class,
-//            LandAttributeSeeder::class,
-//            LandStyleSeeder::class,
+            LandProductSeeder::class,
+            LandSlideSeeder::class,
+            LandArticleSeeder::class,
+            LandAgencySeeder::class,
+            LandAdvertiseSeeder::class,
+            LandAttributeSeeder::class,
+            LandStyleSeeder::class,
             CategorySeeder::class,
             SpecificationSeeder::class,
             ColorSeeder::class,
@@ -38,7 +38,8 @@ class DatabaseSeeder extends Seeder
             UsageSpecificationSeeder::class,
             SpecificationValueSeeder::class,
             BrandSeeder::class,
-            ProductModelSeeder::class
+            ProductModelSeeder::class,
+            AdvertiseSeeder::class
         ]);
     }
 }
