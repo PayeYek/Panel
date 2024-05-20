@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\Advertise\AdvertiseController;
 use App\Http\Controllers\Api\Landing\LandingApiController;
+use App\Http\Controllers\Web\Panel\AdController;
 use App\Models\Land;
 use App\Models\Province;
 use Illuminate\Http\Request;
@@ -40,8 +41,11 @@ Route::get('land/{landId}/products', function ($landId) {
 Route::prefix('ad')
     ->name('api.ad.')
     ->group(function () {
-        Route::controller(AdvertiseController::class)->group(function () {
+//        Route::controller(AdvertiseController::class)->group(function () {
+        Route::controller(AdController::class)->group(function () {
             Route::get('/list', 'getList')->name('getList');
+            Route::get('/{advertise}', 'show')->name('showAdvertise');
+//            Route::get('/list', 'getList')->name('getList');
             Route::get('categories', 'getCategories')->name('getCategories');
             Route::get('usages', 'getUsages')->name('getUsages');
             Route::get('provinces', 'getProvinces')->name('getProvinces');
@@ -51,7 +55,7 @@ Route::prefix('ad')
             Route::put('update/{advertise}', 'update')->name('updateAdvertise');
             Route::post('{advertise}/approve', 'approve')->name('approveAdvertise');
             Route::post('{advertise}/reject', 'reject')->name('rejectAdvertise');
-            Route::get('/{advertise}', 'show')->name('showAdvertise');
+//            Route::get('/{advertise}', 'show')->name('showAdvertise');
             Route::delete('/{advertise}', 'destroy')->name('destroyAdvertise');
             Route::get('brand/list', 'getBrands')->name('brandList');
             Route::get('brand/{brand}/models', 'getModelByBrand')->name('brandModels');

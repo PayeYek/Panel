@@ -6,12 +6,24 @@ use App\Http\Controllers\Controller;
 use App\Models\Ads;
 use App\Models\LandBrand;
 use App\Tables\Advertise\AdsTable;
+use App\Transformers\AdCardTransformer;
+use App\Transformers\AdSingleTransformer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use ProtoneMedia\Splade\Facades\Splade;
 
 class AdController extends Controller
 {
+    public function getList()
+    {
+        return responder()->success(Ads::where('state', 1)->get(), AdCardTransformer::class)->respond();
+    }
+
+    public function show(Ads $advertise)
+    {
+        return responder()->success($advertise, AdSingleTransformer::class)->respond();
+    }
+
     public function index()
     {
         return view('panel.advertise.index', [
