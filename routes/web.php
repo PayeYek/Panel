@@ -7,6 +7,7 @@ use App\Http\Controllers\Web\Panel\Advertise\AdvertiseController;
 use App\Http\Controllers\Web\Panel\Advertise\BrandController as AdBrandController;
 use App\Http\Controllers\Web\Panel\Advertise\CategoryController as AdCategoryController;
 use App\Http\Controllers\Web\Panel\Advertise\ColorController as AdColorController;
+use App\Http\Controllers\Web\Panel\Advertise\PriceListController;
 use App\Http\Controllers\Web\Panel\Advertise\SpecificationController;
 use App\Http\Controllers\Web\Panel\Advertise\UsageController;
 use App\Http\Controllers\Web\Panel\AuthController;
@@ -81,6 +82,7 @@ Route::middleware(['splade'])->group(function () {
                 Route::resource('color', AdColorController::class)->except(['show']);
                 Route::resource('specification', SpecificationController::class)->except(['show']);
                 Route::resource('brand-model', AdBrandController::class)->except(['show']);
+                Route::resource('priceList', PriceListController::class)->except(['show']);
             });
 
             /* Landing */
