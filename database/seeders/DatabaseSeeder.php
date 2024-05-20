@@ -38,7 +38,8 @@ class DatabaseSeeder extends Seeder
             UsageSpecificationSeeder::class,
             SpecificationValueSeeder::class,
             BrandSeeder::class,
-            ProductModelSeeder::class
+            ProductModelSeeder::class,
+            AdvertiseSeeder::class
         ]);
     }
 }
