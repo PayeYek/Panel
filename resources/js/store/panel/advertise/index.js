@@ -85,7 +85,7 @@ export const useAdvertise = defineStore('advertise', {
         checkAllSpecFilled(){
             let status = true;
             for (const key of Object.keys(this.selectedSpecificationValues)) {
-                console.log(key, this.selectedSpecificationValues[key].id != null, this.selectedSpecificationValues[key].id !== '');
+                // console.log(key, this.selectedSpecificationValues[key].id != null, this.selectedSpecificationValues[key].id !== '');
                 if (this.selectedSpecificationValues[key].required == 0) {
                     continue; // Skip to the next iteration if not required.
                 } else if (this.selectedSpecificationValues[key].id == null || this.selectedSpecificationValues[key].id === '') {
