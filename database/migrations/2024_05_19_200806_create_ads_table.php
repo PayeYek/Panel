@@ -12,31 +12,33 @@ return new class extends Migration {
     {
         Schema::create('ads', function (Blueprint $table) {
             $table->id();
-            $table->string('title')->nullable();
-            $table->longText('description')->nullable();
-            $table->string('communication_mobile')->nullable();
-            $table->string('primary_image')->nullable();
-            $table->text('slider_image')->nullable();
-            $table->string('car_condition')->nullable();
+            $table->string('title');
+            $table->longText('description');
+            $table->string('communication_mobile');
+            $table->string('primary_image');
+            $table->json('slider_images')->nullable();
+            $table->string('car_condition');
             $table->unsignedInteger('mileage')->nullable();
-            $table->string('year')->nullable();
-            $table->string('city')->nullable();
-            $table->string('province')->nullable();
-            $table->string('color')->nullable();
-            $table->string('brand')->nullable();
-            $table->string('model')->nullable();
+            $table->string('production_year')->nullable();
+            $table->foreignId('city_id')->constrained('province_cities');
+            $table->foreignId('province_id')->constrained();
+            $table->string('color');
+            $table->string('brand');
+            $table->string('model');
             $table->string('fuel_type')->nullable();
             $table->string('engine_condition')->nullable();
             $table->string('chassis_condition')->nullable();
             $table->string('body_condition')->nullable();
             $table->string('third_party_insurance_date')->nullable();
             $table->string('gearbox_type')->nullable();
-            $table->string('price')->nullable();
+            $table->string('price');
             $table->boolean('agreement')->nullable();
-            $table->string('category')->nullable();
-            $table->string('usage')->nullable();
+            $table->string('category');
+            $table->string('usage');
             $table->timestamp('published_date')->nullable();
             $table->boolean('state')->nullable();
+
+            $table->softDeletes();
             $table->timestamps();
         });
     }
