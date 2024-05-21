@@ -13,6 +13,7 @@
     "plak": "پلاک: ",
     "Model": "مدل",
     "Information": "اطلاعات",
+    "Additional information": "اطلاعات مکمل",
     "Blog": "وبلاگ",
     "blog": "وبلاگ",
     "More Pictures": "تصاویر بیشتر",
@@ -622,5 +623,11 @@
     "Change advertise state": "تغییر وضعیت آگهی",
     "Approve the advertise": "تایید آگهی",
     "Are you sure to change the advertise state?": "آیا از تغییر وضعیت آگهی اطمینان دارید؟",
-    "Reject the advertise": "عدم تایید آگهی"
+    "Reject the advertise": "عدم تایید آگهی",
+    "Price List": "لیست قیمت",
+    "Create Price List": "ایجاد لیست قیمت",
+    "Edit Price List": "ویرایش لیست قیمت",
+    "Update Price List": "ویرایش لیست قیمت",
+    "Production year": "سال ساخت",
+    "production year": "سال ساخت"
 }

@@ -3,12 +3,12 @@
 namespace App\Http\Controllers\Web\Panel;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Panel\Advertise\AdvertiseRequest;
 use App\Models\Ads;
 use App\Models\LandBrand;
 use App\Tables\Advertise\AdsTable;
 use App\Transformers\AdCardTransformer;
 use App\Transformers\AdSingleTransformer;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use ProtoneMedia\Splade\Facades\Splade;
 
@@ -38,75 +38,35 @@ class AdController extends Controller
         ]);
     }
 
-    public function store(Request $request)
+    public function store(AdvertiseRequest $request)
     {
-        $request->validate([
-            'title' => 'required|string|max:255',
-            'description' => 'required|string',
-            'communication_mobile' => 'required|string|max:255',
-            'primary_image' => 'required|image|mimes:jpg,jpeg,png,webp|max:2048|dimensions:min_width=512,min_height=512',
-            'slider_images' => 'nullable|array',
-            'slider_images.*' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
-            'car_condition' => 'required|string',
-            'mileage' => 'nullable|numeric',
-            'year' => 'nullable|integer',
-            'city_id' => 'required|numeric|exists:province_cities,id',
-            'province_id' => 'required|numeric|exists:provinces,id',
-            'color' => 'required|string|max:255',
-            'brand' => 'required|string|max:255',
-            'model' => 'required|string|max:255',
-            'fuel_type' => 'nullable|string|max:255',
-            'engine_condition' => 'nullable|string|max:255',
-            'chassis_condition' => 'nullable|string|max:255',
-            'body_condition' => 'nullable|string|max:255',
-            'third_party_insurance_date' => 'nullable|numeric',
-            'gearbox_type' => 'nullable|string|max:255',
-            'price' => 'required|numeric',
-            'agreement' => 'nullable|boolean',
-        ]);
+        $data = $request->validated();
 
 
-        $data = [
-            'title' => $request->title,
-            'description' => $request->description,
-            'communication_mobile' => $request->communication_mobile,
-            'car_condition' => $request->car_condition,
-            'mileage' => $request->mileage,
-            'production_year' => $request->production_year,
-            'city_id' => $request->city_id,
-            'province_id' => $request->province_id,
-            'color' => $request->color,
-            'brand' => $request->brand,
-            'model' => $request->model,
-            'fuel_type' => $request->fuel_type,
-            'engine_condition' => $request->engine_condition,
-            'chassis_condition' => $request->chassis_condition,
-            'body_condition' => $request->body_condition,
-            'third_party_insurance_date' => $request->third_party_insurance_date,
-            'gearbox_type' => $request->gearbox_type,
-            'price' => $request->price,
-            'agreement' => $request->agreement,
-            'state' => false,
-            'category' => 'کامیون و کامیونت',
-            'usage' => 'باری',
-        ];
-
+        /* Get primary */
         $data['primary_image'] = null;
         if (!empty($request->file('primary_image'))) {
-            $data['primary_image'] = $request->file('primary_image')->store('media/ads/primary-image', 'public');
+            $data['primary_image'] =
+                $request->file('primary_image')->store('media/ads/primary', 'public');
         }
 
-        if ($request->file('slider_images')) {
+
+
+        /* Get slides */
+        $slides = $request->file('slider_images');
+        if ($slides) {
             $i = 0;
-            foreach ($request->file('slider_images') as $file) {
-                $image = $file->store('media/ads/slider-images', 'public');
+            foreach ($slides as $file) {
+                $image = $file->store('media/ads/slider', 'public');
 
                 $data['slider_images'][$i] = $image;
                 $i++;
             }
         }
-//        return($data);
+
+
         Ads::create($data);
+
         Splade::toast(__('Created'))->autoDismiss(5);
 
         return redirect()->route('panel.ad.advertise.index');
@@ -118,52 +78,33 @@ class AdController extends Controller
         return view('panel.advertise.edit', compact('advertise', 'brands'));
     }
 
-    public function update(Request $request, Ads $advertise)
+    public function update(AdvertiseRequest $request, Ads $advertise)
     {
-        $request->validate([
-            'title' => 'required|string|max:255',
-            'description' => 'required|string',
-            'communication_mobile' => 'required|string|max:255',
-            'primary_image' => 'required|image|mimes:jpg,jpeg,png,webp|max:2048|dimensions:min_width=512,min_height=512',
-            'slider_images' => 'nullable|array',
-            'slider_images.*' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
-            'car_condition' => 'required|string',
-            'mileage' => 'nullable|numeric',
-            'year' => 'nullable|integer',
-            'city_id' => 'required|numeric|exists:province_cities,id',
-            'province_id' => 'required|numeric|exists:provinces,id',
-            'color' => 'required|string|max:255',
-            'brand' => 'required|string|max:255',
-            'model' => 'required|string|max:255',
-            'fuel_type' => 'nullable|string|max:255',
-            'engine_condition' => 'nullable|string|max:255',
-            'chassis_condition' => 'nullable|string|max:255',
-            'body_condition' => 'nullable|string|max:255',
-            'third_party_insurance_date' => 'nullable|numeric',
-            'gearbox_type' => 'nullable|string|max:255',
-            'price' => 'required|numeric',
-            'agreement' => 'nullable|boolean',
-        ]);
-        if ($request->file('primary_image') !== $advertise->primary_image) {
-            Storage::delete('public/' . $advertise->primary_image);
-            $data['primary_image'] = null;
-            if (!empty($request->file('primary_image'))) {
-                $data['primary_image'] = $request->file('primary_image')->store('media/ads/primary-image', 'public');
-            }
-        } else {
-            $data['primary_image'] = $advertise->primary_image;
-        }
+        $data = $request->validated();
 
-        if ($request->file('slider_images') && $request->file('slider_images') !== $advertise->slider_images) {
+        /* Update new primary */
+        if ($request->validated()['primary_image'] !== $advertise->primary_image) {
+            Storage::delete('public/' . $advertise->getPrimaryImage());
+
+            $data['primary_image'] = null;
+            if (!empty($request->file('primary_image')))
+                $data['primary_image'] =
+                    $request->file('primary_image')->store('media/ads/primary', 'public');
+
+        } else
+            $data['primary_image'] = $advertise->getPrimaryImage();
+
+
+        /* Update new slides */
+        if (isset($request->validated()['slider_images']) && $request->validated()['slider_images'] !== $advertise->slider_images) {
             /* Delete old files */
             if (!is_null($advertise->getSliderImages()))
                 foreach ($advertise->getSliderImages() as $pic) {
                     Storage::delete('public/' . $pic);
                 }
-
             /* Save new files */
             $data['slider_images'] = collect($request->file('slider_images'))->map(function ($file) {
-                return $file->store('media/ads/slider-images', 'public');
+                return $file->store('media/ads/slider', 'public');
             })->all();
         } else {
             $data['slider_images'] = $advertise->getSliderImages();
@@ -171,21 +112,27 @@ class AdController extends Controller
 
         $advertise->update($data);
 
-        return redirect()->route('panel.ad.advertise.index')->with('success', 'Advertise updated successfully.');
+        Splade::toast(__('Updated'))->autoDismiss(5)->info();
+
+        return redirect()->route('panel.ad.advertise.index');
     }
 
     public function destroy(Ads $advertise)
     {
+        /* Delete slides */
         if (!is_null($advertise->getSliderImages())) {
             foreach ($advertise->getSliderImages() as $pic) {
-                Storage::delete('public/media/ads/slider-images' . $pic);
+                Storage::delete('public/' . $pic);
             }
         }
 
-        /* Delete files */
+        /* Delete primary */
         Storage::delete('public/' . $advertise->primary_image);
+
         $advertise->delete();
 
-        return redirect()->route('panel.ad.advertise.index')->with('success', 'Advertise deleted successfully.');
+        Splade::toast(__('Deleted'))->autoDismiss(5)->danger();
+
+        return back();
     }
 }
