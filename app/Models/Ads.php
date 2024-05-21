@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Str;
 
 class Ads extends Model
 {
@@ -52,12 +53,46 @@ class Ads extends Model
         return $this->belongsTo(Province::class, 'province_id', 'id');
     }
 
+    public function getPrimaryImageAttribute()
+    {
+        $item = $this->attributes['primary_image'];
+
+        if (empty($item)) {
+            return null;
+        }
+
+        return Str::isUrl($item) ? $item : asset('storage/' . $item);
+    }
+
+    public function getPrimaryImage()
+    {
+        return $this->attributes["primary_image"];
+    }
+
+    public function setSliderImagesAttribute($value)
+    {
+        $this->attributes['slider_images'] = empty($value) ? json_encode([]) : json_encode($value);
+    }
+
+    public function getSliderImagesAttribute()
+    {
+        $pictures = $this->attributes['slider_images'];
+
+        if (is_null($pictures)) return [];
+
+        $pictures = json_decode($pictures, true);
+        for ($i = 0; $i < count($pictures); $i++) {
+            $pictures[$i] = Str::isUrl($i) ? $i : asset('storage/' . $pictures[$i]);
+        }
+        return $pictures;
+    }
+
     public function getSliderImages()
     {
-        $images = $this->attributes["slider_images"];
+        $pictures = $this->attributes["slider_images"];
 
-        if (is_null($images)) return [];
+        if (is_null($pictures)) return [];
 
-        return json_decode($images, true);
+        return json_decode($pictures, true);
     }
 }
