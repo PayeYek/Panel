@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\Api\Advertise\AdvertiseController;
+use App\Http\Controllers\Api\Advertise\PriceListController;
 use App\Http\Controllers\Api\Landing\LandingApiController;
 use App\Http\Controllers\Web\Panel\AdController;
 use App\Models\Land;
@@ -59,6 +59,10 @@ Route::prefix('ad')
             Route::delete('/{advertise}', 'destroy')->name('destroyAdvertise');
             Route::get('brand/list', 'getBrands')->name('brandList');
             Route::get('brand/{brand}/models', 'getModelByBrand')->name('brandModels');
+
+            Route::prefix('price')->name('price.')->controller(PriceListController::class)->group(function () {
+                Route::get('/list', 'getList')->name('list');
+            });
         });
     });
 

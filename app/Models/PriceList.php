@@ -19,7 +19,7 @@ class PriceList extends Model
 
     public function category(): BelongsTo
     {
-        return $this->belongsTo(LandCategory::class);
+        return $this->belongsTo(LandCategory::class, 'category_id', 'id');
     }
 
 }
