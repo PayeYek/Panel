@@ -154,5 +154,6 @@ return array(
         'images' => 'تصویر',
         'comment' => 'نظر',
         'level' => 'سطح دسترسی',
+        'production_year' => 'سال ساخت',
     ),
 );

@@ -23,6 +23,7 @@
                 <x-layout.panel.menu title="Categories" route="panel.ad.category.index" icon="iconsax-lin-book"/>
                 <x-layout.panel.menu title="Colors" route="panel.ad.color.index" icon="iconsax-lin-book"/>
                 <x-layout.panel.menu title="Specifications" route="panel.ad.specification.index" icon="iconsax-lin-book"/>
+                <x-layout.panel.menu title="Price List" route="panel.ad.priceList.index" icon="iconsax-lin-book"/>
 {{--                <x-layout.panel.menu title="Brands-Models" route="panel.ad.brand-model.index" icon="iconsax-lin-book"/>--}}
             </x-layout.panel.menu>
 
