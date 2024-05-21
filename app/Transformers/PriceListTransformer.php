@@ -30,6 +30,7 @@ class PriceListTransformer extends Transformer
     public function transform(PriceList $priceList): array
     {
         return [
+            'id' => $priceList->id,
             'product_name' => $priceList->product_name,
             'price' => $priceList->price,
             'production_year' => $priceList->production_year,
