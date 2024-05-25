@@ -20,7 +20,6 @@ return new class extends Migration {
             $table->string('email')->nullable();
             $table->string('mobile', 10);
             $table->date('birthdate')->nullable();
-            $table->tinyInteger('type')->nullable()->default(0); //Todo implement userTypeEnum
             $table->string('ssn', 10)->nullable();
             $table->tinyInteger('certified')->nullable()->default(0); //Todo implement Enum
             $table->tinyInteger('state')->nullable()->default(0); //Todo implement Enum\

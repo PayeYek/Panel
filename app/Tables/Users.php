@@ -6,11 +6,9 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 use ProtoneMedia\Splade\AbstractTable;
-use ProtoneMedia\Splade\Facades\Toast;
 use ProtoneMedia\Splade\SpladeTable;
 use Spatie\QueryBuilder\AllowedFilter;
 use Spatie\QueryBuilder\QueryBuilder;
-use function Symfony\Component\Translation\t;
 
 class Users extends AbstractTable
 {
@@ -38,10 +36,10 @@ class Users extends AbstractTable
         });
 
         return QueryBuilder::for(User::class)
-//            ->withCount('orders')
+            ->with('roles')
             ->defaultSort('-id')
-            ->allowedSorts(['id', 'first_name', 'last_name', 'mobile', 'created_at', 'updated_at'])
-            ->allowedFilters(['first_name', 'last_name', 'mobile', 'gender', $globalSearch]);
+            ->allowedSorts(['id', 'roles.name', 'first_name', 'last_name', 'mobile', 'created_at', 'updated_at'])
+            ->allowedFilters(['roles.name', 'first_name', 'last_name', 'mobile', 'gender', $globalSearch]);
     }
 
     public function configure(SpladeTable $table)
@@ -51,11 +49,11 @@ class Users extends AbstractTable
             ->withGlobalSearch(columns: ['id', 'first_name', 'last_name', 'mobile'])
             ->column('id', label: __('Id'), sortable: true)
             ->column('user', label: __('Full name'))
-            ->column('first_name', label: __('Name'), sortable: true, hidden: true, searchable: true)
-            ->column('last_name', label: __('Family'), sortable: true, hidden: true, searchable: true)
-            ->column('gender', label: __('Gender'), sortable: true, hidden: true)
+            ->column('first_name', label: __('First Name'), hidden: true, sortable: true, searchable: true)
+            ->column('last_name', label: __('Last Name'), hidden: true, sortable: true, searchable: true)
+            ->column('gender', label: __('Gender'), hidden: true, sortable: true)
             ->column('mobile', label: __('Mobile'), sortable: true, searchable: true)
-            ->column('type', label: __('Role'), sortable: true)
+            ->column('roles.name', label: __('Role'), sortable: true, searchable: true)
             ->column('created_at', label: __('Create date'), hidden: true, sortable: true)
             ->column('updated_at', label: __('Update date'), hidden: true, sortable: true)
             ->column('action', label: __('Actions'), exportAs: false)

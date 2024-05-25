@@ -10,6 +10,7 @@ class ValidEmailDomain implements Rule
         'gmail.com',
         'yahoo.com',
         'outlook.com',
+        'paye1.com',
     ];
 
     public function passes($attribute, $value)

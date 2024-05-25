@@ -2,10 +2,14 @@
 
 namespace App\Http\Controllers\Web\Panel;
 
+use App\Enum\GenderTypeEnum;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Panel\UserRequest;
 use App\Models\User;
 use App\Tables\Users;
+use DB;
+use Exception;
+use Spatie\Permission\Models\Role;
 use Splade;
 
 class UserController extends Controller
@@ -21,17 +25,34 @@ class UserController extends Controller
 
     public function create()
     {
-        return view('panel.user.create');
+        $genderTypes = GenderTypeEnum::options();
+        $roles = Role::latest()->pluck('name', 'id');
+        return view('panel.user.create', compact('roles', 'genderTypes'));
     }
 
 
     public function store(UserRequest $request)
     {
-        User::create($request->validated());
+        DB::beginTransaction();
 
-        Splade::toast(__('Created'))->autoDismiss(5);
+        try {
+            $user = User::create($request->validated());
 
-        return redirect()->route('panel.user.index');
+            if ($request->filled('roles')) {
+                $roles = Role::whereIn('id', $request->roles)->get();
+                $user->syncRoles($roles);
+            }
+
+            DB::commit();
+            Splade::toast(__('Created'))->autoDismiss(5);
+            return redirect()->route('panel.user.index');
+
+        } catch (Exception $e) {
+
+            DB::rollBack();
+            Splade::toast(__('Failed'))->autoDismiss(5)->danger();
+            return redirect()->route('panel.user.index');
+        }
     }
 
 
@@ -40,20 +61,38 @@ class UserController extends Controller
         //
     }
 
-
     public function edit(User $user)
     {
-        return view('panel.user.edit', compact('user'));
+        $genderTypes = GenderTypeEnum::options();
+        $roles = Role::latest()->pluck('name', 'id');
+        $userRoles = $user->roles->pluck('id')->toArray(); // Only get the IDs
+        return view('panel.user.edit', compact('user', 'roles', 'genderTypes', 'userRoles'));
     }
-
 
     public function update(UserRequest $request, User $user)
     {
-        $user->update($request->validated());
+        DB::beginTransaction();
 
-        Splade::toast(__('Updated'))->autoDismiss(5);
+        try {
+            $user->update($request->validated());
 
-        return redirect()->route('panel.user.index');
+            if ($request->filled('roles')) {
+                $roles = Role::whereIn('id', $request->roles)->get();
+                $user->syncRoles($roles);
+            } else {
+                $user->syncRoles([]); // Remove all roles if none are provided
+            }
+
+            DB::commit();
+            Splade::toast(__('Updated'))->autoDismiss(5);
+            return redirect()->route('panel.user.index');
+
+        } catch (Exception $e) {
+
+            DB::rollBack();
+            Splade::toast(__('Failed'))->autoDismiss(5)->danger();
+            return redirect()->route('panel.user.index');
+        }
     }
 
 

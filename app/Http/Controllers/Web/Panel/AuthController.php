@@ -40,9 +40,7 @@ class AuthController extends Controller
 
         $mobile = $data['mobile'];
 
-        $user = User::query()->where('mobile', $mobile)
-            ->where('type', 0) //todo implement user type enum
-            ->first();
+        $user = User::query()->where('mobile', $mobile)->first(); //Todo check policies like ensure user is not restricted
 
         if (!$user) {
             throw ValidationException::withMessages([
@@ -55,7 +53,7 @@ class AuthController extends Controller
         $code = rand(1111, 9999);
 
 //        if (env('APP_ENV' !== 'local')) {
-            SmsHelper::sendCode($mobile, $code); //Todo implement sms service in standard approach
+        SmsHelper::sendCode($mobile, $code); //Todo implement sms service in standard approach
 //        }
 
         ActiveCode::updateOrCreate([
@@ -75,8 +73,8 @@ class AuthController extends Controller
         ]);
 
         $userId = $request->input('user_id');
-        /* Get User */
-        $user = User::query()->find($userId);
+        $user = User::find($userId);
+
         if (!$user) {
             throw ValidationException::withMessages([
                 'code' => __('There is no user account with this number!'),
@@ -84,22 +82,30 @@ class AuthController extends Controller
         }
 
         $mobile = $user->mobile;
+        $lastRecord = ActiveCode::where('mobile', $mobile)->orderBy('id', 'desc')->first();
 
-        /* Check the status */
-        $lastRecord = ActiveCode::query()->where('mobile', $mobile)->orderby('id', 'desc')->orderby('created_at', 'desc')->first();
-        if ($lastRecord && $lastRecord['expired_at'] < now())
+        if ($lastRecord && $lastRecord['expired_at'] < now()) {
             throw ValidationException::withMessages([
                 'code' => trans('Code is expire.'),
             ]);
+        }
 
-        if ($lastRecord && $lastRecord['code'] != $request->code)
+        if ($lastRecord && $lastRecord['code'] != $request->code) {
             throw ValidationException::withMessages([
                 'code' => trans('Code does not match.'),
             ]);
+        }
 
-        /* Codes Removed */
-        $lastRecord->delete(); //Todo check working correctly?
+        $lastRecord->delete();
         Auth::login($user, true);
+
+//        // Check for specific role
+//        if (!$user->hasRole('admin')) {
+//            Auth::logout();
+//            throw ValidationException::withMessages([
+//                'code' => __('You do not have permission to access this area.'),
+//            ]);
+//        }
 
         return redirect()->route('panel.home');
     }

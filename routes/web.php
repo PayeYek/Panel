@@ -1,9 +1,10 @@
 <?php
 
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\Web\Common\PermissionController;
+use App\Http\Controllers\Web\Common\RoleController;
 use App\Http\Controllers\Web\Landing\LandingController;
 use App\Http\Controllers\Web\Panel\AdController;
-use App\Http\Controllers\Web\Panel\Advertise\AdvertiseController;
 use App\Http\Controllers\Web\Panel\Advertise\BrandController as AdBrandController;
 use App\Http\Controllers\Web\Panel\Advertise\CategoryController as AdCategoryController;
 use App\Http\Controllers\Web\Panel\Advertise\ColorController as AdColorController;
@@ -67,6 +68,10 @@ Route::middleware(['splade'])->group(function () {
      */
     Route::middleware(['auth'])->group(function () {
         Route::prefix('panel')->name('panel.')->group(function () {
+
+            /*Role and permissions */
+            Route::resource('role', RoleController::class);
+            Route::resource('permission', PermissionController::class);
 
             /* DASHBOARD */
             Route::get('/', fn() => redirect()->route('panel.landing.land.index'))->name('home');
