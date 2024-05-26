@@ -66,7 +66,7 @@ Route::middleware(['splade'])->group(function () {
      * | CONTROL PANEL
      * |--------------------------------------------------------------------------
      */
-    Route::middleware(['auth'])->group(function () {
+    Route::middleware(['auth', 'role:super-admin|admin'])->group(function () {
         Route::prefix('panel')->name('panel.')->group(function () {
 
             /*Role and permissions */

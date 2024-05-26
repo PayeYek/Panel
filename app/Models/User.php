@@ -25,6 +25,7 @@ class User extends Authenticatable
         'birthdate',
         'ssn',
         'email_verified_at',
+        'ssn_verified_at',
         'certified',
         'state',
     ];
@@ -32,6 +33,7 @@ class User extends Authenticatable
     protected $casts = [
         'gender'            => GenderTypeEnum::class,
         'email_verified_at' => 'datetime',
+        'ssn_verified_at' => 'datetime',
         'password'          => 'hashed',
     ];
 

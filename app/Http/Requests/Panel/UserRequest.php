@@ -25,7 +25,7 @@ class UserRequest extends FormRequest
                 "email"      => ["nullable", "email", "min:3", "max:255", "unique:users", new ValidEmailDomain],
                 "mobile"     => "required|size:10|unique:users|regex:/(9)[0-9]{9}/",
                 "birthdate"  => "nullable|date",
-                "ssn"        => ['required', 'string', new ValidIranSSNRule],
+                "ssn"        => ['required', 'unique:users', 'string', new ValidIranSSNRule],
                 'roles'      => 'nullable|array',
                 'roles.*'    => 'exists:roles,id',
             ];
@@ -52,7 +52,7 @@ class UserRequest extends FormRequest
                     Rule::unique("users")->ignore($this->user->id),
                 ],
                 "birthdate"  => "nullable|date",
-                "ssn"        => ['required', 'string', new ValidIranSSNRule],
+                "ssn"        => ['required', 'unique:users', 'string', new ValidIranSSNRule],
                 'roles'      => 'nullable|array',
                 'roles.*'    => 'exists:roles,id',
             ];

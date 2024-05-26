@@ -8,6 +8,7 @@ use App\Models\User;
 use App\Rules\MobileStartsWithOutZero;
 use App\Support\SmsHelper;
 use Carbon\Carbon;
+use Flugg\Responder\Exceptions\Http\UnauthorizedException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
@@ -41,6 +42,10 @@ class AuthController extends Controller
         $mobile = $data['mobile'];
 
         $user = User::query()->where('mobile', $mobile)->first(); //Todo check policies like ensure user is not restricted
+
+//        if (!$user->hasAnyRole('super-admin', 'admin')) {
+//            throw new UnauthorizedException;
+//        }
 
         if (!$user) {
             throw ValidationException::withMessages([

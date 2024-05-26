@@ -25,6 +25,7 @@ return new class extends Migration {
             $table->tinyInteger('state')->nullable()->default(0); //Todo implement Enum\
 
             $table->rememberToken();
+            $table->timestamp('ssn_verified_at')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->timestamps();
 
