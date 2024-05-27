@@ -4,9 +4,12 @@ namespace App\Http;
 
 use App\Http\Middleware\Authenticate;
 use App\Http\Middleware\EncryptCookies;
+use App\Http\Middleware\EnforceSingleDeviceSession;
 use App\Http\Middleware\Localization;
 use App\Http\Middleware\PreventRequestsDuringMaintenance;
 use App\Http\Middleware\RedirectIfAuthenticated;
+use App\Http\Middleware\ThrottleLoginAttempts;
+use App\Http\Middleware\ThrottleOtpRequests;
 use App\Http\Middleware\TrimStrings;
 use App\Http\Middleware\TrustProxies;
 use App\Http\Middleware\ValidateSignature;
@@ -102,5 +105,8 @@ class Kernel extends HttpKernel
         'role'               => RoleMiddleware::class,
         'permission'         => PermissionMiddleware::class,
         'role_or_permission' => RoleOrPermissionMiddleware::class,
+        'throttle.otp'       => ThrottleOtpRequests::class,
+        'throttle.login'     => ThrottleLoginAttempts::class,
+        'enforce.session'    => EnforceSingleDeviceSession::class,
     ];
 }

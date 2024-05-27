@@ -5,6 +5,7 @@ namespace App\Providers;
 // use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Gate;
+use Laravel\Passport\Passport;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -29,5 +30,11 @@ class AuthServiceProvider extends ServiceProvider
         Gate::before(function ($user, $ability) {
             return $user->hasRole('super-admin') ? true : null;
         });
+
+        $this->registerPolicies();
+
+        Passport::tokensExpireIn(now()->addDays(config('services.jwt.access_token_expiration_days')));
+        Passport::refreshTokensExpireIn(now()->addDays(config('services.jwt.refresh_token_expiration_days')));
+        Passport::personalAccessTokensExpireIn(now()->addMonths(6));
     }
 }

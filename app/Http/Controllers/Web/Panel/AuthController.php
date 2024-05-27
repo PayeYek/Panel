@@ -6,15 +6,19 @@ use App\Http\Controllers\Controller;
 use App\Models\ActiveCode;
 use App\Models\User;
 use App\Rules\MobileStartsWithOutZero;
-use App\Support\SmsHelper;
-use Carbon\Carbon;
-use Flugg\Responder\Exceptions\Http\UnauthorizedException;
+use App\Services\OtpServiceManager;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
 
 class AuthController extends Controller
 {
+    protected OtpServiceManager $otpServiceManager;
+
+    public function __construct(OtpServiceManager $otpServiceManager)
+    {
+        $this->otpServiceManager = $otpServiceManager;
+    }
 
     public function logout(Request $request)
     {
@@ -43,10 +47,6 @@ class AuthController extends Controller
 
         $user = User::query()->where('mobile', $mobile)->first(); //Todo check policies like ensure user is not restricted
 
-//        if (!$user->hasAnyRole('super-admin', 'admin')) {
-//            throw new UnauthorizedException;
-//        }
-
         if (!$user) {
             throw ValidationException::withMessages([
                 'mobile' => __('There is no user account with this number!'),
@@ -55,20 +55,15 @@ class AuthController extends Controller
 
         $userId = $user->id;
 
-        $code = rand(1111, 9999);
+        //OTP
+        $otpService = $this->otpServiceManager->getService();
+        $otp = $otpService->generateOtp($mobile);
 
-//        if (env('APP_ENV' !== 'local')) {
-        SmsHelper::sendCode($mobile, $code); //Todo implement sms service in standard approach
-//        }
+        if ($otpService->sendOtp($mobile, $otp)) {
+            return view('panel.auth.verify', compact('userId'));
+        }
 
-        ActiveCode::updateOrCreate([
-            'mobile' => $mobile,
-        ], [
-            'code'       => $code,
-            'expired_at' => Carbon::now()->addMinutes(5)
-        ]);
-
-        return view('panel.auth.verify', compact('userId'));
+        return response()->json(['message' => 'Failed to send OTP.'], 500);
     }
 
     public function accept(Request $request)
@@ -85,34 +80,23 @@ class AuthController extends Controller
                 'code' => __('There is no user account with this number!'),
             ]);
         }
+        $otpService = $this->otpServiceManager->getService();
 
         $mobile = $user->mobile;
         $lastRecord = ActiveCode::where('mobile', $mobile)->orderBy('id', 'desc')->first();
 
-        if ($lastRecord && $lastRecord['expired_at'] < now()) {
-            throw ValidationException::withMessages([
-                'code' => trans('Code is expire.'),
-            ]);
+        if ($otpService->verifyOtp($mobile, $request->code)) {
+            Auth::login($user, true);
+
+            if ($lastRecord->delete()) {
+                $lastRecord->delete();
+            }
+
+            return redirect()->route('panel.home');
+
         }
+        return response()->json(['message' => 'Invalid OTP.'], 401);
 
-        if ($lastRecord && $lastRecord['code'] != $request->code) {
-            throw ValidationException::withMessages([
-                'code' => trans('Code does not match.'),
-            ]);
-        }
-
-        $lastRecord->delete();
-        Auth::login($user, true);
-
-//        // Check for specific role
-//        if (!$user->hasRole('admin')) {
-//            Auth::logout();
-//            throw ValidationException::withMessages([
-//                'code' => __('You do not have permission to access this area.'),
-//            ]);
-//        }
-
-        return redirect()->route('panel.home');
     }
 
 }

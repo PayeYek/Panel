@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\Api\Advertise\PriceListController;
+use App\Http\Controllers\Api\Common\OtpController;
+use App\Http\Controllers\Api\Common\SessionController;
 use App\Http\Controllers\Api\Landing\LandingApiController;
 use App\Http\Controllers\Web\Panel\AdController;
 use App\Models\Land;
@@ -36,6 +38,29 @@ Route::get('provinces/{provinceId}/cities', function ($provinceId) {
 Route::get('land/{landId}/products', function ($landId) {
     $land = Land::with('products')->find($landId);
     return $land->products()->latest()->get()->pluck('name', 'id');
+});
+//
+//Route::post('/request-otp', [OtpController::class, 'requestOtp'])->middleware('throttle.otp');
+//Route::post('/verify-otp', [OtpController::class, 'verifyOtp'])->middleware('throttle.login');
+//
+//Route::post('/login', [AccessTokenController::class, 'issueToken'])
+//    ->middleware(['throttle:login', 'otp.service']);
+//
+//Route::post('/refresh-token', [AccessTokenController::class, 'issueToken'])
+//    ->middleware(['throttle:login', 'otp.service']);
+
+//Route::post('/request-otp', [OtpController::class, 'requestOtp'])->middleware(['throttle.otp', 'otp.service']);
+Route::post('/request-otp', [OtpController::class, 'requestOtp']);
+//Route::post('/verify-otp', [OtpController::class, 'verifyOtp'])->middleware(['throttle.login', 'otp.service']);
+Route::post('/verify-otp', [OtpController::class, 'verifyOtp']);
+//Route::post('/refresh-token', [OtpController::class, 'refreshToken'])->middleware(['throttle:login']);
+Route::post('/refresh-token', [OtpController::class, 'refreshToken']);
+
+Route::group(['middleware' => ['auth:api', 'enforce.session']], function () {
+    Route::get('/current-session', [SessionController::class, 'getCurrentSession']);
+    Route::get('/all-sessions', [SessionController::class, 'getAllSessions']);
+    Route::delete('/remove-session', [SessionController::class, 'removeSession']);
+    Route::delete('/remove-all-sessions', [SessionController::class, 'removeAllSessions']);
 });
 
 Route::prefix('ad')
