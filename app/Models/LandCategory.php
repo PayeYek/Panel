@@ -27,7 +27,7 @@ class LandCategory extends Model
 
     public function products()
     {
-        return $this->hasMany(LandProduct::class, 'land_id');
+        return $this->hasMany(LandProduct::class, 'category_id');
     }
 
     public function attributes()

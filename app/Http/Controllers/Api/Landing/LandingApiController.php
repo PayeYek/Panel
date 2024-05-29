@@ -42,14 +42,32 @@ class LandingApiController extends Controller
 {
     public function pages()
     {
-        return Land::get(['title', 'slug', 'logo']);
+        $categoriesWithLands = LandCategory::with('products.land')->get();
+        $out = [];
+
+        foreach ($categoriesWithLands as $index => $category) {
+            $landTitles = $category->products->filter(function ($product) {
+                return $product->land !== null;
+            })->map(function ($product) {
+                return $product->land->title;
+            })->unique()->values();
+
+            $out[] = [
+                'id'          => $index,
+                'category_fa' => $category->title,
+                'category_en' => $category->slug,
+                'lands'       => $landTitles
+            ];
+        }
+
+        return responder()->success($out)->respond();
     }
 
     public function page($page)
     {
         $land = Land::where('slug', $page)->with(['products', 'slides' => function ($query) {
             $query->where('status', 1);
-        }, 'videos', 'styles', 'articles' => function ($query) {
+        }, 'videos', 'styles', 'articles'                              => function ($query) {
             $query->orderBy('created_at', 'desc');
         }])->firstOrFail();
 
@@ -69,8 +87,8 @@ class LandingApiController extends Controller
 
         $filteredCategory = collect($categories)->map(function ($item) {
             return [
-                'id' => $item['id'],
-                'slug' => $item['slug'],
+                'id'    => $item['id'],
+                'slug'  => $item['slug'],
                 'title' => $item['title']
             ];
         });
@@ -81,13 +99,13 @@ class LandingApiController extends Controller
 //        $blogArticles = $land->articles->where('type', 'blog');
 
         $data = [
-            'products' => $land->products,
-            'slides' => $land->slides,
-            'videos' => $land->videos,
+            'products'   => $land->products,
+            'slides'     => $land->slides,
+            'videos'     => $land->videos,
 //            'styles' => $land->styles,
-            'articles' => $land->articles()->published()->get(),
+            'articles'   => $land->articles()->published()->get(),
             'categories' => $filteredCategory,
-            'seo' => $seo
+            'seo'        => $seo
         ];
 
         return responder()->success($data, LandPageTransformer::class)->respond();
@@ -130,15 +148,15 @@ class LandingApiController extends Controller
         /* BREADCRUMBS */
         $breadcrumbs[] = [
             'title' => __('About us'),
-            'url' => null
+            'url'   => null
         ];
 
         $seo = SeoHelper::seoGenerator($land, 'aboutUs');
 
         $data = [
-            'about_us' => $land->body,
+            'about_us'    => $land->body,
             'breadcrumbs' => $breadcrumbs,
-            'seo' => $seo
+            'seo'         => $seo
         ];
 
         return responder()->success($data, LandAboutUsTransformer::class)->respond();
@@ -170,7 +188,6 @@ class LandingApiController extends Controller
         }
 
 
-
         $seo = SeoHelper::seoGenerator($land, 'products');
 
         $productsPaginator = $productsQuery->paginate($perPage)->withQueryString();
@@ -185,28 +202,28 @@ class LandingApiController extends Controller
         $breadcrumbs = [
             [
                 'title' => __('Products'),
-                'url' => Str::after(parse_url(route('api.landing.product.list', ['page' => $land->slug]), PHP_URL_PATH), '/api/l/')
+                'url'   => Str::after(parse_url(route('api.landing.product.list', ['page' => $land->slug]), PHP_URL_PATH), '/api/l/')
             ]
         ];
 
         $data = [
             'products' => [
                 'pagination' => (object)[
-                    'count' => $productsPaginator->count(),
-                    'total' => $productsPaginator->total(),
-                    'perPage' => $productsPaginator->perPage(),
+                    'count'       => $productsPaginator->count(),
+                    'total'       => $productsPaginator->total(),
+                    'perPage'     => $productsPaginator->perPage(),
                     'currentPage' => $productsPaginator->currentPage(),
-                    'totalPages' => $productsPaginator->lastPage(),
-                    'links' => $productsPaginator->links(),
+                    'totalPages'  => $productsPaginator->lastPage(),
+                    'links'       => $productsPaginator->links(),
                 ],
-                'data' => $products,
+                'data'       => $products,
             ],
         ];
 
         return responder()->success($data, LandTransformer::class)
             ->meta([
                 'breadcrumbs' => $breadcrumbs,
-                'seo' => $seo
+                'seo'         => $seo
             ])
             ->respond();
     }
@@ -272,8 +289,8 @@ class LandingApiController extends Controller
 
         $termsResponse = $saleTerms->map(function ($term) {
             return [
-                'title' => $term->title,
-                'body' => $term->body,
+                'title'      => $term->title,
+                'body'       => $term->body,
                 'created_at' => $term->created_at,
                 'updated_at' => $term->updated_at
             ];
@@ -281,7 +298,7 @@ class LandingApiController extends Controller
 
         $titles = $saleTerms->map(function ($term) {
             return [
-                'title' => $term->title,
+                'title'      => $term->title,
                 'created_at' => $term->created_at
             ];
         });
@@ -294,12 +311,12 @@ class LandingApiController extends Controller
         $seo = SeoHelper::seoGenerator($land, 'saleTerms');
 
         $data = [
-            'landName' => $land->title,
-            'titles' => $titles->all(),
+            'landName'     => $land->title,
+            'titles'       => $titles->all(),
             'primaryImage' => $saleTerms->first()?->image,
-            'saleTerms' => $termsResponse,
-            'breadcrumbs' => $breadcrumbs,
-            'seo' => $seo
+            'saleTerms'    => $termsResponse,
+            'breadcrumbs'  => $breadcrumbs,
+            'seo'          => $seo
         ];
         return responder()->success($data, SaleTermsTransformer::class)->respond();
     }
@@ -321,9 +338,9 @@ class LandingApiController extends Controller
         $seo = SeoHelper::seoGenerator($product);
 
         $data = [
-            'product' => $product,
+            'product'     => $product,
             'breadcrumbs' => $breadcrumbs,
-            'seo' => $seo
+            'seo'         => $seo
         ];
 
         return responder()->success($data, LandProductTransformer::class)
@@ -435,14 +452,14 @@ class LandingApiController extends Controller
         ];
 
         $data = [
-            'videos' => $videosResponse,
+            'videos'     => $videosResponse,
             'pagination' => (object)[
-                'count' => $videos->count(),
-                'total' => $videos->total(),
-                'perPage' => $videos->perPage(),
+                'count'       => $videos->count(),
+                'total'       => $videos->total(),
+                'perPage'     => $videos->perPage(),
                 'currentPage' => $videos->currentPage(),
-                'totalPages' => $videos->lastPage(),
-                'links' => $videos->links(),
+                'totalPages'  => $videos->lastPage(),
+                'links'       => $videos->links(),
             ]
         ];
 
@@ -508,26 +525,26 @@ class LandingApiController extends Controller
         /* BREADCRUMBS */
         $breadcrumbs[] = [
             'title' => __('Articles'),
-            'url' => Str::after(parse_url(route('api.landing.article.list', ['page' => $land->slug]), PHP_URL_PATH), '/api/l/')
+            'url'   => Str::after(parse_url(route('api.landing.article.list', ['page' => $land->slug]), PHP_URL_PATH), '/api/l/')
         ];
 
         $seo = SeoHelper::seoGenerator($land, 'articles');
 
         $data = [
             'article_types' => $uniqueTypes,
-            'articles' => [
+            'articles'      => [
                 'pagination' => (object)[
-                    'count' => $articlePaginator->count(),
-                    'total' => $articlePaginator->total(),
-                    'perPage' => $articlePaginator->perPage(),
+                    'count'       => $articlePaginator->count(),
+                    'total'       => $articlePaginator->total(),
+                    'perPage'     => $articlePaginator->perPage(),
                     'currentPage' => $articlePaginator->currentPage(),
-                    'totalPages' => $articlePaginator->lastPage(),
-                    'links' => $articlePaginator->links(),
+                    'totalPages'  => $articlePaginator->lastPage(),
+                    'links'       => $articlePaginator->links(),
                 ],
-                'data' => $articles,
+                'data'       => $articles,
             ],
-            'breadcrumbs' => $breadcrumbs,
-            'seo' => $seo
+            'breadcrumbs'   => $breadcrumbs,
+            'seo'           => $seo
         ];
 
         return responder()->success($data, LandArticlesTransformer::class)->respond();
@@ -556,19 +573,19 @@ class LandingApiController extends Controller
         $breadcrumbs = [];
         $breadcrumbs[] = [
             'title' => __('Articles'),
-            'url' => Str::after(parse_url(route('api.landing.article.list', ['page' => $land->slug]), PHP_URL_PATH), '/api/l/')
+            'url'   => Str::after(parse_url(route('api.landing.article.list', ['page' => $land->slug]), PHP_URL_PATH), '/api/l/')
         ];
         $breadcrumbs[] = [
             'title' => $article->title,
-            'url' => null
+            'url'   => null
         ];
         $seo = SeoHelper::seoGenerator($article);
 
         $data = [
-            'article' => $article->only(['title', 'image', 'body', 'created_at']),
+            'article'          => $article->only(['title', 'image', 'body', 'created_at']),
             'related_articles' => $outRelated,
-            'breadcrumbs' => $breadcrumbs,
-            'seo' => $seo
+            'breadcrumbs'      => $breadcrumbs,
+            'seo'              => $seo
         ];
         return responder()->success($data, LandArticleSingleTransformer::class)->respond();
     }
@@ -596,7 +613,7 @@ class LandingApiController extends Controller
 
             LandSubscribe::create([
                 'land_id' => $landId,
-                'phone' => $phone
+                'phone'   => $phone
             ]);
 
             return responder()->success(['message' => 'Subscribed successfully'])->respond();
@@ -652,13 +669,13 @@ class LandingApiController extends Controller
         /* BREADCRUMBS */
         $breadcrumbs[] = [
             'title' => __('Facilities'),
-            'url' => null
+            'url'   => null
         ];
 
         $filteredCategory = collect($categories)->map(function ($item) {
             return [
-                'id' => $item['id'],
-                'slug' => $item['slug'],
+                'id'    => $item['id'],
+                'slug'  => $item['slug'],
                 'title' => $item['title']
             ];
         });
@@ -667,9 +684,9 @@ class LandingApiController extends Controller
 
 
         $data = [
-            'categories' => $filteredCategory,
-            'land_id' => $land->id,
-            'seo' => $seo,
+            'categories'  => $filteredCategory,
+            'land_id'     => $land->id,
+            'seo'         => $seo,
             'breadcrumbs' => $breadcrumbs,
         ];
 
@@ -682,10 +699,10 @@ class LandingApiController extends Controller
             $this->assertUserCanRequestFacility($facilitiesRequest->validated('phone'), $facilitiesRequest->validated('land_id'));
 
             LandFacility::create([
-                'full_name' => $facilitiesRequest->validated('full_name'),
-                'amount' => $facilitiesRequest->validated('amount'),
-                'phone' => $facilitiesRequest->validated('phone'),
-                'land_id' => $facilitiesRequest->validated('land_id'),
+                'full_name'   => $facilitiesRequest->validated('full_name'),
+                'amount'      => $facilitiesRequest->validated('amount'),
+                'phone'       => $facilitiesRequest->validated('phone'),
+                'land_id'     => $facilitiesRequest->validated('land_id'),
                 'category_id' => $facilitiesRequest->validated('category_id'),
             ]);
 
@@ -737,7 +754,7 @@ class LandingApiController extends Controller
         return Land::where('slug', $page)
             ->with([
                 'products',
-                'slides' => function ($query) {
+                'slides'   => function ($query) {
                     $query->where('status', 1);
                 },
                 'videos',
