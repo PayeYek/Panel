@@ -28,6 +28,7 @@ class User extends Authenticatable
         'ssn_verified_at',
         'certified',
         'state',
+        'password'
     ];
 
     protected $casts = [

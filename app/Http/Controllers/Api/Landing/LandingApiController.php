@@ -331,7 +331,7 @@ class LandingApiController extends Controller
         $product = $land->products()->with('category')->where('slug', $product)->firstOrFail();
 
         $breadcrumbs = [
-            ['title' => __('Products'), 'url' => url()->route('api.landing.product.list', ['page' => $land->slug])],
+            ['title' => __('Products'), \Illuminate\Support\Str::after(parse_url(route('api.landing.product.list', ['page' => $land->slug]), PHP_URL_PATH), '/api/l/')],
             ['title' => $product->name, 'url' => null]
         ];
 

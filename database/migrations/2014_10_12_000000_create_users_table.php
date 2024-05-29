@@ -21,6 +21,7 @@ return new class extends Migration {
             $table->string('mobile', 10);
             $table->date('birthdate')->nullable();
             $table->string('ssn', 10)->nullable();
+            $table->string('password')->nullable();
             $table->tinyInteger('certified')->nullable()->default(0); //Todo implement Enum
             $table->tinyInteger('state')->nullable()->default(0); //Todo implement Enum\
 
