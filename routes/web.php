@@ -160,7 +160,9 @@ Route::middleware(['splade'])->group(function () {
      * | LANDING
      * |--------------------------------------------------------------------------
      */
-    Route::prefix('l')
+
+    /*
+     Route::prefix('l')
         ->name('landing.')
         ->controller(LandingController::class)
         ->group(function () {
@@ -191,10 +193,12 @@ Route::middleware(['splade'])->group(function () {
 
             Route::get('{page}/advertise', 'advertise')->name('advertise');
         });
+    */
 
     Route::get('/', function () {
-        $lands = Land::get();
-        return view('landing.index', compact('lands'));
+//        $lands = Land::get();
+//        return view('landing.index', compact('lands'));
+        return view('landing.index');
     })->name('index');
 
 
