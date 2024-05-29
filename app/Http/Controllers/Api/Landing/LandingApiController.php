@@ -45,6 +45,30 @@ class LandingApiController extends Controller
         return Land::get(['title', 'slug', 'logo']);
     }
 
+    public function landing()
+    {
+
+        $categoriesWithLands = LandCategory::with('products.land')->get();
+        $out = [];
+
+        foreach ($categoriesWithLands as $index => $category) {
+            $landTitles = $category->products->filter(function ($product) {
+                return $product->land !== null;
+            })->map(function ($product) {
+                return $product->land->title;
+            })->unique()->values();
+
+            $out[] = [
+                'index'       => $index,
+                'category_fa' => $category->title,
+                'category_en' => $category->slug,
+                'lands'       => $landTitles
+            ];
+        }
+
+        return responder()->success($out)->respond();
+    }
+
     public function page($page)
     {
         $land = Land::where('slug', $page)->with(['products', 'slides' => function ($query) {
