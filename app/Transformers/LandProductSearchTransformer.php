@@ -30,8 +30,8 @@ class LandProductSearchTransformer extends Transformer
     public function transform(LandProduct $landProduct): array
     {
         return [
-            'name' => $landProduct->name,
-            'slug' => $landProduct->slug,
+            'name'  => $landProduct->name,
+            'slug'  => $landProduct->slug,
             'image' => $landProduct->image,
             'model' => $landProduct->model,
         ];

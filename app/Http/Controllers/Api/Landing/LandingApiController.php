@@ -34,6 +34,7 @@ use App\Transformers\LandProductTransformer;
 use App\Transformers\LandProductVideoTransformer;
 use App\Transformers\LandTransformer;
 use App\Transformers\LandVideoTransformer;
+use App\Transformers\ProductCardTransformer;
 use App\Transformers\SaleTermsTransformer;
 use Exception;
 use Str;
@@ -180,7 +181,7 @@ class LandingApiController extends Controller
         return ['land' => $land, 'breadcrumbs' => $breadcrumbs];
     }
 
-    public function products($page)
+    public function getLandProducts($page)
     {
         $perPage = 12;
         $categoryFilter = request('category');
@@ -199,9 +200,11 @@ class LandingApiController extends Controller
         $productsPaginator = $productsQuery->paginate($perPage)->withQueryString();
 
         $products = $productsPaginator->getCollection()->map(function ($product) {
-            return $product->only([
+            return array_merge($product->only([
                 'id', 'category_id', 'slug', 'name', 'model', 'year', 'tonnage', 'usage', 'cabin',
                 'image', 'description', 'catalog', 'manual', 'colors', 'body'
+            ]), [
+                'category_title' => $product->category->title
             ]);
         });
 
@@ -234,20 +237,83 @@ class LandingApiController extends Controller
             ->respond();
     }
 
-    public function searchProducts(ProductSearchRequest $request)
+    public function getAllProducts()
     {
-        $landId = $request->validated('land_id');
-        $keyword = $request->validated('keyword');
+        $perPage = request('per_page', 12);
+        $categoryFilter = request('category_id');
+        $landFilter = request('land_id');
+        $forArasb = request('for_arasb', false);
 
-        $searchResults = LandProduct::where('land_id', $landId)
-            ->where(function ($query) use ($keyword) {
+        $productsQuery = LandProduct::with('land');
+
+        // Apply filters conditionally
+        if ($categoryFilter) {
+            $productsQuery->where('category_id', $categoryFilter);
+        }
+
+        if ($forArasb) {
+            $productsQuery->whereIn('land_id', [1, 2, 3, 6, 20]);
+        }
+
+        if ($landFilter) {
+            $productsQuery->where('land_id', $landFilter);
+        }
+
+        $seo = SeoHelper::seoGenerator(null, 'products');
+
+        $productsPaginator = $productsQuery->paginate($perPage)->withQueryString();
+
+        $breadcrumbs = [
+            [
+                'title' => __('Products'),
+                'url'   => null
+            ]
+        ];
+
+        $pagination = [
+            'count'       => $productsPaginator->count(),
+            'total'       => $productsPaginator->total(),
+            'perPage'     => $productsPaginator->perPage(),
+            'currentPage' => $productsPaginator->currentPage(),
+            'totalPages'  => $productsPaginator->lastPage(),
+            'links'       => $productsPaginator->links(),
+        ];
+
+        return responder()->success($productsPaginator, ProductCardTransformer::class)
+            ->meta([
+                'pagination'  => $pagination,
+                'breadcrumbs' => $breadcrumbs,
+                'seo'         => $seo
+            ])
+            ->respond();
+    }
+
+    public function searchProducts()
+    {
+        $forArasb = request('for_arasb', false);
+        $landId = request('land_id');
+        $keyword = request('keyword');
+        $searchResults = LandProduct::query();
+        $out = [];
+
+        if ($landId) {
+            $searchResults->where('land_id', $landId);
+        } elseif ($forArasb) {
+            $searchResults->whereIn('land_id', [1, 2, 3, 6, 20]);
+        }
+
+        if ($keyword) {
+            $searchResults->where(function ($query) use ($keyword) {
                 $query->where('name', 'LIKE', '%' . $keyword . '%')
                     ->orWhere('model', 'LIKE', '%' . $keyword . '%');
-            })
-            ->orderBy('created_at', 'desc');
+            });
+            $searchResults->orderBy('created_at', 'desc');
+            $out = $searchResults->get();
+        }
 
-        return responder()->success($searchResults, LandProductSearchTransformer::class)->respond();
+        return responder()->success($out, LandProductSearchTransformer::class)->respond();
     }
+
 
     public function productSpecification($product)
     {

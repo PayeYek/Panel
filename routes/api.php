@@ -109,7 +109,8 @@ Route::prefix('l')
         });
 
         Route::name('product.')->group(function () {
-            Route::get('{page}/p', 'products')->name('list');
+            Route::get('/p/products-list', 'getAllProducts')->name('all');
+            Route::get('{page}/p', 'getLandProducts')->name('list');
             Route::get('{page}/p/{product}', 'product')->name('show');
             Route::get('{page}/c/{category}', 'category')->name('category');
             Route::get('p/{product}/specification', 'productSpecification')->name('specification');
