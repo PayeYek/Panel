@@ -519,7 +519,12 @@ class LandingApiController extends Controller
 
         $articles = collect($articlePaginator->items());
 
-        $uniqueTypes = $land->articles()->pluck('type')->unique()->values()->map(function ($type) {
+        $uniqueTypes = $land->articles()
+            ->where('type', '!=', 'sell')
+            ->pluck('type')
+            ->unique()
+            ->values()
+            ->map(function ($type) {
             return [
                 'type_fa' => __($type),
                 'type_en' => $type
