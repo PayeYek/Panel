@@ -72,46 +72,45 @@ class LandingApiController extends Controller
 
     public function page($page)
     {
-        $land = Land::where('slug', $page)->with(['products', 'slides' => function ($query) {
-            $query->where('status', 1);
-        }, 'videos', 'styles', 'articles'                              => function ($query) {
-            $query->orderBy('created_at', 'desc');
-        }])->firstOrFail();
+        $landQuery = Land::where('slug', $page)
+            ->with([
+                'products', // Simplify: remove conditional logic here
+                'slides'   => function ($query) {
+                    $query->where('status', 1);
+                },
+                'videos',
+                'styles',
+                'articles' => function ($query) {
+                    $query->orderBy('updated_at', 'desc')->published();
+                }
+            ])->firstOrFail();
 
-        $land->makeHidden(['id', 'body', 'logo_origin', 'created_at', 'updated_at', 'products.id']);
-
-        $cats = array();
-        foreach ($land->products as $productItem) {
-            $cats[] = $productItem->category_id;
-        }
-        $cats = array_unique($cats);
-
-        $categories = collect();
-
-        foreach ($cats as $cat) {
-            $categories->add(collect(LandCategory::find($cat)));
+        if ($page == 'arasb-diesel') {
+            $landQuery->products = LandProduct::whereIn('land_id', [1, 2, 3, 6, 20, 26])->get();
         }
 
-        $filteredCategory = collect($categories)->map(function ($item) {
+        $landQuery->makeHidden(['id', 'body', 'logo_origin', 'created_at', 'updated_at', 'products.id']);
+
+        // Get unique category IDs from products
+        $cats = $landQuery->products->pluck('category_id')->unique();
+
+        // Fetch categories in a single query
+        $categories = LandCategory::whereIn('id', $cats)->get()->map(function ($category) {
             return [
-                'id'    => $item['id'],
-                'slug'  => $item['slug'],
-                'title' => $item['title']
+                'id'    => $category->id,
+                'slug'  => $category->slug,
+                'title' => $category->title,
             ];
         });
 
-        $seo = SeoHelper::seoGenerator($land, 'page');
-
-//        $newsArticles = $land->articles->where('type', 'news');
-//        $blogArticles = $land->articles->where('type', 'blog');
+        $seo = SeoHelper::seoGenerator($landQuery, 'page');
 
         $data = [
-            'products'   => $land->products,
-            'slides'     => $land->slides,
-            'videos'     => $land->videos,
-//            'styles' => $land->styles,
-            'articles'   => $land->articles()->published()->get(),
-            'categories' => $filteredCategory,
+            'products'   => $landQuery->products,
+            'slides'     => $landQuery->slides,
+            'videos'     => $landQuery->videos,
+            'articles'   => $landQuery->articles, // Use the already loaded relationship
+            'categories' => $categories,
             'seo'        => $seo
         ];
 
@@ -252,7 +251,7 @@ class LandingApiController extends Controller
         }
 
         if ($forArasb) {
-            $productsQuery->whereIn('land_id', [1, 2, 3, 6, 20]);
+            $productsQuery->whereIn('land_id', [1, 2, 3, 6, 20, 26]);
         }
 
         if ($landFilter) {
@@ -299,7 +298,7 @@ class LandingApiController extends Controller
         if ($landId) {
             $searchResults->where('land_id', $landId);
         } elseif ($forArasb) {
-            $searchResults->whereIn('land_id', [1, 2, 3, 6, 20]);
+            $searchResults->whereIn('land_id', [1, 2, 3, 6, 20, 26]);
         }
 
         if ($keyword) {
