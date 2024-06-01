@@ -4,13 +4,12 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Enum\GenderTypeEnum;
-use App\Enum\UserTypeEnum;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Laravel\Sanctum\HasApiTokens;
+use Laravel\Passport\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
@@ -24,22 +23,27 @@ class User extends Authenticatable
         'email',
         'mobile',
         'birthdate',
-        'type',
         'ssn',
         'email_verified_at',
+        'ssn_verified_at',
         'certified',
         'state',
+        'password'
     ];
 
     protected $casts = [
-        'gender' => GenderTypeEnum::class,
-        'type' => UserTypeEnum::class,
+        'gender'            => GenderTypeEnum::class,
         'email_verified_at' => 'datetime',
-        'password' => 'hashed',
+        'ssn_verified_at'   => 'datetime',
+        'password'          => 'hashed',
     ];
 
     protected $hidden = ['password', 'remember_token'];
 
+    public function findForPassport($username): User
+    {
+        return $this->where('mobile', $username)->first();
+    }
 
     /**-------------------------***
      * New Attribute

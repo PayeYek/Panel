@@ -1,9 +1,10 @@
 <?php
 
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\Web\Common\PermissionController;
+use App\Http\Controllers\Web\Common\RoleController;
 use App\Http\Controllers\Web\Landing\LandingController;
 use App\Http\Controllers\Web\Panel\AdController;
-use App\Http\Controllers\Web\Panel\Advertise\AdvertiseController;
 use App\Http\Controllers\Web\Panel\Advertise\BrandController as AdBrandController;
 use App\Http\Controllers\Web\Panel\Advertise\CategoryController as AdCategoryController;
 use App\Http\Controllers\Web\Panel\Advertise\ColorController as AdColorController;
@@ -65,8 +66,12 @@ Route::middleware(['splade'])->group(function () {
      * | CONTROL PANEL
      * |--------------------------------------------------------------------------
      */
-    Route::middleware(['auth'])->group(function () {
+    Route::middleware(['auth', 'role:super-admin|admin'])->group(function () {
         Route::prefix('panel')->name('panel.')->group(function () {
+
+            /*Role and permissions */
+            Route::resource('role', RoleController::class);
+            Route::resource('permission', PermissionController::class);
 
             /* DASHBOARD */
             Route::get('/', fn() => redirect()->route('panel.landing.land.index'))->name('home');
@@ -155,7 +160,9 @@ Route::middleware(['splade'])->group(function () {
      * | LANDING
      * |--------------------------------------------------------------------------
      */
-    Route::prefix('l')
+
+    /*
+     Route::prefix('l')
         ->name('landing.')
         ->controller(LandingController::class)
         ->group(function () {
@@ -186,10 +193,12 @@ Route::middleware(['splade'])->group(function () {
 
             Route::get('{page}/advertise', 'advertise')->name('advertise');
         });
+    */
 
     Route::get('/', function () {
-        $lands = Land::get();
-        return view('landing.index', compact('lands'));
+//        $lands = Land::get();
+//        return view('landing.index', compact('lands'));
+        return view('landing.index');
     })->name('index');
 
 

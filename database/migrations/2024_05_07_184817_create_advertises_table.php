@@ -42,6 +42,7 @@ return new class extends Migration {
             $table->foreignId('user_id')->constrained();
             $table->foreignId('category_id')->constrained();
             $table->foreignId('city_id')->constrained('province_cities');
+            $table->foreignId('province_id')->constrained('provinces');
             $table->foreignId('usage_id')->constrained();
 
             $table->timestamp('published_at')->nullable();

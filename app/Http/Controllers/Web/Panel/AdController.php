@@ -16,7 +16,8 @@ class AdController extends Controller
 {
     public function getList()
     {
-        return responder()->success(Ads::where('state', 1)->get(), AdCardTransformer::class)->respond();
+        $perPage = request('perPage') ?? 10;
+        return responder()->success(Ads::where('state', 1)->paginate($perPage), AdCardTransformer::class)->respond();
     }
 
     public function show(Ads $advertise)
@@ -49,7 +50,6 @@ class AdController extends Controller
             $data['primary_image'] =
                 $request->file('primary_image')->store('media/ads/primary', 'public');
         }
-
 
 
         /* Get slides */

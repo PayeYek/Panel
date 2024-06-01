@@ -6,6 +6,7 @@ use App\Trait\HasSeo;
 use Illuminate\Database\Eloquent\Casts\Attribute as ModelAttribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Str;
 
 class LandProduct extends Model
@@ -181,7 +182,7 @@ class LandProduct extends Model
         return $this->attributes["manual"];
     }
 
-    public function land()
+    public function land(): BelongsTo
     {
         return $this->belongsTo(Land::class, 'land_id');
     }

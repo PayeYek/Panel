@@ -1,3 +1,5 @@
+@php use App\Enum\GenderTypeEnum; @endphp
+@php use App\Support\Help; @endphp
 <x-layout.admin>
 
     <x-splade-table :for="$items"
@@ -10,12 +12,15 @@
         @endcell
 
         @cell('gender', $item)
-        @if($item->gender == 1)
+        @if($item->gender == GenderTypeEnum::MALE)
             <span
                 class="inline-flex items-center gap-x-1.5 py-1.5 px-3 rounded-full text-xs font-medium bg-blue-100 text-blue-800 dark:bg-blue-800/30 dark:text-blue-500">{{__('Male')}}</span>
-        @else
+        @elseif($item->gender == GenderTypeEnum::FEMALE)
             <span
                 class="inline-flex items-center gap-x-1.5 py-1.5 px-3 rounded-full text-xs font-medium bg-pink-100 text-pink-800 dark:bg-pink-800/30 dark:text-pink-500">{{__('Female')}}</span>
+        @else
+            <span
+                class="inline-flex items-center gap-x-1.5 py-1.5 px-3 rounded-full text-xs font-medium bg-yellow-100 text-pink-800 dark:bg-yellow-800/30 dark:text-yellow-500">{{__('Other')}}</span>
         @endif
         @endcell
 
@@ -32,13 +37,13 @@
         {{--BIRTHDATE--}}
         @cell('birthdate', $item)
         <span
-            dir="ltr">{{ \App\Support\Help::isRTL() ? jdate($item->birthdate) : $item->birthdate }}</span>
+            dir="ltr">{{ Help::isRTL() ? jdate($item->birthdate) : $item->birthdate }}</span>
         @endcell
 
         {{--EMAIL_VERIFIED_AT--}}
         @cell('email_verified_at', $item)
         <span
-            dir="ltr">{{ \App\Support\Help::isRTL() ? jdate($item->email_verified_at) : $item->email_verified_at }}</span>
+            dir="ltr">{{ Help::isRTL() ? jdate($item->email_verified_at) : $item->email_verified_at }}</span>
         @endcell
 
         <x-layout.panel.timestamps/>

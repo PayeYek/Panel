@@ -6,22 +6,30 @@
                 <x-layout.panel.form.alerts/>
 
                 <x-layout.panel.form.division :col="2">
-                    <x-splade-input name="first_name" label="Name"/>
-                    <x-splade-input name="last_name" label="Last Name"/>
-                    <x-splade-select name="gender" label="Gender" choices="{ searchEnabled: false }">
+                    <x-splade-input required name="first_name" label="Name"/>
+                    <x-splade-input required name="last_name" label="Last Name"/>
+                    <x-splade-select required name="gender" label="Gender">
                         <option value="" disabled>{{__('Select an item')}}</option>
-                        <option value="0">{{__('Female')}}</option>
-                        <option value="1">{{__('Male')}}</option>
+                        @if($genderTypes)
+                            @foreach($genderTypes as $gender)
+                                <option value="{{ $gender['id'] }}">{{ $gender['label'] }}</option>
+                            @endforeach
+                        @endif
                     </x-splade-select>
                     <x-splade-input name="birthdate" label="Birthdate" date/>
+                    <x-splade-input name="email" label="Email"/>
+                    <x-splade-input required help="شماره موبایل بدون 0 وارد شود. مثال: 912xxxxxxx" name="mobile"
+                                    label="Mobile"/>
+                    <x-splade-input required name="ssn" label="SSN"/>
                 </x-layout.panel.form.division>
 
-                <x-layout.panel.form.divider text="User login information"/>
+                <x-layout.panel.form.divider text="User type information"/>
+                <x-layout.panel.form.division :col="1">
+                    <x-splade-select required label="Roles" name="roles[]" option-value="id" :options="$roles"
+                                     choices multiple/>
+                </x-layout.panel.form.division>
 
-                <x-splade-input name="username" label="Username" ltr/>
-
-
-                <x-splade-submit label="Update"/>
+                <x-splade-submit label="Create" class="mb-52"/>
 
             </x-layout.panel.form.card>
         </x-splade-form>
