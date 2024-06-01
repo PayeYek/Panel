@@ -72,6 +72,7 @@
                         <option value="6">{{ __('View type') }} 6</option>
                         <option value="7">{{ __('View type') }} 7</option>
                         <option value="8">{{ __('View type') }} 8</option>
+                        <option value="9">{{ __('View type') }} 9</option>
                     </x-splade-select>
 
                     <x-splade-select name="section_header_type" label="Section header type">
