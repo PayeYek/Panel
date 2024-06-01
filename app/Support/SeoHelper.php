@@ -166,6 +166,23 @@ class SeoHelper
             ];
         }
 
+        if ($static === 'products') {
+            return [
+                'title' => 'محصولات',
+                'description' => "اطلاع از آخرین اطلاعایه های فروش خودرو، بررسی تخصصی خودروها و آخرین اخبار درباره شرکت و محصولات",
+                'image' => null,
+                'image_alt' => null,
+                'og_title' => null,
+                'og_description' => null,
+                'og_image' => null,
+                'og_type' => 'website',
+                'twitter_card' => 'summary',
+                'twitter_card_image' => null,
+                'canonical' => null,
+                'robot' => 'index'
+            ];
+        }
+
         return [
             'title' => null,
             'description' => null,
