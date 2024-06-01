@@ -525,11 +525,12 @@ class LandingApiController extends Controller
             ->unique()
             ->values()
             ->map(function ($type) {
-            return [
-                'type_fa' => __($type),
-                'type_en' => $type
-            ];
-        })->all();
+
+                return [
+                    'type_fa' => __($type),
+                    'type_en' => $type
+                ];
+            })->all();
 
         $breadcrumbs = [];
 
