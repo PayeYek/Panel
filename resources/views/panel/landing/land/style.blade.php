@@ -44,6 +44,7 @@
                         <option value="22"> شیران دیزل </option>
                         <option value="23"> تیراژه دیزل </option>
                         <option value="24"> کاوه دیزل </option>
+                        <option value="26"> آراسب دیزل </option>
                     </x-splade-select>
 
                     <x-splade-select name="border_type" label="نمای اشیاء">
