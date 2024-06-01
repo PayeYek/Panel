@@ -74,14 +74,14 @@ class LandingApiController extends Controller
     {
         $landQuery = Land::where('slug', $page)
             ->with([
-                'products', // Simplify: remove conditional logic here
+                'products',
                 'slides'   => function ($query) {
                     $query->where('status', 1);
                 },
                 'videos',
                 'styles',
                 'articles' => function ($query) {
-                    $query->orderBy('updated_at', 'desc')->published();
+                    $query->where('type', '!=', 'sell')->orderBy('updated_at', 'desc')->published();
                 }
             ])->firstOrFail();
 
@@ -91,10 +91,8 @@ class LandingApiController extends Controller
 
         $landQuery->makeHidden(['id', 'body', 'logo_origin', 'created_at', 'updated_at', 'products.id']);
 
-        // Get unique category IDs from products
         $cats = $landQuery->products->pluck('category_id')->unique();
 
-        // Fetch categories in a single query
         $categories = LandCategory::whereIn('id', $cats)->get()->map(function ($category) {
             return [
                 'id'    => $category->id,
@@ -109,7 +107,7 @@ class LandingApiController extends Controller
             'products'   => $landQuery->products,
             'slides'     => $landQuery->slides,
             'videos'     => $landQuery->videos,
-            'articles'   => $landQuery->articles, // Use the already loaded relationship
+            'articles'   => $landQuery->articles,
             'categories' => $categories,
             'seo'        => $seo
         ];
