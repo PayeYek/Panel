@@ -295,10 +295,10 @@ class LandingApiController extends Controller
         $searchResults = LandProduct::query();
         $out = [];
 
-        if ($landId) {
-            $searchResults->where('land_id', $landId);
-        } elseif ($forArasb) {
+        if ($forArasb) {
             $searchResults->whereIn('land_id', [1, 2, 3, 6, 20, 26]);
+        } elseif ($landId) {
+            $searchResults->where('land_id', $landId);
         }
 
         if ($keyword) {
@@ -306,13 +306,13 @@ class LandingApiController extends Controller
                 $query->where('name', 'LIKE', '%' . $keyword . '%')
                     ->orWhere('model', 'LIKE', '%' . $keyword . '%');
             });
-            $searchResults->orderBy('created_at', 'desc');
-            $out = $searchResults->get();
         }
+
+        $searchResults->orderBy('created_at', 'desc');
+        $out = $searchResults->get();
 
         return responder()->success($out, LandProductSearchTransformer::class)->respond();
     }
-
 
     public function productSpecification($product)
     {
