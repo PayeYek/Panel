@@ -12,6 +12,7 @@ use App\Http\Requests\Panel\Landing\CommentRequest;
 use App\Http\Requests\Panel\Landing\FacilitiesRequest;
 use App\Http\Requests\Panel\Landing\ProductSearchRequest;
 use App\Http\Requests\Panel\Landing\SubscribeRequest;
+use App\Models\CustomerFeedback;
 use App\Models\Land;
 use App\Models\LandArticle;
 use App\Models\LandCategory;
@@ -20,6 +21,7 @@ use App\Models\LandFacility;
 use App\Models\LandProduct;
 use App\Models\LandSubscribe;
 use App\Support\SeoHelper;
+use App\Transformers\CustomerFeedbackTransformer;
 use App\Transformers\LandAboutUsTransformer;
 use App\Transformers\LandArticleSearchTransformer;
 use App\Transformers\LandArticleSingleTransformer;
@@ -839,5 +841,10 @@ class LandingApiController extends Controller
                 }
             ])
             ->firstOrFail();
+    }
+
+    public function getCustomerFeedback()
+    {
+        return responder()->success(CustomerFeedback::all(), CustomerFeedbackTransformer::class)->respond();
     }
 }

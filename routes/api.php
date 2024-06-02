@@ -98,6 +98,7 @@ Route::prefix('l')
         Route::name('page.')->group(function () {
             Route::get('/pages', 'pages')->name('list');
             Route::get('/landing', 'landing')->name('landing');
+            Route::get('/customer-feedback', 'getCustomerFeedback')->name('customerFeedback');
             Route::get('{page}', 'page')->name('show');
             Route::get('{page}/about', 'about')->name('about');
             Route::get('{page}/footer', 'pageFooter')->name('footer');

@@ -544,6 +544,7 @@
     "Finished": "ناموجود",
     "Parent": "والد",
     "Script code": "اسکریپت کد ویدیو",
+    "Video script code": "اسکریپت کد ویدیو",
     "Exit": "خروج",
     "Logout": "خروج از حساب",
     "Sign up here.": "از اینجا ثبت نام کنید.",
@@ -648,5 +649,9 @@
     "SSN": "کدملی",
     "User type information": "اطلاعات نقش کاربر",
     "Other": "سایر",
-    "You do not have permission to access this area.": "خطای دسترسی"
+    "You do not have permission to access this area.": "خطای دسترسی",
+    "Customer feedback": "رضایت مشتریان",
+    "New Feedback" : "بازخورد جدید",
+    "Feedback list" : "لیست بازخوردها",
+    "Purchased Product" : "محصول خریداری شده"
 }

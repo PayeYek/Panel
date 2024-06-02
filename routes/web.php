@@ -21,6 +21,7 @@ use App\Http\Controllers\Web\Panel\Land\BrandController;
 use App\Http\Controllers\Web\Panel\Land\CategoryController;
 use App\Http\Controllers\Web\Panel\Land\ColorController;
 use App\Http\Controllers\Web\Panel\Land\CommentController as LandComment;
+use App\Http\Controllers\Web\Panel\Land\CustomerFeedbackController;
 use App\Http\Controllers\Web\Panel\Land\FacilitiesController;
 use App\Http\Controllers\Web\Panel\Land\FileController;
 use App\Http\Controllers\Web\Panel\Land\LandController;
@@ -128,6 +129,8 @@ Route::middleware(['splade'])->group(function () {
                 Route::resource('video', VideoController::class)->except('show');
                 // Land Files
                 Route::resource('file', FileController::class)->except('show');
+                // Customer Feedback
+                Route::resource('customer-feedback', CustomerFeedbackController::class)->except('show');
                 // Land Comment
                 Route::resource('comment', LandComment::class)->except('show');
                 Route::prefix('comment')->name('comment.')->controller(LandComment::class)->group(function () {
