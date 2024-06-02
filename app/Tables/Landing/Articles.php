@@ -75,6 +75,15 @@ class Articles extends AbstractTable
         //exportAs: false,
         );
         $table->column(
+            key: 'pinned',
+            label: __('Is pinned'),
+//            hidden: true,
+        //sortable: true,
+        //searchable: true,
+        //highlight: true,
+        //exportAs: false,
+        );
+        $table->column(
             key: 'title',
             label: __('Title'),
             hidden: true,

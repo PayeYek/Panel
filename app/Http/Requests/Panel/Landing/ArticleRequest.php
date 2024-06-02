@@ -18,27 +18,29 @@ class ArticleRequest extends FormRequest
 
         if ($this->method() == 'POST') {
             return [
-                'title' => 'required|string',
-                'land_id' => 'required|numeric',
-                'type' => 'required|string',
+                'title'       => 'required|string',
+                'land_id'     => 'required|numeric',
+                'type'        => 'required|string',
                 'description' => 'nullable|string',
-                'body' => 'required',
-                'image' => 'required|image|mimes:jpg,jpeg,png,webp|max:2048|dimensions:min_width=1200,min_height=675',
-                'publish' => 'required|boolean',
-                'slug' => 'nullable|string|unique:land_articles,slug',
+                'body'        => 'required',
+                'image'       => 'required|image|mimes:jpg,jpeg,png,webp|max:2048|dimensions:min_width=1200,min_height=675',
+                'publish'     => 'required|boolean',
+                'pinned'      => 'nullable|boolean',
+                'slug'        => 'nullable|string|unique:land_articles,slug',
             ];
         }
 
         if (in_array($this->method(), ['PUT', 'PATCH'])) {
             return [
-                'title' => 'required|string',
-                'land_id' => 'required|numeric',
-                'type' => 'required|string',
+                'title'       => 'required|string',
+                'land_id'     => 'required|numeric',
+                'type'        => 'required|string',
                 'description' => 'nullable|string',
-                'body' => 'required',
-                'image' => $this->getValidationRuleImage(),
-                'publish' => 'required|boolean',
-                'slug' => [
+                'body'        => 'required',
+                'image'       => $this->getValidationRuleImage(),
+                'publish'     => 'required|boolean',
+                'pinned'      => 'nullable|boolean',
+                'slug'        => [
                     'required', 'string',
                     Rule::unique("land_articles")->ignore($this->article->id)],
             ];

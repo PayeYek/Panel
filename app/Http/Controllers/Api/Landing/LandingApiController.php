@@ -10,7 +10,6 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Panel\Landing\ArticleSearchRequest;
 use App\Http\Requests\Panel\Landing\CommentRequest;
 use App\Http\Requests\Panel\Landing\FacilitiesRequest;
-use App\Http\Requests\Panel\Landing\ProductSearchRequest;
 use App\Http\Requests\Panel\Landing\SubscribeRequest;
 use App\Models\CustomerFeedback;
 use App\Models\Land;
@@ -40,6 +39,7 @@ use App\Transformers\ProductCardTransformer;
 use App\Transformers\SaleTermsTransformer;
 use App\Transformers\SubLandProductTransformer;
 use Exception;
+use Illuminate\Database\Eloquent\Collection;
 use Str;
 
 class LandingApiController extends Controller
@@ -75,7 +75,44 @@ class LandingApiController extends Controller
 
     public function page($page)
     {
-        $landQuery = Land::where('slug', $page)
+        $land = $this->getLandWithRelations($page);
+
+        if ($page == 'arasb-diesel') {
+            $land->products = $this->getArasbDieselProducts();
+        }
+
+        $land->makeHidden(['id', 'body', 'logo_origin', 'created_at', 'updated_at', 'products.id']);
+
+        $categories = $this->getCategoriesFromProducts($land->products);
+
+        $articlesData = $this->getArticlesWithPinned($land->articles);
+
+        $seo = SeoHelper::seoGenerator($land, 'page');
+
+        $data = [
+            'products'   => $land->products,
+            'slides'     => $land->slides,
+            'videos'     => $land->videos,
+            'articles'   => [
+                'pinned'  => $articlesData['pinned'],
+                'regular' => $articlesData['regular'],
+            ],
+            'categories' => $categories,
+            'seo'        => $seo
+        ];
+
+        return responder()->success($data, LandPageTransformer::class)->respond();
+    }
+
+    /**
+     * Get land with related models.
+     *
+     * @param string $page
+     * @return Land
+     */
+    protected function getLandWithRelations(string $page)
+    {
+        return Land::where('slug', $page)
             ->with([
                 'products',
                 'slides'   => function ($query) {
@@ -86,36 +123,59 @@ class LandingApiController extends Controller
                 'articles' => function ($query) {
                     $query->where('type', '!=', 'sell')->orderBy('updated_at', 'desc')->published();
                 }
-            ])->firstOrFail();
+            ])
+            ->firstOrFail();
+    }
 
-        if ($page == 'arasb-diesel') {
-            $landQuery->products = LandProduct::whereIn('land_id', [1, 2, 3, 6, 20, 26])->get();
-        }
+    /**
+     * Get products for Arasb Diesel.
+     *
+     * @return Collection
+     */
+    protected function getArasbDieselProducts()
+    {
+        return LandProduct::whereIn('land_id', [1, 2, 3, 6, 20, 26])->get();
+    }
 
-        $landQuery->makeHidden(['id', 'body', 'logo_origin', 'created_at', 'updated_at', 'products.id']);
+    /**
+     * Get categories from products.
+     *
+     * @param Collection $products
+     * @return \Illuminate\Support\Collection
+     */
+    protected function getCategoriesFromProducts(Collection $products)
+    {
+        $categoryIds = $products->pluck('category_id')->unique();
 
-        $cats = $landQuery->products->pluck('category_id')->unique();
-
-        $categories = LandCategory::whereIn('id', $cats)->get()->map(function ($category) {
+        return LandCategory::whereIn('id', $categoryIds)->get()->map(function ($category) {
             return [
                 'id'    => $category->id,
                 'slug'  => $category->slug,
                 'title' => $category->title,
             ];
         });
+    }
 
-        $seo = SeoHelper::seoGenerator($landQuery, 'page');
+    /**
+     * Get articles with pinned articles separated.
+     *
+     * @param Collection $articles
+     * @return array
+     */
+    protected function getArticlesWithPinned(Collection $articles)
+    {
+        $pinned = $articles->filter(function ($article) {
+            return $article->pinned == true;
+        });
 
-        $data = [
-            'products'   => $landQuery->products,
-            'slides'     => $landQuery->slides,
-            'videos'     => $landQuery->videos,
-            'articles'   => $landQuery->articles,
-            'categories' => $categories,
-            'seo'        => $seo
+        $regularArticles = $articles->filter(function ($article) {
+            return $article->pinned != true;
+        });
+
+        return [
+            'pinned'  => $pinned->values()->all(), // Ensure indexes are reset
+            'regular' => $regularArticles->values()->all() // Ensure indexes are reset
         ];
-
-        return responder()->success($data, LandPageTransformer::class)->respond();
     }
 
     public function pageFooter($page)

@@ -590,6 +590,7 @@
     "reviewed": "بررسی شده",
     "Is published": "منتشر شده",
     "Dou you want to publish?": "انتشار داده شود؟",
+    "Dou you want to pin?": "پین شود؟",
     "Is input required?": "آیا این ورودی الزامی باشد؟",
     "Advertisement": "آگهی",
     "Advertise": "آگهی",
@@ -651,7 +652,8 @@
     "Other": "سایر",
     "You do not have permission to access this area.": "خطای دسترسی",
     "Customer feedback": "رضایت مشتریان",
-    "New Feedback" : "بازخورد جدید",
-    "Feedback list" : "لیست بازخوردها",
-    "Purchased Product" : "محصول خریداری شده"
+    "New Feedback": "بازخورد جدید",
+    "Feedback list": "لیست بازخوردها",
+    "Purchased Product": "محصول خریداری شده",
+    "Is pinned": "پین شده"
 }

@@ -14,7 +14,8 @@ class LandArticle extends Model
     protected $table = 'land_articles';
 
     protected $casts = [
-        'publish' => 'boolean'
+        'publish' => 'boolean',
+        'pinned' => 'boolean'
     ];
 
     protected $fillable = [
@@ -25,12 +26,18 @@ class LandArticle extends Model
         'description',
         'body',
         'image',
+        'pinned',
         'publish'
     ];
 
     public function scopePublished($query)
     {
         return $query->where('publish', true);
+    }
+
+    public function scopePinned($query)
+    {
+        return $query->where('pinned', true);
     }
 
     protected function slug(): Attribute

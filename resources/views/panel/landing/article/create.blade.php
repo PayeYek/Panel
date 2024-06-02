@@ -1,6 +1,10 @@
 <x-layout.admin>
     <x-splade-modal>
-        <x-splade-form  :default="['publish'=>false]" :action="route('panel.landing.article.store')">
+        <x-splade-form :default="[
+        'publish' => false,
+        'pinned' => false
+        ]"
+                       :action="route('panel.landing.article.store')">
             <x-layout.panel.form.card title="New Article">
 
                 <x-layout.panel.form.alerts/>
@@ -23,6 +27,7 @@
                     <x-splade-input name="title" label="Title" required/>
                     <x-splade-input ltr name="slug" label="Slug" help="Exclusive name in English"/>
                     <x-splade-checkbox class="text-sm" name="publish" label="{{ __('Dou you want to publish?') }}"/>
+                    <x-splade-checkbox class="text-sm" name="pinned" label="{{ __('Dou you want to pin?') }}"/>
                     <x-splade-textarea name="description" label="Description" help="For SEO"/>
                     <x-splade-wysiwyg name="body" label="Article content" required/>
 
