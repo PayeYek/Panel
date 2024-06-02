@@ -38,6 +38,7 @@ use App\Transformers\LandTransformer;
 use App\Transformers\LandVideoTransformer;
 use App\Transformers\ProductCardTransformer;
 use App\Transformers\SaleTermsTransformer;
+use App\Transformers\SubLandProductTransformer;
 use Exception;
 use Str;
 
@@ -846,5 +847,17 @@ class LandingApiController extends Controller
     public function getCustomerFeedback()
     {
         return responder()->success(CustomerFeedback::all(), CustomerFeedbackTransformer::class)->respond();
+    }
+
+    public function getSubLandProducts()
+    {
+
+        $lands = Land::whereIn('id', [1, 2, 3, 6, 20])
+            ->with(['products' => function ($query) {
+                $query->latest()->take(8);
+            }])
+            ->get();
+
+        return responder()->success($lands, SubLandProductTransformer::class)->respond();
     }
 }
