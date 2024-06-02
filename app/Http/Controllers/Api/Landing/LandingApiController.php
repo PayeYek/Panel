@@ -19,6 +19,7 @@ use App\Models\LandComment;
 use App\Models\LandFacility;
 use App\Models\LandProduct;
 use App\Models\LandSubscribe;
+use App\Models\SalesExpert;
 use App\Support\SeoHelper;
 use App\Transformers\CustomerFeedbackTransformer;
 use App\Transformers\LandAboutUsTransformer;
@@ -36,6 +37,7 @@ use App\Transformers\LandProductVideoTransformer;
 use App\Transformers\LandTransformer;
 use App\Transformers\LandVideoTransformer;
 use App\Transformers\ProductCardTransformer;
+use App\Transformers\SalesExpertTransformer;
 use App\Transformers\SaleTermsTransformer;
 use App\Transformers\SubLandProductTransformer;
 use Exception;
@@ -919,5 +921,10 @@ class LandingApiController extends Controller
             ->get();
 
         return responder()->success($lands, SubLandProductTransformer::class)->respond();
+    }
+
+    public function getSalesExpert()
+    {
+        return responder()->success(SalesExpert::all(), SalesExpertTransformer::class)->respond();
     }
 }
