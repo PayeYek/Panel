@@ -36,6 +36,7 @@ class ProductCardTransformer extends Transformer
             'category_title' => $data->category->title,
             'land_title'     => $data->land->title,
             'land_logo'      => $data->land->logo,
+            'land_slug'      => $data->land->slug,
             'image'          => $data->image,
             'name'           => $data->name,
             'slug'           => $data->slug,
