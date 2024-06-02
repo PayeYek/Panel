@@ -21,7 +21,7 @@ class LandRequest extends FormRequest
                 'title'       => 'required|string',
                 'slug'        => 'nullable|string|unique:lands,slug',
                 'logo'        => 'nullable|image|mimes:jpg,jpeg,png,webp,svg|max:2048|dimensions:min_width=512,min_height=512',
-                'logo_origin' => 'nullable|image|mimes:jpg,jpeg,png,webp,svg|max:2048|dimensions:min_width=512,min_height=512',
+                'logo_origin' => 'nullable|image|mimes:jpg,jpeg,png,webp,svg|max:2048',
                 'description' => 'nullable|string',
                 'body'        => 'nullable|string',
             ];
@@ -56,7 +56,7 @@ class LandRequest extends FormRequest
     public function getValidationRuleLogoOrigin(): string
     {
         if ($this->hasFile('logo_origin')) {
-            return "nullable|image|mimes:jpg,jpeg,png,webp,svg|max:2048|dimensions:min_width=512,min_height=512";
+            return "nullable|image|mimes:jpg,jpeg,png,webp,svg|max:2048";
         }
         return "nullable|string";
     }

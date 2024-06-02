@@ -5,7 +5,6 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 use Illuminate\Database\Eloquent\Relations\HasOne;
@@ -36,14 +35,9 @@ class Land extends Model
         return Str::isUrl($logo) ? $logo : asset('storage/' . $logo);
     }
 
-    public function getLogo()
-    {
-        return $this->attributes["logo"];
-    }
-
     public function getLogoOriginAttribute()
     {
-        $logo = $this->attributes['logo_origin'];
+        $logo = $this->attributes['logo_origin'] ?? null;
 
         if (empty($logo)) {
             return null;
@@ -52,20 +46,15 @@ class Land extends Model
         return Str::isUrl($logo) ? $logo : asset('storage/' . $logo);
     }
 
-    public function getLogoOrigin()
-    {
-        return $this->attributes["logo_origin"];
-    }
-
     public function categories(): HasManyThrough
     {
         return $this->hasManyThrough(
             LandCategory::class,
             LandProduct::class,
-            'land_id', // کلید خارجی در جدول LandProduct
-            'id', // کلید اصلی در جدول LandCategory
-            'id', // کلید اصلی در جدول Land
-            'category_id' // کلید خارجی در جدول LandProduct
+            'land_id', // Foreign key on LandProduct table
+            'id', // Local key on LandCategory table
+            'id', // Local key on Land table
+            'category_id' // Foreign key on LandProduct table
         );
     }
 
@@ -74,26 +63,15 @@ class Land extends Model
         return $this->hasMany(LandProduct::class, 'land_id');
     }
 
-    // public function categories()
-    // {
-    //     return $this->belongsToMany(LandCategory::class, 'land_products', 'land_id', 'category_id')->distinct();
-    // }
-
-    // ارتباط یک به چند با محصولات
-
     public function slides(): HasMany
     {
         return $this->hasMany(LandSlide::class, 'land_id');
     }
 
-    // ارتباط یک به چند با اسلایدها
-
     public function articles(): HasMany
     {
         return $this->hasMany(LandArticle::class, 'land_id');
     }
-
-    // ارتباط یک به چند با مقالات
 
     public function agencies(): HasMany
     {
@@ -126,4 +104,16 @@ class Land extends Model
     {
         return $this->hasMany(CustomerFeedback::class);
     }
+
+    // Removed these methods
+    public function getLogo()
+    {
+        return $this->attributes["logo"];
+    }
+
+    public function getLogoOrigin()
+    {
+        return $this->attributes["logo_origin"];
+    }
+
 }
