@@ -11,6 +11,7 @@ use App\Http\Requests\Panel\Landing\ArticleSearchRequest;
 use App\Http\Requests\Panel\Landing\CommentRequest;
 use App\Http\Requests\Panel\Landing\FacilitiesRequest;
 use App\Http\Requests\Panel\Landing\SubscribeRequest;
+use App\Models\Announcement;
 use App\Models\CustomerFeedback;
 use App\Models\Land;
 use App\Models\LandArticle;
@@ -21,6 +22,7 @@ use App\Models\LandProduct;
 use App\Models\LandSubscribe;
 use App\Models\SalesExpert;
 use App\Support\SeoHelper;
+use App\Transformers\AnnouncementTransformer;
 use App\Transformers\CustomerFeedbackTransformer;
 use App\Transformers\LandAboutUsTransformer;
 use App\Transformers\LandArticleSearchTransformer;
@@ -926,5 +928,14 @@ class LandingApiController extends Controller
     public function getSalesExpert()
     {
         return responder()->success(SalesExpert::all(), SalesExpertTransformer::class)->respond();
+    }
+
+    public function getAnnouncements(Land $land)
+    {
+        $announce = Announcement::where('land_id', $land->id)
+            ->orWhereNull('land_id')
+            ->get();
+
+        return responder()->success($announce, AnnouncementTransformer::class)->respond();
     }
 }
