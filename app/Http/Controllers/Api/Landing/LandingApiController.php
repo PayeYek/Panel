@@ -468,7 +468,10 @@ class LandingApiController extends Controller
         $product = $land->products()->with('category')->where('slug', $product)->firstOrFail();
 
         $breadcrumbs = [
-            ['title' => __('Products'), \Illuminate\Support\Str::after(parse_url(route('api.landing.product.list', ['page' => $land->slug]), PHP_URL_PATH), '/api/l/')],
+            [
+                'title' => __('Products'),
+                'url'   => \Illuminate\Support\Str::after(parse_url(route('api.landing.product.list', ['page' => $forArasb ? 'arasb-diesel' : $land->slug]), PHP_URL_PATH), '/api/l/')
+            ],
             ['title' => $product->name, 'url' => null]
         ];
 
