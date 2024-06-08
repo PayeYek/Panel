@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Web\Panel\Land;
 
+use App\Enum\GenderTypeEnum;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Panel\Landing\CustomerFeedbackRequest;
 use App\Http\Requests\Panel\Landing\CustomerFeedbackUpdateRequest;
@@ -28,8 +29,9 @@ class CustomerFeedbackController extends Controller
      */
     public function create()
     {
+        $genderTypes = GenderTypeEnum::options();
         $lands = Land::latest()->pluck('title', 'id');
-        return view('panel.landing.customer-feedback.create', compact('lands'));
+        return view('panel.landing.customer-feedback.create', compact('lands', 'genderTypes'));
     }
 
     /**
@@ -57,8 +59,9 @@ class CustomerFeedbackController extends Controller
      */
     public function edit(CustomerFeedback $customer_feedback)
     {
+        $genderTypes = GenderTypeEnum::options();
         $lands = Land::latest()->pluck('title', 'id');
-        return view('panel.landing.customer-feedback.edit', compact('customer_feedback', 'lands'));
+        return view('panel.landing.customer-feedback.edit', compact('customer_feedback', 'lands', 'genderTypes'));
     }
 
     /**

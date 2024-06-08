@@ -2,8 +2,10 @@
 
 namespace App\Http\Requests\Panel\Landing;
 
+use App\Enum\GenderTypeEnum;
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class CustomerFeedbackUpdateRequest extends FormRequest
 {
@@ -32,6 +34,7 @@ class CustomerFeedbackUpdateRequest extends FormRequest
             'first_name'        => 'required|string',
             'last_name'         => 'required|string',
             'land_id'           => 'required|exists:lands,id',
+            'gender'            => ['required', Rule::in(GenderTypeEnum::values())],
         ];
     }
 

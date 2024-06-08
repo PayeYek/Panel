@@ -9,10 +9,19 @@
                 <x-layout.panel.form.alerts/>
 
                 <x-layout.panel.form.division :col="2">
-                    <x-splade-select name="land_id" label="Landing" :options="$lands" placeholder="Select an item"
+                    <x-splade-select required name="land_id" label="Landing" :options="$lands"
+                                     placeholder="Select an item"
                                      choices/>
                     <x-splade-input name="title" label="Title"/>
                     <x-splade-input name="description" label="Description"/>
+                    <x-splade-select required name="gender" label="Gender">
+                        <option value="" disabled>{{__('Select an item')}}</option>
+                        @if($genderTypes)
+                            @foreach($genderTypes as $gender)
+                                <option value="{{ $gender['id'] }}">{{ $gender['label'] }}</option>
+                            @endforeach
+                        @endif
+                    </x-splade-select>
                     <x-splade-input required name="first_name" label="Name"/>
                     <x-splade-input required name="last_name" label="Family"/>
                     <x-splade-input required name="city" label="City"/>

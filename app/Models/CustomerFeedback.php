@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enum\GenderTypeEnum;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -19,8 +20,13 @@ class CustomerFeedback extends Model
         'last_name',
         'city',
         'title',
+        'gender',
         'description',
         'purchased_product'
+    ];
+
+    protected $casts = [
+        'gender' => GenderTypeEnum::class,
     ];
 
     public function land(): BelongsTo
