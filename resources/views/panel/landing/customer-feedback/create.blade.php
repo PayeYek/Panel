@@ -15,7 +15,7 @@
                     <x-splade-input required name="first_name" label="Name"/>
                     <x-splade-input required name="last_name" label="Family"/>
                     <x-splade-input required name="city" label="City"/>
-                    <x-splade-input required name="purchased_product" label="Family"/>
+                    <x-splade-input required name="purchased_product" label="Purchased Product"/>
                     <x-splade-file name="image" label="Image" filepond preview
                                    max-size="2MB"
                                    required
