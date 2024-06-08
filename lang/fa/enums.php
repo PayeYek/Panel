@@ -1,5 +1,7 @@
 <?php
 
+use App\Enum\AnnouncementPageEnum;
+use App\Enum\AnnouncementTypeEnum;
 use App\Enum\GenderTypeEnum;
 
 return [
@@ -8,5 +10,24 @@ return [
         'FEMALE' => 'زن',
         'MALE'   => 'مرد',
         'OTHER'  => 'سایر',
+    ],
+
+    AnnouncementTypeEnum::class => [
+        'CALL' => 'تماس',
+        'LINK' => 'لینک',
+    ],
+
+    AnnouncementPageEnum::class => [
+        'HOME_DESKTOP'         => 'خانه (دسکتاپ)',
+        'HOME_MOBILE'          => 'خانه (موبایل)',
+        'PRODUCT_LIST_DESKTOP' => 'لیست محصولات (دسکتاپ)',
+        'PRODUCT_LIST_MOBILE'  => 'لیست محصولات (موبایل)',
+        'PRODUCT_SINGLE'       => 'محصول',
+        'ARTICLE_LIST_DESKTOP' => 'لیست مقاله (دسکتاپ)',
+        'ARTICLE_LIST_MOBILE'  => 'لیست مقاله (موبایل)',
+        'ARTICLE_SINGLE'       => 'مقاله',
+        'ABOUT_US_DESKTOP'     => 'درباره ما (دسکتاپ)',
+        'ABOUT_US_MOBILE'      => 'درباره ما (موبایل)',
+        'AGENCY'               => 'نمایندگی',
     ],
 ];

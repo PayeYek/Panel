@@ -93,6 +93,11 @@ class Land extends Model
         return $this->hasOne(LandStyle::class, 'land_id');
     }
 
+    public function announcements(): HasMany
+    {
+        return $this->hasMany(Announcement::class);
+    }
+
     protected function slug(): Attribute
     {
         return new Attribute(
@@ -115,5 +120,4 @@ class Land extends Model
     {
         return $this->attributes["logo_origin"];
     }
-
 }

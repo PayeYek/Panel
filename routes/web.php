@@ -14,6 +14,7 @@ use App\Http\Controllers\Web\Panel\AuthController;
 use App\Http\Controllers\Web\Panel\CommentController;
 use App\Http\Controllers\Web\Panel\DashboardController;
 use App\Http\Controllers\Web\Panel\Land\AgencyController;
+use App\Http\Controllers\Web\Panel\Land\AnnouncementController;
 use App\Http\Controllers\Web\Panel\Land\ArticleController;
 use App\Http\Controllers\Web\Panel\Land\AttributeController;
 use App\Http\Controllers\Web\Panel\Land\BrandController;
@@ -132,6 +133,8 @@ Route::middleware(['splade'])->group(function () {
                 Route::resource('customer-feedback', CustomerFeedbackController::class)->except('show');
                 // Sales Expert
                 Route::resource('sales-expert', SalesExpertController::class)->except('show');
+                // Announcement Expert
+                Route::resource('announcement', AnnouncementController::class)->except('show');
                 // Land Comment
                 Route::resource('comment', LandComment::class)->except('show');
                 Route::prefix('comment')->name('comment.')->controller(LandComment::class)->group(function () {

@@ -43,6 +43,8 @@
                                      icon="iconsax-lin-document-upload"/>
                 <x-layout.panel.menu title="Sales expert" route="panel.landing.sales-expert.index"
                                      icon="iconsax-lin-document-upload"/>
+                <x-layout.panel.menu title="Announcement" route="panel.landing.announcement.index"
+                                     icon="iconsax-lin-document-upload"/>
                 <x-layout.panel.menu title="Products" route="panel.landing.product.*" icon="iconsax-bol-box">
                     <x-layout.panel.menu title="Attributes" route="panel.landing.product.attribute.index"
                                          icon="iconsax-lin-mask"/>
