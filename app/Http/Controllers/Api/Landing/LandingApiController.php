@@ -459,6 +459,7 @@ class LandingApiController extends Controller
 
     public function product($page, $product)
     {
+        $forArasb = request('for_arasb', false);
         /* LANDING DATA */
         $land = Land::where('slug', $page)
             ->with(['products.category', 'slides', 'articles'])
@@ -471,7 +472,7 @@ class LandingApiController extends Controller
             ['title' => $product->name, 'url' => null]
         ];
 
-        $seo = SeoHelper::seoGenerator($product);
+        $seo = SeoHelper::seoGenerator($product, forArasb: $forArasb);
 
         $data = [
             'product'     => $product,
