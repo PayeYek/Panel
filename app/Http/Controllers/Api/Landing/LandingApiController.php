@@ -118,11 +118,15 @@ class LandingApiController extends Controller
     {
         return Land::where('slug', $page)
             ->with([
-                'products',
+                'products' => function ($query) {
+                    $query->orderBy('updated_at', 'desc');
+                },
                 'slides'   => function ($query) {
                     $query->where('status', 1);
                 },
-                'videos',
+                'videos'   => function ($query) {
+                    $query->orderBy('updated_at', 'desc');
+                },
                 'styles',
                 'articles' => function ($query) {
                     $query->where('type', '!=', 'sell')->orderBy('updated_at', 'desc')->published();
