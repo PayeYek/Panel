@@ -28,6 +28,7 @@ use App\Transformers\LandAboutUsTransformer;
 use App\Transformers\LandArticleSearchTransformer;
 use App\Transformers\LandArticleSingleTransformer;
 use App\Transformers\LandArticlesTransformer;
+use App\Transformers\LandCategoryTransformer;
 use App\Transformers\LandCommentTransformer;
 use App\Transformers\LandFacilityTransformer;
 use App\Transformers\LandPageTransformer;
@@ -945,5 +946,14 @@ class LandingApiController extends Controller
             ->get();
 
         return responder()->success($announce, AnnouncementTransformer::class)->respond();
+    }
+
+    public function getCategories()
+    {
+        $landId = request('land_id');
+        $land = Land::where('id', $landId)->firstOrFail();
+        $categories = $land->categories;
+
+        return responder()->success($categories, LandCategoryTransformer::class)->respond();
     }
 }

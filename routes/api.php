@@ -102,6 +102,7 @@ Route::prefix('l')
             Route::get('/subland-products', 'getSubLandProducts')->name('getSubLandProducts');
             Route::get('/sales-expert', 'getSalesExpert')->name('getSalesExpert');
             Route::get('/announcements', 'getAnnouncements')->name('getAnnouncements');
+            Route::get('/categories', 'getCategories')->name('getCategories');
             Route::get('{page}', 'page')->name('show');
             Route::get('{page}/about', 'about')->name('about');
             Route::get('{page}/footer', 'pageFooter')->name('footer');
