@@ -64,8 +64,14 @@
             @case(AnnouncementPageEnum::AGENCY)
                 <span>{{ AnnouncementPageEnum::AGENCY->label() }}</span>
                 @break
-            @case(AnnouncementPageEnum::TERMS_OF_SALE)
-                <span>{{ AnnouncementPageEnum::TERMS_OF_SALE->label() }}</span>
+            @case(AnnouncementPageEnum::TERMS_OF_SALE_DESKTOP)
+                <span>{{ AnnouncementPageEnum::TERMS_OF_SALE_DESKTOP->label() }}</span>
+                @break
+            @case(AnnouncementPageEnum::TERMS_OF_SALE_MOBILE)
+                <span>{{ AnnouncementPageEnum::TERMS_OF_SALE_MOBILE->label() }}</span>
+                @break
+            @case(AnnouncementPageEnum::TERMS_OF_SALE_TOC)
+                <span>{{ AnnouncementPageEnum::TERMS_OF_SALE_TOC->label() }}</span>
                 @break
             @default
                 <span>{{ __('unknown') }}</span>
