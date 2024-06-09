@@ -91,16 +91,18 @@ class AnnouncementRequest extends FormRequest
 //            AnnouncementPageEnum::HOME_DESKTOP->value,
 //            AnnouncementPageEnum::PRODUCT_LIST_DESKTOP->value,
 //            AnnouncementPageEnum::ARTICLE_LIST_DESKTOP->value,
+//            AnnouncementPageEnum::ARTICLE_SINGLE_DESKTOP->value,
 //            AnnouncementPageEnum::ABOUT_US_DESKTOP->value => 'dimensions:width=1248,height=400',
 //
 //            AnnouncementPageEnum::HOME_MOBILE->value,
 //            AnnouncementPageEnum::PRODUCT_LIST_MOBILE->value,
 //            AnnouncementPageEnum::ARTICLE_LIST_MOBILE->value,
 //            AnnouncementPageEnum::ABOUT_US_MOBILE->value => 'dimensions:width=328,height=440',
-//
+
+//            AnnouncementPageEnum::ARTICLE_SINGLE_MOBILE->value,
 //            AnnouncementPageEnum::PRODUCT_SINGLE->value => 'dimensions:width=368,height=440',
 //
-//            AnnouncementPageEnum::ARTICLE_SINGLE->value,
+//            AnnouncementPageEnum::ARTICLE_SINGLE_TOC->value,
 //            AnnouncementPageEnum::AGENCY->value => 'dimensions:width=368,height=124',
 //
 //            default => '',

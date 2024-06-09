@@ -101,6 +101,7 @@ Route::prefix('l')
             Route::get('/customer-feedback', 'getCustomerFeedback')->name('customerFeedback');
             Route::get('/subland-products', 'getSubLandProducts')->name('getSubLandProducts');
             Route::get('/sales-expert', 'getSalesExpert')->name('getSalesExpert');
+            Route::post('/contact-us', 'contactUs')->name('contactUs');
             Route::get('/announcements', 'getAnnouncements')->name('getAnnouncements');
             Route::get('/categories', 'getCategories')->name('getCategories');
             Route::get('{page}', 'page')->name('show');

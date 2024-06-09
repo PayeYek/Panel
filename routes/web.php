@@ -21,6 +21,7 @@ use App\Http\Controllers\Web\Panel\Land\BrandController;
 use App\Http\Controllers\Web\Panel\Land\CategoryController;
 use App\Http\Controllers\Web\Panel\Land\ColorController;
 use App\Http\Controllers\Web\Panel\Land\CommentController as LandComment;
+use App\Http\Controllers\Web\Panel\Land\ContactUsController;
 use App\Http\Controllers\Web\Panel\Land\CustomerFeedbackController;
 use App\Http\Controllers\Web\Panel\Land\FacilitiesController;
 use App\Http\Controllers\Web\Panel\Land\FileController;
@@ -133,8 +134,10 @@ Route::middleware(['splade'])->group(function () {
                 Route::resource('customer-feedback', CustomerFeedbackController::class)->except('show');
                 // Sales Expert
                 Route::resource('sales-expert', SalesExpertController::class)->except('show');
-                // Announcement Expert
+                // Announcement
                 Route::resource('announcement', AnnouncementController::class)->except('show');
+                // Contact Us
+                Route::resource('contact', ContactUsController::class)->except('show');
                 // Land Comment
                 Route::resource('comment', LandComment::class)->except('show');
                 Route::prefix('comment')->name('comment.')->controller(LandComment::class)->group(function () {

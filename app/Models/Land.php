@@ -98,6 +98,11 @@ class Land extends Model
         return $this->hasMany(Announcement::class);
     }
 
+    public function contactUs(): HasMany
+    {
+        return $this->hasMany(ContactUs::class);
+    }
+
     protected function slug(): Attribute
     {
         return new Attribute(

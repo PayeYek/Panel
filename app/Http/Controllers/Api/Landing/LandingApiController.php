@@ -9,9 +9,11 @@ use App\Exceptions\FacilityRequestRestrictedException;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Panel\Landing\ArticleSearchRequest;
 use App\Http\Requests\Panel\Landing\CommentRequest;
+use App\Http\Requests\Panel\Landing\ContactUsRequest;
 use App\Http\Requests\Panel\Landing\FacilitiesRequest;
 use App\Http\Requests\Panel\Landing\SubscribeRequest;
 use App\Models\Announcement;
+use App\Models\ContactUs;
 use App\Models\CustomerFeedback;
 use App\Models\Land;
 use App\Models\LandArticle;
@@ -189,14 +191,15 @@ class LandingApiController extends Controller
 
     public function pageFooter($page)
     {
-        $land = Land::where('slug', $page)->with(['products', //                'slides'   => function ($query) {
-//                    $query->where('status', 1);
-//                },
-//                'videos',
-            'styles', //                'articles' => function ($query) {
-//                    $query->orderBy('created_at', 'desc');
-//                }
-        ])->firstOrFail();
+        $data = array();
+        $land = Land::where('slug', $page)
+            ->with($page === 'arasb-diesel' ? ['products'] : ['products', 'styles'])
+            ->firstOrFail();
+
+        if ($page === 'arasb-diesel') {
+            $land->products = LandProduct::whereIn('land_id', [1, 2, 3, 6, 20, 26])->get();
+            $data['styles'] = ['land_id' => $land->id];
+        }
 
         $land->makeHidden(['id', 'body', 'products', 'logo_origin', 'created_at', 'updated_at', 'products.id']);
 
@@ -206,7 +209,6 @@ class LandingApiController extends Controller
         }
         $cats = array_unique($cats);
 
-        $data = array();
         foreach ($cats as $cat) {
             $item[] = LandCategory::find($cat)->makeHidden(['created_at', 'updated_at', 'description']);
             $data['category'] = $item;
@@ -963,5 +965,15 @@ class LandingApiController extends Controller
         $categories = $land->categories;
 
         return responder()->success($categories, LandCategoryTransformer::class)->respond();
+    }
+
+    public function contactUs(ContactUsRequest $request)
+    {
+        try {
+            ContactUs::create($request->validated());
+            return responder()->success(['message' => 'The contact information sent successfully '])->respond();
+        } catch (Exception $e) {
+            return responder()->error(-1, 'Cannot send contact information due to an unknown error')->respond(500);
+        }
     }
 }

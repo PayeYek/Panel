@@ -46,8 +46,14 @@
             @case(AnnouncementPageEnum::ARTICLE_LIST_MOBILE)
                 <span>{{ AnnouncementPageEnum::ARTICLE_LIST_MOBILE->label() }}</span>
                 @break
-            @case(AnnouncementPageEnum::ARTICLE_SINGLE)
-                <span>{{ AnnouncementPageEnum::ARTICLE_SINGLE->label() }}</span>
+            @case(AnnouncementPageEnum::ARTICLE_SINGLE_DESKTOP)
+                <span>{{ AnnouncementPageEnum::ARTICLE_SINGLE_DESKTOP->label() }}</span>
+                @break
+            @case(AnnouncementPageEnum::ARTICLE_SINGLE_MOBILE)
+                <span>{{ AnnouncementPageEnum::ARTICLE_SINGLE_MOBILE->label() }}</span>
+                @break
+            @case(AnnouncementPageEnum::ARTICLE_SINGLE_TOC)
+                <span>{{ AnnouncementPageEnum::ARTICLE_SINGLE_TOC->label() }}</span>
                 @break
             @case(AnnouncementPageEnum::ABOUT_US_DESKTOP)
                 <span>{{ AnnouncementPageEnum::ABOUT_US_DESKTOP->label() }}</span>
@@ -57,6 +63,9 @@
                 @break
             @case(AnnouncementPageEnum::AGENCY)
                 <span>{{ AnnouncementPageEnum::AGENCY->label() }}</span>
+                @break
+            @case(AnnouncementPageEnum::TERMS_OF_SALE)
+                <span>{{ AnnouncementPageEnum::TERMS_OF_SALE->label() }}</span>
                 @break
             @default
                 <span>{{ __('unknown') }}</span>
