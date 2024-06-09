@@ -939,15 +939,23 @@ class LandingApiController extends Controller
         return responder()->success(SalesExpert::all(), SalesExpertTransformer::class)->respond();
     }
 
-    public function getAnnouncements(Land $land)
+    public function getAnnouncements()
     {
-        $announce = Announcement::where('land_id', $land->id)
-            ->orWhereNull('land_id')
+        $landID = request('land_id');
+        $page = request('page');
+
+        $announcements = Announcement::where('land_id', $landID)
+            ->where('page', $page)
             ->get();
 
-        return responder()->success($announce, AnnouncementTransformer::class)->respond();
-    }
+        if ($announcements->isEmpty()) {
+            $announcements = Announcement::whereNull('land_id')
+                ->where('page', $page)
+                ->get();
+        }
 
+        return responder()->success($announcements, AnnouncementTransformer::class)->respond();
+    }
     public function getCategories()
     {
         $landId = request('land_id');
