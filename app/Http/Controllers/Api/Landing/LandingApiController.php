@@ -924,10 +924,9 @@ class LandingApiController extends Controller
 
     public function getSubLandProducts()
     {
-
         $lands = Land::whereIn('id', [1, 2, 3, 6, 20])
             ->with(['products' => function ($query) {
-                $query->latest()->take(8);
+                $query->latest();
             }])
             ->get();
 
@@ -956,6 +955,7 @@ class LandingApiController extends Controller
 
         return responder()->success($announcements, AnnouncementTransformer::class)->respond();
     }
+
     public function getCategories()
     {
         $landId = request('land_id');

@@ -35,7 +35,7 @@ class SubLandProductTransformer extends Transformer
             'slug'        => $land->slug,
             'logo'        => $land->logo,
             'logo_origin' => $land->logo_origin,
-            'products'    => $this->transformProducts($land->products),
+            'products'    => $this->transformProducts($land->products->flatten()->sortByDesc('created_at')->take(8)),
         ];
     }
 
