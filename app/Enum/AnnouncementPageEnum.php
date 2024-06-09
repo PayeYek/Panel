@@ -19,4 +19,5 @@ enum AnnouncementPageEnum: int
     case ABOUT_US_DESKTOP = 8;
     case ABOUT_US_MOBILE = 9;
     case AGENCY = 10;
+    case TERMS_OF_SALE = 11;
 }

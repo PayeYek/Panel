@@ -29,5 +29,6 @@ return [
         'ABOUT_US_DESKTOP'     => 'درباره ما (دسکتاپ)',
         'ABOUT_US_MOBILE'      => 'درباره ما (موبایل)',
         'AGENCY'               => 'نمایندگی',
+        'TERMS_OF_SALE'        => 'شرایط فروش',
     ],
 ];
