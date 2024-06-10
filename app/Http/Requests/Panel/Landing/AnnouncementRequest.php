@@ -36,7 +36,7 @@ class AnnouncementRequest extends FormRequest
         if ($this->isMethod('POST')) {
             return array_merge($commonRules, [
 //                'media'  => ['required', 'file', 'mimes:webm', $this->dimensionRule()],
-                'media'  => ['required', 'file', 'mimes:webm'],
+                'media'  => ['required', 'file'],
 //                'poster' => ['required', 'image', 'mimes:jpg,jpeg,png,webp', $this->dimensionRule()],
                 'poster' => ['required', 'image', 'mimes:jpg,jpeg,png,webp'],
             ]);
@@ -61,7 +61,7 @@ class AnnouncementRequest extends FormRequest
     {
         return $this->hasFile('media')
 //            ? ['required', 'file', 'mimes:webm', $this->dimensionRule()]
-            ? ['required', 'file', 'mimes:webm']
+            ? ['required', 'file']
             : ['required', 'string'];
     }
 
