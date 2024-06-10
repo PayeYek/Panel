@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class LandAttribute extends Model
 {
     protected $table = 'land_attributes';
-    protected $fillable = ['name', 'parent_id'];
+    protected $fillable = ['name', 'parent_id', 'priority'];
 
     public function parent()
     {

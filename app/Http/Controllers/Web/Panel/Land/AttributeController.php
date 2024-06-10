@@ -64,4 +64,27 @@ class AttributeController extends Controller
         return back();
     }
 
+    public function sortForm()
+    {
+        $attrs = LandAttribute::whereNull('parent_id')
+            ->latest()
+            ->orderBy('priority')
+            ->get();
+        $attributes = [];
+        foreach ($attrs as $value) {
+            $attributes[] = [
+                'id'       => $value->id,
+                'name'     => $value->name,
+                'priority' => $value->priority
+            ];
+        }
+
+        return view('panel.landing.product.attribute.sort-form', compact('attributes'));
+    }
+
+    public function sort()
+    {
+
+    }
+
 }
