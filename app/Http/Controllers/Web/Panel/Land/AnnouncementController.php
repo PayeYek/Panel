@@ -71,6 +71,12 @@ class AnnouncementController extends Controller
         } else
             $data['media'] = $announcement->getMedia();
 
+        if ($request->validated()['poster'] !== $announcement->poster) {
+            Storage::delete('public/' . $announcement->getPoster());
+            $data = $this->getPoster($data, $request);
+        } else
+            $data['poster'] = $announcement->getPoster();
+
         $announcement->update($data);
 
         Splade::toast(__('Updated'))->autoDismiss(5)->info();
