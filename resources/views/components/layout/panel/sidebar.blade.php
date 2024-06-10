@@ -39,6 +39,14 @@
                 <x-layout.panel.menu title="Facilities" route="panel.landing.facility.index" icon="iconsax-lin-book"/>
                 <x-layout.panel.menu title="Videos" route="panel.landing.video.index" icon="iconsax-lin-video-square"/>
                 <x-layout.panel.menu title="Files" route="panel.landing.file.index" icon="iconsax-lin-document-upload"/>
+                <x-layout.panel.menu title="Customer feedback" route="panel.landing.customer-feedback.index"
+                                     icon="iconsax-lin-document-upload"/>
+                <x-layout.panel.menu title="Sales expert" route="panel.landing.sales-expert.index"
+                                     icon="iconsax-lin-document-upload"/>
+                <x-layout.panel.menu title="Announcement" route="panel.landing.announcement.index"
+                                     icon="iconsax-lin-document-upload"/>
+                <x-layout.panel.menu title="Contact us" route="panel.landing.contact.index"
+                                     icon="iconsax-lin-document-upload"/>
                 <x-layout.panel.menu title="Products" route="panel.landing.product.*" icon="iconsax-bol-box">
                     <x-layout.panel.menu title="Attributes" route="panel.landing.product.attribute.index"
                                          icon="iconsax-lin-mask"/>

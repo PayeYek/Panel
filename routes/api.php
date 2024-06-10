@@ -98,6 +98,12 @@ Route::prefix('l')
         Route::name('page.')->group(function () {
             Route::get('/pages', 'pages')->name('list');
             Route::get('/landing', 'landing')->name('landing');
+            Route::get('/customer-feedback', 'getCustomerFeedback')->name('customerFeedback');
+            Route::get('/subland-products', 'getSubLandProducts')->name('getSubLandProducts');
+            Route::get('/sales-expert', 'getSalesExpert')->name('getSalesExpert');
+            Route::post('/contact-us', 'contactUs')->name('contactUs');
+            Route::get('/announcements', 'getAnnouncements')->name('getAnnouncements');
+            Route::get('/categories', 'getCategories')->name('getCategories');
             Route::get('{page}', 'page')->name('show');
             Route::get('{page}/about', 'about')->name('about');
             Route::get('{page}/footer', 'pageFooter')->name('footer');

@@ -3,7 +3,6 @@
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Web\Common\PermissionController;
 use App\Http\Controllers\Web\Common\RoleController;
-use App\Http\Controllers\Web\Landing\LandingController;
 use App\Http\Controllers\Web\Panel\AdController;
 use App\Http\Controllers\Web\Panel\Advertise\BrandController as AdBrandController;
 use App\Http\Controllers\Web\Panel\Advertise\CategoryController as AdCategoryController;
@@ -15,21 +14,24 @@ use App\Http\Controllers\Web\Panel\AuthController;
 use App\Http\Controllers\Web\Panel\CommentController;
 use App\Http\Controllers\Web\Panel\DashboardController;
 use App\Http\Controllers\Web\Panel\Land\AgencyController;
+use App\Http\Controllers\Web\Panel\Land\AnnouncementController;
 use App\Http\Controllers\Web\Panel\Land\ArticleController;
 use App\Http\Controllers\Web\Panel\Land\AttributeController;
 use App\Http\Controllers\Web\Panel\Land\BrandController;
 use App\Http\Controllers\Web\Panel\Land\CategoryController;
 use App\Http\Controllers\Web\Panel\Land\ColorController;
 use App\Http\Controllers\Web\Panel\Land\CommentController as LandComment;
+use App\Http\Controllers\Web\Panel\Land\ContactUsController;
+use App\Http\Controllers\Web\Panel\Land\CustomerFeedbackController;
 use App\Http\Controllers\Web\Panel\Land\FacilitiesController;
 use App\Http\Controllers\Web\Panel\Land\FileController;
 use App\Http\Controllers\Web\Panel\Land\LandController;
 use App\Http\Controllers\Web\Panel\Land\ProductController;
+use App\Http\Controllers\Web\Panel\Land\SalesExpertController;
 use App\Http\Controllers\Web\Panel\Land\SlideController;
 use App\Http\Controllers\Web\Panel\Land\VideoController;
 use App\Http\Controllers\Web\Panel\ProfileController;
 use App\Http\Controllers\Web\Panel\UserController;
-use App\Models\Land;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware(['splade'])->group(function () {
@@ -128,6 +130,14 @@ Route::middleware(['splade'])->group(function () {
                 Route::resource('video', VideoController::class)->except('show');
                 // Land Files
                 Route::resource('file', FileController::class)->except('show');
+                // Customer Feedback
+                Route::resource('customer-feedback', CustomerFeedbackController::class)->except('show');
+                // Sales Expert
+                Route::resource('sales-expert', SalesExpertController::class)->except('show');
+                // Announcement
+                Route::resource('announcement', AnnouncementController::class)->except('show');
+                // Contact Us
+                Route::resource('contact', ContactUsController::class)->except('show');
                 // Land Comment
                 Route::resource('comment', LandComment::class)->except('show');
                 Route::prefix('comment')->name('comment.')->controller(LandComment::class)->group(function () {
