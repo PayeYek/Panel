@@ -79,6 +79,7 @@ class AnnouncementRequest extends FormRequest
     }
 
     //Todo we should add file (video) custom dimension rules
+//
 //    /**
 //     * Get the dimension validation rule based on the page input.
 //     *
@@ -92,17 +93,20 @@ class AnnouncementRequest extends FormRequest
 //            AnnouncementPageEnum::PRODUCT_LIST_DESKTOP->value,
 //            AnnouncementPageEnum::ARTICLE_LIST_DESKTOP->value,
 //            AnnouncementPageEnum::ARTICLE_SINGLE_DESKTOP->value,
+//            AnnouncementPageEnum::TERMS_OF_SALE_DESKTOP->value,
 //            AnnouncementPageEnum::ABOUT_US_DESKTOP->value => 'dimensions:width=1248,height=400',
 //
 //            AnnouncementPageEnum::HOME_MOBILE->value,
 //            AnnouncementPageEnum::PRODUCT_LIST_MOBILE->value,
 //            AnnouncementPageEnum::ARTICLE_LIST_MOBILE->value,
-//            AnnouncementPageEnum::ABOUT_US_MOBILE->value => 'dimensions:width=328,height=440',
-
 //            AnnouncementPageEnum::ARTICLE_SINGLE_MOBILE->value,
+//            AnnouncementPageEnum::TERMS_OF_SALE_MOBILE->value,
+//            AnnouncementPageEnum::ABOUT_US_MOBILE->value => 'dimensions:width=328,height=440',
+//
 //            AnnouncementPageEnum::PRODUCT_SINGLE->value => 'dimensions:width=368,height=440',
 //
 //            AnnouncementPageEnum::ARTICLE_SINGLE_TOC->value,
+//            AnnouncementPageEnum::TERMS_OF_SALE_TOC->value,
 //            AnnouncementPageEnum::AGENCY->value => 'dimensions:width=368,height=124',
 //
 //            default => '',

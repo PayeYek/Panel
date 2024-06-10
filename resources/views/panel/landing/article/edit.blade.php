@@ -22,14 +22,23 @@
                     />
                     <x-splade-input name="title" label="Title" required/>
                     <x-splade-input ltr name="slug" label="Slug" help="Exclusive name in English"/>
-                    <x-splade-checkbox class="text-sm" name="publish" label="{{ __('Dou you want to publish?') }}"/>
-                    <x-splade-checkbox class="text-sm" name="pinned" label="{{ __('Dou you want to pin?') }}"/>
                     <x-splade-textarea name="description" label="Description" help="For SEO"/>
                     <x-splade-wysiwyg name="body" label="Article content" required/>
 
+                    <x-layout.panel.form.divider text="Publish setting"/>
+
+                    <x-splade-input
+                        help="جهت زمان بندی انتشار مقاله تاریخ را وارد کنید. در صورتی که می خواهید مقاله به صورت آنی منتظر شود کافیست تیک گزینه انتشار داده شود را بزنید. "
+                        label="Release schedule"
+                        name="published_at" date time ltr/>
+                    <x-splade-checkbox
+                        help="جهت انتشار مقالات (انتشار آنی یا زمانبندی شده) می بایست تیک گزینه >>انتشار داده شود<< فعال باشد."
+                        class="text-sm" name="publish" label="{{ __('Dou you want to publish?') }}"/>
+                    <x-splade-checkbox class="text-sm" name="pinned" label="{{ __('Dou you want to pin?') }}"/>
+
                 </x-layout.panel.form.division>
 
-                <x-splade-submit label="Update"/>
+                <x-splade-submit label="Update" class="mb-52"/>
 
             </x-layout.panel.form.card>
         </x-splade-form>

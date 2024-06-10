@@ -132,7 +132,9 @@ class LandingApiController extends Controller
                 },
                 'styles',
                 'articles' => function ($query) {
-                    $query->where('type', '!=', 'sell')->orderBy('updated_at', 'desc')->published();
+                    $query->where('type', '!=', 'sell')
+                        ->published()
+                        ->orderBy('published_at', 'desc');
                 }
             ])
             ->firstOrFail();
@@ -427,7 +429,7 @@ class LandingApiController extends Controller
         $saleTerms = $land->articles()
             ->where('type', 'sell')
             ->published()
-            ->orderByDesc('created_at')
+            ->orderByDesc('published_at')
             ->get();
 
         $termsResponse = $saleTerms->map(function ($term) {
@@ -469,7 +471,7 @@ class LandingApiController extends Controller
         $forArasb = request('for_arasb', false);
         /* LANDING DATA */
         $land = Land::where('slug', $page)
-            ->with(['products.category', 'slides', 'articles'])
+            ->with(['products.category'])
             ->firstOrFail();
 
         $product = $land->products()->with('category')->where('slug', $product)->firstOrFail();
@@ -627,7 +629,8 @@ class LandingApiController extends Controller
                     ->orWhere('description', 'LIKE', '%' . $keyword . '%')
                     ->orWhere('slug', 'LIKE', '%' . $keyword . '%');
             })
-            ->orderBy('created_at', 'desc');
+            ->published()
+            ->orderBy('published_at', 'desc');
 
         return responder()->success($searchResults, LandArticleSearchTransformer::class)->respond();
     }
@@ -654,7 +657,7 @@ class LandingApiController extends Controller
             })
             ->where('type', '!=', 'sell') // Exclude articles with type 'sell'
             ->published()
-            ->orderBy('created_at', 'desc')
+            ->orderBy('published_at', 'desc')
             ->select('title', 'slug', 'type', 'description', 'image', 'created_at')
             ->paginate($pageSize);
 
@@ -705,7 +708,7 @@ class LandingApiController extends Controller
 
     public function article($page, $article)
     {
-        $land = $this->getLand($page);
+        $land = Land::where('slug', $page)->firstOrFail();
         $article = LandArticle::where('slug', $article)
             ->published()
             ->firstOrFail();
