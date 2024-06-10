@@ -34,6 +34,7 @@ class CustomerFeedbackRequest extends FormRequest
             'first_name'        => 'required|string',
             'last_name'         => 'required|string',
             'land_id'           => 'required|exists:lands,id',
+            'order'             => 'required|numeric',
             'gender'            => ['required', Rule::in(GenderTypeEnum::values())],
         ];
     }

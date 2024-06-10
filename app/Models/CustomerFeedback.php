@@ -22,7 +22,8 @@ class CustomerFeedback extends Model
         'title',
         'gender',
         'description',
-        'purchased_product'
+        'purchased_product',
+        'order'
     ];
 
     protected $casts = [

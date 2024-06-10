@@ -32,6 +32,7 @@
                                    help="ابعاد عکس باید 284 در 400 باشد"
                     />
                     <x-splade-textarea name="video" label="Video script code" required ltr/>
+                    <x-splade-input help="کمترین عدد اولویت بالاتری جهت نمایش دارد" name="order" label="Order of display" type="number" min="0" required/>
                 </x-layout.panel.form.division>
 
                 <x-splade-submit label="Update"/>
