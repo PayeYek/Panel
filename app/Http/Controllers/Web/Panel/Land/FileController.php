@@ -53,23 +53,38 @@ class FileController extends Controller
         return view('panel.landing.file.edit', compact('file'));
     }
 
-
     public function update(FileRequest $request, LandFile $file)
     {
         $data = $request->validated();
 
-        /* Update new file */
-        if ($request->validated()['path'] !== $file->path) {
+        if ($request->file('path')) {
             Storage::delete('public/' . $file->getPath());
-            $data = $this->getPath($data, $request);
-        } else
+
+            $data = $this->getPath($data, $request, $file->getPath());
+
+            $newFile = $request->file('path');
+            $data['name'] = pathinfo($newFile->getClientOriginalName(), PATHINFO_FILENAME);
+            $data['type'] = $newFile->getClientOriginalExtension();
+            $data['size'] = $newFile->getSize();
+
+        } else {
             $data['path'] = $file->getPath();
+        }
 
         $file->update($data);
-
         Splade::toast(__('Updated'))->autoDismiss(5)->info();
-
         return redirect()->route('panel.landing.file.index');
+    }
+
+    public function getPath(mixed $data, Request $request, string $existingFilePath): mixed
+    {
+        if (!empty($request->file('path'))) {
+            $existingFileName = basename($existingFilePath);
+            $storagePath = 'media/land/files/' . $existingFileName;
+            $request->file('path')->storeAs('media/land/files', $existingFileName, 'public');
+            $data['path'] = $storagePath;
+        }
+        return $data;
     }
 
 
@@ -83,15 +98,5 @@ class FileController extends Controller
         Splade::toast(__('Deleted'))->autoDismiss(5)->danger();
 
         return back();
-    }
-
-    public function getPath(mixed $data, Request $request): mixed
-    {
-        $data['path'] = null;
-        if (!empty($request->file('path'))) {
-            $data['path'] =
-                $request->file('path')->store('media/land/files', 'public');
-        }
-        return $data;
     }
 }
