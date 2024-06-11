@@ -924,7 +924,7 @@ class LandingApiController extends Controller
 
     public function getCustomerFeedback()
     {
-        return responder()->success(CustomerFeedback::orderBy('order')->get(), CustomerFeedbackTransformer::class)->respond();
+        return responder()->success(CustomerFeedback::orderBy('priority')->get(), CustomerFeedbackTransformer::class)->respond();
     }
 
     public function getSubLandProducts()

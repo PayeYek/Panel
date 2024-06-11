@@ -41,7 +41,7 @@ class CustomerFeedbackTransformer extends Transformer
             'last_name'         => $customerFeedback->last_name,
             'land_id'           => $customerFeedback->land_id,
             'gender'            => $customerFeedback->gender->label(),
-            'order'             => $customerFeedback->order,
+            'priority'          => $customerFeedback->priority,
         ];
     }
 }

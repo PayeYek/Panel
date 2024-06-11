@@ -11,7 +11,7 @@ return new class extends Migration {
     public function up(): void
     {
         Schema::table('customer_feedback', function (Blueprint $table) {
-            $table->unsignedInteger('order')->default(0)->after('purchased_product');
+            $table->unsignedInteger('priority')->default(0)->after('purchased_product');
         });
     }
 
@@ -21,7 +21,7 @@ return new class extends Migration {
     public function down(): void
     {
         Schema::table('customer_feedback', function (Blueprint $table) {
-            $table->dropColumn('order');
+            $table->dropColumn('priority');
         });
     }
 };

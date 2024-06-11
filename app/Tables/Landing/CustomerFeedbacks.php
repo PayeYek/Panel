@@ -39,7 +39,7 @@ class CustomerFeedbacks extends AbstractTable
         return QueryBuilder::for(CustomerFeedback::class)
             ->with('land')
             ->defaultSort('-id')
-            ->allowedSorts(['id', 'order', 'city', 'purchased_product', 'created_at', 'updated_at'])
+            ->allowedSorts(['id', 'priority', 'city', 'purchased_product', 'created_at', 'updated_at'])
             ->allowedFilters([$globalSearch]);
     }
 
@@ -129,7 +129,7 @@ class CustomerFeedbacks extends AbstractTable
         );
 
         $table->column(
-            key: 'order',
+            key: 'priority',
             label: __('Order of display'),
 //            hidden: true,
             sortable: true,
