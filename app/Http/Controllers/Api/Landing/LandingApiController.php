@@ -352,11 +352,27 @@ class LandingApiController extends Controller
             'links'       => $productsPaginator->links(),
         ];
 
+        $lands = [];
+
+        if ($forArasb) {
+            $landIds = [];
+            foreach ($productsPaginator as $product) {
+                if ($product->land && !in_array($product->land->id, $landIds)) {
+                    $landIds[] = $product->land->id;
+                    $lands[] = [
+                        'id' => $product->land->id,
+                        'title' => $product->land->title,
+                    ];
+                }
+            }
+        }
+
         return responder()->success($productsPaginator, ProductCardTransformer::class)
             ->meta([
                 'pagination'  => $pagination,
                 'breadcrumbs' => $breadcrumbs,
-                'seo'         => $seo
+                'seo'         => $seo,
+                'lands'       => $lands ?? null
             ])
             ->respond();
     }
