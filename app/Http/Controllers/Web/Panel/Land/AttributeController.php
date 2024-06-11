@@ -90,7 +90,7 @@ class AttributeController extends Controller
 
         Splade::toast(__('Updated'))->autoDismiss(5)->success();
 
-        return redirect()->route('panel.landing.product.attribute.priority.edit');
+        return redirect()->route('panel.landing.product.attribute.index');
     }
 
 }
