@@ -1,5 +1,5 @@
 <x-layout.admin>
-<Link href="{{ route('panel.landing.product.attribute.sortForm') }}">{{ __('Sort attributes') }}</Link>
+<Link href="{{ route('panel.landing.product.attribute.priority.edit') }}">{{ __('Sort attributes') }}</Link>
     <x-splade-table :for="$items"
                     :primaryLink="route('panel.landing.product.attribute.create')"
                     :title="__('Attribute list')"

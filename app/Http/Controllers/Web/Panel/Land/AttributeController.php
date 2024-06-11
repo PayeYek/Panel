@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Web\Panel\Land;
 
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Panel\Landing\AttributePriorityRequest;
 use App\Http\Requests\Panel\Landing\AttributeRequest;
 use App\Models\LandAttribute;
 use App\Tables\Landing\Attributes;
@@ -64,27 +65,32 @@ class AttributeController extends Controller
         return back();
     }
 
-    public function sortForm()
+    public function priorityEdit()
     {
-        $attrs = LandAttribute::whereNull('parent_id')
-            ->latest()
+        $attributes = LandAttribute::whereNull('parent_id')
             ->orderBy('priority')
-            ->get();
-        $attributes = [];
-        foreach ($attrs as $value) {
-            $attributes[] = [
-                'id'       => $value->id,
-                'name'     => $value->name,
-                'priority' => $value->priority
+            ->get(['id', 'name', 'priority']);
+
+        $priorities = null;
+        foreach ($attributes as $item) {
+            $priorities['attributes'][$item->id] = [
+                'id'       => $item->id,
+                'name'     => $item->name,
+                'priority' => $item->priority
             ];
         }
 
-        return view('panel.landing.product.attribute.sort-form', compact('attributes'));
+        return view('panel.landing.product.attribute.priority', compact('attributes', 'priorities'));
     }
 
-    public function sort()
+    public function priorityUpdate(AttributePriorityRequest $request)
     {
+        foreach ($request->validated()['attributes'] as $key => $item)
+            LandAttribute::find($key)->update(['priority' => $item['priority']]);
 
+        Splade::toast(__('Updated'))->autoDismiss(5)->success();
+
+        return redirect()->route('panel.landing.product.attribute.priority.edit');
     }
 
 }

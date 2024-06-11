@@ -112,8 +112,8 @@ Route::middleware(['splade'])->group(function () {
                     Route::resource('category', CategoryController::class)->except('show');
                     // Land Attributes
                     Route::resource('attribute', AttributeController::class)->except('show');
-                    Route::get("attribute-sort", [AttributeController::class, 'sortForm'])->name('attribute.sortForm');
-                    Route::post("attribute-sort", [AttributeController::class, 'sort'])->name('attribute.sort');
+                    Route::get("attribute-priority", [AttributeController::class, 'priorityEdit'])->name('attribute.priority.edit');
+                    Route::put("attribute-priority", [AttributeController::class, 'priorityUpdate'])->name('attribute.priority.update');
                     // Land Brands
                     Route::resource('brand', BrandController::class)->except('show');
                     // Land Colors
