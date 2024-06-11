@@ -332,9 +332,28 @@ class LandingApiController extends Controller
             $productsQuery->where('land_id', $landFilter);
         }
 
-        $seo = SeoHelper::seoGenerator(null, 'products');
+        // Fetch all products to gather all lands
+        $allProducts = $productsQuery->get();
 
+        $lands = [];
+        $landIds = [];
+
+        if ($forArasb) {
+            foreach ($allProducts as $product) {
+                if ($product->land && !in_array($product->land->id, $landIds)) {
+                    $landIds[] = $product->land->id;
+                    $lands[] = [
+                        'id' => $product->land->id,
+                        'title' => $product->land->title,
+                    ];
+                }
+            }
+        }
+
+        // Paginate the products for response
         $productsPaginator = $productsQuery->paginate($perPage)->withQueryString();
+
+        $seo = SeoHelper::seoGenerator(null, 'products');
 
         $breadcrumbs = [
             [
@@ -352,30 +371,16 @@ class LandingApiController extends Controller
             'links'       => $productsPaginator->links(),
         ];
 
-        $lands = [];
-
-        if ($forArasb) {
-            $landIds = [];
-            foreach ($productsPaginator as $product) {
-                if ($product->land && !in_array($product->land->id, $landIds)) {
-                    $landIds[] = $product->land->id;
-                    $lands[] = [
-                        'id' => $product->land->id,
-                        'title' => $product->land->title,
-                    ];
-                }
-            }
-        }
-
         return responder()->success($productsPaginator, ProductCardTransformer::class)
             ->meta([
                 'pagination'  => $pagination,
                 'breadcrumbs' => $breadcrumbs,
                 'seo'         => $seo,
-                'lands'       => $lands ?? null
+                'lands'       => $lands
             ])
             ->respond();
     }
+
 
     public function searchProducts()
     {
