@@ -382,8 +382,12 @@ class LandingApiController extends Controller
         $forArasb = request('for_arasb', false);
         $landId = request('land_id');
         $keyword = request('keyword');
+
+        if (!$forArasb && !$landId && !$keyword) {
+            return responder()->success([], LandProductSearchTransformer::class)->respond();
+        }
+
         $searchResults = LandProduct::query();
-        $out = [];
 
         if ($forArasb) {
             $searchResults->whereIn('land_id', [1, 2, 3, 6, 20, 26]);
