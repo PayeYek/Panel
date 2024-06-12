@@ -990,7 +990,7 @@ class LandingApiController extends Controller
     {
         $landId = request('land_id');
         $land = Land::where('id', $landId)->firstOrFail();
-        $categories = $land->categories;
+        $categories = $land->categories->unique();
 
         return responder()->success($categories, LandCategoryTransformer::class)->respond();
     }
