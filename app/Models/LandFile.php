@@ -2,13 +2,11 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 
 class LandFile extends Model
 {
-    use HasFactory;
 
     protected $fillable = ['name', 'type', 'size', 'path', 'thumbnail'];
 
@@ -21,7 +19,8 @@ class LandFile extends Model
             return null;
         }
 
-        return Str::isUrl($item) ? $item : asset('storage/' . $item);
+//        return Str::isUrl($item) ? $item : asset('storage/' . $item);
+        return $item;
     }
 
     public function getPath()
