@@ -339,11 +339,15 @@ class LandingApiController extends Controller
         $landIds = [];
 
         if ($forArasb) {
+            $lands[] = [
+                'id'    => 0,
+                'title' => 'همه',
+            ];
             foreach ($allProducts as $product) {
                 if ($product->land && !in_array($product->land->id, $landIds)) {
                     $landIds[] = $product->land->id;
                     $lands[] = [
-                        'id' => $product->land->id,
+                        'id'    => $product->land->id,
                         'title' => $product->land->title,
                     ];
                 }
