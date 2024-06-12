@@ -666,8 +666,7 @@ class LandingApiController extends Controller
 
     public function articles($page)
     {
-        // Extract the query parameter
-        $filter = request('f'); //Todo filter just work on news and blogs, not sell
+        $filter = request('f'); // Todo filter just work on news and blogs, not sell
         $search = request('s');
         $pageSize = 10;
 
@@ -686,8 +685,8 @@ class LandingApiController extends Controller
             })
             ->where('type', '!=', 'sell') // Exclude articles with type 'sell'
             ->published()
-            ->orderBy('published_at', 'desc')
-            ->select('title', 'slug', 'type', 'description', 'image', 'created_at')
+            ->select('title', 'slug', 'type', 'description', 'image', 'created_at', 'published_at', 'updated_at')
+            ->orderByRaw('COALESCE(published_at, updated_at) DESC')
             ->paginate($pageSize);
 
         $articles = collect($articlePaginator->items());
@@ -698,7 +697,6 @@ class LandingApiController extends Controller
             ->unique()
             ->values()
             ->map(function ($type) {
-
                 return [
                     'type_fa' => __($type),
                     'type_en' => $type
