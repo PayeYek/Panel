@@ -20,7 +20,7 @@ class CommentRequest extends FormRequest
             'product_id' => 'required|numeric|exists:land_products,id',
             'comment'    => 'required|string|min:10|max:200',
             'name'       => 'required|string',
-            'phone'      => 'nullable|string|size:11',
+            'phone'      => 'required|string|size:11',
             'email'      => 'nullable|email'
         ];
 
