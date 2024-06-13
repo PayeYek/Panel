@@ -25,7 +25,7 @@ class StoreAdvertiseRequest extends FormRequest
             'usage_id' => 'required|exists:usages,id',
             'agreement_price' => 'nullable|boolean',
             'title' => 'required|string|max:255',
-            'description' => 'required|string',
+            'description' => 'required|string|max:1000',
             'primary_image' => $this->PrimaryImageRule(),
             'slider_images' => 'array|min:1',
             'slider_images.*' => $this->PrimaryImageRule(),

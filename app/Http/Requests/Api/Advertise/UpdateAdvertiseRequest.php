@@ -24,7 +24,7 @@ class UpdateAdvertiseRequest extends FormRequest
         $rules = [
             'usage_id' => 'required|exists:usages,id',
             'title' => 'required|string|max:255',
-            'description' => 'required|string',
+            'description' => 'required|string|max:1000',
             'primary_image' => $this->PrimaryImageRule(),
             'slider_images' => 'sometimes|array|min:1',
             'slider_images.*' => $this->PrimaryImageRule(),
