@@ -19,8 +19,8 @@ class LandFile extends Model
             return null;
         }
 
-//        return Str::isUrl($item) ? $item : asset('storage/' . $item);
-        return $item;
+        return Str::isUrl($item) ? $item : asset('storage/' . $item);
+//        return $item;
     }
 
     public function getPath()
