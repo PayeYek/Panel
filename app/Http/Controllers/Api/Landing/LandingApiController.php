@@ -332,9 +332,6 @@ class LandingApiController extends Controller
             $productsQuery->where('land_id', $landFilter);
         }
 
-        // Fetch all products to gather all lands
-        $allProducts = $productsQuery->get();
-
         $lands = [];
         $landIds = [];
 
@@ -343,18 +340,18 @@ class LandingApiController extends Controller
                 'id'    => 0,
                 'title' => 'همه',
             ];
-            foreach ($allProducts as $product) {
-                if ($product->land && !in_array($product->land->id, $landIds)) {
-                    $landIds[] = $product->land->id;
+
+            foreach (Land::whereIn('id', [1, 2, 3, 6, 20])->select(['id', 'title'])->get() as $land) {
+                if (!in_array($land->id, $landIds)) {
+                    $landIds[] = $land->id;
                     $lands[] = [
-                        'id'    => $product->land->id,
-                        'title' => $product->land->title,
+                        'id'    => $land->id,
+                        'title' => $land->title,
                     ];
                 }
             }
         }
 
-        // Paginate the products for response
         $productsPaginator = $productsQuery->paginate($perPage)->withQueryString();
 
         $seo = SeoHelper::seoGenerator(null, 'products');
