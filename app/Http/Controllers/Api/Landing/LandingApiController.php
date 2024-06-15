@@ -670,13 +670,15 @@ class LandingApiController extends Controller
     {
         $filter = request('f'); // Todo filter just work on news and blogs, not sell
         $search = request('s');
-        $pageSize = 10;
+        $pageSize = request('per_page', 12);
 
         $land = Land::where('slug', $page)->firstOrFail();
 
         $articlePaginator = $land->articles()
             ->when($filter, function ($query) use ($filter) {
-                $query->where('type', $filter);
+                if ($filter !== 'all') {
+                    $query->where('type', $filter);
+                }
             })
             ->when($search, function ($query) use ($search) {
                 $query->where(function ($query) use ($search) {
@@ -685,7 +687,7 @@ class LandingApiController extends Controller
                         ->orWhere('slug', 'LIKE', '%' . $search . '%');
                 });
             })
-            ->where('type', '!=', 'sell') // Exclude articles with type 'sell'
+            ->where('type', '!=', 'sell')
             ->published()
             ->select('title', 'slug', 'type', 'description', 'image', 'created_at', 'published_at', 'updated_at')
             ->orderByRaw('COALESCE(published_at, updated_at) DESC')
@@ -693,7 +695,15 @@ class LandingApiController extends Controller
 
         $articles = collect($articlePaginator->items());
 
-        $uniqueTypes = $land->articles()
+        $uniqueTypes = [];
+        if ($page == 'arasb-diesel') {
+            $uniqueTypes[] = [
+                'type_fa' => 'همه',
+                'type_en' => 'all'
+            ];
+        }
+
+        $additionalTypes = $land->articles()
             ->where('type', '!=', 'sell')
             ->pluck('type')
             ->unique()
@@ -704,12 +714,8 @@ class LandingApiController extends Controller
                     'type_en' => $type
                 ];
             })->all();
-        if ($page == 'arasb-diesel') {
-            $uniqueTypes[] = [
-                'type_fa' => 'همه',
-                'type_en' => 'all'
-            ];
-        }
+
+        $uniqueTypes = array_merge($uniqueTypes, $additionalTypes);
 
         $breadcrumbs = [];
 
