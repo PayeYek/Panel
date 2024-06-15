@@ -1015,9 +1015,21 @@ class LandingApiController extends Controller
     public function getCategories()
     {
         $landId = request('land_id');
-        $land = Land::where('id', $landId)->firstOrFail();
-        $categories = $land->categories->unique();
+        $categories = collect();
 
+        if ($landId == 0) {
+            $landIds = [1, 2, 3, 6, 20, 26];
+            $lands = Land::whereIn('id', $landIds)->with('categories')->get();
+
+            foreach ($lands as $land) {
+                $categories = $categories->merge($land->categories);
+            }
+
+            $categories = $categories->unique('id');  // Ensure categories are unique by ID
+        } else {
+            $land = Land::where('id', $landId)->with('categories')->firstOrFail();
+            $categories = $land->categories->unique('id');
+        }
         return responder()->success($categories, LandCategoryTransformer::class)->respond();
     }
 
