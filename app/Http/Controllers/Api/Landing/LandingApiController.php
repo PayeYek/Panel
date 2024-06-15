@@ -226,9 +226,11 @@ class LandingApiController extends Controller
         $land = $this->getLand($page);
 
         /* BREADCRUMBS */
-        $breadcrumbs[] = [
-            'title' => __('About us'),
-            'url'   => null
+        $breadcrumbs = [
+            [
+                'title' => __('About us'),
+                'url'   => null
+            ]
         ];
 
         $seo = SeoHelper::seoGenerator($land, 'aboutUs');
@@ -238,6 +240,14 @@ class LandingApiController extends Controller
             'breadcrumbs' => $breadcrumbs,
             'seo'         => $seo
         ];
+
+        if ($page == 'arasb-diesel') {
+            $coWorkers = Land::whereIn('id', [1, 2, 3, 6, 20])
+                ->select('title', 'logo', 'logo_origin')
+                ->get();
+
+            $data['co_workers'] = $coWorkers;
+        }
 
         return responder()->success($data, LandAboutUsTransformer::class)->respond();
     }
