@@ -789,7 +789,7 @@ class LandingApiController extends Controller
         $seo = SeoHelper::seoGenerator($article);
 
         $data = [
-            'article'          => $article->only(['title', 'image', 'body', 'created_at']),
+            'article'          => $article->only(['title', 'image','type', 'body', 'created_at']),
             'related_articles' => $outRelated,
             'breadcrumbs'      => $breadcrumbs,
             'seo'              => $seo
