@@ -8,9 +8,9 @@
 
         @cell('article', $item)
         <Link
-                slideover
-                href="{{ route('panel.landing.article.edit', $item) }}"
-                class="flex flex-col pe-10">
+            slideover
+            href="{{ route('panel.landing.article.edit', $item) }}"
+            class="flex flex-col pe-10">
         <div class="flex gap-2">
             <img class="aspect-2 h-14 rounded shrink-0" src="{{$item->image}}"
                  alt="{{$item->title}}">
@@ -27,12 +27,20 @@
                 </div>
 
                 <span
-                        class="text-sm truncate max-w-60 lg:max-w-xs text-black dark:text-white">{{$item->land->title}}</span>
+                    class="text-sm truncate max-w-60 lg:max-w-xs text-black dark:text-white">{{$item->land->title}}</span>
             </div>
         </div>
         </Link>
         @endcell
-
+        @cell('published_at', $item)
+        @if(\Carbon\Carbon::parse($item->published_at)->isPast())
+            <span>{{ __('Published') }}</span>
+        @else
+            <span dir="ltr">
+        {{ \App\Support\Help::isRTL() ? jdate($item->published_at) : $item->published_at }}
+            </span>
+        @endif
+        @endcell
         @cell('publish', $item)
         @if($item->publish === true)
             <svg class="w-6 h-6 text-green-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24"
@@ -70,15 +78,15 @@
         @cell('type', $item)
         @if($item->type == 'sell')
             <span
-                    class="inline-flex items-center gap-x-1.5 py-1.5 px-3 rounded-full text-xs font-medium bg-red-500 text-white">{{__('Sell')}}</span>
+                class="inline-flex items-center gap-x-1.5 py-1.5 px-3 rounded-full text-xs font-medium bg-red-500 text-white">{{__('Sell')}}</span>
         @endif
         @if($item->type == 'news')
             <span
-                    class="inline-flex items-center gap-x-1.5 py-1.5 px-3 rounded-full text-xs font-medium bg-blue-500 text-white">{{__('News')}}</span>
+                class="inline-flex items-center gap-x-1.5 py-1.5 px-3 rounded-full text-xs font-medium bg-blue-500 text-white">{{__('News')}}</span>
         @endif
         @if($item->type == 'blog')
             <span
-                    class="inline-flex items-center gap-x-1.5 py-1.5 px-3 rounded-full text-xs font-medium bg-green-500 text-white">{{__('Blog')}}</span>
+                class="inline-flex items-center gap-x-1.5 py-1.5 px-3 rounded-full text-xs font-medium bg-green-500 text-white">{{__('Blog')}}</span>
         @endif
         @endcell
 
