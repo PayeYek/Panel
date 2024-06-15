@@ -699,6 +699,12 @@ class LandingApiController extends Controller
                     'type_en' => $type
                 ];
             })->all();
+        if ($page == 'arasb-diesel') {
+            $uniqueTypes[] = [
+                'type_fa' => 'همه',
+                'type_en' => 'all'
+            ];
+        }
 
         $breadcrumbs = [];
 
