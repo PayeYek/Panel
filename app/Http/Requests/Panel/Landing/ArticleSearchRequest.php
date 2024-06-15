@@ -16,7 +16,7 @@ class ArticleSearchRequest extends FormRequest
     {
         return [
             'land_id' => 'required|numeric|exists:lands,id',
-            'keyword' => 'required|string',
+            'keyword' => 'nullable|string',
         ];
 
     }

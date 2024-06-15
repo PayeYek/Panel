@@ -656,7 +656,12 @@ class LandingApiController extends Controller
                     ->orWhere('slug', 'LIKE', '%' . $keyword . '%');
             })
             ->published()
-            ->orderBy('published_at', 'desc');
+            ->orderBy('published_at', 'desc')
+            ->get();
+
+        if (empty($keyword)) {
+            $searchResults = [];
+        }
 
         return responder()->success($searchResults, LandArticleSearchTransformer::class)->respond();
     }
