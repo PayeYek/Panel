@@ -888,17 +888,20 @@ class LandingApiController extends Controller
             ];
         });
 
-        $seo = SeoHelper::seoGenerator($land, 'page');
+        $seo = SeoHelper::seoGenerator($land, 'facilities');
 
 
         $data = [
             'categories'  => $filteredCategory,
             'land_id'     => $land->id,
-            'seo'         => $seo,
-            'breadcrumbs' => $breadcrumbs,
         ];
 
-        return responder()->success($data, LandFacilityTransformer::class)->respond();
+        return responder()->success($data, LandFacilityTransformer::class)
+            ->meta([
+                'breadcrumbs' => $breadcrumbs,
+                'seo'         => $seo
+            ])
+            ->respond();
     }
 
     public function facilitiesRequest(FacilitiesRequest $facilitiesRequest)
