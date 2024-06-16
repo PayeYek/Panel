@@ -37,7 +37,7 @@ class Announcements extends AbstractTable
             ->with('land')
             ->defaultSort('-id')
             ->allowedSorts(['id'])
-            ->allowedFilters(['type', $globalSearch]);
+            ->allowedFilters(['type', 'land.title', 'description', 'page', 'type', $globalSearch]);
 
     }
 
