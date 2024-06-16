@@ -155,7 +155,7 @@ return array(
         'comment'                    => 'نظر',
         'level'                      => 'سطح دسترسی',
         'production_year'            => 'سال ساخت',
-        'message'                    => 'نظر', //Todo wrong translation of the word
+        'message'                    => 'پیام', //Todo wrong translation of the word
         'usage_id'                   => 'شناسه نوع کاربری',
         'agreement_price'            => 'توافقی',
         'primary_image'              => 'تصویر اصلی',

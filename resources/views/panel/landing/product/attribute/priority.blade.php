@@ -8,6 +8,12 @@
 
                 <x-layout.panel.form.division>
 
+                <Priority/>
+
+                </x-layout.panel.form.division>
+
+                <x-layout.panel.form.division>
+
                     @foreach($priorities['attributes'] as $key => $val)
                         <x-splade-input name="attributes[{{$key}}][priority]" label="{{$val['name']}}"/>
                     @endforeach
