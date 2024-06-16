@@ -22,6 +22,7 @@ use App\Models\LandComment;
 use App\Models\LandFacility;
 use App\Models\LandProduct;
 use App\Models\LandSubscribe;
+use App\Models\LandVideo;
 use App\Models\SalesExpert;
 use App\Support\SeoHelper;
 use App\Transformers\AnnouncementTransformer;
@@ -58,27 +59,38 @@ class LandingApiController extends Controller
 
     public function landing()
     {
-
         $categoriesWithLands = LandCategory::with('products.land')->get();
-        $out = [];
 
-        foreach ($categoriesWithLands as $index => $category) {
-            $landTitles = $category->products->filter(function ($product) {
-                return $product->land !== null;
-            })->map(function ($product) {
-                return $product->land->title;
-            })->unique()->values();
+        $categories = [];
+        $lands = [];
 
-            $out[] = [
-                'index'       => $index,
-                'category_fa' => $category->title,
-                'category_en' => $category->slug,
-                'lands'       => $landTitles
+        foreach ($categoriesWithLands as $category) {
+            $categories[] = [
+                'uuid' => $category->id,
+                'name' => $category->title
             ];
+
+            foreach ($category->products as $product) {
+                if ($product->land !== null) {
+                    $lands[] = [
+                        'land_uuid'     => $product->land->id,
+                        'category_uuid' => $category->id,
+                        'name'          => $product->land->title,
+                        'slug'          => $product->land->slug,
+                        'logo'          => $product->land->logo
+                    ];
+                }
+            }
         }
+
+        $out = [
+            'categories' => $categories,
+            'lands'      => $lands
+        ];
 
         return responder()->success($out)->respond();
     }
+
 
     public function page($page)
     {
@@ -602,19 +614,23 @@ class LandingApiController extends Controller
 
     public function videos($page)
     {
+        $forArasb = $page == 'arasb-diesel' ?? false;
         $land = $this->getLand($page);
         $sort = request('sort');
         $keyword = request('keyword');
-        $productId = request('productId');
-        $perPage = request('perPage') ?? 10;
+        $productId = request('product_id');
+        $perPage = request('per_page') ?? 10;
 
-        $videosQuery = $land->videos();
+        if ($forArasb) {
+            $videosQuery = LandVideo::whereIn('land_id', [1, 2, 3, 6, 20, 26]);
+        } else {
+            $videosQuery = $land->videos();
+        }
 
         if ($keyword) {
             $videosQuery->where('alt', 'LIKE', '%' . $keyword . '%');
         }
 
-        // Apply product_id filter if productId is provided
         if ($productId) {
             $videosQuery->where('product_id', $productId);
         }
@@ -637,21 +653,22 @@ class LandingApiController extends Controller
             ['title' => __('Videos'), 'url' => null]
         ];
 
-        $data = [
-            'videos'     => $videosResponse,
-            'pagination' => (object)[
-                'count'       => $videos->count(),
-                'total'       => $videos->total(),
-                'perPage'     => $videos->perPage(),
-                'currentPage' => $videos->currentPage(),
-                'totalPages'  => $videos->lastPage(),
-                'links'       => $videos->links(),
-            ]
+        $pagination = [
+            'count'       => $videos->count(),
+            'total'       => $videos->total(),
+            'perPage'     => $videos->perPage(),
+            'currentPage' => $videos->currentPage(),
+            'totalPages'  => $videos->lastPage(),
+            'links'       => $videos->links(),
         ];
 
         return responder()
-            ->success($data, LandVideoTransformer::class)
-            ->meta(['breadcrumbs' => $breadcrumbs, 'seo' => $seo])
+            ->success($videosResponse, LandVideoTransformer::class)
+            ->meta([
+                'pagination'  => $pagination,
+                'breadcrumbs' => $breadcrumbs,
+                'seo'         => $seo
+            ])
             ->respond();
     }
 
@@ -892,8 +909,8 @@ class LandingApiController extends Controller
 
 
         $data = [
-            'categories'  => $filteredCategory,
-            'land_id'     => $land->id,
+            'categories' => $filteredCategory,
+            'land_id'    => $land->id,
         ];
 
         return responder()->success($data, LandFacilityTransformer::class)
