@@ -104,7 +104,7 @@ class SeoHelper
 
         if ($model instanceof Land && $static === 'products') {
             return [
-                'title'              => ($model->title ?? null) . ' | محصولات',
+                'title'              => ($forArasb ? 'آراسب دیزل' : ($model->title ? $model->title : null)) . ' | محصولات',
                 'description'        => "{$model->title}: پیشگام در صنعت خودروهای سنگین ایران. کاوش در محصولات و خدمات باکیفیت ما، از کامیون‌های دیزلی گرفته تا خدمات پس از فروش. بیاموزید چگونه {$model->title} با نوآوری‌ها و استانداردهای بالای خود در بازار خودروهای سنگین پیشتاز است.",
                 'image'              => $model->logo ?? null,
                 'image_alt'          => $model->title ?? null,
@@ -166,6 +166,30 @@ class SeoHelper
                 'twitter_card'       => 'summary',
                 'twitter_card_image' => $model->logo ?? null,
                 'canonical'          => $model->slug,
+                'robot'              => 'index'
+            ];
+        }
+
+        if ($static === 'products') {
+            $arasb = $forArasb ? Land::find(26) : null;
+            $title = $forArasb ? 'آراسب دیزل' . ' | ' : ($model ? $model->title . ' | ' : null);
+            $description = $forArasb ? $arasb?->description : ($model?->description);
+            $image = $forArasb ? $arasb?->logo : ($model?->logo);
+            $imageAlt = $forArasb ? $arasb?->title : ($model?->title);
+            $canonical = $forArasb ? $arasb?->slug : ($model?->slug);
+
+            return [
+                'title'              => ($title) . 'محصولات',
+                'description'        => $description,
+                'image'              => $image,
+                'image_alt'          => $imageAlt,
+                'og_title'           => ($title) . 'محصولات',
+                'og_description'     => $description,
+                'og_image'           => $image,
+                'og_type'            => 'website',
+                'twitter_card'       => 'summary',
+                'twitter_card_image' => $image,
+                'canonical'          => $canonical,
                 'robot'              => 'index'
             ];
         }

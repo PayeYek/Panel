@@ -326,6 +326,7 @@ class LandingApiController extends Controller
         $categoryFilter = request('category_id');
         $landFilter = request('land_id');
         $forArasb = request('for_arasb', false);
+        $landForSeo = null;
 
         $productsQuery = LandProduct::with('land');
 
@@ -340,6 +341,7 @@ class LandingApiController extends Controller
 
         if ($landFilter) {
             $productsQuery->where('land_id', $landFilter);
+            $landForSeo = Land::find($landFilter);
         }
 
         $lands = [];
@@ -364,7 +366,7 @@ class LandingApiController extends Controller
 
         $productsPaginator = $productsQuery->paginate($perPage)->withQueryString();
 
-        $seo = SeoHelper::seoGenerator(null, 'products');
+        $seo = SeoHelper::seoGenerator($landForSeo ?? null, 'products', $forArasb);
 
         $breadcrumbs = [
             [
@@ -391,7 +393,6 @@ class LandingApiController extends Controller
             ])
             ->respond();
     }
-
 
     public function searchProducts()
     {
@@ -789,7 +790,7 @@ class LandingApiController extends Controller
         $seo = SeoHelper::seoGenerator($article);
 
         $data = [
-            'article'          => $article->only(['title', 'image','type', 'body', 'created_at']),
+            'article'          => $article->only(['title', 'image', 'type', 'body', 'created_at']),
             'related_articles' => $outRelated,
             'breadcrumbs'      => $breadcrumbs,
             'seo'              => $seo
