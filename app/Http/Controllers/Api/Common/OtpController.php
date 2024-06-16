@@ -72,12 +72,11 @@ class OtpController extends Controller
                 'grant_type'    => 'password',
                 'client_id'     => $client->id,
                 'client_secret' => $client->secret,
-                'username'      => $user->mobile, // Assuming email is used as the username
-                'password'      => 'password',  // Use any default value; it won't be validated
+                'username'      => $user->mobile,
+                'password'      => 'password',
                 'scope'         => '*',
             ]);
 
-            // Update last session time
             $lastSessionTimeKey = 'last_session_time_' . $user->id;
             Cache::put($lastSessionTimeKey, now(), now()->addHours(config('session.stabilize_time', 8)));
 
