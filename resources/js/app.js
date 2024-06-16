@@ -9,7 +9,7 @@ import Breakpoint from "@/components/Breakpoint.vue";
 import CopyText from "@/components/CopyText.vue";
 import PersianDate from "@/components/PersianDate.vue";
 import ShowPassword from "@/components/ShowPassword.vue";
-import Priority from "@/components/Priority.vue";
+// import Priority from "@/components/Priority.vue";
 import Slider from "@/components/Slider.vue";
 import LandBtn from "@/components/LandBtn.vue";
 import landPdpMobileSlider from "@/components/landPdpMobileSlider.vue";
@@ -80,7 +80,7 @@ app.use(SpladePlugin,
     .component('CopyText', CopyText)
     .component('PersianDate', PersianDate)
     .component('ShowPassword', ShowPassword)
-    .component('Priority', Priority)
+    // .component('Priority', Priority)
     .component('Slider', Slider)
     .component('LandBtn', LandBtn)
     .component('landPdpMobileSlider', landPdpMobileSlider)
