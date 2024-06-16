@@ -8,7 +8,7 @@
     >
         @cell('approved', $item)
         <Link
-            confirm="test"
+            confirm="{{__('Publish confirmation')}}"
             confirm-text="{{$item->comment}}"
             confirm-button="{{$item->approved == 0 ? __('I approve its publication.') : __('Hide user comments from the others.')}}"
             cancel-button="{{__('No')}}"

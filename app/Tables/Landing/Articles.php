@@ -38,7 +38,7 @@ class Articles extends AbstractTable
         return QueryBuilder::for(LandArticle::class)
             ->with('land')
             ->defaultSort('-id')
-            ->allowedSorts(['id', 'title'])
+            ->allowedSorts(['id', 'title', 'published_at', 'publish', 'pinned'])
             ->allowedFilters(['slug', 'title', 'body', $globalSearch]);
     }
 
@@ -66,10 +66,28 @@ class Articles extends AbstractTable
         //exportAs: false,
         );
         $table->column(
+            key: 'published_at',
+            label: __('Published date'),
+            //hidden: true,
+            sortable: true,
+            searchable: true,
+        //highlight: true,
+        //exportAs: false,
+        );
+        $table->column(
             key: 'publish',
             label: __('Is published'),
-        //hidden: true,
-        //sortable: true,
+            //hidden: true,
+            sortable: true,
+        //searchable: true,
+        //highlight: true,
+        //exportAs: false,
+        );
+        $table->column(
+            key: 'pinned',
+            label: __('Is pinned'),
+//            hidden: true,
+            sortable: true,
         //searchable: true,
         //highlight: true,
         //exportAs: false,

@@ -7,9 +7,10 @@ import "@protonemedia/laravel-splade/dist/jodit.css";
 import SwitchStyle from "@/components/SwitchStyle.vue";
 import Breakpoint from "@/components/Breakpoint.vue";
 import CopyText from "@/components/CopyText.vue";
-import Slider from "@/components/Slider.vue";
 import PersianDate from "@/components/PersianDate.vue";
 import ShowPassword from "@/components/ShowPassword.vue";
+// import Priority from "@/components/Priority.vue";
+import Slider from "@/components/Slider.vue";
 import LandBtn from "@/components/LandBtn.vue";
 import landPdpMobileSlider from "@/components/landPdpMobileSlider.vue";
 import landPdpDesktopSlider from "@/components/landPdpDesktopSlider.vue";
@@ -74,12 +75,13 @@ app.use(SpladePlugin,
                 spinner: false,
             }
         })
-    .component('Slider', Slider)
     .component('SwitchStyle', SwitchStyle)
     .component('Breakpoint', Breakpoint)
     .component('CopyText', CopyText)
     .component('PersianDate', PersianDate)
     .component('ShowPassword', ShowPassword)
+    // .component('Priority', Priority)
+    .component('Slider', Slider)
     .component('LandBtn', LandBtn)
     .component('landPdpMobileSlider', landPdpMobileSlider)
     .component('landPdpDesktopSlider', landPdpDesktopSlider)

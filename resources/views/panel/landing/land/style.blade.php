@@ -44,6 +44,7 @@
                         <option value="22"> شیران دیزل </option>
                         <option value="23"> تیراژه دیزل </option>
                         <option value="24"> کاوه دیزل </option>
+                        <option value="26"> آراسب دیزل </option>
                     </x-splade-select>
 
                     <x-splade-select name="border_type" label="نمای اشیاء">
@@ -71,6 +72,7 @@
                         <option value="6">{{ __('View type') }} 6</option>
                         <option value="7">{{ __('View type') }} 7</option>
                         <option value="8">{{ __('View type') }} 8</option>
+                        <option value="9">{{ __('View type') }} 9</option>
                     </x-splade-select>
 
                     <x-splade-select name="section_header_type" label="Section header type">
@@ -190,6 +192,7 @@
                         <option value="13">{{  __('View type') }} 13</option>
                         <option value="14">{{  __('View type') }} 14</option>
                         <option value="15">{{  __('View type') }} 15</option>
+                        <option value="16">{{  __('View type') }} 16</option>
                     </x-splade-select>
 
                     <x-splade-select name="category_striped" label="نمای راه راه دسته بندی">

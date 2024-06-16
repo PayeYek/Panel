@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -14,7 +15,8 @@ class LandArticle extends Model
     protected $table = 'land_articles';
 
     protected $casts = [
-        'publish' => 'boolean'
+        'publish' => 'boolean',
+        'pinned'  => 'boolean'
     ];
 
     protected $fillable = [
@@ -25,12 +27,23 @@ class LandArticle extends Model
         'description',
         'body',
         'image',
-        'publish'
+        'pinned',
+        'publish',
+        'published_at'
     ];
 
     public function scopePublished($query)
     {
-        return $query->where('publish', true);
+        return $query->where('publish', true)
+            ->where(function ($query) {
+                $query->whereNull('published_at')
+                    ->orWhere('published_at', '<=', Carbon::now());
+            });
+    }
+
+    public function scopePinned($query)
+    {
+        return $query->where('pinned', true);
     }
 
     protected function slug(): Attribute

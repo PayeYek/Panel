@@ -16,12 +16,12 @@ class CommentRequest extends FormRequest
     public function rules()
     {
         return [
-            'land_id' => 'required|numeric', //todo check exists in database
-            'product_id' => 'required|numeric', //todo check exists in database
-            'comment' => 'required|string|min:10|max:200',
-            'name' => 'required|string',
-            'phone' => 'nullable|string|size:11',
-            'email' => 'nullable|email'
+            'land_id'    => 'required|numeric|exists:lands,id',
+            'product_id' => 'required|numeric|exists:land_products,id',
+            'comment'    => 'required|string|min:10|max:200',
+            'name'       => 'required|string',
+            'phone'      => 'required|string|size:11',
+            'email'      => 'nullable|email'
         ];
 
     }

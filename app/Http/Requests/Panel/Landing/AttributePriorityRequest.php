@@ -4,7 +4,7 @@ namespace App\Http\Requests\Panel\Landing;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ProductSearchRequest extends FormRequest
+class AttributePriorityRequest extends FormRequest
 {
 
     public function authorize()
@@ -15,9 +15,10 @@ class ProductSearchRequest extends FormRequest
     public function rules()
     {
         return [
-            'land_id' => 'required|numeric|exists:lands,id',
-            'keyword' => 'required|string',
+            'attributes'   => 'required|array',
+            'attributes.*.priority' => 'numeric',
         ];
 
     }
+
 }

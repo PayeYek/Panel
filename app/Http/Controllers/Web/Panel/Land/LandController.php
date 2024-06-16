@@ -37,8 +37,8 @@ LandController extends Controller
         /* Get logo */
         $data = $this->getLogo($data, $request);
 
-        /* Get logo origin */
-        //$data = $this->getLogoOrigin($data, $request);
+//        /* Get logo origin */
+        $data = $this->getLogoOrigin($data, $request);
 
         $land = Land::create($data);
 
@@ -66,13 +66,12 @@ LandController extends Controller
         } else
             $data['logo'] = $land->getLogo();
 
-
         /* todo: Update new logo_origin */
-        //if ($request->validated()['logo_origin'] !== $land->logo_origin) {
-        //    Storage::delete('public/' . $land->getLogoOrigin());
-        //    $data = $this->getLogo($data, $request);
-        //} else
-        //    $data['logo_origin'] = $land->getLogoOrigin();
+        if ($request->validated()['logo_origin'] !== $land->logo_origin) {
+            Storage::delete('public/' . $land->getLogoOrigin());
+            $data = $this->getLogoOrigin($data, $request);
+        } else
+            $data['logo_origin'] = $land->getLogoOrigin();
 
         $land->update($data);
 

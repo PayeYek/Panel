@@ -9,9 +9,9 @@
                     <x-splade-file name="logo" label="Logo" filepond preview
                                    max-size="2MB"
                     />
-{{--                    <x-splade-file name="logo_origin" label="Logo origin" filepond preview--}}
-{{--                                   max-size="2MB"--}}
-{{--                    />--}}
+                    <x-splade-file name="logo_origin" label="Logo origin" filepond preview
+                                   max-size="2MB"
+                    />
                     <x-splade-input name="title" label="Title"/>
 
                     <x-splade-input ltr name="slug" label="Slug" help="Exclusive name in English"/>

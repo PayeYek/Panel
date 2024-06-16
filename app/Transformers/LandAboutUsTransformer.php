@@ -29,9 +29,10 @@ class LandAboutUsTransformer extends Transformer
     public function transform(array $data): array
     {
         return [
-            'about_us' => $data['about_us'],
-            'breadcrumbs' => $data['breadcrumbs'],
-            'seo' => $data['seo']
+            'about_us'    => $data['about_us'] ?? null,
+            'breadcrumbs' => $data['breadcrumbs'] ?? null,
+            'seo'         => $data['seo'] ?? null,
+            'co_workers'  => $data['co_workers'] ?? null
         ];
     }
 }

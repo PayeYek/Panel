@@ -184,6 +184,13 @@
         --theme-shadow-normal: rgba(17, 25, 57, 0.5);
         --theme-shadow-focus: rgba(17, 25, 57, 0.8);
     }
+    .theme_arasb{
+        --theme-normal: 245,130,32;
+        --theme-focus: 241,111,0;
+        --theme-shadow-light: rgba(241, 111, 0, 0.3);
+        --theme-shadow-normal: rgba(241, 111, 0, 0.5);
+        --theme-shadow-focus: rgba(241, 111, 0, 0.8);
+    }
 
 
     .rounded_none{

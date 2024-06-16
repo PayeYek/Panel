@@ -9,9 +9,12 @@ use App\Exceptions\FacilityRequestRestrictedException;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Panel\Landing\ArticleSearchRequest;
 use App\Http\Requests\Panel\Landing\CommentRequest;
+use App\Http\Requests\Panel\Landing\ContactUsRequest;
 use App\Http\Requests\Panel\Landing\FacilitiesRequest;
-use App\Http\Requests\Panel\Landing\ProductSearchRequest;
 use App\Http\Requests\Panel\Landing\SubscribeRequest;
+use App\Models\Announcement;
+use App\Models\ContactUs;
+use App\Models\CustomerFeedback;
 use App\Models\Land;
 use App\Models\LandArticle;
 use App\Models\LandCategory;
@@ -19,11 +22,15 @@ use App\Models\LandComment;
 use App\Models\LandFacility;
 use App\Models\LandProduct;
 use App\Models\LandSubscribe;
+use App\Models\SalesExpert;
 use App\Support\SeoHelper;
+use App\Transformers\AnnouncementTransformer;
+use App\Transformers\CustomerFeedbackTransformer;
 use App\Transformers\LandAboutUsTransformer;
 use App\Transformers\LandArticleSearchTransformer;
 use App\Transformers\LandArticleSingleTransformer;
 use App\Transformers\LandArticlesTransformer;
+use App\Transformers\LandCategoryTransformer;
 use App\Transformers\LandCommentTransformer;
 use App\Transformers\LandFacilityTransformer;
 use App\Transformers\LandPageTransformer;
@@ -34,8 +41,12 @@ use App\Transformers\LandProductTransformer;
 use App\Transformers\LandProductVideoTransformer;
 use App\Transformers\LandTransformer;
 use App\Transformers\LandVideoTransformer;
+use App\Transformers\ProductCardTransformer;
+use App\Transformers\SalesExpertTransformer;
 use App\Transformers\SaleTermsTransformer;
+use App\Transformers\SubLandProductTransformer;
 use Exception;
+use Illuminate\Database\Eloquent\Collection;
 use Str;
 
 class LandingApiController extends Controller
@@ -82,62 +93,126 @@ class LandingApiController extends Controller
 
     public function page($page)
     {
-        $land = Land::where('slug', $page)->with(['products', 'slides' => function ($query) {
-            $query->where('status', 1);
-        }, 'videos', 'styles', 'articles'                              => function ($query) {
-            $query->orderBy('created_at', 'desc');
-        }])->firstOrFail();
+        $land = $this->getLandWithRelations($page);
+
+        if ($page == 'arasb-diesel') {
+            $land->products = $this->getArasbDieselProducts();
+        }
 
         $land->makeHidden(['id', 'body', 'logo_origin', 'created_at', 'updated_at', 'products.id']);
 
-        $cats = array();
-        foreach ($land->products as $productItem) {
-            $cats[] = $productItem->category_id;
-        }
-        $cats = array_unique($cats);
+        $categories = $this->getCategoriesFromProducts($land->products);
 
-        $categories = collect();
-
-        foreach ($cats as $cat) {
-            $categories->add(collect(LandCategory::find($cat)));
-        }
-
-        $filteredCategory = collect($categories)->map(function ($item) {
-            return [
-                'id'    => $item['id'],
-                'slug'  => $item['slug'],
-                'title' => $item['title']
-            ];
-        });
+        $articlesData = $this->getArticlesWithPinned($land->articles);
 
         $seo = SeoHelper::seoGenerator($land, 'page');
-
-//        $newsArticles = $land->articles->where('type', 'news');
-//        $blogArticles = $land->articles->where('type', 'blog');
 
         $data = [
             'products'   => $land->products,
             'slides'     => $land->slides,
             'videos'     => $land->videos,
-//            'styles' => $land->styles,
-            'articles'   => $land->articles()->published()->get(),
-            'categories' => $filteredCategory,
+            'articles'   => [
+                'pinned'  => $articlesData['pinned'],
+                'regular' => $articlesData['regular'],
+            ],
+            'categories' => $categories,
             'seo'        => $seo
         ];
 
         return responder()->success($data, LandPageTransformer::class)->respond();
     }
 
+    /**
+     * Get land with related models.
+     *
+     * @param string $page
+     * @return Land
+     */
+    protected function getLandWithRelations(string $page)
+    {
+        return Land::where('slug', $page)
+            ->with([
+                'products' => function ($query) {
+                    $query->orderBy('updated_at', 'desc');
+                },
+                'slides'   => function ($query) {
+                    $query->where('status', 1);
+                },
+                'videos'   => function ($query) {
+                    $query->orderBy('updated_at', 'desc');
+                },
+                'styles',
+                'articles' => function ($query) {
+                    $query->where('type', '!=', 'sell')
+                        ->published()
+                        ->orderBy('published_at', 'desc');
+                }
+            ])
+            ->firstOrFail();
+    }
+
+    /**
+     * Get products for Arasb Diesel.
+     *
+     * @return Collection
+     */
+    protected function getArasbDieselProducts()
+    {
+        return LandProduct::whereIn('land_id', [1, 2, 3, 6, 20, 26])->get();
+    }
+
+    /**
+     * Get categories from products.
+     *
+     * @param Collection $products
+     * @return \Illuminate\Support\Collection
+     */
+    protected function getCategoriesFromProducts(Collection $products)
+    {
+        $categoryIds = $products->pluck('category_id')->unique();
+
+        return LandCategory::whereIn('id', $categoryIds)->get()->map(function ($category) {
+            return [
+                'id'    => $category->id,
+                'slug'  => $category->slug,
+                'title' => $category->title,
+            ];
+        });
+    }
+
+    /**
+     * Get articles with pinned articles separated.
+     *
+     * @param Collection $articles
+     * @return array
+     */
+    protected function getArticlesWithPinned(Collection $articles)
+    {
+        $pinned = $articles->filter(function ($article) {
+            return $article->pinned == true;
+        });
+
+        $regularArticles = $articles->filter(function ($article) {
+            return $article->pinned != true;
+        });
+
+        return [
+            'pinned'  => $pinned->values()->all(), // Ensure indexes are reset
+            'regular' => $regularArticles->values()->all() // Ensure indexes are reset
+        ];
+    }
+
     public function pageFooter($page)
     {
-        $land = Land::where('slug', $page)->with(['products', //                'slides'   => function ($query) {
-//                    $query->where('status', 1);
-//                },
-//                'videos',
-            'styles', //                'articles' => function ($query) {
-//                    $query->orderBy('created_at', 'desc');
-//                }
-        ])->firstOrFail();
+        $data = array();
+        $land = Land::where('slug', $page)
+            ->with($page === 'arasb-diesel' ? ['products'] : ['products', 'styles'])
+            ->firstOrFail();
+
+        if ($page === 'arasb-diesel') {
+            $land->products = LandProduct::whereIn('land_id', [1, 2, 3, 6, 20, 26])->get();
+            $data['styles'] = ['land_id' => $land->id];
+        }
 
         $land->makeHidden(['id', 'body', 'products', 'logo_origin', 'created_at', 'updated_at', 'products.id']);
 
@@ -147,7 +222,6 @@ class LandingApiController extends Controller
         }
         $cats = array_unique($cats);
 
-        $data = array();
         foreach ($cats as $cat) {
             $item[] = LandCategory::find($cat)->makeHidden(['created_at', 'updated_at', 'description']);
             $data['category'] = $item;
@@ -163,9 +237,11 @@ class LandingApiController extends Controller
         $land = $this->getLand($page);
 
         /* BREADCRUMBS */
-        $breadcrumbs[] = [
-            'title' => __('About us'),
-            'url'   => null
+        $breadcrumbs = [
+            [
+                'title' => __('About us'),
+                'url'   => null
+            ]
         ];
 
         $seo = SeoHelper::seoGenerator($land, 'aboutUs');
@@ -175,6 +251,14 @@ class LandingApiController extends Controller
             'breadcrumbs' => $breadcrumbs,
             'seo'         => $seo
         ];
+
+        if ($page == 'arasb-diesel') {
+            $coWorkers = Land::whereIn('id', [1, 2, 3, 6, 20])
+                ->select('title', 'logo', 'logo_origin')
+                ->get();
+
+            $data['co_workers'] = $coWorkers;
+        }
 
         return responder()->success($data, LandAboutUsTransformer::class)->respond();
     }
@@ -191,7 +275,7 @@ class LandingApiController extends Controller
         return ['land' => $land, 'breadcrumbs' => $breadcrumbs];
     }
 
-    public function products($page)
+    public function getLandProducts($page)
     {
         $perPage = 12;
         $categoryFilter = request('category');
@@ -210,9 +294,11 @@ class LandingApiController extends Controller
         $productsPaginator = $productsQuery->paginate($perPage)->withQueryString();
 
         $products = $productsPaginator->getCollection()->map(function ($product) {
-            return $product->only([
+            return array_merge($product->only([
                 'id', 'category_id', 'slug', 'name', 'model', 'year', 'tonnage', 'usage', 'cabin',
                 'image', 'description', 'catalog', 'manual', 'colors', 'body'
+            ]), [
+                'category_title' => $product->category->title
             ]);
         });
 
@@ -245,19 +331,109 @@ class LandingApiController extends Controller
             ->respond();
     }
 
-    public function searchProducts(ProductSearchRequest $request)
+    public function getAllProducts()
     {
-        $landId = $request->validated('land_id');
-        $keyword = $request->validated('keyword');
+        $perPage = request('per_page', 12);
+        $categoryFilter = request('category_id');
+        $landFilter = request('land_id');
+        $forArasb = request('for_arasb', false);
+        $landForSeo = null;
 
-        $searchResults = LandProduct::where('land_id', $landId)
-            ->where(function ($query) use ($keyword) {
+        $productsQuery = LandProduct::with('land');
+
+        // Apply filters conditionally
+        if ($categoryFilter) {
+            $productsQuery->where('category_id', $categoryFilter);
+        }
+
+        if ($forArasb) {
+            $productsQuery->whereIn('land_id', [1, 2, 3, 6, 20, 26]);
+        }
+
+        if ($landFilter) {
+            $productsQuery->where('land_id', $landFilter);
+            $landForSeo = Land::find($landFilter);
+        }
+
+        $lands = [];
+        $landIds = [];
+
+        if ($forArasb) {
+            $lands[] = [
+                'id'    => 0,
+                'title' => 'همه',
+            ];
+
+            foreach (Land::whereIn('id', [1, 2, 3, 6, 20])->select(['id', 'title'])->get() as $land) {
+                if (!in_array($land->id, $landIds)) {
+                    $landIds[] = $land->id;
+                    $lands[] = [
+                        'id'    => $land->id,
+                        'title' => $land->title,
+                    ];
+                }
+            }
+        }
+
+        $productsPaginator = $productsQuery->paginate($perPage)->withQueryString();
+
+        $seo = SeoHelper::seoGenerator($landForSeo ?? null, 'products', $forArasb);
+
+        $breadcrumbs = [
+            [
+                'title' => __('Products'),
+                'url'   => null
+            ]
+        ];
+
+        $pagination = [
+            'count'       => $productsPaginator->count(),
+            'total'       => $productsPaginator->total(),
+            'perPage'     => $productsPaginator->perPage(),
+            'currentPage' => $productsPaginator->currentPage(),
+            'totalPages'  => $productsPaginator->lastPage(),
+            'links'       => $productsPaginator->links(),
+        ];
+
+        return responder()->success($productsPaginator, ProductCardTransformer::class)
+            ->meta([
+                'pagination'  => $pagination,
+                'breadcrumbs' => $breadcrumbs,
+                'seo'         => $seo,
+                'lands'       => $lands
+            ])
+            ->respond();
+    }
+
+    public function searchProducts()
+    {
+        $forArasb = request('for_arasb', false);
+        $landId = request('land_id');
+        $keyword = request('keyword');
+
+        if (!$forArasb && !$landId && !$keyword) {
+            return responder()->success([], LandProductSearchTransformer::class)->respond();
+        }
+
+        $searchResults = LandProduct::query();
+
+        if ($forArasb) {
+            $searchResults->whereIn('land_id', [1, 2, 3, 6, 20, 26]);
+        } elseif ($landId) {
+            $searchResults->where('land_id', $landId);
+        }
+
+        if ($keyword) {
+            $searchResults->where(function ($query) use ($keyword) {
                 $query->where('name', 'LIKE', '%' . $keyword . '%')
                     ->orWhere('model', 'LIKE', '%' . $keyword . '%');
-            })
-            ->orderBy('created_at', 'desc');
+            });
+        }
 
-        return responder()->success($searchResults, LandProductSearchTransformer::class)->respond();
+        $searchResults->orderBy('created_at', 'desc');
+        $out = $searchResults->get();
+
+        return responder()->success($out, LandProductSearchTransformer::class)->respond();
     }
 
     public function productSpecification($product)
@@ -301,7 +477,7 @@ class LandingApiController extends Controller
         $saleTerms = $land->articles()
             ->where('type', 'sell')
             ->published()
-            ->orderByDesc('created_at')
+            ->orderByDesc('published_at')
             ->get();
 
         $termsResponse = $saleTerms->map(function ($term) {
@@ -340,19 +516,23 @@ class LandingApiController extends Controller
 
     public function product($page, $product)
     {
+        $forArasb = request('for_arasb', false);
         /* LANDING DATA */
         $land = Land::where('slug', $page)
-            ->with(['products.category', 'slides', 'articles'])
+            ->with(['products.category'])
             ->firstOrFail();
 
         $product = $land->products()->with('category')->where('slug', $product)->firstOrFail();
 
         $breadcrumbs = [
-            ['title' => __('Products'), \Illuminate\Support\Str::after(parse_url(route('api.landing.product.list', ['page' => $land->slug]), PHP_URL_PATH), '/api/l/')],
+            [
+                'title' => __('Products'),
+                'url'   => \Illuminate\Support\Str::after(parse_url(route('api.landing.product.list', ['page' => $forArasb ? 'arasb-diesel' : $land->slug]), PHP_URL_PATH), '/api/l/')
+            ],
             ['title' => $product->name, 'url' => null]
         ];
 
-        $seo = SeoHelper::seoGenerator($product);
+        $seo = SeoHelper::seoGenerator($product, forArasb: $forArasb);
 
         $data = [
             'product'     => $product,
@@ -497,23 +677,30 @@ class LandingApiController extends Controller
                     ->orWhere('description', 'LIKE', '%' . $keyword . '%')
                     ->orWhere('slug', 'LIKE', '%' . $keyword . '%');
             })
-            ->orderBy('created_at', 'desc');
+            ->published()
+            ->orderBy('published_at', 'desc')
+            ->get();
+
+        if (empty($keyword)) {
+            $searchResults = [];
+        }
 
         return responder()->success($searchResults, LandArticleSearchTransformer::class)->respond();
     }
 
     public function articles($page)
     {
-        // Extract the query parameter
-        $filter = request('f'); //Todo filter just work on news and blogs, not sell
+        $filter = request('f'); // Todo filter just work on news and blogs, not sell
         $search = request('s');
-        $pageSize = 10;
+        $pageSize = request('per_page', 12);
 
         $land = Land::where('slug', $page)->firstOrFail();
 
         $articlePaginator = $land->articles()
             ->when($filter, function ($query) use ($filter) {
-                $query->where('type', $filter);
+                if ($filter !== 'all') {
+                    $query->where('type', $filter);
+                }
             })
             ->when($search, function ($query) use ($search) {
                 $query->where(function ($query) use ($search) {
@@ -522,20 +709,35 @@ class LandingApiController extends Controller
                         ->orWhere('slug', 'LIKE', '%' . $search . '%');
                 });
             })
-            ->where('type', '!=', 'sell') // Exclude articles with type 'sell'
+            ->where('type', '!=', 'sell')
             ->published()
-            ->orderBy('created_at', 'desc')
-            ->select('title', 'slug', 'type', 'description', 'image', 'created_at')
+            ->select('title', 'slug', 'type', 'description', 'image', 'created_at', 'published_at', 'updated_at')
+            ->orderByRaw('COALESCE(published_at, updated_at) DESC')
             ->paginate($pageSize);
 
         $articles = collect($articlePaginator->items());
 
-        $uniqueTypes = $land->articles()->pluck('type')->unique()->values()->map(function ($type) {
-            return [
-                'type_fa' => __($type),
-                'type_en' => $type
+        $uniqueTypes = [];
+        if ($page == 'arasb-diesel') {
+            $uniqueTypes[] = [
+                'type_fa' => 'همه',
+                'type_en' => 'all'
             ];
-        })->all();
+        }
+
+        $additionalTypes = $land->articles()
+            ->where('type', '!=', 'sell')
+            ->pluck('type')
+            ->unique()
+            ->values()
+            ->map(function ($type) {
+                return [
+                    'type_fa' => __($type),
+                    'type_en' => $type
+                ];
+            })->all();
+
+        $uniqueTypes = array_merge($uniqueTypes, $additionalTypes);
 
         $breadcrumbs = [];
 
@@ -569,7 +771,7 @@ class LandingApiController extends Controller
 
     public function article($page, $article)
     {
-        $land = $this->getLand($page);
+        $land = Land::where('slug', $page)->firstOrFail();
         $article = LandArticle::where('slug', $article)
             ->published()
             ->firstOrFail();
@@ -599,7 +801,7 @@ class LandingApiController extends Controller
         $seo = SeoHelper::seoGenerator($article);
 
         $data = [
-            'article'          => $article->only(['title', 'image', 'body', 'created_at']),
+            'article'          => $article->only(['title', 'image', 'type', 'body', 'created_at']),
             'related_articles' => $outRelated,
             'breadcrumbs'      => $breadcrumbs,
             'seo'              => $seo
@@ -697,17 +899,20 @@ class LandingApiController extends Controller
             ];
         });
 
-        $seo = SeoHelper::seoGenerator($land, 'page');
+        $seo = SeoHelper::seoGenerator($land, 'facilities');
 
 
         $data = [
             'categories'  => $filteredCategory,
             'land_id'     => $land->id,
-            'seo'         => $seo,
-            'breadcrumbs' => $breadcrumbs,
         ];
 
-        return responder()->success($data, LandFacilityTransformer::class)->respond();
+        return responder()->success($data, LandFacilityTransformer::class)
+            ->meta([
+                'breadcrumbs' => $breadcrumbs,
+                'seo'         => $seo
+            ])
+            ->respond();
     }
 
     public function facilitiesRequest(FacilitiesRequest $facilitiesRequest)
@@ -781,5 +986,75 @@ class LandingApiController extends Controller
                 }
             ])
             ->firstOrFail();
+    }
+
+    public function getCustomerFeedback()
+    {
+        return responder()->success(CustomerFeedback::orderBy('priority')->get(), CustomerFeedbackTransformer::class)->respond();
+    }
+
+    public function getSubLandProducts()
+    {
+        $lands = Land::whereIn('id', [1, 2, 3, 6, 20])
+            ->with(['products' => function ($query) {
+                $query->latest();
+            }])
+            ->get();
+
+        return responder()->success($lands, SubLandProductTransformer::class)->respond();
+    }
+
+    public function getSalesExpert()
+    {
+        return responder()->success(SalesExpert::all(), SalesExpertTransformer::class)->respond();
+    }
+
+    public function getAnnouncements()
+    {
+        $landID = request('land_id');
+        $page = request('page');
+
+        $announcements = Announcement::where('land_id', $landID)
+            ->where('page', $page)
+            ->get();
+
+        if ($announcements->isEmpty()) {
+            $announcements = Announcement::whereNull('land_id')
+                ->where('page', $page)
+                ->get();
+        }
+
+        return responder()->success($announcements, AnnouncementTransformer::class)->respond();
+    }
+
+    public function getCategories()
+    {
+        $landId = request('land_id');
+        $categories = collect();
+
+        if ($landId == 0) {
+            $landIds = [1, 2, 3, 6, 20, 26];
+            $lands = Land::whereIn('id', $landIds)->with('categories')->get();
+
+            foreach ($lands as $land) {
+                $categories = $categories->merge($land->categories);
+            }
+
+            $categories = $categories->unique('id');  // Ensure categories are unique by ID
+        } else {
+            $land = Land::where('id', $landId)->with('categories')->firstOrFail();
+            $categories = $land->categories->unique('id');
+        }
+        return responder()->success($categories, LandCategoryTransformer::class)->respond();
+    }
+
+    public function contactUs(ContactUsRequest $request)
+    {
+        try {
+            ContactUs::create($request->validated());
+            return responder()->success(['message' => 'The contact information sent successfully '])->respond();
+        } catch (Exception $e) {
+            return responder()->error(-1, 'Cannot send contact information due to an unknown error')->respond(500);
+        }
     }
 }

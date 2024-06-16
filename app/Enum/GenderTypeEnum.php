@@ -4,11 +4,11 @@ namespace App\Enum;
 
 use App\Trait\EnumExtenderTrait;
 
-enum GenderTypeEnum: string
+enum GenderTypeEnum: int
 {
     use EnumExtenderTrait;
 
-    case FEMALE = '0';
-    case MALE = '1';
-    case OTHER = '2';
+    case FEMALE = 0;
+    case MALE = 1;
+    case OTHER = 2;
 }

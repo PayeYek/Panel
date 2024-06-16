@@ -85,7 +85,7 @@ export default {
 
         watch(() => specifications.value, n => {
             advertiseStore.emptySpecificationValues();
-            // console.log(n)
+            console.log(n)
             if(n){
                 n.forEach(spec => {
                     // console.log(spec)
