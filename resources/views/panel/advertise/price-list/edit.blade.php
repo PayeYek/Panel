@@ -11,7 +11,7 @@
                         <option value="{{ $cat->id }}">{{ $cat->title }}</option>
                     @endforeach
                 </x-splade-select>
-                <x-splade-input required label="Production year" name="production_year" class="col-span-full"/>
+                <x-splade-input label="Production year" name="production_year" class="col-span-full"/>
                 <x-splade-input help="برحسب تومان" required ltr label="Price" name="price" type="number"
                                 class="col-span-full"/>
 

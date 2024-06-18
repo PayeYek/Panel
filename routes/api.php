@@ -68,7 +68,7 @@ Route::prefix('ad')
     ->group(function () {
 //        Route::controller(AdvertiseController::class)->group(function () {
         Route::controller(AdController::class)->group(function () {
-            Route::get('/list', 'getList')->name('getList');
+            Route::get('/list', 'getCategorizedList')->name('getList');
             Route::get('/{advertise}', 'show')->name('showAdvertise');
 //            Route::get('/list', 'getList')->name('getList');
             Route::get('categories', 'getCategories')->name('getCategories');
@@ -86,6 +86,7 @@ Route::prefix('ad')
             Route::get('brand/{brand}/models', 'getModelByBrand')->name('brandModels');
 
             Route::prefix('price')->name('price.')->controller(PriceListController::class)->group(function () {
+                Route::get('/categorized-list', 'getCategorizedList')->name('CategorizedList');
                 Route::get('/list', 'getList')->name('list');
             });
         });

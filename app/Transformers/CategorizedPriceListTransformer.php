@@ -5,7 +5,7 @@ namespace App\Transformers;
 use App\Models\LandCategory;
 use Flugg\Responder\Transformers\Transformer;
 
-class CategoryForPriceListTransformer extends Transformer
+class CategorizedPriceListTransformer extends Transformer
 {
     /**
      * List of available relations.

@@ -35,16 +35,16 @@ class PriceListController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'product_name' => 'required|string',
-            'production_year' => 'required|integer|min:1350|max:1404|digits:4',
-            'category_id' => 'required|exists:land_categories,id',
-            'price' => 'required|string',
+            'product_name'    => 'required|string',
+            'production_year' => 'nullable|integer|min:1350|max:1404|digits:4',
+            'category_id'     => 'required|exists:land_categories,id',
+            'price'           => 'required|string',
         ]);
 
         if (PriceList::create($request->all())) {
             Splade::toast(__('Created'))->autoDismiss(5)->info();
             return redirect()->route('panel.ad.priceList.index');
-        };
+        }
         Splade::toast(__('Failed'))->autoDismiss(5)->info();
         return redirect()->route('panel.ad.priceList.index');
     }
@@ -64,10 +64,10 @@ class PriceListController extends Controller
     public function update(Request $request, PriceList $priceList)
     {
         $request->validate([
-            'product_name' => 'required|string',
-            'production_year' => 'required|integer|min:1350|max:1404|digits:4',
-            'category_id' => 'required|exists:land_categories,id',
-            'price' => 'required|string',
+            'product_name'    => 'required|string',
+            'production_year' => 'nullable|integer|min:1350|max:1404|digits:4',
+            'category_id'     => 'required|exists:land_categories,id',
+            'price'           => 'required|string',
         ]);
 
         $priceList->update($request->all());

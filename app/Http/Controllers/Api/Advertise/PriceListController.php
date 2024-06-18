@@ -4,16 +4,21 @@ namespace App\Http\Controllers\Api\Advertise;
 
 use App\Http\Controllers\Controller;
 use App\Models\LandCategory;
-use App\Transformers\CategoryForPriceListTransformer;
+use App\Models\PriceList;
+use App\Transformers\CategorizedPriceListTransformer;
+use App\Transformers\PriceListTransformer;
 
 class PriceListController extends Controller
 {
+    public function getCategorizedList()
+    {
+        $categories = LandCategory::whereHas('priceLists')->get();
+        return responder()->success($categories, CategorizedPriceListTransformer::class)->respond();
+    }
+
     public function getList()
     {
-
-        $categories = LandCategory::whereHas('priceLists')->get();
-
-        return responder()->success($categories, CategoryForPriceListTransformer::class)->respond();
-
+        $list = PriceList::latest()->get();
+        return responder()->success($list, PriceListTransformer::class)->respond();
     }
 }
