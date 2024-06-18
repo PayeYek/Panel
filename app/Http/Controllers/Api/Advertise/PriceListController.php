@@ -18,7 +18,8 @@ class PriceListController extends Controller
 
     public function getList()
     {
-        $list = PriceList::latest()->get();
+        $limit = request('limit');
+        $list = PriceList::latest()->limit($limit);
         return responder()->success($list, PriceListTransformer::class)->respond();
     }
 }
