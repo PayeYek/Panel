@@ -42,4 +42,9 @@ class LandBrand extends Model
         return $this->attributes["image"];
     }
 
+    public function ad()
+    {
+        return $this->hasOne(Ads::class, 'brand_id');
+    }
+
 }

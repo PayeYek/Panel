@@ -45,12 +45,27 @@ class Ads extends Model
 
     public function city(): BelongsTo
     {
-        return $this->belongsTo(ProvinceCity::class, 'city_id', 'id');
+        return $this->belongsTo(ProvinceCity::class, 'city_id');
     }
 
     public function province(): BelongsTo
     {
-        return $this->belongsTo(Province::class, 'province_id', 'id');
+        return $this->belongsTo(Province::class, 'province_id');
+    }
+
+    public function brand(): BelongsTo
+    {
+        return $this->belongsTo(LandBrand::class, 'brand_id');
+    }
+
+    public function usage(): BelongsTo
+    {
+        return $this->belongsTo(Usage::class, 'usage_id');
+    }
+
+    public function category(): BelongsTo
+    {
+        return $this->belongsTo(LandCategory::class, 'category_id');
     }
 
     public function getPrimaryImageAttribute()

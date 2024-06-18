@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Web\Panel;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Panel\Advertise\AdvertiseApiRequest;
 use App\Http\Requests\Panel\Advertise\AdvertiseRequest;
 use App\Models\Ads;
 use App\Models\LandBrand;
@@ -17,10 +18,20 @@ class AdController extends Controller
     public function getList()
     {
         $perPage = request('perPage') ?? 10;
-        return responder()->success(Ads::where('state', 1)->paginate($perPage), AdCardTransformer::class)->respond();
+        $ads = Ads::with(['city.province', 'brand', 'usage', 'category'])
+            ->where('state', 1)
+            ->orderBy('published_date', 'desc')
+            ->paginate($perPage);
+
+        return responder()->success($ads, AdCardTransformer::class)->respond();
     }
 
     public function show(Ads $advertise)
+    {
+        return responder()->success($advertise, AdSingleTransformer::class)->respond();
+    }
+
+    public function submit(AdvertiseApiRequest $advertise)
     {
         return responder()->success($advertise, AdSingleTransformer::class)->respond();
     }
