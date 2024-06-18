@@ -68,7 +68,7 @@ Route::prefix('ad')
     ->group(function () {
 //        Route::controller(AdvertiseController::class)->group(function () {
         Route::controller(AdController::class)->group(function () {
-            Route::get('/list', 'getCategorizedList')->name('getList');
+            Route::get('/list', 'getList')->name('getList');
             Route::get('/{advertise}', 'show')->name('showAdvertise');
 //            Route::get('/list', 'getList')->name('getList');
             Route::get('categories', 'getCategories')->name('getCategories');
