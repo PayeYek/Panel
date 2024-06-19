@@ -1,11 +1,12 @@
 <?php
 
+use App\Http\Controllers\Api\Advertise\AdController;
+use App\Http\Controllers\Api\Advertise\BookmarkController;
 use App\Http\Controllers\Api\Advertise\PriceListController;
 use App\Http\Controllers\Api\Common\OtpController;
 use App\Http\Controllers\Api\Common\SessionController;
 use App\Http\Controllers\Api\Common\UserController;
 use App\Http\Controllers\Api\Landing\LandingApiController;
-use App\Http\Controllers\Web\Panel\AdController;
 use App\Models\Land;
 use App\Models\Province;
 use Illuminate\Support\Facades\Route;
@@ -64,6 +65,10 @@ Route::group(['middleware' => ['auth:api', 'enforce.session']], function () {
 Route::prefix('ad')
     ->name('api.ad.')
     ->group(function () {
+        Route::middleware('auth:sanctum')->group(function () {
+            Route::post('bookmarks', [BookmarkController::class, 'toggle'])->name('bookmarks.toggle');
+            Route::get('bookmarks', [BookmarkController::class, 'index'])->name('bookmarks.index');
+        });
 //        Route::controller(AdvertiseController::class)->group(function () {
         Route::controller(AdController::class)->group(function () {
             Route::get('/list', 'getList')->name('getList');

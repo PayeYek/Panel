@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Support\CodeGeneratorHelper;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -15,33 +16,29 @@ class Ads extends Model
     protected $fillable = [
         'title',
         'description',
-        'communication_mobile',
         'primary_image',
-        'slider_images',
-        'car_condition',
-        'mileage',
-        'production_year',
+        'more_images',
         'city_id',
+        'category_id',
         'province_id',
-        'color',
-        'brand',
-        'model',
-        'fuel_type',
-        'engine_condition',
-        'chassis_condition',
-        'body_condition',
-        'third_party_insurance_date',
-        'gearbox_type',
         'price',
         'agreement',
+        'exchange',
         'state',
-        'category',
-        'usage',
     ];
 
     protected $casts = [
-        'slider_images' => 'array',
+        'more_images' => 'array',
     ];
+
+    protected static function boot(): void
+    {
+        parent::boot();
+
+        static::creating(function ($model) {
+            $model->tracking_code = CodeGeneratorHelper::generateUniqueTrackingCode('ads', 'tracking_code');
+        });
+    }
 
     public function city(): BelongsTo
     {
@@ -53,19 +50,9 @@ class Ads extends Model
         return $this->belongsTo(Province::class, 'province_id');
     }
 
-    public function brand(): BelongsTo
-    {
-        return $this->belongsTo(LandBrand::class, 'brand_id');
-    }
-
-    public function usage(): BelongsTo
-    {
-        return $this->belongsTo(Usage::class, 'usage_id');
-    }
-
     public function category(): BelongsTo
     {
-        return $this->belongsTo(LandCategory::class, 'category_id');
+        return $this->belongsTo(Category::class, 'category_id');
     }
 
     public function getPrimaryImageAttribute()
@@ -84,27 +71,37 @@ class Ads extends Model
         return $this->attributes["primary_image"];
     }
 
-    public function setSliderImagesAttribute($value)
+    public function setMoreImagesAttribute($value): void
     {
-        $this->attributes['slider_images'] = empty($value) ? json_encode([]) : json_encode($value);
+        $this->attributes['more_images'] = empty($value) ? json_encode([]) : json_encode($value);
     }
 
-    public function getSliderImagesAttribute()
+    public function getMoreImagesAttribute()
     {
-        $pictures = $this->attributes['slider_images'];
+        $pictures = $this->attributes['more_images'];
 
-        if (is_null($pictures)) return [];
-
-        $pictures = json_decode($pictures, true);
-        for ($i = 0; $i < count($pictures); $i++) {
-            $pictures[$i] = Str::isUrl($i) ? $i : asset('storage/' . $pictures[$i]);
+        if (is_null($pictures)) {
+            return [];
         }
+
+        // Decode the JSON string into an array
+        $pictures = json_decode($pictures, true);
+
+        if (!is_array($pictures)) {
+            return [];
+        }
+
+        // Convert each item to a URL if it's not already one
+        foreach ($pictures as $key => $picture) {
+            $pictures[$key] = Str::isUrl($picture) ? $picture : asset('storage/' . $picture);
+        }
+
         return $pictures;
     }
 
-    public function getSliderImages()
+    public function getMoreImages()
     {
-        $pictures = $this->attributes["slider_images"];
+        $pictures = $this->attributes["more_images"];
 
         if (is_null($pictures)) return [];
 

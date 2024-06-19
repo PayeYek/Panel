@@ -3,9 +3,10 @@
 namespace Database\Seeders;
 
 use App\Enum\GenderTypeEnum;
+use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
+use Spatie\Permission\Models\Role;
 
 class AdminUserSeeder extends Seeder
 {
@@ -15,19 +16,21 @@ class AdminUserSeeder extends Seeder
     public function run(): void
     {
         $data = [
-            [
-                'first_name'        => 'Super',
-                'last_name'         => 'Admin',
-                'gender'            => GenderTypeEnum::OTHER,
-                'email'             => 'admin@paye1.com',
-                'mobile'            => '9121111111',
-                'ssn'               => '1234567890',
-                'certified'         => true,
-                'state'             => 1,
-                'email_verified_at' => Carbon::now(),
-            ],
+            'first_name'        => 'Amin',
+            'last_name'         => 'Sheykhi',
+            'gender'            => GenderTypeEnum::MALE,
+            'email'             => 'isheykhi@gmail.com',
+            'mobile'            => '9356402287',
+            'ssn'               => '1931045194',
+            'certified'         => true,
+            'state'             => 1,
+            'email_verified_at' => Carbon::now(),
         ];
-        DB::table('users')->insert($data);
 
+        $user = User::create($data);
+
+        // Assign role to the user
+        $role = Role::whereName('super-admin')->first();
+        $user->assignRole($role);
     }
 }

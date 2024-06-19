@@ -3,7 +3,9 @@
 namespace App\Transformers;
 
 use App\Models\Ads;
+use App\Models\Bookmark;
 use Flugg\Responder\Transformers\Transformer;
+use Illuminate\Support\Facades\Auth;
 
 class AdCardTransformer extends Transformer
 {
@@ -12,19 +14,26 @@ class AdCardTransformer extends Transformer
 
     public function transform(Ads $ads): array
     {
-        $agreement = $ads->agreement == 1 ? 'توافقی' : 'نقدی';
-
         return [
             'id'             => $ads->id,
-            'agreement'      => $agreement,
-            'city'           => $ads->city ? $ads->city->name : null,
-            'province'       => $ads->city && $ads->city->province ? $ads->city->province->name : null,
             'title'          => $ads->title,
-            'price'          => $ads->price,
             'primary_image'  => $ads->primary_image,
-            'brand'          => $ads->brand ? $ads->brand->title : null,
-            'model'          => $ads->model,
+            'price'          => $ads->price,
+            'city'           => $ads->city->name,
+            'province'       => $ads->province->name,
+            'agreement'      => $ads->agreement,
             'published_date' => $ads->published_date,
+            'bookmarked'     => $this->isBookmarked($ads->id),
         ];
+    }
+
+    protected function isBookmarked($adsId): bool
+    {
+        if (Auth::check()) {
+            return Bookmark::where('user_id', Auth::id())
+                ->where('ads_id', $adsId)
+                ->exists();
+        }
+        return false;
     }
 }

@@ -12,7 +12,6 @@ class BrandSeeder extends Seeder
      */
     public function run(): void
     {
-//        LandBrand::factory()->count(30)->create();
 
         $brands = [
             ["country_id" => 62, "name" => "Benz"],

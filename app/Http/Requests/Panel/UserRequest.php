@@ -52,7 +52,12 @@ class UserRequest extends FormRequest
                     Rule::unique("users")->ignore($this->user->id),
                 ],
                 "birthdate"  => "nullable|date",
-                "ssn"        => ['required', 'unique:users', 'string', new ValidIranSSNRule],
+                "ssn"        => [
+                    'required',
+                    'string',
+                    new ValidIranSSNRule(),
+                    Rule::unique("users")->ignore($this->user->id)
+                ],
                 'roles'      => 'nullable|array',
                 'roles.*'    => 'exists:roles,id',
             ];

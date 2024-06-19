@@ -1,5 +1,6 @@
 <?php
 
+use App\Enum\AdvertiseStateEnum;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -10,21 +11,33 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::table('ads', function (Blueprint $table) {
-            $table->string('axle')->nullable();
+        Schema::dropIfExists('ads');
 
-            $table->string('communication_mobile')->nullable()->change();
+        Schema::create('ads', function (Blueprint $table) {
+            $table->id();
 
-            $table->dropColumn(['brand', 'category', 'usage']);
+            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('category_id')->nullable()->constrained()->nullOnDelete();
+            $table->foreignId('province_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('city_id')->constrained('province_cities')->cascadeOnDelete();
 
-            $table->unsignedBigInteger('brand_id')->nullable()->after('color');
-            $table->unsignedBigInteger('category_id')->nullable()->after('state');
-            $table->unsignedBigInteger('usage_id')->nullable()->after('category_id');
+            $table->string('tracking_code');
+            $table->string('title');
+            $table->longText('description');
+            $table->string('primary_image');
+            $table->json('more_images')->nullable();
+            $table->string('price')->default('0');
 
-            $table->foreign('brand_id')->references('id')->on('land_brands')->onDelete('set null');
-            $table->foreign('category_id')->references('id')->on('land_categories')->onDelete('set null');
-            $table->foreign('usage_id')->references('id')->on('usages')->onDelete('set null');
+            $table->boolean('agreement')->default(false);
+            $table->boolean('exchange')->default(false);
+            $table->tinyInteger('state')->default(AdvertiseStateEnum::PENDING);
+
+            $table->softDeletes();
+
+            $table->timestamp('published_date')->nullable();
+            $table->timestamps();
         });
+
     }
 
     /**
@@ -32,18 +45,6 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::table('ads', function (Blueprint $table) {
-            $table->dropForeign(['brand_id']);
-            $table->dropForeign(['category_id']);
-            $table->dropForeign(['usage_id']);
-
-            $table->dropColumn(['axle', 'brand_id', 'category_id', 'usage_id']);
-
-            $table->string('brand');
-            $table->string('category');
-            $table->string('usage');
-
-            $table->string('communication_mobile')->nullable(false)->change();
-        });
+        Schema::dropIfExists('ads');
     }
 };

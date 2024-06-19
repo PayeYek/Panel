@@ -4,6 +4,10 @@ namespace App\Exceptions;
 
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Response;
+use ProtoneMedia\Splade\SpladeCore;
 use Throwable;
 
 class Handler extends ExceptionHandler
@@ -24,7 +28,7 @@ class Handler extends ExceptionHandler
      */
     public function register(): void
     {
-        $this->renderable(\ProtoneMedia\Splade\SpladeCore::exceptionHandler($this));
+        $this->renderable(SpladeCore::exceptionHandler($this));
 
         $this->reportable(function (Throwable $e) {
             //
@@ -40,11 +44,16 @@ class Handler extends ExceptionHandler
 //
 //        return parent::render($request, $e);
 //    }
-    protected function unauthenticated($request, AuthenticationException $exception)
+    protected function unauthenticated($request, AuthenticationException $exception): Response|JsonResponse|RedirectResponse
     {
-        return response()->json([
+        $message = [
             'message' => 'Unauthenticated.',
-            'status'  => 401
-        ], 401);
+            'status'  => 401,
+            'success' => false
+        ];
+
+        return $this->shouldReturnJson($request, $exception)
+            ? response()->json([$message], 401)
+            : redirect()->guest($exception->redirectTo() ?? route('login'));
     }
 }
