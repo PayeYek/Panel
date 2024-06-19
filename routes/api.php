@@ -3,11 +3,11 @@
 use App\Http\Controllers\Api\Advertise\PriceListController;
 use App\Http\Controllers\Api\Common\OtpController;
 use App\Http\Controllers\Api\Common\SessionController;
+use App\Http\Controllers\Api\Common\UserController;
 use App\Http\Controllers\Api\Landing\LandingApiController;
 use App\Http\Controllers\Web\Panel\AdController;
 use App\Models\Land;
 use App\Models\Province;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,10 +21,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
 
+Route::get('/user', [UserController::class, 'getUser'])->middleware('auth:sanctum');
 
 Route::get('provinces', function () {
     return Province::get();

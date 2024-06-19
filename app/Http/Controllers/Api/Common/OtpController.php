@@ -6,10 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Services\OtpServiceManager;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Http;
-use Illuminate\Support\Facades\Session;
 use Laravel\Passport\Client;
 
 class OtpController extends Controller
@@ -34,7 +31,13 @@ class OtpController extends Controller
         $otp = $otpService->generateOtp($mobile);
 
         if ($otpService->sendOtp($mobile, $otp)) {
-            return response()->json(['message' => 'OTP sent successfully.']);
+            $res = [
+                'message' => 'OTP sent successfully.'
+            ];
+            if (config('app.env') == 'local') {
+                $res['code'] = $otp;
+            }
+            return response()->json($res);
         }
 
         return response()->json(['message' => 'Failed to send OTP.'], 500);
@@ -52,39 +55,48 @@ class OtpController extends Controller
         $otpService = $this->otpServiceManager->getService();
 
         if ($otpService->verifyOtp($mobile, $otp)) {
+
             $user = User::where('mobile', $mobile)->first();
-            Auth::login($user);
 
-            $currentSessionId = session()->getId();
+            $user->tokens()->delete();
+            $token = $user->createToken('authToken')->plainTextToken;
 
-            Session::create([
-                'id'            => $currentSessionId,
-                'user_id'       => $user->id,
-                'ip_address'    => $request->ip(),
-                'user_agent'    => $request->userAgent(),
-                'payload'       => '',
-                'last_activity' => now()->timestamp,
-            ]);
+            return response()->json(['token' => $token]);
 
-            $client = Client::where('password_client', true)->first();
 
-            $response = Http::asForm()->post(config('app.url') . '/oauth/token', [
-                'grant_type'    => 'password',
-                'client_id'     => $client->id,
-                'client_secret' => $client->secret,
-                'username'      => $user->mobile,
-                'password'      => 'password',
-                'scope'         => '*',
-            ]);
+            ////////////////////////////////////For passport////////////////////////////////
 
-            $lastSessionTimeKey = 'last_session_time_' . $user->id;
-            Cache::put($lastSessionTimeKey, now(), now()->addHours(config('session.stabilize_time', 8)));
+//            Auth::login($user);
+//            $currentSessionId = session()->getId();
 
-            return response()->json(json_decode((string)$response->getBody(), true));
+//            Session::create([
+//                'id'            => $currentSessionId,
+//                'user_id'       => $user->id,
+//                'ip_address'    => $request->ip(),
+//                'user_agent'    => $request->userAgent(),
+//                'payload'       => '',
+//                'last_activity' => now()->timestamp,
+//            ]);
+
+//            $client = Client::where('password_client', true)->first();
+//
+//            $response = Http::asForm()->post(config('app.url') . '/oauth/token', [
+//                'grant_type'    => 'password',
+//                'client_id'     => $client->id,
+//                'client_secret' => $client->secret,
+//                'username'      => $user->mobile,
+//                'password'      => 'password',
+//                'scope'         => '*',
+//            ]);
+//
+//            $lastSessionTimeKey = 'last_session_time_' . $user->id;
+//            Cache::put($lastSessionTimeKey, now(), now()->addHours(config('session.stabilize_time', 8)));
+
+//            return response()->json(json_decode((string)$response->getBody(), true));
         }
 
-        $loginAttemptsKey = 'login_attempt_' . $mobile;
-        Cache::increment($loginAttemptsKey);
+//        $loginAttemptsKey = 'login_attempt_' . $mobile;
+//        Cache::increment($loginAttemptsKey);
 
         return response()->json(['message' => 'Invalid OTP.'], 401);
     }

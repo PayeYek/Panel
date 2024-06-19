@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Laravel\Passport\HasApiTokens;
+use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
@@ -40,10 +40,10 @@ class User extends Authenticatable
 
     protected $hidden = ['password', 'remember_token'];
 
-    public function findForPassport($username): User
-    {
-        return $this->where('mobile', $username)->first();
-    }
+//    public function findForPassport($username): User
+//    {
+//        return $this->where('mobile', $username)->first();
+//    }
 
     /**-------------------------***
      * New Attribute
