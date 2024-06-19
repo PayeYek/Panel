@@ -37,10 +37,10 @@ class OtpController extends Controller
             if (config('app.env') == 'local') {
                 $res['code'] = $otp;
             }
-            return response()->json($res);
+            return responder()->success($res)->respond();
         }
 
-        return response()->json(['message' => 'Failed to send OTP.'], 500);
+        return responder()->error(-1, 'Failed to send OTP.')->respond();
     }
 
     public function verifyOtp(Request $request)
@@ -61,7 +61,9 @@ class OtpController extends Controller
             $user->tokens()->delete();
             $token = $user->createToken('authToken')->plainTextToken;
 
-            return response()->json(['token' => $token]);
+            return responder()->success([
+                'token' => $token
+            ])->respond();
 
 
             ////////////////////////////////////For passport////////////////////////////////
@@ -98,7 +100,7 @@ class OtpController extends Controller
 //        $loginAttemptsKey = 'login_attempt_' . $mobile;
 //        Cache::increment($loginAttemptsKey);
 
-        return response()->json(['message' => 'Invalid OTP.'], 401);
+        return responder()->error(-1, 'Invalid OTP.')->error(500);
     }
 
     public function refreshToken(Request $request)
