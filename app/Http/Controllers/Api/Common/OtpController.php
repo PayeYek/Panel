@@ -21,7 +21,7 @@ class OtpController extends Controller
     public function requestOtp(Request $request)
     {
         $request->validate([
-            'mobile' => 'required|exists:users,mobile',
+            'mobile' => 'required|digits:10',
         ]);
 
         $mobile = $request->input('mobile');
