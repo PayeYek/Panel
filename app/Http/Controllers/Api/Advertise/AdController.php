@@ -54,27 +54,19 @@ class AdController extends Controller
     {
         $data = $request->validated();
 
-
         /* Get primary */
         $data['primary_image'] = null;
-        if (!empty($request->file('primary_image'))) {
-            $data['primary_image'] =
-                $request->file('primary_image')->store('media/ads/primary', 'public');
+        if ($request->hasFile('primary_image')) {
+            $data['primary_image'] = $request->file('primary_image')->store('media/ads/primary', 'public');
         }
-
 
         /* Get slides */
-        $slides = $request->file('slider_images');
-        if ($slides) {
-            $i = 0;
-            foreach ($slides as $file) {
-                $image = $file->store('media/ads/slider', 'public');
-
-                $data['slider_images'][$i] = $image;
-                $i++;
-            }
+        $slides = $request->file('slider_images', []);
+        $data['more_images'] = [];
+        foreach ($slides as $file) {
+            $image = $file->store('media/ads/slider', 'public');
+            $data['more_images'][] = $image;
         }
-
 
         Ads::create($data);
 
@@ -83,42 +75,30 @@ class AdController extends Controller
         return redirect()->route('panel.ad.advertise.index');
     }
 
-    public function edit(Ads $advertise)
-    {
-        $brands = LandBrand::all();
-        return view('panel.advertise.edit', compact('advertise', 'brands'));
-    }
-
     public function update(AdvertiseRequest $request, Ads $advertise)
     {
         $data = $request->validated();
 
         /* Update new primary */
-        if ($request->validated()['primary_image'] !== $advertise->primary_image) {
+        if ($request->hasFile('primary_image')) {
             Storage::delete('public/' . $advertise->getPrimaryImage());
-
-            $data['primary_image'] = null;
-            if (!empty($request->file('primary_image')))
-                $data['primary_image'] =
-                    $request->file('primary_image')->store('media/ads/primary', 'public');
-
-        } else
+            $data['primary_image'] = $request->file('primary_image')->store('media/ads/primary', 'public');
+        } else {
             $data['primary_image'] = $advertise->getPrimaryImage();
-
+        }
 
         /* Update new slides */
-        if (isset($request->validated()['slider_images']) && $request->validated()['slider_images'] !== $advertise->slider_images) {
-            /* Delete old files */
-            if (!is_null($advertise->getSliderImages()))
-                foreach ($advertise->getSliderImages() as $pic) {
-                    Storage::delete('public/' . $pic);
-                }
-            /* Save new files */
-            $data['slider_images'] = collect($request->file('slider_images'))->map(function ($file) {
-                return $file->store('media/ads/slider', 'public');
-            })->all();
+        if ($request->hasFile('slider_images')) {
+            foreach ($advertise->getMoreImages() as $pic) {
+                Storage::delete('public/' . $pic);
+            }
+
+            $data['more_images'] = [];
+            foreach ($request->file('slider_images') as $file) {
+                $data['more_images'][] = $file->store('media/ads/slider', 'public');
+            }
         } else {
-            $data['slider_images'] = $advertise->getSliderImages();
+            $data['more_images'] = $advertise->getMoreImages();
         }
 
         $advertise->update($data);
@@ -126,6 +106,12 @@ class AdController extends Controller
         Splade::toast(__('Updated'))->autoDismiss(5)->info();
 
         return redirect()->route('panel.ad.advertise.index');
+    }
+
+    public function edit(Ads $advertise)
+    {
+        $brands = LandBrand::all();
+        return view('panel.advertise.edit', compact('advertise', 'brands'));
     }
 
     public function destroy(Ads $advertise)

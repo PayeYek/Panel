@@ -71,7 +71,7 @@ class Ads extends Model
         return $this->attributes["primary_image"];
     }
 
-    public function setMoreImagesAttribute($value): void
+    public function setMoreImagesAttribute($value)
     {
         $this->attributes['more_images'] = empty($value) ? json_encode([]) : json_encode($value);
     }
@@ -80,18 +80,12 @@ class Ads extends Model
     {
         $pictures = $this->attributes['more_images'];
 
-        if (is_null($pictures)) {
-            return [];
-        }
+        if (is_null($pictures)) return [];
 
-        // Decode the JSON string into an array
         $pictures = json_decode($pictures, true);
 
-        if (!is_array($pictures)) {
-            return [];
-        }
+        if (!is_array($pictures)) return [];
 
-        // Convert each item to a URL if it's not already one
         foreach ($pictures as $key => $picture) {
             $pictures[$key] = Str::isUrl($picture) ? $picture : asset('storage/' . $picture);
         }

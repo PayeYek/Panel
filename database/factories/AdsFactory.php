@@ -52,9 +52,9 @@ class AdsFactory extends Factory
             'title'          => $this->faker->sentence,
             'description'    => $this->faker->realText,
             'primary_image'  => $imagePath,
-            'more_images'    => json_encode($moreImages),  // Convert array to JSON string
-            'city_id'        => $city->id,  // Use the city ID
-            'province_id'    => $province->id,  // Use the province ID
+            'more_images'    => $moreImages,
+            'city_id'        => $city->id,
+            'province_id'    => $province->id,
             'price'          => $this->faker->randomNumber(7),
             'agreement'      => $this->faker->boolean,
             'exchange'       => $this->faker->boolean,
