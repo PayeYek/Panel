@@ -2,7 +2,7 @@
 
 namespace App\Transformers;
 
-use App\Models\Ads;
+use App\Models\Ad;
 use App\Models\Bookmark;
 use Flugg\Responder\Transformers\Transformer;
 use Illuminate\Support\Facades\Auth;
@@ -12,56 +12,56 @@ class AdSingleTransformer extends Transformer
     protected $relations = [];
     protected $load = [];
 
-    public function transform(Ads $ads): array
+    public function transform(Ad $ad): array
     {
-        $bookmarked = $this->isBookmarked($ads->id);
+        $bookmarked = $this->isBookmarked($ad->id);
 
-        $relatedAds = $this->getRelatedAds($ads);
+        $relatedAds = $this->getRelatedAds($ad);
 
         return [
-            'id'             => $ads->id,
-            'tracking_code'  => $ads->tracking_code,
-            'title'          => $ads->title,
-            'description'    => $ads->description,
-            'primary_image'  => $ads->primary_image,
-            'more_images'    => $ads->more_images,
-            'city'           => $ads->city->name,
-            'province'       => $ads->city->province->name,
-            'province_id'    => $ads->city->province->id,
-            'price'          => $ads->price,
-            'agreement'      => $ads->agreement,
-            'exchange'       => $ads->exchange,
-            'category'       => $ads->category->title,
-            'category_id'    => $ads->category->id,
-            'published_date' => $ads->published_date,
-            'related'        => $relatedAds,
-            'bookmarked'     => $bookmarked
+            'id'            => $ad->id,
+            'tracking_code' => $ad->tracking_code,
+            'title'         => $ad->title,
+            'description'   => $ad->description,
+            'image'         => $ad->image,
+            'pictures'      => $ad->pictures,
+            'city'          => $ad->city->name,
+            'province'      => $ad->city->province->name,
+            'province_id'   => $ad->city->province->id,
+            'price'         => $ad->price,
+            'agreement'     => $ad->agreement,
+            'exchange'      => $ad->exchange,
+            'category'      => $ad->category->title,
+            'category_id'   => $ad->category->id,
+            'published_at'  => $ad->published_at,
+            'related'       => $relatedAds,
+            'bookmarked'    => $bookmarked
         ];
     }
 
-    protected function isBookmarked($adsId): bool
+    protected function isBookmarked($adId): bool
     {
         if (Auth::check()) {
             return Bookmark::where('user_id', Auth::id())
-                ->where('ads_id', $adsId)
+                ->where('ad_id', $adId)
                 ->exists();
         }
         return false;
     }
 
-    protected function getRelatedAds(Ads $ads): array
+    protected function getRelatedAds(Ad $ad): array
     {
-        $relatedAds = Ads::with(['city', 'province', 'category'])
-            ->where('category_id', $ads->category_id)
-            ->where('id', '!=', $ads->id)
+        $relatedAds = Ad::with(['city', 'province', 'category'])
+            ->where('category_id', $ad->category_id)
+            ->where('id', '!=', $ad->id)
             ->take(4)
             ->get();
 
         $remainingCount = 4 - $relatedAds->count();
         if ($remainingCount > 0) {
-            $additionalAds = Ads::with(['city', 'province', 'category'])
-                ->where('id', '!=', $ads->id)
-                ->orderByDesc('published_date')
+            $additionalAds = Ad::with(['city', 'province', 'category'])
+                ->where('id', '!=', $ad->id)
+                ->orderByDesc('published_at')
                 ->take($remainingCount)
                 ->get();
 
@@ -70,15 +70,15 @@ class AdSingleTransformer extends Transformer
 
         return $relatedAds->map(function ($relatedAd) {
             return [
-                'id'             => $relatedAd->id,
-                'title'          => $relatedAd->title,
-                'primary_image'  => $relatedAd->primary_image,
-                'price'          => $relatedAd->price,
-                'city'           => $relatedAd->city->name,
-                'province'       => $relatedAd->province->name,
-                'agreement'      => $relatedAd->agreement,
-                'published_date' => $relatedAd->published_date,
-                'bookmarked'     => $this->isBookmarked($relatedAd->id),
+                'id'           => $relatedAd->id,
+                'title'        => $relatedAd->title,
+                'image'        => $relatedAd->image,
+                'price'        => $relatedAd->price,
+                'city'         => $relatedAd->city->name,
+                'province'     => $relatedAd->province->name,
+                'agreement'    => $relatedAd->agreement,
+                'published_at' => $relatedAd->published_at,
+                'bookmarked'   => $this->isBookmarked($relatedAd->id),
             ];
         })->toArray();
     }

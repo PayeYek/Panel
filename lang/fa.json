@@ -681,5 +681,8 @@
     "Published date": "تاریخ انتشار",
     "Publish confirmation": "تغییر وضعیت انتشار",
     "Priority sort display": "مرتب سازی اولویت نمایش",
-    "Edit Priority": "ویرایش اولویت"
+    "Edit Priority": "ویرایش اولویت",
+    "approved": "تاییده شده",
+    "rejected": "رد شده",
+    "expired": "منقضی شده"
 }

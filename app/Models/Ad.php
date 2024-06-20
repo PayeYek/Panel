@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enum\AdvertiseStateEnum;
 use App\Support\CodeGeneratorHelper;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -34,6 +35,7 @@ class Ad extends Model
 
     protected $casts = [
         'pictures' => 'array',
+        'state'    => AdvertiseStateEnum::class,
     ];
 
     protected static function boot(): void

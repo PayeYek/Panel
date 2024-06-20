@@ -2,7 +2,7 @@
 
 namespace App\Transformers;
 
-use App\Models\Ads;
+use App\Models\Ad;
 use App\Models\Bookmark;
 use Flugg\Responder\Transformers\Transformer;
 use Illuminate\Support\Facades\Auth;
@@ -12,26 +12,28 @@ class AdCardTransformer extends Transformer
     protected $relations = [];
     protected $load = [];
 
-    public function transform(Ads $ads): array
+    public function transform(Ad $ad): array
     {
         return [
-            'id'             => $ads->id,
-            'title'          => $ads->title,
-            'primary_image'  => $ads->primary_image,
-            'price'          => $ads->price,
-            'city'           => $ads->city->name,
-            'province'       => $ads->province->name,
-            'agreement'      => $ads->agreement,
-            'published_date' => $ads->published_date,
-            'bookmarked'     => $this->isBookmarked($ads->id),
+            'id'            => $ad->id,
+            'tracking_code' => $ad->tracking_code,
+            'title'         => $ad->title,
+            'image'         => $ad->image,
+            'price'         => $ad->price,
+            'city'          => $ad->city->name,
+            'state'         => __($ad->state->toString()),
+            'province'      => $ad->province->name,
+            'agreement'     => $ad->agreement,
+            'published_at'  => $ad->published_at,
+            'bookmarked'    => $this->isBookmarked($ad->id),
         ];
     }
 
-    protected function isBookmarked($adsId): bool
+    protected function isBookmarked($adId): bool
     {
         if (Auth::check()) {
             return Bookmark::where('user_id', Auth::id())
-                ->where('ads_id', $adsId)
+                ->where('ad_id', $adId)
                 ->exists();
         }
         return false;

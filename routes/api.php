@@ -24,6 +24,7 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('/user', [UserController::class, 'getUser'])->middleware('auth:sanctum');
+Route::get('/user/ads', [UserController::class, 'getMyAds'])->middleware('auth:sanctum');
 
 Route::get('provinces', function () {
     return Province::get();

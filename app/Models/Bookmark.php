@@ -9,7 +9,7 @@ class Bookmark extends Model
 {
     protected $fillable = [
         'user_id',
-        'ads_id',
+        'ad_id',
     ];
 
     public function user(): BelongsTo
@@ -17,8 +17,8 @@ class Bookmark extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function ads(): BelongsTo
+    public function ad(): BelongsTo
     {
-        return $this->belongsTo(Ads::class);
+        return $this->belongsTo(Ad::class);
     }
 }
