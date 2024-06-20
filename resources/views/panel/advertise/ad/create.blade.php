@@ -13,7 +13,12 @@
 
             <x-layout.panel.form.card title="Create Advertise">
 
-                <x-splade-input name="title" label="Title" class="col-span-full" required/>
+                <x-layout.panel.form.alerts/>
+
+                <x-splade-input name="title" label="Title" required/>
+
+                <x-splade-select name="category_id" label="Category" :options="$categories" placeholder="Select an item"
+                                 choices/>
 
                 <x-splade-textarea name="description" label="Description" rows="4" class="col-span-full" required/>
 
@@ -43,9 +48,9 @@
             </x-layout.panel.form.card>
 
             <x-layout.panel.form.card title="Images">
-                <x-splade-file name="primary_image" label="Primary Image" class="col-span-full" required filepond
+                <x-splade-file name="image" label="Primary Image" class="col-span-full" required filepond
                                preview/>
-                <x-splade-file name="more_images[]" label="More Image" class="col-span-full" filepond preview
+                <x-splade-file name="pictures[]" label="More Image" class="col-span-full" filepond preview
                                multiple/>
 
                 <x-splade-submit label="Create"/>

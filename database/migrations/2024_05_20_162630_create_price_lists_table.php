@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('price_lists', function (Blueprint $table) {
             $table->id();
             $table->string('product_name');
-            $table->unsignedInteger('production_year');
-            $table->foreignId('category_id')->constrained('land_categories');
+            $table->unsignedInteger('production_year')->nullable();
+            $table->foreignId('category_id')->constrained();
             $table->string('price');
 
             $table->softDeletes();

@@ -1,6 +1,6 @@
 <x-layout.admin>
     <x-splade-modal>
-        <x-splade-form :default="$category" method="put" :action="route('panel.ad.category.update', $category)">
+        <x-splade-form :default="$category" method="put" :action="route('panel.advertise.category.update', $category)">
             <x-layout.panel.form.card title="Edit Category">
 
                 <x-layout.panel.form.alerts/>

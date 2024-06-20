@@ -10,13 +10,13 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('usage_specifications', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('usage_id')->constrained()->onDelete('cascade');
-            $table->foreignId('specification_id')->constrained()->onDelete('cascade');
-
-            $table->timestamps();
-        });
+//        Schema::create('usage_specifications', function (Blueprint $table) {
+//            $table->id();
+//            $table->foreignId('usage_id')->constrained()->onDelete('cascade');
+//            $table->foreignId('specification_id')->constrained()->onDelete('cascade');
+//
+//            $table->timestamps();
+//        });
     }
 
     /**
