@@ -28,8 +28,7 @@ class AdController extends Controller
      */
     public function create()
     {
-        $categories = Category::latest()->pluck('title', 'id');
-        return view('panel.advertise.ad.create', compact('categories'));
+        return view('panel.advertise.ad.create');
     }
 
     /**
@@ -57,7 +56,7 @@ class AdController extends Controller
 
         auth()->user()->ads()->create($data);
 
-        Splade::toast(__('Created'))->autoDismiss(5);
+        Splade::toast(__('Created'))->autoDismiss(5)->success();
 
         return redirect()->route('panel.advertise.ad.index');
     }
@@ -75,8 +74,7 @@ class AdController extends Controller
      */
     public function edit(Ad $ad)
     {
-        $categories = Category::latest()->pluck('title', 'id');
-        return view('panel.advertise.ad.edit', compact('ad', 'categories'));
+        return view('panel.advertise.ad.edit', compact('ad'));
     }
 
     /**
