@@ -49,6 +49,9 @@ class OtpController extends Controller
         if ($otpService->verifyOtp($mobile, $otp)) {
 
             $user = User::where('mobile', $mobile)->first();
+            $user->state = true; //Todo its not standard and must be change
+            $user->save();
+
             $user->tokens()->delete();
             $token = $user->createToken('authToken')->plainTextToken;
 
