@@ -40,9 +40,9 @@ Route::get('land/{landId}/products', function ($landId) {
     return $land->products()->latest()->get()->pluck('name', 'id');
 });
 
-Route::post('/request', [OtpController::class, 'requestOtp']);
-Route::post('/verify', [OtpController::class, 'verifyOtp']);
-Route::post('/refresh', [OtpController::class, 'refreshToken']);
+Route::post('/otp/request', [OtpController::class, 'requestOtp']);
+Route::post('/otp/verify', [OtpController::class, 'verifyOtp']);
+Route::post('/otp/refresh', [OtpController::class, 'refreshToken']);
 
 Route::group(['middleware' => ['auth:api', 'enforce.session']], function () {
     Route::get('/current-session', [SessionController::class, 'getCurrentSession']);
