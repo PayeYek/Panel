@@ -8,6 +8,7 @@ use App\Models\Ad;
 use App\Models\Category;
 use App\Tables\Advertise\AdTable;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 use ProtoneMedia\Splade\Facades\Splade;
 
 class AdController extends Controller
@@ -27,6 +28,8 @@ class AdController extends Controller
      */
     public function create()
     {
+        dd(Str::slug('امین شیخی', language: 'ar'));
+
         $categories = Category::latest()->pluck('title', 'id');
         return view('panel.advertise.ad.create', compact('categories'));
     }
@@ -36,7 +39,6 @@ class AdController extends Controller
      */
     public function store(AdRequest $request)
     {
-
         $data = $request->validated();
 
         /* Get image */
@@ -52,7 +54,8 @@ class AdController extends Controller
                 $data['pictures'][$i] = $image;
                 $i++;
             }
-        }
+        }else
+            $data['pictures'] = [];
 
         auth()->user()->ads()->create($data);
 

@@ -88,17 +88,21 @@ class Ad extends Model
     /**-------------------------***
      * File handler
      * --------------------------*/
-
-    public function getImageAttribute()
+    protected function image(): Attribute
     {
-        $item = $this->attributes['image'];
+        return Attribute::make(
+            get: function ($value) {
+                if (empty($value)) {
+                    return null;
+                }
 
-        if (empty($item)) {
-            return null;
-        }
-
-        return Str::isUrl($item) ? $item : asset('storage/' . $item);
+                return filter_var($value, FILTER_VALIDATE_URL) ? $value : asset('storage/' . $value);
+            },
+            // Optional: Define set function if needed
+            set: fn($value) => $value,
+        );
     }
+
 
     public function getImage()
     {
@@ -123,28 +127,10 @@ class Ad extends Model
                 return $pictures;
             },
             set: function ($value) {
-                return empty($value) ? json_encode([]) : json_encode($value);
+                return is_null($value) ? json_encode([]) : json_encode($value);
             }
         );
     }
-
-//    public function setPicturesAttribute($value)
-//    {
-//        $this->attributes['pictures'] = empty($value) ? json_encode([]) : json_encode($value);
-//    }
-//
-//    public function getPicturesAttribute()
-//    {
-//        $pictures = $this->attributes['pictures'];
-//
-//        if (is_null($pictures)) return [];
-//
-//        $pictures = json_decode($pictures, true);
-//        for ($i = 0; $i < count($pictures); $i++) {
-//            $pictures[$i] = Str::isUrl($i) ? $i : asset('storage/' . $pictures[$i]);
-//        }
-//        return $pictures;
-//    }
 
     public function getPictures()
     {
