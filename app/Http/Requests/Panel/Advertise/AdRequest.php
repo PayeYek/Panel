@@ -4,7 +4,7 @@ namespace App\Http\Requests\Panel\Advertise;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class AdvertiseRequest extends FormRequest
+class AdRequest extends FormRequest
 {
 
     public function authorize()

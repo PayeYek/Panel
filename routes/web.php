@@ -3,7 +3,7 @@
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Web\Common\PermissionController;
 use App\Http\Controllers\Web\Common\RoleController;
-use App\Http\Controllers\Web\Panel\AdController;
+use App\Http\Controllers\Web\Panel\Advertise\AdController;
 use App\Http\Controllers\Web\Panel\Advertise\BrandController as AdBrandController;
 use App\Http\Controllers\Web\Panel\Advertise\CategoryController as AdCategoryController;
 use App\Http\Controllers\Web\Panel\Advertise\ColorController as AdColorController;

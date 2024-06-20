@@ -45,23 +45,24 @@ class AdsFactory extends Factory
         $imagePath = 'media/ads/primary-image/cover.png';
         $city = ProvinceCity::inRandomOrder()->first();
         $province = $city->province;
-        $category = Category::pluck('id')->toArray();
+        $category = Category::whereNotNull('parent_id')->get()->pluck('id')->toArray();
         $users = User::pluck('id')->toArray();
 
         return [
-            'title'          => $this->faker->sentence,
-            'description'    => $this->faker->realText,
-            'primary_image'  => $imagePath,
-            'more_images'    => $moreImages,
-            'city_id'        => $city->id,
-            'province_id'    => $province->id,
-            'price'          => $this->faker->randomNumber(7),
-            'agreement'      => $this->faker->boolean,
-            'exchange'       => $this->faker->boolean,
-            'category_id'    => $this->faker->randomElement($category),
-            'published_date' => $this->faker->dateTime,
-            'user_id'        => $this->faker->randomElement($users),
-            'state'          => $this->faker->randomElement(AdvertiseStateEnum::values()),
+            'title'         => $this->faker->sentence,
+            'description'   => $this->faker->realText,
+            'mobile'        => $this->faker->regexify('/^(9)[0-9]{9}$/'),
+            'primary_image' => $imagePath,
+            'more_images'   => json_encode($moreImages),  // Convert array to JSON string
+            'city_id'       => $city->id,  // Use the city ID
+            'province_id'   => $province->id,  // Use the province ID
+            'price'         => $this->faker->randomNumber(7),
+            'agreement'     => $this->faker->boolean,
+            'exchange'      => $this->faker->boolean,
+            'category_id'   => $this->faker->randomElement($category),
+            'published_at'  => $this->faker->dateTime,
+            'user_id'       => $this->faker->randomElement($users),
+            'state'         => $this->faker->randomElement(AdvertiseStateEnum::values()),
         ];
     }
 }

@@ -2,7 +2,7 @@
 
 namespace App\Tables\Advertise;
 
-use App\Models\Ads;
+use App\Models\Ad;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 use ProtoneMedia\Splade\AbstractTable;
@@ -10,7 +10,7 @@ use ProtoneMedia\Splade\SpladeTable;
 use Spatie\QueryBuilder\AllowedFilter;
 use Spatie\QueryBuilder\QueryBuilder;
 
-class AdsTable extends AbstractTable
+class AdTable extends AbstractTable
 {
     public function authorize(Request $request): true
     {
@@ -29,7 +29,7 @@ class AdsTable extends AbstractTable
             });
         });
 
-        return QueryBuilder::for(Ads::class)
+        return QueryBuilder::for(Ad::class)
             ->defaultSort('-id')
             ->allowedSorts(['id', 'title', 'created_at', 'state'])
             ->allowedFilters(['title', $globalSearch]);

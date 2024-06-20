@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Support\CodeGeneratorHelper;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -14,21 +15,25 @@ class Ads extends Model
     use SoftDeletes, HasFactory;
 
     protected $fillable = [
+        'user_id',
+        'category_id',
+        'city_id',
+        'province_id',
+        'tracking_code',
         'title',
         'description',
-        'primary_image',
-        'more_images',
-        'city_id',
-        'category_id',
-        'province_id',
+        'mobile',
         'price',
         'agreement',
         'exchange',
-        'state',
+        'image',
+        'pictures',
+        'status',
+        'published_at'
     ];
 
     protected $casts = [
-        'more_images' => 'array',
+        'pictures' => 'array',
     ];
 
     protected static function boot(): void
@@ -40,14 +45,26 @@ class Ads extends Model
         });
     }
 
-    public function city(): BelongsTo
+
+    /**-------------------------***
+     * SET - GET
+     * --------------------------*/
+
+    protected function slug(): Attribute
     {
-        return $this->belongsTo(ProvinceCity::class, 'city_id');
+        return new Attribute(
+            set: fn($value) => $value ? Str::slug($value) : Str::slug($this->attributes['title'])
+        );
     }
 
-    public function province(): BelongsTo
+
+    /**-------------------------***
+     * Relationships
+     * --------------------------*/
+
+    public function user(): BelongsTo
     {
-        return $this->belongsTo(Province::class, 'province_id');
+        return $this->belongsTo(User::class, 'user_id');
     }
 
     public function category(): BelongsTo
@@ -55,9 +72,24 @@ class Ads extends Model
         return $this->belongsTo(Category::class, 'category_id');
     }
 
-    public function getPrimaryImageAttribute()
+    public function province(): BelongsTo
     {
-        $item = $this->attributes['primary_image'];
+        return $this->belongsTo(Province::class, 'province_id');
+    }
+
+    public function city(): BelongsTo
+    {
+        return $this->belongsTo(ProvinceCity::class, 'city_id');
+    }
+
+
+    /**-------------------------***
+     * File handler
+     * --------------------------*/
+
+    public function getImageAttribute()
+    {
+        $item = $this->attributes['image'];
 
         if (empty($item)) {
             return null;
@@ -66,36 +98,32 @@ class Ads extends Model
         return Str::isUrl($item) ? $item : asset('storage/' . $item);
     }
 
-    public function getPrimaryImage()
+    public function getImage()
     {
-        return $this->attributes["primary_image"];
+        return $this->attributes["image"];
     }
 
-    public function setMoreImagesAttribute($value)
+    public function setPicturesAttribute($value)
     {
-        $this->attributes['more_images'] = empty($value) ? json_encode([]) : json_encode($value);
+        $this->attributes['pictures'] = empty($value) ? json_encode([]) : json_encode($value);
     }
 
-    public function getMoreImagesAttribute()
+    public function getPicturesAttribute()
     {
-        $pictures = $this->attributes['more_images'];
+        $pictures = $this->attributes['pictures'];
 
         if (is_null($pictures)) return [];
 
         $pictures = json_decode($pictures, true);
-
-        if (!is_array($pictures)) return [];
-
-        foreach ($pictures as $key => $picture) {
-            $pictures[$key] = Str::isUrl($picture) ? $picture : asset('storage/' . $picture);
+        for ($i = 0; $i < count($pictures); $i++) {
+            $pictures[$i] = Str::isUrl($i) ? $i : asset('storage/' . $pictures[$i]);
         }
-
         return $pictures;
     }
 
-    public function getMoreImages()
+    public function getPictures()
     {
-        $pictures = $this->attributes["more_images"];
+        $pictures = $this->attributes["pictures"];
 
         if (is_null($pictures)) return [];
 

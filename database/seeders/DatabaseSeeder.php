@@ -26,24 +26,24 @@ class DatabaseSeeder extends Seeder
             UsageSeeder::class,
             UsageSpecificationSeeder::class,
             SpecificationValueSeeder::class,
-//            BrandSeeder::class,
-//            ProductModelSeeder::class,
-            AdvertiseSeeder::class
-#region Todo delete (landing)
-
-//            LandCategorySeeder::class,
-//            LandColorSeeder::class,
-//            LandBrandSeeder::class,
-//            LandSeeder::class,
-//            CompanySeeder::class,
-//            LandProductSeeder::class,
-//            LandSlideSeeder::class,
-//            LandArticleSeeder::class,
-//            LandAgencySeeder::class,
-//            LandAdvertiseSeeder::class,
-//            LandAttributeSeeder::class,
-//            LandStyleSeeder::class,
-#endregion
+            // BrandSeeder::class,
+            // ProductModelSeeder::class,
+            // AdvertiseSeeder::class
+            AdSeeder::class
+            #region Todo delete (landing)
+            // LandCategorySeeder::class,
+            // LandColorSeeder::class,
+            // LandBrandSeeder::class,
+            // LandSeeder::class,
+            // CompanySeeder::class,
+            // LandProductSeeder::class,
+            // LandSlideSeeder::class,
+            // LandArticleSeeder::class,
+            // LandAgencySeeder::class,
+            // LandAdvertiseSeeder::class,
+            // LandAttributeSeeder::class,
+            // LandStyleSeeder::class,
+            #endregion
         ]);
     }
 }

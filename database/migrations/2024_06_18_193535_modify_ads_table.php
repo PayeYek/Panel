@@ -24,17 +24,20 @@ return new class extends Migration {
             $table->string('tracking_code');
             $table->string('title');
             $table->longText('description');
-            $table->string('primary_image');
-            $table->json('more_images')->nullable();
+            $table->string('mobile', 10);
             $table->string('price')->default('0');
 
             $table->boolean('agreement')->default(false);
             $table->boolean('exchange')->default(false);
             $table->tinyInteger('state')->default(AdvertiseStateEnum::PENDING);
 
-            $table->softDeletes();
+            $table->string('image');
+            $table->json('pictures');
 
-            $table->timestamp('published_date')->nullable();
+            $table->string('slug')->nullable();
+
+            $table->softDeletes();
+            $table->timestamp('published_at')->nullable();
             $table->timestamps();
         });
 
