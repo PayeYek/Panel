@@ -18,21 +18,21 @@ class AdRequest extends FormRequest
             // todo
             return [
                 //'user_id'      => 'required|numeric|exists:users,id',
-                'category_id'  => 'required|numeric|exists:categories,id',
-                'city_id'      => 'required|numeric|exists:province_cities,id',
-                'province_id'  => 'required|numeric|exists:provinces,id',
-                'title'        => 'required|string|max:255',
-                'description'  => 'required|string',
-                'mobile'       => 'required|string|max:255',
-                'price'        => 'required|numeric',
-                'agreement'    => 'nullable|boolean',
-                'exchange'     => 'nullable|boolean',
-                'image'        => 'required|image|mimes:jpg,jpeg,png,webp|max:2048',
-                'pictures'     => 'nullable|array',
-                'pictures.*'   => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
-                'status'       => 'nullable|numeric',
-                'published_at' => 'nullable|date|date_format:Y-m-d H:i',
-                'slug'         => 'nullable|string', //todo |unique:ads,slug
+                'category_id' => 'required|numeric|exists:categories,id',
+                'city_id'     => 'required|numeric|exists:province_cities,id',
+                'province_id' => 'required|numeric|exists:provinces,id',
+                'title'       => 'required|string|max:255',
+                'description' => 'required|string',
+                'mobile'      => 'required|string|max:255',
+                'price'       => 'required|numeric',
+                'agreement'   => 'nullable|boolean',
+                'exchange'    => 'nullable|boolean',
+                'image'       => 'required|image|mimes:jpg,jpeg,png,webp|max:2048',
+                'pictures'    => 'nullable|array',
+                'pictures.*'  => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
+                'state'       => 'nullable|numeric',
+                //'published_at' => 'nullable|date|date_format:Y-m-d H:i',
+                'slug'        => 'nullable|string', //todo |unique:ads,slug
             ];
         }
 
@@ -40,21 +40,21 @@ class AdRequest extends FormRequest
 
             return [
                 //'user_id'      => 'required|numeric|exists:users,id',
-                'category_id'  => 'required|numeric|exists:categories,id',
-                'city_id'      => 'required|numeric|exists:province_cities,id',
-                'province_id'  => 'required|numeric|exists:provinces,id',
-                'title'        => 'required|string|max:255',
-                'description'  => 'required|string',
-                'mobile'       => 'required|string|max:255',
-                'price'        => 'required|numeric',
-                'agreement'    => 'nullable|boolean',
-                'exchange'     => 'nullable|boolean',
-                'image'        => $this->getValidationRuleImage(),
-                'pictures'     => 'nullable|array',
-                'pictures.*'   => $this->getValidationRulePictures(),
-                'status'       => 'nullable|numeric',
-                'published_at' => 'nullable|date|date_format:Y-m-d H:i',
-                'slug'         => 'nullable|string', //todo |unique:ads,slug
+                'category_id' => 'required|numeric|exists:categories,id',
+                'city_id'     => 'required|numeric|exists:province_cities,id',
+                'province_id' => 'required|numeric|exists:provinces,id',
+                'title'       => 'required|string|max:255',
+                'description' => 'required|string',
+                'mobile'      => 'required|string|max:255',
+                'price'       => 'required|numeric',
+                'agreement'   => 'nullable|boolean',
+                'exchange'    => 'nullable|boolean',
+                'image'       => $this->getValidationRuleImage(),
+                'pictures'    => 'nullable|array',
+                'pictures.*'  => $this->getValidationRulePictures(),
+                'state'       => 'nullable|numeric',
+                //'published_at' => 'nullable|date|date_format:Y-m-d H:i',
+                'slug'        => 'nullable|string', //todo |unique:ads,slug
             ];
         }
         return null;

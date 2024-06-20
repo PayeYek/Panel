@@ -16,7 +16,7 @@ class AdController extends Controller
      */
     public function index()
     {
-        return view('panel.advertise.index', [
+        return view('panel.advertise.ad.index', [
             'items' => AdTable::class
         ]);
     }
@@ -26,7 +26,7 @@ class AdController extends Controller
      */
     public function create()
     {
-        return view('panel.advertise.create');
+        return view('panel.advertise.ad.create');
     }
 
     /**
@@ -55,7 +55,7 @@ class AdController extends Controller
 
         Splade::toast(__('Created'))->autoDismiss(5);
 
-        return redirect()->route('panel.ad.advertise.index');
+        return redirect()->route('panel.advertise.ad.index');
     }
 
     /**
@@ -71,7 +71,7 @@ class AdController extends Controller
      */
     public function edit(Ad $ad)
     {
-        return view('panel.advertise.edit', compact('ad'));
+        return view('panel.advertise.ad.edit', compact('ad'));
     }
 
     /**
@@ -108,7 +108,7 @@ class AdController extends Controller
 
         Splade::toast(__('Updated'))->autoDismiss(5)->info();
 
-        return redirect()->route('panel.ad.advertise.index');
+        return redirect()->route('panel.advertise.ad.index');
     }
 
     /**

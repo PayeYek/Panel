@@ -28,7 +28,7 @@ class Ad extends Model
         'exchange',
         'image',
         'pictures',
-        'status',
+        'state',
         'published_at'
     ];
 

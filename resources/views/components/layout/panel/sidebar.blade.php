@@ -16,17 +16,24 @@
 
 
             {{--AD SERVICES--}}
-            <x-layout.panel.menu title="Ad Service" route="panel.ad.*" icon="iconsax-bol-note-2">
-                {{--                <x-layout.panel.menu title="Advertise" route="panel.ad.advertise.index" icon="iconsax-lin-book"/>--}}
-                <x-layout.panel.menu title="Advertise" route="panel.ad.advertise.index" icon="iconsax-lin-book"/>
+            <x-layout.panel.menu title="Ad Service" route="panel.advertise.*" icon="iconsax-bol-note-2">
+                <x-layout.panel.menu title="Advertise" route="panel.advertise.ad.index" icon="iconsax-lin-book"/>
+                <x-layout.panel.menu title="Categories" route="panel.advertise.category.index" icon="iconsax-lin-book"/>
+            </x-layout.panel.menu>
+
+            <x-layout.panel.menu title="Price List" route="panel.priceList.index" icon="iconsax-lin-book"/>
+
+{{--            <x-layout.panel.menu title="Ad Service" route="panel.ad.*" icon="iconsax-bol-note-2">--}}
+{{--                                <x-layout.panel.menu title="Advertise" route="panel.ad.advertise.index" icon="iconsax-lin-book"/>--}}
+{{--                <x-layout.panel.menu title="Advertise" route="panel.ad.advertise.index" icon="iconsax-lin-book"/>--}}
 {{--                <x-layout.panel.menu title="Usages" route="panel.ad.usage.index" icon="iconsax-lin-book"/>--}}
-                <x-layout.panel.menu title="Categories" route="panel.ad.category.index" icon="iconsax-lin-book"/>
-                <x-layout.panel.menu title="Colors" route="panel.ad.color.index" icon="iconsax-lin-book"/>
+{{--                <x-layout.panel.menu title="Categories" route="panel.ad.category.index" icon="iconsax-lin-book"/>--}}
+{{--                <x-layout.panel.menu title="Colors" route="panel.ad.color.index" icon="iconsax-lin-book"/>--}}
 {{--                <x-layout.panel.menu title="Specifications" route="panel.ad.specification.index"--}}
 {{--                                     icon="iconsax-lin-book"/>--}}
-                <x-layout.panel.menu title="Price List" route="panel.ad.priceList.index" icon="iconsax-lin-book"/>
-                {{--                <x-layout.panel.menu title="Brands-Models" route="panel.ad.brand-model.index" icon="iconsax-lin-book"/>--}}
-            </x-layout.panel.menu>
+{{--                <x-layout.panel.menu title="Price List" route="panel.ad.priceList.index" icon="iconsax-lin-book"/>--}}
+{{--                                <x-layout.panel.menu title="Brands-Models" route="panel.ad.brand-model.index" icon="iconsax-lin-book"/>--}}
+{{--            </x-layout.panel.menu>--}}
 
             {{--LANDING--}}
 {{--            <x-layout.panel.menu title="Landing page" route="panel.landing.*" icon="iconsax-bol-note-2">--}}

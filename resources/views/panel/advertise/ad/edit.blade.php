@@ -3,12 +3,7 @@
     <x-splade-modal>
 
         <x-splade-form
-            :action="route('panel.ad.advertise.store')"
-            :default="[
-             'agreement' => 0,
-             'exchange' => 0,
-             'price' => 0,
-            ]"
+            :default="$ad" method="put" :action="route('panel.advertise.ad.update', $ad)"
             class="space-y-5">
 
             <x-layout.panel.form.card title="Create Advertise">
@@ -48,7 +43,7 @@
                 <x-splade-file name="more_images[]" label="More Image" class="col-span-full" filepond preview
                                multiple/>
 
-                <x-splade-submit label="Create"/>
+                <x-splade-submit label="Update"/>
             </x-layout.panel.form.card>
 
         </x-splade-form>

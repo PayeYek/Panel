@@ -6,15 +6,15 @@
         title="Advertise"
         pagination-scroll="preserve"
         striped
-        :primaryLink="route('panel.ad.advertise.create')"
+        :primaryLink="route('panel.advertise.ad.create')"
     >
 
-        @cell('state', $item)
+  {{--      @cell('state', $item)
 
         @if($item->state == false)
             <Link
                 confirm="{{__('Are you sure to change the advertise state?')}}"
-{{--                confirm-text="{{__('Change advertise state')}}"--}}
+--}}{{--                confirm-text="{{__('Change advertise state')}}"--}}{{--
                 confirm-button="{{__('Approve the advertise')}}"
                 cancel-button="{{__('No')}}"
                 method="POST"
@@ -27,7 +27,7 @@
         @elseif($item->state == true)
             <Link
                 confirm="{{__('Are you sure to change the advertise state?')}}"
-{{--                confirm-text="{{__('Change advertise state')}}"--}}
+--}}{{--                confirm-text="{{__('Change advertise state')}}"--}}{{--
                 confirm-button="{{__('Reject the advertise')}}"
                 cancel-button="{{__('No')}}"
                 method="POST"
@@ -43,17 +43,17 @@
                 class="inline-flex items-center gap-x-1.5 py-1.5 px-3 rounded-full text-xs font-medium bg-red-500 text-white">{{ __('Unknown status') }}
             </span>
         @endif
-        @endcell
+        @endcell--}}
 
         <x-layout.panel.timestamps/>
 
         @cell('action', $item)
         <x-layout.panel.more-buttons>
             <div class="py-2 first:pt-0 last:pb-0">
-                <x-layout.panel.list.edit table="ad.advertise" :item="$item"/>
+                <x-layout.panel.list.edit table="advertise.ad" :item="$item"/>
             </div>
             <div class="py-2 first:pt-0 last:pb-0">
-                <x-layout.panel.list.destroy table="ad.advertise" :item="$item"/>
+                <x-layout.panel.list.destroy table="advertise.ad" :item="$item"/>
             </div>
         </x-layout.panel.more-buttons>
         @endcell
