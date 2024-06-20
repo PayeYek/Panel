@@ -28,8 +28,6 @@ class AdController extends Controller
      */
     public function create()
     {
-        dd(Str::slug('امین شیخی', language: 'ar'));
-
         $categories = Category::latest()->pluck('title', 'id');
         return view('panel.advertise.ad.create', compact('categories'));
     }
