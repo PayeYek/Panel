@@ -23,10 +23,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::get('/user', [UserController::class, 'getUser'])->middleware('auth:sanctum');
+Route::post('/test', [OtpController::class, 'requestOtp']);
 Route::get('/user/ads', [UserController::class, 'getMyAds'])->middleware('auth:sanctum');
 
-Route::post('/otp/request', [OtpController::class, 'requestOtp']);
+//Route::post('/otp/request', [OtpController::class, 'requestOtp']);
 Route::post('/otp/verify', [OtpController::class, 'verifyOtp']);
 Route::post('/otp/refresh', [OtpController::class, 'refreshToken']);
 
