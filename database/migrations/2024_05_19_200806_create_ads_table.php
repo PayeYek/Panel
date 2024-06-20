@@ -29,7 +29,7 @@ return new class extends Migration {
             $table->tinyInteger('state')->default(AdvertiseStateEnum::PENDING);
 
             $table->string('image');
-            $table->json('pictures')->default("[]");
+            $table->json('pictures')->nullable();
 
             $table->string('slug')->nullable();
 
