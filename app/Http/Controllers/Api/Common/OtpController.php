@@ -18,13 +18,10 @@ class OtpController extends Controller
         $this->otpServiceManager = $otpService;
     }
 
-    public function requestOtp(Request $request)
+    public function requestOtp()
     {
-        $request->validate([
-            'mobile' => 'required|digits:10',
-        ]);
+        $mobile = request('mobile');
 
-        $mobile = $request->input('mobile');
         $user = User::firstOrCreate(['mobile' => $mobile]);
 
         $otpService = $this->otpServiceManager->getService();
@@ -43,21 +40,15 @@ class OtpController extends Controller
         return responder()->error(-1, 'Failed to send OTP.')->respond();
     }
 
-    public function verifyOtp(Request $request)
+    public function verifyOtp()
     {
-        $request->validate([
-            'mobile' => 'required|exists:users,mobile',
-            'otp'    => 'required',
-        ]);
+        $mobile = request('mobile');
+        $otp = request('otp');
 
-        $mobile = $request->input('mobile');
-        $otp = $request->input('otp');
         $otpService = $this->otpServiceManager->getService();
-
         if ($otpService->verifyOtp($mobile, $otp)) {
 
             $user = User::where('mobile', $mobile)->first();
-
             $user->tokens()->delete();
             $token = $user->createToken('authToken')->plainTextToken;
 
@@ -100,7 +91,7 @@ class OtpController extends Controller
 //        $loginAttemptsKey = 'login_attempt_' . $mobile;
 //        Cache::increment($loginAttemptsKey);
 
-        return responder()->error(-1, 'Invalid OTP.')->error(500);
+        return responder()->error(-1, 'Invalid OTP.')->respond(500);
     }
 
     public function refreshToken(Request $request)
