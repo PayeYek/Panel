@@ -38,21 +38,9 @@ Route::get('land/{landId}/products', function ($landId) {
     $land = Land::with('products')->find($landId);
     return $land->products()->latest()->get()->pluck('name', 'id');
 });
-//
-//Route::post('/request-otp', [OtpController::class, 'requestOtp'])->middleware('throttle.otp');
-//Route::post('/verify-otp', [OtpController::class, 'verifyOtp'])->middleware('throttle.login');
-//
-//Route::post('/login', [AccessTokenController::class, 'issueToken'])
-//    ->middleware(['throttle:login', 'otp.service']);
-//
-//Route::post('/refresh-token', [AccessTokenController::class, 'issueToken'])
-//    ->middleware(['throttle:login', 'otp.service']);
 
-//Route::post('/request-otp', [OtpController::class, 'requestOtp'])->middleware(['throttle.otp', 'otp.service']);
 Route::post('/request-otp', [OtpController::class, 'requestOtp']);
-//Route::post('/verify-otp', [OtpController::class, 'verifyOtp'])->middleware(['throttle.login', 'otp.service']);
 Route::post('/verify-otp', [OtpController::class, 'verifyOtp']);
-//Route::post('/refresh-token', [OtpController::class, 'refreshToken'])->middleware(['throttle:login']);
 Route::post('/refresh-token', [OtpController::class, 'refreshToken']);
 
 Route::group(['middleware' => ['auth:api', 'enforce.session']], function () {
@@ -69,22 +57,18 @@ Route::prefix('ad')
             Route::post('bookmarks', [BookmarkController::class, 'toggle'])->name('bookmarks.toggle');
             Route::get('bookmarks', [BookmarkController::class, 'index'])->name('bookmarks.index');
         });
-//        Route::controller(AdvertiseController::class)->group(function () {
         Route::controller(AdController::class)->group(function () {
             Route::get('/list', 'getList')->name('getList');
             Route::get('/{advertise}', 'show')->name('showAdvertise');
-//            Route::get('/list', 'getList')->name('getList');
+            Route::post('submit', 'submit')->name('submitAdvertise');
+            Route::put('update/{advertise}', 'update')->name('updateAdvertise');
+            Route::delete('/{advertise}', 'destroy')->name('destroyAdvertise');
+
+            Route::get('/{advertise}/mobile', 'getMobile')->name('getMobile')->middleware('auth:sanctum');
             Route::get('categories', 'getCategories')->name('getCategories');
-            Route::get('usages', 'getUsages')->name('getUsages');
             Route::get('provinces', 'getProvinces')->name('getProvinces');
             Route::get('cities/{province}', 'getCitiesByProvince')->name('getCities');
             Route::get('specifications/{usage}', 'getSpecificationsByUsage')->name('getSpecifications');
-            Route::post('submit', 'submit')->name('submitAdvertise');
-            Route::put('update/{advertise}', 'update')->name('updateAdvertise');
-            Route::post('{advertise}/approve', 'approve')->name('approveAdvertise');
-            Route::post('{advertise}/reject', 'reject')->name('rejectAdvertise');
-//            Route::get('/{advertise}', 'show')->name('showAdvertise');
-            Route::delete('/{advertise}', 'destroy')->name('destroyAdvertise');
             Route::get('brand/list', 'getBrands')->name('brandList');
             Route::get('brand/{brand}/models', 'getModelByBrand')->name('brandModels');
 
