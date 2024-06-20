@@ -8,7 +8,7 @@ use App\Models\ProvinceCity;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\File;
-use Psy\Util\Str;
+use Illuminate\Support\Str;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Ad>
@@ -57,21 +57,21 @@ class AdFactory extends Factory
         $title = $this->faker->sentence;
 
         return [
-            'title'         => $this->faker->sentence,
-            'description'   => $this->faker->realText,
-            'mobile'        => $this->faker->regexify('/^(9)[0-9]{9}$/'),
-            'primary_image' => $imagePath,
-            'more_images'   => json_encode($moreImages),  // Convert array to JSON string
-            'city_id'       => $city->id,  // Use the city ID
-            'province_id'   => $province->id,  // Use the province ID
-            'price'         => $this->faker->randomNumber(7),
-            'agreement'     => $this->faker->boolean,
-            'exchange'      => $this->faker->boolean,
-            'category_id'   => $this->faker->randomElement($category),
-            'published_at'  => $this->faker->dateTime,
-            'user_id'       => $this->faker->randomElement($users),
-            'state'         => $this->faker->randomElement(AdvertiseStateEnum::values()),
-            'slug'          => Str::slug($title),
+            'title'        => $this->faker->sentence,
+            'description'  => $this->faker->realText,
+            'mobile'       => $this->faker->regexify('/^(9)[0-9]{9}$/'),
+            'image'        => $imagePath,
+            'pictures'     => $moreImages,  // Convert array to JSON string
+            'city_id'      => $city->id,  // Use the city ID
+            'province_id'  => $province->id,  // Use the province ID
+            'price'        => $this->faker->randomNumber(7),
+            'agreement'    => $this->faker->boolean,
+            'exchange'     => $this->faker->boolean,
+            'category_id'  => $this->faker->randomElement($category),
+            'published_at' => $this->faker->dateTime,
+            'user_id'      => $this->faker->randomElement($users),
+            'state'        => $this->faker->randomElement(AdvertiseStateEnum::values()),
+            'slug'         => Str::slug($title),
         ];
     }
 }
