@@ -10,15 +10,15 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('specifications', function (Blueprint $table) {
-            $table->id();
-            $table->string('title');
-            $table->tinyInteger('type'); //Todo implement type enum
-            $table->boolean('required')->default(false); //Todo implement type enum
-
-            $table->softDeletes();
-            $table->timestamps();
-        });
+//        Schema::create('specifications', function (Blueprint $table) {
+//            $table->id();
+//            $table->string('title');
+//            $table->tinyInteger('type'); //Todo implement type enum
+//            $table->boolean('required')->default(false); //Todo implement type enum
+//
+//            $table->softDeletes();
+//            $table->timestamps();
+//        });
     }
 
     /**

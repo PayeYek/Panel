@@ -1,6 +1,6 @@
 <x-layout.admin>
     <x-splade-modal>
-        <x-splade-form :action="route('panel.ad.category.store')">
+        <x-splade-form :action="route('panel.advertise.category.store')">
             <x-layout.panel.form.card title="New Category">
 
                 <x-layout.panel.form.alerts/>

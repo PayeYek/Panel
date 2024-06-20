@@ -44,4 +44,13 @@ class Category extends Model implements Transformable
     {
         return $query->whereHas('parent.parent');
     }
+
+    /**-------------------------***
+     * Relationships
+     * --------------------------*/
+
+    public function ads()
+    {
+        return $this->hasMany(Ad::class);
+    }
 }

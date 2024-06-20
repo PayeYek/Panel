@@ -10,12 +10,12 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('advertise_colors', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('advertise_id')->constrained()->onDelete('cascade');
-            $table->foreignId('color_id')->constrained()->onDelete('cascade');
-            $table->timestamps();
-        });
+//        Schema::create('advertise_colors', function (Blueprint $table) {
+//            $table->id();
+//            $table->foreignId('advertise_id')->constrained()->onDelete('cascade');
+//            $table->foreignId('color_id')->constrained()->onDelete('cascade');
+//            $table->timestamps();
+//        });
     }
 
     /**

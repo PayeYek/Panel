@@ -10,12 +10,12 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('colors', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
-            $table->string('title');
-            $table->timestamps();
-        });
+//        Schema::create('colors', function (Blueprint $table) {
+//            $table->id();
+//            $table->string('name');
+//            $table->string('title');
+//            $table->timestamps();
+//        });
     }
 
     /**

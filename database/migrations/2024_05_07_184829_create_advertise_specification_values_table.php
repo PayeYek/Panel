@@ -10,14 +10,14 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('advertise_specification_values', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('advertise_id')->constrained()->onDelete('cascade');
-            $table->foreignId('specification_id')->constrained()->onDelete('cascade');
-            $table->string('value');
-            //Todo define primary key
-            $table->timestamps();
-        });
+//        Schema::create('advertise_specification_values', function (Blueprint $table) {
+//            $table->id();
+//            $table->foreignId('advertise_id')->constrained()->onDelete('cascade');
+//            $table->foreignId('specification_id')->constrained()->onDelete('cascade');
+//            $table->string('value');
+//            //Todo define primary key
+//            $table->timestamps();
+//        });
     }
 
     /**

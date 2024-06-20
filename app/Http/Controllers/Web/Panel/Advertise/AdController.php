@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Web\Panel\Advertise;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Panel\Advertise\AdRequest;
 use App\Models\Ad;
+use App\Models\Category;
 use App\Tables\Advertise\AdTable;
 use Illuminate\Support\Facades\Storage;
 use ProtoneMedia\Splade\Facades\Splade;
@@ -26,7 +27,8 @@ class AdController extends Controller
      */
     public function create()
     {
-        return view('panel.advertise.ad.create');
+        $categories = Category::latest()->pluck('title', 'id');
+        return view('panel.advertise.ad.create', compact('categories'));
     }
 
     /**
@@ -34,6 +36,7 @@ class AdController extends Controller
      */
     public function store(AdRequest $request)
     {
+
         $data = $request->validated();
 
         /* Get image */
@@ -51,7 +54,7 @@ class AdController extends Controller
             }
         }
 
-        Ad::create($data);
+        auth()->user()->ads()->create($data);
 
         Splade::toast(__('Created'))->autoDismiss(5);
 
@@ -71,7 +74,8 @@ class AdController extends Controller
      */
     public function edit(Ad $ad)
     {
-        return view('panel.advertise.ad.edit', compact('ad'));
+        $categories = Category::latest()->pluck('title', 'id');
+        return view('panel.advertise.ad.edit', compact('ad', 'categories'));
     }
 
     /**

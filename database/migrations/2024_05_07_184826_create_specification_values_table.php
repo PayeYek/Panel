@@ -10,14 +10,14 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('specification_values', function (Blueprint $table) {
-            $table->id();
-            $table->string('title');
-            $table->foreignId('specification_id')->constrained();
-
-            $table->softDeletes();
-            $table->timestamps();
-        });
+//        Schema::create('specification_values', function (Blueprint $table) {
+//            $table->id();
+//            $table->string('title');
+//            $table->foreignId('specification_id')->constrained();
+//
+//            $table->softDeletes();
+//            $table->timestamps();
+//        });
     }
 
     /**

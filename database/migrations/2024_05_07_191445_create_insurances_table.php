@@ -10,14 +10,14 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('insurances', function (Blueprint $table) {
-            $table->id();
-            $table->string('title');
-            $table->string('slug');
-
-            $table->softDeletes();
-            $table->timestamps();
-        });
+//        Schema::create('insurances', function (Blueprint $table) {
+//            $table->id();
+//            $table->string('title');
+//            $table->string('slug');
+//
+//            $table->softDeletes();
+//            $table->timestamps();
+//        });
     }
 
     /**

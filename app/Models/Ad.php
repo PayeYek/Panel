@@ -105,23 +105,46 @@ class Ad extends Model
         return $this->attributes["image"];
     }
 
-    public function setPicturesAttribute($value)
+    protected function pictures(): Attribute
     {
-        $this->attributes['pictures'] = empty($value) ? json_encode([]) : json_encode($value);
+        return Attribute::make(
+            get: function ($value) {
+                if (is_null($value)) return [];
+
+                $pictures = json_decode($value, true);
+                for ($i = 0; $i < count($pictures); $i++) {
+                    if (filter_var($pictures[$i], FILTER_VALIDATE_URL)) {
+                        // If it's a valid URL, keep it as is
+                        continue;
+                    }
+                    // Otherwise, create a full URL to the stored file
+                    $pictures[$i] = asset('storage/' . $pictures[$i]);
+                }
+                return $pictures;
+            },
+            set: function ($value) {
+                return empty($value) ? json_encode([]) : json_encode($value);
+            }
+        );
     }
 
-    public function getPicturesAttribute()
-    {
-        $pictures = $this->attributes['pictures'];
-
-        if (is_null($pictures)) return [];
-
-        $pictures = json_decode($pictures, true);
-        for ($i = 0; $i < count($pictures); $i++) {
-            $pictures[$i] = Str::isUrl($i) ? $i : asset('storage/' . $pictures[$i]);
-        }
-        return $pictures;
-    }
+//    public function setPicturesAttribute($value)
+//    {
+//        $this->attributes['pictures'] = empty($value) ? json_encode([]) : json_encode($value);
+//    }
+//
+//    public function getPicturesAttribute()
+//    {
+//        $pictures = $this->attributes['pictures'];
+//
+//        if (is_null($pictures)) return [];
+//
+//        $pictures = json_decode($pictures, true);
+//        for ($i = 0; $i < count($pictures); $i++) {
+//            $pictures[$i] = Str::isUrl($i) ? $i : asset('storage/' . $pictures[$i]);
+//        }
+//        return $pictures;
+//    }
 
     public function getPictures()
     {

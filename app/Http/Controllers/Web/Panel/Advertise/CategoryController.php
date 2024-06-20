@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Panel\Advertise\CategoryRequest;
 use App\Models\Category;
 use App\Tables\Advertise\Categories;
-use Splade;
+use ProtoneMedia\Splade\Facades\Splade;
 
 class CategoryController extends Controller
 {
@@ -32,7 +32,7 @@ class CategoryController extends Controller
 
         Splade::toast(__('Created'))->autoDismiss(5)->success();
 
-        return redirect()->route('panel.ad.category.index');
+        return redirect()->route('panel.advertise.category.index');
     }
 
 
@@ -50,7 +50,7 @@ class CategoryController extends Controller
 
         Splade::toast(__('Updated'))->autoDismiss(5)->info();
 
-        return redirect()->route('panel.ad.category.index');
+        return redirect()->route('panel.advertise.category.index');
     }
 
 

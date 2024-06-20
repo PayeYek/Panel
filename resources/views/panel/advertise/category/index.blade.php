@@ -1,7 +1,7 @@
 <x-layout.admin>
 
     <x-splade-table :for="$items"
-                    :primaryLink="route('panel.ad.category.create')"
+                    :primaryLink="route('panel.advertise.category.create')"
                     :title="__('Category list')"
                     pagination-scroll="preserve"
     >
@@ -10,7 +10,7 @@
 
         <Link
             slideover
-            href="{{ route('panel.ad.category.edit', $item) }}"
+            href="{{ route('panel.advertise.category.edit', $item) }}"
             class="flex flex-col pe-10">
         <div class="flex gap-2">
             <div class="flex flex-col">
@@ -39,10 +39,10 @@
         @cell('action', $item)
         <x-layout.panel.more-buttons>
             <div class="py-2 first:pt-0 last:pb-0">
-                <x-layout.panel.list.edit table="ad.category" :item="$item"/>
+                <x-layout.panel.list.edit table="advertise.category" :item="$item"/>
             </div>
             <div class="py-2 first:pt-0 last:pb-0">
-                <x-layout.panel.list.destroy table="ad.category" :item="$item"/>
+                <x-layout.panel.list.destroy table="advertise.category" :item="$item"/>
             </div>
         </x-layout.panel.more-buttons>
         @endcell
