@@ -23,7 +23,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::post('/test', [OtpController::class, 'requestOtp']);
+Route::post('/test', [UserController::class, 'requestOtp']);
 Route::get('/user/ads', [UserController::class, 'getMyAds'])->middleware('auth:sanctum');
 
 //Route::post('/otp/request', [OtpController::class, 'requestOtp']);
