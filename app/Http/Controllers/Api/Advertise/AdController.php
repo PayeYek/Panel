@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api\Advertise;
 
+use App\Enum\AdvertiseStateEnum;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Panel\Advertise\AdvertiseApiRequest;
 use App\Models\Ad;
@@ -18,7 +19,7 @@ class AdController extends Controller
     {
         $perPage = request('perPage') ?? 10;
         $ad = Ad::with(['city.province', 'category'])
-            ->where('state', 1)
+            ->where('state', AdvertiseStateEnum::APPROVED)
             ->orderBy('published_at', 'desc')
             ->paginate($perPage);
 
