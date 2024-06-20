@@ -39,4 +39,9 @@ class Category extends Model implements Transformable
     {
         return CategoryTransformer::class;
     }
+
+    public function scopeGrandChildren($query)
+    {
+        return $query->whereHas('parent.parent');
+    }
 }
