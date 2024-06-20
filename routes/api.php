@@ -26,6 +26,10 @@ use Illuminate\Support\Facades\Route;
 Route::get('/user', [UserController::class, 'getUser'])->middleware('auth:sanctum');
 Route::get('/user/ads', [UserController::class, 'getMyAds'])->middleware('auth:sanctum');
 
+Route::post('/otp/request', [OtpController::class, 'requestOtp']);
+Route::post('/otp/verify', [OtpController::class, 'verifyOtp']);
+Route::post('/otp/refresh', [OtpController::class, 'refreshToken']);
+
 Route::get('provinces', function () {
     return Province::get();
 });
@@ -39,10 +43,6 @@ Route::get('land/{landId}/products', function ($landId) {
     $land = Land::with('products')->find($landId);
     return $land->products()->latest()->get()->pluck('name', 'id');
 });
-
-Route::post('/otp/request', [OtpController::class, 'requestOtp']);
-Route::post('/otp/verify', [OtpController::class, 'verifyOtp']);
-Route::post('/otp/refresh', [OtpController::class, 'refreshToken']);
 
 Route::group(['middleware' => ['auth:api', 'enforce.session']], function () {
     Route::get('/current-session', [SessionController::class, 'getCurrentSession']);
