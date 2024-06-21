@@ -41,7 +41,7 @@ class AdFactory extends Factory
 
         $city = ProvinceCity::inRandomOrder()->first();
         $province = $city->province;
-        $category = Category::whereNotNull('parent_id')->get()->pluck('id')->toArray();
+        $category = Category::grandChildren()->get()->pluck('id')->toArray();
         $users = User::pluck('id')->toArray();
 
         $title = $this->faker->sentence;

@@ -17,8 +17,22 @@
 
                 <x-splade-input name="title" label="Title" required/>
 
-                <x-splade-select name="category_id" label="Category" :options="$categories" placeholder="Select an item"
-                                 choices/>
+                {{-- <x-splade-select name="category_id" label="Category" :options="$categories" placeholder="Select an item"--}}
+                {{--                  choices/>--}}
+
+                <x-splade-select name="category_id" label="Category" choices>
+                    <option value="">{{ __('Other') }}</option>
+                    @foreach(\App\Models\Category::whereNull('parent_id')->get() as $ground)
+                        @foreach($ground->children as $parent)
+                            <optgroup label="{{$parent->title}}">
+                                @foreach($parent->children as $child)
+                                    <option value="{{ $child->id }}">{{ $child->title }}</option>
+                                @endforeach
+                            </optgroup>
+                        @endforeach
+                    @endforeach
+                </x-splade-select>
+
 
                 <x-splade-textarea name="description" label="Description" rows="4" class="col-span-full" required/>
 
@@ -39,7 +53,7 @@
                     <option value="1">{{__("Yes")}}</option>
                 </x-splade-select>
 
-                <x-splade-input name="price" label="Price" type="number" min="0" step="1000" prepend="{{__('Toman')}}"
+                <x-splade-input name="price" label="Price" type="number" min="0" prepend="{{__('Toman')}}"
                                 required ltr/>
 
                 <x-splade-input name="mobile" label="Communication Mobile" required ltr
