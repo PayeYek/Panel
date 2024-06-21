@@ -34,6 +34,7 @@ class AdSingleTransformer extends Transformer
             'category'      => $ad->category->title,
             'category_id'   => $ad->category->id,
             'published_at'  => $ad->published_at,
+            'state'         => __($ad->state->toString()),
             'related'       => $relatedAds,
             'bookmarked'    => $bookmarked
         ];

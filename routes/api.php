@@ -61,9 +61,9 @@ Route::prefix('ad')
         Route::controller(AdController::class)->group(function () {
             Route::get('/list', 'getList')->name('getList');
             Route::get('/{advertise}', 'show')->name('showAdvertise');
-            Route::post('submit', 'submit')->name('submitAdvertise');
-            Route::put('update/{advertise}', 'update')->name('updateAdvertise');
-            Route::delete('/{advertise}', 'destroy')->name('destroyAdvertise');
+            Route::post('submit', 'submit')->name('submitAdvertise')->middleware('auth:sanctum');
+            Route::put('update/{advertise}', 'update')->name('updateAdvertise')->middleware('auth:sanctum');
+            Route::delete('/{advertise}', 'destroy')->name('destroyAdvertise')->middleware('auth:sanctum');
 
             Route::get('/{advertise}/mobile', 'getMobile')->name('getMobile')->middleware('auth:sanctum');
             Route::get('categories', 'getCategories')->name('getCategories');

@@ -21,6 +21,6 @@ class UserController extends Controller
     public function getMyAds()
     {
         $user = Auth::user();
-        return responder()->success($user->advertises, AdCardTransformer::class)->respond();
+        return responder()->success($user->ads, AdCardTransformer::class)->respond();
     }
 }

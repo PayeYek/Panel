@@ -38,7 +38,7 @@ class AdController extends Controller
             $data['image'] = $request->file('image')->store('media/ads/image', 'public');
         }
 
-        /* Get more images */
+        /* Get pictures */
         $slides = $request->file('pictures', []);
         $data['pictures'] = [];
         foreach ($slides as $file) {
@@ -66,15 +66,15 @@ class AdController extends Controller
 
         /* Update image */
         if ($request->hasFile('image')) {
-            Storage::delete('public/' . $advertise->getPrimaryImage());
+            Storage::delete('public/' . $advertise->getImage());
             $data['image'] = $request->file('image')->store('media/ads/image', 'public');
         } else {
-            $data['image'] = $advertise->getPrimaryImage();
+            $data['image'] = $advertise->getImage();
         }
 
-        /* Update more images */
+        /* Update pictures */
         if ($request->hasFile('pictures')) {
-            foreach ($advertise->getMoreImages() as $pic) {
+            foreach ($advertise->getPictures() as $pic) {
                 Storage::delete('public/' . $pic);
             }
 
@@ -83,7 +83,7 @@ class AdController extends Controller
                 $data['pictures'][] = $file->store('media/ads/pictures', 'public');
             }
         } else {
-            $data['pictures'] = $advertise->getMoreImages();
+            $data['pictures'] = $advertise->getPictures();
         }
         try {
             $advertise->update($data);
@@ -97,13 +97,13 @@ class AdController extends Controller
     public function destroy(Ad $advertise)
     {
         try {
-            /* Delete more images */
-            foreach ($advertise->getMoreImages() as $pic) {
+            /* Delete pictures */
+            foreach ($advertise->getPictures() as $pic) {
                 Storage::delete('public/' . $pic);
             }
 
             /* Delete image */
-            Storage::delete('public/' . $advertise->getPrimaryImage());
+            Storage::delete('public/' . $advertise->getImage());
 
             $advertise->delete();
             return responder()->success(['message' => 'Successfully deleted'])->respond();
