@@ -3,12 +3,12 @@
 use App\Http\Controllers\Api\Advertise\AdController;
 use App\Http\Controllers\Api\Advertise\BookmarkController;
 use App\Http\Controllers\Api\Advertise\PriceListController;
-use App\Http\Controllers\Api\Advertise\ProvinceController;
 use App\Http\Controllers\Api\Common\OtpController;
 use App\Http\Controllers\Api\Common\SessionController;
 use App\Http\Controllers\Api\Common\UserController;
 use App\Http\Controllers\Api\Landing\LandingApiController;
 use App\Models\Land;
+use App\Models\Province;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -30,11 +30,14 @@ Route::get('/otp/request', [OtpController::class, 'requestOtp']);
 Route::get('/otp/verify', [OtpController::class, 'verifyOtp']);
 Route::post('/otp/refresh', [OtpController::class, 'refreshToken']);
 
+Route::get('provinces', function () {
+    return Province::get();
+});
 
-//Route::get('categories', 'getCategories')->name('getCategories');
-Route::get('provinces', [ProvinceController::class, 'getProvinces']);
-Route::get('cities/{province}', [ProvinceController::class, 'getCitiesByProvince']);
-
+Route::get('provinces/{provinceId}/cities', function ($provinceId) {
+    $province = Province::with('cities')->find($provinceId);
+    return $province->cities;
+});
 
 Route::get('land/{landId}/products', function ($landId) {
     $land = Land::with('products')->find($landId);
@@ -63,6 +66,9 @@ Route::prefix('ad')
             Route::delete('/{advertise}', 'destroy')->name('destroyAdvertise')->middleware('auth:sanctum');
 
             Route::get('/{advertise}/mobile', 'getMobile')->name('getMobile')->middleware('auth:sanctum');
+            Route::get('categories', 'getCategories')->name('getCategories');
+            Route::get('provinces', 'getProvinces')->name('getProvinces');
+            Route::get('cities/{province}', 'getCitiesByProvince')->name('getCities');
             Route::get('specifications/{usage}', 'getSpecificationsByUsage')->name('getSpecifications');
             Route::get('brand/list', 'getBrands')->name('brandList');
             Route::get('brand/{brand}/models', 'getModelByBrand')->name('brandModels');
