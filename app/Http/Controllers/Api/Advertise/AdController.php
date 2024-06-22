@@ -18,6 +18,56 @@ class AdController extends Controller
     public function getList()
     {
         $perPage = request('perPage') ?? 10;
+        $keyword = request('keyword');
+        $categoryId = request('category_id');
+        $provinceId = request('province_id');
+        $minPrice = request('min_price');
+        $maxPrice = request('max_price');
+        $agreement = request('agreement');
+        $exchange = request('exchange');
+
+        $query = Ad::with(['city.province', 'category'])
+            ->approved();
+
+        if ($categoryId) {
+            $query->where('category_id', $categoryId);
+        }
+
+        if ($provinceId) {
+            $query->where('province_id', $provinceId);
+        }
+
+        if ($minPrice !== null && $maxPrice !== null) {
+            $query->whereBetween('price', [$minPrice, $maxPrice]);
+        } elseif ($minPrice !== null) {
+            $query->where('price', '>=', $minPrice);
+        } elseif ($maxPrice !== null) {
+            $query->where('price', '<=', $maxPrice);
+        }
+
+        if ($agreement !== null) {
+            $query->where('agreement', $agreement);
+        }
+
+        if ($exchange !== null) {
+            $query->where('exchange', $exchange);
+        }
+
+        if ($keyword) {
+            $query->where(function ($q) use ($keyword) {
+                $q->where('title', 'like', "%{$keyword}%")
+                    ->orWhere('description', 'like', "%{$keyword}%");
+            });
+        }
+
+        $ads = $query->orderBy('published_at', 'desc')->paginate($perPage);
+
+        return responder()->success($ads, AdCardTransformer::class)->respond();
+    }
+
+    public function getListOld()
+    {
+        $perPage = request('perPage') ?? 10;
         $ad = Ad::with(['city.province', 'category'])
             ->where('state', AdvertiseStateEnum::APPROVED)
             ->orderBy('published_at', 'desc')
