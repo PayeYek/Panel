@@ -24,7 +24,9 @@ class AdTable extends AbstractTable
                 Collection::wrap($value)->each(function ($value) use ($query) {
                     $query
                         ->orWhere('title', 'LIKE', "%{$value}%")
-                        ->orWhere('description', 'LIKE', "%{$value}%");
+                        ->orWhere('description', 'LIKE', "%{$value}%")
+                        ->orWhere('mobile', 'LIKE', "%{$value}%")
+                    ;
                 });
             });
         });
@@ -37,7 +39,7 @@ class AdTable extends AbstractTable
 
     public function configure(SpladeTable $table): void
     {
-//        $table->withGlobalSearch(columns: ['id', 'title', 'slug', 'body']);
+        $table->withGlobalSearch(columns: ['id', 'title', 'mobile']);
 
         /** Columns */
         $table->column(

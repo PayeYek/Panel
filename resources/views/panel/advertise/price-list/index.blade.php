@@ -5,8 +5,15 @@
         title="Price List"
         pagination-scroll="preserve"
         striped
+        search-debounce="1000"
         :primaryLink="route('panel.priceList.create')"
     >
+
+        @cell('product_name', $item)
+            <Link href="{{ route('panel.priceList.edit', $item) }}" slideover>
+                <strong>{{$item->product_name}}</strong>
+            </Link>
+        @endcell
 
         <x-layout.panel.timestamps/>
 

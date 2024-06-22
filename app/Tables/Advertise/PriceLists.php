@@ -24,7 +24,7 @@ class PriceLists extends AbstractTable
                 Collection::wrap($value)->each(function ($value) use ($query) {
                     $query
                         ->orWhere('product_name', 'LIKE', "%{$value}%")
-                        ->orWhere('category', 'LIKE', "%{$value}%")
+//                        ->orWhere('category', 'LIKE', "%{$value}%")
                         ->orWhere('production_year', 'LIKE', "%{$value}%");
                 });
             });
@@ -39,7 +39,7 @@ class PriceLists extends AbstractTable
 
     public function configure(SpladeTable $table): void
     {
-//        $table->withGlobalSearch(columns: ['id', 'title', 'slug', 'body']);
+        $table->withGlobalSearch(columns: ['id', 'product_name', 'production_year', 'category.title']);
 
         /** Columns */
         $table->column(
