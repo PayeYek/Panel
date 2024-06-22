@@ -167,4 +167,16 @@ class AdController extends Controller
     {
         return responder()->success(['mobile' => $advertise->mobile])->respond();
     }
+
+    public function getPriceRange()
+    {
+        $minPrice = Ad::approved()->min('price');
+        $maxPrice = Ad::approved()->max('price');
+
+        return responder()->success([
+            'min_price' => $minPrice,
+            'max_price' => $maxPrice,
+        ])->respond();
+    }
+
 }
