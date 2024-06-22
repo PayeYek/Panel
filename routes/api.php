@@ -3,6 +3,7 @@
 use App\Http\Controllers\Api\Advertise\AdController;
 use App\Http\Controllers\Api\Advertise\BookmarkController;
 use App\Http\Controllers\Api\Advertise\PriceListController;
+use App\Http\Controllers\Api\Advertise\ProvinceController;
 use App\Http\Controllers\Api\Common\OtpController;
 use App\Http\Controllers\Api\Common\SessionController;
 use App\Http\Controllers\Api\Common\UserController;
@@ -58,6 +59,10 @@ Route::prefix('ad')
             Route::post('bookmarks', [BookmarkController::class, 'toggle'])->name('bookmarks.toggle');
             Route::get('bookmarks', [BookmarkController::class, 'index'])->name('bookmarks.index');
         });
+        Route::controller(ProvinceController::class)->group(function () {
+            Route::get('provinces', 'getProvinces')->name('getProvinces');
+            Route::get('cities/{province}', 'getCitiesByProvince')->name('getCities');
+        });
         Route::controller(AdController::class)->group(function () {
             Route::get('/list', 'getList')->name('getList');
             Route::get('/{advertise}', 'show')->name('showAdvertise');
@@ -67,8 +72,6 @@ Route::prefix('ad')
 
             Route::get('/{advertise}/mobile', 'getMobile')->name('getMobile')->middleware('auth:sanctum');
             Route::get('categories', 'getCategories')->name('getCategories');
-            Route::get('provinces', 'getProvinces')->name('getProvinces');
-            Route::get('cities/{province}', 'getCitiesByProvince')->name('getCities');
             Route::get('specifications/{usage}', 'getSpecificationsByUsage')->name('getSpecifications');
             Route::get('brand/list', 'getBrands')->name('brandList');
             Route::get('brand/{brand}/models', 'getModelByBrand')->name('brandModels');
