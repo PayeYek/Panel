@@ -53,14 +53,17 @@ class AdSingleTransformer extends Transformer
     protected function getRelatedAds(Ad $ad): array
     {
         $relatedAds = Ad::with(['city', 'province', 'category'])
+            ->approved()
             ->where('category_id', $ad->category_id)
             ->where('id', '!=', $ad->id)
+            ->orderByDesc('published_at')
             ->take(4)
             ->get();
 
         $remainingCount = 4 - $relatedAds->count();
         if ($remainingCount > 0) {
             $additionalAds = Ad::with(['city', 'province', 'category'])
+                ->approved()
                 ->where('id', '!=', $ad->id)
                 ->orderByDesc('published_at')
                 ->take($remainingCount)

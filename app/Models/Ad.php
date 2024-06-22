@@ -59,6 +59,10 @@ class Ad extends Model
         );
     }
 
+    public function scopeApproved($query)
+    {
+        return $query->where('state', AdvertiseStateEnum::APPROVED);
+    }
 
     /**-------------------------***
      * Relationships
