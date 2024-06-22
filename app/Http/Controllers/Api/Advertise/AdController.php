@@ -170,8 +170,8 @@ class AdController extends Controller
 
     public function getPriceRange()
     {
-        $minPrice = Ad::approved()->min('price');
-        $maxPrice = Ad::approved()->max('price');
+        $minPrice = Ad::approved()->where('agreement', false)->min('price');
+        $maxPrice = Ad::approved()->where('agreement', false)->max('price');
 
         return responder()->success([
             'min_price' => $minPrice,
