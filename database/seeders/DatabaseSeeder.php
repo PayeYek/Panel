@@ -38,7 +38,7 @@ class DatabaseSeeder extends Seeder
             // BrandSeeder::class,
             // ProductModelSeeder::class,
             // AdvertiseSeeder::class
-            AdSeeder::class
+//            AdSeeder::class
             #region Todo delete (landing)
             // LandCategorySeeder::class,
             // LandColorSeeder::class,
