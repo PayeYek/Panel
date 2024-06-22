@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('product_name');
             $table->unsignedInteger('production_year')->nullable();
-            $table->foreignId('category_id')->constrained();
-            $table->string('price');
+            $table->foreignId('category_id')->nullable()->constrained();
+            $table->string('price')->nullable();
 
             $table->softDeletes();
             $table->timestamps();
