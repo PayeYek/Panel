@@ -28,7 +28,7 @@ return new class extends Migration {
             $table->boolean('exchange')->default(false);
             $table->tinyInteger('state')->default(AdvertiseStateEnum::PENDING);
 
-            $table->string('image');
+            $table->string('image')->nullable();
             $table->json('pictures')->nullable();
 
             $table->string('slug')->nullable();
