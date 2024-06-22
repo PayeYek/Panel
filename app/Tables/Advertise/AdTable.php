@@ -32,6 +32,7 @@ class AdTable extends AbstractTable
         });
 
         return QueryBuilder::for(Ad::class)
+            ->with(['category', 'user'])
             ->defaultSort('-id')
             ->allowedSorts(['id', 'title', 'created_at', 'state'])
             ->allowedFilters(['title', $globalSearch]);
@@ -53,9 +54,19 @@ class AdTable extends AbstractTable
         );
 
         $table->column(
+            key: 'advertise',
+            label: __('Advertise'),
+            //hidden: true,
+            //sortable: true,
+//            searchable: true,
+        //highlight: true,
+        //exportAs: false,
+        );
+
+        $table->column(
             key: 'title',
             label: __('Title'),
-            //hidden: true,
+            hidden: true,
             //sortable: true,
             searchable: true,
         //highlight: true,
@@ -63,14 +74,15 @@ class AdTable extends AbstractTable
         );
 
         $table->column(
-            key: 'category_id',
-            label: __('Category'),
-            //hidden: true,
+            key: 'description',
+            label: __('Description'),
+            hidden: true,
             //sortable: true,
             searchable: true,
         //highlight: true,
         //exportAs: false,
         );
+
 
         $table->column(
             key: 'state',
@@ -81,10 +93,51 @@ class AdTable extends AbstractTable
 //            highlight: true,
         //exportAs: false,
         );
+
+        $table->column(
+            key: 'category.title',
+            label: __('Category'),
+            //hidden: true,
+            //sortable: true,
+            searchable: true,
+        //highlight: true,
+        //exportAs: false,
+        );
+
+//        $table->column(
+//            key: 'user.first_name',
+//            label: __('User'),
+//            //hidden: true,
+//            //sortable: true,
+//            searchable: true,
+//        //highlight: true,
+//        //exportAs: false,
+//        );
+
+
+        $table->column(
+            key: 'published_at',
+            label: __('Publish date'),
+            hidden: true,
+            sortable: true,
+//            searchable: true,
+        //highlight: true,
+        //exportAs: false,
+        );
+
         $table->column(
             key: 'created_at',
             label: __('Create date'),
-//            hidden: true,
+            hidden: true,
+            sortable: true,
+//            searchable: true,
+        //highlight: true,
+        //exportAs: false,
+        );
+        $table->column(
+            key: 'updated_at',
+            label: __('Update date'),
+            hidden: true,
             sortable: true,
 //            searchable: true,
         //highlight: true,
