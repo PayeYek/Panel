@@ -7,7 +7,6 @@
             :default="[
              'agreement' => 0,
              'exchange' => 0,
-             'price' => 0,
             ]"
             class="space-y-5">
 
@@ -54,7 +53,7 @@
                 </x-splade-select>
 
                 <x-splade-input name="price" label="Price" type="number" min="0" prepend="{{__('Toman')}}"
-                                required ltr/>
+                                placeholder="0" required ltr/>
 
                 <x-splade-input name="mobile" label="Communication Mobile" required ltr
                                 maxlength="10" prepend="+98" placeholder="9-- --- ----"/>

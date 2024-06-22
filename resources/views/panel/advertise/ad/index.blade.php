@@ -6,6 +6,7 @@
         title="Advertise"
         pagination-scroll="preserve"
         striped
+        search-debounce="1000"
         :primaryLink="route('panel.advertise.ad.create')"
     >
 
