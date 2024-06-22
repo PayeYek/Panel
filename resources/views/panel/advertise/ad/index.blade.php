@@ -10,41 +10,11 @@
         :primaryLink="route('panel.advertise.ad.create')"
     >
 
-  {{--      @cell('state', $item)
-
-        @if($item->state == false)
-            <Link
-                confirm="{{__('Are you sure to change the advertise state?')}}"
---}}{{--                confirm-text="{{__('Change advertise state')}}"--}}{{--
-                confirm-button="{{__('Approve the advertise')}}"
-                cancel-button="{{__('No')}}"
-                method="POST"
-                href="{{ route('api.ad.approveAdvertise', $item->id) }}"
-                class="flex flex-col pe-10">
-            <span
-                class="inline-flex items-center gap-x-1.5 py-1.5 px-3 rounded-full text-xs font-medium bg-yellow-500 text-white">تایید نشده
-            </span>
-            </Link>
-        @elseif($item->state == true)
-            <Link
-                confirm="{{__('Are you sure to change the advertise state?')}}"
---}}{{--                confirm-text="{{__('Change advertise state')}}"--}}{{--
-                confirm-button="{{__('Reject the advertise')}}"
-                cancel-button="{{__('No')}}"
-                method="POST"
-                href="{{ route('api.ad.rejectAdvertise', $item->id) }}"
-                class="flex flex-col pe-10">
-
-            <span
-                class="inline-flex items-center gap-x-1.5 py-1.5 px-3 rounded-full text-xs font-medium bg-green-500 text-white">{{ __('Approved') }}
-                </span>
-            </Link>
-        @else
-            <span
-                class="inline-flex items-center gap-x-1.5 py-1.5 px-3 rounded-full text-xs font-medium bg-red-500 text-white">{{ __('Unknown status') }}
-            </span>
-        @endif
-        @endcell--}}
+        @cell('title', $item)
+        <Link href="{{ route('panel.advertise.state', $item) }}" slideover>
+        <strong>{{$item->title}}</strong>
+        </Link>
+        @endcell
 
         <x-layout.panel.timestamps/>
 

@@ -54,6 +54,11 @@ class AdController extends Controller
         }else
             $data['pictures'] = [];
 
+        /* Published By State */
+        if ($request->has('state') && $request->input('state') == 1) {
+            $data['published_at'] = now();
+        }
+
         auth()->user()->ads()->create($data);
 
         Splade::toast(__('Created'))->autoDismiss(5)->success();
@@ -107,6 +112,11 @@ class AdController extends Controller
             $data['pictures'] = $ad->getPictures();
         }
 
+        /* Published By State */
+        if ($request->has('state') && $request->input('state') == 1 && is_null($ad->published_at)) {
+            $data['published_at'] = now();
+        }
+
         $ad->update($data);
 
         Splade::toast(__('Updated'))->autoDismiss(5)->info();
@@ -145,4 +155,13 @@ class AdController extends Controller
         }
         return $data;
     }
+
+    /******************
+     *  STATE
+     ******************/
+    public function state(Ad $ad)
+    {
+        return view('panel.advertise.ad.state', compact('ad'));
+    }
+
 }

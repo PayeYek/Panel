@@ -7,6 +7,7 @@
             :default="[
              'agreement' => 0,
              'exchange' => 0,
+             'state' => \App\Enum\AdvertiseStateEnum::APPROVED->value,
             ]"
             class="space-y-5">
 

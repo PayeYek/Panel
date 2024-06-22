@@ -60,7 +60,11 @@ Route::middleware(['splade'])->group(function () {
 
             /* Advertise */
             Route::prefix('advertise')->name('advertise.')->group(function () {
+                /* Ad */
                 Route::resource('ad', AdController::class)->except(['show']);
+                Route::get('ad/{ad}/state', [AdController::class,'state'])->name('state');
+
+                /* Category */
                 Route::resource('category', CategoryController::class)->except(['show']);
             });
 
