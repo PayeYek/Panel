@@ -39,14 +39,6 @@ class AdvertiseController extends Controller
         return responder()->success(Usage::all(), UsageTransformer::class)->respond();
     }
 
-    public function getCategories()
-    {
-        $categories = Category::with('children')
-            ->whereNull('parent_id') // Only fetch top-level categories
-            ->get();
-
-        return responder()->success($categories)->respond(); // Transforms from model
-    }
 
     public function getProvinces()
     {

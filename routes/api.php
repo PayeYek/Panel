@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\Advertise\AdController;
 use App\Http\Controllers\Api\Advertise\BookmarkController;
+use App\Http\Controllers\Api\Advertise\CategoryController;
 use App\Http\Controllers\Api\Advertise\PriceListController;
 use App\Http\Controllers\Api\Advertise\ProvinceController;
 use App\Http\Controllers\Api\Common\OtpController;
@@ -63,6 +64,9 @@ Route::prefix('ad')
             Route::get('provinces', 'getProvinces')->name('getProvinces');
             Route::get('cities/{province}', 'getCitiesByProvince')->name('getCities');
         });
+        Route::controller(CategoryController::class)->group(function () {
+            Route::get('categories', 'getCategories')->name('getCategories');
+        });
         Route::controller(AdController::class)->group(function () {
             Route::get('/list', 'getList')->name('getList');
             Route::get('/{advertise}', 'show')->name('showAdvertise');
@@ -71,7 +75,6 @@ Route::prefix('ad')
             Route::delete('/{advertise}', 'destroy')->name('destroyAdvertise')->middleware('auth:sanctum');
 
             Route::get('/{advertise}/mobile', 'getMobile')->name('getMobile')->middleware('auth:sanctum');
-            Route::get('categories', 'getCategories')->name('getCategories');
             Route::get('specifications/{usage}', 'getSpecificationsByUsage')->name('getSpecifications');
             Route::get('brand/list', 'getBrands')->name('brandList');
             Route::get('brand/{brand}/models', 'getModelByBrand')->name('brandModels');
