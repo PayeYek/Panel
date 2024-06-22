@@ -4,7 +4,7 @@
 
         <x-splade-form
             :default="$ad" method="put" :action="route('panel.advertise.ad.update', $ad)"
-            class="space-y-5">
+            class="!space-y-5">
 
             <x-layout.panel.form.card title="State">
 
