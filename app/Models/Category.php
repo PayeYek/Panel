@@ -53,4 +53,9 @@ class Category extends Model implements Transformable
     {
         return $this->hasMany(Ad::class);
     }
+
+    public function priceLists(): HasMany
+    {
+        return $this->hasMany(PriceList::class, 'category_id', 'id');
+    }
 }

@@ -2,7 +2,7 @@
 
 namespace App\Transformers;
 
-use App\Models\LandCategory;
+use App\Models\Category;
 use Flugg\Responder\Transformers\Transformer;
 
 class CategorizedPriceListTransformer extends Transformer
@@ -27,10 +27,10 @@ class CategorizedPriceListTransformer extends Transformer
     /**
      * Transform the model data.
      *
-     * @param LandCategory $category
+     * @param Category $category
      * @return array
      */
-    public function transform(LandCategory $category): array
+    public function transform(Category $category): array
     {
         return [
             'category_fa' => $category->title,
