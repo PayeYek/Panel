@@ -18,7 +18,7 @@ class AdRequest extends FormRequest
             // todo
             return [
                 //'user_id'      => 'required|numeric|exists:users,id',
-                'category_id' => 'required|numeric|exists:categories,id',
+                'category_id' => 'nullable|numeric|exists:categories,id',
                 'city_id'     => 'required|numeric|exists:province_cities,id',
                 'province_id' => 'required|numeric|exists:provinces,id',
                 'title'       => 'required|string|max:255',
@@ -40,7 +40,7 @@ class AdRequest extends FormRequest
 
             return [
                 //'user_id'      => 'required|numeric|exists:users,id',
-                'category_id' => 'required|numeric|exists:categories,id',
+                'category_id' => 'nullable|numeric|exists:categories,id',
                 'city_id'     => 'required|numeric|exists:province_cities,id',
                 'province_id' => 'required|numeric|exists:provinces,id',
                 'title'       => 'required|string|max:255',

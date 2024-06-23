@@ -25,8 +25,7 @@ class AdTable extends AbstractTable
                     $query
                         ->orWhere('title', 'LIKE', "%{$value}%")
                         ->orWhere('description', 'LIKE', "%{$value}%")
-                        ->orWhere('mobile', 'LIKE', "%{$value}%")
-                    ;
+                        ->orWhere('mobile', 'LIKE', "%{$value}%");
                 });
             });
         });
@@ -34,7 +33,7 @@ class AdTable extends AbstractTable
         return QueryBuilder::for(Ad::class)
             ->with(['category', 'user'])
             ->defaultSort('-id')
-            ->allowedSorts(['id', 'title', 'created_at', 'state'])
+            ->allowedSorts(['id', 'title', 'created_at', 'updated_at', 'published_at', 'state'])
             ->allowedFilters(['title', $globalSearch]);
     }
 
@@ -48,71 +47,61 @@ class AdTable extends AbstractTable
             label: __('Id'),
             hidden: true,
             sortable: true,
-        //searchable: true,
-        //highlight: true,
-        //exportAs: false,
+        //  searchable: true,
+        //  highlight: true,
+        //  exportAs: false,
         );
 
         $table->column(
             key: 'advertise',
             label: __('Advertise'),
-            //hidden: true,
-            //sortable: true,
-//            searchable: true,
-        //highlight: true,
-        //exportAs: false,
+        //  hidden: true,
+        //  sortable: true,
+        //  searchable: true,
+        //  highlight: true,
+        //  exportAs: false,
         );
 
         $table->column(
             key: 'title',
             label: __('Title'),
             hidden: true,
-            //sortable: true,
-            searchable: true,
-        //highlight: true,
-        //exportAs: false,
+        //  sortable: true,
+        //  searchable: true,
+        //  highlight: true,
+        //  exportAs: false,
         );
 
         $table->column(
             key: 'description',
             label: __('Description'),
             hidden: true,
-            //sortable: true,
-            searchable: true,
-        //highlight: true,
-        //exportAs: false,
+        //  sortable: true,
+        //  searchable: true,
+        //  highlight: true,
+        //  exportAs: false,
         );
 
 
         $table->column(
             key: 'state',
             label: __('State'),
-//            hidden: true,
+            //  hidden: true,
             sortable: true,
-//            searchable: true,
-//            highlight: true,
-        //exportAs: false,
+        //  searchable: true,
+        //  highlight: true,
+        //  exportAs: false,
         );
 
         $table->column(
             key: 'category.title',
             label: __('Category'),
-            //hidden: true,
-            //sortable: true,
-            searchable: true,
-        //highlight: true,
-        //exportAs: false,
+        //  hidden: true,
+        //  sortable: true,
+        //  searchable: true,
+        //  highlight: true,
+        //  exportAs: false,
         );
-
-//        $table->column(
-//            key: 'user.first_name',
-//            label: __('User'),
-//            //hidden: true,
-//            //sortable: true,
-//            searchable: true,
-//        //highlight: true,
-//        //exportAs: false,
-//        );
 
 
         $table->column(
@@ -120,9 +109,9 @@ class AdTable extends AbstractTable
             label: __('Publish date'),
             hidden: true,
             sortable: true,
-//            searchable: true,
-        //highlight: true,
-        //exportAs: false,
+        //  searchable: true,
+        //  highlight: true,
+        //  exportAs: false,
         );
 
         $table->column(
@@ -130,18 +119,18 @@ class AdTable extends AbstractTable
             label: __('Create date'),
             hidden: true,
             sortable: true,
-//            searchable: true,
-        //highlight: true,
-        //exportAs: false,
+        //  searchable: true,
+        //  highlight: true,
+        //  exportAs: false,
         );
         $table->column(
             key: 'updated_at',
             label: __('Update date'),
             hidden: true,
             sortable: true,
-//            searchable: true,
-        //highlight: true,
-        //exportAs: false,
+        //  searchable: true,
+        //  highlight: true,
+        //  exportAs: false,
         );
 
         /** Actions */
@@ -155,11 +144,11 @@ class AdTable extends AbstractTable
             //highlight: true,
             //classes: false,
             //alignment: 'right'
-            exportAs: false,
+            //exportAs: false,
         );
 
         /** Columns */
-        $table->paginate();
+        $table->paginate(50);
 
     }
 }
