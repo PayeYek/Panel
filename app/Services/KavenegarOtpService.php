@@ -35,9 +35,10 @@ class KavenegarOtpService implements OtpServiceInterface
         ]);
 
         if ($response->successful()) {
-//            $otpRequestsKey = 'otp_request_' . $mobile;
-//            Cache::increment($otpRequestsKey);
-//            Cache::put($otpRequestsKey, Cache::get($otpRequestsKey, 1), now()->addMinutes(config('services.otp.resend_delay'))); // Restrict for 2 minutes
+            /* todo for redis */
+            //$otpRequestsKey = 'otp_request_' . $mobile;
+            //Cache::increment($otpRequestsKey);
+            //Cache::put($otpRequestsKey, Cache::get($otpRequestsKey, 1), now()->addMinutes(config('services.otp.resend_delay'))); // Restrict for 2 minutes
             return true;
         }
         return false;

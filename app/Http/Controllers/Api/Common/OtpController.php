@@ -25,6 +25,7 @@ class OtpController extends Controller
         $user = User::firstOrCreate(['mobile' => $mobile]);
 
         $otpService = $this->otpServiceManager->getService();
+        /* get code */
         $otp = $otpService->generateOtp($mobile);
 
         if ($otpService->sendOtp($mobile, $otp)) {
@@ -97,6 +98,7 @@ class OtpController extends Controller
         return responder()->error(-1, 'Invalid OTP.')->respond(500);
     }
 
+    /* this for JWT */
     public function refreshToken(Request $request)
     {
         $request->validate([

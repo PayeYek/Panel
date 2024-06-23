@@ -24,9 +24,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+/* todo: set prefix*/
 
-Route::get('/user', [UserController::class, 'getUser'])->middleware('auth:sanctum');
-Route::get('/user/ads', [UserController::class, 'getMyAds'])->middleware('auth:sanctum');
+Route::get('/user', [UserController::class, 'getUser'])->middleware('auth:sanctum');/* Profile */
+Route::get('/user/ads', [UserController::class, 'getMyAds'])->middleware('auth:sanctum');/* User Ads */
 
 Route::get('/otp/request', [OtpController::class, 'requestOtp']);
 Route::get('/otp/verify', [OtpController::class, 'verifyOtp']);
@@ -36,16 +37,19 @@ Route::get('provinces', function () {
     return Province::get();
 });
 
+/* use in panel */
 Route::get('provinces/{provinceId}/cities', function ($provinceId) {
     $province = Province::with('cities')->find($provinceId);
     return $province->cities;
 });
 
+/* use in panel */
 Route::get('land/{landId}/products', function ($landId) {
     $land = Land::with('products')->find($landId);
     return $land->products()->latest()->get()->pluck('name', 'id');
 });
 
+/* for JWT */
 Route::group(['middleware' => ['auth:api', 'enforce.session']], function () {
     Route::get('/current-session', [SessionController::class, 'getCurrentSession']);
     Route::get('/all-sessions', [SessionController::class, 'getAllSessions']);
@@ -76,9 +80,9 @@ Route::prefix('ad')
             Route::delete('/{advertise}', 'destroy')->name('destroyAdvertise')->middleware('auth:sanctum');
 
             Route::get('/{advertise}/mobile', 'getMobile')->name('getMobile')->middleware('auth:sanctum');
-            Route::get('specifications/{usage}', 'getSpecificationsByUsage')->name('getSpecifications');
-            Route::get('brand/list', 'getBrands')->name('brandList');
-            Route::get('brand/{brand}/models', 'getModelByBrand')->name('brandModels');
+            //Route::get('specifications/{usage}', 'getSpecificationsByUsage')->name('getSpecifications');
+            //Route::get('brand/list', 'getBrands')->name('brandList');
+            //Route::get('brand/{brand}/models', 'getModelByBrand')->name('brandModels');
 
             Route::prefix('price')->name('price.')->controller(PriceListController::class)->group(function () {
                 Route::get('/categorized-list', 'getCategorizedList')->name('CategorizedList');

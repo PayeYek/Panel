@@ -30,8 +30,10 @@ class AdController extends Controller
 
         if ($categoryIds) {
             if (is_array($categoryIds)) {
+                /* for Array */
                 $query->whereIn('category_id', $categoryIds);
             } else {
+                /* for Single ID */
                 $query->where('category_id', $categoryIds);
             }
         }
@@ -81,6 +83,7 @@ class AdController extends Controller
         /* Get image */
         $data['image'] = null;
         if ($request->hasFile('image')) {
+            /*todo: $request->file('image')->store('media/ad', 'public');*/
             $data['image'] = $request->file('image')->store('media/ads/image', 'public');
         }
 
@@ -88,6 +91,7 @@ class AdController extends Controller
         $slides = $request->file('pictures', []);
         $data['pictures'] = [];
         foreach ($slides as $file) {
+            /* todo: $file->store('media/ad/more', 'public');*/
             $image = $file->store('media/ads/pictures', 'public');
             $data['pictures'][] = $image;
         }
@@ -109,6 +113,9 @@ class AdController extends Controller
     public function update(AdvertiseApiRequest $request, Ad $advertise)
     {
         $data = $request->validated();
+
+        /* todo: Edit state to pending */
+
 
         /* Update image */
         if ($request->hasFile('image')) {
@@ -144,12 +151,12 @@ class AdController extends Controller
     {
         try {
             /* Delete pictures */
-            foreach ($advertise->getPictures() as $pic) {
-                Storage::delete('public/' . $pic);
-            }
+            // foreach ($advertise->getPictures() as $pic) {
+            //     Storage::delete('public/' . $pic);
+            // }
 
             /* Delete image */
-            Storage::delete('public/' . $advertise->getImage());
+            // Storage::delete('public/' . $advertise->getImage());
 
             $advertise->delete();
             return responder()->success(['message' => 'Successfully deleted'])->respond();

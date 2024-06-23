@@ -22,7 +22,7 @@ class AdPreviewTransformer extends Transformer
             'image'         => $ad->image,
             'price'         => $ad->price,
             'city'          => $ad->city->name,
-            'state'         => __(AdvertiseStateEnum::PENDING->toString()),
+            'state'         => __(AdvertiseStateEnum::PENDING->toString()), // only for user preview
             'province'      => $ad->province->name,
             'agreement'     => $ad->agreement,
             'published_at'  => $ad->published_at,
