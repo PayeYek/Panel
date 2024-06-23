@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Api\Advertise;
 
-use App\Enum\AdvertiseStateEnum;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Panel\Advertise\AdvertiseApiRequest;
 use App\Models\Ad;
@@ -10,9 +9,7 @@ use App\Transformers\AdCardTransformer;
 use App\Transformers\AdPreviewTransformer;
 use App\Transformers\AdSingleTransformer;
 use Auth;
-use Carbon\Carbon;
 use Exception;
-use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\Storage;
 
 class AdController extends Controller
@@ -70,27 +67,7 @@ class AdController extends Controller
             });
         }
 
-        $ads = $query->get();
-
-        foreach ($ads as $ad) {
-            if ($ad->published_at && Carbon::parse($ad->published_at)->diffInMonths(Carbon::now()) >= 1) {
-                $ad->state = AdvertiseStateEnum::EXPIRED;
-                $ad->save();
-            }
-        }
-
-        $ads = $ads->filter(function ($ad) {
-            return $ad->state !== AdvertiseStateEnum::EXPIRED;
-        });
-
-        $currentPage = LengthAwarePaginator::resolveCurrentPage();
-        $ads = new LengthAwarePaginator(
-            $ads->forPage($currentPage, $perPage),
-            $ads->count(),
-            $perPage,
-            $currentPage,
-            ['path' => LengthAwarePaginator::resolveCurrentPath()]
-        );
+        $ads = $query->orderBy('published_at', 'desc')->paginate($perPage);
 
         return responder()->success($ads, AdCardTransformer::class)->respond();
     }
@@ -118,7 +95,7 @@ class AdController extends Controller
         try {
             $ad = Ad::create($data);
 //            return responder()->success($ad, AdPreviewTransformer::class)->respond();
-            return responder()->success(['message' => 'Stored successfully'])->respond();
+            return responder()->success(['message' => 'stored successfully'])->respond();
         } catch (Exception $e) {
             return responder()->error(-1, 'Can not store the advertise due to an unknown error.')->respond(500);
         }
