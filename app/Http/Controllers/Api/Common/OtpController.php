@@ -55,9 +55,11 @@ class OtpController extends Controller
 
             $user->tokens()->delete();
             $token = $user->createToken('authToken')->plainTextToken;
+            $tokenExpiry = now()->addMinutes(config('sanctum.expiration'));
 
             return responder()->success([
-                'token' => $token
+                'token'      => $token,
+                'expires_at' => $tokenExpiry
             ])->respond();
 
 
