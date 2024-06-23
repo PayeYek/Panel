@@ -58,8 +58,9 @@ class OtpController extends Controller
             $tokenExpiry = now()->addMinutes(config('sanctum.expiration'));
 
             return responder()->success([
-                'token'      => $token,
-                'expires_at' => $tokenExpiry
+                'token'       => $token,
+                'expires_at'  => $tokenExpiry,
+                'expires_min' => config('sanctum.expiration')
             ])->respond();
 
 
