@@ -31,7 +31,7 @@ class AdSingleTransformer extends Transformer
             'price'         => $ad->price,
             'agreement'     => $ad->agreement,
             'exchange'      => $ad->exchange,
-            'category'      => $ad->category == null ? 'سایر' : $ad->category->title,
+            'category'      => $ad->category == null ? __('Other') : $ad->category->title,
             'category_id'   => $ad->category == null ? null : $ad->category->id,
             'published_at'  => $ad->published_at,
             'state'         => __($ad->state->toString()),

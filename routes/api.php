@@ -24,7 +24,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-/* todo: set prefix*/
+/* todo: set prefix */
 
 Route::get('/user', [UserController::class, 'getUser'])->middleware('auth:sanctum');/* Profile */
 Route::get('/user/ads', [UserController::class, 'getMyAds'])->middleware('auth:sanctum');/* User Ads */
