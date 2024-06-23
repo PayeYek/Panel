@@ -58,4 +58,18 @@ class Category extends Model implements Transformable
     {
         return $this->hasMany(PriceList::class, 'category_id', 'id');
     }
+
+    public function getGrandChildrenGroupedByParent(): array
+    {
+        $children = $this->grandChildren()->get();
+        $response = [];
+
+        foreach ($children as $child) {
+            $response[$child->parent->title][] = [
+                'id'   => $child->id,
+                'title' => $child->title,
+            ];
+        }
+        return $response;
+    }
 }
