@@ -7,11 +7,8 @@ use App\Models\Category;
 
 class CategoryController extends Controller
 {
-    public function getCategories()
+    public function getCategories(Category $category)
     {
-        $categories = Category::grandChildren()
-            ->get();
-
-        return responder()->success($categories)->respond(); // Transforms from model
+        return responder()->success($category->getGrandChildrenGroupedByParent())->respond();
     }
 }
