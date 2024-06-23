@@ -4,6 +4,7 @@ namespace App\Transformers;
 
 use App\Models\Category;
 use Flugg\Responder\Transformers\Transformer;
+use Illuminate\Support\Str;
 
 class CategorizedPriceListTransformer extends Transformer
 {
@@ -34,7 +35,7 @@ class CategorizedPriceListTransformer extends Transformer
     {
         return [
             'category_fa' => $category->title,
-            'category_en' => __($category->title, [], 'en'),
+            'category_en' => Str::slug($category->title),
         ];
     }
 }
