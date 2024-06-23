@@ -38,6 +38,8 @@ class Ad extends Model
         'state'    => AdvertiseStateEnum::class,
     ];
 
+    protected $dates = ['published_at'];
+
     protected static function boot(): void
     {
         parent::boot();

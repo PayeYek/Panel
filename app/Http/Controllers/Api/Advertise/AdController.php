@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api\Advertise;
 
+use App\Enum\AdvertiseStateEnum;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Panel\Advertise\AdvertiseApiRequest;
 use App\Models\Ad;
@@ -9,7 +10,9 @@ use App\Transformers\AdCardTransformer;
 use App\Transformers\AdPreviewTransformer;
 use App\Transformers\AdSingleTransformer;
 use Auth;
+use Carbon\Carbon;
 use Exception;
+use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\Storage;
 
 class AdController extends Controller
@@ -30,10 +33,8 @@ class AdController extends Controller
 
         if ($categoryIds) {
             if (is_array($categoryIds)) {
-                /* for Array */
                 $query->whereIn('category_id', $categoryIds);
             } else {
-                /* for Single ID */
                 $query->where('category_id', $categoryIds);
             }
         }
@@ -69,7 +70,27 @@ class AdController extends Controller
             });
         }
 
-        $ads = $query->orderBy('published_at', 'desc')->paginate($perPage);
+        $ads = $query->get();
+
+        foreach ($ads as $ad) {
+            if ($ad->published_at && Carbon::parse($ad->published_at)->diffInMonths(Carbon::now()) >= 1) {
+                $ad->state = AdvertiseStateEnum::EXPIRED;
+                $ad->save();
+            }
+        }
+
+        $ads = $ads->filter(function ($ad) {
+            return $ad->state !== AdvertiseStateEnum::EXPIRED;
+        });
+
+        $currentPage = LengthAwarePaginator::resolveCurrentPage();
+        $ads = new LengthAwarePaginator(
+            $ads->forPage($currentPage, $perPage),
+            $ads->count(),
+            $perPage,
+            $currentPage,
+            ['path' => LengthAwarePaginator::resolveCurrentPath()]
+        );
 
         return responder()->success($ads, AdCardTransformer::class)->respond();
     }
@@ -83,22 +104,21 @@ class AdController extends Controller
         /* Get image */
         $data['image'] = null;
         if ($request->hasFile('image')) {
-            /*todo: $request->file('image')->store('media/ad', 'public');*/
-            $data['image'] = $request->file('image')->store('media/ads/image', 'public');
+            $data['image'] = $request->file('image')->store('media/ad', 'public');
         }
 
         /* Get pictures */
         $slides = $request->file('pictures', []);
         $data['pictures'] = [];
         foreach ($slides as $file) {
-            /* todo: $file->store('media/ad/more', 'public');*/
-            $image = $file->store('media/ads/pictures', 'public');
+            $image = $file->store('media/ad/more', 'public');
             $data['pictures'][] = $image;
         }
 
         try {
             $ad = Ad::create($data);
-            return responder()->success($ad, AdPreviewTransformer::class)->respond();
+//            return responder()->success($ad, AdPreviewTransformer::class)->respond();
+            return responder()->success(['message' => 'Stored successfully'])->respond();
         } catch (Exception $e) {
             return responder()->error(-1, 'Can not store the advertise due to an unknown error.')->respond(500);
         }
@@ -120,7 +140,7 @@ class AdController extends Controller
         /* Update image */
         if ($request->hasFile('image')) {
             Storage::delete('public/' . $advertise->getImage());
-            $data['image'] = $request->file('image')->store('media/ads/image', 'public');
+            $data['image'] = $request->file('image')->store('media/ad', 'public');
         } else {
             $data['image'] = $advertise->getImage();
         }
@@ -133,7 +153,7 @@ class AdController extends Controller
 
             $data['pictures'] = [];
             foreach ($request->file('pictures') as $file) {
-                $data['pictures'][] = $file->store('media/ads/pictures', 'public');
+                $data['pictures'][] = $file->store('media/ad/more', 'public');
             }
         } else {
             $data['pictures'] = $advertise->getPictures();
