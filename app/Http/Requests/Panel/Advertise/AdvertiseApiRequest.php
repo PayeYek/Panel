@@ -18,7 +18,7 @@ class AdvertiseApiRequest extends FormRequest
             return [
                 'title'       => 'required|string|max:255',
                 'description' => 'required|string',
-                'image'       => 'nullable',
+                'image'       => 'required|image|mimes:jpg,jpeg,png,webp|max:2048',
                 'pictures'    => 'nullable|array',
                 'pictures.*'  => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
                 'province_id' => 'required|numeric|exists:provinces,id',

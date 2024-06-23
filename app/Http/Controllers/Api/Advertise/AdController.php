@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Api\Advertise;
 
-use App\Enum\AdvertiseStateEnum;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Panel\Advertise\AdvertiseApiRequest;
 use App\Models\Ad;
@@ -19,8 +18,8 @@ class AdController extends Controller
     {
         $perPage = request('perPage') ?? 10;
         $keyword = request('keyword');
-        $categoryId = request('category_id');
-        $provinceId = request('province_id');
+        $categoryIds = request('category_id');
+        $provinceIds = request('province_id');
         $minPrice = request('min_price');
         $maxPrice = request('max_price');
         $agreement = request('agreement');
@@ -29,12 +28,20 @@ class AdController extends Controller
         $query = Ad::with(['city.province', 'category'])
             ->approved();
 
-        if ($categoryId) {
-            $query->where('category_id', $categoryId);
+        if ($categoryIds) {
+            if (is_array($categoryIds)) {
+                $query->whereIn('category_id', $categoryIds);
+            } else {
+                $query->where('category_id', $categoryIds);
+            }
         }
 
-        if ($provinceId) {
-            $query->where('province_id', $provinceId);
+        if ($provinceIds) {
+            if (is_array($provinceIds)) {
+                $query->whereIn('province_id', $provinceIds);
+            } else {
+                $query->where('province_id', $provinceIds);
+            }
         }
 
         if ($minPrice !== null && $maxPrice !== null) {
@@ -63,17 +70,6 @@ class AdController extends Controller
         $ads = $query->orderBy('published_at', 'desc')->paginate($perPage);
 
         return responder()->success($ads, AdCardTransformer::class)->respond();
-    }
-
-    public function getListOld()
-    {
-        $perPage = request('perPage') ?? 10;
-        $ad = Ad::with(['city.province', 'category'])
-            ->where('state', AdvertiseStateEnum::APPROVED)
-            ->orderBy('published_at', 'desc')
-            ->paginate($perPage);
-
-        return responder()->success($ad, AdCardTransformer::class)->respond();
     }
 
     public function submit(AdvertiseApiRequest $request)
