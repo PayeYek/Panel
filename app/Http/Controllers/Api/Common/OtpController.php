@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\Common;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Services\OtpServiceManager;
+use Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Laravel\Passport\Client;
@@ -119,5 +120,17 @@ class OtpController extends Controller
         ]);
 
         return response()->json(json_decode((string)$response->getBody(), true));
+    }
+
+    public function logout()
+    {
+        $user = Auth::user();
+        $token = $user->currentAccessToken();
+
+        $token->delete();
+
+        return responder()->success([
+            'message' => 'Logged out successfully.'
+        ])->respond();
     }
 }

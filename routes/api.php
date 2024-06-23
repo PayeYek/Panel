@@ -32,6 +32,7 @@ Route::get('/user/ads', [UserController::class, 'getMyAds'])->middleware('auth:s
 Route::get('/otp/request', [OtpController::class, 'requestOtp']);
 Route::get('/otp/verify', [OtpController::class, 'verifyOtp']);
 Route::post('/otp/refresh', [OtpController::class, 'refreshToken']);
+Route::get('/logout', [OtpController::class, 'logout'])->middleware('auth:sanctum');
 
 Route::get('provinces', function () {
     return Province::get();
