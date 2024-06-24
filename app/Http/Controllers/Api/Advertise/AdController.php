@@ -78,7 +78,6 @@ class AdController extends Controller
         return responder()->success($ads, AdCardTransformer::class)->respond();
     }
 
-
     public function search()
     {
         $search = request('search');
@@ -156,7 +155,7 @@ class AdController extends Controller
     {
         $data = $request->validated();
 
-        /* todo: Edit state to pending */
+        /* todo: Edit state to pending when update */
 
 
         /* Update image */

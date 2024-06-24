@@ -25,6 +25,7 @@ class BookmarkController extends Controller
         ]);
 
         $user = Auth::user();
+
         $adId = $request->input('ad_id');
 
         $bookmark = Bookmark::where('user_id', $user->id)
