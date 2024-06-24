@@ -7,7 +7,6 @@ use App\Http\Requests\Panel\Advertise\AdvertiseApiRequest;
 use App\Models\Ad;
 use App\Transformers\AdCardTransformer;
 use App\Transformers\AdPreviewTransformer;
-use App\Transformers\AdSearchTransformer;
 use App\Transformers\AdSingleTransformer;
 use Auth;
 use Exception;
@@ -26,7 +25,7 @@ class AdController extends Controller
         $agreement = request('agreement');
         $exchange = request('exchange');
 
-        $query = Ad::with(['city.province', 'province', 'category'])
+        $query = Ad::with(['city.province', 'category'])
             ->approved();
 
         //  if ($categoryIds) {
@@ -83,17 +82,38 @@ class AdController extends Controller
     public function search()
     {
         $search = request('search');
-        $ads = Ad::with(['city.province', 'category'])
+        $ads = Ad::with(['category.parent'])
             ->where('title', 'like', "%{$search}%")
             ->orWhere('description', 'like', "%{$search}%")
             ->get();
 
+        /* // Only Categories
+         $categoriesWithCount = $ads->groupBy('category_id')->map(function ($group) {
+            return [
+                'category_id' => $group->first()->category->id,
+                'category_title' => $group->first()->category->title,
+                'count' => $group->count(),
+            ];
+        })->values();
+        */
 
-        $ads = $ads->map(function ($ad) {
-            return $ad->category->title;
+        $groupedAds = $ads->groupBy('category.parent_id')->map(function ($group) {
+            $parentCategory = $group->first()->category->parent;
+            $children = $group->groupBy('category_id')->map(function ($subGroup) {
+                return [
+                    'category_id'    => $subGroup->first()->category->id,
+                    'category_title' => $subGroup->first()->category->title,
+                    'count'          => $subGroup->count(),
+                ];
+            });
+
+            return [
+                'parent_category' => $parentCategory ? $parentCategory->title : 'بدون پدر',
+                'children'        => $children->values()
+            ];
         });
-//        return $ads;
-        return responder()->success($ads, AdSearchTransformer::class)->respond();
+
+        return responder()->success($groupedAds->values())->respond();
 
     }
 
