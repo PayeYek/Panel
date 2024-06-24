@@ -7,6 +7,7 @@ use App\Http\Requests\Panel\Advertise\AdvertiseApiRequest;
 use App\Models\Ad;
 use App\Transformers\AdCardTransformer;
 use App\Transformers\AdPreviewTransformer;
+use App\Transformers\AdSearchTransformer;
 use App\Transformers\AdSingleTransformer;
 use Auth;
 use Exception;
@@ -25,24 +26,30 @@ class AdController extends Controller
         $agreement = request('agreement');
         $exchange = request('exchange');
 
-        $query = Ad::with(['city.province', 'category'])
+        $query = Ad::with(['city.province', 'province', 'category'])
             ->approved();
 
-        if ($categoryIds) {
-            if (is_array($categoryIds)) {
-                $query->whereIn('category_id', $categoryIds);
-            } else {
-                $query->where('category_id', $categoryIds);
-            }
-        }
+        //  if ($categoryIds) {
+        //      if (is_array($categoryIds)) {
+        //          $query->whereIn('category_id', $categoryIds);
+        //      } else {
+        //          $query->where('category_id', $categoryIds);
+        //      }
+        //  }
+        if ($categoryIds)
+            $query->whereIn('category_id', explode(',', $categoryIds));
 
-        if ($provinceIds) {
-            if (is_array($provinceIds)) {
-                $query->whereIn('province_id', $provinceIds);
-            } else {
-                $query->where('province_id', $provinceIds);
-            }
-        }
+
+        //if ($provinceIds) {
+        //    if (is_array($provinceIds)) {
+        //        $query->whereIn('province_id', $provinceIds);
+        //    } else {
+        //        $query->where('province_id', $provinceIds);
+        //    }
+        //}
+
+        if ($provinceIds)
+            $query->whereIn('province_id', explode(',', $provinceIds));
 
         if ($minPrice !== null && $maxPrice !== null) {
             $query->whereBetween('price', [$minPrice, $maxPrice]);
@@ -70,6 +77,24 @@ class AdController extends Controller
         $ads = $query->orderBy('published_at', 'desc')->paginate($perPage);
 
         return responder()->success($ads, AdCardTransformer::class)->respond();
+    }
+
+
+    public function search()
+    {
+        $search = request('search');
+        $ads = Ad::with(['city.province', 'category'])
+            ->where('title', 'like', "%{$search}%")
+            ->orWhere('description', 'like', "%{$search}%")
+            ->get();
+
+
+        $ads = $ads->map(function ($ad) {
+            return $ad->category->title;
+        });
+//        return $ads;
+        return responder()->success($ads, AdSearchTransformer::class)->respond();
+
     }
 
     public function submit(AdvertiseApiRequest $request)

@@ -24,7 +24,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-/* todo: set prefix */
+/* todo: reset prefix and clean routes */
 
 Route::get('/user', [UserController::class, 'getUser'])->middleware('auth:sanctum');/* Profile */
 Route::get('/user/ads', [UserController::class, 'getMyAds'])->middleware('auth:sanctum');/* User Ads */
@@ -73,6 +73,7 @@ Route::prefix('ad')
             Route::get('categories', 'getCategories')->name('getCategories');
         });
         Route::controller(AdController::class)->group(function () {
+            Route::get('/search', 'search')->name('search');
             Route::get('/list', 'getList')->name('getList');
             Route::get('/price-range', 'getPriceRange')->name('getPriceRange');
             Route::post('submit', 'submit')->name('submitAdvertise')->middleware('auth:sanctum');
