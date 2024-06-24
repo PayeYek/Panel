@@ -111,5 +111,6 @@ class Kernel extends HttpKernel
         'throttle.otp'       => ThrottleOtpRequests::class,
         'throttle.login'     => ThrottleLoginAttempts::class,
         'enforce.session'    => EnforceSingleDeviceSession::class,
+        'auth.get_user_and_guest' => \App\Http\Middleware\ApiAccessForUserAndGuest::class,
     ];
 }
