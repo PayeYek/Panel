@@ -42,9 +42,8 @@ class AdSingleTransformer extends Transformer
 
     protected function isBookmarked($adId): bool
     {
-
-        if (Auth::check()) {
-            return Bookmark::where('user_id', Auth::id())
+        if (Auth::guard('sanctum')->check()) {
+            return Bookmark::where('user_id', Auth::guard('sanctum')->user()->id)
                 ->where('ad_id', $adId)
                 ->exists();
         }

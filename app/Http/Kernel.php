@@ -73,11 +73,11 @@ class Kernel extends HttpKernel
         ],
 
         'api' => [
-            // \Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::class,
+//             \Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::class,
 //            ThrottleRequests::class . ':api', //Todo uncomment to using passport
             SubstituteBindings::class,
-            EnsureFrontendRequestsAreStateful::class, //Todo delete to using passport
-            'throttle:api', //Todo delete to using passport
+//            EnsureFrontendRequestsAreStateful::class, //Todo delete to using passport
+//            'throttle:api', //Todo delete to using passport
         ],
     ];
 
@@ -111,6 +111,5 @@ class Kernel extends HttpKernel
         'throttle.otp'       => ThrottleOtpRequests::class,
         'throttle.login'     => ThrottleLoginAttempts::class,
         'enforce.session'    => EnforceSingleDeviceSession::class,
-        'auth.get_user_and_guest' => \App\Http\Middleware\ApiAccessForUserAndGuest::class,
     ];
 }

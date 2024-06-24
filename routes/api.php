@@ -78,7 +78,7 @@ Route::prefix('ad')
             Route::get('/price-range', 'getPriceRange')->name('getPriceRange');
             Route::post('submit', 'submit')->name('submitAdvertise')->middleware('auth:sanctum');
             Route::put('update/{advertise}', 'update')->name('updateAdvertise')->middleware('auth:sanctum');
-            Route::get('/{advertise}', 'show')->name('showAdvertise')->middleware('auth.get_user_and_guest');
+            Route::get('/{advertise}', 'show')->name('showAdvertise');
             Route::delete('/{advertise}', 'destroy')->name('destroyAdvertise')->middleware('auth:sanctum');
 
             Route::get('/{advertise}/mobile', 'getMobile')->name('getMobile')->middleware('auth:sanctum');
