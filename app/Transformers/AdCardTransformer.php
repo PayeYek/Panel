@@ -24,6 +24,7 @@ class AdCardTransformer extends Transformer
             'state'         => __($ad->state->toString()),
             'province'      => $ad->province->name,
             'agreement'     => $ad->agreement,
+            'exchange'     => $ad->exchange,
             'published_at'  => $ad->published_at,
             'bookmarked'    => $this->isBookmarked($ad->id),
         ];
@@ -31,11 +32,12 @@ class AdCardTransformer extends Transformer
 
     protected function isBookmarked($adId): bool
     {
-        if (Auth::check()) {
-            return Bookmark::where('user_id', Auth::id())
-                ->where('ad_id', $adId)
-                ->exists();
-        }
         return false;
+        //if (Auth::check()) {
+        //    return Bookmark::where('user_id', Auth::id())
+        //        ->where('ad_id', $adId)
+        //        ->exists();
+        //}
+        //return false;
     }
 }
