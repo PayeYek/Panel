@@ -16,7 +16,7 @@ class AdController extends Controller
 {
     public function getList()
     {
-        $perPage = request('perPage') ?? 24;
+        $perPage = request('perPage') ?? 44;
         $keyword = request('keyword');
         $categoryIds = request('category_id');
         $provinceIds = request('province_id');
