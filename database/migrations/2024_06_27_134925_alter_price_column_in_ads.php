@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('ads', function (Blueprint $table) {
-            $table->unsignedBigInteger('price')->change();
+            $table->unsignedBigInteger('price')->default(0)->change();
         });
     }
 
@@ -22,7 +22,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('ads', function (Blueprint $table) {
-            $table->string('price', 255)->default('0')->change();
+            $table->unsignedBigInteger('price')->change();
         });
     }
 };
