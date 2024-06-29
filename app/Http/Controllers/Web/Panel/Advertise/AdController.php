@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Web\Panel\Advertise;
 
+use App\Enum\AdvertiseStateEnum;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Panel\Advertise\AdRequest;
 use App\Models\Ad;
