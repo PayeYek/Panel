@@ -45,6 +45,20 @@ class Category extends Model implements Transformable
         return $query->whereHas('parent.parent');
     }
 
+    public function getGrandChildrenGroupedByParent(): array
+    {
+        $children = $this->grandChildren()->get();
+        $response = [];
+
+        foreach ($children as $child) {
+            $response[$child->parent->title][] = [
+                'id'   => $child->id,
+                'title' => $child->title,
+            ];
+        }
+        return $response;
+    }
+
     /**-------------------------***
      * Relationships
      * --------------------------*/
@@ -59,17 +73,9 @@ class Category extends Model implements Transformable
         return $this->hasMany(PriceList::class, 'category_id', 'id');
     }
 
-    public function getGrandChildrenGroupedByParent(): array
+    public function notices(): HasMany
     {
-        $children = $this->grandChildren()->get();
-        $response = [];
-
-        foreach ($children as $child) {
-            $response[$child->parent->title][] = [
-                'id'   => $child->id,
-                'title' => $child->title,
-            ];
-        }
-        return $response;
+        return $this->hasMany(Notice::class);
     }
+
 }

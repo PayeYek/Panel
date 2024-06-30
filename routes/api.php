@@ -94,9 +94,21 @@ Route::prefix('ad')
     });
 
 Route::prefix('ad')->name('ad.')->group(function () {
+    /* Note */
     Route::prefix('note')->name('note.')->controller(\App\Http\Controllers\Api\Advertise\NoteController::class)->group(function () {
         Route::post('write', 'write')->name('write');
     });
+
+    /* Feedback */
+    Route::prefix('feedback')->name('feedback.')->controller(\App\Http\Controllers\Api\Advertise\FeedbackController::class)->group(function () {
+        Route::post('liked', 'liked')->name('liked');
+    });
+});
+
+
+Route::prefix('user')->name('user.')->controller(\App\Http\Controllers\Api\User\UserController::class)->group(function () {
+    /* Note list */
+    Route::get('notes',  'notes')->name('notes');
 });
 
 Route::prefix('l')
