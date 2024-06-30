@@ -4,6 +4,7 @@ namespace App\Transformers;
 
 use App\Models\Ad;
 use App\Models\Bookmark;
+use App\Models\Note;
 use Flugg\Responder\Transformers\Transformer;
 use Illuminate\Support\Facades\Auth;
 
@@ -15,6 +16,8 @@ class AdSingleTransformer extends Transformer
     public function transform(Ad $ad): array
     {
         $bookmarked = $this->isBookmarked($ad->id);
+
+        $note = $this->getUserNoteOnAd($ad->id);
 
         $relatedAds = $this->getRelatedAds($ad);
 
@@ -35,9 +38,20 @@ class AdSingleTransformer extends Transformer
             'category_id'   => $ad->category == null ? null : $ad->category->id,
             'published_at'  => $ad->published_at,
             'state'         => __($ad->state->toString()),
+            'note'          => $note,
             'related'       => $relatedAds,
             'bookmarked'    => $bookmarked
         ];
+    }
+
+    protected function getUserNoteOnAd($adId): string
+    {
+        if (Auth::guard('sanctum')->check()) {
+            $userId = Auth::guard('sanctum')->user()->id;
+
+            return Note::where('user_id', $userId)->where('ad_id', $adId)->first()->text;
+        }
+        return '';
     }
 
     protected function isBookmarked($adId): bool
