@@ -93,6 +93,12 @@ Route::prefix('ad')
         });
     });
 
+Route::prefix('ad')->name('ad.')->group(function () {
+    Route::prefix('note')->name('note.')->controller(\App\Http\Controllers\Api\Advertise\NoteController::class)->group(function () {
+        Route::post('write', 'write')->name('write');
+    });
+});
+
 Route::prefix('l')
     ->name('api.landing.')
     ->controller(LandingApiController::class)
