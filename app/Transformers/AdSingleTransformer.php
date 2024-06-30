@@ -4,6 +4,7 @@ namespace App\Transformers;
 
 use App\Models\Ad;
 use App\Models\Bookmark;
+use App\Models\Feedback;
 use App\Models\Note;
 use Flugg\Responder\Transformers\Transformer;
 use Illuminate\Support\Facades\Auth;
@@ -18,6 +19,8 @@ class AdSingleTransformer extends Transformer
         $bookmarked = $this->isBookmarked($ad->id);
 
         $note = $this->getUserNoteOnAd($ad->id);
+
+        $feedback = $this->getUserFeedbackOnAd($ad->id);
 
         $relatedAds = $this->getRelatedAds($ad);
 
@@ -39,8 +42,9 @@ class AdSingleTransformer extends Transformer
             'published_at'  => $ad->published_at,
             'state'         => __($ad->state->toString()),
             'note'          => $note,
+            'bookmarked'    => $bookmarked,
+            'feedback'    => $feedback,
             'related'       => $relatedAds,
-            'bookmarked'    => $bookmarked
         ];
     }
 
@@ -52,6 +56,17 @@ class AdSingleTransformer extends Transformer
             return Note::where('user_id', $userId)->where('ad_id', $adId)->first()->text;
         }
         return '';
+    }
+
+
+    protected function getUserFeedbackOnAd($adId)
+    {
+        if (Auth::guard('sanctum')->check()) {
+            $userId = Auth::guard('sanctum')->user()->id;
+
+            return Feedback::where('user_id', $userId)->where('ad_id', $adId)->first(['liked', 'text']);
+        }
+        return [];
     }
 
     protected function isBookmarked($adId): bool
