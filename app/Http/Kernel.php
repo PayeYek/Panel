@@ -30,7 +30,6 @@ use Illuminate\Routing\Middleware\ThrottleRequests;
 use Illuminate\Session\Middleware\AuthenticateSession;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
-use Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful;
 use ProtoneMedia\Splade\Http\SpladeMiddleware;
 use Spatie\Permission\Middleware\PermissionMiddleware;
 use Spatie\Permission\Middleware\RoleMiddleware;
@@ -73,7 +72,7 @@ class Kernel extends HttpKernel
         ],
 
         'api' => [
-//             \Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::class,
+             \Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::class,
 //            ThrottleRequests::class . ':api', //Todo uncomment to using passport
             SubstituteBindings::class,
 //            EnsureFrontendRequestsAreStateful::class, //Todo delete to using passport
