@@ -101,6 +101,11 @@ class Ad extends Model
         return $this->hasMany(Feedback::class);
     }
 
+    public function reports(): HasMany
+    {
+        return $this->hasMany(Report::class);
+    }
+
     /**-------------------------***
      * File handler
      * --------------------------*/

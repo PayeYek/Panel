@@ -103,6 +103,11 @@ Route::prefix('ad')->name('ad.')->group(function () {
     Route::prefix('feedback')->name('feedback.')->controller(\App\Http\Controllers\Api\Advertise\FeedbackController::class)->group(function () {
         Route::post('liked', 'liked')->name('liked');
     });
+
+    /* Report */
+    Route::prefix('report')->name('report.')->controller(\App\Http\Controllers\Api\Advertise\ReportController::class)->group(function () {
+        Route::post('send', 'send')->name('send');
+    });
 });
 
 
