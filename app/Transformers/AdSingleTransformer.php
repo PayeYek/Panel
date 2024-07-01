@@ -58,8 +58,8 @@ class AdSingleTransformer extends Transformer
     {
         if (Auth::guard('sanctum')->check()) {
             $userId = Auth::guard('sanctum')->user()->id;
-
-            return Note::where('user_id', $userId)->where('ad_id', $adId)->first()->text;
+            $note = Note::where('user_id', $userId)->where('ad_id', $adId)->first();
+            return $note?->text ?? '';
         }
         return '';
     }
