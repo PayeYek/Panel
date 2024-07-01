@@ -72,11 +72,15 @@ class Kernel extends HttpKernel
         ],
 
         'api' => [
-             \Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::class,
-//            ThrottleRequests::class . ':api', //Todo uncomment to using passport
-            SubstituteBindings::class,
-//            EnsureFrontendRequestsAreStateful::class, //Todo delete to using passport
-//            'throttle:api', //Todo delete to using passport
+            \Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::class,
+            \Illuminate\Routing\Middleware\ThrottleRequests::class.':api',
+            \Illuminate\Routing\Middleware\SubstituteBindings::class,
+
+//             \Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::class,
+////            ThrottleRequests::class . ':api', //Todo uncomment to using passport
+//            SubstituteBindings::class,
+////            EnsureFrontendRequestsAreStateful::class, //Todo delete to using passport
+////            'throttle:api', //Todo delete to using passport
         ],
     ];
 
