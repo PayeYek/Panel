@@ -16,17 +16,17 @@ class AdSingleTransformer extends Transformer
 
     public function transform(Ad $ad): array
     {
-//        $bookmarked = $this->isBookmarked($ad->id);
+        $bookmarked = $this->isBookmarked($ad->id);
+
+        $note = $this->getUserNoteOnAd($ad->id);
+
+        $feedback = $this->getUserFeedbackOnAd($ad->id);
+
+//        $bookmarked = false;
 //
-//        $note = $this->getUserNoteOnAd($ad->id);
+//        $note = '';
 //
-//        $feedback = $this->getUserFeedbackOnAd($ad->id);
-
-        $bookmarked = false;
-
-        $note = '';
-
-        $feedback = [];
+//        $feedback = [];
 
         $relatedAds = $this->getRelatedAds($ad);
 
