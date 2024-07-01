@@ -25,14 +25,13 @@ class FeedbackController extends Controller
         $feedback = Feedback::where('ad_id', $adId)->where('user_id', $userId)->first();
 
         if ($feedback) {
-            return $this->successResponse([
-                'liked' => $feedback->liked,
-                'text' => $feedback->text
-            ]);
+            return $this->successResponse(
+                ['message' => __('Your feedback is already registered.')]
+            );
         }
 
         $data = $request->validated();
-        $data['user_id']= $userId;
+        $data['user_id'] = $userId;
 
         Feedback::create($data);
 
