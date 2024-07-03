@@ -32,25 +32,84 @@ class AdController extends Controller
 
 
     /**-------------------------***
+     * Mobile call number in the ad todo ----------------------
+     * --------------------------*/
+    public function similar($ad)
+    {
+        try {
+            // Attempt to find the advertisement using the provided ID
+            $ad = Ad::findOrFail($ad);
+
+            $relatedAds = Ad::with(['city', 'province', 'category'])
+                ->approved()
+                ->where('category_id', $ad->category_id)
+                ->where('id', '!=', $ad->id)
+                ->orderByDesc('published_at')
+                ->take(4)
+                ->get();
+
+            $remainingCount = 4 - $relatedAds->count();
+            if ($remainingCount > 0) {
+                $additionalAds = Ad::with(['city', 'province', 'category'])
+                    ->approved()
+                    ->where('id', '!=', $ad->id)
+                    ->orderByDesc('published_at')
+                    ->take($remainingCount)
+                    ->get();
+
+                $relatedAds = $relatedAds->merge($additionalAds);
+            }
+
+            return $relatedAds->map(function ($relatedAd) {
+                return [
+                    'id'           => $relatedAd->id,
+                    'title'        => $relatedAd->title,
+                    'image'        => $relatedAd->image,
+                    'price'        => $relatedAd->price,
+                    'city'         => $relatedAd->city->name,
+                    'province'     => $relatedAd->province->name,
+                    'agreement'    => $relatedAd->agreement,
+                    'published_at' => $relatedAd->published_at,
+                    'bookmarked'   => $this->isBookmarked($relatedAd->id),
+                ];
+            })->toArray();
+
+            return responder()->success(['mobile' => $ad->mobile])->respond();
+        } catch (ModelNotFoundException $e) {
+            // If the advertisement is not found, return an error response with a custom message and an appropriate status code
+            return $this->errorResponse(__('There is no advertisement with this ID!'), ResponseAlias::HTTP_NOT_FOUND);
+        }
+    }
+
+
+    /**-------------------------***
      * Mobile call number in the ad
      * --------------------------*/
-    public function mobile(Ad $ad)
+    public function mobile($ad)
     {
-        // Retrieve the authenticated user
-        $user = Auth::guard('sanctum')->user();
+        try {
+            // Attempt to find the advertisement using the provided ID
+            $ad = Ad::findOrFail($ad);
 
-        // Check if the user is authenticated
-        if (!$user) {
-            return $this->errorResponse(__('Please login to your account first.'), ResponseAlias::HTTP_UNAUTHORIZED);
+            // Retrieve the authenticated user
+            $user = Auth::guard('sanctum')->user();
+
+            // Check if the user is authenticated
+            if (!$user) {
+                return $this->errorResponse(__('Please login to your account first.'), ResponseAlias::HTTP_UNAUTHORIZED);
+            }
+
+            AdStatistic::create([
+                'ad_id'   => $ad->id,
+                'user_id' => $user->id,
+                'action'  => AdStatisticActionEnum::CALL
+            ]);
+
+            return responder()->success(['mobile' => $ad->mobile])->respond();
+        } catch (ModelNotFoundException $e) {
+            // If the advertisement is not found, return an error response with a custom message and an appropriate status code
+            return $this->errorResponse(__('There is no advertisement with this ID!'), ResponseAlias::HTTP_NOT_FOUND);
         }
-
-        AdStatistic::create([
-            'ad_id'   => $ad->id,
-            'user_id' => $user->id,
-            'action'  => AdStatisticActionEnum::CALL
-        ]);
-
-        return responder()->success(['mobile' => $ad->mobile])->respond();
     }
 
 

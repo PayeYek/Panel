@@ -84,8 +84,8 @@ class AdSingleTransformer extends Transformer
     protected function getUserFeedbackOnAd($adId, $userId = null)
     {
         return $userId
-            ? Feedback::where('user_id', $userId)->where('ad_id', $adId)->first(['liked', 'text']) ?? []
-            : [];
+            ? Feedback::where('user_id', $userId)->where('ad_id', $adId)->first(['liked', 'text']) ?? null
+            : null;
 
 //        if ($userId) {
 //            return Feedback::where('user_id', $userId)->where('ad_id', $adId)->first(['liked', 'text'])?? [];
