@@ -45,9 +45,23 @@ class Category extends Model implements Transformable
         return $query->whereHas('parent.parent');
     }
 
-    public function getGrandChildrenGroupedByParent(): array
+    //public function getGrandChildrenGroupedByParent(): array
+    //{
+    //    $children = $this->grandChildren()->get();
+    //    $response = [];
+    //
+    //    foreach ($children as $child) {
+    //        $response[$child->parent->title][] = [
+    //            'id'   => $child->id,
+    //            'title' => $child->title,
+    //        ];
+    //    }
+    //    return $response;
+    //}
+
+    public static function grandChildrenGroupedByParent()
     {
-        $children = $this->grandChildren()->get();
+        $children = self::grandChildren()->get();
         $response = [];
 
         foreach ($children as $child) {
@@ -58,7 +72,6 @@ class Category extends Model implements Transformable
         }
         return $response;
     }
-
     /**-------------------------***
      * Relationships
      * --------------------------*/

@@ -1,13 +1,12 @@
 <?php
 
-namespace App\Transformers;
+namespace App\Transformers\v1;
 
 use App\Models\Ad;
 use App\Models\AdStatistic;
 use App\Models\Bookmark;
 use App\Models\Feedback;
 use App\Models\Note;
-use App\Models\RecentView;
 use App\Models\Report;
 use Flugg\Responder\Transformers\Transformer;
 use Illuminate\Support\Facades\Auth;
@@ -19,10 +18,6 @@ class AdSingleTransformer extends Transformer
 
     public function transform(Ad $ad): array
     {
-        // $userId =
-        //     Auth::guard('sanctum')->check() ?
-        //         Auth::guard('sanctum')->user()->id : null;
-
         /* User or Guest */
         $userId = Auth::guard('sanctum')->id();
 

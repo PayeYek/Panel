@@ -8,11 +8,19 @@ use App\Http\Controllers\Api\Advertise\ProvinceController;
 use App\Http\Controllers\Api\Common\OtpController;
 use App\Http\Controllers\Api\Common\SessionController;
 use App\Http\Controllers\Api\Common\UserController;
-use App\Http\Controllers\Api\Landing\LandingApiController;
+use App\Http\Controllers\Api\Panel\ProvinceController as PanelProvinceController;
 use App\Models\Land;
-use App\Models\Province;
 use Illuminate\Support\Facades\Route;
 
+
+/**-------------------------***
+ * Control Panel
+ * --------------------------*/
+Route::prefix('provinces')->name('province.')
+    ->controller(PanelProvinceController::class)->group(function () {
+        Route::get('/', 'provinces')->name('provinces');
+        Route::get('{province}/cities', 'cities')->name('cities');
+    });
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -33,16 +41,6 @@ Route::get('/otp/request', [OtpController::class, 'requestOtp']);
 Route::get('/otp/verify', [OtpController::class, 'verifyOtp']);
 Route::post('/otp/refresh', [OtpController::class, 'refreshToken']);
 Route::get('/logout', [OtpController::class, 'logout'])->middleware('auth:sanctum');
-
-Route::get('provinces', function () {
-    return Province::get();
-});
-
-/* use in panel */
-Route::get('provinces/{provinceId}/cities', function ($provinceId) {
-    $province = Province::with('cities')->find($provinceId);
-    return $province->cities;
-});
 
 /* use in panel */
 Route::get('land/{landId}/products', function ($landId) {
@@ -95,7 +93,7 @@ Route::prefix('ad')
 
 Route::prefix('ad')->name('ad.')->group(function () {
     /* Note */
-    Route::prefix('note')->name('note.')->controller(\App\Http\Controllers\Api\Advertise\NoteController::class)->group(function () {
+    Route::prefix('note')->name('note.')->controller(\App\Http\Controllers\Api\v1\NoteController::class)->group(function () {
         Route::post('write', 'write')->name('write');
     });
 
@@ -110,62 +108,3 @@ Route::prefix('ad')->name('ad.')->group(function () {
     });
 });
 
-
-Route::prefix('user')->name('user.')->controller(\App\Http\Controllers\Api\User\UserController::class)->group(function () {
-    /* Note list */
-    Route::get('notes',  'notes')->name('notes');
-});
-
-Route::prefix('l')
-    ->name('api.landing.')
-    ->controller(LandingApiController::class)
-    ->group(function () {
-        Route::name('page.')->group(function () {
-            Route::get('/pages', 'pages')->name('list');
-            Route::get('/landing', 'landing')->name('landing');
-            Route::get('/customer-feedback', 'getCustomerFeedback')->name('customerFeedback');
-            Route::get('/subland-products', 'getSubLandProducts')->name('getSubLandProducts');
-            Route::get('/sales-expert', 'getSalesExpert')->name('getSalesExpert');
-            Route::post('/contact-us', 'contactUs')->name('contactUs');
-            Route::get('/announcements', 'getAnnouncements')->name('getAnnouncements');
-            Route::get('/categories', 'getCategories')->name('getCategories');
-            Route::get('{page}', 'page')->name('show');
-            Route::get('{page}/about', 'about')->name('about');
-            Route::get('{page}/footer', 'pageFooter')->name('footer');
-            Route::get('{page}/catalogs', 'catalogs')->name('catalogs');
-            Route::get('{page}/calculator', 'calculator')->name('calculator');
-            Route::post('/facilities-request', 'facilitiesRequest')->name('facilitiesRequest');
-            Route::get('{page}/facility', 'facility')->name('facility');
-            Route::post('/subscribe', 'subscribe')->name('subscribe');
-        });
-
-        Route::name('product.')->group(function () {
-            Route::get('/p/products-list', 'getAllProducts')->name('all');
-            Route::get('{page}/p', 'getLandProducts')->name('list');
-            Route::get('{page}/p/{product}', 'product')->name('show');
-            Route::get('{page}/c/{category}', 'category')->name('category');
-            Route::get('p/{product}/specification', 'productSpecification')->name('specification');
-            Route::get('p/{product}/information', 'productInformation')->name('information');
-            Route::get('p/{product}/videos', 'productVideos')->name('videos');
-            Route::get('p/search', 'searchProducts')->name('search');
-        });
-
-        Route::name('article.')->group(function () {
-            Route::get('a/search', 'searchArticles')->name('search');
-            Route::get('{page}/a', 'articles')->name('list');
-            Route::get('{page}/a/{article}', 'article')->name('show');
-        });
-
-        //Todo change urls and add page/ before any routes get pages dynamically
-        Route::name('comment.')->group(function () {
-            Route::get('comment/get-comment', 'getComments')->name('getComments');
-            Route::post('comment/submit-comment', 'submitComment')->name('submitComment');
-        });
-
-        Route::get('{page}/sale-terms', 'saleTerms')->name('saleTerms');
-
-        Route::get('{page}/sales', 'sales')->name('sales');
-        Route::get('{page}/videos', 'videos')->name('videos');
-
-//        Route::get('{page}/advertise', 'advertise')->name('advertise');
-    });

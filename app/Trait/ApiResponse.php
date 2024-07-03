@@ -24,15 +24,4 @@ trait ApiResponse
             ],
         ], $status);
     }
-
-//    protected function validationErrorResponse($errors, $status = 422)
-//    {
-//        return response()->json([
-//            'status' => $status,
-//            'success' => false,
-//            'data' => [
-//                'errors' => $errors,
-//            ],
-//        ], $status);
-//    }
 }

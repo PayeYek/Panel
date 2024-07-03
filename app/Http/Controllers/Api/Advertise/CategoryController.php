@@ -9,6 +9,6 @@ class CategoryController extends Controller
 {
     public function getCategories(Category $category)
     {
-        return responder()->success($category->getGrandChildrenGroupedByParent())->respond();
+        return responder()->success(Category::grandChildrenGroupedByParent())->respond();
     }
 }

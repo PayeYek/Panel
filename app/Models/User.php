@@ -2,11 +2,11 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Enum\GenderTypeEnum;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
@@ -40,10 +40,6 @@ class User extends Authenticatable
 
     protected $hidden = ['password', 'remember_token'];
 
-//    public function findForPassport($username): User
-//    {
-//        return $this->where('mobile', $username)->first();
-//    }
 
     /**-------------------------***
      * New Attribute
@@ -53,6 +49,24 @@ class User extends Authenticatable
         return new Attribute(
             get: fn() => "{$this->first_name} {$this->last_name}"
         );
+    }
+
+    public function displayName(): string
+    {
+        $firstName = $this->first_name;
+        $lastName = $this->last_name;
+        $gender = $this->gender;
+        $mobile = $this->mobile;
+
+        $title = match ($gender) {
+            GenderTypeEnum::MALE => __('Mr.'),
+            GenderTypeEnum::FEMALE => __('Ms.'),
+            default => '',
+        };
+
+        $nameParts = array_filter([$title, $firstName, $lastName]);
+
+        return !empty($nameParts) ? implode(' ', $nameParts) : $mobile;
     }
 
     /**-------------------------***
@@ -84,6 +98,18 @@ class User extends Authenticatable
         return $this->hasMany(Ad::class);
     }
 
+    public function bookmarks(): HasManyThrough
+    {
+        return $this->hasManyThrough(
+            Ad::class,
+            Bookmark::class,
+            'user_id', // Foreign key on Bookmark table
+            'id',      // Foreign key on Ad table
+            'id',      // Local key on User table
+            'ad_id'    // Local key on Bookmark table
+        );
+    }
+
     public function notes(): HasMany
     {
         return $this->hasMany(Note::class);
@@ -102,5 +128,10 @@ class User extends Authenticatable
     public function reports(): HasMany
     {
         return $this->hasMany(Report::class);
+    }
+
+    public function adStatistics(): HasMany
+    {
+        return $this->hasMany(AdStatistic::class);
     }
 }

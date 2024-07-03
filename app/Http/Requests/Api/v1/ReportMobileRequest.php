@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Requests\Api;
+namespace App\Http\Requests\Api\v1;
 
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
 
-class FeedbackRequest extends FormRequest
+class ReportMobileRequest extends FormRequest
 {
 
     public function authorize()
@@ -17,9 +17,8 @@ class FeedbackRequest extends FormRequest
     public function rules()
     {
         return [
-            'ad_id' => 'required|numeric|exists:ads,id',
-            'liked' => 'required|boolean',
-            'text'  => 'nullable|string|max:1000',
+            "mobile" => "required|size:10|regex:/(9)[0-9]{9}/",
+            'text'   => 'required|string|max:1000',
         ];
     }
 

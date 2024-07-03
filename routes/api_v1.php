@@ -1,0 +1,115 @@
+<?php
+
+use App\Http\Controllers\Api\v1\AdController;
+use App\Http\Controllers\Api\v1\AuthController;
+use App\Http\Controllers\Api\v1\BookmarkController;
+use App\Http\Controllers\Api\v1\DailyPriceController;
+use App\Http\Controllers\Api\v1\FeedbackController;
+use App\Http\Controllers\Api\v1\NoteController;
+use App\Http\Controllers\Api\v1\ProfileController;
+use App\Http\Controllers\Api\v1\ProvinceController;
+use App\Http\Controllers\Api\v1\ReportController;
+use App\Http\Controllers\Api\v1\UserController;
+use Illuminate\Support\Facades\Route;
+
+/**-------------------------***
+ * Authentication OTP
+ * --------------------------*/
+Route::prefix('auth')->name('auth.')
+    ->controller(AuthController::class)->group(function () {
+        Route::get('login', 'login')->name('login');
+        Route::get('verify', 'verify')->name('verify');
+        Route::get('logout', 'logout')->name('logout');
+    });
+
+
+/**-------------------------***
+ * Application
+ * --------------------------*/
+Route::prefix('ad')->name('ad.')->controller(AdController::class)->group(function () {
+
+    /* Search */
+    Route::get('search', 'search')->name('search');
+
+    /* Categories */
+    Route::get('categories', 'categories')->name('categories');
+
+    /* Mobile call number */
+    Route::get('{ad}/mobile', 'mobile')->name('mobile');
+
+    /* Bookmark */
+    Route::prefix('bookmark')->name('bookmark.')
+        ->controller(BookmarkController::class)->group(function () {
+            Route::post('toggle', 'toggle')->name('toggle');
+        });
+
+    /* Note */
+    Route::prefix('note')->name('note.')
+        ->controller(NoteController::class)->group(function () {
+            Route::post('write', 'write')->name('write');
+        });
+
+    /* Feedback */
+    Route::prefix('feedback')->name('feedback.')
+        ->controller(FeedbackController::class)->group(function () {
+            Route::post('liked', 'liked')->name('liked');
+        });
+
+    /* Report */
+    Route::prefix('report')->name('report.')
+        ->controller(ReportController::class)->group(function () {
+            Route::post('advertise', 'advertise')->name('advertise');
+            Route::post('mobile', 'mobile')->name('mobile');
+        });
+});
+Route::resource('ad', AdController::class)->except(['create']);
+
+/**-------------------------***
+ * User account menus
+ * --------------------------*/
+Route::prefix('user')->name('user.')->middleware('auth:sanctum')
+    ->controller(UserController::class)->group(function () {
+
+        /* Profile todo: update */
+        Route::resource('profile', ProfileController::class)->except(['index', 'create', 'store', 'destroy']);
+
+        /* Advertise list */
+        Route::get('advertises', 'advertises')->name('advertises');
+
+        /* Note list */
+        Route::get('notes', 'notes')->name('notes');
+
+        /* bookmarks list */
+        Route::get('bookmarks', 'bookmarks')->name('bookmarks');
+
+        /* Recent view list */
+        Route::get('views', 'views')->name('views');
+
+        /* Notice list todo */
+
+
+    });
+
+
+/**-------------------------***
+ * Daily car price
+ * --------------------------*/
+Route::prefix('price')->name('daily_price.')
+    ->controller(DailyPriceController::class)->group(function () {
+        Route::get('/', 'list')->name('list');
+    });
+
+/**-------------------------***
+ * Data handler
+ * --------------------------*/
+Route::prefix('data')->name('data.')->group(function () {
+
+    Route::prefix('province')->name('province.')
+        ->controller(ProvinceController::class)->group(function () {
+            Route::get('/list', 'provinces')->name('provinces');
+            Route::get('{province}/cities', 'cities')->name('cities');
+        });
+});
+
+
+

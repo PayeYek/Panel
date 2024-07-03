@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\Api\Advertise;
 
+use App\Enum\AdStatisticActionEnum;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Panel\Advertise\AdvertiseApiRequest;
 use App\Models\Ad;
+use App\Models\AdStatistic;
 use App\Transformers\AdCardTransformer;
 use App\Transformers\AdPreviewTransformer;
 use App\Transformers\AdSingleTransformer;
@@ -113,7 +115,6 @@ class AdController extends Controller
         });
 
         return responder()->success($groupedAds->values())->respond();
-
     }
 
     public function submit(AdvertiseApiRequest $request)
@@ -150,7 +151,6 @@ class AdController extends Controller
     {
         return responder()->success($advertise, AdSingleTransformer::class)->respond();
     }
-
     public function update(AdvertiseApiRequest $request, Ad $advertise)
     {
         $data = $request->validated();
@@ -179,6 +179,7 @@ class AdController extends Controller
         } else {
             $data['pictures'] = $advertise->getPictures();
         }
+
         try {
             $advertise->update($data);
             return responder()->success($advertise, AdPreviewTransformer::class)->respond();
@@ -209,6 +210,12 @@ class AdController extends Controller
 
     public function getMobile(Ad $advertise)
     {
+        AdStatistic::create([
+            'ad_id'   => $advertise->id,
+            'user_id' => Auth::guard('sanctum')->id(),
+            'action'  => AdStatisticActionEnum::CALL
+        ]);
+
         return responder()->success(['mobile' => $advertise->mobile])->respond();
     }
 

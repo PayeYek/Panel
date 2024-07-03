@@ -91,6 +91,11 @@ class Ad extends Model
         return $this->belongsTo(ProvinceCity::class, 'city_id');
     }
 
+    public function bookmarks(): HasMany
+    {
+        return $this->hasMany(Bookmark::class);
+    }
+
     public function notes(): HasMany
     {
         return $this->hasMany(Note::class);
@@ -104,6 +109,11 @@ class Ad extends Model
     public function reports(): HasMany
     {
         return $this->hasMany(Report::class);
+    }
+
+    public function adStatistics(): HasMany
+    {
+        return $this->hasMany(AdStatistic::class);
     }
 
     /**-------------------------***
