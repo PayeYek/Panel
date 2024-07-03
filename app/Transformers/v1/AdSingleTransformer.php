@@ -60,7 +60,7 @@ class AdSingleTransformer extends Transformer
             'bookmarked'    => $bookmarked,
             'feedback'      => $feedback,
             'report'        => $report,
-            'related'       => $relatedAds,
+            //            'related'       => $relatedAds,
         ];
     }
 
@@ -71,48 +71,22 @@ class AdSingleTransformer extends Transformer
             return $note?->text ?? '';
         }
         return '';
-        /*
-            if (Auth::guard('sanctum')->check()) {
-                $userId = Auth::guard('sanctum')->user()->id;
-                $note = Note::where('user_id', $userId)->where('ad_id', $adId)->first();
-                return $note?->text ?? '';
-            }
-            return '';
-        */
     }
 
     protected function getUserFeedbackOnAd($adId, $userId = null)
     {
         return $userId
-            ? Feedback::where('user_id', $userId)->where('ad_id', $adId)->first(['liked', 'text']) ?? null
+            ? Feedback::where('user_id', $userId)
+                ->where('ad_id', $adId)
+                ->first(['liked', 'text'])
             : null;
-
-//        if ($userId) {
-//            return Feedback::where('user_id', $userId)->where('ad_id', $adId)->first(['liked', 'text'])?? [];
-//        }
-//        return [];
-        /*
-            if (Auth::guard('sanctum')->check()) {
-               $userId = Auth::guard('sanctum')->user()->id;
-               return Feedback::where('user_id', $userId)->where('ad_id', $adId)->first(['liked', 'text']);
-            }
-            return [];
-        */
-
     }
 
     protected function getUserReportOnAd($adId, $userId = null)
     {
         return $userId
-            ? Report::where('user_id', $userId)->where('ad_id', $adId)->first() ?? []
-            : [];
-        /*
-            if (Auth::guard('sanctum')->check()) {
-                $userId = Auth::guard('sanctum')->user()->id;
-                return Report::where('user_id', $userId)->where('ad_id', $adId)->first();
-            }
-            return [];
-        */
+            ? Report::where('user_id', $userId)->where('ad_id', $adId)->first()
+            : null;
     }
 
     protected function isBookmarked($adId, $userId = null): bool
@@ -120,14 +94,6 @@ class AdSingleTransformer extends Transformer
         return $userId && Bookmark::where('user_id', $userId)
                 ->where('ad_id', $adId)
                 ->exists();
-        /*
-            if (Auth::guard('sanctum')->check()) {
-                return Bookmark::where('user_id', Auth::guard('sanctum')->user()->id)
-                    ->where('ad_id', $adId)
-                    ->exists();
-            }
-            return false;
-        */
     }
 
     protected function getRelatedAds(Ad $ad): array

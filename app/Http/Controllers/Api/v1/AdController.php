@@ -32,7 +32,7 @@ class AdController extends Controller
 
 
     /**-------------------------***
-     * Mobile call number in the ad todo ----------------------
+     * Similar ads
      * --------------------------*/
     public function similar($ad)
     {
@@ -60,7 +60,7 @@ class AdController extends Controller
                 $relatedAds = $relatedAds->merge($additionalAds);
             }
 
-            return $relatedAds->map(function ($relatedAd) {
+            $response =  $relatedAds->map(function ($relatedAd) {
                 return [
                     'id'           => $relatedAd->id,
                     'title'        => $relatedAd->title,
@@ -70,11 +70,11 @@ class AdController extends Controller
                     'province'     => $relatedAd->province->name,
                     'agreement'    => $relatedAd->agreement,
                     'published_at' => $relatedAd->published_at,
-                    'bookmarked'   => $this->isBookmarked($relatedAd->id),
+                    // 'bookmarked'   => false,
                 ];
             })->toArray();
 
-            return responder()->success(['mobile' => $ad->mobile])->respond();
+            return responder()->success($response)->respond();
         } catch (ModelNotFoundException $e) {
             // If the advertisement is not found, return an error response with a custom message and an appropriate status code
             return $this->errorResponse(__('There is no advertisement with this ID!'), ResponseAlias::HTTP_NOT_FOUND);

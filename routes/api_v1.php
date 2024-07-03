@@ -39,6 +39,9 @@ Route::prefix('ad')->name('ad.')->controller(AdController::class)->group(functio
     /* Categories */
     Route::get('categories', 'categories')->name('categories');
 
+    /* Similar */
+    Route::get('{ad}/similar', 'similar')->name('similar');
+
     /* Mobile call number */
     Route::get('{ad}/mobile', 'mobile')->name('mobile');
 
