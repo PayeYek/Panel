@@ -1,5 +1,6 @@
 <?php
 
+use App\Events\MessageSent;
 use App\Http\Controllers\Api\v1\AdController;
 use App\Http\Controllers\Api\v1\AuthController;
 use App\Http\Controllers\Api\v1\BookmarkController;
@@ -13,9 +14,10 @@ use App\Http\Controllers\Api\v1\UserController;
 use Illuminate\Support\Facades\Route;
 
 
-Route::post('test', function (Request $request) {
-    dd($request);
-    return $request->all();
+Route::post('test', function () {
+    $message = request()->input('message');
+    event(new MessageSent($message));
+    return response()->json(['status' => 'Message Sent!']);
 });
 /**-------------------------***
  * Authentication OTP
@@ -78,7 +80,7 @@ Route::resource('ad', AdController::class)->except(['create']);
 Route::prefix('user')->name('user.')->middleware('auth:sanctum')
     ->controller(UserController::class)->group(function () {
 
-        /* Profile todo: update */
+        /* Profile */
         Route::resource('profile', ProfileController::class)->except(['index', 'create', 'store', 'destroy']);
 
         /* Advertise list */

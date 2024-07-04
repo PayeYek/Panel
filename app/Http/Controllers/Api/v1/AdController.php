@@ -247,6 +247,7 @@ class AdController extends Controller
         try {
             // Attempt to find the advertisement using the provided ID
             $ad = Ad::findOrFail($ad);
+
             // If the advertisement is found, return a successful response with the ad data and the transformer
             return responder()->success($ad, AdSingleTransformer::class)->respond();
         } catch (ModelNotFoundException $e) {

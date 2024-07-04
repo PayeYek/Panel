@@ -23,9 +23,6 @@ class AdSingleTransformer extends Transformer
 
         AdStatistic::create(['ad_id' => $ad->id, 'user_id' => $userId]);
 
-//        if ($userId)
-//            RecentView::create(['ad_id' => $ad->id, 'user_id' => $userId]);
-
         $bookmarked = $this->isBookmarked($ad->id, $userId);
 
         $note = $this->getUserNoteOnAd($ad->id, $userId);
@@ -33,8 +30,6 @@ class AdSingleTransformer extends Transformer
         $feedback = $this->getUserFeedbackOnAd($ad->id, $userId);
 
         $report = $this->getUserReportOnAd($ad->id, $userId);
-
-        $relatedAds = $this->getRelatedAds($ad);
 
         return [
             'views'         => $ad->adStatistics()->views()->count(),
@@ -94,42 +89,5 @@ class AdSingleTransformer extends Transformer
         return $userId && Bookmark::where('user_id', $userId)
                 ->where('ad_id', $adId)
                 ->exists();
-    }
-
-    protected function getRelatedAds(Ad $ad): array
-    {
-        $relatedAds = Ad::with(['city', 'province', 'category'])
-            ->approved()
-            ->where('category_id', $ad->category_id)
-            ->where('id', '!=', $ad->id)
-            ->orderByDesc('published_at')
-            ->take(4)
-            ->get();
-
-        $remainingCount = 4 - $relatedAds->count();
-        if ($remainingCount > 0) {
-            $additionalAds = Ad::with(['city', 'province', 'category'])
-                ->approved()
-                ->where('id', '!=', $ad->id)
-                ->orderByDesc('published_at')
-                ->take($remainingCount)
-                ->get();
-
-            $relatedAds = $relatedAds->merge($additionalAds);
-        }
-
-        return $relatedAds->map(function ($relatedAd) {
-            return [
-                'id'           => $relatedAd->id,
-                'title'        => $relatedAd->title,
-                'image'        => $relatedAd->image,
-                'price'        => $relatedAd->price,
-                'city'         => $relatedAd->city->name,
-                'province'     => $relatedAd->province->name,
-                'agreement'    => $relatedAd->agreement,
-                'published_at' => $relatedAd->published_at,
-                'bookmarked'   => $this->isBookmarked($relatedAd->id),
-            ];
-        })->toArray();
     }
 }
