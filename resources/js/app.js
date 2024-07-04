@@ -9,6 +9,7 @@ import Breakpoint from "@/components/Breakpoint.vue";
 import CopyText from "@/components/CopyText.vue";
 import PersianDate from "@/components/PersianDate.vue";
 import ShowPassword from "@/components/ShowPassword.vue";
+import ChatMessages from "@/components/ChatMessages.vue";
 // import Priority from "@/components/Priority.vue";
 import Slider from "@/components/Slider.vue";
 import LandBtn from "@/components/LandBtn.vue";
@@ -80,6 +81,8 @@ app.use(SpladePlugin,
     .component('CopyText', CopyText)
     .component('PersianDate', PersianDate)
     .component('ShowPassword', ShowPassword)
+    .component('ChatMessages', ChatMessages)
+
     // .component('Priority', Priority)
     .component('Slider', Slider)
     .component('LandBtn', LandBtn)

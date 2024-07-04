@@ -15,8 +15,14 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::post('test', function () {
-    $message = request()->input('message');
-    event(new MessageSent($message));
+    $name = request()->input('name');
+    $body = request()->input('body');
+    $dir = request()->input('dir');
+    $icon = request()->input('icon');
+    $badge = request()->input('badge');
+    $tag = request()->input('tag');
+    $image = request()->input('image');
+    event(new MessageSent($name, $body, $dir, $icon, $badge, $tag, $image));
     return response()->json(['status' => 'Message Sent!']);
 });
 /**-------------------------***

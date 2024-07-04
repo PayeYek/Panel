@@ -11,9 +11,11 @@
                 <div class="p-10">
                     <p class="text-justify leading-9 max-w-md text-gray-800">پایه یک، تنها مرجع تخصصی برای آشنایی با انواع خودروهای سنگین <strong class="text-red-700">بزودی در دسترس شما خواهد بود...</strong></p>
 
+                    <ChatMessages/>
                 </div>
 
             </main>
+
 
 {{--            <div class="grid grid-cols-3 md:max-w-xl gap-5 p-5 mx-auto">--}}
 {{--                @foreach($lands as $land)--}}
