@@ -76,11 +76,8 @@ class Kernel extends HttpKernel
             \Illuminate\Routing\Middleware\ThrottleRequests::class.':api',
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
 
-//             \Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::class,
-////            ThrottleRequests::class . ':api', //Todo uncomment to using passport
-//            SubstituteBindings::class,
-////            EnsureFrontendRequestsAreStateful::class, //Todo delete to using passport
-////            'throttle:api', //Todo delete to using passport
+            /** Set 'Accept' -> 'application/json' on header request */
+            //\App\Http\Middleware\ForceJsonResponse::class,
         ],
     ];
 

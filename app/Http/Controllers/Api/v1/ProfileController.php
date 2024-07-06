@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api\v1;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Api\v1\ProfileRequest;
 use App\Models\User;
 use App\Trait\ApiResponse;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
@@ -14,7 +15,7 @@ class ProfileController extends Controller
 {
     use ApiResponse;
 
-    public function show()
+    public function show($user)
     {
         // Retrieve the authenticated user
         $user = Auth::guard('sanctum')->user();
@@ -36,11 +37,8 @@ class ProfileController extends Controller
     }
 
 
-    public function update(Request $request)
+    public function update(ProfileRequest $request, $user)
     {
-
-        dd($request->all());
-
         // Retrieve the authenticated user
         $user = Auth::guard('sanctum')->user();
 
@@ -49,7 +47,9 @@ class ProfileController extends Controller
             return $this->errorResponse(__('Please login to your account first.'), ResponseAlias::HTTP_UNAUTHORIZED);
         }
 
-        return $request->all();
+        $user->update($request->validated());
+
+        return $this->successResponse(['message' => __('Your request has been sent.')]);
     }
 
 }
