@@ -22,7 +22,7 @@ return new class extends Migration {
             $table->string('title');
             $table->longText('description');
             $table->string('mobile', 10);
-            $table->string('price')->default('0');
+            $table->unsignedBigInteger('price')->default(0);
 
             $table->boolean('agreement')->default(false);
             $table->boolean('exchange')->default(false);

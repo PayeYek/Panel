@@ -25,6 +25,7 @@ Route::post('test', function () {
     event(new MessageSent($name, $body, $dir, $icon, $badge, $tag, $image));
     return response()->json(['status' => 'Message Sent!']);
 });
+
 /**-------------------------***
  * Authentication OTP
  * --------------------------*/

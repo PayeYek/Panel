@@ -16,6 +16,15 @@ class ProvinceCity extends Model implements Transformable
     public $timestamps = false;
     protected $fillable = ['name', 'province_id'];
 
+    public function transformer(): string
+    {
+        return CityTransformer::class;
+    }
+
+
+    /**-------------------------***
+     * Relationships
+     * --------------------------*/
     public function province(): BelongsTo
     {
         return $this->belongsTo(Province::class);
@@ -26,8 +35,8 @@ class ProvinceCity extends Model implements Transformable
         return $this->hasMany(Advertise::class);
     }
 
-    public function transformer(): string
+    public function notices(): HasMany
     {
-        return CityTransformer::class;
+        return $this->hasMany(Notice::class);
     }
 }

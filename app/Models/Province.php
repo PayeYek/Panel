@@ -15,13 +15,23 @@ class Province extends Model implements Transformable
     public $timestamps = false;
     protected $fillable = ['name'];
 
-    public function cities(): HasMany
-    {
-        return $this->hasMany(ProvinceCity::class);
-    }
 
     public function transformer(): string
     {
         return ProvinceTransformer::class;
     }
+
+    /**-------------------------***
+     * Relationships
+     * --------------------------*/
+    public function cities(): HasMany
+    {
+        return $this->hasMany(ProvinceCity::class);
+    }
+
+    public function notices(): HasMany
+    {
+        return $this->hasMany(Notice::class);
+    }
+
 }
