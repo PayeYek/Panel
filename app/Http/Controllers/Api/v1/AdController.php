@@ -60,7 +60,7 @@ class AdController extends Controller
                 $relatedAds = $relatedAds->merge($additionalAds);
             }
 
-            $response =  $relatedAds->map(function ($relatedAd) {
+            $response = $relatedAds->map(function ($relatedAd) {
                 return [
                     'id'           => $relatedAd->id,
                     'title'        => $relatedAd->title,
@@ -262,6 +262,10 @@ class AdController extends Controller
         try {
             // Attempt to find the advertisement using the provided ID
             $ad = Ad::findOrFail($ad);
+
+            $ad->province;
+
+            $ad->city;
 
             // Return a success response
             return responder()->success($ad)->respond();
