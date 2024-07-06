@@ -83,7 +83,7 @@ Route::resource('ad', AdController::class)->except(['create']);
 /**-------------------------***
  * User account menus
  * --------------------------*/
-Route::prefix('user')->name('user.')->middleware('auth:sanctum')
+Route::prefix('user')->name('user.')
     ->controller(UserController::class)->group(function () {
 
         /* Profile */

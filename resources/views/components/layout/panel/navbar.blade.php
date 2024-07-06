@@ -80,9 +80,12 @@
         <div class="flex items-center lg:order-2">
             @if(env('APP_ENV') === 'local')
                 <Breakpoint class="me-2"/>
-                <x-switch-language/>
             @endif
+
+            <x-switch-language/>
+
             <SwitchStyle/>
+
             <button @click.prevent="navigation.profile = !navigation.profile; navigation.opened = false;"
                     class="text-gray-500 dark:text-gray-400 rounded-lg cursor-pointer xl:hidden hover:text-gray-900 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white"
             >

@@ -57,6 +57,7 @@ class UserController extends Controller
             return $this->errorResponse(__('Please login to your account first.'), ResponseAlias::HTTP_UNAUTHORIZED);
         }
 
+
         // Get ad statistics with related ad information, ordered by latest, paginated by 44
         $viewedAds = $user->adStatistics()->with('ad')->latest()->get();
 

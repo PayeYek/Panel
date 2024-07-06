@@ -4,42 +4,26 @@ import "@protonemedia/laravel-splade/dist/style.css";
 import "@protonemedia/laravel-splade/dist/jodit.css";
 // import "./common";
 
+
 import SwitchStyle from "@/components/SwitchStyle.vue";
 import Breakpoint from "@/components/Breakpoint.vue";
 import CopyText from "@/components/CopyText.vue";
 import PersianDate from "@/components/PersianDate.vue";
 import ShowPassword from "@/components/ShowPassword.vue";
 import ChatMessages from "@/components/ChatMessages.vue";
-// import Priority from "@/components/Priority.vue";
-import Slider from "@/components/Slider.vue";
-import LandBtn from "@/components/LandBtn.vue";
-import landPdpMobileSlider from "@/components/landPdpMobileSlider.vue";
-import landPdpDesktopSlider from "@/components/landPdpDesktopSlider.vue";
-import CategoryFilter from "@/components/category/CategoryFilter.vue";
-import Products from "@/components/home/Products.vue";
-import HomeArticles from "@/components/home/HomeArticles.vue";
-import Articles from "@/components/articles/Articles.vue";
-import MoreArticles from "@/components/articles/MoreArticles.vue";
-import PdpMoreArticles from "@/components/articles/PdpMoreArticles.vue";
-import ArticleLink from "@/components/articles/ArticleLink.vue";
-import AmChart from "@/components/map/AmChart.vue";
-import Branches from "@/components/map/Branches.vue";
-import Videos from "@/components/videos/Videos.vue";
-import Computing from "@/components/computing/index.vue";
-import Facilities from "@/components/computing/children/Facilities.vue";
-import Advertise from "@/components/advertise/Advertise.vue";
-import FormIconOne from "@/components/computing/children/Icons/FormIconOne.vue";
-import FormIconTwo from "@/components/computing/children/Icons/FormIconTwo.vue";
-import PdpCounseling from "@/components/pdp/counseling.vue";
-import PanelAdvertise from "@/components/panelAdvertise/index.vue";
-import PanelAdvertiseEdit from "@/components/panelAdvertiseEdit/index.vue";
-import { createPinia } from 'pinia';  // Import Pinia
-// import Swiper from 'swiper';
-// import 'swiper/css/bundle';
-// let Swiper = require('swiper');
+
 
 import { createApp } from "vue";
 import { renderSpladeApp, SpladePlugin } from "@protonemedia/laravel-splade";
+
+/** PWA ****************/
+// import { registerSW } from 'virtual:pwa-register';
+//
+// const updateSW = registerSW({
+//     onNeedRefresh() {},
+//     onOfflineReady() {},
+// });
+/** PWA ****************/
 
 const el = document.getElementById("app");
 
@@ -61,9 +45,9 @@ const el = document.getElementById("app");
 
 const app = createApp({ render: renderSpladeApp({ el }) });
 
-const pinia = createPinia();
-
-app.use(pinia);
+// const pinia = createPinia();
+//
+// app.use(pinia);
 
 app.use(SpladePlugin,
         {
@@ -84,28 +68,28 @@ app.use(SpladePlugin,
     .component('ChatMessages', ChatMessages)
 
     // .component('Priority', Priority)
-    .component('Slider', Slider)
-    .component('LandBtn', LandBtn)
-    .component('landPdpMobileSlider', landPdpMobileSlider)
-    .component('landPdpDesktopSlider', landPdpDesktopSlider)
-    .component('CategoryFilter', CategoryFilter)
-    .component('Products', Products)
-    .component('HomeArticles', HomeArticles)
-    .component('Articles', Articles)
-    .component('MoreArticles', MoreArticles)
-    .component('PdpMoreArticles', PdpMoreArticles)
-    .component('ArticleLink', ArticleLink)
-    .component('AmChart', AmChart)
-    .component('Branches', Branches)
-    .component('Videos', Videos)
-    .component('Computing', Computing)
-    .component('Facilities', Facilities)
-    .component('Advertise', Advertise)
-    .component('FormIconOne', FormIconOne)
-    .component('FormIconTwo', FormIconTwo)
-    .component('PdpCounseling', PdpCounseling)
-    .component('PanelAdvertise', PanelAdvertise)
-    .component('PanelAdvertiseEdit', PanelAdvertiseEdit)
+    //.component('Slider', Slider)
+    //.component('LandBtn', LandBtn)
+    //.component('landPdpMobileSlider', landPdpMobileSlider)
+    //.component('landPdpDesktopSlider', landPdpDesktopSlider)
+    //.component('CategoryFilter', CategoryFilter)
+    //.component('Products', Products)
+    //.component('HomeArticles', HomeArticles)
+    //.component('Articles', Articles)
+    //.component('MoreArticles', MoreArticles)
+    //.component('PdpMoreArticles', PdpMoreArticles)
+    //.component('ArticleLink', ArticleLink)
+    //.component('AmChart', AmChart)
+    //.component('Branches', Branches)
+    //.component('Videos', Videos)
+    //.component('Computing', Computing)
+    //.component('Facilities', Facilities)
+    //.component('Advertise', Advertise)
+    //.component('FormIconOne', FormIconOne)
+    //.component('FormIconTwo', FormIconTwo)
+    //.component('PdpCounseling', PdpCounseling)
+    //.component('PanelAdvertise', PanelAdvertise)
+    //.component('PanelAdvertiseEdit', PanelAdvertiseEdit)
     // .directive("click-outside", clickOutside)
     .mount(el);
 
@@ -137,3 +121,16 @@ if(document.getElementById('scrollToTopBtn')){
 // export function* numberWithCommas (price) {
 //     return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 // }
+
+/** PWA ****************/
+// if ('serviceWorker' in navigator && 'PushManager' in window) {
+//     // navigator.serviceWorker.register('/build/assets/service-worker.js').then(registration => {
+//     navigator.serviceWorker.register('/service-worker.js').then(registration => {
+//         console.log('Service Worker registered with scope:', registration.scope);
+//
+//         Notification.requestPermission(status => {
+//             console.log('Notification permission status:', status);
+//         });
+//     });
+// }
+/** PWA ****************/
