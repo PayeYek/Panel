@@ -263,6 +263,8 @@ class AdController extends Controller
             // Attempt to find the advertisement using the provided ID
             $ad = Ad::findOrFail($ad);
 
+            $ad->category;
+
             $ad->province;
 
             $ad->city;

@@ -88,7 +88,12 @@ Route::prefix('user')->name('user.')
     ->controller(UserController::class)->group(function () {
 
         /* Profile */
-        Route::resource('profile', ProfileController::class)->except(['index', 'create', 'store', 'destroy']);
+        //Route::resource('profile', ProfileController::class)->except(['index', 'create', 'store', 'destroy']);
+        Route::prefix('profile')->name('profile.')
+            ->controller(ProfileController::class)->group(function () {
+                Route::get('show', 'show')->name('show');
+                Route::put('update', 'update')->name('update');
+            });
 
         /* Advertise list */
         Route::get('advertises', 'advertises')->name('advertises');

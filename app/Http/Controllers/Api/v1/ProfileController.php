@@ -36,9 +36,20 @@ class ProfileController extends Controller
     }
 
 
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+
+        dd($request->all());
+
+        // Retrieve the authenticated user
+        $user = Auth::guard('sanctum')->user();
+
+        // Check if the user is authenticated
+        if (!$user) {
+            return $this->errorResponse(__('Please login to your account first.'), ResponseAlias::HTTP_UNAUTHORIZED);
+        }
+
+        return $request->all();
     }
 
 }
