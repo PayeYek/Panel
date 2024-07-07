@@ -21,6 +21,7 @@ class AdSingleTransformer extends Transformer
         /* User or Guest */
         $userId = Auth::guard('sanctum')->id();
 
+        /* Custom header checking, to avoid duplicate statistics (SSR problem)*/
         if (isset(request()->header()['index']))
             AdStatistic::create(['ad_id' => $ad->id, 'user_id' => $userId]);
 
