@@ -47,7 +47,7 @@ Route::middleware(['splade'])->group(function () {
      * | CONTROL PANEL
      * |--------------------------------------------------------------------------
      */
-    Route::middleware(['auth', 'role:super-admin|admin'])->group(function () {
+    Route::middleware(['auth', 'role:super-admin|admin|manager|moderator|editor|author'])->group(function () {
         Route::prefix('panel')->name('panel.')->group(function () {
 
             /*Role and permissions */
@@ -146,7 +146,7 @@ Route::middleware(['splade'])->group(function () {
             });
 
             /* USERS */
-            Route::resource('user', UserController::class)->except('show');
+            Route::resource('user', UserController::class)->except('show')->middleware('role:super-admin|admin');
 
             /* PROFILE */
             Route::get("login", [ProfileController::class, 'login'])->name('profile.login');
