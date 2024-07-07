@@ -7,6 +7,7 @@
                     title="Users"
                     pagination-scroll="preserve"
     >
+
         @cell('user', $item)
         <Link href="{{ route('panel.user.edit', $item) }}" slideover
               class="flex flex-col pe-10">
@@ -43,7 +44,8 @@
             </div>
             {{-- INFO --}}
             <div class="flex flex-col justify-center py-1">
-                <span class="text-sm truncate max-w-60 lg:max-w-xs text-black dark:text-white">{{$item->displayName()}}</span>
+                <span
+                    class="text-sm truncate max-w-60 lg:max-w-xs text-black dark:text-white">{{$item->displayName()}}</span>
             </div>
         </div>
         </Link>
@@ -52,33 +54,42 @@
         @cell('gender', $item)
         @if($item->gender == GenderTypeEnum::MALE)
             <span
-                class="inline-flex items-center gap-x-1.5 py-1.5 px-3 rounded-full text-xs font-medium bg-blue-100 text-blue-800 dark:bg-blue-800/30 dark:text-blue-500">{{__('Male')}}</span>
+                class="inline-flex items-center gap-x-1.5 py-1.5 px-3 rounded-full text-xs font-medium bg-blue-100 text-blue-800 dark:bg-blue-600/30 dark:text-blue-300">{{__('Male')}}</span>
         @elseif($item->gender == GenderTypeEnum::FEMALE)
             <span
-                class="inline-flex items-center gap-x-1.5 py-1.5 px-3 rounded-full text-xs font-medium bg-pink-100 text-pink-800 dark:bg-pink-800/30 dark:text-pink-500">{{__('Female')}}</span>
+                class="inline-flex items-center gap-x-1.5 py-1.5 px-3 rounded-full text-xs font-medium bg-pink-100 text-pink-800 dark:bg-pink-600/30 dark:text-pink-300">{{__('Female')}}</span>
         @elseif($item->gender == GenderTypeEnum::OTHER)
             <span
-                class="inline-flex items-center gap-x-1.5 py-1.5 px-3 rounded-full text-xs font-medium bg-yellow-100 text-pink-800 dark:bg-yellow-800/30 dark:text-yellow-500">{{__('Other')}}</span>
-        @else
-            <span
-                class="inline-flex items-center gap-x-1.5 py-1.5 px-3 rounded-full text-xs font-medium bg-yellow-100 text-pink-800 dark:bg-yellow-800/30 dark:text-yellow-500">{{__('')}}</span>
+                class="inline-flex items-center gap-x-1.5 py-1.5 px-3 rounded-full text-xs font-medium bg-yellow-100 text-pink-800 dark:bg-yellow-600/30 dark:text-yellow-300">{{__('Other')}}</span>
         @endif
         @endcell
 
-        @cell('role', $item)
-        @if($item->hasRole('admin'))
-            <span
-                class="inline-flex items-center gap-x-1.5 py-1.5 px-3 rounded-full text-xs font-medium bg-blue-600 text-white dark:bg-blue-500">{{__('Admin')}}</span>
-        @else
-            <span
-                class="inline-flex items-center gap-x-1.5 py-1.5 px-3 rounded-full text-xs font-medium bg-gray-100 text-gray-800 dark:bg-white/10 dark:text-white">{{__('Customer')}}</span>
-        @endif
+        @cell('roles.name', $item)
+        <div class="flex items-center gap-1">
+            @foreach($item->roles as $role)
+                <span
+                    class="cursor-default inline-flex items-center gap-x-1.5 py-1 px-3 rounded-full text-xs {{
+                    ($role->name === 'super-admin' || $role->name === 'admin') ?
+                     'text-white bg-blue-600 dark:bg-blue-500' : 'bg-gray-200 text-gray-800 dark:bg-white/10 dark:text-white'
+                    }}">
+            {{ __(Str::title(Str::of($role->name)->replace('-', ' '))) }}
+            </span>
+            @endforeach
+        </div>
+
+
+        {{--        @if($item->hasRole('super-admin') || $item->hasRole('admin'))--}}
+
+        {{--        @else--}}
+        {{--            <span--}}
+        {{--                class="inline-flex items-center gap-x-1.5 py-1.5 px-3 rounded-full text-xs font-medium bg-gray-100 text-gray-800 dark:bg-white/10 dark:text-white">{{__('Customer')}}</span>--}}
+        {{--        @endif--}}
         @endcell
 
         {{--BIRTHDATE--}}
         @cell('birthdate', $item)
         <span
-            dir="ltr">{{ Help::isRTL() ? jdate($item->birthdate) : $item->birthdate }}</span>
+            dir="ltr">{{ Help::isRTL() ? jdate($item->birthdate)->format('Y-m-d') : $item->birthdate }}</span>
         @endcell
 
         {{--EMAIL_VERIFIED_AT--}}

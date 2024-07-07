@@ -47,13 +47,14 @@ class Users extends AbstractTable
 
         $table
             ->withGlobalSearch(columns: ['id', 'first_name', 'last_name', 'mobile'])
-            ->column('id', label: __('Id'), sortable: true)
+            ->column('id', label: __('Id'), sortable: true, hidden: true)
             ->column('user', label: __('Full name'))
             ->column('first_name', label: __('First Name'), hidden: true, sortable: true, searchable: true)
             ->column('last_name', label: __('Last Name'), hidden: true, sortable: true, searchable: true)
             ->column('gender', label: __('Gender'), hidden: true, sortable: true)
-            ->column('mobile', label: __('Mobile'), sortable: true, searchable: true)
+            ->column('mobile', label: __('Mobile'), hidden: true, sortable: true, searchable: true)
             ->column('roles.name', label: __('Role'), sortable: true, searchable: true)
+            ->column('birthdate', label: __('Birthdate'), hidden: true, sortable: true)
             ->column('created_at', label: __('Create date'), hidden: true, sortable: true)
             ->column('updated_at', label: __('Update date'), hidden: true, sortable: true)
             ->column('action', label: __('Actions'), exportAs: false)

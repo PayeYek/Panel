@@ -62,7 +62,7 @@ class Roles extends AbstractTable
         $table->column(
             key: 'created_at',
             label: __('Create date'),
-//            hidden: true,
+            hidden: true,
             sortable: true,
 //            searchable: true,
         //highlight: true,
@@ -72,7 +72,7 @@ class Roles extends AbstractTable
         $table->column(
             key: 'updated_at',
             label: __('Update date'),
-//            hidden: true,
+            hidden: true,
             sortable: true,
 //            searchable: true,
         //highlight: true,
