@@ -22,7 +22,7 @@ class AdSingleTransformer extends Transformer
         $userId = Auth::guard('sanctum')->id();
 
         /* Custom header checking, to avoid duplicate statistics (SSR problem)*/
-        if (isset(request()->header()['index']) && isset(request()->header()['index'][0]) && request()->header()['index'][0] == 1)
+        if (request()->header('index'))
             AdStatistic::create(['ad_id' => $ad->id, 'user_id' => $userId]);
 
         $bookmarked = $this->isBookmarked($ad->id, $userId);
