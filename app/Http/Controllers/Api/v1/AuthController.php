@@ -74,7 +74,7 @@ class AuthController extends Controller
 
 
             // Delete any existing tokens for the user
-            // $user->tokens()->delete();
+            // todo $user->tokens()->delete();
 
             // Create a new token for the user
             $token = $user->createToken('authToken')->plainTextToken;

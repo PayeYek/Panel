@@ -33,7 +33,7 @@
                     <x-splade-input name="email" label="Email"/>
                     <x-splade-input required help="شماره موبایل بدون 0 وارد شود. مثال: 912xxxxxxx" name="mobile"
                                     label="Mobile"/>
-                    <x-splade-input required name="ssn" label="SSN"/>
+                    <x-splade-input name="ssn" label="SSN"/>
                 </x-layout.panel.form.division>
 
                 <x-layout.panel.form.divider text="User type information"/>

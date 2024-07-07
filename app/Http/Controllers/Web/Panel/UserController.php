@@ -9,6 +9,7 @@ use App\Models\User;
 use App\Tables\Users;
 use DB;
 use Exception;
+use Illuminate\Support\Str;
 use Spatie\Permission\Models\Role;
 use Splade;
 
@@ -26,7 +27,9 @@ class UserController extends Controller
     public function create()
     {
         $genderTypes = GenderTypeEnum::options();
-        $roles = Role::latest()->pluck('name', 'id');
+        $roles = Role::latest()->pluck('name', 'id')->map(function ($item) {
+            return __(Str::title(Str::of($item)->replace('-', ' ')));
+        });
         return view('panel.user.create', compact('roles', 'genderTypes'));
     }
 
@@ -64,13 +67,16 @@ class UserController extends Controller
     public function edit(User $user)
     {
         $genderTypes = GenderTypeEnum::options();
-        $roles = Role::latest()->pluck('name', 'id');
+        $roles = Role::latest()->pluck('name', 'id')->map(function ($item) {
+            return __(Str::title(Str::of($item)->replace('-', ' ')));
+        });
         $userRoles = $user->roles->pluck('id')->toArray(); // Only get the IDs
         return view('panel.user.edit', compact('user', 'roles', 'genderTypes', 'userRoles'));
     }
 
     public function update(UserRequest $request, User $user)
     {
+
         DB::beginTransaction();
 
         try {

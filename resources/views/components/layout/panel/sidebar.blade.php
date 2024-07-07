@@ -36,10 +36,12 @@
                 ->whereNotNull('birthdate')->where('certified', false)->get()->count();
             @endphp
             <x-layout.panel.menu title="Users" route="panel.user.index" :badge="$countUserAuthRequests"/>
+            {{--
             <x-layout.panel.menu title="Roles & Permissions management" route="panel.role.*">
                 <x-layout.panel.menu title="Roles" route="panel.role.index"/>
                 <x-layout.panel.menu title="Permissions" route="panel.permission.index"/>
             </x-layout.panel.menu>
+            --}}
         </ul>
     </div>
 </aside>
