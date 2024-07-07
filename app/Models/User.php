@@ -69,6 +69,16 @@ class User extends Authenticatable
         return !empty($nameParts) ? implode(' ', $nameParts) : $mobile;
     }
 
+    public function isAuthenticated(): bool
+    {
+        return !empty($this->ssn) && !empty($this->birthdate) && $this->certified;
+    }
+
+    public function isAuthRequested(): bool
+    {
+        return !empty($this->ssn) && !empty($this->birthdate) && !$this->certified;
+    }
+
     /**-------------------------***
      * Custom Attribute
      * --------------------------*/
