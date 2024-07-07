@@ -83,6 +83,7 @@ class AuthController extends Controller
             // Return success response with the token and its expiry time
             return $this->successResponse([
                 'token'       => $token,
+                'user'        => $user->displayName(),
                 'expires_at'  => $tokenExpiry,
                 'expires_min' => config('sanctum.expiration')
             ]);
