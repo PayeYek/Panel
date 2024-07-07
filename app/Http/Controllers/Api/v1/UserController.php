@@ -68,7 +68,9 @@ class UserController extends Controller
         $lastAds = $uniqueAds->take(20);
 
         // Extract ads from adStatistics
-        $ads = $lastAds->map(function ($adStatistic) {
+        $ads = $lastAds->filter(function ($adStatistic) {
+            return !is_null($adStatistic->ad);
+        })->map(function ($adStatistic) {
             return $adStatistic->ad;
         });
 
