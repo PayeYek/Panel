@@ -76,14 +76,6 @@
             </span>
             @endforeach
         </div>
-
-
-        {{--        @if($item->hasRole('super-admin') || $item->hasRole('admin'))--}}
-
-        {{--        @else--}}
-        {{--            <span--}}
-        {{--                class="inline-flex items-center gap-x-1.5 py-1.5 px-3 rounded-full text-xs font-medium bg-gray-100 text-gray-800 dark:bg-white/10 dark:text-white">{{__('Customer')}}</span>--}}
-        {{--        @endif--}}
         @endcell
 
         {{--BIRTHDATE--}}
