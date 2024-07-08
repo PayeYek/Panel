@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enum\NotifyTypeEnum;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -10,8 +11,39 @@ class Notice extends Model
     use HasFactory;
 
     protected $fillable = [
-
+        'user_id',
+        'category_id',
+        'province_id',
+        'city_id',
+        'min_price',
+        'max_price',
+        'price',
+        'status',
+        'expired_at'
     ];
+
+
+    protected $casts = [
+        'type' => NotifyTypeEnum::class,
+    ];
+
+
+    /**-------------------------***
+     * Methods
+     * --------------------------*/
+    public function publish()
+    {
+
+    }
+
+    /**-------------------------***
+     * Scopes
+     * --------------------------*/
+    public function scopeActive($query)
+    {
+        return $query->where('status', true);
+    }
+
 
     /**-------------------------***
      * Relationships

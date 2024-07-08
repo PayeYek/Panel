@@ -1,5 +1,6 @@
 <?php
 
+use App\Events\AdPublished;
 use App\Events\MessageSent;
 use App\Http\Controllers\Api\v1\AdController;
 use App\Http\Controllers\Api\v1\AuthController;
@@ -7,6 +8,7 @@ use App\Http\Controllers\Api\v1\BookmarkController;
 use App\Http\Controllers\Api\v1\DailyPriceController;
 use App\Http\Controllers\Api\v1\FeedbackController;
 use App\Http\Controllers\Api\v1\NoteController;
+use App\Http\Controllers\Api\v1\NoticeController;
 use App\Http\Controllers\Api\v1\ProfileController;
 use App\Http\Controllers\Api\v1\ProvinceController;
 use App\Http\Controllers\Api\v1\ReportController;
@@ -15,6 +17,11 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::post('test', function () {
+
+    //$ad = \App\Models\Ad::find(1);
+    //event(new AdPublished($ad));
+    //return $ad;
+
     $name = request()->input('name');
     $body = request()->input('body');
     $dir = request()->input('dir');
@@ -105,6 +112,7 @@ Route::prefix('user')->name('user.')
         Route::get('views', 'views')->name('views');
 
         /* Notice list todo */
+        Route::resource('notice', NoticeController::class);
 
 
     });

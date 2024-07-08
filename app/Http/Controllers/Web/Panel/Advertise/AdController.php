@@ -3,13 +3,12 @@
 namespace App\Http\Controllers\Web\Panel\Advertise;
 
 use App\Enum\AdvertiseStateEnum;
+use App\Events\AdPublished;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Panel\Advertise\AdRequest;
 use App\Models\Ad;
-use App\Models\Category;
 use App\Tables\Advertise\AdTable;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Str;
 use ProtoneMedia\Splade\Facades\Splade;
 
 class AdController extends Controller
@@ -52,7 +51,7 @@ class AdController extends Controller
                 $data['pictures'][$i] = $image;
                 $i++;
             }
-        }else
+        } else
             $data['pictures'] = [];
 
         /* Published By State */
@@ -60,7 +59,10 @@ class AdController extends Controller
             $data['published_at'] = now();
         }
 
-        auth()->user()->ads()->create($data);
+        $ad = auth()->user()->ads()->create($data);
+
+        if ($ad->state == AdvertiseStateEnum::APPROVED)
+            event(new AdPublished($ad));
 
         Splade::toast(__('Created'))->autoDismiss(5)->success();
 
@@ -119,6 +121,9 @@ class AdController extends Controller
         }
 
         $ad->update($data);
+
+        if ($ad->state == AdvertiseStateEnum::APPROVED)
+            event(new AdPublished($ad));
 
         Splade::toast(__('Updated'))->autoDismiss(5)->info();
 
