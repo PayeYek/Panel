@@ -200,8 +200,21 @@ class AdController extends Controller
             });
         }
 
+        // Apply sorting
+        switch ($request->sort_by) {
+            case 'price_asc':
+                $query->orderBy('price', 'asc');
+                break;
+            case 'price_desc':
+                $query->orderBy('price', 'desc');
+                break;
+            default:
+                $query->orderBy('published_at', 'desc');
+                break;
+        }
+
         // Paginate results
-        $ads = $query->orderBy('published_at', 'desc')->paginate($request->per_page);
+        $ads = $query->paginate($request->per_page);
 
         // Return the response
         return responder()->success($ads, AdCardTransformer::class)->respond();
