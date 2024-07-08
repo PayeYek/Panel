@@ -18,9 +18,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::post('test', function () {
 
-    //$ad = \App\Models\Ad::find(1);
-    //event(new AdPublished($ad));
-    //return $ad;
+    $ad = \App\Models\Ad::find(1);
+    event(new AdPublished($ad));
+    return $ad;
 
     $name = request()->input('name');
     $body = request()->input('body');
@@ -125,6 +125,7 @@ Route::prefix('price')->name('daily_price.')
     ->controller(DailyPriceController::class)->group(function () {
         Route::get('/', 'list')->name('list');
     });
+
 
 /**-------------------------***
  * Data handler

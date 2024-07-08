@@ -17,6 +17,7 @@ class CategorizedDailyPriceTransformer extends Transformer
     public function transform(Category $category): array
     {
         return [
+            'category_id' => $category->id,
             'category_fa' => $category->title,
             'category_en' => Str::slug($category->title),
         ];
