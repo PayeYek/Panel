@@ -34,9 +34,4 @@ class ProvinceCity extends Model implements Transformable
     {
         return $this->hasMany(Advertise::class);
     }
-
-    public function notices(): HasMany
-    {
-        return $this->hasMany(Notice::class);
-    }
 }

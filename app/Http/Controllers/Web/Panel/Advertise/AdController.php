@@ -120,10 +120,16 @@ class AdController extends Controller
             $data['published_at'] = now();
         }
 
+        // Check if the state has changed and if the 'state' key exists in the input data
+        $isStateChange = isset($data['state']) && $ad->state != $data['state'];
+
+        // Update the ad with the new data
         $ad->update($data);
 
-        if ($ad->state == AdvertiseStateEnum::APPROVED)
+        // If the state has changed and the new state is 'APPROVED', trigger the event
+        if ($isStateChange && $ad->state == AdvertiseStateEnum::APPROVED) {
             event(new AdPublished($ad));
+        }
 
         Splade::toast(__('Updated'))->autoDismiss(5)->info();
 

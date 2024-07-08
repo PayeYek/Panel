@@ -19,10 +19,10 @@ class NoticeRequest extends FormRequest
         return [
             'category_id' => 'required|numeric|exists:categories,id',
             'province_id' => 'nullable|numeric|exists:provinces,id',
-            'city_id'     => 'nullable|numeric|exists:province_cities,id',
             'min_price'   => 'required|numeric|min:0',
             'max_price'   => 'required|numeric|min:0',
             'type'        => 'nullable|numeric',
+            'status'        => 'nullable|numeric',
         ];
     }
 

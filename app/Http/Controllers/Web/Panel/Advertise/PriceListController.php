@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Web\Panel\Advertise;
 
+use App\Events\DailyPricePublished;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Panel\Advertise\PriceListRequest;
 use App\Models\PriceList;
 use App\Tables\Advertise\PriceLists;
-use Illuminate\Http\Request;
 use ProtoneMedia\Splade\Facades\Splade;
 
 class PriceListController extends Controller
@@ -34,7 +34,9 @@ class PriceListController extends Controller
      */
     public function store(PriceListRequest $request)
     {
-        PriceList::create($request->validated());
+        $price = PriceList::create($request->validated());
+
+        event(new DailyPricePublished($price));
 
         Splade::toast(__('Created'))->autoDismiss(5)->success();
 
@@ -55,6 +57,8 @@ class PriceListController extends Controller
     public function update(PriceListRequest $request, PriceList $priceList)
     {
         $priceList->update($request->validated());
+
+        event(new DailyPricePublished($priceList));
 
         Splade::toast(__('Updated'))->autoDismiss(5)->info();
 

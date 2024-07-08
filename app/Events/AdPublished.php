@@ -11,8 +11,6 @@ class AdPublished
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    use Dispatchable, SerializesModels;
-
     public $ad;
 
     public function __construct(Ad $ad)

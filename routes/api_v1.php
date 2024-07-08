@@ -18,9 +18,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::post('test', function () {
 
-    $ad = \App\Models\Ad::find(1);
-    event(new AdPublished($ad));
-    return $ad;
+//    $ad = \App\Models\Ad::find(1);
+//    event(new AdPublished($ad));
+//    return $ad;
 
     $name = request()->input('name');
     $body = request()->input('body');

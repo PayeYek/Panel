@@ -10,20 +10,23 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Log;
 
-class SendAdPublishedSmsJob implements ShouldQueue
+class SendDailyPricePublishedSmsJob implements ShouldQueue
 {
+    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
     protected $mobile;
     protected $category;
-    protected $adId;
+    protected $product;
+    protected $price;
 
 
-    public function __construct(string $mobile, string $category, int $adId)
+    public function __construct(string $mobile, string $category, string $product, string $price)
     {
         $this->mobile = $mobile;
         $this->category = $category;
-        $this->adId = $adId;
+        $this->product = $product;
+        $this->price = $price;
     }
 
     public function handle()
@@ -33,8 +36,9 @@ class SendAdPublishedSmsJob implements ShouldQueue
         $params = [
             'receptor' => $this->mobile,
             'token'    => $this->category,
-            'token2'   => $this->adId,
-            'template' => 'AdPublished'
+            'token2'   => $this->product,
+            'token3'   => $this->price,
+            'template' => 'DailyPricePublished'
         ];
 
         $client = new Client();

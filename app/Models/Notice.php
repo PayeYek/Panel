@@ -14,10 +14,8 @@ class Notice extends Model
         'user_id',
         'category_id',
         'province_id',
-        'city_id',
         'min_price',
         'max_price',
-        'price',
         'status',
         'expired_at'
     ];
@@ -31,10 +29,8 @@ class Notice extends Model
     /**-------------------------***
      * Methods
      * --------------------------*/
-    public function publish()
-    {
 
-    }
+
 
     /**-------------------------***
      * Scopes
@@ -61,10 +57,5 @@ class Notice extends Model
     public function province()
     {
         return $this->belongsTo(Province::class);
-    }
-
-    public function city()
-    {
-        return $this->belongsTo(ProvinceCity::class, 'id');
     }
 }

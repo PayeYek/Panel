@@ -13,12 +13,6 @@ class SendAdPublishedSMS implements ShouldQueue
 {
     use InteractsWithQueue;
 
-    /**
-     * Handle the event.
-     *
-     * @param AdPublished $event
-     * @return void
-     */
     public function handle(AdPublished $event): void
     {
         $ad = $event->ad;
@@ -37,8 +31,9 @@ class SendAdPublishedSMS implements ShouldQueue
 
         // Filter out duplicate notices
         $uniqueNotices = $notices->unique(function ($item) {
-            return $item->user_id . '-' . $item->category_id . '-' . $item->province_id . '-' . $item->city_id . '-' . $item->min_price . '-' . $item->max_price;
+            return $item->user_id . '-' . $item->category_id . '-' . $item->province_id . '-' . $item->min_price . '-' . $item->max_price;
         })->values();
+
 
         // Send SMS to each unique user
         foreach ($uniqueNotices as $notice) {

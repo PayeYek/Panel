@@ -3,7 +3,9 @@
 namespace App\Providers;
 
 use App\Events\AdPublished;
+use App\Events\DailyPricePublished;
 use App\Listeners\SendAdPublishedSMS;
+use App\Listeners\SendDailyPricePublishedSMS;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -21,6 +23,9 @@ class EventServiceProvider extends ServiceProvider
         ],
         AdPublished::class => [
             SendAdPublishedSMS::class,
+        ],
+        DailyPricePublished::class => [
+            SendDailyPricePublishedSMS::class,
         ]
     ];
 

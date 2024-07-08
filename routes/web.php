@@ -48,7 +48,7 @@ Route::middleware(['splade'])->group(function () {
      * |--------------------------------------------------------------------------
      */
     Route::middleware(['auth', 'role:super-admin|admin|manager|moderator|editor|author'])->group(function () {
-        Route::prefix('panel')->name('panel.')->group(function () {
+        Route::name('panel.')->group(function () {
 
             /*Role and permissions */
             Route::resource('role', RoleController::class);
@@ -197,9 +197,10 @@ Route::middleware(['splade'])->group(function () {
     */
 
     Route::get('/', function () {
+        return to_route('panel.advertise.ad.index');
 //        $lands = Land::get();
 //        return view('landing.index', compact('lands'));
-        return view('landing.index');
+//        return view('landing.index');
     })->name('index');
 
 
