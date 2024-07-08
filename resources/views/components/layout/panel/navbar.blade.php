@@ -10,6 +10,7 @@
                     aria-hidden="true"
                     :class="{'hidden': navigation.opened}"
                     class="w-6 h-6"
+                    height="24"
                     fill="currentColor"
                     viewBox="0 0 20 20"
                     xmlns="http://www.w3.org/2000/svg"
@@ -24,6 +25,7 @@
                     aria-hidden="true"
                     :class="{'hidden': !navigation.opened}"
                     class="w-6 h-6"
+                    height="24"
                     fill="currentColor"
                     viewBox="0 0 20 20"
                     xmlns="http://www.w3.org/2000/svg"
@@ -90,7 +92,7 @@
                     class="text-gray-500 dark:text-gray-400 rounded-lg cursor-pointer xl:hidden hover:text-gray-900 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white"
             >
                 <svg :class="{'hidden': navigation.profile}" class="w-8 h-8 m-1 fill-current" aria-hidden="true"
-                     xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                     xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" viewBox="0 0 24 24">
                     <path fill-rule="evenodd"
                           d="M12 4a4 4 0 1 0 0 8 4 4 0 0 0 0-8Zm-2 9a4 4 0 0 0-4 4v1a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2v-1a4 4 0 0 0-4-4h-4Z"
                           clip-rule="evenodd"/>
@@ -100,6 +102,7 @@
                     aria-hidden="true"
                     :class="{'hidden': !navigation.profile}"
                     class="w-6 h-6 m-2"
+                    height="20"
                     fill="currentColor"
                     viewBox="0 0 20 20"
                     xmlns="http://www.w3.org/2000/svg"

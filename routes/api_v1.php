@@ -113,8 +113,6 @@ Route::prefix('user')->name('user.')
 
         /* Notice list todo */
         Route::resource('notice', NoticeController::class);
-
-
     });
 
 

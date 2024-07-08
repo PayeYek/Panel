@@ -25,7 +25,7 @@ class NoticeController extends Controller
             return $this->errorResponse(__('Please login to your account first.'), ResponseAlias::HTTP_UNAUTHORIZED);
         }
 
-        $notices = $user->notices()->active()->latest()->get();
+        $notices = $user->notices()->with(['category', 'province'])->active()->latest()->get();
         return $this->successResponse($notices, ResponseAlias::HTTP_OK);
     }
 
@@ -72,6 +72,9 @@ class NoticeController extends Controller
             // Attempt to find the notice using the provided ID
             $notice = Notice::findOrFail($id);
 
+            $notice->category;
+
+            $notice->province;
             // Return a success response
             return responder()->success($notice)->respond();
 
