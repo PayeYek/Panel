@@ -39,10 +39,10 @@ class SendAdPublishedSMS implements ShouldQueue
         foreach ($uniqueNotices as $notice) {
             $user = $notice->user;
 
-            // $this->sendSms($user->mobile, $ad->category->title, $ad->id);
+             $this->sendSms($user->mobile, $ad->category->title, $ad->id);
 
             // Dispatch the job to the queue
-            SendAdPublishedSmsJob::dispatch($user->mobile, $ad->category->title, $ad->id);
+            // SendAdPublishedSmsJob::dispatch($user->mobile, $ad->category->title, $ad->id);
         }
     }
 
