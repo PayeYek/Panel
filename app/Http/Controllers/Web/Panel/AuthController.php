@@ -92,7 +92,7 @@ class AuthController extends Controller
                 $lastRecord->delete();
             }
 
-            return redirect()->route('panel.home');
+            return redirect()->route('panel.advertise.ad.index');
 
         }
         return response()->json(['message' => 'Invalid OTP.'], 401);
