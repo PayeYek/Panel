@@ -203,7 +203,9 @@ class AdController extends Controller
         // Apply sorting
         switch ($request->sort_by) {
             case 'price_asc':
-                $query->orderBy('price', 'asc');
+                $query->orderBy('price', 'asc')
+                    ->where('agreement', false)
+                    ->where('price','>',0);
                 break;
             case 'price_desc':
                 $query->orderBy('price', 'desc');

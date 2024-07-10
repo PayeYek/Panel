@@ -69,6 +69,8 @@ class Kernel extends HttpKernel
             SubstituteBindings::class,
             #*** Localization
             Localization::class,
+
+            \App\Http\Middleware\ConvertNumbersToEnglish::class,
         ],
 
         'api' => [
@@ -78,6 +80,8 @@ class Kernel extends HttpKernel
 
             /** Set 'Accept' -> 'application/json' on header request */
             //\App\Http\Middleware\ForceJsonResponse::class,
+
+            \App\Http\Middleware\ConvertNumbersToEnglish::class,
         ],
     ];
 
