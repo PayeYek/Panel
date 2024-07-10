@@ -23,7 +23,7 @@ class AdFilterRequest extends FormRequest
             'agreement'   => 'nullable',
             'exchange'    => 'nullable',
             'per_page'    => 'nullable',
-            'sort_by'     => 'nullable|in:price_asc,price_desc',
+            'sort_by'     => 'nullable|in:price_asc,price_desc,newest',
         ];
     }
 

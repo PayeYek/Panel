@@ -1,6 +1,5 @@
 <?php
 
-use App\Events\AdPublished;
 use App\Events\MessageSent;
 use App\Http\Controllers\Api\v1\AdController;
 use App\Http\Controllers\Api\v1\AuthController;
@@ -111,7 +110,7 @@ Route::prefix('user')->name('user.')
         /* Recent view list */
         Route::get('views', 'views')->name('views');
 
-        /* Notice list todo */
+        /* Notice list */
         Route::resource('notice', NoticeController::class);
     });
 
