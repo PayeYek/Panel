@@ -35,6 +35,8 @@ class SendAdPublishedSMS implements ShouldQueue
         })->values();
 
 
+        dump($uniqueNotices->toArray(), $notices->toArray());
+
         // Send SMS to each unique user
         foreach ($uniqueNotices as $notice) {
             $user = $notice->user;
@@ -42,12 +44,15 @@ class SendAdPublishedSMS implements ShouldQueue
              $this->sendSms($user->mobile, $ad->category->title, $ad->id);
 
             // Dispatch the job to the queue
-            // SendAdPublishedSmsJob::dispatch($user->mobile, $ad->category->title, $ad->id);
+//             SendAdPublishedSmsJob::dispatch($user->mobile, $ad->category->title, $ad->id);
         }
     }
 
     protected function sendSms(string $mobile, string $category, int $adId)
     {
+        $link = "https://api.kavenegar.com/v1/" . env('KAVEHNEGAR_API_KEY') . "/verify/lookup.json?receptor=" . $mobile . "&token=" . $category . "&token2=" . $adId . "&template=AdPublished";
+        return @file_get_contents($link);
+
         // Retrieve the API key from environment variables
         $apiKey = env('KAVEHNEGAR_API_KEY');
 

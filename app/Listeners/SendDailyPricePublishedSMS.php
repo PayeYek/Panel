@@ -20,10 +20,10 @@ class SendDailyPricePublishedSMS implements ShouldQueue
         // Retrieve notices that match the criteria
         $notices = Notice::where('category_id', $dailyPrice->category_id)
             ->where('status', 1)
-            ->where(function ($query) {
-                $query->whereNull('expired_at')
-                    ->orWhere('expired_at', '>', now());
-            })
+//            ->where(function ($query) {
+//                $query->whereNull('expired_at')
+//                    ->orWhere('expired_at', '>', now());
+//            })
             ->get();
 
         // Filter out duplicate notices
@@ -31,6 +31,7 @@ class SendDailyPricePublishedSMS implements ShouldQueue
             return $item->user_id . '-' . $item->category_id;
         })->values();
 
+//        dd($notices->toArray(), $uniqueNotices->toArray());
         // Send SMS to each unique user
         foreach ($uniqueNotices as $notice) {
             $user = $notice->user;
