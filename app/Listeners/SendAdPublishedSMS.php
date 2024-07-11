@@ -41,17 +41,18 @@ class SendAdPublishedSMS implements ShouldQueue
         foreach ($uniqueNotices as $notice) {
             $user = $notice->user;
 
-             $this->sendSms($user->mobile, $ad->category->title, $ad->id);
+//             $this->sendSms($user->mobile, $ad->category->title, $ad->id);
 
             // Dispatch the job to the queue
-//             SendAdPublishedSmsJob::dispatch($user->mobile, $ad->category->title, $ad->id);
+             SendAdPublishedSmsJob::dispatch($user->mobile, $ad->category->title, $ad->id);
         }
+
     }
 
     protected function sendSms(string $mobile, string $category, int $adId)
     {
-        $link = "https://api.kavenegar.com/v1/" . env('KAVEHNEGAR_API_KEY') . "/verify/lookup.json?receptor=" . $mobile . "&token=" . $category . "&token2=" . $adId . "&template=AdPublished";
-        return @file_get_contents($link);
+//        $link = "https://api.kavenegar.com/v1/" . env('KAVEHNEGAR_API_KEY') . "/verify/lookup.json?receptor=" . $mobile . "&token20=" . $category . "&token=" . $adId . "&template=AdPublished";
+//        return @file_get_contents($link);
 
         // Retrieve the API key from environment variables
         $apiKey = env('KAVEHNEGAR_API_KEY');
@@ -62,8 +63,8 @@ class SendAdPublishedSMS implements ShouldQueue
         // Prepare the request parameters
         $params = [
             'receptor' => $mobile,
-            'token'    => $category,
-            'token2'   => $adId,
+            'token20'    => $category,
+            'token'   => $adId,
             'template' => 'AdPublished'
         ];
 

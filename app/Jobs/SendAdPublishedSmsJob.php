@@ -32,8 +32,8 @@ class SendAdPublishedSmsJob implements ShouldQueue
         $url = "https://api.kavenegar.com/v1/" . $apiKey . "/verify/lookup.json";
         $params = [
             'receptor' => $this->mobile,
-            'token'    => $this->category,
-            'token2'   => $this->adId,
+            'token20'    => $this->category,
+            'token'   => $this->adId,
             'template' => 'AdPublished'
         ];
 
