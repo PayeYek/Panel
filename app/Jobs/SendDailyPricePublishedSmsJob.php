@@ -35,9 +35,9 @@ class SendDailyPricePublishedSmsJob implements ShouldQueue
         $url = "https://api.kavenegar.com/v1/" . $apiKey . "/verify/lookup.json";
         $params = [
             'receptor' => $this->mobile,
-            'token'    => $this->category,
-            'token2'   => $this->product,
-            'token3'   => $this->price,
+            'token10'    => $this->category,
+            'token20'   => $this->product,
+            'token'   => $this->price,
             'template' => 'DailyPricePublished'
         ];
 

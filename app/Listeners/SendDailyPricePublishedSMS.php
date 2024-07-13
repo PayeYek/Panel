@@ -3,6 +3,7 @@
 namespace App\Listeners;
 
 use App\Events\DailyPricePublished;
+use App\Jobs\SendDailyPricePublishedSmsJob;
 use App\Models\Notice;
 use GuzzleHttp\Client;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -31,21 +32,20 @@ class SendDailyPricePublishedSMS implements ShouldQueue
             return $item->user_id . '-' . $item->category_id;
         })->values();
 
-//        dd($notices->toArray(), $uniqueNotices->toArray());
         // Send SMS to each unique user
         foreach ($uniqueNotices as $notice) {
             $user = $notice->user;
 
-            $this->sendSms(
-                $user->mobile, $dailyPrice->category->title,
-                $dailyPrice->product_name, $dailyPrice->price
-            );
+            //$this->sendSms(
+            //    $user->mobile, $dailyPrice->category->title,
+            //    $dailyPrice->product_name, $dailyPrice->price
+            //);
 
             // Dispatch the job to the queue
-            // SendDailyPricePublishedSmsJob::dispatch(
-            //     $user->mobile, $dailyPrice->category->title,
-            //     $dailyPrice->product_name, $dailyPrice->price
-            // );
+             SendDailyPricePublishedSmsJob::dispatch(
+                 $user->mobile, $dailyPrice->category->title,
+                 $dailyPrice->product_name, $dailyPrice->price
+             );
         }
     }
 
@@ -60,9 +60,9 @@ class SendDailyPricePublishedSMS implements ShouldQueue
         // Prepare the request parameters
         $params = [
             'receptor' => $mobile,
-            'token'    => $category,
-            'token2'   => $product,
-            'token3'   => $price,
+            'token10'    => $category,
+            'token20'   => $product,
+            'token'   => $price,
             'template' => 'DailyPricePublished'
         ];
 
