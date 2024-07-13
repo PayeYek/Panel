@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Api\v1;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\v1\NoticeRequest;
-use App\Http\Requests\Api\v1\ProfileRequest;
 use App\Models\Notice;
 use App\Trait\ApiResponse;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
@@ -25,7 +24,8 @@ class NoticeController extends Controller
             return $this->errorResponse(__('Please login to your account first.'), ResponseAlias::HTTP_UNAUTHORIZED);
         }
 
-        $notices = $user->notices()->with(['category', 'province'])->latest()->get();
+        $notices = $user->notices()->with(['category', 'province'])->orderBy('status')->latest()->get();
+        dd($notices);
         return $this->successResponse($notices, ResponseAlias::HTTP_OK);
     }
 
@@ -43,13 +43,23 @@ class NoticeController extends Controller
         // Validate the request and retrieve validated data
         $data = $request->validated();
 
-        // Create a new ad with the data
-        $user->notices()->create($data);
+        // Add user_id to the data
+        $dataWithUserId = $data + ['user_id' => $user->id];
 
-        // Return a success response
-        return responder()->success(['message' => __('Your notice has been successfully registered.')])->respond();
+        // Check if the record exists
+        $existingNotice = $user->notices()->where($dataWithUserId)->first();
+
+        if (!$existingNotice) {
+            // If the exact same data does not exist, create it
+            $user->notices()->create($dataWithUserId);
+
+            // Return a success response
+            return responder()->success(['message' => __('Your notice has been successfully registered.')])->respond();
+        } else {
+            // The exact same data already exists
+            return responder()->success(['message' => __('You already registered this item!')])->respond();
+        }
     }
-
 
     public function show($id)
     {
