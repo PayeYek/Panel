@@ -25,7 +25,7 @@ class NoticeController extends Controller
         }
 
         $notices = $user->notices()->with(['category', 'province'])->orderBy('status')->latest()->get();
-        dd($notices);
+
         return $this->successResponse($notices, ResponseAlias::HTTP_OK);
     }
 
