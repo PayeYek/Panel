@@ -3,7 +3,7 @@
     <x-splade-modal>
         <x-splade-form :default="$priceList" method="put" :action="route('panel.priceList.update', $priceList)">
 
-            <x-layout.panel.form.card title="Update Price List">
+            <x-layout.panel.form.card title="Edit">
 
                 <x-splade-input required label="Product name" name="product_name" class="col-span-full"/>
                 <x-layout.panel.form.division :col="3">

@@ -6,10 +6,10 @@
     <div
         class="scrollbar-thin scrollbar-thumb-gray-200 scrollbar-track-white dark:scrollbar-thumb-gray-700 dark:scrollbar-track-gray-800 overflow-y-auto py-5 px-3 h-full bg-white dark:bg-gray-800  *:pt-5 *:mt-5 *:space-y-2 *:border-t *:border-gray-200 *:dark:border-gray-700 first:*:pt-0 first:*:mt-2 first:*:border-none">
 
-        <ul class="space-y-2">
-            <x-layout.panel.menu title="Dashboard"
-                                 route="panel.dashboard"/>
-        </ul>
+{{--        <ul class="space-y-2">--}}
+{{--            <x-layout.panel.menu title="Dashboard"--}}
+{{--                                 route="panel.dashboard"/>--}}
+{{--        </ul>--}}
         <ul>
 
 
@@ -26,7 +26,7 @@
         </ul>
 
         <ul>
-            <x-layout.panel.menu title="Price List" route="panel.priceList.index"/>
+            <x-layout.panel.menu title="Daily price" route="panel.priceList.index"/>
         </ul>
 
 

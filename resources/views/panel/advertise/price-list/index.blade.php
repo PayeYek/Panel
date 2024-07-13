@@ -2,7 +2,7 @@
 
     <x-splade-table
         :for="$items"
-        title="Price List"
+        title="Daily price"
         pagination-scroll="preserve"
         striped
         search-debounce="1000"
