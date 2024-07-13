@@ -15,6 +15,10 @@ use App\Http\Controllers\Api\v1\UserController;
 use Illuminate\Support\Facades\Route;
 
 
+use App\Models\User;
+use App\Notifications\PrivateNotification;
+use Illuminate\Support\Facades\Notification;
+
 Route::post('test', function () {
 
 //    $ad = \App\Models\Ad::find(1);
@@ -30,6 +34,13 @@ Route::post('test', function () {
     $image = request()->input('image');
     event(new MessageSent($name, $body, $dir, $icon, $badge, $tag, $image));
     return response()->json(['status' => 'Message Sent!']);
+});
+
+Route::post('private', function () {
+    $user = User::find(request()->user_id);
+    Notification::send($user, new PrivateNotification('This is a private notification'));
+
+    return $user;
 });
 
 
