@@ -24,7 +24,7 @@ class NoticeController extends Controller
             return $this->errorResponse(__('Please login to your account first.'), ResponseAlias::HTTP_UNAUTHORIZED);
         }
 
-        $notices = $user->notices()->with(['category', 'province'])->orderBy('status')->latest()->get();
+        $notices = $user->notices()->with(['category', 'province'])->orderBy('status','desc')->latest()->get();
 
         return $this->successResponse($notices, ResponseAlias::HTTP_OK);
     }
