@@ -6,6 +6,7 @@ use App\Http\Controllers\Web\Common\RoleController;
 use App\Http\Controllers\Web\Panel\Advertise\AdController;
 use App\Http\Controllers\Web\Panel\Advertise\CategoryController;
 use App\Http\Controllers\Web\Panel\Advertise\PriceListController;
+use App\Http\Controllers\Web\Panel\AnnounceController;
 use App\Http\Controllers\Web\Panel\AuthController;
 use App\Http\Controllers\Web\Panel\CommentController;
 use App\Http\Controllers\Web\Panel\DashboardController;
@@ -69,6 +70,9 @@ Route::middleware(['splade'])->group(function () {
             });
 
             Route::resource('priceList', PriceListController::class)->except(['show']);
+
+            Route::resource('announce', AnnounceController::class);
+
 
 /*            Route::prefix('ad')->name('ad.')->group(function () {
                 Route::resource('advertise', AdController::class);

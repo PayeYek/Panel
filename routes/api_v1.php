@@ -2,6 +2,7 @@
 
 use App\Events\MessageSent;
 use App\Http\Controllers\Api\v1\AdController;
+use App\Http\Controllers\Api\v1\AnnounceController;
 use App\Http\Controllers\Api\v1\AuthController;
 use App\Http\Controllers\Api\v1\BookmarkController;
 use App\Http\Controllers\Api\v1\DailyPriceController;
@@ -12,12 +13,11 @@ use App\Http\Controllers\Api\v1\ProfileController;
 use App\Http\Controllers\Api\v1\ProvinceController;
 use App\Http\Controllers\Api\v1\ReportController;
 use App\Http\Controllers\Api\v1\UserController;
-use Illuminate\Support\Facades\Route;
-
-
 use App\Models\User;
 use App\Notifications\PrivateNotification;
 use Illuminate\Support\Facades\Notification;
+use Illuminate\Support\Facades\Route;
+
 
 Route::post('test', function () {
 
@@ -98,6 +98,14 @@ Route::prefix('ad')->name('ad.')->controller(AdController::class)->group(functio
         });
 });
 Route::resource('ad', AdController::class)->except(['create']);
+
+
+/**-------------------------***
+ * Announce
+ * --------------------------*/
+Route::prefix('announce')->name('announce.')->controller(AnnounceController::class)->group(function () {
+    Route::get('index', 'index')->name('index');
+});
 
 
 /**-------------------------***

@@ -29,6 +29,10 @@
             <x-layout.panel.menu title="Daily price" route="panel.priceList.index"/>
         </ul>
 
+        <ul>
+            <x-layout.panel.menu title="Announces" route="panel.announce.index"/>
+        </ul>
+
 
         <ul>
             @php
