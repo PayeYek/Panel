@@ -192,6 +192,11 @@ class AdController extends Controller
             $query->where('exchange', $request->exchange);
         }
 
+        // Apply installment filter
+        if ($request->exchange !== null) {
+            $query->where('installment', $request->installment);
+        }
+
         // Apply keyword filter
         if ($keyword = $request->keyword) {
             $query->where(function ($q) use ($keyword) {
