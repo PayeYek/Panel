@@ -250,7 +250,18 @@ class AdController extends Controller
             ->toArray();
 
         // Create a new ad with the data
-        Ad::create($data);
+        $ad = Ad::create($data);
+
+        if ($request->input('installment') == 1) {
+            $installmentData = $request->only([
+                'amount',
+                'prepayment',
+                'number',
+                'delivery',
+                'period'
+            ]);
+            $ad->installments()->create($installmentData);
+        }
 
         // Return a success response
         return responder()->success(['message' => __('Your ad has been successfully registered.')])->respond();
@@ -337,6 +348,22 @@ class AdController extends Controller
 
             // Update the advertisement with the provided data
             $ad->update($data);
+
+            if ($request->input('installment') == 1) {
+                $installmentData = $request->only([
+                    'amount',
+                    'prepayment',
+                    'number',
+                    'delivery',
+                    'period'
+                ]);
+                $ad->installments()->updateOrCreate(
+                    ['ad_id' => $ad->id],
+                    $installmentData
+                );
+            } else {
+                $ad->installments()->delete();
+            }
 
             // Return a success response with a message indicating the ad has been updated
             return responder()->success(['message' => __('Your ad has been successfully updated.')])->respond();

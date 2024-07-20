@@ -26,6 +26,7 @@ class Ad extends Model
         'description',
         'mobile',
         'price',
+        'installment',
         'agreement',
         'exchange',
         'image',
@@ -33,6 +34,8 @@ class Ad extends Model
         'state',
         'published_at'
     ];
+
+    protected $appends = ['amount', 'prepayment', 'number', 'delivery', 'period'];
 
     protected $casts = [
         'pictures' => 'array',
@@ -65,6 +68,33 @@ class Ad extends Model
     public function scopeApproved($query)
     {
         return $query->where('state', AdvertiseStateEnum::APPROVED);
+    }
+
+
+    public function getAmountAttribute()
+    {
+        return $this->installments->first()?->amount ?? 0;
+    }
+
+
+    public function getPrepaymentAttribute()
+    {
+        return $this->installments->first()?->prepayment ?? 0;
+    }
+
+    public function getNumberAttribute()
+    {
+        return $this->installments->first()?->number ?? 0;
+    }
+
+    public function getDeliveryAttribute()
+    {
+        return $this->installments->first()?->delivery ?? 0;
+    }
+
+    public function getPeriodAttribute()
+    {
+        return $this->installments->first()?->period ?? 0;
     }
 
     /**-------------------------***
@@ -114,6 +144,11 @@ class Ad extends Model
     public function adStatistics(): HasMany
     {
         return $this->hasMany(AdStatistic::class);
+    }
+
+    public function installments(): HasMany
+    {
+        return $this->hasMany(AdInstallment::class, 'ad_id');
     }
 
     /**-------------------------***

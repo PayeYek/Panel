@@ -33,6 +33,12 @@ class AdRequest extends FormRequest
                 'state'       => 'nullable|numeric',
                 //'published_at' => 'nullable|date|date_format:Y-m-d H:i',
                 'slug'        => 'nullable|string', //todo |unique:ads,slug
+                'installment' => 'nullable|boolean',
+                'amount'      => 'required_if:installment,1|numeric|min:0',
+                'prepayment'  => 'required_if:installment,1|numeric|min:0',
+                'number'      => 'required_if:installment,1|numeric|min:1',
+                'delivery'    => 'required_if:installment,1|numeric|min:1',
+                'period'      => 'required_if:installment,1|numeric|min:1',
             ];
         }
 
@@ -55,6 +61,12 @@ class AdRequest extends FormRequest
                 'state'       => 'nullable|numeric',
                 //'published_at' => 'nullable|date|date_format:Y-m-d H:i',
                 'slug'        => 'nullable|string', //todo |unique:ads,slug
+                'installment' => 'nullable|boolean',
+                'amount'      => 'required_if:installment,1|numeric|min:0',
+                'prepayment'  => 'required_if:installment,1|numeric|min:0',
+                'number'      => 'required_if:installment,1|numeric|min:1',
+                'delivery'    => 'required_if:installment,1|numeric|min:1',
+                'period'      => 'required_if:installment,1|numeric|min:1',
             ];
         }
         return null;
@@ -75,4 +87,5 @@ class AdRequest extends FormRequest
         }
         return "nullable|string";
     }
+
 }

@@ -28,6 +28,13 @@ class AdRequest extends FormRequest
 
                 'agreement' => 'nullable|boolean',
                 'exchange'  => 'nullable|boolean',
+                'installment' => 'nullable|boolean',
+
+                'amount'      => 'required_if:installment,1|numeric|min:0',
+                'prepayment'  => 'required_if:installment,1|numeric|min:0',
+                'number'      => 'required_if:installment,1|numeric|min:1',
+                'delivery'    => 'required_if:installment,1|numeric|min:1',
+                'period'      => 'required_if:installment,1|numeric|min:1',
 
                 'image'      => 'required|image|mimes:jpg,jpeg,png,webp|max:2048',
                 'pictures'   => 'nullable|array',
@@ -49,6 +56,13 @@ class AdRequest extends FormRequest
 
                 'agreement' => 'nullable|boolean',
                 'exchange'  => 'nullable|boolean',
+                'installment' => 'nullable|boolean',
+
+                'amount'      => 'required_if:installment,1|numeric|min:0',
+                'prepayment'  => 'required_if:installment,1|numeric|min:0',
+                'number'      => 'required_if:installment,1|numeric|min:1',
+                'delivery'    => 'required_if:installment,1|numeric|min:1',
+                'period'      => 'required_if:installment,1|numeric|min:1',
 
                 'image'      => $this->getValidationRulePrimary(),
                 'pictures'   => 'nullable|array',

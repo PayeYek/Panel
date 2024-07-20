@@ -61,6 +61,17 @@ class AdController extends Controller
 
         $ad = auth()->user()->ads()->create($data);
 
+        if ($request->input('installment') == 1) {
+            $installmentData = $request->only([
+                'amount',
+                'prepayment',
+                'number',
+                'delivery',
+                'period'
+            ]);
+            $ad->installments()->create($installmentData);
+        }
+
         if ($ad->state == AdvertiseStateEnum::APPROVED)
             event(new AdPublished($ad));
 
@@ -125,6 +136,22 @@ class AdController extends Controller
 
         // Update the ad with the new data
         $ad->update($data);
+
+        if ($request->input('installment') == 1) {
+            $installmentData = $request->only([
+                'amount',
+                'prepayment',
+                'number',
+                'delivery',
+                'period'
+            ]);
+            $ad->installments()->updateOrCreate(
+                ['ad_id' => $ad->id],
+                $installmentData
+            );
+        } else {
+            $ad->installments()->delete();
+        }
 
         // If the state has changed and the new state is 'APPROVED', trigger the event
         if ($isStateChange && $ad->state == AdvertiseStateEnum::APPROVED) {
