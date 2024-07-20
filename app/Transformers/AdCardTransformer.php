@@ -3,9 +3,7 @@
 namespace App\Transformers;
 
 use App\Models\Ad;
-use App\Models\Bookmark;
 use Flugg\Responder\Transformers\Transformer;
-use Illuminate\Support\Facades\Auth;
 
 class AdCardTransformer extends Transformer
 {
@@ -24,7 +22,8 @@ class AdCardTransformer extends Transformer
             'state'         => __($ad->state->toString()),
             'province'      => $ad->province->name,
             'agreement'     => $ad->agreement,
-            'exchange'     => $ad->exchange,
+            'exchange'      => $ad->exchange,
+            'installment'   => $ad->installment,
             'published_at'  => $ad->published_at,
             'bookmarked'    => $this->isBookmarked($ad->id),
         ];
