@@ -24,9 +24,10 @@ class UserAdCardTransformer extends Transformer
             'province'      => $ad->province->name,
             'agreement'     => $ad->agreement,
             'exchange'      => $ad->exchange,
+            'installment'   => $ad->installment,
             'published_at'  => $ad->published_at,
-            'view_count'  => AdStatistic::countViews($ad->id),
-            'call_count'  => AdStatistic::countCalls($ad->id),
+            'view_count'    => AdStatistic::countViews($ad->id),
+            'call_count'    => AdStatistic::countCalls($ad->id),
         ];
 
 

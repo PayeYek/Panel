@@ -23,6 +23,7 @@ class AdCardTransformer extends Transformer
             'province'      => $ad->province->name,
             'agreement'     => $ad->agreement,
             'exchange'      => $ad->exchange,
+            'installment'   => $ad->installment,
             'published_at'  => $ad->published_at,
         ];
     }
