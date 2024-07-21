@@ -4,6 +4,7 @@ namespace App\Http\Requests\Api\v1;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\Validator;
 
 class AdRequest extends FormRequest
 {
@@ -26,15 +27,15 @@ class AdRequest extends FormRequest
                 "mobile"      => "nullable|size:10|regex:/(9)[0-9]{9}/",
                 'price'       => 'required|string',
 
-                'agreement' => 'nullable|boolean',
-                'exchange'  => 'nullable|boolean',
-                'installment' => 'nullable|boolean',
+                'agreement'   => 'nullable|boolean',
+                'exchange'    => 'nullable|boolean',
+                'installment' => 'boolean',
 
-                'amount'      => 'required_if:installment,1|numeric|min:0',
-                'prepayment'  => 'required_if:installment,1|numeric|min:0',
-                'number'      => 'required_if:installment,1|numeric|min:1',
-                'delivery'    => 'required_if:installment,1|numeric|min:1',
-                'period'      => 'required_if:installment,1|numeric|min:1',
+                'amount'     => 'numeric|min:0',
+                'prepayment' => 'numeric|min:0',
+                'number'     => 'numeric|min:0',
+                'delivery'   => 'numeric|min:0',
+                'period'     => 'numeric|min:0',
 
                 'image'      => 'required|image|mimes:jpg,jpeg,png,webp|max:2048',
                 'pictures'   => 'nullable|array',
@@ -54,15 +55,15 @@ class AdRequest extends FormRequest
                 "mobile"      => "required|size:10|regex:/(9)[0-9]{9}/",
                 'price'       => 'required|string',
 
-                'agreement' => 'nullable|boolean',
-                'exchange'  => 'nullable|boolean',
-                'installment' => 'nullable|boolean',
+                'agreement'   => 'nullable|boolean',
+                'exchange'    => 'nullable|boolean',
+                'installment' => 'boolean',
 
-                'amount'      => 'required_if:installment,1|numeric|min:0',
-                'prepayment'  => 'required_if:installment,1|numeric|min:0',
-                'number'      => 'required_if:installment,1|numeric|min:1',
-                'delivery'    => 'required_if:installment,1|numeric|min:1',
-                'period'      => 'required_if:installment,1|numeric|min:1',
+                'amount'     => 'numeric|min:0',
+                'prepayment' => 'numeric|min:0',
+                'number'     => 'numeric|min:0',
+                'delivery'   => 'numeric|min:0',
+                'period'     => 'numeric|min:0',
 
                 'image'      => $this->getValidationRulePrimary(),
                 'pictures'   => 'nullable|array',
@@ -72,7 +73,7 @@ class AdRequest extends FormRequest
         return null;
     }
 
-    protected function prepareForValidation()
+    protected function prepareForValidation(): void
     {
         // If mobile number is not provided, replace it with the authenticated user's mobile number
         if (is_null($this->mobile) && Auth::guard('sanctum')->check()) {

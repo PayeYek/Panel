@@ -34,11 +34,11 @@ class AdRequest extends FormRequest
                 //'published_at' => 'nullable|date|date_format:Y-m-d H:i',
                 'slug'        => 'nullable|string', //todo |unique:ads,slug
                 'installment' => 'nullable|boolean',
-                'amount'      => 'required_if:installment,1|numeric|min:0',
-                'prepayment'  => 'required_if:installment,1|numeric|min:0',
-                'number'      => 'required_if:installment,1|numeric|min:1',
-                'delivery'    => 'required_if:installment,1|numeric|min:1',
-                'period'      => 'required_if:installment,1|numeric|min:1',
+                'amount'      => 'numeric|min:0',
+                'prepayment'  => 'numeric|min:0',
+                'number'      => 'numeric|min:0',
+                'delivery'    => 'numeric|min:0',
+                'period'      => 'numeric|min:0',
             ];
         }
 
@@ -62,11 +62,11 @@ class AdRequest extends FormRequest
                 //'published_at' => 'nullable|date|date_format:Y-m-d H:i',
                 'slug'        => 'nullable|string', //todo |unique:ads,slug
                 'installment' => 'nullable|boolean',
-                'amount'      => 'required_if:installment,1|numeric|min:0',
-                'prepayment'  => 'required_if:installment,1|numeric|min:0',
-                'number'      => 'required_if:installment,1|numeric|min:1',
-                'delivery'    => 'required_if:installment,1|numeric|min:1',
-                'period'      => 'required_if:installment,1|numeric|min:1',
+                'amount'      => 'numeric|min:0',
+                'prepayment'  => 'numeric|min:0',
+                'number'      => 'numeric|min:0',
+                'delivery'    => 'numeric|min:0',
+                'period'      => 'numeric|min:0',
             ];
         }
         return null;
