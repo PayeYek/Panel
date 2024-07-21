@@ -193,7 +193,7 @@ class AdController extends Controller
         }
 
         // Apply installment filter
-        if ($request->exchange !== null) {
+        if ($request->installment !== null) {
             $query->where('installment', $request->installment);
         }
 
