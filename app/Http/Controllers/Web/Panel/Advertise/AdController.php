@@ -78,9 +78,9 @@ class AdController extends Controller
             $ad->installments()->create($installmentData);
         }
 
-        //if ($ad->state == AdvertiseStateEnum::APPROVED) {
-        //    event(new AdPublished($ad));
-        //}
+        if ($ad->state == AdvertiseStateEnum::APPROVED) {
+            event(new AdPublished($ad));
+        }
 
         Splade::toast(__('Created'))->autoDismiss(5)->success();
 

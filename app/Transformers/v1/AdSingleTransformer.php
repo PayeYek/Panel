@@ -61,6 +61,12 @@ class AdSingleTransformer extends Transformer
             'bookmarked'    => $bookmarked,
             'feedback'      => $feedback,
             'report'        => $report,
+            'tags'          => $ad->tags->map(function ($tag) {
+                return [
+                    'title' => $tag->title,
+                    'slug'  => $tag->slug
+                ];
+            })->toArray(),
             //            'related'       => $relatedAds,
         ];
     }
