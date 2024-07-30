@@ -17,6 +17,12 @@
                     <x-splade-radio name="state" value="10" label="Expired"/>
                 </x-splade-group>
 
+                <x-splade-select name="tags[]" label="Tags" multiple choices class="col-span-full">
+                    @foreach(\App\Models\Tag::all() as $tag)
+                        <option value="{{$tag->id}}">{{$tag->title}}</option>
+                    @endforeach
+                </x-splade-select>
+
                 <x-splade-submit label="Accept"/>
             </x-layout.panel.form.card>
 

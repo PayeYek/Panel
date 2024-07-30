@@ -29,6 +29,12 @@
 
                 <x-splade-textarea name="description" label="Description" rows="4" class="col-span-full" required/>
 
+                <x-splade-select name="tags[]" label="Tags" multiple choices class="col-span-full">
+                    @foreach(\App\Models\Tag::all() as $tag)
+                        <option value="{{$tag->id}}">{{$tag->title}}</option>
+                    @endforeach
+                </x-splade-select>
+
                 <x-splade-select name="province_id" label="Province" required choices remote-url="/api/provinces"
                                  option-label="name" option-value="id" :placeholder="__('Select an item')"/>
 

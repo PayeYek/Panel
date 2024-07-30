@@ -22,6 +22,7 @@
                 <x-layout.panel.menu title="Advertise" route="panel.advertise.ad.index"
                                      :badge="$countPendingAds"/>
                 <x-layout.panel.menu title="Categories" route="panel.advertise.category.index"/>
+                <x-layout.panel.menu title="Tags" route="panel.advertise.tag.index"/>
             </x-layout.panel.menu>
         </ul>
 

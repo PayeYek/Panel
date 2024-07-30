@@ -21,6 +21,10 @@ Route::prefix('provinces')->name('province.')
         Route::get('/', 'provinces')->name('provinces');
         Route::get('{province}/cities', 'cities')->name('cities');
     });
+
+Route::get('slug/{title}', function ($title) {
+    return \Illuminate\Support\Str::slug($title);
+});
 /*
 |--------------------------------------------------------------------------
 | API Routes

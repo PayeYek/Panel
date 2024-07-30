@@ -24,7 +24,6 @@ class Category extends Model implements Transformable
         return $this->hasMany(Category::class, 'parent_id', 'id')->with('children');
     }
 
-
     public function directChildren(): HasMany
     {
         return $this->hasMany(Category::class, 'parent_id', 'id');

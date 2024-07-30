@@ -832,6 +832,10 @@
     @apply rtl:!bg-[center_left_.5rem];
 }
 
+.choices[data-type*=select-multiple] .choices__button {
+    @apply rtl:!end-0 rtl:!start-auto ltr:!end-auto ltr:!start-0 !rounded-full !px-0 !mx-2 !size-5;
+}
+
 /* JODIT TEXT EDITOR */
 .jodit-container {
     /*@apply !border-gray-300 dark:!border-gray-600;*/

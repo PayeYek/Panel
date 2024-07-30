@@ -151,6 +151,11 @@ class Ad extends Model
         return $this->hasMany(AdInstallment::class, 'ad_id');
     }
 
+    public function tags()
+    {
+        return $this->morphToMany(Tag::class, 'taggable');
+    }
+
     /**-------------------------***
      * File handler
      * --------------------------*/

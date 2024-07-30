@@ -2,21 +2,20 @@
 
 namespace App\Models;
 
+use App\Trait\Slugable;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Tag extends Model
 {
-    use SoftDeletes;
+    use HasFactory, Slugable;
 
-    protected $table = 'tags';
-    protected $fillable = [
-        'title'
-    ];
+    protected $fillable = ['title', 'slug'];
 
-    public function category(): BelongsTo
+    public $timestamps = false;
+
+    public function taggables()
     {
-        return $this->belongsTo(Category::class, 'category_id');
+        return $this->morphToMany(Taggable::class, 'taggable');
     }
 }

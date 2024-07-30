@@ -11,6 +11,7 @@ use App\Http\Controllers\Web\Panel\AuthController;
 use App\Http\Controllers\Web\Panel\CommentController;
 use App\Http\Controllers\Web\Panel\DashboardController;
 use App\Http\Controllers\Web\Panel\ProfileController;
+use App\Http\Controllers\Web\Panel\TagController;
 use App\Http\Controllers\Web\Panel\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -67,6 +68,9 @@ Route::middleware(['splade'])->group(function () {
 
                 /* Category */
                 Route::resource('category', CategoryController::class)->except(['show']);
+
+                /* Tag */
+                Route::resource('tag', TagController::class)->except('show');
             });
 
             Route::resource('priceList', PriceListController::class)->except(['show']);

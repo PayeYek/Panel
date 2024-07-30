@@ -8,6 +8,7 @@
              'exchange' => 0,
              'installment' => 0,
              'number' => 0,
+             'tags' => [],
              'state' => \App\Enum\AdvertiseStateEnum::APPROVED->value,
             ]"
             class="space-y-5">
@@ -37,6 +38,12 @@
 
                 <x-splade-textarea name="description" label="Description" rows="4" class="col-span-full" required/>
 
+                <x-splade-select name="tags[]" label="Tags" multiple choices class="col-span-full">
+                    @foreach(\App\Models\Tag::all() as $tag)
+                        <option value="{{$tag->id}}">{{$tag->title}}</option>
+                    @endforeach
+                </x-splade-select>
+
                 <x-splade-select name="province_id" label="Province" required choices remote-url="/api/provinces"
                                  option-label="name" option-value="id" :placeholder="__('Select an item')"/>
 
@@ -45,7 +52,7 @@
                                  option-value="id" :placeholder="__('Select an item')"/>
 
                 <x-layout.panel.form.division :col="3">
-                    <x-splade-select name="agreement" label="Agreement" disabled>
+                    <x-splade-select name="agreement" label="Agreement">
                         <option value="0">{{__("No")}}</option>
                         <option value="1">{{__("Yes")}}</option>
                     </x-splade-select>
@@ -65,7 +72,6 @@
 
                 <x-splade-input name="mobile" label="Communication Mobile" required ltr
                                 maxlength="10" prepend="+98" placeholder="9-- --- ----"/>
-
             </x-layout.panel.form.card>
 
             <template v-if="form.installment == 1">

@@ -7,6 +7,7 @@ use App\Events\AdPublished;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Panel\Advertise\AdRequest;
 use App\Models\Ad;
+use App\Models\Tag;
 use App\Tables\Advertise\AdTable;
 use Illuminate\Support\Facades\Storage;
 use ProtoneMedia\Splade\Facades\Splade;
@@ -59,7 +60,12 @@ class AdController extends Controller
             $data['published_at'] = now();
         }
 
+
         $ad = auth()->user()->ads()->create($data);
+
+        if ($request->filled('tags')) {
+            $ad->tags()->attach($request->tags);
+        }
 
         if ($request->input('installment') == 1) {
             $installmentData = $request->only([
@@ -72,8 +78,9 @@ class AdController extends Controller
             $ad->installments()->create($installmentData);
         }
 
-        if ($ad->state == AdvertiseStateEnum::APPROVED)
-            event(new AdPublished($ad));
+        //if ($ad->state == AdvertiseStateEnum::APPROVED) {
+        //    event(new AdPublished($ad));
+        //}
 
         Splade::toast(__('Created'))->autoDismiss(5)->success();
 
@@ -93,6 +100,8 @@ class AdController extends Controller
      */
     public function edit(Ad $ad)
     {
+        $selectedTags = $ad->tags->pluck('id')->toArray();
+        $ad->setAttribute('tags', $selectedTags);
         return view('panel.advertise.ad.edit', compact('ad'));
     }
 
@@ -136,6 +145,12 @@ class AdController extends Controller
 
         // Update the ad with the new data
         $ad->update($data);
+
+        if ($request->filled('tags')) {
+            $ad->tags()->sync($request->tags);
+        } else {
+            $ad->tags()->sync([]);
+        }
 
         if ($request->input('installment') == 1) {
             $installmentData = $request->only([
@@ -200,6 +215,8 @@ class AdController extends Controller
      ******************/
     public function state(Ad $ad)
     {
+        $selectedTags = $ad->tags->pluck('id')->toArray();
+        $ad->setAttribute('tags', $selectedTags);
         return view('panel.advertise.ad.state', compact('ad'));
     }
 

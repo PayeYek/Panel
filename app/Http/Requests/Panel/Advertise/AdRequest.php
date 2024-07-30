@@ -39,6 +39,8 @@ class AdRequest extends FormRequest
                 'number'      => 'numeric|min:0',
                 'delivery'    => 'numeric|min:0',
                 'period'      => 'numeric|min:0',
+                'tags'        => 'array',
+                'tags.*'      => 'numeric|exists:tags,id'
             ];
         }
 
@@ -67,6 +69,8 @@ class AdRequest extends FormRequest
                 'number'      => 'numeric|min:0',
                 'delivery'    => 'numeric|min:0',
                 'period'      => 'numeric|min:0',
+                'tags'        => 'array',
+                'tags.*'      => 'numeric|exists:tags,id'
             ];
         }
         return null;
