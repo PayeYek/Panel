@@ -27,10 +27,8 @@ class DailyPriceController extends Controller
                     $subQuery->where('product_name', 'like', "%$keyword%")
                         ->orWhere('production_year', 'like', "%$keyword%")
                         ->orWhere('price', 'like', "%$keyword%");
-                });
-            }])
-                ->with('priceChanges')
-                ->get();
+                })->with('priceChanges');
+            }])->get();
         } else {
             $categories = Category::whereHas('priceLists')
                 ->with(['priceLists' => function ($query) {
