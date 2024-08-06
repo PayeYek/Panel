@@ -28,9 +28,14 @@ class DailyPriceController extends Controller
                         ->orWhere('production_year', 'like', "%$keyword%")
                         ->orWhere('price', 'like', "%$keyword%");
                 });
-            }])->get();
+            }])
+                ->with('priceChanges')
+                ->get();
         } else {
-            $categories = Category::whereHas('priceLists')->get();
+            $categories = Category::whereHas('priceLists')
+                ->with(['priceLists' => function ($query) {
+                    $query->with('priceChanges');
+                }])->get();
         }
 
         return responder()->success($categories, CategorizedDailyPriceTransformer::class)->respond();

@@ -18,6 +18,7 @@ class DailyPriceTransformer extends Transformer
             'price'           => $priceList->price,
             'production_year' => $priceList->production_year,
             'updated_at'      => $priceList->updated_at,
+            'change_type'     => $priceList->priceChanges->first()?->change_type,
         ];
     }
 }

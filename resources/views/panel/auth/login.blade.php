@@ -28,5 +28,4 @@
 
         </div>
     </section>
-
 </x-layout.base>

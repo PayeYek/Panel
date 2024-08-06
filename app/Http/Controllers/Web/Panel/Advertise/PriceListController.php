@@ -5,15 +5,14 @@ namespace App\Http\Controllers\Web\Panel\Advertise;
 use App\Events\DailyPricePublished;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Panel\Advertise\PriceListRequest;
+use App\Models\PriceChange;
 use App\Models\PriceList;
 use App\Tables\Advertise\PriceLists;
 use ProtoneMedia\Splade\Facades\Splade;
 
 class PriceListController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+
     public function index()
     {
         return view('panel.advertise.price-list.index', [
@@ -21,42 +20,40 @@ class PriceListController extends Controller
         ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
+
     public function create()
     {
         return view('panel.advertise.price-list.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
+
     public function store(PriceListRequest $request)
     {
-        $price = PriceList::create($request->validated());
+        $priceItem = PriceList::create($request->validated());
 
-        event(new DailyPricePublished($price));
+        $this->recordPriceChange($priceItem, null, $priceItem->price);
+
+        event(new DailyPricePublished($priceItem));
 
         Splade::toast(__('Created'))->autoDismiss(5)->success();
 
         return redirect()->route('panel.priceList.index');
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
+
     public function edit(PriceList $priceList)
     {
         return view('panel.advertise.price-list.edit', compact('priceList'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(PriceListRequest $request, PriceList $priceList)
     {
-        $priceList->update($request->validated());
+        $validated = $request->validated();
+
+        $priceList->updatePrice($validated['price']);
+
+        $priceList->update($validated);
+
 
         event(new DailyPricePublished($priceList));
 
@@ -65,9 +62,7 @@ class PriceListController extends Controller
         return redirect()->route('panel.priceList.index');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
+
     public function destroy(PriceList $priceList)
     {
         $priceList->delete();
@@ -75,5 +70,17 @@ class PriceListController extends Controller
         Splade::toast(__('Deleted'))->autoDismiss(5)->danger();
 
         return redirect()->route('panel.priceList.index');
+    }
+
+
+    /*********************
+     *
+     ********************/
+
+    public function getChangeRatios()
+    {
+        $ratios = PriceChange::calculateChangeRatios();
+
+        return response()->json($ratios);
     }
 }
