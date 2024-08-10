@@ -45,10 +45,10 @@ class AdController extends Controller
                 ->where('category_id', $ad->category_id)
                 ->where('id', '!=', $ad->id)
                 ->orderByDesc('published_at')
-                ->take(4)
+                ->take(6)
                 ->get();
 
-            $remainingCount = 4 - $relatedAds->count();
+            $remainingCount = 6 - $relatedAds->count();
             if ($remainingCount > 0) {
                 $additionalAds = Ad::with(['city', 'province', 'category'])
                     ->approved()
