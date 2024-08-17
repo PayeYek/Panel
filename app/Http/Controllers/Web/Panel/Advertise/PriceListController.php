@@ -31,7 +31,7 @@ class PriceListController extends Controller
     {
         $priceItem = PriceList::create($request->validated());
 
-        $this->recordPriceChange($priceItem, null, $priceItem->price);
+        $priceItem->updatePrice($priceItem->price);
 
         event(new DailyPricePublished($priceItem));
 
