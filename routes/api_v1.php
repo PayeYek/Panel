@@ -3,6 +3,7 @@
 use App\Events\MessageSent;
 use App\Http\Controllers\Api\v1\AdController;
 use App\Http\Controllers\Api\v1\AnnounceController;
+use App\Http\Controllers\Api\v1\ArticleController;
 use App\Http\Controllers\Api\v1\AuthController;
 use App\Http\Controllers\Api\v1\BookmarkController;
 use App\Http\Controllers\Api\v1\DailyPriceController;
@@ -20,7 +21,6 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::post('test', function () {
-
 //    $ad = \App\Models\Ad::find(1);
 //    event(new AdPublished($ad));
 //    return $ad;
@@ -59,7 +59,6 @@ Route::prefix('auth')->name('auth.')
  * Application
  * --------------------------*/
 Route::prefix('ad')->name('ad.')->controller(AdController::class)->group(function () {
-
     /* Search */
     Route::get('search', 'search')->name('search');
 
@@ -99,6 +98,7 @@ Route::prefix('ad')->name('ad.')->controller(AdController::class)->group(functio
 });
 Route::resource('ad', AdController::class)->except(['create']);
 
+Route::resource('article', ArticleController::class)->except(['edit', 'update', 'destroy', 'create']);
 
 /**-------------------------***
  * Announce
@@ -113,7 +113,6 @@ Route::prefix('announce')->name('announce.')->controller(AnnounceController::cla
  * --------------------------*/
 Route::prefix('user')->name('user.')
     ->controller(UserController::class)->group(function () {
-
         /* Profile */
         Route::resource('profile', ProfileController::class)->except(['index', 'create', 'store', 'destroy']);
 
@@ -147,7 +146,6 @@ Route::prefix('price')->name('daily_price.')
  * Data handler
  * --------------------------*/
 Route::prefix('data')->name('data.')->group(function () {
-
     Route::prefix('province')->name('province.')
         ->controller(ProvinceController::class)->group(function () {
             Route::get('/list', 'provinces')->name('provinces');

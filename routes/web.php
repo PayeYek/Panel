@@ -8,6 +8,9 @@ use App\Http\Controllers\Web\Panel\Advertise\CategoryController;
 use App\Http\Controllers\Web\Panel\Advertise\PriceListController;
 use App\Http\Controllers\Web\Panel\AnnounceController;
 use App\Http\Controllers\Web\Panel\AuthController;
+use App\Http\Controllers\Web\Panel\Blog\ArticleController;
+use App\Http\Controllers\Web\Panel\Blog\CompanyController;
+use App\Http\Controllers\Web\Panel\Blog\FileController;
 use App\Http\Controllers\Web\Panel\CommentController;
 use App\Http\Controllers\Web\Panel\DashboardController;
 use App\Http\Controllers\Web\Panel\ProfileController;
@@ -88,6 +91,16 @@ Route::middleware(['splade'])->group(function () {
                 Route::resource('brand-model', AdBrandController::class)->except(['show']);
                 Route::resource('priceList', PriceListController::class)->except(['show']);
             });*/
+
+            /* Blog */
+            Route::prefix('blog')->name('blog.')->group(function () {
+                // Company
+                Route::resource('company', CompanyController::class)->except('show');
+                // Articles
+                Route::resource('article', ArticleController::class)->except('show');
+                // Files
+                Route::resource('file', FileController::class)->except('show');
+            });
 
             /* Landing */
             /*Route::prefix('landing')->name('landing.')->group(function () {

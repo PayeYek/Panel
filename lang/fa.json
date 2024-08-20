@@ -747,5 +747,9 @@
     "Edit Priority": "ویرایش اولویت",
     "approved": "تاییده شده",
     "rejected": "رد شده",
-    "expired": "منقضی شده"
+    "expired": "منقضی شده",
+    "Companies": "شرکت‌ها",
+    "Company": "شرکت",
+    "Company list": "فهرست شرکت‌ها",
+    "New Company": "شرکت جدید"
 }
