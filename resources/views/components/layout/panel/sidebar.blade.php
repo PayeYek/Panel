@@ -35,7 +35,7 @@
         </ul>
 
         <ul>
-            <x-layout.panel.menu title="Sell" route="panel.blog.*">
+            <x-layout.panel.menu title="Blog" route="panel.blog.*">
             <x-layout.panel.menu title="Articles" route="panel.blog.article.index"/>
             <x-layout.panel.menu title="Companies" route="panel.blog.company.index"/>
             <x-layout.panel.menu title="Files" route="panel.blog.file.index"/>
