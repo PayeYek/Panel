@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Api\v1;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Validator;
 
@@ -81,6 +82,19 @@ class AdRequest extends FormRequest
                 'mobile' => Auth::guard('sanctum')->user()->mobile,
             ]);
         }
+    }
+    protected function failedValidation(\Illuminate\Contracts\Validation\Validator $validator)
+    {
+        $response = response()->json([
+            'status'  => 422,
+            'success' => false,
+            'data'    => [
+                // 'message' => $validator->errors()->first(),
+                'errors' => $validator->errors(),
+            ],
+        ], 422);
+
+        throw new HttpResponseException($response);
     }
 
     public function getValidationRulePrimary(): string

@@ -36,6 +36,14 @@ class ArticleController extends Controller
             });
         }
 
+        // Apply type filter
+        if ($type = $request->type) {
+            $query->where(function ($q) use ($type) {
+                $q
+                    ->where('type', "$type");
+            });
+        }
+
         // Apply sorting
         switch ($request->sort_by) {
             //case 'price_asc':

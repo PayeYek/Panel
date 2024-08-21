@@ -5,14 +5,15 @@
 
                 <x-layout.panel.form.alerts/>
 
-                <x-layout.panel.form.division :col="2">
+                <x-layout.panel.form.division :col="3">
                     <x-splade-select name="company_id" label="Company" :options="$companies" placeholder="Select an item"/>
-                    {{--                    <x-splade-select name="type" label="Type">--}}
-                    {{--                        <option value="" disabled>{{__('Select an item')}}</option>--}}
-                    {{--                        <option value="blog">{{__('Blog')}}</option>--}}
-                    {{--                        <option value="news">{{__('News')}}</option>--}}
-                    {{--                        <option value="sell">{{__('Sell')}}</option>--}}
-                    {{--                    </x-splade-select>--}}
+                    <x-splade-select name="type" label="Type">
+                        <option value="" disabled>{{__('Select an item')}}</option>
+{{--                        <option value="blog">{{__('Blog')}}</option>--}}
+                        <option value="news">{{__('News')}}</option>
+                        <option value="sell">{{__('Sell')}}</option>
+                    </x-splade-select>
+                    <x-splade-input name="expired_at" label="Expire date" date time/>
                 </x-layout.panel.form.division>
                 <x-layout.panel.form.division>
                     <x-splade-file name="image" label="Image" filepond preview

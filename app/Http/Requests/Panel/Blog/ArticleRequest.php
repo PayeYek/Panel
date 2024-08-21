@@ -27,6 +27,7 @@ class ArticleRequest extends FormRequest
                 'pinned'       => 'nullable|boolean',
                 'slug'         => 'nullable|string|unique:articles,slug',
                 'published_at' => 'nullable|date|date_format:Y-m-d H:i',
+                'expired_at'   => 'nullable|date|date_format:Y-m-d H:i',
             ];
         }
 
@@ -40,7 +41,8 @@ class ArticleRequest extends FormRequest
                 'image'        => $this->getValidationRuleImage(),
                 'publish'      => 'nullable|boolean',
                 'pinned'       => 'nullable|boolean',
-                'published_at' => 'nullable|date',
+                'published_at' => 'nullable|date|date_format:Y-m-d H:i',
+                'expired_at'   => 'nullable|date|date_format:Y-m-d H:i',
                 'slug'         => [
                     'required', 'string',
                     Rule::unique("articles")->ignore($this->article->id),

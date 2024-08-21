@@ -29,7 +29,8 @@ class Article extends Model
         'image',
         'pinned',
         'publish',
-        'published_at'
+        'published_at',
+        'expired_at'
     ];
 
     public function scopePublished($query)

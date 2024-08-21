@@ -2,7 +2,9 @@
 
 namespace App\Http\Requests\Api\v1;
 
+use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\Exceptions\HttpResponseException;
 
 class ArticleFilterRequest extends FormRequest
 {
@@ -17,6 +19,7 @@ class ArticleFilterRequest extends FormRequest
         return [
             'keyword'    => 'nullable',
             'company_id' => 'nullable',
+            'type'       => 'nullable|in:sell,news,blog',
             //'sort_by'     => 'nullable|in:price_asc,price_desc,newest',
         ];
     }
@@ -26,9 +29,23 @@ class ArticleFilterRequest extends FormRequest
         // If PerPage number is not provided, replace it with default value
         if (is_null($this->per_page)) {
             $this->merge([
-                'per_page' => 44,
+                'per_page' => 20,
             ]);
         }
+    }
+
+    protected function failedValidation(Validator $validator)
+    {
+        $response = response()->json([
+            'status'  => 422,
+            'success' => false,
+            'data'    => [
+                // 'message' => $validator->errors()->first(),
+                'errors' => $validator->errors(),
+            ],
+        ], 422);
+
+        throw new HttpResponseException($response);
     }
 
 }

@@ -19,6 +19,7 @@ return new class extends Migration {
             $table->boolean('publish')->default(false);
             $table->boolean('pinned')->default(false);
             $table->text('slug')->nullable();
+            $table->timestamp('expired_at')->nullable();
             $table->timestamp('published_at')->useCurrent();
             $table->timestamps();
         });
