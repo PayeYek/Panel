@@ -27,7 +27,7 @@ class ArticleRequest extends FormRequest
                 'pinned'       => 'nullable|boolean',
                 'slug'         => 'nullable|string|unique:articles,slug',
                 'published_at' => 'nullable|date|date_format:Y-m-d H:i',
-                'expired_at'   => 'nullable|date|date_format:Y-m-d H:i',
+                'expired_at'   => 'nullable|date',
             ];
         }
 
@@ -42,7 +42,7 @@ class ArticleRequest extends FormRequest
                 'publish'      => 'nullable|boolean',
                 'pinned'       => 'nullable|boolean',
                 'published_at' => 'nullable|date|date_format:Y-m-d H:i',
-                'expired_at'   => 'nullable|date|date_format:Y-m-d H:i',
+                'expired_at'   => 'nullable|date',
                 'slug'         => [
                     'required', 'string',
                     Rule::unique("articles")->ignore($this->article->id),

@@ -13,7 +13,7 @@
                         <option value="news">{{__('News')}}</option>
                         <option value="sell">{{__('Sell')}}</option>
                     </x-splade-select>
-                    <x-splade-input name="expired_at" label="Expire date" date time/>
+                    <x-splade-input name="expired_at" label="Expire date" date time ltr/>
                 </x-layout.panel.form.division>
                 <x-layout.panel.form.division>
                     <x-splade-file name="image" label="Image" filepond preview
