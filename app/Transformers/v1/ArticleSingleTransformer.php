@@ -28,6 +28,7 @@ class ArticleSingleTransformer extends Transformer
             'title'        => $article->title,
             'description'  => $article->description,
             'image'        => $article->image,
+            'type'         => $article->type,
             'body'         => $article->body,
             'slug'         => $article->slug,
             'published_at' => $article->published_at,
