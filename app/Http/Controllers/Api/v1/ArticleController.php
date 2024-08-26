@@ -44,6 +44,13 @@ class ArticleController extends Controller
             });
         }
 
+        // Apply company_en filter
+        if ($companyEn = $request->company) {
+            $query->whereHas('company', function($q) use ($companyEn) {
+                $q->where('company_en', $companyEn);
+            });
+        }
+
         // Apply sorting
         switch ($request->sort_by) {
             //case 'price_asc':
