@@ -45,11 +45,17 @@ class ArticleController extends Controller
         }
 
         // Apply company_en filter
-        if ($companyEn = $request->company) {
-            $query->whereHas('company', function($q) use ($companyEn) {
-                $q->where('company_en', $companyEn);
+        if ($company = $request->company_en) {
+            $query->where(function ($q) use ($company_en) {
+                $q
+                    ->where('company', "$company_en");
             });
-        };
+        }
+//        if ($companyEn = $request->company) {
+//            $query->whereHas('company', function($q) use ($companyEn) {
+//                $q->where('company_en', $companyEn);
+//            });
+//        };
 
         // Apply sorting
         switch ($request->sort_by) {
