@@ -13,7 +13,7 @@ class Company extends Model
     use HasFactory;
 
     protected $table = 'companies';
-    protected $fillable = ['title', 'slug', 'logo', 'description', 'body'];
+    protected $fillable = ['id', 'title', 'slug', 'logo', 'description', 'body'];
 
     public function getLogoAttribute()
     {
