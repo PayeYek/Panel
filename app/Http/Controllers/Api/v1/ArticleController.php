@@ -49,7 +49,7 @@ class ArticleController extends Controller
             $query->whereHas('company', function($q) use ($companyEn) {
                 $q->where('company_en', $companyEn);
             });
-        }
+        };
 
         // Apply sorting
         switch ($request->sort_by) {
