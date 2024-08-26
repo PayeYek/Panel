@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\v1;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\v1\ArticleFilterRequest;
 use App\Models\Blog\Article;
+use App\Models\Blog\Company;
 use App\Trait\ApiResponse;
 use App\Transformers\v1\ArticleCardTransformer;
 use App\Transformers\v1\ArticleSingleTransformer;
@@ -80,5 +81,14 @@ class ArticleController extends Controller
             // If the advertisement is not found, return an error response with a custom message and an appropriate status code
             return $this->errorResponse(__('There is no advertisement with this ID!'), ResponseAlias::HTTP_NOT_FOUND);
         }
+    }
+
+    public function getAllCompanies()
+    {
+        // Fetch all companies
+        $companies = Company::all();
+
+        // Return the response
+        return responder()->success($companies)->respond();
     }
 }
