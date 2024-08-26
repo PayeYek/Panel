@@ -46,9 +46,9 @@ class ArticleController extends Controller
 
         // Apply company_en filter
         if ($company = $request->company_en) {
-            $query->where(function ($q) use ($company_en) {
+            $query->where(function ($q) use ($company) {
                 $q
-                    ->where('company', "$company_en");
+                    ->where('company', "$company");
             });
         }
 //        if ($companyEn = $request->company) {
