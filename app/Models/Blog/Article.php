@@ -29,6 +29,7 @@ class Article extends Model
         'image',
         'pinned',
         'publish',
+        'voice',
         'published_at',
         'expired_at'
     ];
