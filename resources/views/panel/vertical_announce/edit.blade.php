@@ -2,7 +2,7 @@
     <x-splade-modal>
         <x-splade-form
             :default="$vertical_announce" method="put"
-            :action="route('panel.announce.update', $vertical_announce)"
+            :action="route('panel.vertical_announce.update', $vertical_announce)"
             class="space-y-5">
 
             <x-layout.panel.form.card title="Edit Announce">
