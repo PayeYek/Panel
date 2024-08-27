@@ -108,7 +108,7 @@ class ArticleController extends Controller
             $relatedArticles = Article::where('company_id', $companyId)
                 ->where('id', '!=', $article->id)
                 ->orderBy('published_at', 'desc')
-                ->take(6)
+                ->take($perPage)
                 ->get();
 
             // بازگشت پاسخ
