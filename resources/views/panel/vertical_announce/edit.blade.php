@@ -1,8 +1,8 @@
 <x-layout.admin>
     <x-splade-modal>
         <x-splade-form
-            :default="$announce" method="put"
-            :action="route('panel.announce.update', $announce)"
+            :default="$vertical_announce" method="put"
+            :action="route('panel.announce.update', $vertical_announce)"
             class="space-y-5">
 
             <x-layout.panel.form.card title="Edit Announce">
