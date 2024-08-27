@@ -3,6 +3,7 @@
 use App\Events\MessageSent;
 use App\Http\Controllers\Api\v1\AdController;
 use App\Http\Controllers\Api\v1\AnnounceController;
+use App\Http\Controllers\Api\v1\VerticalAnnounceController;
 use App\Http\Controllers\Api\v1\ArticleController;
 use App\Http\Controllers\Api\v1\AuthController;
 use App\Http\Controllers\Api\v1\BookmarkController;
@@ -104,6 +105,13 @@ Route::resource('article', ArticleController::class)->except(['edit', 'update', 
  * Announce
  * --------------------------*/
 Route::prefix('announce')->name('announce.')->controller(AnnounceController::class)->group(function () {
+    Route::get('index', 'index')->name('index');
+});
+
+/**-------------------------***
+ * Vertical Announce
+ * --------------------------*/
+Route::prefix('vertical_announce')->name('vertical_announce.')->controller(VerticalAnnounceController::class)->group(function () {
     Route::get('index', 'index')->name('index');
 });
 
