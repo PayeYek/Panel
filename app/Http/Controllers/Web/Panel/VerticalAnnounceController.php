@@ -36,7 +36,7 @@ class VerticalAnnounceController extends Controller
 
         $data = $this->getImage($data, $request, 'mobile');
 
-        Announce::create($data);
+        VerticalAnnounce::create($data);
 
         Splade::toast(__('Created'))->autoDismiss(5)->success();
 

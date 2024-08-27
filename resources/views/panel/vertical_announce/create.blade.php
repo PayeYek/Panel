@@ -2,7 +2,7 @@
     <x-splade-modal>
 
         <x-splade-form
-            :action="route('panel.announce.store')"
+            :action="route('panel.vertical_announce.store')"
             :default="[
              'status' => 1,
             ]"
