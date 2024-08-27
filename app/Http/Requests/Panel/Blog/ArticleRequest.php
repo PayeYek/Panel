@@ -20,6 +20,7 @@ class ArticleRequest extends FormRequest
                 'title'        => 'required|string',
                 'company_id'   => 'required|numeric',
                 'type'         => 'nullable|string',
+                'voice'         => 'nullable|string',
                 'description'  => 'nullable|string',
                 'body'         => 'required',
                 'image'        => 'required|image|mimes:jpg,jpeg,png,webp|max:2048|dimensions:min_width=1,min_height=1',
