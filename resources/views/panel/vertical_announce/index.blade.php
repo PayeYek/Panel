@@ -35,7 +35,7 @@
                 <x-layout.panel.list.edit table="vertical_announce" :item="$item"/>
             </div>
             <div class="py-2 first:pt-0 last:pb-0">
-                <x-layout.panel.list.destroy table="vartical_announce" :item="$item"/>
+                <x-layout.panel.list.destroy table="vertical_announce" :item="$item"/>
             </div>
         </x-layout.panel.more-buttons>
         @endcell
