@@ -100,10 +100,10 @@ class ArticleController extends Controller
             $article = Article::findOrFail($articleId);
 
             // پیدا کردن دسته‌بندی مقاله
-            $categoryId = $article->category_id;
+            $companyId = $article->company_id;
 
             // پیدا کردن مقالات زیرمجموعه همان دسته‌بندی به جز خود مقاله
-            $relatedArticles = Article::where('category_id', $categoryId)
+            $relatedArticles = Article::where('category_id', $companyId)
                 ->where('id', '!=', $article->id)
                 ->orderBy('published_at', 'desc')
                 ->take(6)
