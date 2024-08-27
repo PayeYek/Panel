@@ -2,7 +2,7 @@
 
 namespace App\Tables;
 
-use App\Models\Announce;
+use App\Models\VerticalAnnounce;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 use ProtoneMedia\Splade\AbstractTable;
@@ -33,7 +33,7 @@ class VerticalAnnounceTable extends AbstractTable
         });
 
 
-        return QueryBuilder::for(Announce::class)
+        return QueryBuilder::for(VerticalAnnounce::class)
             ->defaultSort('-id')
             ->allowedSorts([
                 'id',
