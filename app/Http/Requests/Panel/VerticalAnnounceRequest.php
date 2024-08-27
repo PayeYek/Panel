@@ -17,9 +17,9 @@ class VerticalAnnounceRequest extends FormRequest
         if ($this->method() == 'POST') {
             return [
                 'title'   => 'required|string|max:255',
-                'desktop' => 'required|image|mimes:jpg,jpeg,png,webp|max:2048',
-                'tablet'  => 'required|image|mimes:jpg,jpeg,png,webp|max:2048',
-                'mobile'  => 'required|image|mimes:jpg,jpeg,png,webp|max:2048',
+                'desktop' => 'required|image|mimes:jpg,jpeg,png,webp,gif|max:2048',
+                'tablet'  => 'required|image|mimes:jpg,jpeg,png,webp,gif|max:2048',
+                'mobile'  => 'required|image|mimes:jpg,jpeg,png,webp,gif|max:2048',
                 'link'    => 'required|url|max:255',
                 'status'   => 'required|numeric',
             ];
@@ -41,7 +41,7 @@ class VerticalAnnounceRequest extends FormRequest
     public function getValidationRuleImage($key): string
     {
         if ($this->hasFile($key)) {
-            return "required|image|mimes:jpg,jpeg,png,webp|max:2048";
+            return "required|image|mimes:jpg,jpeg,png,webp,gif|max:2048";
         }
         return "required|string";
     }
