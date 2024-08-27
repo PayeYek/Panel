@@ -49,7 +49,7 @@ class VerticalAnnounceController extends Controller
     }
 
 
-    public function update(VerticalAnnounceRequest $request, VarticalAnnounce $vertical_announce)
+    public function update(VerticalAnnounceRequest $request, VerticalAnnounce $vertical_announce)
     {
         $data = $request->validated();
 
