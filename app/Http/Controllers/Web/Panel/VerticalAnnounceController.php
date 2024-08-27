@@ -109,7 +109,7 @@ class VerticalAnnounceController extends Controller
         $data[$key] = null;
         if (!empty($request->file($key))) {
             $data[$key] =
-                $request->file($key)->store('media/announce', 'public');
+                $request->file($key)->store('media/vertical_announce', 'public');
         }
         return $data;
     }
