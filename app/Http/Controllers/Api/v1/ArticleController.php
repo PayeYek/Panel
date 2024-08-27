@@ -102,6 +102,8 @@ class ArticleController extends Controller
             // پیدا کردن دسته‌بندی مقاله
             $companyId = $article->company_id;
 
+            $perPage = request()->query('per_page', 6);
+
             // پیدا کردن مقالات زیرمجموعه همان دسته‌بندی به جز خود مقاله
             $relatedArticles = Article::where('company_id', $companyId)
                 ->where('id', '!=', $article->id)
