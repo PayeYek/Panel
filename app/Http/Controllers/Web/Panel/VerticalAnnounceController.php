@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Web\Panel;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Panel\VerticalAnnounceRequest;
 use App\Models\VerticalAnnounce;
-use App\Tables\AnnounceTable;
+use App\Tables\VerticalAnnounceTable;
 use Illuminate\Support\Facades\Storage;
 use ProtoneMedia\Splade\Facades\Splade;
 
@@ -15,7 +15,7 @@ class VerticalAnnounceController extends Controller
     public function index()
     {
         return view('panel.vertical_announce.index', [
-            'items' => AnnounceTable::class
+            'items' => VerticalAnnounceTable::class
         ]);
     }
 
@@ -49,34 +49,34 @@ class VerticalAnnounceController extends Controller
     }
 
 
-    public function update(AnnounceRequest $request, Announce $announce)
+    public function update(VerticalAnnounceRequest $request, VarticalAnnounce $vertical_announce)
     {
         $data = $request->validated();
 
         /* Update new Desktop image */
-        if ($request->validated()['desktop'] !== $announce->desktop) {
-            Storage::delete('public/' . $announce->getDesktop());
+        if ($request->validated()['desktop'] !== $vertical_announce->desktop) {
+            Storage::delete('public/' . $vertical_announce->getDesktop());
             $data = $this->getImage($data, $request, 'desktop');
         } else
-            $data['desktop'] = $announce->getDesktop();
+            $data['desktop'] = $vertical_announce->getDesktop();
 
         /* Update new Tablet image */
-        if ($request->validated()['tablet'] !== $announce->tablet) {
-            Storage::delete('public/' . $announce->getTablet());
+        if ($request->validated()['tablet'] !== $vertical_announce->tablet) {
+            Storage::delete('public/' . $vertical_announce->getTablet());
             $data = $this->getImage($data, $request, 'tablet');
         } else
-            $data['tablet'] = $announce->getTablet();
+            $data['tablet'] = $vertical_announce->getTablet();
 
         /* Update new Mobile image */
-        if ($request->validated()['mobile'] !== $announce->mobile) {
-            Storage::delete('public/' . $announce->getMobile());
+        if ($request->validated()['mobile'] !== $vertical_announce->mobile) {
+            Storage::delete('public/' . $vertical_announce->getMobile());
             $data = $this->getImage($data, $request, 'mobile');
         } else
-            $data['mobile'] = $announce->getMobile();
+            $data['mobile'] = $vertical_announce->getMobile();
 
 
         // Update the announcement with the new data
-        $announce->update($data);
+        $vertical_announce->update($data);
 
         Splade::toast(__('Updated'))->autoDismiss(5)->info();
 
@@ -84,14 +84,14 @@ class VerticalAnnounceController extends Controller
     }
 
 
-    public function destroy(Announce $announce)
+    public function destroy(VerticalAnnounce $vertical_announce)
     {
         /* Delete files */
-        Storage::delete('public/' . $announce->getDesktop());
-        Storage::delete('public/' . $announce->getTablet());
-        Storage::delete('public/' . $announce->getMobile());
+        Storage::delete('public/' . $vertical_announce->getDesktop());
+        Storage::delete('public/' . $vertical_announce->getTablet());
+        Storage::delete('public/' . $vertical_announce->getMobile());
 
-        $announce->delete();
+        $vertical_announce->delete();
 
         Splade::toast(__('Deleted'))->autoDismiss(5)->danger();
 
