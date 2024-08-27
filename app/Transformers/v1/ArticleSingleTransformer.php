@@ -35,6 +35,7 @@ class ArticleSingleTransformer extends Transformer
             'expired_at'   => $article->expired_at,
             'company_logo' => $article->company->logo,
             'company_fa'   => $article->company->title,
+            'company_id'   => $article->company->id,
             'company_en'   => $companyTitle,
             'company_slug' => $companySlug,
         ];
