@@ -37,6 +37,7 @@ class ArticleRequest extends FormRequest
                 'title'        => 'required|string',
                 'company_id'   => 'required|numeric',
                 'type'         => 'nullable|string',
+                'voice'         => 'nullable|string',
                 'description'  => 'nullable|string',
                 'body'         => 'required',
                 'image'        => $this->getValidationRuleImage(),
