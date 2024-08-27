@@ -23,6 +23,7 @@
                     <x-splade-input name="title" label="Title" required/>
                     <x-splade-input ltr name="slug" label="Slug" help="Exclusive name in English"/>
                     <x-splade-textarea name="description" label="Description" help="For SEO"/>
+                    <x-splade-input ltr name="voice" label="Voice"/>
                     <x-splade-wysiwyg name="body" label="Article content" required/>
 
                     {{--                    <x-layout.panel.form.divider text="Publish setting"/>--}}
