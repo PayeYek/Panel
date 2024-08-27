@@ -163,3 +163,4 @@ Route::prefix('data')->name('data.')->group(function () {
 
 
 Route::get('/article_companies', [ArticleController::class, 'getAllCompanies']);
+Route::get('/related_article', [ArticleController::class, 'relatedArticles']);

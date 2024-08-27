@@ -91,4 +91,31 @@ class ArticleController extends Controller
         // Return the response
         return responder()->success($companies)->respond();
     }
+
+
+    public function relatedArticles($articleId)
+    {
+        try {
+            // پیدا کردن مقاله از طریق آیدی
+            $article = Article::findOrFail($articleId);
+
+            // پیدا کردن دسته‌بندی مقاله
+            $categoryId = $article->category_id;
+
+            // پیدا کردن مقالات زیرمجموعه همان دسته‌بندی به جز خود مقاله
+            $relatedArticles = Article::where('category_id', $categoryId)
+                ->where('id', '!=', $article->id)
+                ->orderBy('published_at', 'desc')
+                ->take(6)
+                ->get();
+
+            // بازگشت پاسخ
+            return responder()->success($relatedArticles, ArticleCardTransformer::class)->respond();
+
+        } catch (ModelNotFoundException $e) {
+            // در صورت عدم وجود مقاله
+            return $this->errorResponse(__('Article not found!'), ResponseAlias::HTTP_NOT_FOUND);
+        }
+    }
+
 }
