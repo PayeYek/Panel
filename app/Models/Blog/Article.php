@@ -31,7 +31,8 @@ class Article extends Model
         'publish',
         'voice',
         'published_at',
-        'expired_at'
+        'expired_at',
+        'updated_at'
     ];
 
     public function scopePublished($query)
