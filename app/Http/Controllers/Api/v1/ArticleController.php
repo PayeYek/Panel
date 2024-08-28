@@ -99,13 +99,15 @@ class ArticleController extends Controller
             // پیدا کردن مقاله از طریق آیدی
             $article = Article::findOrFail($articleId);
 
-            // پیدا کردن دسته‌بندی مقاله
+            // پیدا کردن دسته‌بندی و نوع مقاله
             $companyId = $article->company_id;
+            $type = $article->type;
 
             $perPage = request()->query('per_page', 6);
 
             // پیدا کردن مقالات زیرمجموعه همان دسته‌بندی به جز خود مقاله
             $relatedArticles = Article::where('company_id', $companyId)
+                ->where('type', $type)
                 ->where('id', '!=', $article->id)
                 ->orderBy('published_at', 'desc')
                 ->take($perPage)
