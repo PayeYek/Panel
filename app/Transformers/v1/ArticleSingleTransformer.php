@@ -33,6 +33,7 @@ class ArticleSingleTransformer extends Transformer
             'slug'         => $article->slug,
             'voice'         => $article->voice,
             'published_at' => $article->published_at,
+            'updated_at' => $article->updated_at,
             'expired_at'   => $article->expired_at,
             'company_logo' => $article->company->logo,
             'company_fa'   => $article->company->title,
