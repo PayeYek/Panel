@@ -1,0 +1,1151 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+@import 'swiper/swiper-bundle.css';
+
+
+@tailwind base;
+@layer base{
+    * {
+        @apply transition-all duration-75;
+    }
+
+    :root{
+        --theme-normal: 213,0,0;
+        --theme-focus: 154,7,7;
+        --theme-shadow-light: rgba(212, 17, 24, 0.3);
+        --theme-shadow-normal: rgba(212, 17, 24, 0.5);
+        --theme-shadow-focus: rgba(212, 17, 24, 0.8);
+        --theme-radius: 8px;
+    }
+    .theme_arian{
+        --theme-normal: 213,0,0;
+        --theme-focus: 154,7,7;
+        --theme-shadow-light: rgba(212, 17, 24, 0.3);
+        --theme-shadow-normal: rgba(212, 17, 24, 0.5);
+        --theme-shadow-focus: rgba(212, 17, 24, 0.8);
+    }
+    .theme_saipa{
+        --theme-normal: 46,48,146;
+        --theme-focus: 21,23,105;
+        --theme-shadow-light: rgba(21, 23, 105, 0.3);
+        --theme-shadow-normal: rgba(21, 23, 105, 0.5);
+        --theme-shadow-focus: rgba(21, 23, 105, 0.8);
+    }
+    .theme_arya{
+        --theme-normal: 237,32,39;
+        --theme-focus: 212,17,24;
+        --theme-shadow-light: rgba(185, 28, 28, 0.3);
+        --theme-shadow-normal: rgba(185, 28, 28, 0.5);
+        --theme-shadow-focus: rgba(185, 28, 28, 0.8);
+    }
+    .theme_carizan{
+        --theme-normal: 38,108,149;
+        --theme-focus: 0,91,146;
+        --theme-shadow-light: rgba(0, 91, 146, 0.3);
+        --theme-shadow-normal: rgba(0, 91, 146, 0.5);
+        --theme-shadow-focus: rgba(0, 91, 146, 0.8);
+    }
+    .theme_pilsan{
+        --theme-normal: 64,63,59;
+        --theme-focus: 39,39,39;
+        --theme-shadow-light: rgba(39, 39, 39, 0.3);
+        --theme-shadow-normal: rgba(39, 39, 39, 0.5);
+        --theme-shadow-focus: rgba(39, 39, 39, 0.8);
+    }
+    .theme_bahman{
+        --theme-normal: 15,15,15;
+        --theme-focus: 5,5,5;
+        --theme-shadow-light: rgba(5, 5, 5, 0.3);
+        --theme-shadow-normal: rgba(5, 5, 5, 0.5);
+        --theme-shadow-focus: rgba(5, 5, 5, 0.8);
+    }
+    .theme_mayan{
+        --theme-normal: 220,53,69;
+        --theme-focus: 184,34,48;
+        --theme-shadow-light: rgba(184, 34, 48, 0.3);
+        --theme-shadow-normal: rgba(184, 34, 48, 0.5);
+        --theme-shadow-focus: rgba(184, 34, 48, 0.8);
+    }
+    .theme_titan{
+        --theme-normal: 36,31,71;
+        --theme-focus: 27,22,62;
+        --theme-shadow-light: rgba(27, 22, 62, 0.3);
+        --theme-shadow-normal: rgba(27, 22, 62, 0.5);
+        --theme-shadow-focus: rgba(27, 22, 62, 0.8);
+    }
+    .theme_rakhsh{
+        --theme-normal: 26,27,29;
+        --theme-focus: 15,15,15;
+        --theme-shadow-light: rgba(15, 15, 15, 0.3);
+        --theme-shadow-normal: rgba(15, 15, 15, 0.5);
+        --theme-shadow-focus: rgba(15, 15, 15, 0.8);
+    }
+    .theme_mammut{
+        --theme-normal: 36,31,71;
+        --theme-focus: 27,22,62;
+        --theme-shadow-light: rgba(27, 22, 62, 0.3);
+        --theme-shadow-normal: rgba(27, 22, 62, 0.5);
+        --theme-shadow-focus: rgba(27, 22, 62, 0.8);
+    }
+    .theme_soroush{
+        --theme-normal: 38,108,149;
+        --theme-focus: 13,59,86;
+        --theme-shadow-light: rgba(13, 59, 86, 0.3);
+        --theme-shadow-normal: rgba(13, 59, 86, 0.5);
+        --theme-shadow-focus: rgba(13, 59, 86, 0.8);
+    }
+    .theme_farda{
+        --theme-normal: 33,63,90;
+        --theme-focus: 29,45,60;
+        --theme-shadow-light: rgba(29, 45, 60, 0.3);
+        --theme-shadow-normal: rgba(29, 45, 60, 0.5);
+        --theme-shadow-focus: rgba(29, 45, 60, 0.8);
+    }
+    .theme_caspian{
+        --theme-normal: 62,118,235;
+        --theme-focus: 55,91,167;
+        --theme-shadow-light: rgba(55, 91, 167, 0.3);
+        --theme-shadow-normal: rgba(55, 91, 167, 0.5);
+        --theme-shadow-focus: rgba(55, 91, 167, 0.8);
+    }
+    .theme_amico{
+        --theme-normal: 33,63,90;
+        --theme-focus: 29,45,60;
+        --theme-shadow-light: rgba(29, 45, 60, 0.3);
+        --theme-shadow-normal: rgba(29, 45, 60, 0.5);
+        --theme-shadow-focus: rgba(29, 45, 60, 0.8);
+    }
+    .theme_ikco{
+        --theme-normal: 1,87,158;
+        --theme-focus: 0,61,111;
+        --theme-shadow-light: rgba(0, 61, 111, 0.3);
+        --theme-shadow-normal: rgba(0, 61, 111, 0.5);
+        --theme-shadow-focus: rgba(0, 61, 111, 0.8);
+    }
+    .theme_azhitech{
+        --theme-normal: 33,63,90;
+        --theme-focus: 14,32,48;
+        --theme-shadow-light: rgba(14, 32, 48, 0.3);
+        --theme-shadow-normal: rgba(14, 32, 48, 0.5);
+        --theme-shadow-focus: rgba(14, 32, 48, 0.8);
+    }
+    .theme_shayan{
+        --theme-normal: 25,53,120;
+        --theme-focus: 9,33,75;
+        --theme-shadow-light: rgba(9, 33, 75, 0.3);
+        --theme-shadow-normal: rgba(9, 33, 75, 0.5);
+        --theme-shadow-focus: rgba(9, 33, 75, 0.8);
+    }
+    .theme_vira{
+        --theme-normal: 15,15,15;
+        --theme-focus: 0,0,0;
+        --theme-shadow-light: rgba(0, 0, 0, 0.3);
+        --theme-shadow-normal: rgba(0, 0, 0, 0.5);
+        --theme-shadow-focus: rgba(0, 0, 0, 0.8);
+    }
+    .theme_datis{
+        --theme-normal: 40,49,117;
+        --theme-focus: 11,18,70;
+        --theme-shadow-light: rgba(11, 18, 70, 0.3);
+        --theme-shadow-normal: rgba(11, 18, 70, 0.5);
+        --theme-shadow-focus: rgba(11, 18, 70, 0.8);
+    }
+    .theme_tirazhe{
+        --theme-normal: 15,117,184;
+        --theme-focus: 18,78,121;
+        --theme-shadow-light: rgba(18, 78, 121, 0.3);
+        --theme-shadow-normal: rgba(18, 78, 121, 0.5);
+        --theme-shadow-focus: rgba(18, 78, 121, 0.8);
+    }
+    .theme_kaveh{
+        --theme-normal: 1,48,127;
+        --theme-focus: 0,25,68;
+        --theme-shadow-light: rgba(0, 25, 68, 0.3);
+        --theme-shadow-normal: rgba(0, 25, 68, 0.5);
+        --theme-shadow-focus: rgba(0, 25, 68, 0.8);
+    }
+    .theme_shiran{
+        --theme-normal: 26,27,29;
+        --theme-focus: 15,15,15;
+        --theme-shadow-light: rgba(15, 15, 15, 0.3);
+        --theme-shadow-normal: rgba(15, 15, 15, 0.5);
+        --theme-shadow-focus: rgba(15, 15, 15, 0.8);
+    }
+    .theme_kamel{
+        --theme-normal: 26,27,29;
+        --theme-focus: 0,0,0;
+        --theme-shadow-light: rgba(0, 0, 0, 0.3);
+        --theme-shadow-normal: rgba(0, 0, 0, 0.5);
+        --theme-shadow-focus: rgba(0, 0, 0, 0.8);
+    }
+    .theme_max{
+        --theme-normal: 24,34,79;
+        --theme-focus: 17,25,57;
+        --theme-shadow-light: rgba(17, 25, 57, 0.3);
+        --theme-shadow-normal: rgba(17, 25, 57, 0.5);
+        --theme-shadow-focus: rgba(17, 25, 57, 0.8);
+    }
+    .theme_arasb{
+        --theme-normal: 245,130,32;
+        --theme-focus: 241,111,0;
+        --theme-shadow-light: rgba(241, 111, 0, 0.3);
+        --theme-shadow-normal: rgba(241, 111, 0, 0.5);
+        --theme-shadow-focus: rgba(241, 111, 0, 0.8);
+    }
+
+
+    .rounded_none{
+        --theme-radius: 0px;
+    }
+    .rounded_sm{
+        --theme-radius: 2px;
+    }
+    .rounded_base{
+        --theme-radius: 4px;
+    }
+    .rounded_md{
+        --theme-radius: 6px;
+    }
+    .rounded_lg{
+        --theme-radius: 8px;
+    }
+    .rounded_xl{
+        --theme-radius: 12px;
+    }
+    .rounded_2xl{
+        --theme-radius: 16px;
+    }
+
+    .custom_article_styles h1{
+        @apply mb-4 text-3xl font-medium;
+    }
+    .custom_article_styles h2{
+        @apply mb-4 text-[26px] font-medium;
+    }
+    .custom_article_styles h3{
+        @apply text-2xl mb-2.5 font-medium;
+    }
+    .custom_article_styles p{
+        @apply text-sm font-normal leading-7 lg:text-xl lg:leading-8;
+    }
+    .custom_article_styles a{
+        @apply text-base leading-7 font-medium text-[#1EA0FF] underline underline-offset-[6px];
+    }
+    .custom_article_styles{
+        @apply *:text-stone-700;
+    }
+    .custom_article_styles img{
+        @apply rounded-custom aspect-video;
+    }
+
+    .custom_article_styles img.aspect-a4{
+        @apply rounded-custom aspect-[13/16] max-w-[40rem] mx-auto;
+    }
+
+    .custom_article_styles .h_iframe-aparat_embed_frame{
+        @apply relative;
+    }
+
+    .custom_article_styles .h_iframe-aparat_embed_frame iframe{
+        @apply absolute top-0 right-0 w-full h-full;
+    }
+
+    /* Chrome, Safari, Edge, Opera */
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+    }
+
+    /* Firefox */
+    input[type=number] {
+    -moz-appearance: textfield;
+    }
+
+    input{
+        @apply border-0 focus:border-0 outline-none;
+    }
+}
+@tailwind components;
+@tailwind utilities;
+
+/* Font YekanBakh */
+@layer components {
+    @font-face {
+        font-family: YekanBakh;
+        font-style: normal;
+        font-weight: 100;
+        src: url('./fonts/woff/YekanBakhFaEnHairline.woff') format('woff'),
+        url('./fonts/ttf/YekanBakhFaEnHairline.ttf') format('truetype');
+    }
+    @font-face {
+        font-family: YekanBakh;
+        font-style: normal;
+        font-weight: 200;
+        src: url('./fonts/woff/YekanBakhFaEnThin.woff') format('woff'),
+        url('./fonts/ttf/YekanBakhFaEnThin.ttf') format('truetype');
+    }
+    @font-face {
+        font-family: YekanBakh;
+        font-style: normal;
+        font-weight: 300;
+        src: url('./fonts/woff/YekanBakhFaEnLight.woff') format('woff'),
+        url('./fonts/ttf/YekanBakhFaEnLight.ttf') format('truetype');
+    }
+    @font-face {
+        font-family: YekanBakh;
+        font-style: normal;
+        font-weight: 400;
+        src: url('./fonts/woff/YekanBakhFaEnRegular.woff') format('woff'),
+        url('./fonts/ttf/YekanBakhFaEnRegular.ttf') format('truetype');
+    }
+    @font-face {
+        font-family: YekanBakh;
+        font-style: normal;
+        font-weight: 500;
+        src: url('./fonts/woff/YekanBakhFaEnMedium.woff') format('woff'),
+        url('./fonts/ttf/YekanBakhFaEnMedium.ttf') format('truetype');
+    }
+    @font-face {
+        font-family: YekanBakh;
+        font-style: normal;
+        font-weight: 600;
+        src: url('./fonts/woff/YekanBakhFaEnBold.woff') format('woff'),
+        url('./fonts/ttf/YekanBakhFaEnBold.ttf') format('truetype');
+    }
+    @font-face {
+        font-family: YekanBakh;
+        font-style: normal;
+        font-weight: 700;
+        src: url('./fonts/woff/YekanBakhFaEnHeavy.woff') format('woff'),
+        url('./fonts/ttf/YekanBakhFaEnHeavy.ttf') format('truetype');
+    }
+    @font-face {
+        font-family: YekanBakh;
+        font-style: normal;
+        font-weight: 800;
+        src: url('./fonts/woff/YekanBakhFaEnFat.woff') format('woff'),
+        url('./fonts/ttf/YekanBakhFaEnFat.ttf') format('truetype');
+    }
+
+
+    @font-face {
+        font-family: YekanBakhFA;
+        font-style: normal;
+        font-weight: 100;
+        src: url('./fonts/woff/YekanBakhFaNumHairline.woff') format('woff'),
+        url('./fonts/ttf/YekanBakhFaNumHairline.ttf') format('truetype');
+    }
+    @font-face {
+        font-family: YekanBakhFA;
+        font-style: normal;
+        font-weight: 200;
+        src: url('./fonts/woff/YekanBakhFaNumThin.woff') format('woff'),
+        url('./fonts/ttf/YekanBakhFaNumThin.ttf') format('truetype');
+    }
+    @font-face {
+        font-family: YekanBakhFA;
+        font-style: normal;
+        font-weight: 300;
+        src: url('./fonts/woff/YekanBakhFaNumLight.woff') format('woff'),
+        url('./fonts/ttf/YekanBakhFaNumLight.ttf') format('truetype');
+    }
+    @font-face {
+        font-family: YekanBakhFA;
+        font-style: normal;
+        font-weight: 400;
+        src: url('./fonts/woff/YekanBakhFaNumRegular.woff') format('woff'),
+        url('./fonts/ttf/YekanBakhFaNumRegular.ttf') format('truetype');
+    }
+    @font-face {
+        font-family: YekanBakhFA;
+        font-style: normal;
+        font-weight: 500;
+        src: url('./fonts/woff/YekanBakhFaNumMedium.woff') format('woff'),
+        url('./fonts/ttf/YekanBakhFaNumMedium.ttf') format('truetype');
+    }
+    @font-face {
+        font-family: YekanBakhFA;
+        font-style: normal;
+        font-weight: 600;
+        src: url('./fonts/woff/YekanBakhFaNumBold.woff') format('woff'),
+        url('./fonts/ttf/YekanBakhFaNumBold.ttf') format('truetype');
+    }
+    @font-face {
+        font-family: YekanBakhFA;
+        font-style: normal;
+        font-weight: 700;
+        src: url('./fonts/woff/YekanBakhFaNumHeavy.woff') format('woff'),
+        url('./fonts/ttf/YekanBakhFaNumHeavy.ttf') format('truetype');
+    }
+    @font-face {
+        font-family: YekanBakhFA;
+        font-style: normal;
+        font-weight: 800;
+        src: url('./fonts/woff/YekanBakhFaNumFat.woff') format('woff'),
+        url('./fonts/ttf/YekanBakhFaNumFat.ttf') format('truetype');
+    }
+}
+
+/* Font Morabba */
+@layer components {
+    /*@font-face {*/
+    /*    font-family: IRANSansX;*/
+    /*    font-style: normal;*/
+    /*    font-weight: 100; !* font-thin -> font-weight: 100; *!*/
+    /*    src: url('./fonts/woff/IRANSansX-Thin.woff') format('woff'),*/
+    /*    url('./fonts/woff2/IRANSansX-Thin.woff2') format('woff2');*/
+    /*}*/
+
+    @font-face {
+        font-family: Morabba;
+        font-style: normal;
+        font-weight: 200; /* font-extralight -> font-weight: 200; */
+        src: url('./fonts/woff/Morabba-UltraLight.woff') format('woff'),
+        url('./fonts/woff2/Morabba-UltraLight.woff2') format('woff2');
+    }
+
+    @font-face {
+        font-family: Morabba;
+        font-style: normal;
+        font-weight: 300; /* font-light -> font-weight: 300; */
+        src: url('./fonts/woff/Morabba-Light.woff') format('woff'),
+        url('./fonts/woff2/Morabba-Light.woff2') format('woff2');
+    }
+
+    @font-face {
+        font-family: Morabba;
+        font-style: normal;
+        font-weight: normal; /* font-normal -> font-weight: 400; */
+        src: url('./fonts/woff/Morabba-Regular.woff') format('woff'),
+        url('./fonts/woff2/Morabba-Regular.woff2') format('woff2');
+    }
+
+    @font-face {
+        font-family: Morabba;
+        font-style: normal;
+        font-weight: 500; /* font-medium -> font-weight: 500; */
+        src: url('./fonts/woff/Morabba-Medium.woff') format('woff'),
+        url('./fonts/woff2/Morabba-Medium.woff2') format('woff2');
+    }
+
+    @font-face {
+        font-family: Morabba;
+        font-style: normal;
+        font-weight: 600;  /* font-semibold -> font-weight: 600; */
+        src: url('./fonts/woff/Morabba-SemiBold.woff') format('woff'),
+        url('./fonts/woff2/Morabba-SemiBold.woff2') format('woff2');
+    }
+
+    @font-face {
+        font-family: Morabba;
+        font-style: normal;
+        font-weight: bold; /* font-bold -> font-weight: 700; */
+        src: url('./fonts/woff/Morabba-Bold.woff') format('woff'),
+        url('./fonts/woff2/Morabba-Bold.woff2') format('woff2');
+    }
+
+    @font-face {
+        font-family: Morabba;
+        font-style: normal;
+        font-weight: 800; /* font-extrabold -> font-weight: 800; */
+        src: url('./fonts/woff/Morabba-ExtraBold.woff') format('woff'),
+        url('./fonts/woff2/Morabba-ExtraBold.woff2') format('woff2');
+    }
+
+    @font-face {
+        font-family: Morabba;
+        font-style: normal;
+        font-weight: 900; /* font-black -> font-weight: 900; */
+        src: url('./fonts/woff/Morabba-Heavy.woff') format('woff'),
+        url('./fonts/woff2/Morabba-Heavy.woff2') format('woff2');
+    }
+}
+
+/* Font IRANSansX */
+@layer components {
+    @font-face {
+        font-family: IRANSansX;
+        font-style: normal;
+        font-weight: 100; /* font-thin -> font-weight: 100; */
+        src: url('./fonts/woff/IRANSansX-Thin.woff') format('woff'),
+        url('./fonts/woff2/IRANSansX-Thin.woff2') format('woff2');
+    }
+
+    @font-face {
+        font-family: IRANSansX;
+        font-style: normal;
+        font-weight: 200; /* font-extralight -> font-weight: 200; */
+        src: url('./fonts/woff/IRANSansX-UltraLight.woff') format('woff'),
+        url('./fonts/woff2/IRANSansX-UltraLight.woff2') format('woff2');
+    }
+
+    @font-face {
+        font-family: IRANSansX;
+        font-style: normal;
+        font-weight: 300; /* font-light -> font-weight: 300; */
+        src: url('./fonts/woff/IRANSansX-Light.woff') format('woff'),
+        url('./fonts/woff2/IRANSansX-Light.woff2') format('woff2');
+    }
+
+    @font-face {
+        font-family: IRANSansX;
+        font-style: normal;
+        font-weight: normal; /* font-normal -> font-weight: 400; */
+        src: url('./fonts/woff/IRANSansX-Regular.woff') format('woff'),
+        url('./fonts/woff2/IRANSansX-Regular.woff2') format('woff2');
+    }
+
+    @font-face {
+        font-family: IRANSansX;
+        font-style: normal;
+        font-weight: 500; /* font-medium -> font-weight: 500; */
+        src: url('./fonts/woff/IRANSansX-Medium.woff') format('woff'),
+        url('./fonts/woff2/IRANSansX-Medium.woff2') format('woff2');
+    }
+
+    @font-face {
+        font-family: IRANSansX;
+        font-style: normal;
+        font-weight: 600;  /* font-semibold -> font-weight: 600; */
+        src: url('./fonts/woff/IRANSansX-DemiBold.woff') format('woff'),
+        url('./fonts/woff2/IRANSansX-DemiBold.woff2') format('woff2');
+    }
+
+    @font-face {
+        font-family: IRANSansX;
+        font-style: normal;
+        font-weight: bold; /* font-bold -> font-weight: 700; */
+        src: url('./fonts/woff/IRANSansX-Bold.woff') format('woff'),
+        url('./fonts/woff2/IRANSansX-Bold.woff2') format('woff2');
+    }
+
+    @font-face {
+        font-family: IRANSansX;
+        font-style: normal;
+        font-weight: 800; /* font-extrabold -> font-weight: 800; */
+        src: url('./fonts/woff/IRANSansX-ExtraBold.woff') format('woff'),
+        url('./fonts/woff2/IRANSansX-ExtraBold.woff2') format('woff2');
+    }
+
+    @font-face {
+        font-family: IRANSansX;
+        font-style: normal;
+        font-weight: 900; /* font-black -> font-weight: 900; */
+        src: url('./fonts/woff/IRANSansX-Black.woff') format('woff'),
+        url('./fonts/woff2/IRANSansX-Black.woff2') format('woff2');
+    }
+}
+
+/* Font IRANYekanX */
+@layer components {
+    @font-face {
+        font-family: IRANYekanX;
+        font-style: normal;
+        font-weight: 100; /* font-thin -> 100 */
+        src: url('./fonts/woff/IRANYekanX-Thin.woff') format('woff'),
+        url('./fonts/woff2/IRANYekanX-Thin.woff2') format('woff2');
+    }
+
+    @font-face {
+        font-family: IRANYekanX;
+        font-style: normal;
+        font-weight: 200; /* font-extralight -> 200 */
+        src: url('./fonts/woff/IRANYekanX-UltraLight.woff') format('woff'),
+        url('./fonts/woff2/IRANYekanX-UltraLight.woff2') format('woff2');
+    }
+
+    @font-face {
+        font-family: IRANYekanX;
+        font-style: normal;
+        font-weight: 300; /* font-light -> 300 */
+        src: url('./fonts/woff/IRANYekanX-Light.woff') format('woff'),
+        url('./fonts/woff2/IRANYekanX-Light.woff2') format('woff2');
+    }
+
+    @font-face {
+        font-family: IRANYekanX;
+        font-style: normal;
+        font-weight: normal; /* font-normal -> 400 */
+        src: url('./fonts/woff/IRANYekanX-Regular.woff') format('woff'),
+        url('./fonts/woff2/IRANYekanX-Regular.woff2') format('woff2');
+    }
+
+    @font-face {
+        font-family: IRANYekanX;
+        font-style: normal;
+        font-weight: 500; /* font-medium -> 500 */
+        src: url('./fonts/woff/IRANYekanX-Medium.woff') format('woff'),
+        url('./fonts/woff2/IRANYekanX-Medium.woff2') format('woff2');
+    }
+
+    @font-face {
+        font-family: IRANYekanX;
+        font-style: normal;
+        font-weight: 600;  /* font-semibold -> 600 */
+        src: url('./fonts/woff/IRANYekanX-DemiBold.woff') format('woff'),
+        url('./fonts/woff2/IRANYekanX-DemiBold.woff2') format('woff2');
+    }
+
+    @font-face {
+        font-family: IRANYekanX;
+        font-style: normal;
+        font-weight: bold; /* font-bold -> 700 */
+        src: url('./fonts/woff/IRANYekanX-Bold.woff') format('woff'),
+        url('./fonts/woff2/IRANYekanX-Bold.woff2') format('woff2');
+    }
+
+    @font-face {
+        font-family: IRANYekanX;
+        font-style: normal;
+        font-weight: 800; /* font-extrabold -> 800 */
+        src: url('./fonts/woff/IRANYekanX-ExtraBold.woff') format('woff'),
+        url('./fonts/woff2/IRANYekanX-ExtraBold.woff2') format('woff2');
+    }
+
+    @font-face {
+        font-family: IRANYekanX;
+        font-style: normal;
+        font-weight: 900; /* font-black -> 900 */
+        src: url('./fonts/woff/IRANYekanX-Black.woff') format('woff'),
+        url('./fonts/woff2/IRANYekanX-Black.woff2') format('woff2');
+    }
+    @font-face {
+        font-family: IRANYekanX;
+        font-style: normal;
+        font-weight: 950;
+        src: url('./fonts/woff/IRANYekanX-ExtraBlack.woff') format('woff'),
+        url('./fonts/woff2/IRANYekanX-ExtraBlack.woff2') format('woff2');
+    }
+
+    @font-face {
+        font-family: IRANYekanX;
+        font-style: normal;
+        font-weight: 1000;
+        src: url('./fonts/woff/IRANYekanX-Heavy.woff') format('woff'),
+        url('./fonts/woff2/IRANYekanX-Heavy.woff2') format('woff2');
+    }
+
+}
+
+/* custom components */
+@layer components {
+    .flex_center{
+        @apply flex items-center justify-center;
+    }
+    .flex_between{
+        @apply flex items-center justify-between;
+    }
+    .flex_row{
+        @apply flex items-center;
+    }
+
+    .default_container{
+        @apply max-w-screen-xl px-4 xl:mx-auto;
+    }
+
+    .evenOdd_cards{
+        @apply even:bg-white odd:bg-[#f5f5f5];
+    }
+
+    .vacant_btn_theme_warning{
+        @apply text-red-700 bg-white border border-red-700 hover:border-red-800 hover:text-red-800 focus:border-red-800 focus:text-red-800 focus:shadow-focus focus:shadow-red-700/50;
+    }
+    .fill_btn_theme_warning_empty{
+        @apply text-red-700 bg-white border border-red-700 hover:border-red-800 hover:text-red-800 focus:border-red-800 focus:text-red-800 focus:shadow-focus focus:shadow-red-700/50;
+    }
+    .fill_btn_theme_warning_filled{
+        @apply text-white bg-red-700 hover:bg-red-800 focus:bg-red-800 focus:shadow-focus focus:shadow-red-700/50;
+    }
+    .vacant_btn_theme_primary{
+        @apply text-blue-700 bg-white border border-blue-700 hover:border-blue-800 hover:text-blue-800 focus:border-blue-800 focus:text-blue-800 focus:shadow-focus focus:shadow-blue-700/50;
+    }
+    .fill_btn_theme_primary_empty{
+        @apply text-blue-700 bg-white border border-blue-700 hover:border-blue-800 hover:text-blue-800 focus:border-blue-800 focus:text-blue-800 focus:shadow-focus focus:shadow-blue-700/50;
+    }
+    .fill_btn_theme_primary_filled{
+        @apply text-white bg-blue-700 hover:bg-blue-800 focus:bg-blue-800 focus:shadow-focus focus:shadow-blue-700/50;
+    }
+    .vacant_btn_theme_rose{
+        @apply bg-white border text-rose-700 border-rose-700 hover:border-rose-800 hover:text-rose-800 focus:border-rose-800 focus:text-rose-800 focus:shadow-focus focus:shadow-rose-700/50;
+    }
+    .fill_btn_theme_rose_empty{
+        @apply bg-white border text-rose-700 border-rose-700 hover:border-rose-800 hover:text-rose-800 focus:border-rose-800 focus:text-rose-800 focus:shadow-focus focus:shadow-rose-700/50;
+    }
+    .fill_btn_theme_rose_filled{
+        @apply text-white bg-rose-700 hover:bg-rose-800 focus:bg-rose-800 focus:shadow-focus focus:shadow-rose-700/50;
+    }
+    .vacant_btn_theme_zinc{
+        @apply bg-white border text-zinc-700 border-zinc-700 hover:border-zinc-800 hover:text-zinc-800 focus:border-zinc-800 focus:text-zinc-800 focus:shadow-focus focus:shadow-zinc-700/50;
+    }
+    .fill_btn_theme_zinc_empty{
+        @apply bg-white border text-zinc-700 border-zinc-700 hover:border-zinc-800 hover:text-zinc-800 focus:border-zinc-800 focus:text-zinc-800 focus:shadow-focus focus:shadow-zinc-700/50;
+    }
+    .fill_btn_theme_zinc_filled{
+        @apply text-white bg-zinc-700 hover:bg-zinc-800 focus:bg-zinc-800 focus:shadow-focus focus:shadow-zinc-700/50;
+    }
+    .vacant_btn_theme_cobalt{
+        @apply bg-white border text-cobalt-700 border-cobalt-700 hover:border-cobalt-800 hover:text-cobalt-800 focus:border-cobalt-800 focus:text-cobalt-800 focus:shadow-focus focus:shadow-cobalt-700/50;
+    }
+    .fill_btn_theme_cobalt_empty{
+        @apply bg-white border text-cobalt-700 border-cobalt-700 hover:border-cobalt-800 hover:text-cobalt-800 focus:border-cobalt-800 focus:text-cobalt-800 focus:shadow-focus focus:shadow-cobalt-700/50;
+    }
+    .fill_btn_theme_cobalt_filled{
+        @apply text-white bg-cobalt-700 hover:bg-cobalt-800 focus:bg-cobalt-800 focus:shadow-focus focus:shadow-cobalt-700/50;
+    }
+
+    .sameCategoryBtnStyle{
+        @apply w-full font-medium cursor-pointer text-lg h-11 flex_center;
+    }
+    .categoryBtnEmpty{
+        @apply bg-white border text-stone-700 border-stone-400 hover:border-stone-500;
+    }
+    .castegoryBtnfilled{
+        @apply text-white bg-stone-700 hover:bg-stone-800;
+    }
+}
+
+@layer utilities {
+    /* Font IRANSansX - Number Farsi */
+    .number-fa {
+        -moz-font-feature-settings: "ss02";
+        -webkit-font-feature-settings: "ss02";
+        font-feature-settings: "ss02";
+    }
+    /* Font Morabba - Number Farsi */
+    .morabba-number-fa {
+        -moz-font-feature-settings: "ss01";
+        -webkit-font-feature-settings: "ss01";
+        font-feature-settings: "ss01";
+    }
+
+    .dir-rtl {
+        direction: rtl;
+    }
+
+    .dir-ltr {
+        direction: ltr;
+    }
+
+    .filter-white {
+        filter: brightness(0) invert(1);
+    }
+    .filter-black {
+        filter: brightness(100) invert(1);
+    }
+
+    .prespective-3d{
+        transform-style: preserve-3d;
+    }
+
+    .rotateY-180{
+        transform: rotateY(180deg);
+    }
+
+    .backface-hidden{
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
+    }
+
+    .backface-visible{
+        -webkit-backface-visibility: visible;
+        backface-visibility: visible;
+    }
+
+    .prespective{
+        perspective: 1000px;
+    }
+
+}
+
+/* CUSTOM COLOR */
+.bg-multi-color {
+    background: linear-gradient(to bottom, red 0% 14%, orange 14% 28%, yellow 28% 42%, green 42% 56%, blue 56% 70%, indigo 70% 84%, violet 84% 98%);
+}
+
+.bg-none-color {
+    background: none;
+    /*@apply bg-sky-50;*/
+}
+
+/* FILEPOND */
+.filepond--credits {
+    @apply hidden;
+}
+
+.filepond--drop-label {
+    @apply ltr:dir-ltr rtl:dir-rtl ltr:!font-inter rtl:!font-iran !text-gray-900 dark:!text-white !text-sm;
+}
+
+.filepond--root .filepond--hopper {
+    @apply !bg-gray-50 dark:!bg-gray-700;
+}
+
+.filepond--panel .filepond--panel-root {
+    @apply !bg-gray-50 dark:!bg-gray-700;
+    @apply !border-gray-300 dark:!border-gray-600;
+}
+
+/* CHOICES.JS */
+.choices__inner {
+    @apply !bg-gray-50 dark:!bg-gray-700;
+    @apply !border-transparent dark:!border-transparent ;
+    @apply !ring-0 dark:!ring-0;
+    @apply !rounded-[7px];
+}
+
+.choices__input {
+    @apply !bg-gray-50 dark:!bg-gray-700 ;
+}
+
+.choices .choices__list {
+    @apply !z-10;
+}
+
+.choices .choices__list--multiple .choices__item {
+    @apply !bg-primary-500 hover:!bg-primary-600 transition duration-200 !border-transparent;
+}
+
+.choices__list--multiple .choices__item[data-deletable] {
+    @apply !px-0 !ps-2;
+}
+
+.choices .choices__list--dropdown .choices__item--selectable {
+    @apply dark:!text-white;
+}
+
+.choices .choices__list--dropdown .choices__item--selectable.is-highlighted {
+    @apply !bg-primary-500 dark:!bg-primary-500;
+}
+
+.choices .choices__list--dropdown {
+    @apply !border-primary-500 dark:!border-primary-500 ring-1 ring-primary-500;
+}
+
+.choices__list--dropdown {
+    @apply !bg-gray-50 dark:!bg-gray-500;
+}
+.choices__button {
+    @apply ltr:!right-2 rtl:!right-auto rtl:!left-8 !bg-red-500 dark:!bg-red-500;
+}
+
+.choices .choices__inner {
+    @apply rtl:!bg-[center_left_.5rem];
+}
+
+.choices[data-type*=select-multiple] .choices__button {
+    @apply rtl:!end-0 rtl:!start-auto ltr:!end-auto ltr:!start-0 !rounded-full !px-0 !mx-2 !size-5;
+}
+
+/* JODIT TEXT EDITOR */
+.jodit-container {
+    /*@apply !border-gray-300 dark:!border-gray-600;*/
+    @apply !border-transparent dark:!border-transparent;
+}
+
+.jodit-wysiwyg {
+    @apply !bg-gray-50 dark:!bg-gray-700;
+}
+
+.jodit-toolbar__box {
+    @apply !bg-gray-50 dark:!bg-gray-600 dark:!text-white;
+}
+
+.jodit-toolbar__box:not(:empty) {
+    @apply !border-gray-300 dark:!border-gray-700 !rounded-t-none;
+}
+
+.jodit-ui-separator {
+    @apply !border-gray-300 dark:!border-gray-700 !border-opacity-50 dark:!border-opacity-50;
+}
+
+.jodit-toolbar__box:not(:empty) .jodit-toolbar-editor-collection:after {
+    @apply !bg-gray-300 dark:!bg-gray-700;
+}
+
+.jodit-toolbar-button__button {
+    @apply dark:hover:!bg-gray-700;
+}
+
+.jodit-toolbar-button_with-trigger_true:hover:not([disabled]) {
+    @apply dark:border-gray-700;
+}
+
+.jodit-toolbar-button__trigger {
+    @apply dark:hover:!bg-gray-700 dark:!text-white fill-current;
+}
+
+.jodit-icon {
+    @apply !fill-current !stroke-current !text-gray-900 dark:!text-white;
+}
+
+.jodit-container:not(.jodit_inline) {
+    @apply !bg-gray-50 dark:!bg-gray-600;
+}
+
+.jodit-container:not(.jodit_inline) .jodit-workplace {
+    @apply !bg-gray-50 dark:!bg-gray-600;
+}
+
+.jodit-toolbar-editor-collection_size_middle.jodit-toolbar-editor-collection_mode_horizontal {
+    @apply !bg-none;
+    /*background-image: repeating-linear-gradient(transparent 0,transparent 37px,#2d343c 38px) !important;*/
+}
+
+.badge {
+    @apply inline-flex items-center gap-x-1.5 py-1.5 px-3 rounded-full text-xs font-medium bg-gray-800 text-white dark:bg-white dark:text-gray-800;
+}
+
+/* swiper starts */
+.slider_type_1 .swiper-button-prev, .slider_type_1 .swiper-button-next {
+    @apply hidden top-auto bottom-8 drop-shadow-base rounded-custom size-12 lg:flex_center after:text-base after:font-bold after:rotate-180;
+}
+.slider_type_1.arrow-bottom .swiper-button-prev, .slider_type_1.arrow-bottom .swiper-button-next {
+    @apply bottom-8 bg-white/70 after:text-[#2F3136];
+}
+.slider_type_1.arrow-blur-bottom .swiper-button-prev, .slider_type_1.arrow-blur-bottom .swiper-button-next {
+    @apply bottom-8 xl:bottom-14 xl:after:text-5xl after:text-3xl after:text-white/75 hover:after:text-white;
+}
+.slider_type_1.arrow-blur-center .swiper-button-prev, .slider_type_1.arrow-blur-center .swiper-button-next {
+    @apply top-1/2 -translate-y-1/2 xl:after:text-5xl after:text-3xl after:text-white/75 hover:after:text-white;
+}
+.slider_type_1.arrow-blur-bottom .swiper-button-next {
+    @apply lg:left-20 xl:left-40 2xl:left-80;
+}
+.slider_type_1.arrow-blur-bottom .swiper-button-prev {
+    @apply lg:right-20 xl:right-40 2xl:right-80;
+}
+.slider_type_1.arrow-blur-center .swiper-button-next {
+    @apply lg:left-8;
+}
+.slider_type_1.arrow-blur-center .swiper-button-prev {
+    @apply lg:right-8;
+}
+.slider_type_1.arrow-center .swiper-button-prev, .slider_type_1.arrow-center .swiper-button-next {
+    @apply bottom-1/2 translate-y-1/2 bg-white/70 after:text-[#2F3136];
+}
+.slider_type_1.arrow-center-transparent .swiper-button-prev, .slider_type_1.arrow-center-transparent .swiper-button-next {
+    @apply bottom-1/2 translate-y-1/2 bg-transparent border border-stone-200 after:text-stone-200;
+}
+.slider_type_1 .swiper-button-prev {
+    @apply after:content-['prev'];
+}
+.slider_type_1 .swiper-button-next {
+    @apply after:content-['next'];
+}
+.slider_type_1 .swiper-pagination .swiper-pagination-bullet{
+    @apply w-2 h-2 transition-transform duration-300 rounded-full opacity-50 bg-white;
+}
+.slider_type_1.stone_paginate .swiper-pagination .swiper-pagination-bullet{
+    @apply bg-stone-700;
+}
+.slider_type_1 .swiper-pagination .swiper-pagination-bullet-active{
+    @apply w-6 opacity-80;
+}
+
+.slider_type_1.arrow-blur-bottom {
+    @apply relative before:absolute before:content-[''] before:left-0 before:w-full before:bottom-0 before:h-44 before:hidden lg:before:block before:z-[2] before:bg-gradient-to-t before:from-black before:to-transparent;
+}
+
+.slider_type_1.arrow-bottom .custom_gradient, .slider_type_1.arrow-center .custom_gradient, .slider_type_1.arrow-center-transparent .custom_gradient{
+    @apply hidden;
+}
+
+.desktop_pdp_slider .swiper-button-next, .desktop_pdp_slider .swiper-button-prev{
+    @apply absolute top-1/2 z-[1] cursor-pointer -translate-y-1/2 w-10 h-10 lg:w-12 lg:h-12 rounded-lg bg-white/70 flex_center drop-shadow-[2px_4px_15px_rgba(255,255,255,0.25)] before:absolute before:content-[''] before:w-2 before:h-2 before:border-r-2 before:border-t-2 before:border-gray-900 after:hidden lg:before:w-3 lg:before:h-3;
+}
+
+.desktop_pdp_slider .swiper-button-next.swiper-button-disabled, .desktop_pdp_slider .swiper-button-prev.swiper-button-disabled{
+    @apply pointer-events-none opacity-40;
+}
+
+.desktop_pdp_slider .swiper-button-next{
+    @apply right-4 lg:right-6 before:rotate-45;
+}
+
+.desktop_pdp_slider .swiper-button-prev{
+    @apply left-4 lg:left-6 before:-rotate-[135deg] right-auto;
+}
+
+.swiper.articleSliderTypeFive{
+    @apply px-4 lg:px-0;
+}
+.articleSliderTypeFive .swiper-button-next, .articleSliderTypeFive .swiper-button-prev{
+    @apply h-full top-0 hidden lg:flex w-28 justify-center items-start pt-28 xl:pt-32 after:size-12 after:flex_center after:bg-white/70 after:rounded-custom after:border after:border-[#7B808C] before:absolute before:top-32 xl:before:top-36 before:size-2 before:translate-x-1/2 before:translate-y-1/2;
+}
+.articleSliderTypeFive .swiper-slide{
+    @apply w-72 lg:w-auto sm:w-[22rem];
+}
+.articleSliderTypeFive .swiper-button-prev{
+    @apply bg-gradient-to-r from-transparent to-white right-0 before:border-r-[#2F3136] before:border-t-[#2F3136] before:border-r-2 before:border-t-2 before:content-[''] before:right-14 before:rotate-45;
+}
+.articleSliderTypeFive .swiper-button-next{
+    @apply bg-gradient-to-l from-transparent to-white left-0 before:border-l-[#2F3136] before:border-b-[#2F3136] before:border-l-2 before:border-b-2 before:content-[''] before:left-12 before:rotate-45;
+}
+
+.articleSliderTypeFive .swiper-pagination{
+    @apply static;
+}
+.articleSliderTypeFive .swiper-pagination .swiper-pagination-bullet{
+    @apply w-2 h-2 rounded-lg opacity-50 bg-normal;
+}
+.articleSliderTypeFive .swiper-pagination .swiper-pagination-bullet.swiper-pagination-bullet-active{
+    @apply w-4 opacity-100;
+}
+
+
+.swiper.articleSliderType5{
+    @apply px-4 lg:px-0;
+}
+.articleSliderType5 .articleSliderType5-next, .articleSliderType5 .articleSliderType5-prev{
+    @apply h-full top-0 hidden lg:flex w-28 justify-center items-start pt-28 xl:pt-32 after:size-12 after:flex_center after:bg-white/70 after:rounded-custom after:border after:border-[#7B808C] before:absolute before:top-32 xl:before:top-36 before:size-2 before:translate-x-1/2 before:translate-y-1/2;
+}
+.articleSliderType5 .swiper-slide{
+    @apply w-72 lg:w-auto sm:w-[22rem];
+}
+.articleSliderType5 .articleSliderType5-prev{
+    @apply bg-gradient-to-r from-transparent to-white right-0 before:border-r-[#2F3136] before:border-t-[#2F3136] before:border-r-2 before:border-t-2 before:content-[''] before:right-14 before:rotate-45;
+}
+.articleSliderType5 .articleSliderType5-next{
+    @apply bg-gradient-to-l from-transparent to-white left-0 before:border-l-[#2F3136] before:border-b-[#2F3136] before:border-l-2 before:border-b-2 before:content-[''] before:left-12 before:rotate-45;
+}
+
+.articleSliderType5 .articleSliderType5-pagination{
+    @apply static
+}
+.articleSliderType5 .articleSliderType5-pagination .swiper-pagination-bullet{
+    @apply w-2 h-2 rounded-lg opacity-50 bg-normal;
+}
+.articleSliderType5 .articleSliderType5-pagination .swiper-pagination-bullet.swiper-pagination-bullet-active{
+    @apply w-4 opacity-100;
+}
+/* swiper ends */
+
+/* tab styules starts */
+.l_tab_styles li.active{
+    @apply font-medium before:block;
+}
+/* tab styules ends */
+
+
+.iframe_styles > * {
+    width: 100%;
+}
+
+/* table custom styles starts */
+.custom_table_container div{
+    @apply overflow-auto;
+}
+.custom_table_container table{
+    @apply w-full font-yekan text-dark-500 min-w-[36rem];
+}
+.custom_table_container table thead{
+    @apply border-b-2 border-b-gray-900;
+}
+.custom_table_container table thead tr td{
+    @apply text-sm font-medium leading-6 px-4 py-1.5 [&:not(:first-child)]:text-center lg:first:pr-8;
+}
+.custom_table_container table tbody tr{
+    @apply border-b [&:nth-last-child(1)]:border-b-2 border-b-gray-900/30 [&:nth-last-child(1)]:border-gray-900 h-16 last:border-b-0;
+}
+.custom_table_container table tbody tr td{
+    @apply px-4 py-1.5 [&:not(:first-child)]:text-center lg:first:pr-8;
+}
+
+/* .custom_table_container.not_comparison table tbody tr{
+    @apply h-16 border-b last:border-b-2 border-b-gray-900/30 last:border-gray-900;
+}
+.custom_table_container.not_comparison table tbody tr:last-child td{
+    @apply text-sm py-1.5;
+} */
+
+
+.custom_table_striped_container div{
+    @apply overflow-auto;
+}
+.custom_table_striped_container table{
+    @apply w-full font-yekan text-dark-500 min-w-[36rem] overflow-auto;
+}
+.custom_table_striped_container table thead{
+    @apply border-b-2 border-b-dark-500;
+}
+.custom_table_striped_container table thead tr td{
+    @apply text-sm font-medium leading-6 px-4 py-1.5 [&:not(:first-child)]:text-center lg:first:pr-8;
+}
+.custom_table_striped_container table tbody tr{
+    @apply h-12 odd:bg-white even:bg-dark-50 hover:bg-[#eee] transition-colors;
+}
+/* .custom_table_striped_container table tbody tr:last-child td{
+    @apply text-xs py-0.5;
+} */
+.custom_table_striped_container table tbody tr td{
+    @apply px-4 py-1.5 [&:not(:first-child)]:text-center lg:first:pr-8;
+}
+
+/* .custom_table_striped_container.not_comparison table tbody tr{
+    @apply h-12 last:odd:!bg-white last:even:!bg-dark-50 last:hover:!bg-[#eee];
+}
+.custom_table_striped_container.not_comparison table tbody tr:last-child td{
+    @apply text-sm py-1.5 px-4 lg:first:pr-8;
+} */
+/* table custom styles ends */
+
+/* range slider starts */
+.range__input {
+    /* width: 100%; */
+    -webkit-appearance: none;
+    height: 4px;
+    border-radius: 6px;
+    background: linear-gradient(to right, green 0%, red 0%);
+    outline: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .range__input::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 24px !important;
+    height: 24px !important;
+    border-radius: 50%;
+    background-color: #f3f3f4 !important;
+    border: #1ea0ff 4px solid !important;
+    cursor: pointer;
+    -webkit-transition: background .15s ease-in-out;
+    transition: background .15s ease-in-out;
+  }
+
+  .range__input::-webkit-slider-thumb:hover {
+    background-color: #d2d2d2 !important;
+  }
+
+  .range__input::-moz-range-thumb {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: #f3f3f4 !important;
+    border: #599CFF 4px solid !important;
+    cursor: pointer;
+    -webkit-transition: background .15s ease-in-out;
+    transition: background .15s ease-in-out;
+  }
+
+  .range__input::-moz-range-thumb:hover {
+    background: #f9ca24;
+  }
+
+  /* remove border */
+  input::-moz-focus-inner, input::-moz-focus-outer {
+    border: 0;
+  }
+
+  .range__slider {
+    width: 45%;
+  }
+
+  .range__value {
+    width: 35%;
+    margin-left: 45px;
+    text-align: center;
+    border-left: #e6e4e4 1px solid;
+  }
+/* range slider ends */
