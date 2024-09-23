@@ -43,6 +43,7 @@ Route::get('/user', [UserController::class, 'getUser'])->middleware('auth:sanctu
 Route::get('/user/ads', [UserController::class, 'getMyAds'])->middleware('auth:sanctum');/* User Ads */
 
 Route::get('/v1/notice', [NoticeController::class, 'fetchNotices']);
+Route::get('/v1/notice/{slug}', [NoticeController::class, 'single']);
 
 Route::get('/otp/request', [OtpController::class, 'requestOtp']);
 Route::get('/otp/verify', [OtpController::class, 'verifyOtp']);

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\v1\SaleNoticeRequest;
 use App\Models\sale_notice;
 use App\Trait\ApiResponse;
+use App\Transformers\v1\sale_noticeSingleTransformer;
 use App\Transformers\v1\sale_noticeTransformer;
 use Illuminate\Http\Request;
 
@@ -14,9 +15,6 @@ class NoticeController extends Controller
     use ApiResponse;
     public function fetchNotices(SaleNoticeRequest $request)
     {
-//        $perPage = $request['per_page'] ?? 10;
-//        $notice = sale_notice::with('company')->where('publish','=',1)->paginate($perPage);
-
         $query = sale_notice::with(['company']);
 
         // Apply category filter
@@ -53,9 +51,11 @@ class NoticeController extends Controller
 
         // Return the response
         return responder()->success($notice, sale_noticeTransformer::class)->respond();
+    }
 
-
-//        return responder()->success($notice)->respond();
-//        return response()->json(['status'=>true,'list'=>$notice]);
+    public function single($single)
+    {
+        $notice = sale_notice::with('company')->where('slug','like','%'. $single .'%')->first();
+        return responder()->success($notice, sale_noticeSingleTransformer::class)->respond();
     }
 }
