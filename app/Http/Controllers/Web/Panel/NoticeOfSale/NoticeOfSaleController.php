@@ -43,6 +43,7 @@ class NoticeOfSaleController extends Controller
         $data = $request->validated();
         $data = $this->getFile($data, $request);
         $data = $this->getVoice($data, $request);
+        $data = $this->getFileExtension($data, $request);
 
         sale_notice::create($data);
 
@@ -69,7 +70,7 @@ class NoticeOfSaleController extends Controller
     {
         $data = $request->validated();
 
-        /* Update new image */
+        /* Update new file */
         if ($request->validated()['file'] !== $saleNotice->file) {
             Storage::delete('public/'.$saleNotice->getFile());
             $data = $this->getFile($data, $request);
@@ -77,12 +78,19 @@ class NoticeOfSaleController extends Controller
             $data['file'] = $saleNotice->getFile();
         }
 
-        /* Update new image */
+        /* Update new voice */
         if ($request->validated()['voice'] !== $saleNotice->voice) {
             Storage::delete('public/'.$saleNotice->getVoice());
             $data = $this->getVoice($data, $request);
         } else {
             $data['voice'] = $saleNotice->getVoice();
+        }
+
+        /* Update new extension */
+        if ($request->validated()['file'] !== $saleNotice->file) {
+            $data['file_type'] = $this->getFileExtension($data, $request);
+        } else {
+            $data['file_type'] = $saleNotice->file_type;
         }
 
         $saleNotice->update($data);
@@ -123,6 +131,20 @@ class NoticeOfSaleController extends Controller
         if (!empty($request->file('voice'))) {
             $data['voice'] =
                 $request->file('voice')->store('media/notice', 'public');
+        }
+        return $data;
+    }
+
+    public function getFileExtension(mixed $data, salesNoticeRequest $request): mixed
+    {
+        $data['file_type'] = null;
+        if (!empty($request->file('file'))) {
+            $extension = $request->file('file')->getClientOriginalExtension();
+            if($extension === 'jpg' || $extension === 'png' || $extension === 'jpeg') {
+                $data['file_type'] = 'image';
+            }else{
+                $data['file_type'] = 'file';
+            }
         }
         return $data;
     }

@@ -18,7 +18,7 @@ class salesNoticeRequest extends FormRequest
             return [
                 'title' => 'required|string',
                 'company_id' => 'required|numeric',
-                'voice' => 'nullable|max:2048',
+                'voice' => 'max:2048',
                 'circularNo' => 'nullable|string',
                 'description' => 'nullable|string',
                 'body' => 'required',
@@ -55,15 +55,15 @@ class salesNoticeRequest extends FormRequest
     public function getValidationRuleFile(): string
     {
         if ($this->hasFile('file')) {
-            return "required|max:2048";
+            return "max:2048";
         }
-        return "required|string";
+        return "string";
     }
     public function getValidationRuleVoice(): string
     {
         if ($this->hasFile('voice')) {
-            return "required|max:2048";
+            return "max:2048";
         }
-        return "required|string";
+        return "string";
     }
 }

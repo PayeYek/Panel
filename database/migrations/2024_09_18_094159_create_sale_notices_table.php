@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('circularNo')->nullable();
             $table->longText('body')->nullable();
             $table->longText('file')->nullable();
+            $table->string('file_type',8)->nullable();
             $table->longText('voice')->nullable();
             $table->boolean('publish')->default(false);
             $table->boolean('pinned')->default(false);

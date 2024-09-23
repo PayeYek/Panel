@@ -27,6 +27,7 @@ class sale_notice extends Model
         'circularNo',
         'body',
         'file',
+        'file_type',
         'pinned',
         'publish',
         'voice',

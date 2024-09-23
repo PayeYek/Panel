@@ -21,7 +21,6 @@
                     />
                     <x-splade-file name="voice" label="voice" filepond preview
                                    max-size="2MB"
-                                   required
                     />
                     <x-splade-input name="title" label="Title" required/>
                     <x-splade-input ltr name="slug" label="Slug" help="Exclusive name in English"/>
