@@ -13,7 +13,7 @@ return new class extends Migration {
             $table->foreignId('company_id')->constrained()->cascadeOnDelete();
             $table->string('title')->nullable();
             $table->string('type')->default('sell');
-            $table->longText('description')->nullable();
+//            $table->longText('description')->nullable();
             $table->longText('body')->nullable();
             $table->longText('image')->nullable();
             $table->boolean('publish')->default(false);
