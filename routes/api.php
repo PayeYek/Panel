@@ -3,6 +3,7 @@
 use App\Http\Controllers\Api\Advertise\AdController;
 use App\Http\Controllers\Api\Advertise\BookmarkController;
 use App\Http\Controllers\Api\Advertise\CategoryController;
+use App\Http\Controllers\Api\Advertise\NoticeController;
 use App\Http\Controllers\Api\Advertise\PriceListController;
 use App\Http\Controllers\Api\Advertise\ProvinceController;
 use App\Http\Controllers\Api\Common\OtpController;
@@ -40,6 +41,9 @@ Route::get('slug/{title}', function ($title) {
 
 Route::get('/user', [UserController::class, 'getUser'])->middleware('auth:sanctum');/* Profile */
 Route::get('/user/ads', [UserController::class, 'getMyAds'])->middleware('auth:sanctum');/* User Ads */
+
+Route::get('/v1/notice', [NoticeController::class, 'fetchNotices']);
+Route::get('/v1/notice/{slug}', [NoticeController::class, 'single']);
 
 Route::get('/otp/request', [OtpController::class, 'requestOtp']);
 Route::get('/otp/verify', [OtpController::class, 'verifyOtp']);

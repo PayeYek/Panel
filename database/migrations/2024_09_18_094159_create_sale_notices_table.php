@@ -4,18 +4,24 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration {
-
+return new class extends Migration
+{
+    /**
+     * Run the migrations.
+     */
     public function up(): void
     {
-        Schema::create('articles', function (Blueprint $table) {
+        Schema::create('sale_notices', function (Blueprint $table) {
             $table->id();
             $table->foreignId('company_id')->constrained()->cascadeOnDelete();
             $table->string('title')->nullable();
-            $table->string('type')->default('sell');
+            $table->tinyInteger('status')->default(0);
             $table->longText('description')->nullable();
+            $table->string('circularNo')->nullable();
             $table->longText('body')->nullable();
-            $table->longText('image')->nullable();
+            $table->longText('file')->nullable();
+            $table->string('file_type',8)->nullable();
+            $table->longText('voice')->nullable();
             $table->boolean('publish')->default(false);
             $table->boolean('pinned')->default(false);
             $table->text('slug')->nullable();
@@ -25,8 +31,11 @@ return new class extends Migration {
         });
     }
 
+    /**
+     * Reverse the migrations.
+     */
     public function down(): void
     {
-        Schema::dropIfExists('articles');
+        Schema::dropIfExists('sale_notices');
     }
 };

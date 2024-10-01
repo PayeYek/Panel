@@ -97,6 +97,7 @@ Route::prefix('ad')->name('ad.')->controller(AdController::class)->group(functio
             Route::post('mobile', 'mobile')->name('mobile');
         });
 });
+
 Route::resource('ad', AdController::class)->except(['create']);
 
 Route::resource('article', ArticleController::class)->except(['edit', 'update', 'destroy', 'create']);

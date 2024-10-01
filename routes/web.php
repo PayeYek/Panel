@@ -7,6 +7,7 @@ use App\Http\Controllers\Web\Panel\Advertise\AdController;
 use App\Http\Controllers\Web\Panel\Advertise\CategoryController;
 use App\Http\Controllers\Web\Panel\Advertise\PriceListController;
 use App\Http\Controllers\Web\Panel\AnnounceController;
+use App\Http\Controllers\Web\Panel\NoticeOfSale\NoticeOfSaleController;
 use App\Http\Controllers\Web\Panel\VerticalAnnounceController;
 use App\Http\Controllers\Web\Panel\AuthController;
 use App\Http\Controllers\Web\Panel\Blog\ArticleController;
@@ -105,6 +106,15 @@ Route::middleware(['splade'])->group(function () {
                 Route::resource('file', FileController::class)->except('show');
             });
 
+            Route::prefix('noticeOfSale')->name('noticeOfSale.')->group(function () {
+                // Company
+                Route::resource('company', CompanyController::class)->except('show');
+                // Articles
+                Route::resource('list', NoticeOfSaleController::class)->except('show');
+            });
+
+            /* NoticeOfSale */
+//            Route::resource('notice-of-sale',NoticeOfSaleController::class);
             /* Landing */
             /*Route::prefix('landing')->name('landing.')->group(function () {
                 // Lands - Showcase pages (vitrine)
