@@ -15,7 +15,7 @@ class NoticeController extends Controller
     use ApiResponse;
     public function fetchNotices(SaleNoticeRequest $request)
     {
-        $query = sale_notice::with(['company']);
+        $query = sale_notice::with(['company'])->orderBy('expired_at','desc');
 
         // Apply category filter
         if ($companyIds = $request->company_id) {
