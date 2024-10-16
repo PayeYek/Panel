@@ -45,7 +45,8 @@ class NoticeOfSaleController extends Controller
         $data = $this->getVoice($data, $request);
         $data = $this->getFileExtension($data, $request);
 
-        sale_notice::create($data);
+        $new = sale_notice::create($data);
+        sale_notice::where('id','=',$new->id)->update(['slug'=>$new->id]);
 
         Splade::toast(__('Created'))->autoDismiss(5)->success();
 
@@ -66,34 +67,40 @@ class NoticeOfSaleController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(salesNoticeRequest $request, sale_notice $saleNotice)
+    public function update(salesNoticeRequest $request, sale_notice $saleNotice,$id)
     {
         $data = $request->validated();
 
         /* Update new file */
-        if ($request->validated()['file'] !== $saleNotice->file) {
-            Storage::delete('public/'.$saleNotice->getFile());
-            $data = $this->getFile($data, $request);
-        } else {
-            $data['file'] = $saleNotice->getFile();
+        if($request->files){
+            /* Update new extension */
+            if ($request->files !== $saleNotice->file) {
+                $data['file_type'] = $this->getFileExtension($data, $request)['file_type'];
+            } else {
+                $data['file_type'] = $saleNotice->file_type;
+            }
+
+            if ($request->files !== $saleNotice->file) {
+                Storage::delete('public/'.$saleNotice->file);
+                $data['file'] = $this->getFile($data, $request)['file'];
+            } else {
+                $data['file'] = $saleNotice->file;
+            }
         }
 
         /* Update new voice */
-        if ($request->validated()['voice'] !== $saleNotice->voice) {
-            Storage::delete('public/'.$saleNotice->getVoice());
-            $data = $this->getVoice($data, $request);
-        } else {
-            $data['voice'] = $saleNotice->getVoice();
+        if($request->voice){
+            if ($request->validated()['voice'] !== $saleNotice->voice) {
+                Storage::delete('public/'.$saleNotice->voice);
+                $data['voice'] = $this->getVoice($data, $request)['voice'];
+            } else {
+                $data['voice'] = $saleNotice->voice;
+            }
         }
 
-        /* Update new extension */
-        if ($request->validated()['file'] !== $saleNotice->file) {
-            $data['file_type'] = $this->getFileExtension($data, $request);
-        } else {
-            $data['file_type'] = $saleNotice->file_type;
-        }
-
-        $saleNotice->update($data);
+//        dd($data);
+        sale_notice::where('id','=',$id)->limit(1)->update($data);
+//        $saleNotice->update($data);
 
         Splade::toast(__('Updated'))->autoDismiss(5)->info();
 
@@ -103,13 +110,18 @@ class NoticeOfSaleController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(sale_notice $saleNotice)
+    public function destroy($id)
     {
-        /* Delete logo */
-        Storage::delete('public/'.$saleNotice->getFile());
-        Storage::delete('public/'.$saleNotice->getVoice());
+        $get = sale_notice::where('id','=',$id)->first();
 
-        $saleNotice->delete();
+        /* Delete logo */
+        Storage::delete('public/'.$get->file);
+
+        if($get->voice != null){
+            Storage::delete('public/'.$get->voice);
+        }
+
+        sale_notice::where('id','=',$id)->delete();
 
         Splade::toast(__('Deleted'))->autoDismiss(5)->danger();
 
@@ -140,7 +152,7 @@ class NoticeOfSaleController extends Controller
         $data['file_type'] = null;
         if (!empty($request->file('file'))) {
             $extension = $request->file('file')->getClientOriginalExtension();
-            if($extension === 'jpg' || $extension === 'png' || $extension === 'jpeg') {
+            if($extension === 'jpg' || $extension === 'png' || $extension === 'jpeg' || $extension === 'webp') {
                 $data['file_type'] = 'image';
             }else{
                 $data['file_type'] = 'file';
