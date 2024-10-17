@@ -26,7 +26,7 @@ class salesNoticeRequest extends FormRequest
                 'publish' => 'nullable|boolean',
                 'pinned' => 'nullable|boolean',
                 'slug' => 'nullable|string',
-                'published_at' => 'nullable|date|date_format:Y-m-d H:i',
+                'published_at' => 'nullable|date',
                 'expired_at' => 'nullable|date',
             ];
         }
@@ -42,7 +42,7 @@ class salesNoticeRequest extends FormRequest
                 'file' => $this->getValidationRuleFile(),
                 'publish' => 'nullable|boolean',
                 'pinned' => 'nullable|boolean',
-                'published_at' => 'nullable|date|date_format:Y-m-d H:i',
+                'published_at' => 'nullable|date',
                 'expired_at' => 'nullable|date',
                 'slug' => 'nullable|string',
             ];

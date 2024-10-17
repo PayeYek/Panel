@@ -20,7 +20,7 @@ class sale_noticeTransformer extends Transformer
             'title'        => $sale_notice->title,
             'description'  => $sale_notice->description,
             'circularNo'   => $sale_notice->circularNo,
-            'file'         => $sale_notice->file,
+            'file'         => ($sale_notice->file) ? config('app.url')  . '/storage/' . $sale_notice->file : '',
             'file_type'    => $sale_notice->file_type,
             'body'         => $sale_notice->body,
             'slug'         => $sale_notice->slug,

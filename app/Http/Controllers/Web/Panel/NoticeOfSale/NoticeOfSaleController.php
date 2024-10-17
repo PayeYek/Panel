@@ -60,6 +60,12 @@ class NoticeOfSaleController extends Controller
     {
         $companies = Company::latest()->pluck('title', 'id');
         $saleNotice = sale_notice::where('id','=',$id)->firstOrFail();
+        if($saleNotice->file){
+            $saleNotice->file = config('app.url')  . '/storage/' . $saleNotice->file;
+        }
+        if($saleNotice->voice){
+            $saleNotice->voice = config('app.url')  . '/storage/' . $saleNotice->voice;
+        }
 
         return view('panel.salesNotice.edit', compact('saleNotice', 'companies'));
     }
