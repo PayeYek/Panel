@@ -4,7 +4,7 @@ use App\Http\Controllers\Api\Advertise\AdController;
 use App\Http\Controllers\Api\Advertise\BookmarkController;
 use App\Http\Controllers\Api\Advertise\CategoryController;
 use App\Http\Controllers\Api\Advertise\NoticeController;
-use App\Http\Controllers\Api\Advertise\PriceController;
+use App\Http\Controllers\Api\v2\PriceController;
 use App\Http\Controllers\Api\Advertise\PriceListController;
 use App\Http\Controllers\Api\Advertise\ProvinceController;
 use App\Http\Controllers\Api\Common\OtpController;
