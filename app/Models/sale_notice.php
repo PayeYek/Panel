@@ -21,8 +21,8 @@ class sale_notice extends Model
 
     protected $fillable = [
         'company_id',
-        'slug',
         'title',
+        'slug',
         'description',
         'circularNo',
         'body',
@@ -50,38 +50,31 @@ class sale_notice extends Model
         return $query->where('pinned', true);
     }
 
-    protected function slug(): Attribute
-    {
-        return new Attribute(
-            set: fn($value) => $value ? \Str::slug($value) : \Str::slug($this->attributes['title'])
-        );
-    }
+//    public function getFileAttribute()
+//    {
+//        $item = $this->attributes['file'];
+//
+//        if (empty($item)) {
+//            return null;
+//        }
+//
+//        return Str::isUrl($item) ? $item : asset('storage/' . $item);
+//    }
+//    public function getVoiceAttribute()
+//    {
+//        $item = $this->attributes['voice'];
+//
+//        if (empty($item)) {
+//            return null;
+//        }
+//
+//        return Str::isUrl($item) ? $item : asset('storage/' . $item);
+//    }
 
-    public function getFileAttribute()
-    {
-        $item = $this->attributes['file'];
-
-        if (empty($item)) {
-            return null;
-        }
-
-        return Str::isUrl($item) ? $item : asset('storage/' . $item);
-    }
-    public function getVoiceAttribute()
-    {
-        $item = $this->attributes['voice'];
-
-        if (empty($item)) {
-            return null;
-        }
-
-        return Str::isUrl($item) ? $item : asset('storage/' . $item);
-    }
-
-    public function getFile()
-    {
-        return $this->attributes["file"];
-    }
+//    public function getFile()
+//    {
+//        return $this->attributes["file"];
+//    }
 
     public function getVoice()
     {

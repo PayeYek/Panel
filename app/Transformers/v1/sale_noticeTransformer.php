@@ -2,6 +2,7 @@
 
 namespace App\Transformers\v1;
 
+use App\Http\Requests\Panel\NotiseOfSale\salesNoticeRequest;
 use App\Models\sale_notice;
 use Flugg\Responder\Transformers\Transformer;
 use Illuminate\Support\Str;
@@ -20,8 +21,13 @@ class sale_noticeTransformer extends Transformer
             'title'        => $sale_notice->title,
             'description'  => $sale_notice->description,
             'circularNo'   => $sale_notice->circularNo,
+            'file'         => ($sale_notice->file) ? config('app.url')  . '/storage/' . $sale_notice->file : '',
+            'file_type'    => ($sale_notice->file) ? $this->getFileExtension('/storage/' . $sale_notice->file) : '',
+            'body'         => $sale_notice->body,
             'slug'         => $sale_notice->slug,
+            'voice'        => $sale_notice->voice,
             'published_at' => $sale_notice->published_at,
+            'publish'    => $sale_notice->publish,
             'expired_at'   => $sale_notice->expired_at,
             'company_logo' => $sale_notice->company->logo,
             'company_fa'   => $sale_notice->company->title,
@@ -29,5 +35,13 @@ class sale_noticeTransformer extends Transformer
             'company_en'   => $companyTitle,
             'company_slug' => $companySlug,
         ];
+    }
+
+    public function getFileExtension($file): mixed
+    {
+        $extension = pathinfo($file, PATHINFO_EXTENSION);
+        $arr = ['png','jpeg','jpg','gif','bmp','tiff','tif','webp','svg','ico','heic','heif','gif','avif'];
+        in_array(strtolower($extension), $arr) ? $data = 'image' : $data = 'file';
+        return $data;
     }
 }

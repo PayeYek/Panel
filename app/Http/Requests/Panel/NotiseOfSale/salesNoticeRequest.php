@@ -19,14 +19,14 @@ class salesNoticeRequest extends FormRequest
                 'title' => 'required|string',
                 'company_id' => 'required|numeric',
                 'voice' => 'max:2048',
-                'circularNo' => 'nullable|string',
+                'circularNo' => 'string',
                 'description' => 'nullable|string',
                 'body' => 'required',
-                'file' => 'required|max:2048',
+                'file' => 'max:2048',
                 'publish' => 'nullable|boolean',
                 'pinned' => 'nullable|boolean',
-                'slug' => 'nullable|string|unique:articles,slug',
-                'published_at' => 'nullable|date|date_format:Y-m-d H:i',
+                'slug' => 'nullable|string',
+                'published_at' => 'nullable|date',
                 'expired_at' => 'nullable|date',
             ];
         }
@@ -36,18 +36,15 @@ class salesNoticeRequest extends FormRequest
                 'title' => 'required|string',
                 'company_id' => 'required|numeric',
                 'voice' => $this->getValidationRuleVoice(),
-                'circularNo' => 'nullable|string',
+                'circularNo' => 'string',
                 'description' => 'nullable|string',
                 'body' => 'required',
                 'file' => $this->getValidationRuleFile(),
                 'publish' => 'nullable|boolean',
                 'pinned' => 'nullable|boolean',
-                'published_at' => 'nullable|date|date_format:Y-m-d H:i',
+                'published_at' => 'nullable|date',
                 'expired_at' => 'nullable|date',
-                'slug' => [
-                    'required', 'string',
-                    Rule::unique('sale_notices')->ignore($this->id),
-                ],
+                'slug' => 'nullable|string',
             ];
         }
         return null;

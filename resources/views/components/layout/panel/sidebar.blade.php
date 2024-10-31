@@ -50,6 +50,7 @@
             <x-layout.panel.menu title="Notice Of Sale" route="panel.noticeOfSale.*">
             <x-layout.panel.menu title="Notice List" route="panel.noticeOfSale.list.index"/>
             <x-layout.panel.menu title="Companies" route="panel.noticeOfSale.company.index"/>
+            <x-layout.panel.menu title="Files" route="panel.blog.file.index"/>
             </x-layout.panel.menu>
         </ul>
 

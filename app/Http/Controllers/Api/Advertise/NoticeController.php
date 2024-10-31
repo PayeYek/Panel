@@ -15,7 +15,7 @@ class NoticeController extends Controller
     use ApiResponse;
     public function fetchNotices(SaleNoticeRequest $request)
     {
-        $query = sale_notice::with(['company']);
+        $query = sale_notice::with(['company'])->orderBy('published_at','desc')->orderBy('expired_at', 'desc');
 
         // Apply category filter
         if ($companyIds = $request->company_id) {
@@ -30,21 +30,21 @@ class NoticeController extends Controller
                     ->orWhere('description', 'like', "%{$keyword}%");
             });
         }
-
-        // Apply sorting
-        switch ($request->sort_by) {
-            //case 'price_asc':
-            //    $query->orderBy('price', 'asc')
-            //        ->where('agreement', false)
-            //        ->where('price','>',0);
-            //    break;
-            //case 'price_desc':
-            //    $query->orderBy('price', 'desc');
-            //    break;
-            default:
-                $query->orderBy('published_at', 'desc');
-                break;
-        }
+//        $query->orderBy('published_at', 'desc');
+//        // Apply sorting
+//        switch ($request->sort_by) {
+//            //case 'price_asc':
+//            //    $query->orderBy('price', 'asc')
+//            //        ->where('agreement', false)
+//            //        ->where('price','>',0);
+//            //    break;
+//            //case 'price_desc':
+//            //    $query->orderBy('price', 'desc');
+//            //    break;
+//            default:
+//                $query->orderBy('published_at', 'desc');
+//                break;
+//        }
 
         // Paginate results
         $notice = $query->paginate($request->per_page);
