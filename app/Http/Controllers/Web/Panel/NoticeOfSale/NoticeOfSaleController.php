@@ -104,7 +104,6 @@ class NoticeOfSaleController extends Controller
             }
         }
 
-//        dd($data);
         sale_notice::where('id','=',$id)->limit(1)->update($data);
 //        $saleNotice->update($data);
 
@@ -158,11 +157,8 @@ class NoticeOfSaleController extends Controller
         $data['file_type'] = null;
         if (!empty($request->file('file'))) {
             $extension = $request->file('file')->getClientOriginalExtension();
-            if($extension === 'jpg' || $extension === 'png' || $extension === 'jpeg' || $extension === 'webp') {
-                $data['file_type'] = 'image';
-            }else{
-                $data['file_type'] = 'file';
-            }
+            $arr = ['png','jpeg','jpg','gif','bmp','tiff','tif','webp','svg','ico','heic','heif','gif','avif'];
+            in_array(strtolower($extension), $arr) ? $data['file_type'] = 'image' : $data['file_type'] = 'file';
         }
         return $data;
     }

@@ -35,7 +35,6 @@ class DailyPriceController extends Controller
                     $query->with('priceChanges');
                 }])->get();
         }
-
         return responder()->success($categories, CategorizedDailyPriceTransformer::class)->respond();
     }
 }
