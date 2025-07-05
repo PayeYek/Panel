@@ -156,7 +156,8 @@ export default {
     plugins: [
         // forms,
         typography,
-        scrollbar({ nocompatible: true }),
+        // scrollbar({ nocompatible: true }),
+        require('tailwind-scrollbar'),
         flowbite
     ],
 };
